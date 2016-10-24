@@ -16,7 +16,8 @@
         </div>
         <div class="row">
             <div class="col s12">
-
+                <p class="yellow-text text-darken-3"><b>Descripcion</b></p>
+                <p>{{$paquete->descripcion}}</p>
                 <p class="yellow-text text-darken-3"><b>Incluye</b></p>
                 <p>{{$paquete->incluye}}</p>
                 <p class="yellow-text text-darken-3"><b>No Incluye</b></p>
