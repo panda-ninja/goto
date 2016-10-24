@@ -1,0 +1,45 @@
+//variables
+  $primary-color: color("materialize-red", "lighten-2") !default;
+  $primary-color-light: false !default;
+  $primary-color-dark: false !default;
+  @if not $primary-color-light {
+    $primary-color-light: lighten($primary-color, 15%);
+  }
+  @if not $primary-color-dark {
+    $primary-color-dark: darken($primary-color, 15%);
+  }
+  $secondary-color: color("teal", "lighten-1") !default;
+  $success-color: color("lime", "darken-4") !default;
+  $error-color: color("red", "base") !default;
+
+  $link-color: color("light-blue", "darken-1") !default;
+
+
+//media querys
+  @media #{$small-and-down} {
+    #index-banner .section {
+      top: 0;
+    }
+  }
+  @media #{$medium-and-up} {
+
+    nav, nav .nav-wrapper i, nav a.button-collapse, nav a.button-collapse i {
+      height: 48px;
+      line-height: 48px;
+    }
+
+    .parallax-container .section {
+      position: absolute;
+      //top: 40%;
+    }
+    #index-banner .section {
+      top: 10%;
+    }
+
+  }
+  @media #{$medium-and-down} {
+    // styles for medium screens and down
+  }
+  @media #{$large-and-up} {
+    // styles for large screens and up
+  }

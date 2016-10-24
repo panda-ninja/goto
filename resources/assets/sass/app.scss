@@ -1,0 +1,152 @@
+
+// Fonts
+@import url(https://fonts.googleapis.com/icon?family=Material+Icons);
+
+// Variables
+//@import "variables";
+
+// Bootstrap
+//@import "node_modules/bootstrap-sass/assets/stylesheets/bootstrap";
+
+// Materialize
+@import "node_modules/materialize-css/sass/materialize.scss";
+
+@import "variables";
+
+
+
+//Style
+
+//---general
+.spacer-10{
+  padding: 10px 0;
+}
+
+
+.padding-5{
+  padding: 5px;
+}
+.padding-10{
+  padding: 10px;
+}
+.padding-15{
+  padding: 15px;
+}
+
+.no-margin{
+  margin: 0 !important;
+}
+
+.margin-top-20{
+  margin-top: 20px;
+}
+.margin-top-40{
+  margin-top: 40px;
+}
+
+.margin-bottom-20{
+  margin-bottom: 20px;
+}
+//font size
+.text-20{
+  font-size: 20px;
+}
+.text-30{
+  font-size: 30px;
+}
+.text-40{
+  font-size: 40px;
+}
+
+//text decoration
+.line-through{
+  text-decoration: line-through;
+}
+//--
+
+header{
+  height: 55px;
+}
+header .header-nav li{
+  display: inline-block;
+  padding: 0 .9em;
+}
+
+nav ul li a{
+  color: #000;
+}
+
+.slider .slides li .caption {
+  left:8%;
+  width: 80%;
+}
+
+//Sectiopn packages maps
+.section-maps{
+  width: 90%;
+}
+.parallax-container {
+  min-height: 520px;
+  line-height: 0;
+  height: auto;
+  color: rgba(255,255,255,.9);
+}
+.parallax-container .section {
+  width: 100%;
+}
+
+.card-packages .card-image .card-title{
+  color: #fff;
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  padding: 20px;
+}
+.card-packages .card-content{
+  line-height:normal;
+}
+
+.card-packages .card-content a{
+  width: 100%;
+}
+.card-packages .card-content a span{
+  display: block;
+}
+
+//cotizaciones
+span.quotes-duration{
+  font-weight: 500;
+}
+
+.quotes-btn a:hover{
+  color: #f9a825 ;
+}
+.qoutes-box .waves-effect{
+  width: 100%;
+}
+.quote-circle{
+  padding: 0 20px;
+}
+.tabs-detail .tabs .tab a{
+  color: #f9a825;
+}
+.tabs-detail .tabs .indicator{
+  background-color: #f9a825;
+}
+
+.box-static-price{
+  position: absolute;
+  top: 0;
+  right: -25% !important;
+}
+.position-relative{
+  position: relative;
+}
+//footer
+footer{
+  background: #303030;
+}
+footer img{
+  width: 100%;
+  height: 100%;
+}
