@@ -45,6 +45,10 @@ return [
             'driver' => 'token',
             'provider' => 'users',
         ],
+        'cliente' => [
+            'driver' => 'session',
+            'provider' => 'cliente',
+        ],
     ],
 
     /*
@@ -70,10 +74,10 @@ return [
             'model' => GotoPeru\User::class,
         ],
 
-        // 'users' => [
-        //     'driver' => 'database',
-        //     'table' => 'users',
-        // ],
+     'cliente' => [
+         'driver' => 'eloquent',
+         'model' => GotoPeru\Cliente::class,
+     ],
     ],
 
     /*
@@ -94,6 +98,11 @@ return [
     'passwords' => [
         'users' => [
             'provider' => 'users',
+            'table' => 'password_resets',
+            'expire' => 60,
+        ],
+        'clientes' => [
+            'provider' => 'clientes',
             'table' => 'password_resets',
             'expire' => 60,
         ],

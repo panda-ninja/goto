@@ -177,7 +177,7 @@ return [
         // GotoPeru\Providers\BroadcastServiceProvider::class,
         GotoPeru\Providers\EventServiceProvider::class,
         GotoPeru\Providers\RouteServiceProvider::class,
-
+        GotoPeru\Providers\ViewComposerServiceProvider::class,
     ],
 
     /*

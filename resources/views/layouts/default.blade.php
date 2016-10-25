@@ -18,8 +18,13 @@
             <div class="col s12 m8 l6">
                 <ul class="header-nav white-text right-align valign">
                     <li>(813) 600-3042</li>
-                    <li><a href="" class="white-text">sign in</a></li>
-                    <li><a href="" class="yellow-text text-darken-3">new account</a></li>
+                    @if($currentUser)
+                        <li><a href="" class="white-text">Hello {{$currentUser->email}}</a></li>
+                        <li><a href="{{route('auth_destroy_path')}}" class="white-text">Logout</a></li>
+                    @else
+                        <li><a href="{{route('auth_store_path')}}" class="white-text">sign in</a></li>
+                        <li><a href="" class="yellow-text text-darken-3">new account</a></li>
+                    @endif
                 </ul>
             </div>
         </div>
