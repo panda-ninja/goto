@@ -14,16 +14,12 @@
 //Route::get('/', function () {
 //    return view('welcome');
 //});
-
+Route::group(['middleware' => 'auth'],function(){
 Route::get('/', [
     'uses' => 'HomeController@index',
     'as' => 'home_path',
 ]);
 
-Route::get('login', [
-    'uses' => 'LoginController@index',
-    'as' => 'Login_path',
-]);
 
 Route::get('quotes', [
     'uses' => 'QuotesController@index',
@@ -48,4 +44,21 @@ Route::get('itinerary/{id}', [
 Route::get('users', [
     'uses' => 'HomeController@guardarUsuario',
     'as' => 'users_create_path',
+]);
+
+});
+
+Route::get('login', [
+    'uses' => 'LoginController@index',
+    'as' => 'Login_path',
+]);
+
+Route::post('login', [
+    'uses' => 'LoginController@store',
+    'as' => 'auth_store_path',
+]);
+
+Route::get('login/logout', [
+    'uses' => 'LoginController@destroy',
+    'as' => 'auth_destroy_path',
 ]);

@@ -8,9 +8,11 @@ class Cliente extends Model
 {
     protected $fillable = [
         'nombres',
-        'apellidos'
+        'apellidos','email'
     ];
-
+    protected $hidden = [
+        'password', 'remember_token',
+    ];
     public function sub_clientes()
     {
         return $this->hasMany(SubCliente::class, 'clientes_id');

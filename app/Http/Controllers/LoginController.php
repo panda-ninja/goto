@@ -34,9 +34,13 @@ class LoginController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
-    {
-        //
+    public function store(Request $request){
+        $this->validate($request,['email'=>'required|email','password'=>'required']);
+
+        if(!auth()->attempt($request->only(['email','password']))){
+            return redirect()->route('auth_store_path')->withErrors(['No encontramos al usuario']);
+        }
+        return redirect()->route('quotes_path');
     }
 
     /**
@@ -79,8 +83,9 @@ class LoginController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy()
     {
-        //
+        auth()->logout();
+        return redirect()->route('Login_path');
     }
 }
