@@ -45,6 +45,10 @@ return [
             'driver' => 'token',
             'provider' => 'users',
         ],
+        'cliente' => [
+            'driver' => 'session',
+            'provider' => 'clientes',
+        ],
     ],
 
     /*
@@ -69,7 +73,10 @@ return [
             'driver' => 'eloquent',
             'model' => GotoPeru\User::class,
         ],
-
+        'clientes' => [
+            'driver' => 'eloquent',
+            'model' => GotoPeru\Cliente::class,
+        ],
         // 'users' => [
         //     'driver' => 'database',
         //     'table' => 'users',
