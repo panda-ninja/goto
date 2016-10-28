@@ -18,8 +18,14 @@
             <div class="col s12 m8 l6">
                 <ul class="header-nav white-text right-align valign">
                     <li>(813) 600-3042</li>
-                    <li><a href="" class="white-text">sign in</a></li>
-                    <li><a href="" class="yellow-text text-darken-3">new account</a></li>
+                    @if(auth()->guard('cliente')->check())
+                            <li><a href="" class="green-text text-darken-3">{{auth()->guard('cliente')->user()->nombres.', '.auth()->guard('cliente')->user()->nombres}}</a></li>
+                            <li><a href="{{route('client_auth_destroy_path')}}" class="yellow-text text-darken-3">Logout</a></li>
+                        @else
+                            <li><a href="{{route('client_auth_index_path')}}" class="white-text">sign in</a></li>
+                            <li><a href="" class="yellow-text text-darken-3">new account</a></li>
+                    @endif
+
                 </ul>
             </div>
         </div>

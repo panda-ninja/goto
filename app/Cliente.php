@@ -2,13 +2,15 @@
 
 namespace GotoPeru;
 
-use Illuminate\Database\Eloquent\Model;
+//use Illuminate\Database\Eloquent\Model;
+//use Illuminate\Notifications\Notifiable;
+use Illuminate\Foundation\Auth\User as Authenticatable;
 
-class Cliente extends Model
+class Cliente extends Authenticatable
 {
     protected $fillable = [
-        'email',
-        'password',
+        'nombres',
+        'apellidos', 'email', 'password',
     ];
 
     protected $hidden = [
