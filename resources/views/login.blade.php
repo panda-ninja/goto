@@ -7,19 +7,29 @@
         <div class="section">
             <div class="row">
                 <div class="col s6">
+                    @if($errors->all())
+                        <div class="card-panel red lighten-4  red-text text-darken-4 no-padding">
+                            <ul class="list-unstyled padding-10">
+                                @foreach($errors->all() as $error)
+                                    <li>{{$error}}</li>
+                                @endforeach
+                            </ul>
+                        </div>
+                    @endif
                     <div>
                         <h6><b>Sign in with your email</b></h6>
                     </div>
-                    <form action="hola.php" method="GET">
+                    <form action="{{route('Login_store_path')}}" method="post">
+                        {{csrf_field()}}
                         <div class="row">
                             <div class="input-field col s12">
-                                <input id="email" type="email" class="validate">
+                                <input id="email" name="email" type="text" class="validate" value="">
                                 <label for="email">Email</label>
                             </div>
                         </div>
                         <div class="row">
                             <div class="input-field col s12">
-                                <input id="password" type="password" class="validate">
+                                <input id="password" name="password" type="password" class="validate">
                                 <label for="password">Password</label>
                             </div>
                         </div>

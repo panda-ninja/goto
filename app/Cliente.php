@@ -7,8 +7,12 @@ use Illuminate\Database\Eloquent\Model;
 class Cliente extends Model
 {
     protected $fillable = [
-        'nombres',
-        'apellidos'
+        'email',
+        'password',
+    ];
+
+    protected $hidden = [
+        'password', 'remember_token',
     ];
 
     public function sub_clientes()

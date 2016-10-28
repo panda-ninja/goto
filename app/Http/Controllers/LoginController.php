@@ -5,6 +5,8 @@ namespace GotoPeru\Http\Controllers;
 use Illuminate\Http\Request;
 
 use GotoPeru\Http\Requests;
+use Illuminate\Support\Facades\Auth;
+
 
 class LoginController extends Controller
 {
@@ -36,7 +38,19 @@ class LoginController extends Controller
      */
     public function store(Request $request)
     {
-        //
+//        dd($request->get('email'));
+
+        $this->validate($request, [
+            'email' => 'required|email',
+            'password' => 'required',
+        ]);
+
+        if (!auth()->attempt($request->only(['email', 'password']))){
+
+            return redirect()->route('Login_show_path')->withErrors('No encontramos al usuario');
+        }
+
+        return 'listo';
     }
 
     /**

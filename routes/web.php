@@ -22,8 +22,13 @@ Route::get('/', [
 
 Route::get('login', [
     'uses' => 'LoginController@index',
-    'as' => 'Login_path',
+    'as' => 'Login_show_path',
 ]);
+Route::post('login', [
+    'uses' => 'LoginController@store',
+    'as' => 'Login_store_path',
+]);
+
 
 Route::get('quotes', [
     'uses' => 'QuotesController@index',
