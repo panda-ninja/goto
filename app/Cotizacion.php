@@ -9,7 +9,7 @@ class Cotizacion extends Model
     protected $table = "cotizaciones";
 
     protected $fillable = [
-        'nropersonas',
+        'nropersonas','estado',
     ];
 
     public function clientes()

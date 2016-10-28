@@ -63,9 +63,9 @@
                   4-columns-wide on medium screens,
                   12-columns-wide on small screens  -->
                 <div class="collection">
-                    <a href="#!" class="collection-item">Quotes<span class="badge">1</span></a>
+                    <a href="{{route('quotes_path')}}" class="collection-item">Quotes<span class="badge">1</span></a>
 
-                    <a href="#!" class="collection-item">Payments</a>
+                    <a href="{{route('payments_path')}}" class="collection-item">Payments</a>
                     <a href="#!" class="collection-item">Reports</a>
                     <a href="#!" class="collection-item">Wish list<span class="new badge">4</span></a>
                     <a href="#!" class="collection-item">Profile<span class="badge">14</span></a>
