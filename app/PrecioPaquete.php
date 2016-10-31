@@ -8,6 +8,6 @@ class PrecioPaquete extends Model
 {
     public function paquetes_cotizaciones()
     {
-        return $this->belongsTo(PaqueteCotizacion::class, 'cotizaciones_id');
+        return $this->belongsTo(PaqueteCotizacion::class, 'paquete_cotizaciones_id');
     }
 }

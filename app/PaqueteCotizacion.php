@@ -20,12 +20,12 @@ class PaqueteCotizacion extends Model
 
     public function precio_paquetes()
     {
-        return $this->hasMany(TPrecioPaquete::class, 'idpaquetes');
+        return $this->hasMany(PrecioPaquete::class, 'paquete_cotizaciones_id');
     }
 
     public function paquetes_destinos()
     {
-        return $this->hasMany(TPaqueteDestino::class, 'idpaquetes');
+        return $this->hasMany(DestinoPaqueteCotizacion::class, 'paquete_cotizaciones_id');
     }
 
 }

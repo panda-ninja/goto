@@ -61,7 +61,7 @@ $factory->define(GotoPeru\ItinerarioXHora::class, function (Faker\Generator $fak
 
 $factory->define(GotoPeru\Servicio::class, function (Faker\Generator $faker) {
     return [
-        'precio' => $faker->randomDigit(5000),
+        'precio' => $faker->randomFloat(2,0,null),
         'observaciones' => $faker->paragraph(),
 
     ];
@@ -116,6 +116,8 @@ $factory->define(GotoPeru\SubCliente::class, function (Faker\Generator $faker) {
 //Cotizaciones
 $factory->define(GotoPeru\Cotizacion::class, function (Faker\Generator $faker) {
     return [
+        'nropersonas' => $faker->randomNumber(2),
+        'precioventa' => $faker->randomFloat(2,500,5000),
         'fecha' => $faker->date(),
         'estado' => $faker->boolean(),
     ];
@@ -125,9 +127,12 @@ $factory->define(GotoPeru\Cotizacion::class, function (Faker\Generator $faker) {
 $factory->define(GotoPeru\Pago::class, function (Faker\Generator $faker) {
     return [
         'concepto' => $faker->sentence(),
-        'monto' => $faker->randomDigit(5000),
+        'monto' => $faker->randomFloat(2,500,5000),
         'fecha' => $faker->date(),
         'vencimiento' => $faker->date(),
+        'medio' => $faker->creditCardType(),
+        'transaccion' => $faker->bankAccountNumber(),
+        'estado' => $faker->boolean(),
     ];
 });
 
@@ -138,7 +143,7 @@ $factory->define(GotoPeru\PaqueteCotizacion::class, function (Faker\Generator $f
         'codigo' => $faker->unique()->randomNumber(5),
         'titulo' => $faker->sentence(),
         'duracion' => $faker->randomNumber(2),
-        'preciocosto' => $faker->randomDigit(),
+        'preciocosto' => $faker->randomFloat(2,500,5000),
         'descripcion' => $faker->paragraph(),
         'incluye' => $faker->paragraph(),
         'noincluye' => $faker->paragraph(),
@@ -169,8 +174,54 @@ $factory->define(GotoPeru\HoraCotizacion::class, function (Faker\Generator $fake
 
 $factory->define(GotoPeru\ServicioCotizacion::class, function (Faker\Generator $faker) {
     return [
-        'precio' => $faker->randomDigit(5000),
+        'precio' => $faker->randomFloat(2,500,5000),
         'observaciones' => $faker->paragraph(),
+        'idvarios' => $faker->randomNumber(2),
+        'tiposervicio' => $faker->numberBetween(0,10),
+        'verificacion' => $faker->creditCardNumber,
+        'estado' => $faker->boolean(),
+    ];
+});
+
+//Precio Paquetes
+$factory->define(GotoPeru\PrecioPaquete::class, function (Faker\Generator $faker) {
+    return [
+        'estrellas' => $faker->numberBetween(2,5),
+        'precio_s' => $faker->randomFloat(2,500,5000),
+        'personas_s' => $faker->randomNumber(2),
+        'precio_d' => $faker->randomFloat(2,500,5000),
+        'personas_d' => $faker->randomNumber(2),
+        'precio_t' => $faker->randomFloat(2,500,5000),
+        'personas_t' => $faker->randomNumber(2),
+        'estado' => $faker->boolean(),
 
     ];
 });
+
+//servicios extras
+$factory->define(GotoPeru\ServicioExtra::class, function (Faker\Generator $faker) {
+    return [
+        'titulo' => $faker->sentence(),
+        'descripcion' => $faker->paragraph(),
+        'precio' => $faker->randomDigit(5000),
+        'estado' => $faker->boolean(),
+    ];
+});
+
+//destinos cotizacion
+$factory->define(GotoPeru\DestinoCotizacion::class, function (Faker\Generator $faker) {
+    return [
+        'destino' => $faker->city(),
+        'region' => $faker->locale(),
+        'pais' => $faker->country(),
+        'descripcion' => $faker->paragraph(),
+        'estado' => $faker->boolean(),
+    ];
+});
+
+$factory->define(GotoPeru\DestinoPaqueteCotizacion::class, function (Faker\Generator $faker) {
+    return [
+
+    ];
+});
+

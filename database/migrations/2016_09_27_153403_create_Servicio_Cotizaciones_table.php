@@ -19,7 +19,7 @@ class CreateServicioCotizacionesTable extends Migration
             $table->longText('observaciones')->nullable();
             $table->integer('idvarios')->nullable();
             $table->string('tiposervicio', 60)->nullable();
-            $table->string('verificaciom', 60)->nullable();
+            $table->string('verificacion', 60)->nullable();
             $table->integer('estado')->nullable();
             $table->integer('itinerario_cotizaciones_id');
             $table->timestamps();

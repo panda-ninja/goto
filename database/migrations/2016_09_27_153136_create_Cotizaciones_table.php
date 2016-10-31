@@ -17,7 +17,6 @@ class CreateCotizacionesTable extends Migration
             $table->increments('id');
             $table->integer('nropersonas')->nullable();
             $table->decimal('precioventa')->nullable();
-            $table->decimal('preciovuelo')->nullable();
             $table->date('fecha')->nullable();
             $table->integer('estado')->nullable();
             $table->integer('clientes_id')->nullable();
