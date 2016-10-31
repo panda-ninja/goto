@@ -58,6 +58,10 @@ Route::group(['middleware'=>'cliente'],function(){
         'as' => 'payments_path',
     ]);
 
+    Route::get('payments/{id}', [
+        'uses' => 'PagosController@show',
+        'as' => 'payments_show_path',
+    ]);
 });
 /*==end== rutas para clientes ====================================================================*/
 

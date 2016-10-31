@@ -22,8 +22,8 @@ class PagosController extends Controller
 
         $pagos = Cliente::with('cotizaciones.pagos')
                 ->where('id',$idCliente)
-                ->get()
-                ->sortByDesc('fecha');
+                ->get();
+                //->sortByDesc('fecha');
 
         //$pagos=Pago::findOrFail($idCotizacion);
         //dd($pagos);
@@ -57,10 +57,12 @@ class PagosController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($idCotizacion)
+    public function show($idPago)
     {
-        $pagos=Pago::findOrFail($idCotizacion);
-        return view('paymnets-show',['pagos'=>$pagos]);
+        $pago=Pago::findOrFail($idPago);
+        //dd($pago);
+        return view('payments-show',['pago'=>$pago]);
+
     }
 
     /**
