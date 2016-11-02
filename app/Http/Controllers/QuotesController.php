@@ -23,8 +23,11 @@ class QuotesController extends Controller
     public function index()
     {
 
+        $idCliente=auth()->guard('cliente')->user()->id;
+        $cotizaciones = Cotizacion::with('paquete_cotizaciones.precio_paquetes','paquete_cotizaciones.paquetes_destinos')->get()
+            ->where('clientes_id',$idCliente)
+            ->sortByDesc('fecha');
 
-        $cotizaciones = Cotizacion::with('paquete_cotizaciones.precio_paquetes','paquete_cotizaciones.paquetes_destinos')->get()->sortByDesc('fecha');
 //        $destinos = Cotizacion::with('paquete_cotizaciones.paquetes_destinos.destinos')->get();
 
 //        $destinos = TDestino::with('paquetes_destinos')->get();
