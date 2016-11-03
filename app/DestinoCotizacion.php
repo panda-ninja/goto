@@ -10,6 +10,6 @@ class DestinoCotizacion extends Model
 
     public function paquetes_destinos()
     {
-        return $this->hasMany(DestinoPaqueteCotizacion::class, 'paquete_cotizaciones_id');
+        return $this->hasMany(DestinoPaqueteCotizacion::class, 'destino_cotizaciones_id');
     }
 }

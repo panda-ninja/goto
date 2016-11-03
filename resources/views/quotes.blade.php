@@ -30,7 +30,7 @@
                                         <div class="col s3">
                                             <ul>
                                                 @foreach($paquete_cotizaciones->paquetes_destinos as $destino)
-                                                    <li class="no-padding"><i class="material-icons left">location_on</i> {{ucwords(strtolower($destino->destinos->nombre))}}</li>
+                                                    <li class="no-padding">- {{ucwords(strtolower($destino->destinos->destino))}}</li>
                                                 @endforeach
                                             </ul>
 
@@ -81,7 +81,7 @@
                                         <div class="col s3">
                                             <ul>
                                                 @foreach($paquete_cotizaciones->paquetes_destinos as $destino)
-                                                    <li class="no-padding"><i class="material-icons left">location_on</i> {{ucwords(strtolower($destino->destinos->nombre))}}</li>
+                                                    <li class="no-padding">- {{ucwords(strtolower($destino->destinos->destino))}}</li>
                                                 @endforeach
                                             </ul>
 

@@ -17,6 +17,62 @@
         <div class="row">
             <div class="col s12">
 
+                <table class="bordered highlight centered responsive-table price-quotes-table">
+                    <thead>
+                    <tr>
+                        <th></th>
+
+                        <th colspan="3">Accommodation</th>
+                        <th></th>
+                    </tr>
+                    <tr>
+
+                        <th data-field="name">Hotel Category </th>
+                        <th data-field="price">Simple</th>
+                        <th data-field="price">Double</th>
+                        <th data-field="price">Triple</th>
+                        <th></th>
+                    </tr>
+                    </thead>
+
+                    <tbody>
+                    @foreach($paquete->precio_paquetes as $precio)
+                        @if($precio->estado == 1)
+                            <?php $active = 'green lighten-5 active'; $icon = 'check_circle'; ?>
+                        @else
+                            <?php $active = 'disabled'; $icon = ''; ?>
+                        @endif
+                        <tr>
+                            <td class="{{$active}}"><b>{{$precio->estrellas}} stars</b></td>
+                            <td class="{{$active}}">${{$precio->precio_s}} <br> <span>{{$precio->personas_s}} Travellers</span></td>
+                            <td class="{{$active}}">${{$precio->precio_d}} <br> <span>{{$precio->personas_d}} Travellers</span></td>
+                            <td class="{{$active}}">${{$precio->precio_t}} <br> <span>{{$precio->personas_t}} Travellers</span></td>
+                            <td class="{{$active}}"><i class="material-icons green-text">{{$icon}}</i></td>
+
+                        </tr>
+                    @endforeach
+
+                    </tbody>
+                </table>
+
+
+                    <p class="yellow-text text-darken-3"><b>Destinos incluidos:</b></p>
+
+                    @foreach($paquete->paquetes_destinos as $destino)
+                        <div class="col s3"><i class="material-icons left">location_on</i> {{ucwords(strtolower($destino->destinos->destino))}}</div>
+
+
+                    @endforeach
+
+
+
+
+
+            </div>
+        </div>
+        <div class="row">
+            <div class="col s12">
+
                 <p class="yellow-text text-darken-3"><b>Incluye</b></p>
                 <p>{{$paquete->incluye}}</p>
                 <p class="yellow-text text-darken-3"><b>No Incluye</b></p>
@@ -71,7 +127,7 @@
                                 <tr>
                                     <th data-field="id">Concepto</th>
                                     <th data-field="name">Observaciones</th>
-                                    <th data-field="price">Precio</th>
+                                    {{--<th data-field="price">Precio</th>--}}
                                 </tr>
                                 </thead>
 
@@ -80,7 +136,7 @@
                                     <tr>
                                         <td>{{$servicios->tiposervicio}}</td>
                                         <td>{{$servicios->observaciones}}</td>
-                                        <td>${{$servicios->precio}}</td>
+                                        {{--<td>${{$servicios->precio}}</td>--}}
                                     </tr>
                                 @endforeach
                                 </tbody>
@@ -93,25 +149,7 @@
         </div>
 
 
-        <div class="col s3 box-static-price">
-            <p class="yellow-text text-darken-3"><b>Acomodacion del paquete:</b></p>
-            @foreach($paquete->precio_paquetes as $precio)
-                <p>
-                    <input name="group1" type="radio" id="test{{$precio->estrellas}}" checked />
-                    <label for="test{{$precio->estrellas}}">{{$precio->estrellas}} star: ${{$precio->precio_d}}</label>
-                </p>
-            @endforeach
 
-            <p class="yellow-text text-darken-3"><b>Destinos incluidos:</b></p>
-
-            @foreach($paquete->paquetes_destinos as $destino)
-                <p>
-                    <input type="checkbox" id="test1" checked="checked" disabled="disabled" />
-                    <label for="test1">{{ucwords(strtolower($destino->destinos->nombre))}}</label>
-                </p>
-            @endforeach
-
-        </div>
 
 
         <!-- Modal Structure -->

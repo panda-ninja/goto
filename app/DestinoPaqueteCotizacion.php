@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class DestinoPaqueteCotizacion extends Model
 {
-    protected $table = "detino_paquete_cotizaciones";
+    protected $table = "destino_paquete_cotizaciones";
 
     public function paquetes_cotizaciones()
     {
@@ -15,6 +15,6 @@ class DestinoPaqueteCotizacion extends Model
 
     public function destinos()
     {
-        return $this->belongsTo(DestinoCotizacion::class, 'paquete_cotizaciones_id');
+        return $this->belongsTo(DestinoCotizacion::class, 'destino_cotizaciones_id');
     }
 }

@@ -29,7 +29,7 @@ class QuotesController extends Controller
 
 //        $destinos = TDestino::with('paquetes_destinos')->get();
         //return $destinos;
-//        dd($cotizaciones);
+        //dd($cotizaciones);
         return view('quotes', ['cotizaciones'=>$cotizaciones]);
 
 

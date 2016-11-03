@@ -146,6 +146,15 @@ span.quotes-duration{
 .position-relative{
   position: relative;
 }
+.price-quotes-table .active b{
+  color: #f9a825;
+}
+.price-quotes-table .active span{
+  color: #b71c1c ;
+}
+.price-quotes-table .disabled{
+  color: #949494;
+}
 //footer
 footer{
   background: #303030;

@@ -13,7 +13,7 @@ class CreateDestinoPaqueteCotizacionesTable extends Migration
      */
     public function up()
     {
-        Schema::create('detino_paquete_cotizaciones', function (Blueprint $table) {
+        Schema::create('destino_paquete_cotizaciones', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('destino_cotizaciones_id');
             $table->integer('paquete_cotizaciones_id');
@@ -28,6 +28,6 @@ class CreateDestinoPaqueteCotizacionesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('detino_paquete_cotizaciones');
+        Schema::dropIfExists('destino_paquete_cotizaciones');
     }
 }
