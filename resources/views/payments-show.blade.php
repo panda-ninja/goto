@@ -71,35 +71,40 @@
                         </div>
                     </div>
                 </div>
-                <div id="test2" class="col s12">
-                    <div class="row">
-                        <div class="input-field col s6">
-                            <input placeholder="Placeholder" id="first_name" type="text" class="validate" value="{{auth()->guard('cliente')->user()->pasaporte}}">
+                <div id="test2" class="col s12
+                ">
+                    <div class="row ">
+                        <div class="input-field col s6 ">
+                            <input  id="first_name" type="text" class="validate" >
                             <label for="first_name">Name on the card</label>
                         </div>
                     </div>
                     <div class="row">
                         <div class="input-field col s6">
-                            <input placeholder="Placeholder" id="first_name" type="text" class="validate" value="{{auth()->guard('cliente')->user()->nacionalidad}}">
+                            <input  id="first_name" type="text" class="validate" >
                             <label for="first_name">Card Type</label>
                         </div>
                     </div>
                     <div class="row">
                         <div class="input-field col s6">
-                            <input placeholder="Placeholder" id="first_name" type="text" class="validate" value="{{auth()->guard('cliente')->user()->pasaporte}}">
+                            <input  id="first_name" type="text" data-stripe="number">
                             <label for="first_name">Card Number</label>
                         </div>
                     </div>
                     <div class="row">
                         <div class="input-field col s6">
-                            <input placeholder="Placeholder" id="first_name" type="text" class="validate" value="{{auth()->guard('cliente')->user()->nacionalidad}}">
+                            <input  id="first_name" type="text" class="validate" data-stripe="cvc">
                             <label for="first_name">Validation Code</label>
                         </div>
                     </div>
                     <div class="row">
-                        <div class="input-field col s6">
-                            <input placeholder="Placeholder" id="first_name" type="text" class="validate" value="{{auth()->guard('cliente')->user()->nacionalidad}}">
-                            <label for="first_name">Expiration (MM/YYYY)</label>
+                        <div class="input-field col s3">
+                            <input type="text" data-stripe="exp-month">
+                            <label for="first_name">Expiration month (MM)</label>
+                        </div>
+                        <div class="input-field col s3">
+                            <input type="text" data-stripe="exp-year">
+                            <label for="first_name">Expiration year(YYYY)</label>
                         </div>
                     </div>
                     <div class="row">
