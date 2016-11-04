@@ -36,6 +36,10 @@ elixir(function(mix) {
         'vendors/chartist.min.css'
     ], 'public/css/admin-theme.css');
 
+    mix.styles([
+        'vendors/pdf.css'
+    ], 'public/css/quotes-pdf.css');
+
     mix.copy([
         'node_modules/materialize-css/js/plugins/materialize.js',
         'node_modules/materialize-css/node_modules/jquery/dist/jquery.min.js',

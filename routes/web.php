@@ -43,6 +43,11 @@ Route::group(['middleware'=>'cliente'],function(){
         'as' => 'quotes_show_path',
     ]);
 
+    Route::get('quotes/{id}/pdf', [
+        'uses' => 'QuotesController@pdf',
+        'as' => 'quotes_pdf_path',
+    ]);
+
     Route::get('/profile', [
         'uses' => 'ProfileController@index',
         'as' => 'profile_path',

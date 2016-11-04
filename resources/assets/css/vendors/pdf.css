@@ -1,0 +1,36 @@
+
+.container{
+    margin:  133px 94px;
+}
+.text-center{
+    text-align: center;
+}
+.firstpage{
+    position: absolute;
+    page-break-after: always;
+    top: -50px;
+    left: -50px;
+    width: 115%;
+    margin: 0;
+
+}
+.margin-port{
+    margin: -133px 94px;
+    padding: -133px 94px;
+}
+.responsive-img{
+    width: 100%;
+    padding: 0;
+    margin: 0;
+    height: auto;
+}
+.table-price-accommodation{
+    border: 1px solid #333;
+    width: 100%;
+}
+.table-price-accommodation td{
+    border: 1px solid #333;
+}
+.page-break {
+    page-break-after: always;
+}

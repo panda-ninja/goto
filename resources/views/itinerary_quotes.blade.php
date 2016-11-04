@@ -5,7 +5,7 @@
         <div class="row">
             <div class="col s12">
                 <h5 class="center-align lime-text text-darken-3"><b>Package Travel: {{$paquete->titulo}}</b></h5>
-                <p><b>Package Code:</b> {{$paquete->codigo}} | <b>Package Duration:</b> {{$paquete->duracion}} | <a href="" class="waves-effect waves-light red-text"> view version PDF</a></p>
+                <p><b>Package Code:</b> {{$paquete->codigo}} | <b>Package Duration:</b> {{$paquete->duracion}} | <a href="{{route('quotes_pdf_path', $paquete->id)}}" class="waves-effect waves-light red-text"> view version PDF</a></p>
 
                 <p class="center-align margin-top-20">
                     {{--<a class="waves-effect waves-light btn modal-trigger" href="#modal1">Modal</a>--}}

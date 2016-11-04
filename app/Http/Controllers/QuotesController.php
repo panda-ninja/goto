@@ -2,6 +2,7 @@
 
 namespace GotoPeru\Http\Controllers;
 
+use Barryvdh\DomPDF\PDF;
 use GotoPeru\Cotizacion;
 use GotoPeru\ItinerarioCotizacion;
 use GotoPeru\PaqueteCotizacion;
@@ -76,11 +77,20 @@ class QuotesController extends Controller
         return view('itinerary_quotes', ['paquete'=>$paquete]);
     }
 
+    public function pdf($id)
+    {
+
+        $paquete = PaqueteCotizacion::with('precio_paquetes','paquetes_destinos','itinerario_cotizaciones.horas_cotizaciones', 'itinerario_cotizaciones.servicios_cotizaciones')->get()->where('id', $id);
+        $pdf = \PDF::loadView('quotes_pdf', ['paquete'=>$paquete])->setPaper('a4')->setWarnings(true);
+        return $pdf->download('itinerary_'.$id.'.pdf');
+
+    }
+
     /**
      * Show the form for editing the specified resource.
      *
      * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @return \illuminate\Http\Response
      */
     public function edit($id)
     {
