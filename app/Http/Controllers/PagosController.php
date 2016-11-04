@@ -6,8 +6,8 @@ use Illuminate\Http\Request;
 use GotoPeru\Pago;
 use GotoPeru\Cotizacion;
 use GotoPeru\Cliente;
-
 use GotoPeru\Http\Requests;
+use Stripe\Stripe;
 
 class PagosController extends Controller
 {
@@ -48,7 +48,19 @@ class PagosController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        Stripe::setApiKey();
+        try{
+            Stripe::create(array(
+                "amount"=>$request->input('amount')*100,
+                "currency"=>"us",
+                "source"=>$request->input('stripeToken'),
+                "descripction"=>"nuevo pago"
+            ));
+        }
+        catch(\Exception $e){
+            return redirect()->route('payments_show_path',$request->input('idpago'))->with('error',$e->getMessage());
+        }
+        return redirect()->route('payments_show_path',$request->input('idpago'))->with('success','Compra Correcta');
     }
 
     /**

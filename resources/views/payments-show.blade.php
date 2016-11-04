@@ -5,10 +5,22 @@
 
 
     <div class="row">
-        <div class="col s12 alert-danger {{ !Session::has('error') ? 'hidden':'' }}}" id="charge-error" >
-            {{ Session::get('error')}}
-        </div>
-        <form class="col s12" action="{{route('payments_show_path',$pago->id)}}" method="post" id="payment-form">
+
+        <form class="col s12" action="{{route('payments_store_path',$pago->id)}}" method="post" id="checkout-form">
+            <div class="row">
+                <div class="col s12">
+                    <div id="charge-error" class="alert alert-danger">
+                        {{Session::get('success')}}
+                    </div>
+                    <!--<span class="payment-errors"></span>-->
+                </div>
+                <div class="col s12">
+                    <div id="charge-error" class="alert alert-danger {{ !Session::has('error') ? 'hidden': ''}}">
+                         {{Session::get('error')}}
+                    </div>
+                    <!--<span class="payment-errors"></span>-->
+                </div>
+            </div>
             <div class="row">
                 <div class="col s12 tabs-detail">
                     <ul class="tabs" >
@@ -19,54 +31,54 @@
                 <div id="test1" class="col s12">
                     <div class="row">
                         <div class="input-field col s4">
-                            <input placeholder="Placeholder" id="first_name" type="text" class="validate" value="{{auth()->guard('cliente')->user()->email}}">
+                            <input id="first_name" type="text" class="validate" value="{{auth()->guard('cliente')->user()->email}}">
                             <label for="first_name">Email</label>
                         </div>
                         <div class="input-field col s4">
-                            <input placeholder="Placeholder" id="first_name" type="text" class="validate" value="{{auth()->guard('cliente')->user()->nombres}}">
+                            <input id="first_name" type="text" class="validate" value="{{auth()->guard('cliente')->user()->nombres}}">
                             <label for="first_name">First Name</label>
                         </div>
                         <div class="input-field col s4">
-                            <input placeholder="Placeholder" id="first_name" type="text" class="validate" value="{{auth()->guard('cliente')->user()->apellidos}}">
+                            <input id="first_name" type="text" class="validate" value="{{auth()->guard('cliente')->user()->apellidos}}">
                             <label for="first_name">Last Name</label>
                         </div>
                     </div>
                     <div class="row">
                         <div class="input-field col s4">
-                            <input placeholder="Placeholder" id="first_name" type="text" class="validate" value="{{auth()->guard('cliente')->user()->pasaporte}}">
+                            <input id="first_name" type="text" class="validate" value="{{auth()->guard('cliente')->user()->pasaporte}}">
                             <label for="first_name">Pasaporte</label>
                         </div>
                         <div class="input-field col s4">
-                            <input placeholder="Placeholder" id="first_name" type="text" class="validate" value="{{auth()->guard('cliente')->user()->nacionalidad}}">
+                            <input id="first_name" type="text" class="validate" value="{{auth()->guard('cliente')->user()->nacionalidad}}">
                             <label for="first_name">Nacionalidad</label>
                         </div>
                         <div class="input-field col s4">
-                            <input placeholder="Placeholder" id="first_name" type="text" class="validate" value="{{auth()->guard('cliente')->user()->residencia}}">
+                            <input id="first_name" type="text" class="validate" value="{{auth()->guard('cliente')->user()->residencia}}">
                             <label for="first_name">Residencia</label>
                         </div>
                     </div>
                     <div class="row">
                         <div class="input-field col s4">
-                            <input placeholder="Placeholder" id="first_name" type="text" class="validate" value="{{auth()->guard('cliente')->user()->pasaporte}}">
+                            <input id="first_name" type="text" class="validate" value="{{auth()->guard('cliente')->user()->pasaporte}}">
                             <label for="first_name">Street Address</label>
                         </div>
                         <div class="input-field col s4">
-                            <input placeholder="Placeholder" id="first_name" type="text" class="validate" value="{{auth()->guard('cliente')->user()->nacionalidad}}">
+                            <input id="first_name" type="text" class="validate" value="{{auth()->guard('cliente')->user()->nacionalidad}}">
                             <label for="first_name">Country</label>
                         </div>
                         <div class="input-field col s4">
-                            <input placeholder="Placeholder" id="first_name" type="text" class="validate" value="{{auth()->guard('cliente')->user()->residencia}}">
+                            <input  id="first_name" type="text" class="validate" value="{{auth()->guard('cliente')->user()->residencia}}">
                             <label for="first_name">State</label>
                         </div>
                     </div>
                     <div class="row">
                         <div class="input-field col s4">
-                            <input placeholder="Placeholder" id="first_name" type="text" class="validate" value="{{auth()->guard('cliente')->user()->pasaporte}}">
+                            <input  id="first_name" type="text" class="validate" value="{{auth()->guard('cliente')->user()->pasaporte}}">
                             <label for="first_name">City</label>
                         </div>
                         <div class="input-field col s4">
-                            <input placeholder="Placeholder" id="first_name" type="text" class="validate" value="{{auth()->guard('cliente')->user()->nacionalidad}}">
-                            <label for="first_name">Zip</label>
+                            <input id="address_zip" type="text" class="validate" value="123">
+                            <label for="address_zip">Zip</label>
                         </div>
                         <div class="input-field col s4">
                             <input placeholder="Placeholder" id="first_name" type="text" class="validate" value="{{auth()->guard('cliente')->user()->residencia}}">
@@ -78,41 +90,42 @@
                 ">
                     <div class="row ">
                         <div class="input-field col s6 ">
-                            <input  id="first_name" type="text" class="validate" >
-                            <label for="first_name">Name on the card</label>
+                            <input  id="name_card" type="text" class="validate" >
+                            <label for="name_card">Name on the card</label>
                         </div>
                     </div>
                     <div class="row">
                         <div class="input-field col s6">
-                            <input  id="first_name" type="text" class="validate" >
-                            <label for="first_name">Card Type</label>
+                            <input  id="card_type" type="text" class="validate" >
+                            <label for="card_type">Card Type</label>
                         </div>
                     </div>
                     <div class="row">
                         <div class="input-field col s6">
-                            <input  id="first_name" type="text" data-stripe="number">
-                            <label for="first_name">Card Number</label>
+                            <input  id="card_number" type="text" data-stripe="number">
+                            <label for="card_number">Card Number</label>
                         </div>
                     </div>
                     <div class="row">
                         <div class="input-field col s6">
-                            <input  id="first_name" type="text" class="validate" data-stripe="cvc">
-                            <label for="first_name">Validation Code</label>
+                            <input  id="card-cvc" type="text" class="validate" data-stripe="cvc">
+                            <label for="card-cvc">Validation Code</label>
                         </div>
                     </div>
                     <div class="row">
                         <div class="input-field col s3">
-                            <input type="text" data-stripe="exp-month">
-                            <label for="first_name">Expiration month (MM)</label>
+                            <input type="text" id="card-expiry-month" data-stripe="exp-month">
+                            <label for="card-expiry-month">Expiration month (MM)</label>
                         </div>
                         <div class="input-field col s3">
-                            <input type="text" data-stripe="exp-year">
-                            <label for="first_name">Expiration year(YYYY)</label>
+                            <input type="text" id="card-expiry-year" data-stripe="exp-year">
+                            <label for="card-expiry-year">Expiration year(YYYY)</label>
                         </div>
                     </div>
                     <div class="row">
                         <div class="input-field col s6">
-                            <button class="btn waves-effect waves-light" type="submit" name="action">SUBMIT PAYMENT
+                            {{csrf_field()}}
+                            <button class="btn waves-effect waves-light" type="submit" value="Submit Payment" name="action">SUBMIT PAYMENT
                                 <i class="material-icons right">send</i>
                             </button>
                         </div>
