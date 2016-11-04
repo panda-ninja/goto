@@ -5,7 +5,10 @@
 
 
     <div class="row">
-        <form class="col s12">
+        <div class="col s12 alert-danger {{ !Session::has('error') ? 'hidden':'' }}}" id="charge-error" >
+            {{ Session::get('error')}}
+        </div>
+        <form class="col s12" action="{{route('payments_show_path',$pago->id)}}" method="post" id="payment-form">
             <div class="row">
                 <div class="col s12 tabs-detail">
                     <ul class="tabs" >
@@ -121,6 +124,8 @@
 
         </form>
     </div>
-
-
 @stop
+@section('scripts')
+    <script type="text/javascript" src="https://js.stripe.com/v2/"></script>
+    <script type="text/javascript" src="{{URL::to('js/checkout.js')}}"></script>
+@endsection
