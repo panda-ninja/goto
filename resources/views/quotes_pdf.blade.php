@@ -17,7 +17,7 @@
                 <tr>
                     <th></th>
 
-                    <th colspan="3">Accommodation</th>
+                    <th colspan="2">Accommodation</th>
                     <th></th>
                 </tr>
                 <tr>
@@ -25,14 +25,13 @@
                     <th data-field="price">Simple</th>
                     <th data-field="price">Double</th>
                     <th data-field="price">Triple</th>
-                    <th></th>
                 </tr>
                 </thead>
 
                 <tbody>
                 @foreach($paquete->precio_paquetes as $precio)
                     @if($precio->estado == 1)
-                        <?php $active = 'green lighten-5 active'; $icon = 'check_circle'; ?>
+                        <?php $active = 'green-row active'; $icon = 'check_circle'; ?>
                     @else
                         <?php $active = 'disabled'; $icon = ''; ?>
                     @endif
@@ -41,8 +40,6 @@
                         <td class="{{$active}}">${{$precio->precio_s}} <br> <span>{{$precio->personas_s}} Travellers</span></td>
                         <td class="{{$active}}">${{$precio->precio_d}} <br> <span>{{$precio->personas_d}} Travellers</span></td>
                         <td class="{{$active}}">${{$precio->precio_t}} <br> <span>{{$precio->personas_t}} Travellers</span></td>
-                        <td class="{{$active}}"><i class="material-icons green-text">{{$icon}}</i></td>
-
                     </tr>
                 @endforeach
 
@@ -78,16 +75,16 @@
 
         <div>
             <h3>Itinerary for hours</h3>
-            <table class="border: 1px solid #333;">
+            <table class="table-price-accommodation text-left">
                 <tbody>
                 @foreach($paquete->itinerario_cotizaciones->sortBy('dias') as $itinerario)
                     <tr>
-                        <td>Day {{$itinerario->dias}} - {{$itinerario->titulo}} <br> (({{$itinerario->fecha}}))</td>
+                        <td><b>Day {{$itinerario->dias}} - {{$itinerario->titulo}}</b> <br> <span class="hour-text">({{$itinerario->fecha}})</span></td>
                         <td>
                             <ul>
                             @foreach($itinerario->horas_cotizaciones->sortBy('hora') as $horas)
                                 <li>
-                                    {{$horas->hora}} - {{$horas->descripcion}})
+                                    <b>{{$horas->hora}}</b> - {{$horas->descripcion}})
                                 </li>
                             @endforeach
                             </ul>
@@ -99,11 +96,11 @@
         </div>
 
         <div>
-            <h3>Services</h3>
+            <h3 class="margin-top-40">Services</h3>
             @foreach($paquete->itinerario_cotizaciones->sortBy('dias') as $itinerario)
-                <h3>Day {{$itinerario->dias}} - {{$itinerario->titulo}} ({{$itinerario->fecha}})</h3>
+                <h4>Day {{$itinerario->dias}} - {{$itinerario->titulo}} ({{$itinerario->fecha}})</h4>
 
-                        <table class="table-price-accommodation">
+                        <table class="table-price-accommodation margin-bottom-20">
                             <thead>
                             <tr>
                                 <th data-field="id">Concepto</th>
