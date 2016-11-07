@@ -6620,6 +6620,9 @@ span.quotes-duration {
 .qoutes-box .waves-effect {
   width: 100%; }
 
+.card-panel.active {
+  background: #e8e8e8  !important; }
+
 .quote-circle {
   padding: 0 20px; }
 

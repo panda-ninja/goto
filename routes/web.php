@@ -38,15 +38,24 @@ Route::group(['middleware'=>'cliente'],function(){
         'as' => 'quotes_path',
     ]);
 
-    Route::get('quotes/{id}', [
-        'uses' => 'QuotesController@show',
-        'as' => 'quotes_show_path',
-    ]);
+    Route::patch('quotes/{id}', [
+        'uses' => 'QuotesController@update',
+        'as' => 'quotes_patch_path',
+    ])->where('id', '[0-9]+');
 
     Route::get('quotes/{id}/pdf', [
         'uses' => 'QuotesController@pdf',
         'as' => 'quotes_pdf_path',
     ]);
+
+
+    Route::get('quotes/{id}', [
+        'uses' => 'QuotesController@show',
+        'as' => 'quotes_show_path',
+    ]);
+
+
+
 
     Route::get('/profile', [
         'uses' => 'ProfileController@index',

@@ -7,11 +7,24 @@
                 <h5 class="center-align lime-text text-darken-3"><b>Package Travel: {{$paquete->titulo}}</b></h5>
                 <p><b>Package Code:</b> {{$paquete->codigo}} | <b>Package Duration:</b> {{$paquete->duracion}} | <a href="{{route('quotes_pdf_path', $paquete->id)}}" class="waves-effect waves-light red-text"> view version PDF</a></p>
 
-                <p class="center-align margin-top-20">
-                    {{--<a class="waves-effect waves-light btn modal-trigger" href="#modal1">Modal</a>--}}
-                    <a href="#confirm" class="waves-effect waves-light btn red modal-trigger">Confirmar Ahora</a>
-                    <a href="#upgrade" class="waves-effect waves-light btn blue modal-trigger">Request Changes</a>
-                </p>
+                @if(Session::get('success'))
+                    <div class="card-panel light-blue darken-1 center-align">
+                        <h5 class="white-text">El paquete se confirmo satisfactoriamente.</h5>
+                    </div>
+                @endif
+
+                @if($paquete->estado == 1)
+                    <div class="center-align">
+                        <a href="#" class="waves-effect waves-light btn green accent-4 accent-4 modal-trigger">Proceder a Pagar Ahora</a>
+                    </div>
+                @elseif($paquete->estado == 0)
+                    <p class="center-align margin-top-20">
+                        {{--<a class="waves-effect waves-light btn modal-trigger" href="#modal1">Modal</a>--}}
+                        <a href="#confirm" class="waves-effect waves-light btn red modal-trigger">Confirmar Ahora</a>
+                        <a href="#upgrade" class="waves-effect waves-light btn blue modal-trigger">Request Changes</a>
+                    </p>
+                @endif
+
             </div>
         </div>
         <div class="row">
@@ -150,17 +163,22 @@
 
 
 
-
-
         <!-- Modal Structure -->
         <div id="confirm" class="modal">
-            <div class="modal-content">
-                <h5>Estas seguro de confirmar?</h5>
-                <p class="margin-top-40">El paquete personalizado se confirmara para su viaje de ensueño</p>
-            </div>
-            <div class="modal-footer">
-                <a href="#!" class=" modal-action modal-close waves-effect waves-green btn-flat green white-text"><i class="material-icons right">thumb_up</i>Confirmar</a>
-            </div>
+            <form action="{{route('quotes_patch_path', $paquete->id)}}" method="post">
+                {{csrf_field()}}
+                <input type="hidden" name="_method" value="patch">
+
+                    <div class="modal-content">
+                        <h5>Estas seguro de confirmar?</h5>
+                        <p class="margin-top-40">El paquete personalizado se confirmara para su viaje de ensueño</p>
+                    </div>
+                    <div class="modal-footer">
+                        <button class="btn waves-effect waves-light" type="submit" name="action">Confirm Now
+                            <i class="material-icons right">send</i>
+                        </button>
+                </div>
+            </form>
         </div>
 
         <!-- Modal Structure -->

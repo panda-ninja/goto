@@ -13,6 +13,7 @@ use GotoPeru\TPrecioPaquete;
 use Illuminate\Http\Request;
 
 use GotoPeru\Http\Requests;
+use Illuminate\Support\Facades\Session;
 
 class QuotesController extends Controller
 {
@@ -106,7 +107,15 @@ class QuotesController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $paquete = PaqueteCotizacion::findOrFail($id);
+        $paquete->estado = '1';
+        $paquete->save();
+
+        $cotizacion = Cotizacion::findOrFail($paquete->cotizaciones_id);
+        $cotizacion->estado = '3';
+        $cotizacion->save();
+
+        return redirect()->route('quotes_show_path', $paquete->id)->with('success','Paquete confirmado');
     }
 
     /**
