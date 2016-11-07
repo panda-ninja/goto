@@ -66,6 +66,22 @@ Route::group(['middleware'=>'cliente'],function(){
         'uses' => 'ItineraryController@show',
         'as' => 'packages_path',
     ]);
+
+    /*-- payments*/
+    Route::get('payments', [
+        'uses' => 'PagosController@index',
+        'as' => 'payments_path',
+    ]);
+
+    Route::get('payments/{id}', [
+        'uses' => 'PagosController@show',
+        'as' => 'payments_show_path',
+    ]);
+    Route::post('payments/{id}', [
+        'uses' => 'PagosController@store',
+        'as' => 'payments_store_path',
+    ]);
+
 });
 /*==end== rutas para clientes ====================================================================*/
 

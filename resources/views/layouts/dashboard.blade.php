@@ -19,7 +19,7 @@
                 <ul class="header-nav white-text right-align valign">
                     <li>(813) 600-3042</li>
                     @if(auth()->guard('cliente')->check())
-                            <li><a href="" class="green-text text-darken-3">{{auth()->guard('cliente')->user()->nombres.', '.auth()->guard('cliente')->user()->nombres}}</a></li>
+                            <li><a href="" class="green-text text-darken-3">{{auth()->guard('cliente')->user()->nombres.', '.auth()->guard('cliente')->user()->apellidos}}</a></li>
                             <li><a href="{{route('client_auth_destroy_path')}}" class="yellow-text text-darken-3">Logout</a></li>
                         @else
                             <li><a href="{{route('client_auth_index_path')}}" class="white-text">sign in</a></li>
@@ -63,9 +63,9 @@
                   4-columns-wide on medium screens,
                   12-columns-wide on small screens  -->
                 <div class="collection">
-                    <a href="#!" class="collection-item">Quotes<span class="badge">1</span></a>
+                    <a href="{{route('quotes_path')}}" class="collection-item">Quotes<span class="badge">1</span></a>
 
-                    <a href="#!" class="collection-item">Payments</a>
+                    <a href="{{route('payments_path')}}" class="collection-item">Payments</a>
                     <a href="#!" class="collection-item">Reports</a>
                     <a href="#!" class="collection-item">Wish list<span class="new badge">4</span></a>
                     <a href="#!" class="collection-item">Profile<span class="badge">14</span></a>
@@ -124,6 +124,6 @@
 <!--  Scripts-->
 <script src="{{asset('js/app.js')}}"></script>
 <script src="{{asset('js/init.js')}}"></script>
-
+@yield('scripts')
 </body>
 </html>
