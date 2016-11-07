@@ -46,21 +46,28 @@ class PagosController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $request,$idPago)
     {
-        Stripe::setApiKey();
+        //dd($request);
+        \Stripe\Stripe::setApiKey("sk_test_LrBb0V9M539t1l7f9x7LhfvJ");
         try{
-            Stripe::create(array(
+            $operacion=\Stripe\Charge::create(array(
                 "amount"=>$request->input('amount')*100,
-                "currency"=>"us",
+                "currency"=>"usd",
                 "source"=>$request->input('stripeToken'),
-                "descripction"=>"nuevo pago"
+                "description"=>"New payment - Email:".$request->input('email')." - Pasaporte:".$request->input('pasaporte')." - Name:".$request->input('first-name').", ".$request->input('last-name'),
             ));
+            $pago=Pago::findOrFail($idPago);
+            $pago->fecha=date("Y-m-d");
+            $pago->estado=1;
+            $pago->medio="Tarjeta electronica";
+            $pago->transaccion=$operacion->id;
+            $pago->save();
+            return redirect()->route('payments_show_path',$idPago)->with('success','Your pay was succesfull');
         }
-        catch(\Exception $e){
-            return redirect()->route('payments_show_path',$request->input('idpago'))->with('error',$e->getMessage());
+        catch(Exception $e){
+            return redirect()->route('payments_show_path',$idPago)->with('error',$e->getMessage());
         }
-        return redirect()->route('payments_show_path',$request->input('idpago'))->with('success','Compra Correcta');
     }
 
     /**

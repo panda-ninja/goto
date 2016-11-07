@@ -1,33 +1,39 @@
 /**
  * Created by freddy on 4/11/2016.
  */
-Stripe.setPublishableKey('pk_test_6pRNASCoBOKtIshFeQd4XMUh');
+$(document).ready(function() {
+    $('select').material_select();
+    $('#charge-error').addClass('hide');
+});
+Stripe.setPublishableKey('pk_test_uU079gxofB0h98pvDtSBUmMZ');
 
 var $form=$('#checkout-form');
 $form.submit(function(event){
-    $('#charge-error').addClass('hidden');
     $form.find('button').prop('disabled',true);
     Stripe.card.createToken({
         name: $('#name-card').val(),
-        type: $('#card-type').val(),
         number: $('#card-number').val(),
         cvc: $('#card-cvc').val(),
         exp_month: $('#card-expiry-month').val(),
         exp_year: $('#card-expiry-year').val(),
         address_zip: $('#address_zip').val()
     }, stripeResponseHandler);
+
     return false;
 });
 
 function stripeResponseHandler(status,response){
     if(response.error){
-        $('#charge-error').removeClass('hidden');
+        $('#charge-error').removeClass('hide');
         $('#charge-error').text(response.error.message);
         $form.find('button').prop('disabled',false);
+        //alert('error '+response.id+':'+response.error.message+':'+$('#card-type').val());
     }
     else{
+        //alert('no error'+response.id);
         var token=response.id;
-        $form.append($('<input type="hidden" name="stripeToken" />').val(token));
+        $form.append($('<input type="hidden" name="stripeToken" id="stripeToken"/>').val(token));
+        //$('#pago').val('Proccesing ...');
         $form.get(0).submit();
     }
 }
