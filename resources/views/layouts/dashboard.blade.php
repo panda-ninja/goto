@@ -13,7 +13,7 @@
     <div class="container">
         <div class="row valign-wrapper">
             <div class="col m5 l6 hide-on-small-only hide-on-small-and-down hide-on-med-and-down">
-                <a href="#!" class="brand-logo valign"><img src="{{asset('img/logos/logo-ave-5.png')}}" alt="" class="responsive-img"></a>
+                <a href="{{route('quotes_path')}}" class="brand-logo valign"><img src="{{asset('img/logos/logo-ave-5.png')}}" alt="" class="responsive-img"></a>
             </div>
             <div class="col s12 m8 l6">
                 <ul class="header-nav white-text right-align valign">
@@ -33,7 +33,7 @@
 </header>
 <nav class="white" role="navigation">
     <div class="nav-wrapper container">
-        <a href="#!" class="brand-logo"><img src="{{asset('img/logos/logo5.png')}}" alt=""></a>
+        <a href="{{route('quotes_path')}}" class="brand-logo"><img src="{{asset('img/logos/logo5.png')}}" alt=""></a>
         <a href="#" data-activates="mobile-demo" class="button-collapse grey-text text-darken-4"><i class="material-icons">menu</i></a>
         <ul class="right hide-on-med-and-down">
             <li><a href="sass.html">Only Tours</a></li>
