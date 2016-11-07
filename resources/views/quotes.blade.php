@@ -187,7 +187,7 @@
         <div class="container">
             <div class="modal-content">
                 <h5>Request changes / upgrades</h5>
-                <p>Ingrese los posibles cambio y sugerencias para personalizar adecuadamente su paquete</p>
+                <p>Ingrese los posibles cambio y sugerencias para personalizar adecuadamente su paquetes</p>
                 <div class="input-field col s12">
                     <textarea id="textarea1" class="materialize-textarea"></textarea>
                     <label for="textarea1">Textarea</label>
