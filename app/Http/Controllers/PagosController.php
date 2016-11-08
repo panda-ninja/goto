@@ -7,6 +7,7 @@ use GotoPeru\Pago;
 use GotoPeru\Cotizacion;
 use GotoPeru\Cliente;
 use GotoPeru\Http\Requests;
+use Illuminate\Support\Facades\Mail;
 use Stripe\Stripe;
 
 class PagosController extends Controller
@@ -63,6 +64,11 @@ class PagosController extends Controller
             $pago->medio="Tarjeta electronica";
             $pago->transaccion=$operacion->id;
             $pago->save();
+            Mail::send(['name'=>'notification'], ['pago'=>$pago], function (Message $messaje){
+                $messaje->to('fredy1432@hotmail.com')
+                    ->subject('hola amiguito')
+                    ->from('fredy1432@gmail.com');
+            });
             return redirect()->route('payments_show_path',$idPago)->with('success','Your pay was succesfull');
         }
         catch(Exception $e){
