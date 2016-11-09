@@ -33,6 +33,10 @@ Route::get('cliente/logout', [
     'as' => 'client_auth_destroy_path',
 ]);
 Route::group(['middleware'=>'cliente'],function(){
+    Route::get('notification/{id}', [
+        'uses' => 'PagosController@send',
+        'as' => 'payments_noti_path',
+    ]);
     Route::get('quotes', [
         'uses' => 'QuotesController@index',
         'as' => 'quotes_path',
@@ -53,7 +57,6 @@ Route::group(['middleware'=>'cliente'],function(){
         'uses' => 'QuotesController@show',
         'as' => 'quotes_show_path',
     ]);
-
 
 
 
@@ -81,6 +84,7 @@ Route::group(['middleware'=>'cliente'],function(){
         'uses' => 'PagosController@store',
         'as' => 'payments_store_path',
     ]);
+
 
 });
 /*==end== rutas para clientes ====================================================================*/

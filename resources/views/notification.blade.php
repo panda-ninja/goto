@@ -1,5 +1,5 @@
-@extends('layouts.dashboard')
+@extends('layouts.notification')
 
 @section('content')
-    <p>{{$pago->concepto}}</p>
+    <p>{{$pago}}</p>
 @stop

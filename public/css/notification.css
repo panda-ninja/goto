@@ -1,6 +1,4 @@
-@page{
-    font-family: "arial", sans-serif;
-}
+
 .margin-top-20{
     margin-top: 20px;
 }
@@ -87,13 +85,9 @@ b{
 .table-price-accommodation .disabled{
     color: #949494;
 }
-.header {
-    position: fixed;
-    left: 0px;
-    bottom: 0px;
-    right: 0px;
-    height: 55px;
-    line-height:2px;
+.header{
+    width: auto;
+    height: 150px;
 }
 .header span{
     color: #949494;

@@ -60,16 +60,21 @@ class PagosController extends Controller
             ));
             $pago=Pago::findOrFail($idPago);
             $pago->fecha=date("Y-m-d");
-            $pago->estado=1;
+            $pago->estado=0;
             $pago->medio="Tarjeta electronica";
             $pago->transaccion=$operacion->id;
             $pago->save();
-            Mail::send(['name'=>'notification'], ['pago'=>$pago], function (Message $messaje){
-                $messaje->to('fredy1432@hotmail.com')
-                    ->subject('hola amiguito')
-                    ->from('fredy1432@gmail.com');
-            });
-            return redirect()->route('payments_show_path',$idPago)->with('success','Your pay was succesfull');
+            /* auth()->guard('cliente')->user()->nombres;*/
+            $email='fredy1432@hotmail.com';
+            /*Mail::send(['html'=>'notification'], ['pago'=>$pago], function ($messaje) use ($email){
+                $messaje->to($email,'Freddy')
+                    ->subject('You have a new payment')
+                    /*->attach('ruta')*/
+                    /*->from('info@gotoperu.com','Gotoperu');
+            });*/
+            return redirect()->route('payments_noti_path',$idPago)->with('success','Your pay was succesfull');
+            //return redirect()->route('payments_show_path',$idPago)->with('success','Your pay was succesfull');
+
         }
         catch(Exception $e){
             return redirect()->route('payments_show_path',$idPago)->with('error',$e->getMessage());
@@ -122,6 +127,11 @@ class PagosController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function send($id)
+    {
+        return view('notification',['pago'=>$id]);
     }
 
 }
