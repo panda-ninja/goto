@@ -1,106 +1,26 @@
-
-.margin-top-20{
-    margin-top: 20px;
-}
-.margin-top-40{
-    margin-top: 40px;
-}
-.margin-bottom-20{
-    margin-bottom: 20px;
-}
-h2{
-    color: #9e9d24 ;
-}
-h3{
-    color: #f9a825;
-}
-h4{
-    color: #232323;
-}
-p{
-    color: #2c2c2c;
-}
-b{
-    font-weight: bold;
-}
-.text-10{
-    font-size: 10px;
-}
-.text-12{
-    font-size: 12px;
-}
-.text-center{
-    text-align: center;
-}
-.text-left{
-    text-align: left !important;
-}
-.text-right{
-    text-align: right;
+body{
+    margin: 0;
 }
 .container{
-    margin:  133px 94px;
-}
-.text-center{
-    text-align: center;
+    margin:  0px 94px;
 }
 .responsive-img{
-    width: 100%;
+    width: 400px;
     padding: 0;
     margin: 0;
     height: auto;
 }
-.table-price-accommodation{
-    border-collapse: collapse;
-    text-align: center;
-    border: 1px solid #949494;
-    width: 100%;
-}
-.table-price-accommodation td{
-    border-left: 1px solid #333;
-}
-.table-price-accommodation th{
-    background-color: #333;
-    color: #FFFFFF;
-}
-.table-price-accommodation th, .table-price-accommodation td{
-    border: 1px solid #949494;
-    padding: 3px 10px;
-}
-.table-price-accommodation .hour-text{
-    color: #b71c1c ;
-}
-.page-break {
-    page-break-after: always;
-}
-.green-row{
-    background-color: #e8f5e9;
-}
-.table-price-accommodation .active b{
-    color: #f9a825;
-}
-.table-price-accommodation .active span{
-    color: #b71c1c ;
-}
-.table-price-accommodation .disabled{
-    color: #949494;
+.responsive-img1{
+    width: 170px;
+    padding: 0;
+    margin: 0;
+    height: auto;
 }
 .header{
     width: auto;
-    height: 150px;
+    height: 50px;
+    background: green;
 }
-.header span{
-    color: #949494;
-}
-.header .page:after {
-    content: counter(page);
-}
-.header table {
-    width: 100%;
-}
-
-
-
 .footer {
     position: fixed;
     left: 0px;
@@ -109,13 +29,13 @@ b{
     height: 55px;
     line-height:2px;
 }
-.footer span{
-    color: #949494;
+.letra-blanco{
+    color: #ffffff;
 }
-.footer .page:after {
-    content: counter(page);
+.letra-verde{
+    color: #1B5E20;
 }
-.footer table {
-    width: 100%;
+.letra-naranja{
+    color: #f9a825;
 }
 /*# sourceMappingURL=notification.css.map */

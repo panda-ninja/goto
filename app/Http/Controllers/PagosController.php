@@ -66,14 +66,14 @@ class PagosController extends Controller
             $pago->save();
             /* auth()->guard('cliente')->user()->nombres;*/
             $email='fredy1432@hotmail.com';
-            /*Mail::send(['html'=>'notification'], ['pago'=>$pago], function ($messaje) use ($email){
+            Mail::send(['html'=>'notification'], ['pago'=>$pago], function ($messaje) use ($email){
                 $messaje->to($email,'Freddy')
                     ->subject('You have a new payment')
                     /*->attach('ruta')*/
-                    /*->from('info@gotoperu.com','Gotoperu');
-            });*/
-            return redirect()->route('payments_noti_path',$idPago)->with('success','Your pay was succesfull');
-            //return redirect()->route('payments_show_path',$idPago)->with('success','Your pay was succesfull');
+                    ->from('info@gotoperu.com','Gotoperu');
+            });
+            //return redirect()->route('payments_noti_path',['pago'=>$pago])->with('success','Your pay was succesfull');
+            return redirect()->route('payments_show_path',$idPago)->with('success','Your pay was succesfull');
 
         }
         catch(Exception $e){
@@ -131,6 +131,7 @@ class PagosController extends Controller
 
     public function send($id)
     {
+        dd($id);
         return view('notification',['pago'=>$id]);
     }
 
