@@ -49,6 +49,10 @@ return [
             'driver' => 'session',
             'provider' => 'clientes',
         ],
+        'admin' => [
+            'driver' => 'session',
+            'provider' => 'admins',
+        ],
     ],
 
     /*
@@ -76,6 +80,10 @@ return [
         'clientes' => [
             'driver' => 'eloquent',
             'model' => GotoPeru\Cliente::class,
+        ],
+        'admins' => [
+            'driver' => 'eloquent',
+            'model' => GotoPeru\User::class,
         ],
         // 'users' => [
         //     'driver' => 'database',
