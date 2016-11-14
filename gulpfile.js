@@ -94,8 +94,10 @@ elixir(function(mix) {
         'vendors/vectormap-script.js',
         <!--google map-->
         'vendors/google-map-script.js'
-
     ], 'public/js/admin-app.js');
 
+    mix.styles([
+        'vendors/notification.css'
+    ], 'public/css/notification.css');
 
 });

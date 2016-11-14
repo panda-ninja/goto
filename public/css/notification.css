@@ -1,0 +1,41 @@
+body{
+    margin: 0;
+}
+.container{
+    margin:  0px 94px;
+}
+.responsive-img{
+    width: 400px;
+    padding: 0;
+    margin: 0;
+    height: auto;
+}
+.responsive-img1{
+    width: 170px;
+    padding: 0;
+    margin: 0;
+    height: auto;
+}
+.header{
+    width: auto;
+    height: 50px;
+    background: green;
+}
+.footer {
+    position: fixed;
+    left: 0px;
+    bottom: -45px;
+    right: 0px;
+    height: 55px;
+    line-height:2px;
+}
+.letra-blanco{
+    color: #ffffff;
+}
+.letra-verde{
+    color: #1B5E20;
+}
+.letra-naranja{
+    color: #f9a825;
+}
+/*# sourceMappingURL=notification.css.map */

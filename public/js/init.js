@@ -20,7 +20,7 @@ $(document).ready(function(){
     indicators: false,
     no_wrap: true
   });
-
+git 
 
 
   //carousel owl
