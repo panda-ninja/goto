@@ -123,7 +123,7 @@
 
 <!--  Scripts-->
 <script src="{{asset('js/app.js')}}"></script>
-<script src="{{asset('js/init.js')}}"></script>
+<script src="{{asset('init2.jss')}}"></script>
 @yield('scripts')
 </body>
 </html>

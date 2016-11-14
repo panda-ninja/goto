@@ -29,6 +29,11 @@ elixir(function(mix) {
     ], 'resources/assets/css/vendors');
 
     mix.styles([
+        'vendors/owl.carousel.css',
+        'vendors/owl.theme.css'
+    ], 'public/css/carousel.css');
+
+    mix.styles([
         'vendors/materialize.css',
         'vendors/style.css',
         'vendors/perfect-scrollbar.css',
@@ -41,7 +46,7 @@ elixir(function(mix) {
     ], 'public/css/quotes-pdf.css');
 
     mix.copy([
-        'node_modules/materialize-css/js/plugins/materialize.js',
+        'node_modules/materialize-css/dist/js/materialize.js',
         'node_modules/materialize-css/node_modules/jquery/dist/jquery.min.js',
 
         <!--scrollbar-->
@@ -68,7 +73,8 @@ elixir(function(mix) {
 
     mix.scripts([
         'vendors/jquery.min.js',
-        'vendors/materialize.js'
+        'vendors/materialize.js',
+        'vendors/owl.carousel.js'
     ], 'public/js/app.js');
 
     mix.scripts([
@@ -87,7 +93,7 @@ elixir(function(mix) {
         'vendors/jquery-jvectormap-world-mill-en.js',
         'vendors/vectormap-script.js',
         <!--google map-->
-        'vendors/google-map-script.js',
+        'vendors/google-map-script.js'
 
     ], 'public/js/admin-app.js');
 

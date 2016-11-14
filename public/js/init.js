@@ -20,6 +20,26 @@ $(document).ready(function(){
     indicators: false,
     no_wrap: true
   });
+
+
+
+  //carousel owl
+  var owl = $("#owl-demo");
+
+  owl.owlCarousel({
+    items : 3
+  });
+
+  // Custom Navigation Events
+  $(".next").click(function(){
+    owl.trigger('owl.next');
+  })
+  $(".prev").click(function(){
+    owl.trigger('owl.prev');
+  })
+
+  // $('.materialboxed').materialbox();
+
 });
 
 

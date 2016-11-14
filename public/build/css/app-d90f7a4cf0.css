@@ -6533,6 +6533,15 @@ button.picker__today:focus, button.picker__clear:focus, button.picker__close:foc
 .spacer-10 {
   padding: 10px 0; }
 
+.spacer-20 {
+  padding: 20px 0; }
+
+.spacer-m-5 {
+  padding: 0 5px; }
+
+.spacer-m-10 {
+  padding: 0 10px; }
+
 .no-padding {
   padding: 0; }
 
@@ -6545,8 +6554,20 @@ button.picker__today:focus, button.picker__clear:focus, button.picker__close:foc
 .padding-15 {
   padding: 15px; }
 
+.padding-bottom {
+  padding-bottom: 10px; }
+
 .no-margin {
   margin: 0 !important; }
+
+.margin-top-5 {
+  margin-top: 5px; }
+
+.margin-top-10 {
+  margin-top: 10px; }
+
+.margin-top-15 {
+  margin-top: 15px; }
 
 .margin-top-20 {
   margin-top: 20px; }
@@ -6554,11 +6575,32 @@ button.picker__today:focus, button.picker__clear:focus, button.picker__close:foc
 .margin-top-40 {
   margin-top: 40px; }
 
+.margin-bottom-10 {
+  margin-bottom: 20px; }
+
 .margin-bottom-20 {
   margin-bottom: 20px; }
 
+.text-10 {
+  font-size: 10px; }
+
+.text-12 {
+  font-size: 12px; }
+
+.text-14 {
+  font-size: 14px; }
+
+.text-16 {
+  font-size: 16px; }
+
+.text-18 {
+  font-size: 18px; }
+
 .text-20 {
   font-size: 20px; }
+
+.text-25 {
+  font-size: 25px; }
 
 .text-30 {
   font-size: 30px; }
@@ -6583,14 +6625,34 @@ nav ul li a {
   left: 8%;
   width: 80%; }
 
+.box-circle-absolute {
+  position: absolute;
+  top: 29%;
+  left: 25%;
+  width: 50%;
+  height: 43%;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.5);
+  color: #000; }
+
+.text-circle {
+  text-align: center;
+  margin-top: 14%;
+  font-size: 27px; }
+
+.text-circle p {
+  margin: 0; }
+
+.text-circle span {
+  display: block;
+  font-style: italic; }
+
 .section-maps {
   width: 90%; }
 
 .parallax-container {
-  min-height: 520px;
-  line-height: 0;
-  height: auto;
-  color: rgba(255, 255, 255, 0.9); }
+  min-height: 600px;
+  height: auto; }
 
 .parallax-container .section {
   width: 100%; }
@@ -6647,7 +6709,18 @@ span.quotes-duration {
   color: #b71c1c; }
 
 .price-quotes-table .disabled {
-  color: #949494; }
+  color: #b6b6b6; }
+
+.customNavigation a {
+  background: #f2f2f2;
+  font-size: 10px;
+  color: #505050;
+  line-height: 25px;
+  height: auto; }
+
+.customNavigation a:hover {
+  background: #d3d3d3;
+  color: #000000; }
 
 footer {
   background: #303030; }

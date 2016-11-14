@@ -7,6 +7,9 @@
 
     <!-- CSS  -->
     <link href="{{asset('css/app.css')}}" type="text/css" rel="stylesheet" media="screen,projection"/>
+    <link href="{{asset('css/carousel.css')}}" type="text/css" rel="stylesheet" media="screen,projection"/>
+
+
 </head>
 <body>
 <header class="grey darken-4">
@@ -93,6 +96,7 @@
 
 <!--  Scripts-->
 <script src="{{asset('js/app.js')}}"></script>
+{{--<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.8/js/materialize.min.js"></script>--}}
 <script src="{{asset('js/init.js')}}"></script>
 
 </body>
