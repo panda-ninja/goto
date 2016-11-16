@@ -90,7 +90,7 @@ Route::get('admin', [
 ]);
 Route::post('admin', [
     'uses' => 'AdminAuthController@store',
-    'as' => 'admin_store_index_path',
+    'as' => 'admin_auth_store_path',
 ]);
 Route::get('admin/logout', [
     'uses' => 'AdminAuthController@destroy',
@@ -98,8 +98,12 @@ Route::get('admin/logout', [
 ]);
 Route::group(['middleware'=>'admin'],function(){
 
-    Route::get('/cotizacion', [
+    Route::get('/dashboard', [
         'uses' => 'CotizacionController@index',
+        'as' => 'inicio_path',
+    ]);
+    Route::get('/cotizacion', [
+        'uses' => 'CotizacionController@nuevacotizacion',
         'as' => 'cotizacion_path',
     ]);
 });

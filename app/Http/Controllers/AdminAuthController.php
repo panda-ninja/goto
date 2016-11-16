@@ -28,4 +28,8 @@ class AdminAuthController extends Controller
         auth()->guard('admin')->logout();
         return redirect()->route('admin_auth_index_path');
     }
+    public function dashboard(){
+        return view('admin_auth_index_path');
+    }
+
 }
