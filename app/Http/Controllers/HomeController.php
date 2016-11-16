@@ -5,7 +5,9 @@ namespace GotoPeru\Http\Controllers;
 use GotoPeru\Cotizacion;
 use GotoPeru\ItinerarioPersonalizado;
 use GotoPeru\ItinerarioXHora;
+use GotoPeru\PaqueteCotizacion;
 use GotoPeru\PaquetePersonalizado;
+use GotoPeru\TPaquete;
 use Illuminate\Http\Request;
 
 use GotoPeru\Http\Requests;
@@ -19,7 +21,8 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home');
+        $paquete = TPaquete::with('precio_paquetes','paquetes_destinos','itinerario')->get();
+        return view('home', ['paquete'=>$paquete]);
     }
 
     /**
@@ -51,7 +54,7 @@ class HomeController extends Controller
      */
     public function show($id)
     {
-        //
+
     }
 
     /**

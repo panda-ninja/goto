@@ -8,9 +8,9 @@ class TPaqueteDestino extends Model
 {
     protected $table = "tpaquetesdestinos";
 
-    public function paquetes_cotizaciones()
+    public function paquetes()
     {
-        return $this->belongsTo(PaqueteCotizacion::class, 'idpaquetes');
+        return $this->belongsTo(TPaquete::class, 'idpaquetes');
     }
 
     public function destinos()

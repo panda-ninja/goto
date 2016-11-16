@@ -261,7 +261,8 @@
                     </div>
                     <div id="owl-demo" class="owl-carousel">
 
-                        <div class="item">
+                        @foreach($paquete as $paquete)
+                            <div class="item">
                             <div class="col s12">
 
                                 <div class="card card-packages">
@@ -296,111 +297,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="item">
-                            <div class="col s12">
-
-                                <div class="card card-packages">
-                                    <div class="card-image waves-effect waves-block waves-light">
-                                        <a href=""><img src="http://gotoperu.travel/img/maps/GTP600.jpg" class="responsive-img"></a>
-                                        <span class="card-title activator"><i class="material-icons right">more_vert</i></span>
-                                    </div>
-
-                                    <div class="card-content">
-                                        <div class="">
-                                            <h2 class="text-16 no-margin"><b>GTP600: Discover Machu Picchu and Nazca Lines</b></h2>
-                                        </div>
-                                        <div class="spacer-20">
-                                            <p class="lime-text text-darken-4">Sacred Valley, Machu Picchu, Cusco, Inca Trail, Ballestas Island</p>
-                                        </div>
-                                        <div class="margin-bottom-10">
-                                            <h4 class="text-18 no-margin valign-wrapper"><b class="lime-text text-darken-4">4 days</b> <i class="material-icons valign tiny">arrow_forward</i> <b class="grey-text spacer-m-5 text-12">from</b> <span class="yellow-text text-darken-3 text-25"><b>$2999</b></span></h4>
-                                        </div>
-                                        <div class="row no-margin valign-wrapper">
-                                            <div class="col s2">
-                                                <a href="" class="red-text tooltipped" data-position="top" data-delay="50" data-tooltip="Add my wishlist"><i class="material-icons valign small">favorite</i></a>
-                                            </div>
-                                            <div class="col s10">
-                                                <a class="waves-effect waves-light btn yellow darken-3"><i class="material-icons right">send</i>View Trip</a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="card-reveal">
-                                        <span class="card-title grey-text text-darken-4">Card Title<i class="material-icons right">close</i></span>
-                                        <p>Here is some more information about this product that is only revealed once clicked on.</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="item">
-                            <div class="col s12">
-
-                                <div class="card card-packages">
-                                    <div class="card-image waves-effect waves-block waves-light">
-                                        <a href=""><img src="http://gotoperu.travel/img/maps/GTP600.jpg" class="responsive-img"></a>
-                                        <span class="card-title activator"><i class="material-icons right">more_vert</i></span>
-                                    </div>
-
-                                    <div class="card-content">
-                                        <div class="">
-                                            <h2 class="text-16 no-margin"><b>GTP600: Discover Machu Picchu and Nazca Lines</b></h2>
-                                        </div>
-                                        <div class="spacer-20">
-                                            <p class="lime-text text-darken-4">Sacred Valley, Machu Picchu, Cusco, Inca Trail, Ballestas Island</p>
-                                        </div>
-                                        <div class="margin-bottom-10">
-                                            <h4 class="text-18 no-margin valign-wrapper"><b class="lime-text text-darken-4">4 days</b> <i class="material-icons valign tiny">arrow_forward</i> <b class="grey-text spacer-m-5 text-12">from</b> <span class="yellow-text text-darken-3 text-25"><b>$2999</b></span></h4>
-                                        </div>
-                                        <div class="row no-margin valign-wrapper">
-                                            <div class="col s2">
-                                                <a href="" class="red-text tooltipped" data-position="top" data-delay="50" data-tooltip="Add my wishlist"><i class="material-icons valign small">favorite</i></a>
-                                            </div>
-                                            <div class="col s10">
-                                                <a class="waves-effect waves-light btn yellow darken-3"><i class="material-icons right">send</i>View Trip</a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="card-reveal">
-                                        <span class="card-title grey-text text-darken-4">Card Title<i class="material-icons right">close</i></span>
-                                        <p>Here is some more information about this product that is only revealed once clicked on.</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="item">
-                            <div class="col s12">
-
-                                <div class="card card-packages">
-                                    <div class="card-image waves-effect waves-block waves-light">
-                                        <a href=""><img src="http://gotoperu.travel/img/maps/GTP600.jpg" class="responsive-img"></a>
-                                        <span class="card-title activator"><i class="material-icons right">more_vert</i></span>
-                                    </div>
-
-                                    <div class="card-content">
-                                        <div class="">
-                                            <h2 class="text-16 no-margin"><b>GTP600: Discover Machu Picchu and Nazca Lines</b></h2>
-                                        </div>
-                                        <div class="spacer-20">
-                                            <p class="lime-text text-darken-4">Sacred Valley, Machu Picchu, Cusco, Inca Trail, Ballestas Island</p>
-                                        </div>
-                                        <div class="margin-bottom-10">
-                                            <h4 class="text-18 no-margin valign-wrapper"><b class="lime-text text-darken-4">4 days</b> <i class="material-icons valign tiny">arrow_forward</i> <b class="grey-text spacer-m-5 text-12">from</b> <span class="yellow-text text-darken-3 text-25"><b>$2999</b></span></h4>
-                                        </div>
-                                        <div class="row no-margin valign-wrapper">
-                                            <div class="col s2">
-                                                <a href="" class="red-text tooltipped" data-position="top" data-delay="50" data-tooltip="Add my wishlist"><i class="material-icons valign small">favorite</i></a>
-                                            </div>
-                                            <div class="col s10">
-                                                <a class="waves-effect waves-light btn yellow darken-3"><i class="material-icons right">send</i>View Trip</a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="card-reveal">
-                                        <span class="card-title grey-text text-darken-4">Card Title<i class="material-icons right">close</i></span>
-                                        <p>Here is some more information about this product that is only revealed once clicked on.</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+                        @endforeach
 
                     </div>
                 </div>

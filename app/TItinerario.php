@@ -4,9 +4,9 @@ namespace GotoPeru;
 
 use Illuminate\Database\Eloquent\Model;
 
-class TPrecioPaquete extends Model
+class TItinerario extends Model
 {
-    protected $table = "tpreciopaquetes";
+    protected $table = "titinerario";
 
     public function paquete()
     {
