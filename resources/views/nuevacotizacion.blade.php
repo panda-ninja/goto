@@ -48,17 +48,23 @@
                     </div>
                     <div id="modal1" class="modal" style="z-index: 1003; display: none; opacity: 0; transform: scaleX(0.7); top: 316.97px;">
                         <div class="modal-content">
-
                             <div class="row">
+                                <div class="col s6" id="mensaje"></div>
+
+                            </div>
+                            <div class="row">
+                                <form action="">
                                 <div class="input-field col s6">
                                     <i class="mdi-action-search prefix"></i>
+                                    {{csrf_field()}}
                                     <input id="codigopx" type="text">
                                     <label for="codigopx" class="">Ingrese el codigo del paquete</label>
                                 </div>
                                 <div class="input-field col s2">
-                                    <a class="btn cyan waves-effect waves-light right">Buscar
+                                    <a id="btnBuscar_pqt" class="btn cyan waves-effect waves-light right">Buscar
                                     </a>
                                 </div>
+                                </form>
                             </div>
                             <p>Aqui datos del paquete</p>
                         </div>
@@ -67,6 +73,7 @@
                             <a href="#" class="waves-effect waves-green btn-flat modal-action ">Agregar</a>
                         </div>
                     </div>
+                    <div id="list-planes"></div>
                     <table class="striped">
                         <thead>
                         <tr>
@@ -121,3 +128,6 @@
     </div>
         <!--end container-->
 @stop
+@section('scripts')
+    <script type="text/javascript" src="{{URL::to('js/funciones-ajax.js')}}"></script>
+@endsection

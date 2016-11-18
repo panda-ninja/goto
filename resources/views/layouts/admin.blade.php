@@ -403,6 +403,8 @@
 
             <!--start container-->
             @yield('content')
+
+
         </section>
         <!-- END CONTENT -->
 
@@ -612,6 +614,7 @@ Scripts
         }, 15000);
     });
 </script>
+@yield('scripts')
 </body>
 
 </html>
