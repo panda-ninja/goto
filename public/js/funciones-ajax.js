@@ -1,16 +1,32 @@
 
-$("#btnBuscar_pqt").click(function(event){
+$("#btnBuscar_pqt").click(function(){
+    $.ajaxSetup({
+        headers: {
+            'X-CSRF-TOKEN': $('[name="_token"]').val()
+        }
+    });
     var codigopx=$("#codigopx").val();
     // alert(codigopx);
-    if(codigopx!=''){
+    var token='drmLwc3gMXKsyrhxzMJrr4dlC8rrvtcj9Fuv9vfU';
+    if(codigopx.length>0){
+
+        // $.post("/buscarpaquete",{codigo:codigopx}, function(data){
+        //     console.log(data);
+        //     $('#list_planes').html(data);
+        //
+        // });
+        var datastring="codigo="+codigopx
         $.ajax({
-            type:'get',
-            url:'{{URL::to("buscarpaquete")}}',
-            // headers:{'X-CSRF-TOKEN':token},
-            data:{'codigo':codigopx},
+            dataType:'json',
+            type:'post',
+            url:"buscarpaquete",
+            headers:{'X-CSRF-TOKEN': $('[id="_token"]').val()},
+            data:{codigo:codigopx},
             success: function(data){
+                alert(data);
                 console.log(data);
-                // $("#codigopx").empty().html(data);
+                    $('#list_planes').html(data);
+        //         // $("#codigopx").empty().html(data);
             }
             // ,
             // error: function(data){

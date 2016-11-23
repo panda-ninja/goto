@@ -53,7 +53,6 @@
 
                             </div>
                             <div class="row">
-                                <form action="">
                                 <div class="input-field col s6">
                                     <i class="mdi-action-search prefix"></i>
                                     {{csrf_field()}}
@@ -64,7 +63,7 @@
                                     <a id="btnBuscar_pqt" class="btn cyan waves-effect waves-light right">Buscar
                                     </a>
                                 </div>
-                                </form>
+
                             </div>
                             <p>Aqui datos del paquete</p>
                         </div>
@@ -73,7 +72,7 @@
                             <a href="#" class="waves-effect waves-green btn-flat modal-action ">Agregar</a>
                         </div>
                     </div>
-                    <div id="list-planes"></div>
+                    <div id="list_planes"></div>
                     <table class="striped">
                         <thead>
                         <tr>

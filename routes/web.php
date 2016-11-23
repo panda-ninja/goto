@@ -14,6 +14,9 @@
 //Route::get('/', function () {
 //    return view('welcome');
 //});
+use Illuminate\Http\Request;
+use Illuminate\Http\Response;
+
 Route::get('/', [
     'uses' => 'HomeController@index',
     'as' => 'home_path',
@@ -106,7 +109,7 @@ Route::group(['middleware'=>'admin'],function(){
         'uses' => 'CotizacionController@nuevacotizacion',
         'as' => 'cotizacion_path',
     ]);
-    Route::get('/buscarpaquete', [
+    Route::post('/buscarpaquete', [
         'uses' => 'PaqueteController@buscar',
         'as' => 'pqt_buscar_path',
     ]);
