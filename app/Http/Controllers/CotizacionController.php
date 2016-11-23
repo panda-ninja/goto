@@ -2,6 +2,7 @@
 
 namespace GotoPeru\Http\Controllers;
 
+
 use Illuminate\Http\Request;
 
 class CotizacionController extends Controller
@@ -15,6 +16,7 @@ class CotizacionController extends Controller
     {
         return view('nuevacotizacion');
     }
+
     /**
      * Show the form for creating a new resource.
      *

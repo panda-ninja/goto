@@ -57,7 +57,7 @@
                                 <div class="input-field col s6">
                                     <i class="mdi-action-search prefix"></i>
                                     {{csrf_field()}}
-                                    <input id="codigopx" type="text">
+                                    <input id="codigopx" name="codigopx"  type="text">
                                     <label for="codigopx" class="">Ingrese el codigo del paquete</label>
                                 </div>
                                 <div class="input-field col s2">
