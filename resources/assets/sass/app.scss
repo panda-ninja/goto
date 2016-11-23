@@ -32,6 +32,13 @@
   padding: 0 10px;
 }
 
+.spacer-margin-10{
+  margin: 10px 0;
+}
+.spacer-margin-20{
+  margin: 20px 0;
+}
+
 .no-padding{
   padding: 0;
 }
@@ -76,6 +83,12 @@
 .margin-bottom-20{
   margin-bottom: 20px;
 }
+.margin-bottom-30{
+  margin-bottom: 30px;
+}
+.margin-bottom-40{
+  margin-bottom: 40px;
+}
 //font size
 .text-10{
   font-size: 10px;
@@ -84,7 +97,7 @@
   font-size: 12px;
 }
 .text-14{
-  font-size: 14px;
+  font-size: 14px !important;
 }
 .text-16{
   font-size: 16px;
@@ -105,6 +118,12 @@
   font-size: 40px;
 }
 
+.right-absolute-card{
+  float: right !important;
+  top: 15px !important;
+  position: absolute;
+  right: 15px;
+}
 //text decoration
 .line-through{
   text-decoration: line-through;
@@ -160,6 +179,10 @@ nav ul li a{
   //line-height: 0;
   height: auto;
 }
+.parallax-container-2{
+  min-height: 150px;
+  height: auto;
+}
 .parallax-container .section {
   width: 100%;
 }
@@ -181,7 +204,9 @@ nav ul li a{
 .card-packages .card-content a span{
   display: block;
 }
-
+.card .card-reveal{
+  left: 0;
+}
 //cotizaciones
 span.quotes-duration{
   font-weight: 500;
@@ -195,6 +220,10 @@ span.quotes-duration{
 }
 .card-panel.active{
   background: #e8e8e8  !important;
+}
+.card .card-content .card-title{
+  line-height: 30px;
+  margin-top: 35px;
 }
 .quote-circle{
   padding: 0 20px;
@@ -235,6 +264,22 @@ span.quotes-duration{
   color: #000000;
 
 }
+
+.pinned {
+  z-index: 3;
+}
+
+.btn-more, .btn-less{
+  text-align: center;
+  color: #989898;
+}
+
+.btn-more i, .btn-less i{
+  font-size: 60px;
+  text-align: center;
+  display: block;
+}
+
 //footer
 footer{
   background: #303030;

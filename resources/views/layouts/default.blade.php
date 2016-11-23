@@ -9,6 +9,9 @@
     <link href="{{asset('css/app.css')}}" type="text/css" rel="stylesheet" media="screen,projection"/>
     <link href="{{asset('css/carousel.css')}}" type="text/css" rel="stylesheet" media="screen,projection"/>
 
+    <style>
+
+    </style>
 
 </head>
 <body>
@@ -96,8 +99,21 @@
 
 <!--  Scripts-->
 <script src="{{asset('js/app.js')}}"></script>
+
+<script src="{{asset('js/readmore.js')}}"></script>
 {{--<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.8/js/materialize.min.js"></script>--}}
 <script src="{{asset('js/init.js')}}"></script>
+
+<script>
+    $('#demo').readmore({
+        speed: 500
+    });
+    $('#demo2').readmore({
+        speed: 500,
+        collapsedHeight: 440
+    });
+
+</script>
 
 </body>
 </html>

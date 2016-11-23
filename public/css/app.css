@@ -6542,6 +6542,12 @@ button.picker__today:focus, button.picker__clear:focus, button.picker__close:foc
 .spacer-m-10 {
   padding: 0 10px; }
 
+.spacer-margin-10 {
+  margin: 10px 0; }
+
+.spacer-margin-20 {
+  margin: 20px 0; }
+
 .no-padding {
   padding: 0; }
 
@@ -6581,6 +6587,12 @@ button.picker__today:focus, button.picker__clear:focus, button.picker__close:foc
 .margin-bottom-20 {
   margin-bottom: 20px; }
 
+.margin-bottom-30 {
+  margin-bottom: 30px; }
+
+.margin-bottom-40 {
+  margin-bottom: 40px; }
+
 .text-10 {
   font-size: 10px; }
 
@@ -6588,7 +6600,7 @@ button.picker__today:focus, button.picker__clear:focus, button.picker__close:foc
   font-size: 12px; }
 
 .text-14 {
-  font-size: 14px; }
+  font-size: 14px !important; }
 
 .text-16 {
   font-size: 16px; }
@@ -6607,6 +6619,12 @@ button.picker__today:focus, button.picker__clear:focus, button.picker__close:foc
 
 .text-40 {
   font-size: 40px; }
+
+.right-absolute-card {
+  float: right !important;
+  top: 15px !important;
+  position: absolute;
+  right: 15px; }
 
 .line-through {
   text-decoration: line-through; }
@@ -6654,6 +6672,10 @@ nav ul li a {
   min-height: 600px;
   height: auto; }
 
+.parallax-container-2 {
+  min-height: 150px;
+  height: auto; }
+
 .parallax-container .section {
   width: 100%; }
 
@@ -6673,6 +6695,9 @@ nav ul li a {
 .card-packages .card-content a span {
   display: block; }
 
+.card .card-reveal {
+  left: 0; }
+
 span.quotes-duration {
   font-weight: 500; }
 
@@ -6684,6 +6709,10 @@ span.quotes-duration {
 
 .card-panel.active {
   background: #e8e8e8  !important; }
+
+.card .card-content .card-title {
+  line-height: 30px;
+  margin-top: 35px; }
 
 .quote-circle {
   padding: 0 20px; }
@@ -6721,6 +6750,18 @@ span.quotes-duration {
 .customNavigation a:hover {
   background: #d3d3d3;
   color: #000000; }
+
+.pinned {
+  z-index: 3; }
+
+.btn-more, .btn-less {
+  text-align: center;
+  color: #989898; }
+
+.btn-more i, .btn-less i {
+  font-size: 60px;
+  text-align: center;
+  display: block; }
 
 footer {
   background: #303030; }

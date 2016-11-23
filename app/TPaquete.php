@@ -22,4 +22,5 @@ class TPaquete extends Model
     {
         return $this->hasMany(TPaqueteDestino::class, 'idpaquetes');
     }
+
 }

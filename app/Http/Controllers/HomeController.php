@@ -21,8 +21,10 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $paquete = TPaquete::with('precio_paquetes','paquetes_destinos','itinerario')->get();
-        return view('home', ['paquete'=>$paquete]);
+        $paquete = TPaquete::with('paquetes_destinos', 'precio_paquetes')->get()->where('estado', 1);
+        $featured = TPaquete::with('paquetes_destinos', 'precio_paquetes')->get()->where('estadoslider', 1);
+//        dd($paquete);
+        return view('home', ['paquete'=>$paquete, 'featured'=>$featured]);
     }
 
     /**
