@@ -53,26 +53,27 @@
 
                             </div>
                             <div class="row">
-                                <div class="input-field col s6">
-                                    <i class="mdi-action-search prefix"></i>
-                                    {{csrf_field()}}
-                                    <input id="codigopx" name="codigopx"  type="text">
-                                    <label for="codigopx" class="">Ingrese el codigo del paquete</label>
-                                </div>
-                                <div class="input-field col s2">
-                                    <a id="btnBuscar_pqt" class="btn cyan waves-effect waves-light right">Buscar
-                                    </a>
-                                </div>
-
+                                <form action="" method="post">
+                                    <div class="input-field col s6">
+                                        <i class="mdi-action-search prefix"></i>
+                                        {{csrf_field()}}
+                                        <input id="codigopx" name="codigopx"  type="text">
+                                        <label for="codigopx" class="">Ingrese el codigo del paquete</label>
+                                    </div>
+                                    <div class="input-field col s2">
+                                        <a id="btnBuscar_pqt" class="btn cyan waves-effect waves-light right">Buscar
+                                        </a>
+                                    </div>
+                                </form>
                             </div>
-                            <p>Aqui datos del paquete</p>
+                            <div id="list_planes"></div>
                         </div>
                         <div class="modal-footer">
                             <a href="#" class="waves-effect waves-red btn-flat modal-action modal-close">Cerrar</a>
                             <a href="#" class="waves-effect waves-green btn-flat modal-action ">Agregar</a>
                         </div>
                     </div>
-                    <div id="list_planes"></div>
+
                     <table class="striped">
                         <thead>
                         <tr>

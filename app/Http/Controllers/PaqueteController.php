@@ -9,10 +9,12 @@ class PaqueteController extends Controller
     //
     public function buscar(Request $request)
     {
-//        $codigo=$request->input('codigo');
-//        $paquete=PaquetePersonalizado::where('codigo',$codigo);
-        return 'holaaaaaaaaaaaaaaaa';
+        $codigo=$request->input('codigo');
 
+        $paquete=PaquetePersonalizado::with('itinerario_personalizados.servicios','itinerario_personalizados.itinerario_x_horas')->get()->where('codigo',$codigo);
+//
+//        return view('show_paquete')->with('paquete',$paquete);
+    return dd($paquete);
 
         //
 //        if($request->ajax()){
