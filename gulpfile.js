@@ -81,19 +81,19 @@ elixir(function(mix) {
         <!--scrollbar-->
         'vendors/perfect-scrollbar.min.js',
         <!-- chartjs -->
-        'vendors/chartist.min.js',
-        <!-- chartjs -->
-        'vendors/chart.min.js',
-        'vendors/chart-script.js',
-        <!-- sparkline -->
+        // 'vendors/chartist.min.js',
+        // <!-- chartjs -->
+        // 'vendors/chart.min.js',
+        // 'vendors/chart-script.js',
+        // <!-- sparkline -->
         'vendors/jquery.sparkline.min.js',
         'vendors/sparkline-script.js',
         <!--jvectormap-->
-        'vendors/jquery-jvectormap-1.2.2.min.js',
-        'vendors/jquery-jvectormap-world-mill-en.js',
-        'vendors/vectormap-script.js',
+        // 'vendors/jquery-jvectormap-1.2.2.min.js',
+        // 'vendors/jquery-jvectormap-world-mill-en.js',
+        // 'vendors/vectormap-script.js',
         <!--google map-->
-        'vendors/google-map-script.js'
+        // 'vendors/google-map-script.js',
     ], 'public/js/admin-app.js');
 
     mix.styles([
