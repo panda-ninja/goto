@@ -33,34 +33,66 @@
                                 <div class="section card-panel grey lighten-4 z-depth-1 hoverable {{$active}}">
 
                                     <div class="valign-wrapper qoutes-box">
-                                        <div class="col s2">
-                                            <p class="no-padding {{$yellow}} center-align"><b>Proposal {{$i++}}</b></p>
-                                            <p class="no-padding {{$yellow}} center-align"><span class="text-30 quotes-duration">{{$paquete_cotizaciones->duracion}}</span> Days</p>
-                                        </div>
-                                        <div class="col s3">
-                                            @foreach($paquete_cotizaciones->precio_paquetes as $precio)
-                                                <p class="no-padding {{$green}}"><b>{{$precio->estrellas}} stars:</b>  ${{$precio->precio_d}}</p>
-                                            @endforeach
+
+
+
+                                            <div class="col s12">
+                                                <p class="no-padding {{$yellow}} text-20"><b>Plan {{$i++}}: </b> <span class="grey-text">{{$paquete_cotizaciones->duracion}} Days & {{$paquete_cotizaciones->duracion-1}} Nights</span></p>
+                                                <p class="no-padding {{$grey}}">
+                                                    @foreach($paquete_cotizaciones->paquetes_destinos as $destino)
+                                                        {{ucwords(strtolower($destino->destinos->destino))}},
+                                                    @endforeach
+                                                </p>
+
+                                                <p class="center"><b>"Lorem ipsum dolor sit amet, consectetur adipisicing elit."</b></p>
+
+                                                <div class="col s9">
+                                                    <div class="col s3">
+                                                        <img src="{{asset('img/icons/include/trains.png')}}" alt="" class="responsive-img">
+                                                        <p class="no-padding center">Trains</p>
+                                                    </div>
+                                                </div>
+                                                <div class="col s3">
+                                                    @foreach($paquete_cotizaciones->precio_paquetes as $precio)
+                                                    <p class="no-padding {{$green}}"><b>{{$precio->estrellas}} stars:</b>  ${{$precio->precio_d}}</p>
+                                                    @endforeach
+                                                </div>
+
+
+
+                                            </div>
+
+
+                                        {{--<div class="row">--}}
+                                        {{--<div class="col s2">--}}
+                                            {{--<p class="no-padding {{$yellow}} center-align"><b>Plan {{$i++}}</b></p>--}}
+                                            {{--<p class="no-padding {{$yellow}} center-align"><span class="text-30 quotes-duration">{{$paquete_cotizaciones->duracion}}</span> Days</p>--}}
+                                        {{--</div>--}}
+                                        {{--<div class="col s3">--}}
+                                            {{--@foreach($paquete_cotizaciones->precio_paquetes as $precio)--}}
+                                                {{--<p class="no-padding {{$green}}"><b>{{$precio->estrellas}} stars:</b>  ${{$precio->precio_d}}</p>--}}
+                                            {{--@endforeach--}}
                                             {{--<p class="no-padding green-text"><b>2 stars:</b> </p>--}}
                                             {{--<p class="no-padding grey-text line-through"><b>3 stars:</b> $2299</p>--}}
-                                        </div>
-                                        <div class="col s3">
-                                            <ul>
-                                                @foreach($paquete_cotizaciones->paquetes_destinos as $destino)
-                                                    <li class="no-padding {{$grey}}">- {{ucwords(strtolower($destino->destinos->destino))}}</li>
-                                                @endforeach
-                                            </ul>
+                                        {{--</div>--}}
+                                        {{--<div class="col s3">--}}
+                                            {{--<ul>--}}
+                                                {{--@foreach($paquete_cotizaciones->paquetes_destinos as $destino)--}}
+                                                    {{--<li class="no-padding {{$grey}}">- {{ucwords(strtolower($destino->destinos->destino))}}</li>--}}
+                                                {{--@endforeach--}}
+                                            {{--</ul>--}}
 
                                             {{--<a class="tooltipped" data-position="bottom" data-delay="50" data-tooltip="Lima - Ica - Machu Picchu">...</a>--}}
-                                        </div>
+                                        {{--</div>--}}
 
-                                        <div class="col s4 quotes-btn">
-                                            <a href="{{route('quotes_show_path', $paquete_cotizaciones->id)}}" class="{{$blue}}">View detailed program</a>
-                                            <a href="#upgrade" class="modal-trigger {{$blue}}">Request changes / upgrades</a>
-                                            @if($paquete_cotizaciones->estado==0)
-                                                <a href="#confirm{{$paquete_cotizaciones->id}}" class="modal-trigger {{$blue}}">Confirm</a>
-                                            @endif
-                                        </div>
+                                        {{--<div class="col s4 quotes-btn">--}}
+                                            {{--<a href="{{route('quotes_show_path', $paquete_cotizaciones->id)}}" class="{{$blue}}">View detailed program</a>--}}
+                                            {{--<a href="#upgrade" class="modal-trigger {{$blue}}">Request changes / upgrades</a>--}}
+                                            {{--@if($paquete_cotizaciones->estado==0)--}}
+                                                {{--<a href="#confirm{{$paquete_cotizaciones->id}}" class="modal-trigger {{$blue}}">Confirm</a>--}}
+                                            {{--@endif--}}
+                                        {{--</div>--}}
+                                        {{--</div>--}}
 
                                         <!-- Modal Structure -->
                                         <div id="confirm{{$paquete_cotizaciones->id}}" class="modal">

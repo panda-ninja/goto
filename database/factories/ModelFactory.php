@@ -183,6 +183,21 @@ $factory->define(GotoPeru\ServicioCotizacion::class, function (Faker\Generator $
     ];
 });
 
+$factory->define(GotoPeru\IncluyePaquete::class, function (Faker\Generator $faker) {
+    return [
+        'titulo' => $faker->sentence(),
+        'descripcion' => $faker->paragraph(),
+        'imagen' => $faker->image(),
+        'estado' => $faker->boolean(),
+    ];
+});
+
+$factory->define(GotoPeru\IncluyePaqueteCotizacion::class, function (Faker\Generator $faker) {
+    return [
+
+    ];
+});
+
 //Precio Paquetes
 $factory->define(GotoPeru\PrecioPaquete::class, function (Faker\Generator $faker) {
     return [
@@ -224,4 +239,3 @@ $factory->define(GotoPeru\DestinoPaqueteCotizacion::class, function (Faker\Gener
 
     ];
 });
-

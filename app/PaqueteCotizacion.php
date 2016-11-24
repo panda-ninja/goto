@@ -28,4 +28,9 @@ class PaqueteCotizacion extends Model
         return $this->hasMany(DestinoPaqueteCotizacion::class, 'paquete_cotizaciones_id');
     }
 
+    public function incluye_paquete_cotizaciones()
+    {
+        return $this->hasMany(IncluyePaqueteCotizacion::class, 'paquete_cotizaciones_id');
+    }
+
 }
