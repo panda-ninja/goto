@@ -147,10 +147,10 @@
                                 <li class="divider"></li>
                                 <li><a href="#"><i class="mdi-action-lock-outline"></i> Lock</a>
                                 </li>
-                                <li><a href="#"><i class="mdi-hardware-keyboard-tab"></i> Logout</a>
+                                <li><a href="{{route('admin_auth_destroy_path')}}"><i class="mdi-hardware-keyboard-tab"></i> Logout</a>
                                 </li>
                             </ul>
-                            <a class="btn-flat dropdown-button waves-effect waves-light white-text profile-btn" href="#" data-activates="profile-dropdown">John Doe<i class="mdi-navigation-arrow-drop-down right"></i></a>
+                            <a class="btn-flat dropdown-button waves-effect waves-light white-text profile-btn" href="#" data-activates="profile-dropdown">{{auth()->guard('admin')->user()->name}}<i class="mdi-navigation-arrow-drop-down right"></i></a>
                             <p class="user-roal">Administrator</p>
                         </div>
                     </div>
@@ -170,6 +170,8 @@
                             </div>
                         </li>
                     </ul>
+                </li>
+                <li class="bold"><a href="{{route('cotizacion_path')}}" class="waves-effect waves-cyan"><i class="mdi-action-perm-data-setting"></i> Nueva Cotizacion </a>
                 </li>
                 <li class="bold"><a href="app-email.html" class="waves-effect waves-cyan"><i class="mdi-communication-email"></i> Mailbox <span class="new badge">4</span></a>
                 </li>
@@ -401,6 +403,8 @@
 
             <!--start container-->
             @yield('content')
+
+
         </section>
         <!-- END CONTENT -->
 
@@ -589,7 +593,7 @@ Scripts
 <script src="{{asset('js/app.js')}}"></script>
 
 <!-- google map api -->
-<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAAZnaZBXLqNBRXjd-82km_NO7GUItyKek"></script>
+{{--<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAAZnaZBXLqNBRXjd-82km_NO7GUItyKek"></script>--}}
 <script src="{{asset('js/admin-app.js')}}"></script>
 
 <!--plugins.js - Some Specific JS codes for Plugin Settings-->
@@ -610,6 +614,7 @@ Scripts
         }, 15000);
     });
 </script>
+@yield('scripts')
 </body>
 
 </html>

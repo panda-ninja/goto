@@ -60,5 +60,6 @@ class Kernel extends HttpKernel
         'guest' => \GotoPeru\Http\Middleware\RedirectIfAuthenticated::class,
         'throttle' => \Illuminate\Routing\Middleware\ThrottleRequests::class,
         'cliente' => \GotoPeru\Http\Middleware\RedirectIfNotCliente::class,
+        'admin' => \GotoPeru\Http\Middleware\RedirectIfNotAdmin::class,
     ];
 }

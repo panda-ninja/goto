@@ -14,6 +14,9 @@
 //Route::get('/', function () {
 //    return view('welcome');
 //});
+use Illuminate\Http\Request;
+use Illuminate\Http\Response;
+
 Route::get('/', [
     'uses' => 'HomeController@index',
     'as' => 'home_path',
@@ -58,13 +61,6 @@ Route::group(['middleware'=>'cliente'],function(){
         'as' => 'quotes_show_path',
     ]);
 
-
-
-    Route::get('/profile', [
-        'uses' => 'ProfileController@index',
-        'as' => 'profile_path',
-    ]);
-
     Route::get('itinerary/{id}', [
         'uses' => 'ItineraryController@show',
         'as' => 'packages_path',
@@ -86,10 +82,38 @@ Route::group(['middleware'=>'cliente'],function(){
     ]);
 
 
+
 });
 /*==end== rutas para clientes ====================================================================*/
+/*==end== rutas para el administrador ============================================================*/
 
+Route::get('admin', [
+    'uses' => 'AdminAuthController@index',
+    'as' => 'admin_auth_index_path',
+]);
+Route::post('admin', [
+    'uses' => 'AdminAuthController@store',
+    'as' => 'admin_auth_store_path',
+]);
+Route::get('admin/logout', [
+    'uses' => 'AdminAuthController@destroy',
+    'as' => 'admin_auth_destroy_path',
+]);
+Route::group(['middleware'=>'admin'],function(){
 
+    Route::get('/dashboard', [
+        'uses' => 'CotizacionController@index',
+        'as' => 'inicio_path',
+    ]);
+    Route::get('/cotizacion', [
+        'uses' => 'CotizacionController@nuevacotizacion',
+        'as' => 'cotizacion_path',
+    ]);
+    Route::post('/buscarpaquete', [
+        'uses' => 'PaqueteController@buscar',
+        'as' => 'pqt_buscar_path',
+    ]);
+});
 /*
 Route::get('login', [
     'uses' => 'LoginController@index',
