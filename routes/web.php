@@ -56,9 +56,14 @@ Route::group(['middleware'=>'cliente'],function(){
     ]);
 
 
-    Route::get('quotes/{id}', [
+    Route::post('quotes/{id}', [
         'uses' => 'QuotesController@show',
         'as' => 'quotes_show_path',
+    ]);
+
+    Route::get('quotes/{id}', [
+        'uses' => 'QuotesController@show1',
+        'as' => 'quotes_show1_path',
     ]);
 
     Route::get('itinerary/{id}', [
