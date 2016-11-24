@@ -93,7 +93,6 @@ elixir(function(mix) {
         // 'vendors/jquery-jvectormap-world-mill-en.js',
         // 'vendors/vectormap-script.js',
         <!--google map-->
-
         // 'vendors/google-map-script.js',
 
     ], 'public/js/admin-app.js');
