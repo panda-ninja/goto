@@ -80,6 +80,11 @@ class QuotesController extends Controller
 
         return view('itinerary_quotes', ['paquete'=>$paquete]);
     }
+    public function show1($id)
+    {
+        return view('errors.503');
+    }
+
 
     public function pdf($id)
     {

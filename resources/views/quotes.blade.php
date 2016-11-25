@@ -20,6 +20,8 @@
                                         $green = 'green-text';
                                         $grey = 'grey-text text-darken-4';
                                         $blue = 'blue-text text-darken-3';
+                                        $btn_yellow = 'yellow darken-3';
+                                        $img_active = '';
                                     ?>
                                 @else
                                     <?php
@@ -28,39 +30,56 @@
                                         $green = 'grey-text';
                                         $grey = 'grey-text';
                                         $blue = 'grey-text';
+                                        $btn_yellow = 'grey darken-3';
+                                        $img_active = 'desaturada';
                                     ?>
                                 @endif
                                 <div class="section card-panel grey lighten-4 z-depth-1 hoverable {{$active}}">
 
                                     <div class="valign-wrapper qoutes-box">
 
-
-
                                             <div class="col s12">
-                                                <p class="no-padding {{$yellow}} text-20"><b>Plan {{$i++}}: </b> <span class="grey-text">{{$paquete_cotizaciones->duracion}} Days & {{$paquete_cotizaciones->duracion-1}} Nights</span></p>
+                                                <p class="no-padding {{$yellow}} text-20"><b class="{{$yellow}}">Plan {{$i++}}: </b> <span class="grey-text">{{$paquete_cotizaciones->duracion}} Days & {{$paquete_cotizaciones->duracion-1}} Nights</span></p>
                                                 <p class="no-padding {{$grey}}">
                                                     @foreach($paquete_cotizaciones->paquetes_destinos as $destino)
                                                         {{ucwords(strtolower($destino->destinos->destino))}},
                                                     @endforeach
                                                 </p>
 
-                                                <p class="center"><b>"Lorem ipsum dolor sit amet, consectetur adipisicing elit."</b></p>
+                                                <p class="center {{$grey}}"><b>"Lorem ipsum dolor sit amet, consectetur adipisicing elit."</b></p>
 
                                                 <div class="col s9">
-                                                    <div class="col s3">
-                                                        <img src="{{asset('img/icons/include/trains.png')}}" alt="" class="responsive-img">
-                                                        <p class="no-padding center">Trains</p>
-                                                    </div>
+                                                    @foreach($paquete_cotizaciones->incluye_paquete_cotizaciones as $incluye)
+
+                                                        <div class="col s3">
+                                                            <img src="{{asset('img/icons/include/'.$incluye->incluye->imagen)}}" alt="" class="responsive-img {{$img_active}}">
+                                                            <p class="no-padding center">{{ucwords(strtolower($incluye->incluye->titulo))}}</p>
+                                                        </div>
+                                                    @endforeach
+
                                                 </div>
                                                 <div class="col s3">
                                                     @foreach($paquete_cotizaciones->precio_paquetes as $precio)
-                                                    <p class="no-padding {{$green}}"><b>{{$precio->estrellas}} stars:</b>  ${{$precio->precio_d}}</p>
+                                                    <p class="no-padding {{$green}}"><b>{{$precio->estrellas}} stars:</b>  <span class="right">${{$precio->precio_d}}</span></p>
                                                     @endforeach
                                                 </div>
+                                                <div class="col s12 right-align">
+                                                    <div class="divider spacer-margin-20"></div>
+                                                    <form action="{{route('quotes_show_path', $paquete_cotizaciones->id)}}" method="post">
+
+                                                        {{csrf_field()}}
+
+                                                        <input type="submit" value="View" class="waves-effect waves-light btn {{$btn_yellow}}">
+                                                        <a href="#upgrade" class="modal-trigger waves-effect waves-light btn {{$btn_yellow}}">Customize</a>
+                                                        <a href="#confirm{{$paquete_cotizaciones->id}}" class="modal-trigger waves-effect waves-light btn {{$btn_yellow}}">Confirm</a>
+                                                    </form>
 
 
+                                                </div>
 
                                             </div>
+                                        
+
 
 
                                         {{--<div class="row">--}}

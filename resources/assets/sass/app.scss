@@ -215,9 +215,9 @@ span.quotes-duration{
 .quotes-btn a:hover{
   color: #f9a825 ;
 }
-.qoutes-box .waves-effect{
-  width: 100%;
-}
+//.qoutes-box .waves-effect{
+//  //width: 100%;
+//}
 .card-panel.active{
   background: #e8e8e8  !important;
 }
@@ -280,6 +280,14 @@ span.quotes-duration{
   display: block;
 }
 
+img.desaturada{
+  filter: grayscale(100%);
+  -webkit-filter: grayscale(100%);
+  -moz-filter: grayscale(100%);
+  -ms-filter: grayscale(100%);
+  -o-filter: grayscale(100%);
+  filter: gray;
+}
 //footer
 footer{
   background: #303030;
