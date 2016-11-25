@@ -10,13 +10,13 @@ class PaqueteController extends Controller
     //
     public function buscar(Request $request)
     {
-        $codigo=$request->input('codigo');
+        $codigo=strtoupper($request->input('codigo'));
         $paquete = TPaquete::with('paquetes_destinos', 'precio_paquetes','itinerario')->get()->where('codigo',$codigo);
 
 //        $paquete=Paquete::with('itinerario_personalizados.servicios','itinerario_personalizados.itinerario_x_horas')->get()->where('codigo',$codigo);
-//
-//        return view('show_paquete')->with('paquete',$paquete);
-    return dd($paquete);
+//['paquete'=>$paquete]
+        return view('secciones.show_paquete',['paquete'=>$paquete]);
+//    return dd($paquete);
 
         //
 //        if($request->ajax()){

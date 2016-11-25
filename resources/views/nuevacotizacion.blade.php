@@ -46,7 +46,7 @@
                             </a>
                         </div>
                     </div>
-                    <div id="modal1" class="modal" style="z-index: 1003; display: none; opacity: 0; transform: scaleX(0.7); top: 316.97px;">
+                    <div id="modal1" class="modal modal-ancho">
                         <div class="modal-content">
                             <div class="row">
                                 <div class="col s6" id="mensaje"></div>
@@ -130,4 +130,5 @@
 @stop
 @section('scripts')
     <script type="text/javascript" src="{{URL::to('js/funciones-ajax.js')}}"></script>
+    <link href="{{asset('css/notification.css')}}" type="text/css" rel="stylesheet" media="screen,projection"/>
 @endsection

@@ -18,7 +18,7 @@ $("#btnBuscar_pqt").click(function(){
         var datastring="codigo="+codigopx
         $.post('http://gotoperu.mo/buscarpaquete', {codigo: codigopx}, function(markup) {
             console.log(markup);
-            $('#list_planes').append(markup);
+            $('#list_planes').html(markup);
         });
 
         // $.ajax({

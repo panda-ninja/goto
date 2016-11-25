@@ -38,4 +38,24 @@ body{
 .letra-naranja{
     color: #f9a825;
 }
+.letra-roja{
+    color: #d20404;
+}
+.caja{
+ width: 70px;
+    height: 50px;
+}
+/*== seccion para modal ============================================================================*/
+.modal-ancho{
+    width: 90%;
+    height: 90%;
+}
+.letra-peque{
+    color: rgba(119,119,119,1);
+    font-size: 12px;
+}
+.table1{
+    margin: 0px;
+    padding: 0px;
+}
 /*# sourceMappingURL=notification.css.map */
