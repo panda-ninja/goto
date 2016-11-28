@@ -1,4 +1,3 @@
-
 $("#btnBuscar_pqt").click(function(){
     $.ajaxSetup({
         headers: {

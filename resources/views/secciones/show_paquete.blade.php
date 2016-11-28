@@ -1,3 +1,5 @@
+<link href="{{asset('css/admin-theme.css')}}" type="text/css" rel="stylesheet" media="screen,projection"/>
+<script type="text/javascript" src="{{URL::to('js/funciones_cotizacion.js')}}"></script>
 <?php
 $Paquete='';
 ?>
@@ -19,17 +21,52 @@ $Paquete='';
     <div class="row">
         <div class="input-field col s6">
             <p>{{$Paquete->descripcion}}</p>
+            <h5>Destinos:</h5>
+            <?php $i=1;?>
+            @foreach($Paquete->paquetes_destinos as $destino)
+                {{--dd($destino)--}}
+            <div class="row margin-top-5">
+                <div class="col s1 centrar outline-day">{{$i++}}</div>
+                <div class="col s11">{{$destino->destinos->nombre}}</div>
+            </div>
+            @endforeach
+            <h5>Itinerario:</h5>
+            {{--<ul class="collapsible" data-collapsible="accordion">--}}
+                {{--<li>--}}
+                    {{--<div class="collapsible-header"><i class="material-icons">filter_drama</i>First</div>--}}
+                    {{--<div class="collapsible-body"><p>Lorem ipsum dolor sit amet.</p></div>--}}
+                {{--</li>--}}
+                {{--<li>--}}
+                    {{--<div class="collapsible-header"><i class="material-icons">place</i>Second</div>--}}
+                    {{--<div class="collapsible-body"><p>Lorem ipsum dolor sit amet.</p></div>--}}
+                {{--</li>--}}
+                {{--<li>--}}
+                    {{--<div class="collapsible-header"><i class="material-icons">whatshot</i>Third</div>--}}
+                    {{--<div class="collapsible-body"><p>Lorem ipsum dolor sit amet.</p></div>--}}
+                {{--</li>--}}
+            {{--</ul>--}}
+            <ul class="collapsible popout" data-collapsible="accordion">
+            @foreach($Paquete->itinerario as $itinerario)
+                <li>
+                    <div class="collapsible-header">Third</div>
+                    <div class="collapsible-body"><p>Lorem ipsum dolor sit amet.</p></div>
+                    {{--<div class="collapsible-header">--}}
+                    {{--<h3 class="text-18 blue-text text-darken-2">DAY {{$itinerario->dia}}: <span class="grey-text text-darken-3">{{$itinerario->titulo}}</span></h3>--}}
+                    {{--</div>--}}
+                    {{--<div class="collapsible-body"><p><?php echo $itinerario->descripcion;?></p></div>--}}
+                </li>
+            @endforeach
+            </ul>
         </div>
         <div class="input-field col s6">
-            <h5 class="letra-naranja">PRICE</h5>
-            <table class="table table1">
+            <table class="table table1 borde-tabla-habitacion centrar">
                 <tr>
-                    <td width="50px"><b>Rooms</b></td>
-                    <td width="210px"><b>Price per person</b><br><span class="letra-peque">Based on hotel category</span></td>
-                    <td width="70px"><b class="letra-roja">2 STARS</b></td>
-                    <td width="70px"><b class="letra-roja">3 STARS</b></td>
-                    <td width="70px"><b class="letra-roja">4 STARS</b></td>
-                    <td width="70px"><b class="letra-roja">5 STARS</b></td>
+                    <td width="50px"><b class="text-small">Rooms</b></td>
+                    <td width="130px"><b class="text-small">Price per person</b><br><span class="letra-peque">Based on hotel category</span></td>
+                    <td width="50px"><b class="letra-roja centrar text-small">2 STARS</b></td>
+                    <td width="50px"><b class="letra-roja centrar text-small">3 STARS</b></td>
+                    <td width="50px"><b class="letra-roja centrar text-small">4 STARS</b></td>
+                    <td width="50px"><b class="letra-roja centrar text-small">5 STARS</b></td>
                 </tr>
 
             @foreach($Paquete->precio_paquetes as $precio)
@@ -57,35 +94,35 @@ $Paquete='';
             @endforeach
             <tr>
                 <td><input type="number" value="0"></td>
-                <td><img src="{{asset('images')}}/single.png" alt="" width="30px" height="30px"><img src="{{asset('images')}}/single.png" alt="" width="30px" height="30px"><img src="{{asset('images')}}/single.png" alt="" width="30px" height="30px"></td>
-                <td>{{$precio_2_t}}</td>
-                <td>{{$precio_3_t}}</td>
-                <td>{{$precio_4_t}}</td>
-                <td>{{$precio_5_t}}</td>
+                <td class="centrar"><img src="{{asset('images')}}/single.png" alt="" width="30px" height="30px"><img src="{{asset('images')}}/single.png" alt="" width="30px" height="30px"><img src="{{asset('images')}}/single.png" alt="" width="30px" height="30px"></td>
+                <td><input type="number" name="precio_2_t" id="precio_2_t" value="{{$precio_2_t}}"></td>
+                <td><input type="number" name="precio_3_t" id="precio_3_t" value="{{$precio_3_t}}"></td>
+                <td><input type="number" name="precio_4_t" id="precio_4_t" value="{{$precio_4_t}}"></td>
+                <td><input type="number" name="precio_5_t" id="precio_5_t" value="{{$precio_5_t}}"></td>
             </tr>
                 <tr>
                     <td><input type="number" value="0"></td>
-                    <td><img src="{{asset('images')}}/single.png" alt="" width="30px" height="30px"><img src="{{asset('images')}}/single.png" alt="" width="30px" height="30px"></td>
-                    <td>{{$precio_2_d}}</td>
-                    <td>{{$precio_3_d}}</td>
-                    <td>{{$precio_4_d}}</td>
-                    <td>{{$precio_5_d}}</td>
+                    <td class="centrar"><img src="{{asset('images')}}/single.png" alt="" width="30px" height="30px"><img src="{{asset('images')}}/single.png" alt="" width="30px" height="30px"></td>
+                    <td><input type="number" name="precio_2_d" id="precio_2_d" value="{{$precio_2_d}}"></td>
+                    <td><input type="number" name="precio_3_d" id="precio_3_d" value="{{$precio_3_d}}"></td>
+                    <td><input type="number" name="precio_4_d" id="precio_4_d" value="{{$precio_4_d}}"></td>
+                    <td><input type="number" name="precio_5_d" id="precio_5_d" value="{{$precio_5_d}}"></td>
                 </tr>
                 <tr>
                     <td><input type="number" value="0"></td>
-                    <td><img src="{{asset('images')}}/matrimonial.png" alt="" width="50px" height="30px"></td>
-                    <td>{{$precio_2_d}}</td>
-                    <td>{{$precio_3_d}}</td>
-                    <td>{{$precio_4_d}}</td>
-                    <td>{{$precio_5_d}}</td>
+                    <td class="centrar"><img src="{{asset('images')}}/matrimonial.png" alt="" width="50px" height="30px"></td>
+                    <td><input type="number" name="precio_2_d_m" id="precio_2_d_m" value="{{$precio_2_d}}"></td>
+                    <td><input type="number" name="precio_3_d_m" id="precio_3_d_m" value="{{$precio_3_d}}"></td>
+                    <td><input type="number" name="precio_4_d_m" id="precio_4_d_m" value="{{$precio_4_d}}"></td>
+                    <td><input type="number" name="precio_5_d_m" id="precio_5_d_m" value="{{$precio_5_d}}"></td>
                 </tr>
                 <tr>
                     <td><input type="number" value="0"></td>
-                    <td><img src="{{asset('images')}}/single.png" alt="" width="30px" height="30px"></td>
-                    <td>{{$precio_2_s}}</td>
-                    <td>{{$precio_3_s}}</td>
-                    <td>{{$precio_4_s}}</td>
-                    <td>{{$precio_5_s}}</td>
+                    <td class="centrar"><img src="{{asset('images')}}/single.png" alt="" width="30px" height="30px"></td>
+                    <td><input type="number" name="precio_2_s" id="precio_2_s" value="{{$precio_2_s}}"></td>
+                    <td><input type="number" name="precio_3_s" id="precio_3_s" value="{{$precio_3_s}}"></td>
+                    <td><input type="number" name="precio_4_s" id="precio_4_s" value="{{$precio_4_s}}"></td>
+                    <td><input type="number" name="precio_5_s" id="precio_5_s" value="{{$precio_5_s}}"></td>
                 </tr>
             </table>
         </div>
