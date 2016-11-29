@@ -6768,6 +6768,9 @@ img.desaturada {
   -o-filter: grayscale(100%);
   filter: gray; }
 
+.box-client-right p {
+  margin: 0; }
+
 footer {
   background: #303030; }
 

@@ -40,10 +40,22 @@ Route::group(['middleware'=>'cliente'],function(){
         'uses' => 'PagosController@send',
         'as' => 'payments_noti_path',
     ]);
+
+    Route::get('503', [
+        'uses' => 'QuotesController@show1',
+        'as' => '503_path',
+    ]);
+
     Route::get('quotes', [
         'uses' => 'QuotesController@index',
         'as' => 'quotes_path',
     ]);
+
+    Route::get('proposals', [
+        'uses' => 'QuotesController@proposals',
+        'as' => 'proposals_path',
+    ]);
+
 
     Route::patch('quotes/{id}', [
         'uses' => 'QuotesController@update',
@@ -56,14 +68,14 @@ Route::group(['middleware'=>'cliente'],function(){
     ]);
 
 
-    Route::post('quotes/{id}', [
-        'uses' => 'QuotesController@show',
-        'as' => 'quotes_show_path',
-    ]);
+//    Route::post('quotes/{id}', [
+//        'uses' => 'QuotesController@show',
+//        'as' => 'quotes_show_path',
+//    ]);
 
     Route::get('quotes/{id}', [
-        'uses' => 'QuotesController@show1',
-        'as' => 'quotes_show1_path',
+        'uses' => 'QuotesController@show',
+        'as' => 'quotes_show_path',
     ]);
 
     Route::get('itinerary/{id}', [

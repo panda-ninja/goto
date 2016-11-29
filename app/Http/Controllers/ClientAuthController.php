@@ -18,7 +18,7 @@ class ClientAuthController extends Controller
         $this->validate($request,['email'=>'required|email','password'=>'required']);
 
         if(auth()->guard($this->guard)->attempt($request->only(['email','password']))){
-            return redirect()->route('quotes_path');
+            return redirect()->route('proposals_path');
         }
         else{
             return redirect()->route('client_auth_index_path')

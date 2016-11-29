@@ -288,6 +288,14 @@ img.desaturada{
   -o-filter: grayscale(100%);
   filter: gray;
 }
+
+.box-client-right i{
+  //font-size: 130px;
+}
+.box-client-right p{
+  margin: 0;
+}
+
 //footer
 footer{
   background: #303030;

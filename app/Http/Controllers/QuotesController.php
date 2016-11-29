@@ -13,6 +13,7 @@ use GotoPeru\TPrecioPaquete;
 use Illuminate\Http\Request;
 
 use GotoPeru\Http\Requests;
+use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Session;
 
 class QuotesController extends Controller
@@ -36,8 +37,17 @@ class QuotesController extends Controller
         //return $destinos;
         //dd($cotizaciones);
         return view('quotes', ['cotizaciones'=>$cotizaciones]);
+    }
 
+    public function proposals()
+    {
 
+        $idCliente=auth()->guard('cliente')->user()->id;
+        $cotizaciones = Cotizacion::with('paquete_cotizaciones.precio_paquetes','paquete_cotizaciones.paquetes_destinos')->get()
+            ->where('clientes_id',$idCliente)
+            ->take(1);
+
+        return view('proposals', ['cotizaciones'=>$cotizaciones]);
     }
 
     /**
@@ -69,18 +79,23 @@ class QuotesController extends Controller
      */
     public function show($id)
     {
-//        $cotizacion = Cotizacion::findOrFail($id);
-//        $paquete = PaqueteCotizacion::findOrFail($id);
-//        $itinerarios = ItinerarioCotizacion::with(['horas_cotizaciones'=>function($horas){$horas->orderBy('hora','asc'); }, 'servicios_cotizaciones'])->get()->where('paquete_cotizaciones_id', $paquete->id)->sortBy('dias');
+        $idCliente=auth()->guard('cliente')->user()->id;
+        $cotizaciones = Cotizacion::with('paquete_cotizaciones.precio_paquetes','paquete_cotizaciones.paquetes_destinos')->get()
+            ->where('clientes_id',$idCliente)
+            ->sortByDesc('fecha');
 
         $paquete = PaqueteCotizacion::with('precio_paquetes','paquetes_destinos','itinerario_cotizaciones.horas_cotizaciones', 'itinerario_cotizaciones.servicios_cotizaciones')->get()->where('id', $id);
-        //$paquete1 =$paquete->itinerario_cotizaciones->dias;
-//        dd($paquete);
-//        $itinerarios = ItinerarioCotizacion::with('paquetes_cotizaciones')->get()->where('paquete_cotizaciones_id', $paquete->id)->sortBy('dias');
 
-        return view('itinerary_quotes', ['paquete'=>$paquete]);
+        if ($paquete->count()>0){
+           return view('itinerary_quotes', ['paquetes'=>$paquete, 'cotizaciones'=>$cotizaciones]);
+//            dd($paquete);
+        }
+        else{
+            return redirect::to(route('503_path'));
+
+        }
     }
-    public function show1($id)
+    public function show1()
     {
         return view('errors.503');
     }

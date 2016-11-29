@@ -62,6 +62,32 @@
                   3-columns-wide on large screens,
                   4-columns-wide on medium screens,
                   12-columns-wide on small screens  -->
+                <div class="center box-client-right">
+                    {{--<i class="material-icons grey-text">person</i>--}}
+                    <img src="{{asset('img/icons/user2.png')}}" alt="" class="responsive-img">
+                    <p><b>PROFILE</b></p>
+                    <p><b class="yellow-text text-darken-3">{{auth()->guard('cliente')->user()->nombres.', '.auth()->guard('cliente')->user()->apellidos}}</b></p>
+
+                    <a href="{{route('proposals_path')}}" class="grey-text">
+                        <blockquote class="grey lighten-4 spacer-10">
+                        @foreach($cotizaciones->take(1) as $cotizacion)
+                            <p><i class="material-icons red-text">notifications</i></p>
+                            <p>Ultima Cotizacion</p>
+
+                            <p>{{$cotizacion->nropersonas}} Travelers</p>
+                            <p>{{$cotizacion->fecha}}</p>
+                            <?php $i=1; ?>
+                            <p class="text-16 blue-text text-lighten-2"><b>TRAVEL PROPOSALS
+                                ({{$cotizacion->paquete_cotizaciones->count()}})</b>
+                            </p>
+
+                        @endforeach
+                        </blockquote>
+                    </a>
+
+
+                </div>
+
                 <div class="collection">
                     <a href="{{route('quotes_path')}}" class="collection-item">Quotes<span class="badge">1</span></a>
 
