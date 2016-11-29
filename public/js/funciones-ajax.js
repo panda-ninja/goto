@@ -14,10 +14,49 @@ $("#btnBuscar_pqt").click(function(){
         //     $('#list_planes').html(data);
         //
         // });
-        var datastring="codigo="+codigopx
+        var datastring="codigo="+codigopx;
+        $('#idLoad').html('<div class="preloader-wrapper small active">'+
+            '<div class="spinner-layer spinner-green-only">'+
+            '<div class="circle-clipper left">'+
+            '<div class="circle"></div>'+
+            '</div><div class="gap-patch">'+
+            '<div class="circle"></div>'+
+            '</div><div class="circle-clipper right">'+
+            '<div class="circle"></div>'+
+            '</div>'+
+            '</div>'+
+            '</div>');
+        // sleep(300);
         $.post('http://gotoperu.mo/buscarpaquete', {codigo: codigopx}, function(markup) {
-            console.log(markup);
-            $('#list_planes').html(markup);
+
+            if(markup){
+
+                console.log(markup);
+                $('#list_planes').html('');
+                $('#list_planes').html(markup);
+                $('#idLoad').html('');
+            }
+            else{
+                $('#idLoad').html('');
+                $('#list_planes').html('<div id="card-alert" class="card red lighten-5">'+
+                    '<div class="card-content red-text">'+
+                    '<p>ERROR : Ocurrio un error al cargar los datos '+markup+'</p>'+
+                    '</div>'+
+                    '<button type="button" class="close red-text" data-dismiss="alert" aria-label="Close">'+
+                    '<span aria-hidden="true">×</span>'+
+                    '</button>'+
+                    '</div>');
+            }
+        }).fail(function (markup) {
+            $('#idLoad').html('');
+            $('#list_planes').html('<div id="card-alert" class="card red lighten-5">'+
+                '<div class="card-content red-text">'+
+                '<p>ERROR : No se encontró el paquete con codigo: '+codigopx+'</p>'+
+                '</div>'+
+                '<button type="button" class="close red-text" data-dismiss="alert" aria-label="Close">'+
+                '<span aria-hidden="true">×</span>'+
+                '</button>'+
+                '</div>');
         });
 
         // $.ajax({

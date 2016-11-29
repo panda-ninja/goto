@@ -21,15 +21,24 @@ $Paquete='';
     <div class="row">
         <div class="input-field col s6">
             <p>{{$Paquete->descripcion}}</p>
-            <h5>Destinos:</h5>
-            <?php $i=1;?>
-            @foreach($Paquete->paquetes_destinos as $destino)
-                {{--dd($destino)--}}
-            <div class="row margin-top-5">
-                <div class="col s1 centrar outline-day">{{$i++}}</div>
-                <div class="col s11">{{$destino->destinos->nombre}}</div>
+            <div class="row">
+                <div class="col s12">
+                <ul id="task-card" class="collection with-header">
+                    <li class="collection-header cyan">
+                        <h4 class="task-card-title">Destinos:</h4>
+                    </li>
+                    <?php $i=0;?>
+                    @foreach($Paquete->paquetes_destinos as $destino)
+                        <?php $i++;?>
+                        <li class="collection-item dismissable" style="touch-action: pan-y; -webkit-user-drag: none; -webkit-tap-highlight-color: rgba(0, 0, 0, 0);">
+                            <input type="checkbox" id="task{{$i}}">
+                            <label for="task{{$i}}" style="text-decoration: none;">{{$destino->destinos->nombre}}
+                            </label>
+                        </li>
+                    @endforeach
+                </ul>
+                </div>
             </div>
-            @endforeach
             <h5>Itinerario:</h5>
             {{--<ul class="collapsible" data-collapsible="accordion">--}}
                 {{--<li>--}}

@@ -64,6 +64,8 @@
                                         <a id="btnBuscar_pqt" class="btn cyan waves-effect waves-light right">Buscar
                                         </a>
                                     </div>
+                                    <div class="input-field col s2" id="idLoad">
+                                    </div>
                                 </form>
                             </div>
                             <div id="list_planes"></div>
