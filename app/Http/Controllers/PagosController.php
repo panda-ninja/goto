@@ -21,6 +21,11 @@ class PagosController extends Controller
     {
         $idCliente=auth()->guard('cliente')->user()->id;
 
+
+        $cotizaciones = Cotizacion::with('paquete_cotizaciones.precio_paquetes','paquete_cotizaciones.paquetes_destinos')->get()
+            ->where('clientes_id',$idCliente)
+            ->sortByDesc('fecha');
+
         $pagos = Cliente::with('cotizaciones.pagos')
                 ->where('id',$idCliente)
                 ->get();
@@ -28,7 +33,7 @@ class PagosController extends Controller
 
         //$pagos=Pago::findOrFail($idCotizacion);
         //dd($pagos);
-        return view('payments',['pagos'=>$pagos]);
+        return view('payments',['pagos'=>$pagos, 'cotizaciones'=>$cotizaciones]);
     }
 
     /**
@@ -89,9 +94,16 @@ class PagosController extends Controller
      */
     public function show($idPago)
     {
+        $idCliente=auth()->guard('cliente')->user()->id;
+
         $pago=Pago::findOrFail($idPago);
+
+        $cotizaciones = Cotizacion::with('paquete_cotizaciones.precio_paquetes','paquete_cotizaciones.paquetes_destinos')->get()
+            ->where('clientes_id',$idCliente)
+            ->sortByDesc('fecha');
+
         //dd($pago);
-        return view('payments-show',['pago'=>$pago]);
+        return view('payments-show',['pago'=>$pago, 'cotizaciones'=>$cotizaciones]);
 
     }
 

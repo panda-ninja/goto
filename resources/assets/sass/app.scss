@@ -76,6 +76,9 @@
 .margin-top-40{
   margin-top: 40px;
 }
+.margin-top-100{
+  margin-top: 100px;
+}
 
 .margin-bottom-10{
   margin-bottom: 20px;
@@ -143,9 +146,14 @@ nav ul li a{
 }
 
 .slider .slides li .caption {
-  left:8%;
-  width: 80%;
+  left:0;
+  width: 100%;
+  top:4%;
 }
+
+//.box-slider-banner{
+//  background: rgba(255,255,255,.5);
+//}
 
 //Section package offers
 .box-circle-absolute{
@@ -174,12 +182,16 @@ nav ul li a{
 .section-maps{
   width: 90%;
 }
-.parallax-container {
-  min-height: 600px;
-  //line-height: 0;
-  height: auto;
+
+.parallax-container-1 {
+  height: 450px;
+  background: rgba(0,0,0,.2);
+
 }
-.parallax-container-2{
+.parallax-container-2 {
+  height: 600px;
+}
+.parallax-container-3{
   min-height: 150px;
   height: auto;
 }
@@ -288,6 +300,14 @@ img.desaturada{
   -o-filter: grayscale(100%);
   filter: gray;
 }
+
+.box-client-right i{
+  //font-size: 130px;
+}
+.box-client-right p{
+  margin: 0;
+}
+
 //footer
 footer{
   background: #303030;
