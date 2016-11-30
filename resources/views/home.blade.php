@@ -9,15 +9,21 @@
                 <div class="caption center-align">
                     <h3>A <b>BETTER</b> WAY TO TRAVEL TO PERU</h3>
                     <h5 class="light yellow-text text-darken-3">$150 average saving per person | 24/7 local authentic assitance | 100s of + tripadvisor testimonials</h5>
+                    
+                    <div class="margin-top-100">
+                        <p>Book Online or customized your dream vacations</p>
+                        <a class="waves-effect waves-light btn lime darken-4">Travel Packages</a>
+                        <a class="waves-effect waves-light btn grey darken-4">Design Your Trip</a>
+                    </div>
                 </div>
             </li>
-            <li>
-                <img src="{{asset('img/bg/cusco-1.jpg')}}"> <!-- random image -->
-                <div class="caption center-align">
-                    <h3>Left Aligned Caption</h3>
-                    <h5 class="light grey-text text-lighten-3">Here's our small slogan.</h5>
-                </div>
-            </li>
+            {{--<li>--}}
+                {{--<img src="{{asset('img/bg/cusco-1.jpg')}}"> <!-- random image -->--}}
+                {{--<div class="caption center-align">--}}
+                    {{--<h3>Left Aligned Caption</h3>--}}
+                    {{--<h5 class="light grey-text text-lighten-3">Here's our small slogan.</h5>--}}
+                {{--</div>--}}
+            {{--</li>--}}
             {{--<li>--}}
             {{--<img src="http://lorempixel.com/580/250/nature/3"> <!-- random image -->--}}
             {{--<div class="caption right-align">--}}
@@ -35,7 +41,7 @@
         </ul>
     </div>
     <section class="spacer-10">
-        <div class="row">
+        <div class="row no-margin">
             <div class="col s1">
                 <img src="{{asset('img/logos/apavit.png')}}" alt="" class="responsive-img">
             </div>
@@ -75,7 +81,71 @@
         </div>
     </section>
 
+    <div class="parallax-container parallax-container-1">
+        <div class="parallax"><img src="{{asset('img/bg/we-care.jpg')}}"></div>
+        <div class="container">
+            <div class="row valign-wrapper margin-top-10">
+                <div class="col s4">
+                    <div class="card-panel hoverable lime darken-4">
+                        <h5 class="white-text">Social <b>Responsability</b></h5>
+                        <p>Giving back to our hometown communities!</p>
+                    </div>
+                </div>
+                <div class="col s4 center">
+                    <h4 class="white-text"><b>WE CARE</b></h4>
+                </div>
+                <div class="col s4">
+                    <div class="card-panel hoverable white">
+                        <h5>HEY, WE'RE <b>GOTOPERU</b></h5>
+                        <p>Although we are a young company, we have already welcomed thousands of travelers and proudly gain a history of raving testimonials for the quaility of our peru tours and services.</p>
+                        <h5>We enjoy what we do</h5>
+                        <p>Service, expertise, community and fun are our core GOTOPERU values! We enjoy designing, organizing and operating unforgettable Peru Vacations: we are very proud to show daily the best of our country!</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
     <div class="container">
+        <div class="section">
+            <div class="row center">
+                <h4>Design Your <b>TRIP</b></h4>
+            </div>
+        </div>
+    </div>
+
+    <div class="">
+        <div class="container">
+            <div class="row">
+                <div class="input-field col s6">
+                    <i class="material-icons prefix">account_circle</i>
+                    <input id="icon_prefix" type="text" class="validate">
+                    <label for="icon_prefix">Name</label>
+                </div>
+                <div class="input-field col s6">
+                    <i class="material-icons prefix">mail</i>
+                    <input id="email" type="email" class="validate">
+                    <label for="email" data-error="wrong" data-success="right">Email</label>
+                </div>
+                <div class="input-field col s6">
+                    <i class="material-icons prefix">phone</i>
+                    <input id="icon_telephone" type="tel" class="validate">
+                    <label for="icon_telephone">Telephone</label>
+                </div>
+                <div class="input-field col s6">
+                    <i class="material-icons prefix">date_range</i>
+                    <input id="last_name" type="date" class="datepicker">
+                    <label for="last_name">Date</label>
+                </div>
+            </div>
+        </div>
+        <div class="col s12">
+            
+        </div>
+    </div>
+
+    <div class="container hide">
         <div class="section">
             <!--   Icon Section   -->
             <div class="row">
@@ -240,7 +310,7 @@
         </div>
     </div>
 
-    <div class="parallax-container">
+    <div class="parallax-container parallax-container-2">
         <div class="section">
             <div class="container">
                 <div class="row margin-bottom-20">
@@ -363,7 +433,7 @@
     </div>
 
 
-    <div class="parallax-container parallax-container-2 valign-wrapper hoverable">
+    <div class="parallax-container parallax-container-3 valign-wrapper hoverable">
         <div class="row center">
             <h4 class="white-text">HOW <b>GOTOPERU</b> WORKS</h4>
         </div>

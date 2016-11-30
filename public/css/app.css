@@ -2651,8 +2651,7 @@ input[type=range] + .thumb {
 
 .row {
   margin-left: auto;
-  margin-right: auto;
-  margin-bottom: 20px; }
+  margin-right: auto; }
   .row:after {
     content: "";
     display: table;
@@ -6581,6 +6580,9 @@ button.picker__today:focus, button.picker__clear:focus, button.picker__close:foc
 .margin-top-40 {
   margin-top: 40px; }
 
+.margin-top-100 {
+  margin-top: 100px; }
+
 .margin-bottom-10 {
   margin-bottom: 20px; }
 
@@ -6640,8 +6642,9 @@ nav ul li a {
   color: #000; }
 
 .slider .slides li .caption {
-  left: 8%;
-  width: 80%; }
+  left: 0;
+  width: 100%;
+  top: 4%; }
 
 .box-circle-absolute {
   position: absolute;
@@ -6668,11 +6671,14 @@ nav ul li a {
 .section-maps {
   width: 90%; }
 
-.parallax-container {
-  min-height: 600px;
-  height: auto; }
+.parallax-container-1 {
+  height: 450px;
+  background: rgba(0, 0, 0, 0.2); }
 
 .parallax-container-2 {
+  height: 600px; }
+
+.parallax-container-3 {
   min-height: 150px;
   height: auto; }
 

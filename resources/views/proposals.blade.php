@@ -16,7 +16,7 @@
                         $yellow = 'yellow-text text-darken-3';
                         $green = 'green-text';
                         $grey = 'grey-text text-darken-4';
-                        $blue = 'blue-text text-darken-3';
+                        $btn_blue = 'blue darken-3';
                         $btn_yellow = 'yellow darken-3';
                         $img_active = '';
                         ?>
@@ -26,7 +26,7 @@
                         $yellow = 'grey-text';
                         $green = 'grey-text';
                         $grey = 'grey-text';
-                        $blue = 'grey-text';
+                        $btn_blue = 'grey';
                         $btn_yellow = 'grey darken-3';
                         $img_active = 'desaturada';
                         ?>
@@ -62,9 +62,17 @@
                                 </div>
                                 <div class="col s12 right-align">
                                     <div class="divider spacer-margin-20"></div>
-                                    <a href="{{route('quotes_show_path',$paquete_cotizaciones->id)}}" class="waves-effect waves-light btn {{$btn_yellow}}">View</a>
-                                    <a href="#upgrade" class="modal-trigger waves-effect waves-light btn {{$btn_yellow}}">Customize</a>
-                                    <a href="#confirm{{$paquete_cotizaciones->id}}" class="modal-trigger waves-effect waves-light btn {{$btn_yellow}}">Confirm</a>
+                                    @if($paquete_cotizaciones->estado == 1)
+                                        <a href="{{route('quotes_show_path',$paquete_cotizaciones->id)}}" class="waves-effect waves-light btn {{$btn_blue}}">View</a>
+                                        <a href="" class="waves-effect waves-light btn {{$btn_blue}}">Travelers Information <i class="material-icons right">people</i></a>
+                                        <a href="" class="waves-effect waves-light btn {{$btn_blue}}">Payment <i class="material-icons right">payment</i></a>
+                                    @elseif($paquete_cotizaciones->estado == 0)
+                                        <a href="{{route('quotes_show_path',$paquete_cotizaciones->id)}}" class="waves-effect waves-light btn {{$btn_yellow}}">View</a>
+                                        <a href="#upgrade" class="modal-trigger waves-effect waves-light btn {{$btn_yellow}}">Customize</a>
+                                        <a href="#confirm{{$paquete_cotizaciones->id}}" class="modal-trigger waves-effect waves-light btn {{$btn_yellow}}">Confirm</a>
+                                    @endif
+                                    
+
                                     {{--<form action="{{route('quotes_show_path', $paquete_cotizaciones->id)}}" method="post">--}}
 
                                         {{--{{csrf_field()}}--}}
