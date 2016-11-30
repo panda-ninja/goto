@@ -27,15 +27,30 @@ $Paquete='';
                     <li class="collection-header cyan">
                         <h4 class="task-card-title">Destinos:</h4>
                     </li>
-                    <?php $i=0;?>
-                    @foreach($Paquete->paquetes_destinos as $destino)
-                        <?php $i++;?>
-                        <li class="collection-item dismissable" style="touch-action: pan-y; -webkit-user-drag: none; -webkit-tap-highlight-color: rgba(0, 0, 0, 0);">
-                            <input type="checkbox" id="task{{$i}}">
-                            <label for="task{{$i}}" style="text-decoration: none;">{{$destino->destinos->nombre}}
-                            </label>
-                        </li>
+                    @foreach($destino as $destino1)
+                        <?php $i=0;$esta=0;?>
+                        @foreach($Paquete->paquetes_destinos as $destino)
+                            <?php $i++;?>
+                            @if($destino1->id==$destino->iddestinos)
+                                    <?php $esta=1;?>
+                                {{$destino1->id}}--{{$destino->id}}
+                                        <li class="collection-item dismissable" style="touch-action: pan-y; -webkit-user-drag: none; -webkit-tap-highlight-color: rgba(0, 0, 0, 0);">
+                                    <input type="checkbox" id="task{{$i}}" checked="checked">
+                                    <label for="task{{$i}}" style="text-decoration: none;">{{$destino1->nombre}}
+                                    </label>
+                                </li>
+                            @endif
+                        @endforeach
+                            @if($esta==1)
+                                <li class="collection-item dismissable" style="touch-action: pan-y; -webkit-user-drag: none; -webkit-tap-highlight-color: rgba(0, 0, 0, 0);">
+                                    <input type="checkbox" id="task{{$i}}">
+                                    <label for="task{{$i}}" style="text-decoration: none;">{{$destino1->nombre}}
+                                    </label>
+                                </li>
+                            @endif
                     @endforeach
+
+
                 </ul>
                 </div>
             </div>

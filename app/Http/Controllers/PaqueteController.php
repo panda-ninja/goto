@@ -17,9 +17,9 @@ class PaqueteController extends Controller
 //        $paquete=Paquete::with('itinerario_personalizados.servicios','itinerario_personalizados.itinerario_x_horas')->get()->where('codigo',$codigo);
 //['paquete'=>$paquete]
         //return dd($paquete);
-        $servicio=TDestino::all();
-//        dd($servicio);
-        return view('secciones.show_paquete',['paquete'=>$paquete],['servicio'=>$servicio]);
+        $destino=TDestino::all();
+        //dd($paquete);
+        return view('secciones.show_paquete',['paquete'=>$paquete],['destino'=>$destino]);
 //    return dd($paquete);
 
         //
