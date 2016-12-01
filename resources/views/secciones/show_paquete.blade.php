@@ -33,15 +33,14 @@ $Paquete='';
                             <?php $i++;?>
                             @if($destino1->id==$destino->iddestinos)
                                     <?php $esta=1;?>
-                                {{$destino1->id}}--{{$destino->id}}
-                                        <li class="collection-item dismissable" style="touch-action: pan-y; -webkit-user-drag: none; -webkit-tap-highlight-color: rgba(0, 0, 0, 0);">
+                                <li class="collection-item dismissable" style="touch-action: pan-y; -webkit-user-drag: none; -webkit-tap-highlight-color: rgba(0, 0, 0, 0);">
                                     <input type="checkbox" id="task{{$i}}" checked="checked">
                                     <label for="task{{$i}}" style="text-decoration: none;">{{$destino1->nombre}}
                                     </label>
                                 </li>
                             @endif
                         @endforeach
-                            @if($esta==1)
+                            @if($esta==0)
                                 <li class="collection-item dismissable" style="touch-action: pan-y; -webkit-user-drag: none; -webkit-tap-highlight-color: rgba(0, 0, 0, 0);">
                                     <input type="checkbox" id="task{{$i}}">
                                     <label for="task{{$i}}" style="text-decoration: none;">{{$destino1->nombre}}
@@ -72,12 +71,9 @@ $Paquete='';
             <ul class="collapsible popout" data-collapsible="accordion">
             @foreach($Paquete->itinerario as $itinerario)
                 <li>
-                    <div class="collapsible-header">Third</div>
-                    <div class="collapsible-body"><p>Lorem ipsum dolor sit amet.</p></div>
-                    {{--<div class="collapsible-header">--}}
-                    {{--<h3 class="text-18 blue-text text-darken-2">DAY {{$itinerario->dia}}: <span class="grey-text text-darken-3">{{$itinerario->titulo}}</span></h3>--}}
-                    {{--</div>--}}
-                    {{--<div class="collapsible-body"><p><?php echo $itinerario->descripcion;?></p></div>--}}
+                    <div class="collapsible-header">DAY {{$itinerario->dia}}: <span class="grey-text text-darken-3">{{$itinerario->titulo}}</span></div>
+                    <div class="collapsible-body"><p><?php echo $itinerario->descripcion;?></p></div>
+
                 </li>
             @endforeach
             </ul>
