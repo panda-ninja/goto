@@ -8,7 +8,7 @@ $Paquete='';
 @endforeach
 <div class="card-panel">
     <div class="row">
-        <div class="col s6">
+        <div class="col s12 m6 l6">
             <h5 class="THIN letra-naranja">
                 {{$Paquete->codigo.' '.$Paquete->titulo}}
             </h5>
@@ -19,66 +19,10 @@ $Paquete='';
     </div>
     <hr>
     <div class="row">
-        <div class="input-field col s6">
+        <div class="input-field col s12 m6 l6">
             <p>{{$Paquete->descripcion}}</p>
-            <div class="row">
-                <div class="col s12">
-                <ul id="task-card" class="collection with-header">
-                    <li class="collection-header cyan">
-                        <h4 class="task-card-title">Destinos:</h4>
-                    </li>
-                    @foreach($destino as $destino1)
-                        <?php $i=0;$esta=0;?>
-                        @foreach($Paquete->paquetes_destinos as $destino)
-                            <?php $i++;?>
-                            @if($destino1->id==$destino->iddestinos)
-                                    <?php $esta=1;?>
-                                <li class="collection-item dismissable" style="touch-action: pan-y; -webkit-user-drag: none; -webkit-tap-highlight-color: rgba(0, 0, 0, 0);">
-                                    <input type="checkbox" id="task{{$i}}" checked="checked">
-                                    <label for="task{{$i}}" style="text-decoration: none;">{{$destino1->nombre}}
-                                    </label>
-                                </li>
-                            @endif
-                        @endforeach
-                            @if($esta==0)
-                                <li class="collection-item dismissable" style="touch-action: pan-y; -webkit-user-drag: none; -webkit-tap-highlight-color: rgba(0, 0, 0, 0);">
-                                    <input type="checkbox" id="task{{$i}}">
-                                    <label for="task{{$i}}" style="text-decoration: none;">{{$destino1->nombre}}
-                                    </label>
-                                </li>
-                            @endif
-                    @endforeach
-
-
-                </ul>
-                </div>
-            </div>
-            <h5>Itinerario:</h5>
-            {{--<ul class="collapsible" data-collapsible="accordion">--}}
-                {{--<li>--}}
-                    {{--<div class="collapsible-header"><i class="material-icons">filter_drama</i>First</div>--}}
-                    {{--<div class="collapsible-body"><p>Lorem ipsum dolor sit amet.</p></div>--}}
-                {{--</li>--}}
-                {{--<li>--}}
-                    {{--<div class="collapsible-header"><i class="material-icons">place</i>Second</div>--}}
-                    {{--<div class="collapsible-body"><p>Lorem ipsum dolor sit amet.</p></div>--}}
-                {{--</li>--}}
-                {{--<li>--}}
-                    {{--<div class="collapsible-header"><i class="material-icons">whatshot</i>Third</div>--}}
-                    {{--<div class="collapsible-body"><p>Lorem ipsum dolor sit amet.</p></div>--}}
-                {{--</li>--}}
-            {{--</ul>--}}
-            <ul class="collapsible popout" data-collapsible="accordion">
-            @foreach($Paquete->itinerario as $itinerario)
-                <li>
-                    <div class="collapsible-header">DAY {{$itinerario->dia}}: <span class="grey-text text-darken-3">{{$itinerario->titulo}}</span></div>
-                    <div class="collapsible-body"><p><?php echo $itinerario->descripcion;?></p></div>
-
-                </li>
-            @endforeach
-            </ul>
         </div>
-        <div class="input-field col s6">
+        <div class="input-field col s12 m6 l6">
             <table class="table table1 borde-tabla-habitacion centrar">
                 <tr>
                     <td width="50px"><b class="text-small">Rooms</b></td>
@@ -89,37 +33,37 @@ $Paquete='';
                     <td width="50px"><b class="letra-roja centrar text-small">5 STARS</b></td>
                 </tr>
 
-            @foreach($Paquete->precio_paquetes as $precio)
-                @if($precio->estrellas=="2")
-                    <?php $precio_2_s=$precio->precio_s;?>
-                    <?php $precio_2_d=$precio->precio_d;?>
-                    <?php $precio_2_t=$precio->precio_t;?>
-                @endif
-                @if($precio->estrellas=="3")
-                    <?php $precio_3_s=$precio->precio_s;?>
-                    <?php $precio_3_d=$precio->precio_d;?>
-                    <?php $precio_3_t=$precio->precio_t;?>
-                @endif
-                @if($precio->estrellas=="4")
-                    <?php $precio_4_s=$precio->precio_s;?>
-                    <?php $precio_4_d=$precio->precio_d;?>
-                    <?php $precio_4_t=$precio->precio_t;?>
-                @endif
-                @if($precio->estrellas=="5")
-                    <?php $precio_5_s=$precio->precio_s;?>
-                    <?php $precio_5_d=$precio->precio_d;?>
-                    <?php $precio_5_t=$precio->precio_t;?>
-                @endif
+                @foreach($Paquete->precio_paquetes as $precio)
+                    @if($precio->estrellas=="2")
+                        <?php $precio_2_s=$precio->precio_s;?>
+                        <?php $precio_2_d=$precio->precio_d;?>
+                        <?php $precio_2_t=$precio->precio_t;?>
+                    @endif
+                    @if($precio->estrellas=="3")
+                        <?php $precio_3_s=$precio->precio_s;?>
+                        <?php $precio_3_d=$precio->precio_d;?>
+                        <?php $precio_3_t=$precio->precio_t;?>
+                    @endif
+                    @if($precio->estrellas=="4")
+                        <?php $precio_4_s=$precio->precio_s;?>
+                        <?php $precio_4_d=$precio->precio_d;?>
+                        <?php $precio_4_t=$precio->precio_t;?>
+                    @endif
+                    @if($precio->estrellas=="5")
+                        <?php $precio_5_s=$precio->precio_s;?>
+                        <?php $precio_5_d=$precio->precio_d;?>
+                        <?php $precio_5_t=$precio->precio_t;?>
+                    @endif
 
-            @endforeach
-            <tr>
-                <td><input type="number" value="0"></td>
-                <td class="centrar"><img src="{{asset('images')}}/single.png" alt="" width="30px" height="30px"><img src="{{asset('images')}}/single.png" alt="" width="30px" height="30px"><img src="{{asset('images')}}/single.png" alt="" width="30px" height="30px"></td>
-                <td><input type="number" name="precio_2_t" id="precio_2_t" value="{{$precio_2_t}}"></td>
-                <td><input type="number" name="precio_3_t" id="precio_3_t" value="{{$precio_3_t}}"></td>
-                <td><input type="number" name="precio_4_t" id="precio_4_t" value="{{$precio_4_t}}"></td>
-                <td><input type="number" name="precio_5_t" id="precio_5_t" value="{{$precio_5_t}}"></td>
-            </tr>
+                @endforeach
+                <tr>
+                    <td><input type="number" value="0"></td>
+                    <td class="centrar"><img src="{{asset('images')}}/single.png" alt="" width="30px" height="30px"><img src="{{asset('images')}}/single.png" alt="" width="30px" height="30px"><img src="{{asset('images')}}/single.png" alt="" width="30px" height="30px"></td>
+                    <td><input type="number" name="precio_2_t" id="precio_2_t" value="{{$precio_2_t}}"></td>
+                    <td><input type="number" name="precio_3_t" id="precio_3_t" value="{{$precio_3_t}}"></td>
+                    <td><input type="number" name="precio_4_t" id="precio_4_t" value="{{$precio_4_t}}"></td>
+                    <td><input type="number" name="precio_5_t" id="precio_5_t" value="{{$precio_5_t}}"></td>
+                </tr>
                 <tr>
                     <td><input type="number" value="0"></td>
                     <td class="centrar"><img src="{{asset('images')}}/single.png" alt="" width="30px" height="30px"><img src="{{asset('images')}}/single.png" alt="" width="30px" height="30px"></td>
@@ -146,5 +90,50 @@ $Paquete='';
                 </tr>
             </table>
         </div>
+        <div class="input-field col s12 m6 l6">
+            <ul id="task-card" class="collection with-header">
+                <li class="collection-header cyan">
+                    <h4 class="task-card-title">Destinos:</h4>
+                </li>
+                @foreach($destino as $destino1)
+                    <?php $i=0;$esta=0;?>
+                    @foreach($Paquete->paquetes_destinos as $destino)
+                        <?php $i++;?>
+                        @if($destino1->id==$destino->iddestinos)
+                            <?php $esta=1;?>
+                            <li class="collection-item dismissable" style="touch-action: pan-y; -webkit-user-drag: none; -webkit-tap-highlight-color: rgba(0, 0, 0, 0);">
+                                <input type="checkbox" id="task{{$i}}" checked="checked">
+                                <label for="task{{$i}}" style="text-decoration: none;">{{$destino1->nombre}}
+                                </label>
+                            </li>
+                        @endif
+                    @endforeach
+                    @if($esta==0)
+                        <li class="collection-item dismissable" style="touch-action: pan-y; -webkit-user-drag: none; -webkit-tap-highlight-color: rgba(0, 0, 0, 0);">
+                            <input type="checkbox" id="task{{$i}}">
+                            <label for="task{{$i}}" style="text-decoration: none;">{{$destino1->nombre}}
+                            </label>
+                        </li>
+                    @endif
+                @endforeach
+            </ul>
+        </div>
+        <div class="input-field col s12 m6 l6">
+            <ul id="task-card" class="collection with-header collapsible"  data-collapsible="accordion">
+                <li class="collection-header cyan">
+                    <h4 class="task-card-title">Itinerario:</h4>
+                </li>
+                @foreach($Paquete->itinerario as $itinerario)
+                    <li>
+                        <div class="collapsible-header">DAY {{$itinerario->dia}}: <span class="grey-text text-darken-3">{{$itinerario->titulo}}</span></div>
+                        <div class="collapsible-body"><p><?php echo $itinerario->descripcion;?></p></div>
+
+                    </li>
+                @endforeach
+            </ul>
+
+        </div>
+
+
     </div>
 </div>
