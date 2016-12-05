@@ -100,5 +100,12 @@ elixir(function(mix) {
     mix.styles([
         'vendors/notification.css'
     ], 'public/css/notification.css');
-
+    mix.copy(['node_modules/sweetalert/dist/sweetalert.css'], 'resources/assets/css/vendors');
+    mix.styles([
+        'resources/assets/css/vendors/sweetalert.css'
+    ], 'public/css/sweetalert.css');
+    mix.copy(['node_modules/sweetalert/dist/sweetalert.min.js'], 'resources/assets/js/vendors');
+    mix.scripts([
+        'resources/assets/js/vendors/sweetalert.min.js',
+    ], 'public/js/sweetalert.js');
 });

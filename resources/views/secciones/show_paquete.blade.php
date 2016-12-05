@@ -1,5 +1,8 @@
+
 <link href="{{asset('css/admin-theme.css')}}" type="text/css" rel="stylesheet" media="screen,projection"/>
 <script type="text/javascript" src="{{URL::to('js/funciones_cotizacion.js')}}"></script>
+
+
 <?php
 $Paquete='';
 ?>
@@ -95,8 +98,9 @@ $Paquete='';
                 <li class="collection-header cyan">
                     <h4 class="task-card-title">Destinos:</h4>
                 </li>
+                <?php $i=0;?>
                 @foreach($destino as $destino1)
-                    <?php $i=0;$esta=0;?>
+                    <?php $esta=0;?>
                     @foreach($Paquete->paquetes_destinos as $destino)
                         <?php $i++;?>
                         @if($destino1->id==$destino->iddestinos)
@@ -119,19 +123,63 @@ $Paquete='';
             </ul>
         </div>
         <div class="input-field col s12 m6 l6">
-            <ul id="task-card" class="collection with-header collapsible"  data-collapsible="accordion">
-                <li class="collection-header cyan">
-                    <h4 class="task-card-title">Itinerario:</h4>
-                </li>
-                @foreach($Paquete->itinerario as $itinerario)
-                    <li>
-                        <div class="collapsible-header">DAY {{$itinerario->dia}}: <span class="grey-text text-darken-3">{{$itinerario->titulo}}</span></div>
-                        <div class="collapsible-body"><p><?php echo $itinerario->descripcion;?></p></div>
+            <ul id="task-card" class="lista_itinerario collection with-header collapsible"  data-collapsible="accordion">
 
+                <li class="collection-header cyan">
+                    <div class="row">
+                        <h4 class="task-card-title">Itinerario:</h4>
+                        <div class="row">
+                            <div class="col s12 right">
+                                <div style="position: relative;">
+                                    <div class="fixed-action-btn horizontal" style="position: absolute; display: inline-block;right:5px;buttom:1px;top:-45px;">
+                                        <a class="btn-floating btn-large cyan  lighten-3">
+                                            <i class="mdi-navigation-menu"></i>
+                                        </a>
+                                        <ul>
+                                            <li><a class="btn-floating red" id="borrar_itinerario"><i class="large mdi-content-clear"></i></a>
+                                            </li>
+                                            <li><a class="btn-floating blue" id="guardar_itinerario"><i class="large mdi-content-save"></i></a>
+                                            </li>
+                                            <li><a class="btn-floating green" id="agregar_dia"><i class="large mdi-content-add"></i></a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </li>
+                <?php $j=0;?>
+                @foreach($Paquete->itinerario as $itinerario)
+                    <?php $j++;?>
+                    <li id="Itine_{{$j}}" onclick="Pasar_datos('{{$j}}','{{$itinerario->dia}}','{{$itinerario->titulo}}')">
+                        <div  class="collapsible-header"> DAY {{$itinerario->dia}}: <span class="grey-text text-darken-3">{{$itinerario->titulo}}</span></div>
+                        <div class="collapsible-body">
+                            <div class="row">
+                                <div class="col s2"><input type="text" value="DAY" disabled></div>
+                                <div class="col s2 ">
+                                    <input name="dia_itinerario" id="dia_itinerario" type="text" value="{{$itinerario->dia}}">
+                                </div>
+                                <div class="col s8">
+                                    <span class="grey-text text-darken-3">
+                                        <input name="titulo_itinerario" id="titulo_itinerario" type="text" value="{{$itinerario->titulo}}">
+                                    </span>
+                                </div>
+                            </div>
+                            <textarea name="desc_itinerario" id="desc_itinerario_{{$j}}" cols="30" rows="10">
+                                <?php echo $itinerario->descripcion;?>
+                            </textarea>
+                            <script>
+                                CKEDITOR.replace( 'desc_itinerario_{{$j}}' );
+                            </script>
+
+                        </div>
                     </li>
                 @endforeach
-            </ul>
 
+            </ul>
+            <input type="hidden" name="nroItis" id="nroItis" value="{{$j}}">
         </div>
 
 
