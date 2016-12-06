@@ -23,7 +23,10 @@ $Paquete='';
     <hr>
     <div class="row">
         <div class="input-field col s12 m6 l6">
-            <p>{{$Paquete->descripcion}}</p>
+            <textarea name="text_descripcion" id="text_descripcion">{{$Paquete->descripcion}}</textarea>
+            <script>
+                CKEDITOR.replace( 'text_descripcion' );
+            </script>
         </div>
         <div class="input-field col s12 m6 l6">
             <table class="table table1 borde-tabla-habitacion centrar">
@@ -60,7 +63,7 @@ $Paquete='';
 
                 @endforeach
                 <tr>
-                    <td><input type="number" value="0"></td>
+                    <td><input type="number" name="room_t" value="0"></td>
                     <td class="centrar"><img src="{{asset('images')}}/single.png" alt="" width="30px" height="30px"><img src="{{asset('images')}}/single.png" alt="" width="30px" height="30px"><img src="{{asset('images')}}/single.png" alt="" width="30px" height="30px"></td>
                     <td><input type="number" name="precio_2_t" id="precio_2_t" value="{{$precio_2_t}}"></td>
                     <td><input type="number" name="precio_3_t" id="precio_3_t" value="{{$precio_3_t}}"></td>
@@ -68,7 +71,7 @@ $Paquete='';
                     <td><input type="number" name="precio_5_t" id="precio_5_t" value="{{$precio_5_t}}"></td>
                 </tr>
                 <tr>
-                    <td><input type="number" value="0"></td>
+                    <td><input type="number" name="room_d" value="0"></td>
                     <td class="centrar"><img src="{{asset('images')}}/single.png" alt="" width="30px" height="30px"><img src="{{asset('images')}}/single.png" alt="" width="30px" height="30px"></td>
                     <td><input type="number" name="precio_2_d" id="precio_2_d" value="{{$precio_2_d}}"></td>
                     <td><input type="number" name="precio_3_d" id="precio_3_d" value="{{$precio_3_d}}"></td>
@@ -76,7 +79,7 @@ $Paquete='';
                     <td><input type="number" name="precio_5_d" id="precio_5_d" value="{{$precio_5_d}}"></td>
                 </tr>
                 <tr>
-                    <td><input type="number" value="0"></td>
+                    <td><input type="number" name="room_m" value="0"></td>
                     <td class="centrar"><img src="{{asset('images')}}/matrimonial.png" alt="" width="50px" height="30px"></td>
                     <td><input type="number" name="precio_2_d_m" id="precio_2_d_m" value="{{$precio_2_d}}"></td>
                     <td><input type="number" name="precio_3_d_m" id="precio_3_d_m" value="{{$precio_3_d}}"></td>
@@ -84,7 +87,7 @@ $Paquete='';
                     <td><input type="number" name="precio_5_d_m" id="precio_5_d_m" value="{{$precio_5_d}}"></td>
                 </tr>
                 <tr>
-                    <td><input type="number" value="0"></td>
+                    <td><input type="number" name="room_s" value="0"></td>
                     <td class="centrar"><img src="{{asset('images')}}/single.png" alt="" width="30px" height="30px"></td>
                     <td><input type="number" name="precio_2_s" id="precio_2_s" value="{{$precio_2_s}}"></td>
                     <td><input type="number" name="precio_3_s" id="precio_3_s" value="{{$precio_3_s}}"></td>
@@ -92,6 +95,8 @@ $Paquete='';
                     <td><input type="number" name="precio_5_s" id="precio_5_s" value="{{$precio_5_s}}"></td>
                 </tr>
             </table>
+            <br>
+            <br>
         </div>
         <div class="input-field col s12 m6 l6">
             <ul id="task-card" class="collection with-header">
@@ -106,7 +111,7 @@ $Paquete='';
                         @if($destino1->id==$destino->iddestinos)
                             <?php $esta=1;?>
                             <li class="collection-item dismissable" style="touch-action: pan-y; -webkit-user-drag: none; -webkit-tap-highlight-color: rgba(0, 0, 0, 0);">
-                                <input type="checkbox" id="task{{$i}}" checked="checked">
+                                <input type="checkbox" id="task{{$i}}" name="chb_destinos[]" checked="checked">
                                 <label for="task{{$i}}" style="text-decoration: none;">{{$destino1->nombre}}
                                 </label>
                             </li>
@@ -114,7 +119,7 @@ $Paquete='';
                     @endforeach
                     @if($esta==0)
                         <li class="collection-item dismissable" style="touch-action: pan-y; -webkit-user-drag: none; -webkit-tap-highlight-color: rgba(0, 0, 0, 0);">
-                            <input type="checkbox" id="task{{$i}}">
+                            <input type="checkbox" id="task{{$i}}" name="chb_destinos[]">
                             <label for="task{{$i}}" style="text-decoration: none;">{{$destino1->nombre}}
                             </label>
                         </li>

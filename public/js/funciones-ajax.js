@@ -88,3 +88,38 @@ $("#btnBuscar_pqt").click(function(){
     }
 });
 
+var idCotizacion=0;
+
+$('#agregar_pqt').click( function(){
+    // console.log(idCotizacion);
+        if(idCotizacion==0){
+            var pemail=$('#email_3').val();
+            var pnropasajeros=$('#nropasajeros').val();
+            var pfecha=$('#fecha').val();
+            alert(pemail+'-'+pnropasajeros+'-'+pfecha);
+            $.ajaxSetup({
+                headers: {
+                    'X-CSRF-TOKEN': $('[name="_token"]').val()
+                }
+            });
+            $.post('http://gotoperu.mo/guardar_pre_cotizacion', {email: pemail,nropasajeros:pnropasajeros,fecha:pfecha}, function(markup) {
+                if(markup){
+                    // console.log(markup);
+                    // alert(markup);
+                     idCotizacion=markup;
+
+                }
+                else{
+                    // console.log(markup);
+                    idCotizacion=markup;
+                }
+            }).fail(function (markup) {
+                // console.log(markup);
+                idCotizacion=0;
+            });
+            // alert('estamos guardamos la cotizacion');
+            // idCotizacion=1;
+            // console.log(idCotizacion);
+        }
+    }
+);

@@ -17,11 +17,13 @@ function importarScript(nombre) {
     tinymce.init({ selector:'textarea' });
 }
 var nro_iti=0;
+
+
 $('#agregar_dia').click(function(){
     var total=$('#nroItis').val();
     nro_iti=parseInt(total)+1;
-    $('.lista_itinerario').append('<li>'+
-        '<div class="collapsible-header"> DAY #: <span class="grey-text text-darken-3"></span></div>'+
+    $('.lista_itinerario').append('<li id="Itine_'+nro_iti+'" onclick="Pasar_datos(\''+nro_iti+'\',\''+nro_iti+'\',\'Nuevo registro\')">'+
+        '<div class="collapsible-header"> DAY '+nro_iti+': <span class="grey-text text-darken-3">Nuevo registro</span></div>'+
         '<div class="collapsible-body">'+
         '<div class="row">'+
         ' <div class="col s2"><input type="text" value="DAY" disabled></div>'+
@@ -69,7 +71,6 @@ $('#borrar_itinerario').click(function(){
         }
     }
 );
-
 function Pasar_datos(pid,pdia,ptitulo){
     id=pid;
     dia=pdia;

@@ -20,8 +20,8 @@
                             <div class="row">
                                 <div class="input-field col s6">
                                     <i class="mdi-communication-email prefix"></i>
-                                    <input id="email3" type="email">
-                                    <label for="email" class="">Email</label>
+                                    <input id="email_3" type="email">
+                                    <label for="email_3" class="">Email</label>
                                 </div>
 
                                 <div class="input-field col s3">
@@ -32,8 +32,8 @@
 
                                 <div class="input-field col s3">
                                     <i class="mdi-editor-insert-invitation prefix"></i>
-                                    <input id="fecha_" type="date">
-                                    <label for="fecha_" class="active">Fecha</label>
+                                    <input id="fecha" type="date">
+                                    <label for="fecha" class="active">Fecha</label>
                                 </div>
                             </div>
                         </form>
@@ -41,11 +41,12 @@
                     <h4 class="header2">Paquetes</h4>
                     <div class="row">
                         <div class="input-field col s3">
-                            <a class="btn cyan waves-effect waves-light right modal-trigger" href="#modal1">Agregar paquete
+                            <a id="agregar_pqt" class="btn cyan waves-effect waves-light right modal-trigger" href="#modal1">Agregar paquete
                                 <i class="mdi-content-add-circle right"></i>
                             </a>
                         </div>
                     </div>
+                    <form action=""  method="post">
                     <div id="modal1" class="modal modal-ancho">
                         <div class="modal-content">
                             <div class="row">
@@ -71,11 +72,26 @@
                             <div id="list_planes"></div>
                         </div>
                         <div class="modal-footer">
-                            <a href="#" class="waves-effect waves-red btn-flat modal-action modal-close">Cerrar</a>
-                            <a href="#" class="waves-effect waves-green btn-flat modal-action ">Agregar</a>
+                            <div style="position: relative;">
+                                <div class="fixed-action-btn horizontal" style="position: absolute; display: inline-block; right: 19px;">
+                                    <a class="btn-floating btn-large cyan darken-1">
+                                        <i class="mdi-navigation-menu"></i>
+                                    </a>
+                                    <ul>
+                                        <li><a href="#" class="btn-floating red modal-close"><i class="large mdi-content-clear"></i></a>
+                                        </li>
+                                        <li><a class="btn-floating cyan"><i class="mdi-content-content-copy"></i></a>
+                                        </li>
+                                        <li><a type="submit" class="btn-floating blue modal-action"><i class="large mdi-content-save"></i></a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                            {{--<a href="#" class="waves-effect waves-red btn-flat modal-action modal-close">Cerrar</a>--}}
+                            {{--<a href="#" class="waves-effect waves-green btn-flat modal-action ">Agregar</a>--}}
                         </div>
                     </div>
-
+                    </form>
                     <table class="striped">
                         <thead>
                         <tr>
@@ -123,7 +139,22 @@
                         </tbody>
 
                     </table>
+                    <div class="row">
+                        <div class="col s12 right">
+                                <div class="fixed-action-btn horizontal">
+                                    <a class="btn-floating btn-large">
+                                        <i class="mdi-navigation-menu"></i>
+                                    </a>
+                                    <ul>
+                                        <li><a class="btn-floating red" id="borrar_itinerario"><i class="large mdi-content-clear"></i></a>
+                                        </li>
+                                        <li><a class="btn-floating blue" id="guardar_cotizacion"><i class="large mdi-content-save"></i></a>
+                                        </li>
+                                    </ul>
+                                </div>
 
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
