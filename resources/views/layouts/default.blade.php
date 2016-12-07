@@ -9,6 +9,8 @@
     <link href="{{asset('css/app.css')}}" type="text/css" rel="stylesheet" media="screen,projection"/>
     <link href="{{asset('css/carousel.css')}}" type="text/css" rel="stylesheet" media="screen,projection"/>
 
+    <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
+
     <style>
 
     </style>
@@ -113,6 +115,20 @@
         collapsedHeight: 440
     });
 
+</script>
+
+<script type="text/javascript">
+    function imgfilter(id) {
+        var nombre= document.getElementById(id);
+        if (nombre.checked) {
+            $('#check_i_'+id).addClass('check-form');
+            $('#img_filter_'+id).addClass('desaturada');
+        }
+        else {
+            $('#check_i_'+id).removeClass('check-form');
+            $('#img_filter_'+id).removeClass('desaturada');
+        }
+    }
 </script>
 
 </body>

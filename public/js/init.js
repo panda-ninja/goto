@@ -28,6 +28,12 @@ $(document).ready(function(){
     items : 3
   });
 
+    var owl = $("#owl-demo2");
+
+    owl.owlCarousel({
+        items : 3
+    });
+
   // Custom Navigation Events
   $(".next").click(function(){
     owl.trigger('owl.next');

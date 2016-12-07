@@ -115,34 +115,340 @@
         </div>
     </div>
 
-    <div class="">
+    <div class="margin-bottom-50">
         <div class="container">
+
             <div class="row">
-                <div class="input-field col s6">
-                    <i class="material-icons prefix">account_circle</i>
-                    <input id="icon_prefix" type="text" class="validate">
-                    <label for="icon_prefix">Name</label>
-                </div>
-                <div class="input-field col s6">
-                    <i class="material-icons prefix">mail</i>
-                    <input id="email" type="email" class="validate">
-                    <label for="email" data-error="wrong" data-success="right">Email</label>
-                </div>
-                <div class="input-field col s6">
-                    <i class="material-icons prefix">phone</i>
-                    <input id="icon_telephone" type="tel" class="validate">
-                    <label for="icon_telephone">Telephone</label>
-                </div>
-                <div class="input-field col s6">
-                    <i class="material-icons prefix">date_range</i>
-                    <input id="last_name" type="date" class="datepicker">
-                    <label for="last_name">Date</label>
+                <div class="col s12">
+                    <h5 class="yellow-text text-darken-3">SELECT <b>DESTINATIONS</b></h5>
+                    <p class="font-moserrat">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Excepturi, itaque maxime! Consequatur eveniet</p>
                 </div>
             </div>
+
+            <div class="row">
+                <div class="col s3">
+                    <div class="card hoverable card-customize">
+                        <div class="card-image">
+                            <img src="{{asset('img/form/machupicchu-2.jpg')}}" id="img_filter_cusco">
+                            <span class="card-title">
+                                <input type="checkbox" id="cusco" onchange="javascript:imgfilter('cusco')" class="yellow-text"/>
+                                <label for="cusco">Cusco & Machupicchu</label>
+                            </span>
+                            <div id="check_i_cusco" class="hide">
+                                <i class="material-icons blue-text text-lighten-1">check_circle</i>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+                <div class="col s3">
+                    <div class="card hoverable card-customize">
+                        <div class="card-image">
+                            <img src="{{asset('img/form/ballestas.jpg')}}" id="img_filter_ballestas">
+                            <span class="card-title">
+                                <input type="checkbox" id="ballestas" onchange="javascript:imgfilter('ballestas')"/>
+                                <label for="ballestas">Ballestas Island & Paracas</label>
+                            </span>
+                            <div id="check_i_ballestas" class="hide">
+                                <i class="material-icons blue-text text-lighten-1">check_circle</i>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+                <div class="col s3">
+                    <div class="card hoverable card-customize">
+                        <div class="card-image">
+                            <img src="{{asset('img/form/colca.jpg')}}" id="img_filter_arequipa">
+                            <span class="card-title">
+                                <input type="checkbox" id="arequipa" onchange="javascript:imgfilter('arequipa')"/>
+                                <label for="arequipa">Arequipa & Colca Canyon</label>
+                            </span>
+                            <div id="check_i_arequipa" class="hide">
+                                <i class="material-icons blue-text text-lighten-1">check_circle</i>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+                <div class="col s3">
+                    <div class="card hoverable card-customize">
+                        <div class="card-image">
+                            <img src="{{asset('img/form/amazon.jpg')}}" id="img_filter_amazon">
+                            <span class="card-title">
+                                <input type="checkbox" id="amazon" onchange="javascript:imgfilter('amazon')"/>
+                                <label for="amazon">Amazon</label>
+                            </span>
+                            <div id="check_i_amazon" class="hide">
+                                <i class="material-icons blue-text text-lighten-1">check_circle</i>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+                <div class="col s3">
+                    <div class="card hoverable card-customize">
+                        <div class="card-image">
+                            <img src="{{asset('img/form/lima.jpg')}}" id="img_filter_lima">
+                            <span class="card-title">
+                                <input type="checkbox" id="lima" onchange="javascript:imgfilter('lima')"/>
+                                <label for="lima">Lima</label>
+                            </span>
+                            <div id="check_i_lima" class="hide">
+                                <i class="material-icons blue-text text-lighten-1">check_circle</i>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+                <div class="col s3">
+                    <div class="card hoverable card-customize">
+                        <div class="card-image">
+                            <img src="{{asset('img/form/nazca.jpg')}}" id="img_filter_nazca">
+                            <span class="card-title">
+                                <input type="checkbox" id="nazca" onchange="javascript:imgfilter('nazca')"/>
+                                <label for="nazca">Nazca Lines</label>
+                            </span>
+                            <div id="check_i_nazca" class="hide">
+                                <i class="material-icons blue-text text-lighten-1">check_circle</i>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+                <div class="col s3">
+                    <div class="card hoverable card-customize">
+                        <div class="card-image">
+                            <img src="{{asset('img/form/puno.jpg')}}" id="img_filter_puno">
+                            <span class="card-title">
+                                <input type="checkbox" id="puno" onchange="javascript:imgfilter('puno')"/>
+                                <label for="puno">Puno & Titicaca</label>
+                            </span>
+                            <div id="check_i_puno" class="hide">
+                                <i class="material-icons blue-text text-lighten-1">check_circle</i>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+                <div class="col s3">
+                    <div class="card hoverable card-customize">
+                        <div class="card-image">
+                            <img src="{{asset('img/form/galapagos.jpg')}}" id="img_filter_galapagos">
+                            <span class="card-title">
+                                <input type="checkbox" id="galapagos" onchange="javascript:imgfilter('galapagos')"/>
+                                <label for="galapagos">Galapagos Island</label>
+                            </span>
+                            <div id="check_i_galapagos" class="hide">
+                                <i class="material-icons blue-text text-lighten-1">check_circle</i>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+
+
+            </div>
+
+            <div class="row margin-top-20">
+                <div class="col s12">
+                    <h5 class="yellow-text text-darken-3">HOTEL <b>QUALITY</b></h5>
+                    <p class="font-moserrat">(<span class="red-text darken-4">Optional</span> you may choose more than one)</p>
+                </div>
+            </div>
+
+            <div class="row form-optional-check">
+                <div class="col s3">
+                    <input type="checkbox" class="filled-in" id="luxury" />
+                    <label for="luxury" class="hoverable">Luxury 5 Stars</label>
+                </div>
+                <div class="col s3">
+                    <input type="checkbox" class="filled-in" id="superior" />
+                    <label for="superior" class="hoverable">Superior 4 Stars</label>
+                </div>
+                <div class="col s3">
+                    <input type="checkbox" class="filled-in" id="best" />
+                    <label for="best" class="hoverable">Best Value 3 Stars</label>
+                </div>
+                <div class="col s3">
+                    <input type="checkbox" class="filled-in" id="budget" />
+                    <label for="budget" class="hoverable">Budget 2 Stars</label>
+                </div>
+            </div>
+
+            <div class="row margin-top-20">
+                <div class="col s12">
+                    <h5 class="yellow-text text-darken-3">Trip  <b>length</b></h5>
+                    <p class="font-moserrat">Cuanto tiempo desea que sea su viaje</p>
+                </div>
+            </div>
+
+            <div class="row form-optional-check">
+                <div class="col s2">
+                    <input type="checkbox" class="filled-in" id="3d" />
+                    <label for="3d" class="hoverable">03 - 05 <span>DAYS</span></label>
+                </div>
+                <div class="col s2">
+                    <input type="checkbox" class="filled-in" id="6d" />
+                    <label for="6d" class="hoverable">06 - 08 <span>DAYS</span></label>
+                </div>
+                <div class="col s2">
+                    <input type="checkbox" class="filled-in" id="9d" />
+                    <label for="9d" class="hoverable">09 - 11 <span>DAYS</span></label>
+                </div>
+                <div class="col s2">
+                    <input type="checkbox" class="filled-in" id="12d" />
+                    <label for="12d" class="hoverable">12 - 15 <span>DAYS</span></label>
+                </div>
+                <div class="col s2">
+                    <input type="checkbox" class="filled-in" id="16d" />
+                    <label for="16d" class="hoverable">16+ <span>DAYS</span></label>
+                </div>
+                <div class="col s2">
+                    <input type="checkbox" class="filled-in" id="unknow" />
+                    <label for="unknow" class="hoverable">UNKNOW</label>
+                </div>
+            </div>
+
+
+            <div class="row margin-top-20">
+                <div class="col s12">
+                    <h5 class="yellow-text text-darken-3">NUMBER OF <b>TRAVELERS</b></h5>
+                    <p class="font-moserrat">Numero de personas que viajaran con ud.</p>
+                </div>
+            </div>
+
+            <div class="row form-check-travelers">
+                <div class="col s2">
+                    <input type="checkbox" class="filled-in" id="1p" />
+                    <label for="1p" class="hoverable">1 <span><i class="material-icons">person</i></span></label>
+                </div>
+                <div class="col s2">
+                    <input type="checkbox" class="filled-in" id="2p" />
+                    <label for="2p" class="hoverable">2 <span><i class="material-icons">person</i></span></label>
+                </div>
+                <div class="col s2">
+                    <input type="checkbox" class="filled-in" id="3p" />
+                    <label for="3p" class="hoverable">3 <span><i class="material-icons">person</i></span></label>
+                </div>
+                <div class="col s2">
+                    <input type="checkbox" class="filled-in" id="4p" />
+                    <label for="4p" class="hoverable">4 <span><i class="material-icons">person</i></span></label>
+                </div>
+                <div class="col s2">
+                    <input type="checkbox" class="filled-in" id="5p" />
+                    <label for="5p" class="hoverable">5+ <span><i class="material-icons">person</i></span></label>
+                </div>
+                <div class="col s2">
+                    <input type="checkbox" class="filled-in" id="undecided" />
+                    <label for="undecided" class="hoverable text-14">UNDECIDED</label>
+                </div>
+            </div>
+
+            <div class="row margin-top-20">
+                <div class="col s12">
+                    <h5 class="yellow-text text-darken-3">PERSONAL <b>INFORMATION</b></h5>
+                    <p class="font-moserrat">Numero de personas que viajaran con ud.</p>
+                </div>
+            </div>
+
+
+            <div class="row form-design">
+                <div class="col s6">
+                    <div class="input-field col s12">
+                        <i class="material-icons prefix grey-text text-darken-1">account_circle</i>
+                        <input id="icon_prefix" type="text" class="validate">
+                        <label for="icon_prefix">Name</label>
+                    </div>
+                    <div class="input-field col s12">
+                        <i class="material-icons prefix grey-text text-darken-1">mail</i>
+                        <input id="email" type="email" class="validate">
+                        <label for="email" data-error="wrong" data-success="right">Email</label>
+                    </div>
+                    <div class="input-field col s12">
+                        <i class="material-icons prefix grey-text text-darken-1">phone</i>
+                        <input id="icon_telephone" type="tel" class="validate">
+                        <label for="icon_telephone">Telephone</label>
+                    </div>
+                    <div class="input-field col s12">
+                        <i class="material-icons prefix grey-text text-darken-1">date_range</i>
+                        <input id="last_name" type="date" class="datepicker">
+                        <label for="last_name">Travel Date</label>
+                    </div>
+                    <div class="input-field col s12">
+                        <i class="material-icons prefix grey-text text-darken-1">mode_edit</i>
+                        <textarea id="icon_prefix2" class="materialize-textarea"></textarea>
+                        <label for="icon_prefix2">Comentarios</label>
+                    </div>
+                </div>
+
+                <div class="col s6">
+                    <h5>Proceso de cotizacion</h5>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Adipisci autem commodi corporis cum dolore dolorem doloremque ex explicabo id iure labore laborum maxime nam, natus nihil perspiciatis repellendus sapiente voluptas.</p>
+                    {{--<a href="" class="btn waves-effect">Pedir Cotizacion</a>--}}
+
+                    {{--<div class="col s4">--}}
+                        {{--<div class="center">--}}
+                            {{--<i class="material-icons">flash_on</i>--}}
+                            {{--<p class="promo-caption">Pregunte</p>--}}
+                            {{--<p class="light center">--}}
+                                {{--We did most of the heavy lifting for you to provide a default stylings that incorporate our custom components.--}}
+                            {{--</p>--}}
+                        {{--</div>--}}
+                    {{--</div>--}}
+                    {{--<div class="col s4">--}}
+                        {{--<div class="center">--}}
+                            {{--<i class="material-icons">flash_on</i>--}}
+                            {{--<p class="promo-caption">Personalize</p>--}}
+                            {{--<p class="light center">--}}
+                                {{--We did most of the heavy lifting for you to provide a default stylings that incorporate our custom components.--}}
+                            {{--</p>--}}
+                        {{--</div>--}}
+                    {{--</div>--}}
+                    {{--<div class="col s4">--}}
+                        {{--<div class="center">--}}
+                            {{--<i class="material-icons">flash_on</i>--}}
+                            {{--<p class="promo-caption">Viaje</p>--}}
+                            {{--<p class="light center">--}}
+                                {{--We did most of the heavy lifting for you to provide a default stylings that incorporate our custom components.--}}
+                            {{--</p>--}}
+                        {{--</div>--}}
+                    {{--</div>--}}
+
+
+                    <img src="{{asset('img/banners/slider-peru-rail.jpg')}}" alt="" class="responsive-img">
+                    <p class="center-align text-10">READ ABOUT US IN</p>
+                    <div class="col s8 offset-s2">
+                        <div class="col s4">
+                            <img src="{{asset('img/logos/prom-peru.png')}}" alt="" class="responsive-img">
+                        </div>
+                        <div class="col s4">
+                            <img src="{{asset('img/logos/expedia.png')}}" alt=""  class="responsive-img">
+                        </div>
+                        <div class="col s4">
+                            <img src="{{asset('img/logos/tripadvisor.png')}}" alt="" class="responsive-img">
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col s12 center">
+                    <a href="" class="waves-effect waves-light btn-large"><i class="material-icons right">send</i> Submit</a>
+                </div>
+            </div>
+
         </div>
-        <div class="col s12">
-            
-        </div>
+        {{--<div class="container">--}}
+            {{----}}
+        {{--</div>--}}
     </div>
 
     <div class="container hide">
@@ -181,7 +487,7 @@
 
 
 
-    <div class="container">
+    <div class="container hide">
         <div class="section">
 
             <div class="row center">
@@ -310,16 +616,33 @@
         </div>
     </div>
 
+
+
+
+
     <div class="parallax-container parallax-container-2">
         <div class="section">
             <div class="container">
                 <div class="row margin-bottom-20">
 
-                        <div class="col s12 center">
-                            <h3><i class="mdi-content-send brown-text"></i></h3>
-                            <h4>OUR BEST <b>SELLERS</b></h4>
-                            {{--<p class="left-align light">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam scelerisque id nunc nec volutpat. Etiam pellentesque tristique arcu, non consequat magna fermentum ac. Cras ut ultricies eros. Maecenas eros justo, ullamcorper a sapien id, viverra ultrices eros. Morbi sem neque, posuere et pretium eget, bibendum sollicitudin lacus. Aliquam eleifend sollicitudin diam, eu mattis nisl maximus sed. Nulla imperdiet semper molestie. Morbi massa odio, condimentum sed ipsum ac, gravida ultrices erat. Nullam eget dignissim mauris, non tristique erat. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae;</p>--}}
-                        </div>
+                    <div class="col s12 center">
+                        <h3><i class="mdi-content-send brown-text"></i></h3>
+                        <h4>GROUND <b>PACKAGES</b></h4>
+                        {{--<p class="left-align light">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam scelerisque id nunc nec volutpat. Etiam pellentesque tristique arcu, non consequat magna fermentum ac. Cras ut ultricies eros. Maecenas eros justo, ullamcorper a sapien id, viverra ultrices eros. Morbi sem neque, posuere et pretium eget, bibendum sollicitudin lacus. Aliquam eleifend sollicitudin diam, eu mattis nisl maximus sed. Nulla imperdiet semper molestie. Morbi massa odio, condimentum sed ipsum ac, gravida ultrices erat. Nullam eget dignissim mauris, non tristique erat. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae;</p>--}}
+                    </div>
+
+                    <div class="col s12 m8 offset-m2 l9 offset-l2 include-services margin-bottom-10">
+                        <ul class="list-services">
+                            <li><img src="{{asset('img/icons//include/hotels.png')}}" alt="" class="responsive-img"><span>Hotels</span></li>
+                            <li><img src="{{asset('img/icons//include/transfers.png')}}" alt="" class="responsive-img"><span>Transfers</span></li>
+                            <li><img src="{{asset('img/icons//include/entrances.png')}}" alt="" class="responsive-img"><span>Entrances</span></li>
+                            <li><img src="{{asset('img/icons//include/trains.png')}}" alt="" class="responsive-img"><span>Trains</span></li>
+                            <li><img src="{{asset('img/icons//include/tours.png')}}" alt="" class="responsive-img"><span>Tours</span></li>
+                            <li><img src="{{asset('img/icons//include/breakfast.png')}}" alt="" class="responsive-img"><span>Breakfast</span></li>
+                            <li><img src="{{asset('img/icons//include/assistances.png')}}" alt="" class="responsive-img"><span>Assistances</span></li>
+
+                        </ul>
+                    </div>
 
                     <div class="customNavigation center">
                         <a class="btn prev"><i class="material-icons left">arrow_back</i> Previous</a>
@@ -327,59 +650,165 @@
                     </div>
                     <div id="owl-demo" class="owl-carousel">
 
-                        @foreach($paquete as $paquete)
+                        @foreach($paquete as $paquetes)
                             <div class="item">
-                            <div class="col s12">
+                                <div class="col s12">
 
-                                <div class="card card-packages">
-                                    <div class="card-image waves-effect waves-block waves-light">
-                                        <a href=""><img src="http://gotoperu.travel/img/maps/GTP600.jpg" class="responsive-img"></a>
-                                        <span class="card-title activator"><i class="material-icons right">more_vert</i></span>
-                                    </div>
-
-                                    <div class="card-content">
-                                        <div class="">
-                                            <h2 class="text-16 no-margin"><b>{{$paquete->codigo}}: {{$paquete->titulo}}</b></h2>
+                                    <div class="card card-packages">
+                                        <div class="card-image waves-effect waves-block waves-light">
+                                            <a href=""><img src="http://gotoperu.travel/img/maps/GTP600.jpg" class="responsive-img"></a>
+                                            <span class="card-title activator"><i class="material-icons right">more_vert</i></span>
                                         </div>
-                                        <div class="spacer-20">
-                                            <p class="lime-text text-darken-4">
-                                                @foreach($paquete->paquetes_destinos as $destino)
-                                                    {{ucwords(strtolower($destino->destinos->nombre))}}
+
+                                        <div class="card-content">
+                                            <div class="">
+                                                <h2 class="text-16 no-margin"><b>{{$paquetes->codigo}}: {{$paquetes->titulo}}</b></h2>
+                                            </div>
+                                            <div class="spacer-20">
+                                                <p class="lime-text text-darken-4">
+                                                    @foreach($paquetes->paquetes_destinos as $destino)
+                                                        {{ucwords(strtolower($destino->destinos->nombre))}}
+                                                    @endforeach
+                                                </p>
+                                            </div>
+                                            <div class="margin-bottom-10">
+                                                @foreach($paquetes->precio_paquetes as $precio)
+                                                    @if($precio->estrellas == 2)
+                                                        <h4 class="text-18 no-margin valign-wrapper"><b class="lime-text text-darken-4">{{$paquetes->duracion}} days</b> <i class="material-icons valign tiny">arrow_forward</i> <b class="grey-text spacer-m-5 text-12">from</b> <span class="yellow-text text-darken-3 text-25"><b>${{$precio->precio_d}}</b></span></h4>
+                                                    @endif
                                                 @endforeach
-                                            </p>
-                                        </div>
-                                        <div class="margin-bottom-10">
-                                            @foreach($paquete->precio_paquetes as $precio)
-                                                @if($precio->estrellas == 2)
-                                                    <h4 class="text-18 no-margin valign-wrapper"><b class="lime-text text-darken-4">{{$paquete->duracion}} days</b> <i class="material-icons valign tiny">arrow_forward</i> <b class="grey-text spacer-m-5 text-12">from</b> <span class="yellow-text text-darken-3 text-25"><b>${{$precio->precio_d}}</b></span></h4>
-                                                @endif
-                                            @endforeach
 
-                                        </div>
-                                        <div class="row no-margin valign-wrapper">
-                                            <div class="col s2">
-                                                <a href="" class="red-text tooltipped" data-position="top" data-delay="50" data-tooltip="Add my wishlist"><i class="material-icons valign small">favorite</i></a>
                                             </div>
-                                            <div class="col s10">
-                                                <a class="waves-effect waves-light btn yellow darken-3"><i class="material-icons right">send</i>View Trip</a>
+                                            <div class="row no-margin valign-wrapper">
+                                                <div class="col s2">
+                                                    <a href="" class="red-text tooltipped" data-position="top" data-delay="50" data-tooltip="Add my wishlist"><i class="material-icons valign small">favorite</i></a>
+                                                </div>
+                                                <div class="col s10">
+                                                    <a class="waves-effect waves-light btn yellow darken-3"><i class="material-icons right">send</i>View Trip</a>
+                                                </div>
                                             </div>
                                         </div>
-                                    </div>
-                                    <div class="card-reveal">
-                                        <span class="card-title grey-text text-darken-4">Card Title<i class="material-icons right">close</i></span>
-                                        <p>Here is some more information about this product that is only revealed once clicked on.</p>
+                                        <div class="card-reveal">
+                                            <span class="card-title grey-text text-darken-4">Card Title<i class="material-icons right">close</i></span>
+                                            <p>Here is some more information about this product that is only revealed once clicked on.</p>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
                         @endforeach
 
                     </div>
                 </div>
+
+                <div class="row">
+                    <div class="col s12">
+                        <a href="" class="font-moserrat valign-wrapper right">View All Programs <i class="material-icons">input</i></a>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <div class="parallax"><img src="{{asset('img/bg/pharalax-package4.jpg')}}" alt="Unsplashed background img 3"></div>
+    </div>
+
+
+
+
+    <div class="parallax-container parallax-container-2">
+        <div class="section">
+            <div class="container">
+                <div class="row margin-bottom-20">
+
+                    <div class="col s12 center">
+                        <h3><i class="mdi-content-send brown-text"></i></h3>
+                        <h4>GROUND PACKAGES + <b>FLIGHTS</b></h4>
+                        {{--<p class="left-align light">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam scelerisque id nunc nec volutpat. Etiam pellentesque tristique arcu, non consequat magna fermentum ac. Cras ut ultricies eros. Maecenas eros justo, ullamcorper a sapien id, viverra ultrices eros. Morbi sem neque, posuere et pretium eget, bibendum sollicitudin lacus. Aliquam eleifend sollicitudin diam, eu mattis nisl maximus sed. Nulla imperdiet semper molestie. Morbi massa odio, condimentum sed ipsum ac, gravida ultrices erat. Nullam eget dignissim mauris, non tristique erat. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae;</p>--}}
+                    </div>
+
+                    <div class="col s12 m9 offset-m2 l12 offset-l1 include-services margin-bottom-10">
+                        <ul class="list-services">
+                            <li><img src="{{asset('img/icons//include/hotels.png')}}" alt="" class="responsive-img"><span>Hotels</span></li>
+                            <li><img src="{{asset('img/icons//include/transfers.png')}}" alt="" class="responsive-img"><span>Transfers</span></li>
+                            <li><img src="{{asset('img/icons//include/entrances.png')}}" alt="" class="responsive-img"><span>Entrances</span></li>
+                            <li><img src="{{asset('img/icons//include/trains.png')}}" alt="" class="responsive-img"><span>Trains</span></li>
+                            <li><img src="{{asset('img/icons//include/tours.png')}}" alt="" class="responsive-img"><span>Tours</span></li>
+                            <li><img src="{{asset('img/icons//include/breakfast.png')}}" alt="" class="responsive-img"><span>Breakfast</span></li>
+                            <li><img src="{{asset('img/icons//include/assistances.png')}}" alt="" class="responsive-img"><span>Assistances</span></li>
+                            <li class="center"><i class="material-icons">add</i></li>
+                            <li><img src="{{asset('img/icons//include/flight.png')}}" alt="" class="responsive-img"><span>Flights</span></li>
+
+                        </ul>
+                    </div>
+
+                    <div class="customNavigation center">
+                        <a class="btn prev"><i class="material-icons left">arrow_back</i> Previous</a>
+                        <a class="btn next"><i class="material-icons right">arrow_forward</i>Next</a>
+                    </div>
+                    <div id="owl-demo2" class="owl-carousel">
+
+                        @foreach($paquete as $paquetef)
+                            <div class="item">
+                                <div class="col s12">
+
+                                    <div class="card card-packages">
+                                        <div class="card-image waves-effect waves-block waves-light">
+                                            <a href=""><img src="http://gotoperu.travel/img/maps/GTP600.jpg" class="responsive-img"></a>
+                                            <span class="card-title activator"><i class="material-icons right">more_vert</i></span>
+                                        </div>
+
+                                        <div class="card-content">
+                                            <div class="">
+                                                <h2 class="text-16 no-margin"><b>{{$paquetef->codigo}}: {{$paquetef->titulo}}</b></h2>
+                                            </div>
+                                            <div class="spacer-20">
+                                                <p class="lime-text text-darken-4">
+                                                    @foreach($paquetef->paquetes_destinos as $destino)
+                                                        {{ucwords(strtolower($destino->destinos->nombre))}}
+                                                    @endforeach
+                                                </p>
+                                            </div>
+                                            <div class="margin-bottom-10">
+                                                @foreach($paquetef->precio_paquetes as $precio)
+                                                    @if($precio->estrellas == 2)
+                                                        <h4 class="text-18 no-margin valign-wrapper"><b class="lime-text text-darken-4">{{$paquetef->duracion}} days</b> <i class="material-icons valign tiny">arrow_forward</i> <b class="grey-text spacer-m-5 text-12">from</b> <span class="yellow-text text-darken-3 text-25"><b>${{$precio->precio_d}}</b></span></h4>
+                                                    @endif
+                                                @endforeach
+
+                                            </div>
+                                            <div class="row no-margin valign-wrapper">
+                                                <div class="col s2">
+                                                    <a href="" class="red-text tooltipped" data-position="top" data-delay="50" data-tooltip="Add my wishlist"><i class="material-icons valign small">favorite</i></a>
+                                                </div>
+                                                <div class="col s10">
+                                                    <a class="waves-effect waves-light btn yellow darken-3"><i class="material-icons right">send</i>View Trip</a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="card-reveal">
+                                            <span class="card-title grey-text text-darken-4">Card Title<i class="material-icons right">close</i></span>
+                                            <p>Here is some more information about this product that is only revealed once clicked on.</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        @endforeach
+
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col s12">
+                        <a href="" class="font-moserrat valign-wrapper right">View All Programs <i class="material-icons">input</i></a>
+                    </div>
+                </div>
+
             </div>
         </div>
         <div class="parallax"><img src="{{asset('img/bg/pharalax-package4.jpg')}}" alt="Unsplashed background img 3"></div>
     </div>
+
+
 
     <div class="container">
         <div class="section">
@@ -567,7 +996,41 @@
             </div>
         </div>
     </div>
+    
+    <div class="row testimonials-box">
+        <img src="{{asset('img/banners/banner_1.jpg')}}" alt="" class="responsive-img">
+        <div class="col s5 testimonials-box-text margin-top-40">
+            <i class="material-icons right white-text">format_quote</i>
+            <h5 class="white-text margin-top-80">Everything about this trip was wonderful and it was because of the service and attention of the great staff at GOTOPERU</h5>
+            <p class="white-text right-align">ennifer Powers & Family New York - USA</p>
+            <a href="" class="btn waves-effect right">View all testimonials</a>
+        </div>
+    </div>
 
+
+    <div class="container margin-top-40 margin-bottom-40">
+        <div class="section">
+            <div class="row center">
+                <h4>THERE'S AN AMAZING <b>"LOST CITY"</b> OUT THERE</h4>
+                <p>Closer than you think: 8 hours from New York or Los Angeles!</p>
+            </div>
+            <div class="row">
+                <div class="col s5">
+                    <h5 class="margin-top-40">WE ARE ONE PERU´S LEADING GROUP TRAVEL PROVIDERS : GOTOPERU</h5>
+                    <p>A local company with local knowledge, expertise and resources, specializing in the design of unforgettable vacations. Our unique activities, Peru tours & excursions, Peru hotel deals, transportation and program logistics make us Peru leading travel experts. GOTOPERU offer you every kind of travel services you need; ranging from all inclusive Peru travel packages, accommodations, and entertainment and leisure activities. In addition offering different types of travel products like "Online-Booking" and personal "Custom-made Trips"</p>
+                </div>
+                <div class="col s7">
+                    <div class="content-video-1">
+                        <img src="{{asset('img/prom-peru.jpg')}}" alt="video" class="responsive-img">
+
+                        <div class="content-video-btn-1">
+                            <a href="https://player.vimeo.com/video/102732914?title=0&amp;byline=0&amp;portrait=0&amp;color=11b1c2&amp;wmode=opaque"  class="html5lightbox content-vbtn-color-blue" data-width="570" data-height="320" title="title here "><i class="material-icons">play_circle_filled</i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 
 
     {{--<div class="container">--}}
