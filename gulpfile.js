@@ -39,7 +39,7 @@ elixir(function(mix) {
         'vendors/perfect-scrollbar.css',
         'vendors/jquery-jvectormap.css',
         'vendors/chartist.min.css',
-        'vendors/nestable.min.css'
+        'vendors/nestable.css'
     ], 'public/css/admin-theme.css');
 
     mix.styles([

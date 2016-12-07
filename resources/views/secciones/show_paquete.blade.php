@@ -127,23 +127,49 @@ $Paquete='';
                 @endforeach
             </ul>
         </div>
-        <div class="input-field col s12 m6 l6">
-            <button id="appendnestable">Add li</button>
-            <div class="dd" id="nestable">
-                <ol class="dd-list outer">
-                    <li class="dd-item" data-id="1">
-                        <div class="dd-handle">Item 1</div>
-                    </li>
-                    <li class="dd-item" data-id="2">
-                        <div class="dd-handle">Item 2</div>
-                    </li>
-                    <li class="dd-item" data-id="3">
-                        <div class="dd-handle">Item 3</div>
-                    </li>
-                </ol>
+        <div  class="input-field col s12 m6 l6">
+            <div class="row">
+                <div class="column">
+
+                    <div class="portlet">
+                        <div class="portlet-header">Feeds</div>
+                        <div class="portlet-content">Lorem ipsum dolor sit amet, consectetuer adipiscing elitp <p>jfdghdfshgdf</p><p>jfdghdfshgdf</p><p>jfdghdfshgdf</p> </div>
+                    </div>
+
+                    <div class="portlet">
+                        <div class="portlet-header">News</div>
+                        <div class="portlet-content">Lorem ipsum dolor sit amet, consectetuer adipiscing elit</div>
+                    </div>
+
+                </div>
+
+                <div class="column">
+
+                    <div class="portlet">
+                        <div class="portlet-header">Shopping</div>
+                        <div class="portlet-content">Lorem ipsum dolor sit amet, consectetuer adipiscing elit</div>
+                    </div>
+
+                </div>
+
+                <div class="column">
+
+                    <div class="portlet">
+                        <div class="portlet-header">Links</div>
+                        <div class="portlet-content">Lorem ipsum dolor sit amet, consectetuer adipiscing elit</div>
+                    </div>
+
+                    <div class="portlet">
+                        <div class="portlet-header">Images</div>
+                        <div class="portlet-content">Lorem ipsum dolor sit amet, consectetuer adipiscing elit</div>
+                    </div>
+
+                </div>
+
             </div>
-            <ul id="task-card" class="lista_itinerario collection with-header collapsible"  data-collapsible="accordion">
-                <li class="collection-header cyan">
+
+           <ul id="task-card" class="lista_itinerario collection with-header collapsible "  data-collapsible="accordion">
+                <li class="collection-header cyan" data-id="40">
                     <div class="row">
                         <h4 class="task-card-title">Itinerario:</h4>
                         <div class="row">
@@ -169,32 +195,44 @@ $Paquete='';
                     </div>
                 </li>
                 <?php $j=0;?>
-                @foreach($Paquete->itinerario as $itinerario)
-                    <?php $j++;?>
-                    <li id="Itine_{{$j}}" onclick="Pasar_datos('{{$j}}','{{$itinerario->dia}}','{{$itinerario->titulo}}')">
-                        <div  class="collapsible-header"> DAY {{$itinerario->dia}}: <span class="grey-text text-darken-3">{{$itinerario->titulo}}</span></div>
-                        <div class="collapsible-body">
-                            <div class="row">
-                                <div class="col s2"><input type="text" value="DAY" disabled></div>
-                                <div class="col s2 ">
-                                    <input name="dia_itinerario" id="dia_itinerario" type="text" value="{{$itinerario->dia}}">
+               <li>
+               <div class="dd" id="nestable">
+                        <ul class="dd-list">
+                            @foreach($Paquete->itinerario as $itinerario)
+                                <?php $j++;?>
+                            <li class="dd-item dd3-item" data-id="{{$j}}">
+                                <div class="dd-handle dd3-handle">Drag</div>
+                                <div class="dd3-content ">
+                                    <div class="row">
+                                        <div class="col s12">
+                                            <a class="accordion">DAY {{$itinerario->dia}}: <span class="grey-text text-darken-3">{{$itinerario->titulo}}</span></a>
+                                            <div class="panel">
+                                                <div class="row">
+                                                    <div class="col s2"><input type="text" value="DAY" disabled></div>
+                                                    <div class="col s2 ">
+                                                        <input name="dia_itinerario" id="dia_itinerario" type="text" value="{{$itinerario->dia}}">
+                                                    </div>
+                                                    <div class="col s8">
+                                                        <span class="grey-text text-darken-3">
+                                                            <input name="titulo_itinerario" id="titulo_itinerario" type="text" value="{{$itinerario->titulo}}">
+                                                        </span>
+                                                    </div>
+                                                </div>
+                                                <textarea name="desc_itinerario" id="desc_itinerario_{{$j}}" cols="30" rows="10">
+                                                    <?php echo $itinerario->descripcion;?>
+                                                </textarea>
+                                                <script>
+                                                    CKEDITOR.replace( 'desc_itinerario_{{$j}}' );
+                                                </script>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
-                                <div class="col s8">
-                                    <span class="grey-text text-darken-3">
-                                        <input name="titulo_itinerario" id="titulo_itinerario" type="text" value="{{$itinerario->titulo}}">
-                                    </span>
-                                </div>
-                            </div>
-                            <textarea name="desc_itinerario" id="desc_itinerario_{{$j}}" cols="30" rows="10">
-                                <?php echo $itinerario->descripcion;?>
-                            </textarea>
-                            <script>
-                                CKEDITOR.replace( 'desc_itinerario_{{$j}}' );
-                            </script>
-
-                        </div>
-                    </li>
-                @endforeach
+                            </li>
+                            @endforeach
+                        </ul>
+                    </div>
+               </li>
 
             </ul>
             <input type="hidden" name="nroItis" id="nroItis" value="{{$j}}">

@@ -1,25 +1,56 @@
-$(document).ready(function(){
-    $('.collapsible').collapsible();
-});
+$( function() {
+    $( ".column" ).sortable({
+        connectWith: ".column",
+        handle: ".portlet-header",
+        cancel: ".portlet-toggle",
+        placeholder: "portlet-placeholder ui-corner-all"
+    });
 
-$('.collapsible').collapsible({
-        accordion: false, // A setting that changes the collapsible behavior to expandable instead of the default accordion style
-        onOpen: function(el) { alert('Open'); }, // Callback for Collapsible open
-        onClose: function(el) { alert('Closed'); } // Callback for Collapsible close
-    }
-);
+    $( ".portlet" )
+        .addClass( "ui-widget ui-widget-content ui-helper-clearfix ui-corner-all" )
+        .find( ".portlet-header" )
+        .addClass( "ui-widget-header ui-corner-all" )
+        .prepend( "<span class='ui-icon ui-icon-minusthick portlet-toggle'></span>");
+
+    $( ".portlet-toggle" ).on( "click", function() {
+        var icon = $( this );
+        icon.toggleClass( "ui-icon-minusthick ui-icon-plusthick" );
+        icon.closest( ".portlet" ).find( ".portlet-content" ).toggle();
+    });
+} );
+
+//
+// $('#nestable').nestable();
+// $(document).ready(function(){
+//     // $('.collapsible').collapsible();
+//     var acc = document.getElementsByClassName("accordion");
+//     var i;
+//     for (i = 0; i < acc.length; i++) {
+//         acc[i].onclick = function(){
+//             this.classList.toggle("active");
+//             this.nextElementSibling.classList.toggle("show");
+//         }
+//     }
+// });
+
+// $('.collapsible').collapsible({
+//         accordion: false, // A setting that changes the collapsible behavior to expandable instead of the default accordion style
+//         onOpen: function(el) { alert('Open'); }, // Callback for Collapsible open
+//         onClose: function(el) { alert('Closed'); } // Callback for Collapsible close
+//     }
+// );
 $('.fixed-action-btn').openFAB();
 $('.fixed-action-btn').closeFAB();
 // activate Nestable for list 1
-$('#nestable').nestable()
 
-$(function () {
-    var nestablecount = 4;
-    $('#appendnestable').click(function () {
-        $('ol.outer').append('<li class="dd-item" data-id="' + nestablecount + '"><div class="dd-handle">Item ' + nestablecount + '</div></li>');
-        nestablecount++;
-    });
-});
+
+// $(function () {
+//     var nestablecount = 4;
+//     $('#appendnestable').click(function () {
+//         $('ol.outer').append('<li class="dd-item" data-id="' + nestablecount + '"><div class="dd-handle">Item ' + nestablecount + '</div></li>');
+//         nestablecount++;
+//     });
+// });
 var nro_iti=0;
 
 
