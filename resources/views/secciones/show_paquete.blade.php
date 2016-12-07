@@ -128,8 +128,21 @@ $Paquete='';
             </ul>
         </div>
         <div class="input-field col s12 m6 l6">
+            <button id="appendnestable">Add li</button>
+            <div class="dd" id="nestable">
+                <ol class="dd-list outer">
+                    <li class="dd-item" data-id="1">
+                        <div class="dd-handle">Item 1</div>
+                    </li>
+                    <li class="dd-item" data-id="2">
+                        <div class="dd-handle">Item 2</div>
+                    </li>
+                    <li class="dd-item" data-id="3">
+                        <div class="dd-handle">Item 3</div>
+                    </li>
+                </ol>
+            </div>
             <ul id="task-card" class="lista_itinerario collection with-header collapsible"  data-collapsible="accordion">
-
                 <li class="collection-header cyan">
                     <div class="row">
                         <h4 class="task-card-title">Itinerario:</h4>

@@ -10,12 +10,16 @@ $('.collapsible').collapsible({
 );
 $('.fixed-action-btn').openFAB();
 $('.fixed-action-btn').closeFAB();
-function importarScript(nombre) {
-    var s = document.createElement("script");
-    s.src = nombre;
-    document.querySelector("head").appendChild(s);
-    tinymce.init({ selector:'textarea' });
-}
+// activate Nestable for list 1
+$('#nestable').nestable()
+
+$(function () {
+    var nestablecount = 4;
+    $('#appendnestable').click(function () {
+        $('ol.outer').append('<li class="dd-item" data-id="' + nestablecount + '"><div class="dd-handle">Item ' + nestablecount + '</div></li>');
+        nestablecount++;
+    });
+});
 var nro_iti=0;
 
 

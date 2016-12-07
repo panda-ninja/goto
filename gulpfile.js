@@ -38,7 +38,8 @@ elixir(function(mix) {
         'vendors/style.css',
         'vendors/perfect-scrollbar.css',
         'vendors/jquery-jvectormap.css',
-        'vendors/chartist.min.css'
+        'vendors/chartist.min.css',
+        'vendors/nestable.min.css'
     ], 'public/css/admin-theme.css');
 
     mix.styles([
@@ -94,7 +95,7 @@ elixir(function(mix) {
         // 'vendors/vectormap-script.js',
         <!--google map-->
         // 'vendors/google-map-script.js',
-
+        'resources/assets/js/vendors/jquery.nestable.js',
     ], 'public/js/admin-app.js');
 
     mix.styles([
@@ -108,4 +109,7 @@ elixir(function(mix) {
     mix.scripts([
         'resources/assets/js/vendors/sweetalert.min.js',
     ], 'public/js/sweetalert.js');
+    mix.styles([
+        'resources/assets/css/vendors/notification.css'
+    ], 'public/css/notification.css');
 });

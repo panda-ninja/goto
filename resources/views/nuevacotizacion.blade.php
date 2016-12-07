@@ -78,7 +78,7 @@
                                         <i class="mdi-navigation-menu"></i>
                                     </a>
                                     <ul>
-                                        <li><a href="#" class="btn-floating red modal-close"><i class="large mdi-content-clear"></i></a>
+                                        <li><a id="cerrar_modal" href="#" class="btn-floating red modal-close"><i class="large mdi-content-clear"></i></a>
                                         </li>
                                         <li><a class="btn-floating cyan"><i class="mdi-content-content-copy"></i></a>
                                         </li>

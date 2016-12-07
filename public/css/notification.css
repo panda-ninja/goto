@@ -39,55 +39,12 @@ body{
     color: #f9a825;
 }
 .letra-roja{
-    color: #d20404;
+    color: #b91419;
 }
-.caja{
- width: 70px;
-    height: 50px;
-}
-/*== seccion para modal ============================================================================*/
 .modal-ancho{
     width: 90%;
-    height:  90%;
-    max-height: 1500px;
+    height: 90%;
 }
-.letra-peque{
-    color: rgba(119,119,119,1);
-    font-size: 12px;
-}
-.table1{
-    margin: 0px;
-    padding: 0px;
-    align-content: center;
-    text-align: center;
-}
-.centrar{
-    text-align: center !important;
-}
-.centrar td{
-    text-align: center !important;
-}
-.borde-tabla-habitacion td{
-    border: 1px solid #e3e3e3;
-    padding: 2px 5px;
-    cursor:pointer;
-}
-.text-small{
-    font-size: small;
-}
-.outline-day{
-    border-radius: 14px;
-    border: 2px solid #333;
-    background: #e09e37;
-    color: #fff;
-    font-weight: bold;
-    width: 25px;
-    height: 25px;
-}
-.margin-top-5{
- margin-top: 5px;
-}
-.text-18{
-    font-size: 18px;
-}
+/*# sourceMappingURL=notification.css.map */
+
 /*# sourceMappingURL=notification.css.map */

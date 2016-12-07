@@ -92,34 +92,61 @@ var idCotizacion=0;
 
 $('#agregar_pqt').click( function(){
     // console.log(idCotizacion);
+    if($('#email_3').val()==""){
+        $('#email_3').focus();
+        swal(
+            'Oops...',
+            'Ingrese el email del cliente!',
+            'warning'
+        )
+    }
         if(idCotizacion==0){
+
+                // alert('con datos');
             var pemail=$('#email_3').val();
             var pnropasajeros=$('#nropasajeros').val();
             var pfecha=$('#fecha').val();
-            alert(pemail+'-'+pnropasajeros+'-'+pfecha);
+            // alert(pemail+'-'+pnropasajeros+'-'+pfecha);
             $.ajaxSetup({
                 headers: {
                     'X-CSRF-TOKEN': $('[name="_token"]').val()
                 }
             });
             $.post('http://gotoperu.mo/guardar_pre_cotizacion', {email: pemail,nropasajeros:pnropasajeros,fecha:pfecha}, function(markup) {
-                if(markup){
+                if(markup!='0'){
                     // console.log(markup);
                     // alert(markup);
                      idCotizacion=markup;
-
                 }
                 else{
-                    // console.log(markup);
+                     // console.log('error de registro cerrarmos :'+markup);
                     idCotizacion=markup;
+                    swal(
+                        'Oops...',
+                        'No se encontró al cliente '+pemail+'!',
+                        'warning'
+                    );
+                    $( "#cerrar_modal" ).trigger( "click" );
                 }
             }).fail(function (markup) {
-                // console.log(markup);
+                 // console.log('Fail cerrarmos :'+markup);
                 idCotizacion=0;
+                swal(
+                    'Oops...',
+                    'currio una error vuelva a intentarlo por favor (cliente:'+pemail+', '+markup+')',
+                    'warning'
+                );
+                $( "#cerrar_modal" ).trigger( "click" );
             });
             // alert('estamos guardamos la cotizacion');
             // idCotizacion=1;
             // console.log(idCotizacion);
+
+
         }
+        else{
+            $( "#agregar_pqt" ).trigger( "click" );
+        }
+
     }
 );

@@ -55,7 +55,7 @@ class CotizacionController extends Controller
 //            return count($cliente);
         }
         catch(Exception $e){
-            return '0';
+            return $e;
         }
     }
     public function create()
