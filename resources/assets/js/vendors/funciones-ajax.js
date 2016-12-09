@@ -156,4 +156,3 @@ $('#agregar_pqt').click( function(){
 
     }
 );
-//# sourceMappingURL=funciones-ajax.js.map

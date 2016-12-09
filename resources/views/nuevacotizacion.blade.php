@@ -168,4 +168,6 @@
     <script type="text/javascript" src="{{URL::to('js/funciones-ajax.js')}}"></script>
     <link href="{{asset('css/notification.css')}}" type="text/css" rel="stylesheet" media="screen,projection"/>
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <link href="{{asset('css/acordeon-sorteable.css')}}" type="text/css" rel="stylesheet" media="screen,projection"/>
+
 @endsection

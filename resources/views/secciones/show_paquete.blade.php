@@ -23,7 +23,7 @@ $Paquete='';
     <hr>
     <div class="row">
         <div class="input-field col s12 m6 l6">
-            <textarea name="text_descripcion" id="text_descripcion">{{$Paquete->descripcion}}</textarea>
+            <textarea name="text_descripcion" id="">{{$Paquete->descripcion}}</textarea>
             <script>
                 CKEDITOR.replace( 'text_descripcion' );
             </script>
@@ -128,45 +128,15 @@ $Paquete='';
             </ul>
         </div>
         <div  class="input-field col s12 m6 l6">
-            <div class="row">
-                <div class="column">
-
-                    <div class="portlet">
-                        <div class="portlet-header">Feeds</div>
-                        <div class="portlet-content">Lorem ipsum dolor sit amet, consectetuer adipiscing elitp <p>jfdghdfshgdf</p><p>jfdghdfshgdf</p><p>jfdghdfshgdf</p> </div>
-                    </div>
-
-                    <div class="portlet">
-                        <div class="portlet-header">News</div>
-                        <div class="portlet-content">Lorem ipsum dolor sit amet, consectetuer adipiscing elit</div>
-                    </div>
-
-                </div>
-
-                <div class="column">
-
-                    <div class="portlet">
-                        <div class="portlet-header">Shopping</div>
-                        <div class="portlet-content">Lorem ipsum dolor sit amet, consectetuer adipiscing elit</div>
-                    </div>
-
-                </div>
-
-                <div class="column">
-
-                    <div class="portlet">
-                        <div class="portlet-header">Links</div>
-                        <div class="portlet-content">Lorem ipsum dolor sit amet, consectetuer adipiscing elit</div>
-                    </div>
-
-                    <div class="portlet">
-                        <div class="portlet-header">Images</div>
-                        <div class="portlet-content">Lorem ipsum dolor sit amet, consectetuer adipiscing elit</div>
-                    </div>
-
-                </div>
-
-            </div>
+            {{--<div class="row">--}}
+                {{--<div class="column">--}}
+                    {{--<div class="portlet">--}}
+                        {{--<div class="portlet-header"><span class="cursor-move">Feeds</span></div>--}}
+                        {{--<div class="portlet-content">Lorem ipsum dolor sit amet, consectetuer adipiscing elitp <p>jfdghdfshgdf</p><p>jfdghdfshgdf</p><p>jfdghdfshgdf</p> </div>--}}
+                    {{--</div>--}}
+                   {{----}}
+                {{--</div>--}}
+            {{--</div>--}}
 
            <ul id="task-card" class="lista_itinerario collection with-header collapsible "  data-collapsible="accordion">
                 <li class="collection-header cyan" data-id="40">
@@ -196,42 +166,36 @@ $Paquete='';
                 </li>
                 <?php $j=0;?>
                <li>
-               <div class="dd" id="nestable">
-                        <ul class="dd-list">
-                            @foreach($Paquete->itinerario as $itinerario)
-                                <?php $j++;?>
-                            <li class="dd-item dd3-item" data-id="{{$j}}">
-                                <div class="dd-handle dd3-handle">Drag</div>
-                                <div class="dd3-content ">
+               <div class="column">
+
+                    @foreach($Paquete->itinerario as $itinerario)
+                        <?php $j++;?>
+                            <div class="portlet">
+                                <div class="portlet-header" onmouseup="poner_valor()" onmouseover="Pasar_datos('{{$j}}','{{$j}}','{{$itinerario->titulo}}')"><span class="cursor-move">DAY {{$itinerario->dia}}: {{$itinerario->titulo}}</span></div>
+                                <div class="portlet-content">
                                     <div class="row">
-                                        <div class="col s12">
-                                            <a class="accordion">DAY {{$itinerario->dia}}: <span class="grey-text text-darken-3">{{$itinerario->titulo}}</span></a>
-                                            <div class="panel">
-                                                <div class="row">
-                                                    <div class="col s2"><input type="text" value="DAY" disabled></div>
-                                                    <div class="col s2 ">
-                                                        <input name="dia_itinerario" id="dia_itinerario" type="text" value="{{$itinerario->dia}}">
-                                                    </div>
-                                                    <div class="col s8">
-                                                        <span class="grey-text text-darken-3">
-                                                            <input name="titulo_itinerario" id="titulo_itinerario" type="text" value="{{$itinerario->titulo}}">
-                                                        </span>
-                                                    </div>
-                                                </div>
-                                                <textarea name="desc_itinerario" id="desc_itinerario_{{$j}}" cols="30" rows="10">
-                                                    <?php echo $itinerario->descripcion;?>
-                                                </textarea>
-                                                <script>
-                                                    CKEDITOR.replace( 'desc_itinerario_{{$j}}' );
-                                                </script>
-                                            </div>
+                                        <div class="col s2"><input type="text" value="DAY" disabled></div>
+                                        <div class="col s2 ">
+                                            <input name="dia_itinerario" id="dia_itinerario" type="text" value="{{$itinerario->dia}}">
+                                        </div>
+                                        <div class="col s8">
+                                                <span class="grey-text text-darken-3">
+                                                    <input name="titulo_itinerario" id="titulo_itinerario" type="text" value="{{$itinerario->titulo}}">
+                                                </span>
                                         </div>
                                     </div>
+                                    <textarea name="desc_itinerario" id="desc_itinerario_{{$j}}" cols="30" rows="10" >
+                                            {{$itinerario->descripcion}}
+                                        </textarea>
+                                    <script>
+                                        CKEDITOR.replace( 'desc_itinerario_{{$j}}' );
+                                    </script>
                                 </div>
-                            </li>
-                            @endforeach
-                        </ul>
-                    </div>
+                            </div>
+
+                    @endforeach
+
+               </div>
                </li>
 
             </ul>

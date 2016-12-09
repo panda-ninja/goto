@@ -112,4 +112,14 @@ elixir(function(mix) {
     mix.styles([
         'resources/assets/css/vendors/notification.css'
     ], 'public/css/notification.css');
+    mix.styles([
+        'resources/assets/css/vendors/acordeon-sorteable.css'
+    ], 'public/css/acordeon-sorteable.css');
+
+    mix.scripts([
+        'resources/assets/js/vendors/funciones-ajax.js',
+    ], 'public/js/funciones-ajax.js');
+    mix.scripts([
+        'resources/assets/js/vendors/funciones_cotizacion.js',
+    ], 'public/js/funciones_cotizacion.js');
 });
