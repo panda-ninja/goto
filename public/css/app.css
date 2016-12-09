@@ -6610,6 +6610,9 @@ button.picker__today:focus, button.picker__clear:focus, button.picker__close:foc
 .text-12 {
   font-size: 12px; }
 
+.text-13 {
+  font-size: 13px; }
+
 .text-14 {
   font-size: 14px !important; }
 
@@ -6630,6 +6633,9 @@ button.picker__today:focus, button.picker__clear:focus, button.picker__close:foc
 
 .text-40 {
   font-size: 40px; }
+
+.text-50 {
+  font-size: 50px; }
 
 .right-absolute-card {
   float: right !important;
@@ -6852,6 +6858,13 @@ img.desaturada {
 .include-services span {
   display: block;
   text-align: center; }
+
+.list-services.uber li {
+  width: 60px;
+  padding: 0px; }
+
+.box-door .card-title {
+  font-size: 30px; }
 
 .testimonials-box {
   position: relative; }

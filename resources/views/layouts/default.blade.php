@@ -21,7 +21,7 @@
     <div class="container">
         <div class="row valign-wrapper">
             <div class="col m5 l6 hide-on-small-only hide-on-small-and-down hide-on-med-and-down">
-                <a href="/" class="brand-logo valign"><img src="{{asset('img/logos/logo-ave-5.png')}}" alt="" class="responsive-img"></a>
+                <a href="/" class="brand-logo valign"><img src="{{asset('img/logos/logo-ave.png')}}" alt="" class="responsive-img"></a>
             </div>
             <div class="col s12 m8 l6">
                 <ul class="header-nav white-text right-align valign">
@@ -108,7 +108,8 @@
 
 <script>
     $('#demo').readmore({
-        speed: 500
+        speed: 500,
+        collapsedHeight: 470
     });
     $('#demo2').readmore({
         speed: 500,

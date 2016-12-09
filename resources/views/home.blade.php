@@ -5,10 +5,10 @@
     <div class="slider">
         <ul class="slides">
             <li>
-                <img src="{{asset('img/bg/mapi-1.jpg')}}"> <!-- random image -->
+                <img src="{{asset('img/bg/mapi-3.jpg')}}"> <!-- random image -->
                 <div class="caption center-align">
-                    <h3>A <b>BETTER</b> WAY TO TRAVEL TO PERU</h3>
-                    <h5 class="light yellow-text text-darken-3">$150 average saving per person | 24/7 local authentic assitance | 100s of + tripadvisor testimonials</h5>
+                    <h3 class="grey-text text-darken-2 text-50">A <b>BETTER</b> WAY TO TRAVEL TO PERU</h3>
+                    <h5 class="light grey-text text-darken-3">$150 average saving | 24/7 local authentic assitance | 100s of testimonials</h5>
                     
                     <div class="margin-top-100">
                         <p>Book Online or customized your dream vacations</p>
@@ -121,7 +121,8 @@
             <div class="row">
                 <div class="col s12">
                     <h5 class="yellow-text text-darken-3">SELECT <b>DESTINATIONS</b></h5>
-                    <p class="font-moserrat">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Excepturi, itaque maxime! Consequatur eveniet</p>
+                    <h6 class="font-moserrat text-18 red-text text-darken-4 center">PERU</h6>
+                    <div class="divider"></div>
                 </div>
             </div>
 
@@ -239,10 +240,35 @@
                 <div class="col s3">
                     <div class="card hoverable card-customize">
                         <div class="card-image">
+                            <img src="{{asset('img/form/trujillo.jpg')}}" id="img_filter_trujillo">
+                            <span class="card-title">
+                                <input type="checkbox" id="trujillo" onchange="javascript:imgfilter('trujillo')"/>
+                                <label for="trujillo">Trujillo &amp; Chiclayo</label>
+                            </span>
+                            <div id="check_i_trujillo" class="hide">
+                                <i class="material-icons blue-text text-lighten-1">check_circle</i>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col s12">
+                    <h6 class="font-moserrat text-18 red-text text-darken-4 center">MULTICOUNTRIES</h6>
+                    <div class="divider"></div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col s3">
+                    <div class="card hoverable card-customize">
+                        <div class="card-image">
                             <img src="{{asset('img/form/galapagos.jpg')}}" id="img_filter_galapagos">
                             <span class="card-title">
                                 <input type="checkbox" id="galapagos" onchange="javascript:imgfilter('galapagos')"/>
-                                <label for="galapagos">Galapagos Island</label>
+                                <label for="galapagos">Galapagos (Ecuador)</label>
                             </span>
                             <div id="check_i_galapagos" class="hide">
                                 <i class="material-icons blue-text text-lighten-1">check_circle</i>
@@ -252,13 +278,58 @@
                     </div>
                 </div>
 
+                <div class="col s3">
+                    <div class="card hoverable card-customize">
+                        <div class="card-image">
+                            <img src="{{asset('img/form/rio.jpg')}}" id="img_filter_rio">
+                            <span class="card-title">
+                                <input type="checkbox" id="rio" onchange="javascript:imgfilter('rio')"/>
+                                <label for="rio">Rio &amp; Iguazu (Brasil)</label>
+                            </span>
+                            <div id="check_i_rio" class="hide">
+                                <i class="material-icons blue-text text-lighten-1">check_circle</i>
+                            </div>
+                        </div>
 
+                    </div>
+                </div>
 
+                <div class="col s3">
+                    <div class="card hoverable card-customize">
+                        <div class="card-image">
+                            <img src="{{asset('img/form/patagonia.jpg')}}" id="img_filter_buenos">
+                            <span class="card-title">
+                                <input type="checkbox" id="buenos" onchange="javascript:imgfilter('buenos')"/>
+                                <label for="buenos">Buenos Aires (Argentina)</label>
+                            </span>
+                            <div id="check_i_buenos" class="hide">
+                                <i class="material-icons blue-text text-lighten-1">check_circle</i>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+                <div class="col s3">
+                    <div class="card hoverable card-customize">
+                        <div class="card-image">
+                            <img src="{{asset('img/form/uyuni.jpg')}}" id="img_filter_uyuni">
+                            <span class="card-title">
+                                <input type="checkbox" id="uyuni" onchange="javascript:imgfilter('uyuni')"/>
+                                <label for="uyuni">Uyuni (Bolivia)</label>
+                            </span>
+                            <div id="check_i_uyuni" class="hide">
+                                <i class="material-icons blue-text text-lighten-1">check_circle</i>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
             </div>
 
             <div class="row margin-top-20">
                 <div class="col s12">
-                    <h5 class="yellow-text text-darken-3">HOTEL <b>QUALITY</b></h5>
+                    <h5 class="yellow-text text-darken-3">HOTEL <b>CATEGORY</b></h5>
                     <p class="font-moserrat">(<span class="red-text darken-4">Optional</span> you may choose more than one)</p>
                 </div>
             </div>
@@ -813,25 +884,49 @@
     <div class="container">
         <div class="section">
             <div class="row center">
-                <h4>FEATURED <b>TOURS</b></h4>
+                <img src="{{asset('img/icons/uber.png')}}" alt="">
+                <h4>DOOR TO DOOR, Including a <b>$50 UBER</b> Credit</h4>
             </div>
 
             <div class="row" id="demo">
 
                 @foreach($featured as $featured)
-                    <div class="col s6">
+                    <div class="col s6 font-moserrat">
                         <div class="card horizontal">
                             <div class="card-image waves-effect waves-block waves-light">
                                 <img class="activator" src="{{asset('img/descarga.jpg')}}">
                             </div>
                             <div class="card-stacked">
-                                <div class="card-content center">
-                                    <h5 class="card-title activator grey-text text-darken-4 center">{{$featured->titulo}}<i class="material-icons right-absolute-card">more_vert</i></h5>
-                                    <div class="divider spacer-margin-20"></div>
-                                    <p>{{$featured->descripcion}}</p>
-                                    <div class="divider margin-top-20 margin-bottom-30"></div>
+                                <div class="card-content center include-services box-door">
+                                    <h5 class="card-title activator yellow-text text-darken-3 center no-margin">{{$featured->duracion}} DAYS<i class="material-icons right-absolute-card">more_vert</i></h5>
+                                    <p><b>FROM MIAMI</b></p>
+                                    <p class="text-13">ALL INCLUDED!</p>
+                                    <ul class="list-services uber">
+                                        <li><img src="{{asset('img/icons//include/hotels.png')}}" alt="" class="responsive-img"></li>
+                                        <li><img src="{{asset('img/icons//include/transfers.png')}}" alt="" class="responsive-img"></li>
+                                        <li><img src="{{asset('img/icons//include/entrances.png')}}" alt="" class="responsive-img"></li>
+                                        <li><img src="{{asset('img/icons//include/trains.png')}}" alt="" class="responsive-img"></li>
+                                        <li><img src="{{asset('img/icons//include/tours.png')}}" alt="" class="responsive-img"></li>
+                                        <li><img src="{{asset('img/icons//include/breakfast.png')}}" alt="" class="responsive-img"></li>
+                                        <li><img src="{{asset('img/icons//include/assistances.png')}}" alt="" class="responsive-img"></li>
+                                        <li><img src="{{asset('img/icons//include/flight.png')}}" alt="" class="responsive-img"></li>
+
+                                    </ul>
+                                    {{--<div class="divider spacer-margin-10"></div>--}}
+                                    <p class="text-30 yellow-text text-darken-3">$6000</p>
+                                    <p><b>4 TRAVELERS</b></p>
+                                    <p class="grey-text">6 Members: $8,000</p>
+                                    <p class="grey-text">8 Members: $10,000</p>
+                                    <div class="divider margin-top-20 margin-bottom-10"></div>
                                     <a href="" class="waves-effect waves-light btn yellow darken-3">Inquire Now</a>
                                 </div>
+                                {{--<div class="card-content center">--}}
+                                    {{--<h5 class="card-title activator grey-text text-darken-4 center">{{$featured->titulo}}<i class="material-icons right-absolute-card">more_vert</i></h5>--}}
+                                    {{--<div class="divider spacer-margin-20"></div>--}}
+                                    {{--<p>{{$featured->descripcion}}</p>--}}
+                                    {{--<div class="divider margin-top-20 margin-bottom-30"></div>--}}
+                                    {{--<a href="" class="waves-effect waves-light btn yellow darken-3">Inquire Now</a>--}}
+                                {{--</div>--}}
                             </div>
                             <div class="card-reveal">
                                 <span class="card-title grey-text text-darken-4"><b class="yellow-text text-darken-3">{{$featured->titulo}}</b> <i class="material-icons right-absolute-card">close</i></span>
@@ -862,47 +957,48 @@
     </div>
 
 
-    <div class="parallax-container parallax-container-3 valign-wrapper hoverable">
-        <div class="row center">
-            <h4 class="white-text">HOW <b>GOTOPERU</b> WORKS</h4>
-        </div>
-        <div class="parallax"><img src="{{asset('img/bg/mapi-1.jpg')}}"></div>
-    </div>
-
     <div class="container">
         <div class="section">
-            <div class="row">
-                <div class="col s6">
-                    <h5 class="center">CONTACT OUR TRAVEL ADVISOR</h5>
-                    <div class="divider margin-bottom-10"></div>
-                    <img src="{{asset('img/team-travel.jpg')}}" alt="" class="responsive-img hoverable">
-                    <h6><b>LETS CREATE TOGETHER A DREAM JOURNEY!</b></h6>
-                    <p>Will custom design your dream Peru trip exactly how you have always envisioned it.</p>
-                    <p>Our trip planner gives you the freedom to describe your Peru dream trip while giving us all the info we need to make that dream a reality. You're dealing with travel advisors who have yeasrs of experience creating south america adventures - so sit down with a Pisco Sour, imagine yourself in Peru and let us know what you see</p>
-                    <p class="right">... ALREADY HAVE YOUR PERFECT TRIP IN MIND?</p>
-                </div>
-                <div class="col s6 ">
-                    <h5 class="center">BOOK ONLINE</h5>
-                    <div class="divider margin-bottom-10"></div>
-                    <img src="{{asset('img/travel-book.jpg')}}" alt="" class="responsive-img hoverable">
-                    <h6><b>YOU'RE IN COMPLETE CONTROL</b></h6>
-                    <p>It's never been easier to plan the Peru adventure of your dreams! Book and receive an instant confirmation. MachuPicchu unforgettble vacations are only 5 minutes away! Daily Departures! Find the best Peru travel tours, today!</p>
-                    <div class="col s3">
-                        <img src="{{asset('img/logos/continental.jpg')}}" alt="" class="responsive-img">
-                    </div>
-                    <div class="col s3">
-                        <img src="{{asset('img/logos/avianca.jpg')}}" alt="" class="responsive-img">
-                    </div>
-                    <div class="col s3">
-                        <img src="{{asset('img/logos/lan.jpg')}}" alt="" class="responsive-img">
-                    </div>
-                    <div class="col s3">
-                        <img src="{{asset('img/logos/american.jpg')}}" alt="" class="responsive-img">
-                    </div>
-                </div>
+            <div class="row center">
+                <h4>WHY <b>GOTOPERU</b></h4>
             </div>
         </div>
     </div>
+
+    {{--<div class="container">--}}
+        {{--<div class="section">--}}
+            {{--<div class="row">--}}
+                {{--<div class="col s6">--}}
+                    {{--<h5 class="center">CONTACT OUR TRAVEL ADVISOR</h5>--}}
+                    {{--<div class="divider margin-bottom-10"></div>--}}
+                    {{--<img src="{{asset('img/team-travel.jpg')}}" alt="" class="responsive-img hoverable">--}}
+                    {{--<h6><b>LETS CREATE TOGETHER A DREAM JOURNEY!</b></h6>--}}
+                    {{--<p>Will custom design your dream Peru trip exactly how you have always envisioned it.</p>--}}
+                    {{--<p>Our trip planner gives you the freedom to describe your Peru dream trip while giving us all the info we need to make that dream a reality. You're dealing with travel advisors who have yeasrs of experience creating south america adventures - so sit down with a Pisco Sour, imagine yourself in Peru and let us know what you see</p>--}}
+                    {{--<p class="right">... ALREADY HAVE YOUR PERFECT TRIP IN MIND?</p>--}}
+                {{--</div>--}}
+                {{--<div class="col s6 ">--}}
+                    {{--<h5 class="center">BOOK ONLINE</h5>--}}
+                    {{--<div class="divider margin-bottom-10"></div>--}}
+                    {{--<img src="{{asset('img/travel-book.jpg')}}" alt="" class="responsive-img hoverable">--}}
+                    {{--<h6><b>YOU'RE IN COMPLETE CONTROL</b></h6>--}}
+                    {{--<p>It's never been easier to plan the Peru adventure of your dreams! Book and receive an instant confirmation. MachuPicchu unforgettble vacations are only 5 minutes away! Daily Departures! Find the best Peru travel tours, today!</p>--}}
+                    {{--<div class="col s3">--}}
+                        {{--<img src="{{asset('img/logos/continental.jpg')}}" alt="" class="responsive-img">--}}
+                    {{--</div>--}}
+                    {{--<div class="col s3">--}}
+                        {{--<img src="{{asset('img/logos/avianca.jpg')}}" alt="" class="responsive-img">--}}
+                    {{--</div>--}}
+                    {{--<div class="col s3">--}}
+                        {{--<img src="{{asset('img/logos/lan.jpg')}}" alt="" class="responsive-img">--}}
+                    {{--</div>--}}
+                    {{--<div class="col s3">--}}
+                        {{--<img src="{{asset('img/logos/american.jpg')}}" alt="" class="responsive-img">--}}
+                    {{--</div>--}}
+                {{--</div>--}}
+            {{--</div>--}}
+        {{--</div>--}}
+    {{--</div>--}}
 
     <div class="container">
         <div class="section">
