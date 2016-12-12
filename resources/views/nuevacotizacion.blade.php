@@ -1,5 +1,8 @@
 @extends('layouts.admin')
-
+@section('scripts_textarea')
+    <script src="//cdn.tinymce.com/4/tinymce.min.js"></script>
+    {{--<script>tinymce.init({ selector:'textarea' });</script>--}}
+@endsection
 @section('content')
 
     <div class="container">
@@ -20,19 +23,19 @@
                             <div class="row">
                                 <div class="input-field col s6">
                                     <i class="mdi-communication-email prefix"></i>
-                                    <input id="email_3" type="email">
+                                    <input id="email_3" type="email" value="madyson.ward@example.net">
                                     <label for="email_3" class="">Email</label>
                                 </div>
 
                                 <div class="input-field col s3">
                                     <i class="mdi-social-people prefix"></i>
-                                    <input id="nropasajeros" type="number" min="1" >
+                                    <input id="nropasajeros" type="number" min="1" value="1">
                                     <label for="nropasajeros" class="">Nro pasajeros</label>
                                 </div>
 
                                 <div class="input-field col s3">
                                     <i class="mdi-editor-insert-invitation prefix"></i>
-                                    <input id="fecha" type="date">
+                                    <input id="fecha" type="date" value="{{date("Y-m-d")}}">
                                     <label for="fecha" class="active">Fecha</label>
                                 </div>
                             </div>
@@ -58,7 +61,7 @@
                                     <div class="input-field col s6">
                                         <i class="mdi-action-search prefix"></i>
                                         {{csrf_field()}}
-                                        <input id="codigopx" name="codigopx"  type="text">
+                                        <input id="codigopx" name="codigopx"  type="text" value="gtp412">
                                         <label for="codigopx" class="">Ingrese el codigo del paquete</label>
                                     </div>
                                     <div class="input-field col s2">
@@ -162,9 +165,12 @@
         <!--end container-->
 @stop
 @section('scripts')
+    <script src="//cdn.tinymce.com/4/tinymce.min.js"></script>
+    <script>tinymce.init({ selector:'textarea' });</script>
     <script type="text/javascript" src="{{URL::to('js/sweetalert.js')}}"></script>
     <link href="{{asset('css/sweetalert.css')}}" type="text/css" rel="stylesheet" media="screen,projection"/>
-    <script src="//cdn.ckeditor.com/4.6.0/standard/ckeditor.js"></script>
+    {{--<script src="//cdn.ckeditor.com/4.6.0/standard/ckeditor.js"></script>--}}
+    {{--<script src="//cdn.tinymce.com/4/tinymce.min.js"></script>--}}
     <script type="text/javascript" src="{{URL::to('js/funciones-ajax.js')}}"></script>
     <link href="{{asset('css/notification.css')}}" type="text/css" rel="stylesheet" media="screen,projection"/>
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>

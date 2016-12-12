@@ -1,3 +1,4 @@
+tinymce.init({ selector:'textarea' });
 $( function() {
     $( ".column" ).sortable({
         connectWith: ".column",
@@ -104,27 +105,36 @@ $('#borrar_itinerario').click(function(){
     }
 );
 
-// var valor='';
-// function Pasar_datos(pid,pdia,ptitulo){
-//     id=pid;
-//     dia=pdia;
-//     titulo=ptitulo;
-//     valor=$('#cke_desc_itinerario_'+pid).html();
-//     console.log('estamos sacando los datos de ('+pid+'_'+ptitulo+')'+valor);
-//
-//     // $('#cke_desc_itinerario_'+pid).html('');
-//     //alert('text_descripcion_'+pid);
-//
-//     // CKEDITOR.replace( 'text_descripcion_'+pid );
-// }
-// function poner_valor(){
-//
-//     console.log('estamos poniendo los datos de en ('+id+'_'+titulo+')'+valor);
-//     // var editor = CKEDITOR.instances['#desc_itinerario_'+id];
-//     // if (editor) { editor.destroy(true); }
-//     $('#cke_desc_itinerario_'+id).html(valor);
-//
-//      CKEDITOR.replace('#desc_itinerario_'+id);
-//     //alert(valor);
-//
-// }
+var valor='';
+function Pasar_datos(pid,pdia,ptitulo){
+    id=pid;
+    dia=pdia;
+    titulo=ptitulo;
+    var frame = document.getElementById('desc_itinerario_'+id+'_ifr');
+    if(frame.contentDocument)
+        valor = frame.contentDocument.getElementsByTagName('html')[0];
+    else if(frame.contentWindow)
+        valor = frame.contentWindow.document.getElementsByTagName('html')[0];
+
+    console.log('Cuando el raton para por encima: '+valor.innerHTML);
+    //valor=$('#desc_itinerario_'+id+'_ifr');
+    // console.log('estamos sacando los datos de ('+id+'_'+ptitulo+')'+valor);
+
+    // $('#cke_desc_itinerario_'+pid).html('');
+    //alert('text_descripcion_'+pid);
+
+    // CKEDITOR.replace( 'text_descripcion_'+pid );
+}
+function poner_valor(){
+
+    console.log('Cuando el raton se suelta: '+valor);
+    // var editor = CKEDITOR.instances['#desc_itinerario_'+id];
+    // if (editor) { editor.destroy(true); }
+    var frame = document.getElementById('desc_itinerario_'+id+'_ifr');
+    frame.contentDocument.getElementsByTagName('html')[0]=valor;
+    // $('#desc_itinerario_'+id+'_ifr').html(valor);
+    // tinymce.init({ selector:'textarea' });
+     // CKEDITOR.replace('#desc_itinerario_'+id);
+    //alert(valor);
+
+}

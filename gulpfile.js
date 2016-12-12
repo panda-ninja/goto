@@ -39,7 +39,7 @@ elixir(function(mix) {
         'vendors/perfect-scrollbar.css',
         'vendors/jquery-jvectormap.css',
         'vendors/chartist.min.css',
-        'vendors/nestable.css'
+        // 'vendors/nestable.css'
     ], 'public/css/admin-theme.css');
 
     mix.styles([
@@ -95,7 +95,7 @@ elixir(function(mix) {
         // 'vendors/vectormap-script.js',
         <!--google map-->
         // 'vendors/google-map-script.js',
-        'resources/assets/js/vendors/jquery.nestable.js',
+        // 'resources/assets/js/vendors/jquery.nestable.js',
     ], 'public/js/admin-app.js');
 
     mix.styles([
