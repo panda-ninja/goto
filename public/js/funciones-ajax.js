@@ -1,5 +1,5 @@
 
-tinymce.init({ selector:'textarea' });
+// tinymce.init({ selector:'textarea' });
 
 $("#btnBuscar_pqt").click(function(){
     $.ajaxSetup({

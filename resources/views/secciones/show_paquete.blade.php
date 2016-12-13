@@ -1,8 +1,8 @@
 
 <link href="{{asset('css/admin-theme.css')}}" type="text/css" rel="stylesheet" media="screen,projection"/>
 <script type="text/javascript" src="{{URL::to('js/funciones_cotizacion.js')}}"></script>
-<script>tinymce.init({ selector:'textarea-plan-itinerario' });</script>
-
+{{--<script>tinymce.init({ selector:'textarea-plan-itinerario' });</script>--}}
+<script type="text/javascript">bkLib.onDomLoaded(nicEditors.allTextAreas);</script>
 <?php
 $Paquete='';
 ?>
@@ -25,7 +25,7 @@ $Paquete='';
     <div class="row">
         <form action="" method="post" enctype="multipart/form-data">
             <div class="input-field col s12 m6 l6">
-                <textarea name="text_descripcion" id="">{{$Paquete->descripcion}}</textarea>
+                <textarea name="text_descripcion" id="text_descripcion">{{$Paquete->descripcion}}</textarea>
                 {{--<script>--}}
                     {{--CKEDITOR.replace( 'text_descripcion' );--}}
                 {{--</script>--}}
@@ -140,7 +140,7 @@ $Paquete='';
                 {{--</div>--}}
             {{--</div>--}}
 
-           <ul  onmouseup="poner_valor()" id="task-card" class="lista_itinerario collection with-header collapsible "  data-collapsible="accordion">
+           <ul  id="task-card" class="lista_itinerario collection with-header collapsible "  data-collapsible="accordion">
                 <li class="collection-header cyan" data-id="40">
                     <div class="row">
                         <h4 class="task-card-title">Itinerario:</h4>
@@ -167,14 +167,14 @@ $Paquete='';
                     </div>
                 </li>
                 <?php $j=0;?>
-               <li  onmouseup="poner_valor()">
-               <div class="column" onmouseup="poner_valor()">
+               <li>
+               <div class="column"  onmouseup="poner_valor()">
 
                     @foreach($Paquete->itinerario as $itinerario)
                         <?php $j++;?>
                             <div class="portlet">
-                                <div class="portlet-header"  onmouseover="Pasar_datos('{{$j}}','{{$j}}','{{$itinerario->titulo}}')"><span class="cursor-move">DAY {{$itinerario->dia}}: {{$itinerario->titulo}}</span></div>
-                                <div class="portlet-content">
+                                <div class="portlet-header"  onmousedown="Pasar_datos('{{$j}}','{{$j}}','{{$itinerario->titulo}}')"><span class="cursor-move">DAY {{$itinerario->dia}}: {{$itinerario->titulo}}</span></div>
+                                <div class="portlet-content" onmouseenter="estado_edicion(1)" onmouseleave="estado_edicion(0)">
                                     <div class="row">
                                         <div class="col s2"><input type="text" value="DAY" disabled></div>
                                         <div class="col s2 ">
@@ -186,7 +186,7 @@ $Paquete='';
                                                 </span>
                                         </div>
                                     </div>
-                                    <textarea class="textarea-plan-itinerario" name="desc_itinerario" id="desc_itinerario_{{$j}}" cols="30" rows="10" >
+                                    <textarea class="textarea_plan_itinerario" name="desc_itinerario" id="desc_itinerario_{{$j}}" cols="30" rows="10" >
                                             {{$itinerario->descripcion}}
                                         </textarea>
                                     {{--<script>--}}

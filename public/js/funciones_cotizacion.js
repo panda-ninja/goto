@@ -1,4 +1,4 @@
-tinymce.init({ selector:'textarea' });
+ tinymce.init({ selector:'textarea' });
 $( function() {
     $( ".column" ).sortable({
         connectWith: ".column",
@@ -105,37 +105,74 @@ $('#borrar_itinerario').click(function(){
     }
 );
 
-var valor='';
-function Pasar_datos(pid,pdia,ptitulo){
-    id=pid;
-    dia=pdia;
-    titulo=ptitulo;
-    var frame = document.getElementById('desc_itinerario_'+id+'_ifr');
-    if(frame.contentDocument)
-        valor = frame.contentDocument.getElementsByTagName('html')[0];
-    else if(frame.contentWindow)
-        valor = frame.contentWindow.document.getElementsByTagName('html')[0];
+var valor_head='';
+var valor_body='';
 
-    console.log('Cuando el raton para por encima: '+valor.innerHTML);
-    //valor=$('#desc_itinerario_'+id+'_ifr');
-    // console.log('estamos sacando los datos de ('+id+'_'+ptitulo+')'+valor);
+function Pasar_datos(pid,pdia,ptitulo) {
+    id = pid;
+    dia = pdia;
+    titulo = ptitulo;
+    // var frame = document.getElementById('desc_itinerario_' + id + '_ifr');
+    // if (frame.contentDocument){
+    //     valor_head = frame.contentDocument.getElementsByTagName('head')[0];
+    //     // valor_body= frame.contentDocument.getElementsByTagName('body')[0];
+    // } else if (frame.contentWindow) {
+    //     valor_head = frame.contentWindow.document.getElementsByTagName('head')[0];
+    //     // valor_body= frame.contentWindow.document.getElementsByTagName('body')[0];
+    // }
+    // console.log('Cuando el raton para por encima: '+valor_head.innerHTML);
 
-    // $('#cke_desc_itinerario_'+pid).html('');
-    //alert('text_descripcion_'+pid);
 
-    // CKEDITOR.replace( 'text_descripcion_'+pid );
+    var $frame = $('#desc_itinerario_' + id + '_ifr');
+    setTimeout( function() {
+
+        var doc = $frame[0].contentWindow.document;
+        var $head = $('head',doc);
+        valor_head=$head.html();
+        var $body = $('body',doc);
+        valor_body=$body.html();
+    }, 1 );
+
+    console.log('click head: '+valor_head);
+    console.log('click body: '+valor_body);
 }
+var esta_en_edicion=0;
 function poner_valor(){
+    // console.log('Cuando se suelta el ratón: '+valor_head.innerHTML);
+    // var frame = document.getElementById('desc_itinerario_'+id+'_ifr');
+    // frame.contentDocument.getElementsByTagName('head')[0]='holaaaaaaaaaaaaaaaaa';
+     if(esta_en_edicion==0) {
+        var $frame = $('#desc_itinerario_' + id + '_ifr');
+        setTimeout(function () {
+            var doc = $frame[0].contentWindow.document;
+            // doc.html="<!DOCTYPE html>";
+            var $head = $('head',doc);
+            $head.html(valor_head);
+            var $body = $('body', doc);
+            $body.html(valor_body);
+            $body.attr('id','tinymce');
+            $body.addClass('mce-content-body');
+            $body.attr('data-id','desc_itinerario_'+id);
+            $body.attr('contentEditable','true');
+            // $head.html(valor_head);
 
-    console.log('Cuando el raton se suelta: '+valor);
-    // var editor = CKEDITOR.instances['#desc_itinerario_'+id];
-    // if (editor) { editor.destroy(true); }
-    var frame = document.getElementById('desc_itinerario_'+id+'_ifr');
-    frame.contentDocument.getElementsByTagName('html')[0]=valor;
-    // $('#desc_itinerario_'+id+'_ifr').html(valor);
-    // tinymce.init({ selector:'textarea' });
-     // CKEDITOR.replace('#desc_itinerario_'+id);
-    //alert(valor);
+        }, 1);
+        console.log('soltar head: '+valor_head);
+        console.log('soltar body: '+valor_body);
+        getScript('//cdn.tinymce.com/4/tinymce.min.js');
+     }
+    // document.write("<script type='text/javascript' src='//cdn.tinymce.com/4/tinymce.min.js'></script>");
+    // importarScript("//cdn.tinymce.com/4/tinymce.min.js");
+// <script type="text/javascript">bkLib.onDomLoaded(nicEditors.allTextAreas);</script>
 
 }
+
+ function estado_edicion(valor){
+     esta_en_edicion=valor;
+     if(esta_en_edicion==1)
+        console.log('Si esta en edicion');
+     else if(esta_en_edicion==0)
+         console.log('No esta en edicion');
+
+ }
 //# sourceMappingURL=funciones_cotizacion.js.map

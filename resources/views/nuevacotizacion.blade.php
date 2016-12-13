@@ -165,11 +165,13 @@
         <!--end container-->
 @stop
 @section('scripts')
+    {{--<script src="//cdn.ckeditor.com/4.6.0/standard/ckeditor.js"></script>--}}
     <script src="//cdn.tinymce.com/4/tinymce.min.js"></script>
-    <script>tinymce.init({ selector:'textarea' });</script>
+    {{--<script src="http://js.nicedit.com/nicEdit-latest.js" type="text/javascript"></script>--}}
+    {{--<script>tinymce.init({ selector:'textarea' });</script>--}}
     <script type="text/javascript" src="{{URL::to('js/sweetalert.js')}}"></script>
     <link href="{{asset('css/sweetalert.css')}}" type="text/css" rel="stylesheet" media="screen,projection"/>
-    {{--<script src="//cdn.ckeditor.com/4.6.0/standard/ckeditor.js"></script>--}}
+
     {{--<script src="//cdn.tinymce.com/4/tinymce.min.js"></script>--}}
     <script type="text/javascript" src="{{URL::to('js/funciones-ajax.js')}}"></script>
     <link href="{{asset('css/notification.css')}}" type="text/css" rel="stylesheet" media="screen,projection"/>
