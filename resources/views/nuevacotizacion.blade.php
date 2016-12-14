@@ -1,6 +1,10 @@
 @extends('layouts.admin')
 @section('scripts_textarea')
-    <script src="//cdn.tinymce.com/4/tinymce.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.3.0/codemirror.min.css">
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/at.js/1.4.0/js/jquery.atwho.min.js"></script>
+    {{--<script src="//cdn.tinymce.com/4/tinymce.min.js"></script>--}}
+    {{--<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/at.js/1.4.0/css/jquery.atwho.min.css">--}}
+
     {{--<script>tinymce.init({ selector:'textarea' });</script>--}}
 @endsection
 @section('content')
@@ -166,7 +170,7 @@
 @stop
 @section('scripts')
     {{--<script src="//cdn.ckeditor.com/4.6.0/standard/ckeditor.js"></script>--}}
-    <script src="//cdn.tinymce.com/4/tinymce.min.js"></script>
+    {{--<script src="//cdn.tinymce.com/4/tinymce.min.js"></script>--}}
     {{--<script src="http://js.nicedit.com/nicEdit-latest.js" type="text/javascript"></script>--}}
     {{--<script>tinymce.init({ selector:'textarea' });</script>--}}
     <script type="text/javascript" src="{{URL::to('js/sweetalert.js')}}"></script>
@@ -177,5 +181,6 @@
     <link href="{{asset('css/notification.css')}}" type="text/css" rel="stylesheet" media="screen,projection"/>
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
     <link href="{{asset('css/acordeon-sorteable.css')}}" type="text/css" rel="stylesheet" media="screen,projection"/>
+    {{--<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/at.js/1.4.0/css/jquery.atwho.min.css">--}}
 
 @endsection

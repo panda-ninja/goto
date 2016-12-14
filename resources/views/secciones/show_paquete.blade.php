@@ -1,8 +1,9 @@
 
 <link href="{{asset('css/admin-theme.css')}}" type="text/css" rel="stylesheet" media="screen,projection"/>
 <script type="text/javascript" src="{{URL::to('js/funciones_cotizacion.js')}}"></script>
+
 {{--<script>tinymce.init({ selector:'textarea-plan-itinerario' });</script>--}}
-<script type="text/javascript">bkLib.onDomLoaded(nicEditors.allTextAreas);</script>
+{{--<script type="text/javascript">bkLib.onDomLoaded(nicEditors.allTextAreas);</script>--}}
 <?php
 $Paquete='';
 ?>
@@ -25,7 +26,8 @@ $Paquete='';
     <div class="row">
         <form action="" method="post" enctype="multipart/form-data">
             <div class="input-field col s12 m6 l6">
-                <textarea name="text_descripcion" id="text_descripcion">{{$Paquete->descripcion}}</textarea>
+                {{--<textarea name="text_descripcion" id="text_descripcion">{{$Paquete->descripcion}}</textarea>--}}
+                <div id="froala-editor">{{$Paquete->descripcion}}</div>
                 {{--<script>--}}
                     {{--CKEDITOR.replace( 'text_descripcion' );--}}
                 {{--</script>--}}
@@ -186,9 +188,13 @@ $Paquete='';
                                                 </span>
                                         </div>
                                     </div>
-                                    <textarea class="textarea_plan_itinerario" name="desc_itinerario" id="desc_itinerario_{{$j}}" cols="30" rows="10" >
+                                    {{--<textarea class="textarea_plan_itinerario" name="desc_itinerario" id="desc_itinerario_{{$j}}" cols="30" rows="10" >--}}
+                                            {{--{{$itinerario->descripcion}}--}}
+                                    {{--</textarea>--}}
+                                    <div id="froala-editor" >
                                             {{$itinerario->descripcion}}
-                                        </textarea>
+                                    </div>
+
                                     {{--<script>--}}
                                         {{--CKEDITOR.replace( 'desc_itinerario_{{$j}}' );--}}
                                     {{--</script>--}}
@@ -196,7 +202,6 @@ $Paquete='';
                             </div>
 
                     @endforeach
-
                </div>
                </li>
 
@@ -207,3 +212,39 @@ $Paquete='';
 
     </div>
 </div>
+<!-- Include At.JS javascript. -->
+
+<script>
+    $(function() {
+        // Define data source for At.JS.
+        var datasource = ["Jacob", "Isabella", "Ethan", "Emma", "Michael", "Olivia" ];
+
+        // Build data to be used in At.JS config.
+        var names = $.map(datasource, function (value, i) {
+            return {
+                'id': i, 'name': value, 'email': value + "@email.com"
+            };
+        });
+
+        // Define config for At.JS.
+        var config = {
+            at: "@",
+            data: names,
+            displayTpl: '<li>${name} <small>${email}</small></li>',
+            limit: 200
+        }
+
+        // Initialize editor.
+        $('#froala-editor')
+                .on('froalaEditor.initialized', function (e, editor) {
+                    editor.$el.atwho(config);
+
+                    editor.events.on('keydown', function (e) {
+                        if (e.which == $.FroalaEditor.KEYCODE.ENTER && editor.$el.atwho('isSelecting')) {
+                            return false;
+                        }
+                    }, true);
+                })
+                .froalaEditor()
+    });
+</script>

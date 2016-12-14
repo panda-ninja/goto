@@ -1,4 +1,4 @@
- tinymce.init({ selector:'textarea' });
+ // tinymce.init({ selector:'textarea' });
 $( function() {
     $( ".column" ).sortable({
         connectWith: ".column",
@@ -77,7 +77,7 @@ $('#agregar_dia').click(function(){
         '</textarea>'+
         '  </div>'+
         ' </li>');
-    CKEDITOR.replace( 'desc_itinerario_'+nro_iti);
+    // CKEDITOR.replace( 'desc_itinerario_'+nro_iti);
     // importarScript("//cdn.tinymce.com/4/tinymce.min.js");
 });
 var dia=0;
@@ -159,7 +159,7 @@ function poner_valor(){
         }, 1);
         console.log('soltar head: '+valor_head);
         console.log('soltar body: '+valor_body);
-        getScript('//cdn.tinymce.com/4/tinymce.min.js');
+        // getScript('//cdn.tinymce.com/4/tinymce.min.js');
      }
     // document.write("<script type='text/javascript' src='//cdn.tinymce.com/4/tinymce.min.js'></script>");
     // importarScript("//cdn.tinymce.com/4/tinymce.min.js");
