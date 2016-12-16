@@ -107,34 +107,31 @@ $('#borrar_itinerario').click(function(){
 
 var valor_head='';
 var valor_body='';
+ var valor_html='';
 
 function Pasar_datos(pid,pdia,ptitulo) {
     id = pid;
     dia = pdia;
     titulo = ptitulo;
-    // var frame = document.getElementById('desc_itinerario_' + id + '_ifr');
-    // if (frame.contentDocument){
-    //     valor_head = frame.contentDocument.getElementsByTagName('head')[0];
-    //     // valor_body= frame.contentDocument.getElementsByTagName('body')[0];
-    // } else if (frame.contentWindow) {
-    //     valor_head = frame.contentWindow.document.getElementsByTagName('head')[0];
-    //     // valor_body= frame.contentWindow.document.getElementsByTagName('body')[0];
-    // }
-    // console.log('Cuando el raton para por encima: '+valor_head.innerHTML);
 
-
-    var $frame = $('#desc_itinerario_' + id + '_ifr');
+    var $frame = $('#desc_itinerario_' + id);
     setTimeout( function() {
 
-        var doc = $frame[0].contentWindow.document;
-        var $head = $('head',doc);
-        valor_head=$head.html();
-        var $body = $('body',doc);
-        valor_body=$body.html();
+        // var doc = $frame[0].contentWindow.document;
+        // var $head = $('head',doc);
+        // valor_head=$head.html();
+        // var $body = $('body',doc);
+        // valor_body=$body.html();
+        var doc = $frame;
+        // var $html = $('html',doc);
+        valor_html=doc.html();
+
     }, 1 );
 
-    console.log('click head: '+valor_head);
-    console.log('click body: '+valor_body);
+    // console.log('click head: '+valor_head);
+    // console.log('click body: '+valor_body);
+    console.log('click html: '+valor_html);
+
 }
 var esta_en_edicion=0;
 function poner_valor(){
@@ -142,24 +139,29 @@ function poner_valor(){
     // var frame = document.getElementById('desc_itinerario_'+id+'_ifr');
     // frame.contentDocument.getElementsByTagName('head')[0]='holaaaaaaaaaaaaaaaaa';
      if(esta_en_edicion==0) {
-        var $frame = $('#desc_itinerario_' + id + '_ifr');
+        var $frame = $('#desc_itinerario_' + id);
         setTimeout(function () {
-            var doc = $frame[0].contentWindow.document;
+            var doc = $frame;
             // doc.html="<!DOCTYPE html>";
-            var $head = $('head',doc);
-            $head.html(valor_head);
-            var $body = $('body', doc);
-            $body.html(valor_body);
-            $body.attr('id','tinymce');
-            $body.addClass('mce-content-body');
-            $body.attr('data-id','desc_itinerario_'+id);
-            $body.attr('contentEditable','true');
+            // var $head = $('head',doc);
+            // $head.html(valor_head);
+            // var $body = $('body', doc);
+            // $body.html(valor_body);
+            // var $html= $('html', doc);
+            // doc.html(valor_html);
+
+            // $body.attr('id','tinymce');
+            // $body.addClass('mce-content-body');
+            // $body.attr('data-id','desc_itinerario_'+id);
+            // $body.attr('contentEditable','true');
             // $head.html(valor_head);
 
         }, 1);
-        console.log('soltar head: '+valor_head);
-        console.log('soltar body: '+valor_body);
-        // getScript('//cdn.tinymce.com/4/tinymce.min.js');
+        // console.log('soltar head: '+valor_head);
+        // console.log('soltar body: '+valor_body);
+         console.log('soltar body: '+valor_html);
+         ordenar_lista_dias();
+         // getScript('//cdn.tinymce.com/4/tinymce.min.js');
      }
     // document.write("<script type='text/javascript' src='//cdn.tinymce.com/4/tinymce.min.js'></script>");
     // importarScript("//cdn.tinymce.com/4/tinymce.min.js");
@@ -173,6 +175,16 @@ function poner_valor(){
         console.log('Si esta en edicion');
      else if(esta_en_edicion==0)
          console.log('No esta en edicion');
-
  }
+
+ function ordenar_lista_dias(){
+     var nroiti=$('#nroItis').val();
+     console.log('nro dias: '+nroiti);
+     for(var i=1;i<=nroiti;i++){
+        $('#pos_dia_'+i).html(i);
+         console.log('ordenando: pos='+i);
+     }
+ }
+
+
 //# sourceMappingURL=funciones_cotizacion.js.map

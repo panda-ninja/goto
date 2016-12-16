@@ -1,6 +1,11 @@
 
 <link href="{{asset('css/admin-theme.css')}}" type="text/css" rel="stylesheet" media="screen,projection"/>
 <script type="text/javascript" src="{{URL::to('js/funciones_cotizacion.js')}}"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.3.0/codemirror.min.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.3.0/mode/xml/xml.min.js"></script>
+<script type="text/javascript" src="{{URL::to('js/funciones_froala.js')}}"></script>
+
 
 {{--<script>tinymce.init({ selector:'textarea-plan-itinerario' });</script>--}}
 {{--<script type="text/javascript">bkLib.onDomLoaded(nicEditors.allTextAreas);</script>--}}
@@ -26,8 +31,14 @@ $Paquete='';
     <div class="row">
         <form action="" method="post" enctype="multipart/form-data">
             <div class="input-field col s12 m6 l6">
-                {{--<textarea name="text_descripcion" id="text_descripcion">{{$Paquete->descripcion}}</textarea>--}}
-                <div id="froala-editor">{{$Paquete->descripcion}}</div>
+                <div name="text_descripcion" id="text_descripcion">{{$Paquete->descripcion}}</div>
+                <script>
+                    $(function(){
+                        $('#text_descripcion').froalaEditor({
+                            iframe: true
+                        })
+                    });
+                </script>
                 {{--<script>--}}
                     {{--CKEDITOR.replace( 'text_descripcion' );--}}
                 {{--</script>--}}
@@ -175,7 +186,7 @@ $Paquete='';
                     @foreach($Paquete->itinerario as $itinerario)
                         <?php $j++;?>
                             <div class="portlet">
-                                <div class="portlet-header"  onmousedown="Pasar_datos('{{$j}}','{{$j}}','{{$itinerario->titulo}}')"><span class="cursor-move">DAY {{$itinerario->dia}}: {{$itinerario->titulo}}</span></div>
+                                <div class="portlet-header"  onmousedown="Pasar_datos('{{$j}}','{{$j}}','{{$itinerario->titulo}}')"><span class="cursor-move">DAY <span id="pos_dia_{{$j}}">{{$itinerario->dia}}</span>: {{$itinerario->titulo}}</span></div>
                                 <div class="portlet-content" onmouseenter="estado_edicion(1)" onmouseleave="estado_edicion(0)">
                                     <div class="row">
                                         <div class="col s2"><input type="text" value="DAY" disabled></div>
@@ -191,10 +202,16 @@ $Paquete='';
                                     {{--<textarea class="textarea_plan_itinerario" name="desc_itinerario" id="desc_itinerario_{{$j}}" cols="30" rows="10" >--}}
                                             {{--{{$itinerario->descripcion}}--}}
                                     {{--</textarea>--}}
-                                    <div id="froala-editor" >
-                                            {{$itinerario->descripcion}}
+                                    <div  name="desc_itinerario" id="desc_itinerario_{{$j}}"  >
+                                    <?php echo $itinerario->descripcion;?>
                                     </div>
-
+                                    <script>
+                                        $(function(){
+                                            $('#desc_itinerario_{{$j}}').froalaEditor({
+                                                iframe: false
+                                            })
+                                        });
+                                    </script>
                                     {{--<script>--}}
                                         {{--CKEDITOR.replace( 'desc_itinerario_{{$j}}' );--}}
                                     {{--</script>--}}
@@ -212,39 +229,4 @@ $Paquete='';
 
     </div>
 </div>
-<!-- Include At.JS javascript. -->
 
-<script>
-    $(function() {
-        // Define data source for At.JS.
-        var datasource = ["Jacob", "Isabella", "Ethan", "Emma", "Michael", "Olivia" ];
-
-        // Build data to be used in At.JS config.
-        var names = $.map(datasource, function (value, i) {
-            return {
-                'id': i, 'name': value, 'email': value + "@email.com"
-            };
-        });
-
-        // Define config for At.JS.
-        var config = {
-            at: "@",
-            data: names,
-            displayTpl: '<li>${name} <small>${email}</small></li>',
-            limit: 200
-        }
-
-        // Initialize editor.
-        $('#froala-editor')
-                .on('froalaEditor.initialized', function (e, editor) {
-                    editor.$el.atwho(config);
-
-                    editor.events.on('keydown', function (e) {
-                        if (e.which == $.FroalaEditor.KEYCODE.ENTER && editor.$el.atwho('isSelecting')) {
-                            return false;
-                        }
-                    }, true);
-                })
-                .froalaEditor()
-    });
-</script>
