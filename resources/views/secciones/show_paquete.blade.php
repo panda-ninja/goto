@@ -186,7 +186,7 @@ $Paquete='';
                     @foreach($Paquete->itinerario as $itinerario)
                         <?php $j++;?>
                             <div class="portlet">
-                                <div class="portlet-header"  onmousedown="Pasar_datos('{{$j}}','{{$j}}','{{$itinerario->titulo}}')"><span class="cursor-move">DAY <span id="pos_dia_{{$j}}">{{$itinerario->dia}}</span>: {{$itinerario->titulo}}</span></div>
+                                <div class="portlet-header"  onmousedown="Pasar_datos('{{$j}}','{{$j}}','{{$itinerario->titulo}}')"><span class="cursor-move">DAY <span class="pos_iti" name="posdia[]" id="pos_dia_{{$j}}">{{$itinerario->dia}}</span>: {{$itinerario->titulo}}</span></div>
                                 <div class="portlet-content" onmouseenter="estado_edicion(1)" onmouseleave="estado_edicion(0)">
                                     <div class="row">
                                         <div class="col s2"><input type="text" value="DAY" disabled></div>

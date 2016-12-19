@@ -160,8 +160,12 @@ function poner_valor(){
         // console.log('soltar head: '+valor_head);
         // console.log('soltar body: '+valor_body);
          console.log('soltar body: '+valor_html);
-         ordenar_lista_dias();
+
          // getScript('//cdn.tinymce.com/4/tinymce.min.js');
+         setTimeout(function () {
+             ordenar_lista_dias();
+
+         }, 1);
      }
     // document.write("<script type='text/javascript' src='//cdn.tinymce.com/4/tinymce.min.js'></script>");
     // importarScript("//cdn.tinymce.com/4/tinymce.min.js");
@@ -180,9 +184,11 @@ function poner_valor(){
  function ordenar_lista_dias(){
      var nroiti=$('#nroItis').val();
      console.log('nro dias: '+nroiti);
-     for(var i=1;i<=nroiti;i++){
-        $('#pos_dia_'+i).html(i);
-         console.log('ordenando: pos='+i);
-     }
+     var pos=1;
+     $(".pos_iti").each(function(){
+         $(this).html('nro:'+pos);
+         pos=pos+1;
+         console.log('se asigno: '+pos);
+     });
  }
 
