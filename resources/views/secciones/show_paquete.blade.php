@@ -1,9 +1,10 @@
 
 <link href="{{asset('css/admin-theme.css')}}" type="text/css" rel="stylesheet" media="screen,projection"/>
 <script type="text/javascript" src="{{URL::to('js/funciones_cotizacion.js')}}"></script>
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+{{--<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>--}}
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.3.0/codemirror.min.js"></script>
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.3.0/mode/xml/xml.min.js"></script>
+
 <script type="text/javascript" src="{{URL::to('js/funciones_froala.js')}}"></script>
 
 
@@ -29,14 +30,24 @@ $Paquete='';
     </div>
     <hr>
     <div class="row">
-        <form action="" method="post" enctype="multipart/form-data">
+        <form action="" method="post" >
             <div class="input-field col s12 m6 l6">
-                <div name="text_descripcion" id="text_descripcion">{{$Paquete->descripcion}}</div>
+                <textarea name="text_descripcion" id="text_descripcion">{{$Paquete->descripcion}}</textarea>
                 <script>
+//                    $(function(){
+//                        $('#text_descripcion').froalaEditor({
+//                            iframe: true
+//                        })
+//                    });
                     $(function(){
-                        $('#text_descripcion').froalaEditor({
-                            iframe: true
-                        })
+                        $('#text_descripcion')
+                                .on('froalaEditor.initialized', function (e, editor) {
+                                    $('#text_descripcion').parents('form').on('submit', function () {
+//                                        console.log($('#text_descripcion').val());
+//                                        return false;
+                                    })
+                                })
+                                .froalaEditor({iframe:false,enter: $.FroalaEditor.ENTER_P, placeholderText: null})
                     });
                 </script>
                 {{--<script>--}}
@@ -189,35 +200,29 @@ $Paquete='';
                                 <div class="portlet-header"  onmousedown="Pasar_datos('{{$j}}','{{$j}}','{{$itinerario->titulo}}')"><span class="cursor-move">DAY <span class="pos_iti" name="posdia[]" id="pos_dia_{{$j}}">{{$itinerario->dia}}</span>: {{$itinerario->titulo}}</span></div>
                                 <div class="portlet-content" onmouseenter="estado_edicion(1)" onmouseleave="estado_edicion(0)">
                                     <div class="row">
-                                        <div class="col s2"><input type="text" value="DAY" disabled></div>
-                                        <div class="col s2 ">
-                                            <input name="dia_itinerario" id="dia_itinerario" type="text" value="{{$itinerario->dia}}">
-                                        </div>
-                                        <div class="col s8">
+                                        <div class="col s12">
                                                 <span class="grey-text text-darken-3">
-                                                    <input name="titulo_itinerario" id="titulo_itinerario" type="text" value="{{$itinerario->titulo}}">
+                                                    <input name="titulo_itinerario[]" id="titulo_itinerario" type="text" value="{{$itinerario->titulo}}">
                                                 </span>
                                         </div>
                                     </div>
-                                    {{--<textarea class="textarea_plan_itinerario" name="desc_itinerario" id="desc_itinerario_{{$j}}" cols="30" rows="10" >--}}
-                                            {{--{{$itinerario->descripcion}}--}}
-                                    {{--</textarea>--}}
-                                    <div  name="desc_itinerario" id="desc_itinerario_{{$j}}"  >
+                                    <textarea  name="desc_itinerario[]" id="desc_itinerario_{{$j}}"  >
                                     <?php echo $itinerario->descripcion;?>
-                                    </div>
-                                    <script>
-                                        $(function(){
-                                            $('#desc_itinerario_{{$j}}').froalaEditor({
-                                                iframe: false
-                                            })
-                                        });
-                                    </script>
-                                    {{--<script>--}}
-                                        {{--CKEDITOR.replace( 'desc_itinerario_{{$j}}' );--}}
-                                    {{--</script>--}}
+                                    </textarea>
                                 </div>
                             </div>
-
+                            <script>
+                                $(function(){
+                                    $('#desc_itinerario_{{$j}}')
+                                            .on('froalaEditor.initialized', function (e, editor) {
+                                                $('#desc_itinerario_{{$j}}').parents('form').on('submit', function () {
+                                                    {{--console.log($('#desc_itinerario_{{$j}}').val());--}}
+//                                                    return false;
+                                                })
+                                            })
+                                            .froalaEditor({iframe:false,enter: $.FroalaEditor.ENTER_P, placeholderText: null})
+                                });
+                            </script>
                     @endforeach
                </div>
                </li>
@@ -229,4 +234,5 @@ $Paquete='';
 
     </div>
 </div>
+
 

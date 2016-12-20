@@ -59,27 +59,32 @@ var nro_iti=0;
 $('#agregar_dia').click(function(){
     var total=$('#nroItis').val();
     nro_iti=parseInt(total)+1;
-    $('.lista_itinerario').append('<li id="Itine_'+nro_iti+'" onclick="Pasar_datos(\''+nro_iti+'\',\''+nro_iti+'\',\'Nuevo registro\')">'+
-        '<div class="collapsible-header"> DAY '+nro_iti+': <span class="grey-text text-darken-3">Nuevo registro</span></div>'+
-        '<div class="collapsible-body">'+
-        '<div class="row">'+
-        ' <div class="col s2"><input type="text" value="DAY" disabled></div>'+
-        '<div class="col s2 ">'+
-        '  <input name="dia_itinerario" id="dia_itinerario" type="text" value="">'+
-        '  </div>'+
-        '  <div class="col s8">'+
-        '  <span class="grey-text text-darken-3">'+
-        ' <input name="titulo_itinerario" id="titulo_itinerario" type="text" value="">'+
-        '  </span>'+
-        '</div>'+
-        '  </div>'+
-        '<textarea name="desc_itinerario" id="desc_itinerario_'+nro_iti+'" cols="30" rows="10">'+
-        '</textarea>'+
-        '  </div>'+
-        ' </li>');
-    // CKEDITOR.replace( 'desc_itinerario_'+nro_iti);
-    // importarScript("//cdn.tinymce.com/4/tinymce.min.js");
+    $('.lista_itinerario').append('' +
+        '<div class="portlet">'+
+        '<div class="portlet-header"  onmousedown="Pasar_datos(\''+nro_iti+'\',\''+nro_iti+'\',\'Dia nuevo\')"><span class="cursor-move">DAY <span class="pos_iti" name="posdia[]" id="pos_dia_'+nro_iti+'">'+nro_iti+'</span>: Dia nuevo </span></div>'+
+    '<div class="portlet-content" onmouseenter="estado_edicion(1)" onmouseleave="estado_edicion(0)">'+
+    '<div class="row">'+
+    '<div class="col s12">'+
+    '<span class="grey-text text-darken-3">'+
+    '<input name="titulo_itinerario[]" id="titulo_itinerario" type="text">'+
+    '</span>'+
+    '</div>'+
+    '</div>'+
+    '<textarea  name="desc_itinerario[]" id="desc_itinerario_'+nro_iti+'"  >'+
+    '</textarea>'+
+    '</div>'+
+    '</div>');
+    $(function(){
+        $('#desc_itinerario_'+nro_iti)
+            .on('froalaEditor.initialized', function (e, editor) {
+                $('#desc_itinerario_'+nro_iti).parents('form').on('submit', function () {
+
+                })
+            })
+            .froalaEditor({iframe:false,enter: $.FroalaEditor.ENTER_P, placeholderText: null})
+    });
 });
+
 var dia=0;
 var titulo=0;
 var id=0;
@@ -186,7 +191,7 @@ function poner_valor(){
      console.log('nro dias: '+nroiti);
      var pos=1;
      $(".pos_iti").each(function(){
-         $(this).html('nro:'+pos);
+         $(this).html(''+pos);
          pos=pos+1;
          console.log('se asigno: '+pos);
      });

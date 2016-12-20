@@ -186,7 +186,7 @@ function poner_valor(){
      console.log('nro dias: '+nroiti);
      var pos=1;
      $(".pos_iti").each(function(){
-         $(this).html('nro:'+pos);
+         $(this).html(''+pos);
          pos=pos+1;
          console.log('se asigno: '+pos);
      });

@@ -125,34 +125,26 @@ elixir(function(mix) {
     mix.scripts([
         'resources/assets/js/vendors/froala_editor.min.js',
         'resources/assets/js/vendors/plugins/align.min.js',
-        'resources/assets/js/vendors/plugins/char_counter.min.js',
         'resources/assets/js/vendors/plugins/code_beautifier.min.js',
         'resources/assets/js/vendors/plugins/code_view.min.js',
         'resources/assets/js/vendors/plugins/draggable.min.js',
-        'resources/assets/js/vendors/plugins/entities.min.js',
-        'resources/assets/js/vendors/plugins/font_family.min.js',
-        'resources/assets/js/vendors/plugins/font_size.min.js',
-        'resources/assets/js/vendors/plugins/inline_style.min.js',
-        'resources/assets/js/vendors/plugins/line_breaker.min.js',
+        'resources/assets/js/vendors/plugins/image.min.js',
+        'resources/assets/js/vendors/plugins/image_manager.min.js',
         'resources/assets/js/vendors/plugins/link.min.js',
         'resources/assets/js/vendors/plugins/lists.min.js',
         'resources/assets/js/vendors/plugins/paragraph_format.min.js',
         'resources/assets/js/vendors/plugins/paragraph_style.min.js',
-        'resources/assets/js/vendors/plugins/quick_insert.min.js',
-        'resources/assets/js/vendors/plugins/save.min.js',
         'resources/assets/js/vendors/plugins/table.min.js',
         'resources/assets/js/vendors/plugins/url.min.js',
-
+        'resources/assets/js/vendors/plugins/entities.min.js',
     ], 'public/js/funciones_froala.js');
     mix.styles([
         'resources/assets/css/vendors/froala_editor.css',
         'resources/assets/css/vendors/froala_style.css',
-        'resources/assets/css/vendors/plugins/code_view.min.css',
-        'resources/assets/css/vendors/plugins/draggable.min.css',
-        'resources/assets/css/vendors/plugins/line_breaker.min.css',
-        'resources/assets/css/vendors/plugins/quick_insert.min.css',
+        'resources/assets/css/vendors/plugins/code_view.css',
+        'resources/assets/css/vendors/plugins/image_manager.css',
+        'resources/assets/css/vendors/plugins/image.min.css',
         'resources/assets/css/vendors/plugins/table.min.css',
         'resources/assets/css/vendors/plugins/video.min.css'
-
     ], 'public/css/stilos_froala.css');
 });
