@@ -6634,6 +6634,9 @@ button.picker__today:focus, button.picker__clear:focus, button.picker__close:foc
 .text-40 {
   font-size: 40px; }
 
+.text-42 {
+  font-size: 42px; }
+
 .text-50 {
   font-size: 50px; }
 
@@ -6687,7 +6690,7 @@ nav ul li a {
   width: 90%; }
 
 .parallax-container-1 {
-  height: 450px;
+  height: 590px;
   background: rgba(0, 0, 0, 0.2); }
 
 .parallax-container-2 {
