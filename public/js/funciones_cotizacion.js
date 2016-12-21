@@ -1,5 +1,5 @@
  // tinymce.init({ selector:'textarea' });
-$( function() {
+function iniciacion(){
     $( ".column" ).sortable({
         connectWith: ".column",
         handle: ".portlet-header",
@@ -19,7 +19,11 @@ $( function() {
         icon.closest( ".portlet" ).find( ".portlet-content" ).toggle();
 
     });
+}
+ $( function() {
+     iniciacion();
 } );
+
 
 //
 // $('#nestable').nestable();
@@ -59,27 +63,39 @@ var nro_iti=0;
 $('#agregar_dia').click(function(){
     var total=$('#nroItis').val();
     nro_iti=parseInt(total)+1;
-    $('.lista_itinerario').append('<li id="Itine_'+nro_iti+'" onclick="Pasar_datos(\''+nro_iti+'\',\''+nro_iti+'\',\'Nuevo registro\')">'+
-        '<div class="collapsible-header"> DAY '+nro_iti+': <span class="grey-text text-darken-3">Nuevo registro</span></div>'+
-        '<div class="collapsible-body">'+
+    $('.lista_itinerario').append(''+
+        '<div class="portlet">'+
+        '<div class="portlet-header"  onmousedown="Pasar_datos(\''+nro_iti+'\',\''+nro_iti+'\',\''+nro_iti+'\')"><span class="cursor-move">DAY <span class="pos_iti" name="posdia[]" id="pos_dia_'+nro_iti+'">'+nro_iti+'</span>: <i id="titulo_'+nro_iti+'">TITULO</i></span></div>'+
+    '<div class="portlet-content" onmouseenter="estado_edicion(1)" onmouseleave="estado_edicion(0)">'+
         '<div class="row">'+
-        ' <div class="col s2"><input type="text" value="DAY" disabled></div>'+
-        '<div class="col s2 ">'+
-        '  <input name="dia_itinerario" id="dia_itinerario" type="text" value="">'+
-        '  </div>'+
-        '  <div class="col s8">'+
-        '  <span class="grey-text text-darken-3">'+
-        ' <input name="titulo_itinerario" id="titulo_itinerario" type="text" value="">'+
-        '  </span>'+
+        '<div class="col s12">'+
+        '<span class="grey-text text-darken-3">'+
+        '<input name="titulo_itinerario[]" id="titulo_itinerario_'+nro_iti+'" type="text" placeholder="Ingrese el titulo">'+
+        '</span>'+
         '</div>'+
-        '  </div>'+
-        '<textarea name="desc_itinerario" id="desc_itinerario_'+nro_iti+'" cols="30" rows="10">'+
+        '</div>'+
+        '<textarea  name="desc_itinerario[]" id="desc_itinerario_'+nro_iti+'">'+
         '</textarea>'+
-        '  </div>'+
-        ' </li>');
-    // CKEDITOR.replace( 'desc_itinerario_'+nro_iti);
-    // importarScript("//cdn.tinymce.com/4/tinymce.min.js");
+        '</div>'+
+        '</div>'+
+        '<script>'+
+        '$(function(){'+
+            '$(\'#desc_itinerario_'+nro_iti+'\')'+
+                '.on(\'froalaEditor.initialized\', function (e, editor) {'+
+                    '$(\'#desc_itinerario_'+nro_iti+'\').parents(\'form\').on(\'submit\', function () {'+
+                    '  })'+
+                '})'+
+                '.froalaEditor({iframe:false,enter: $.FroalaEditor.ENTER_P, placeholderText: null});'+
+            '$(\'#titulo_itinerario_'+nro_iti+'\').keypress(function() {'+
+            '$(\'#titulo_'+nro_iti+'\').html($(\'#titulo_itinerario_'+nro_iti+'\').val());'+
+            '});'+
+        '});'+
+    '</script>');
+    // iniciacion();
+
+
 });
+
 var dia=0;
 var titulo=0;
 var id=0;

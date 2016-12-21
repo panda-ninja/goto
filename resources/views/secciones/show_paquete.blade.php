@@ -3,7 +3,7 @@
 <script type="text/javascript" src="{{URL::to('js/funciones_cotizacion.js')}}"></script>
 {{--<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>--}}
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.3.0/codemirror.min.js"></script>
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.3.0/mode/xml/xml.min.js"></script>
+{{--<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.3.0/mode/xml/xml.min.js"></script>--}}
 
 <script type="text/javascript" src="{{URL::to('js/funciones_froala.js')}}"></script>
 
@@ -164,7 +164,7 @@ $Paquete='';
                 {{--</div>--}}
             {{--</div>--}}
 
-           <ul  id="task-card" class="lista_itinerario collection with-header collapsible "  data-collapsible="accordion">
+           <ul  id="task-card" class=" collection with-header collapsible "  data-collapsible="accordion">
                 <li class="collection-header cyan" data-id="40">
                     <div class="row">
                         <h4 class="task-card-title">Itinerario:</h4>
@@ -192,22 +192,22 @@ $Paquete='';
                 </li>
                 <?php $j=0;?>
                <li>
-               <div class="column"  onmouseup="poner_valor()">
+               <div class="column lista_itinerario"  onmouseup="poner_valor()">
 
                     @foreach($Paquete->itinerario as $itinerario)
                         <?php $j++;?>
                             <div class="portlet">
-                                <div class="portlet-header"  onmousedown="Pasar_datos('{{$j}}','{{$j}}','{{$itinerario->titulo}}')"><span class="cursor-move">DAY <span class="pos_iti" name="posdia[]" id="pos_dia_{{$j}}">{{$itinerario->dia}}</span>: {{$itinerario->titulo}}</span></div>
+                                <div class="portlet-header"  onmousedown="Pasar_datos('{{$j}}','{{$j}}','{{$itinerario->titulo}}')"><span class="cursor-move">DAY <span class="pos_iti" name="posdia[]" id="pos_dia_{{$j}}">{{$itinerario->dia}}</span>: <i id="titulo_{{$j}}">{{$itinerario->titulo}}</i></span></div>
                                 <div class="portlet-content" onmouseenter="estado_edicion(1)" onmouseleave="estado_edicion(0)">
                                     <div class="row">
                                         <div class="col s12">
                                                 <span class="grey-text text-darken-3">
-                                                    <input name="titulo_itinerario[]" id="titulo_itinerario" type="text" value="{{$itinerario->titulo}}">
+                                                    <input name="titulo_itinerario[]" id="titulo_itinerario_{{$j}}" type="text" placeholder="Ingrese el titulo" value="{{$itinerario->titulo}}">
                                                 </span>
                                         </div>
                                     </div>
                                     <textarea  name="desc_itinerario[]" id="desc_itinerario_{{$j}}"  >
-                                    <?php echo $itinerario->descripcion;?>
+
                                     </textarea>
                                 </div>
                             </div>
@@ -221,6 +221,10 @@ $Paquete='';
                                                 })
                                             })
                                             .froalaEditor({iframe:false,enter: $.FroalaEditor.ENTER_P, placeholderText: null})
+                                });
+                                $('#titulo_itinerario_{{$j}}').keypress(function() {
+                                var valor=$('#titulo_itinerario_{{$j}}').val();
+                                $('#titulo_{{$j}}').html(valor);
                                 });
                             </script>
                     @endforeach
