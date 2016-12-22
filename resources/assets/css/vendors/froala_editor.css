@@ -36,6 +36,7 @@
   box-sizing: border-box;
   overflow-x: auto;
   min-height: 40px;
+  padding-bottom: 30px;
 }
 .fr-element {
   background: transparent;

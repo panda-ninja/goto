@@ -1,6 +1,3 @@
-
-// tinymce.init({ selector:'textarea' });
-
 $("#btnBuscar_pqt").click(function(){
     $.ajaxSetup({
         headers: {
@@ -8,15 +5,8 @@ $("#btnBuscar_pqt").click(function(){
         }
     });
     var codigopx=$("#codigopx").val();
-    // alert(codigopx);
     var token='drmLwc3gMXKsyrhxzMJrr4dlC8rrvtcj9Fuv9vfU';
     if(codigopx.length>0){
-
-        // $.post("/buscarpaquete",{codigo:codigopx}, function(data){
-        //     console.log(data);
-        //     $('#list_planes').html(data);
-        //
-        // });
         var datastring="codigo="+codigopx;
         $('#idLoad').html('<div class="preloader-wrapper small active">'+
             '<div class="spinner-layer spinner-green-only">'+
@@ -29,12 +19,9 @@ $("#btnBuscar_pqt").click(function(){
             '</div>'+
             '</div>'+
             '</div>');
-        // sleep(300);
         $.post('http://gotoperu.mo/buscarpaquete', {codigo: codigopx}, function(markup) {
-
             if(markup){
-
-                console.log(markup);
+                // console.log(markup);
                 $('#list_planes').html('');
                 $('#list_planes').html(markup);
                 $('#idLoad').html('');
@@ -61,40 +48,16 @@ $("#btnBuscar_pqt").click(function(){
                 '</button>'+
                 '</div>');
         });
-
-        // $.ajax({
-        //     dataType:'json',
-        //     type:'post',
-        //     url:"http://gotoperu.mo/buscarpaquete",
-        //     headers:{'X-CSRF-TOKEN': $('[id="_token"]').val()},
-        //     data:{codigo:codigopx},
-        //     success: function(data){
-        //         alert(data);
-        //         console.log(data);
-        //             $('#list_planes').html(data);
-        // //         // $("#codigopx").empty().html(data);
-        //     }
-        //     // ,
-        //     // error: function(data){
-        //     //     $("#mensaje").html(
-        //     //         '<div id="card-alert" class="card red lighten-5">'+
-        //     //             '<div class="card-content red-text">'+
-        //     //                 '<p>ERROR : '+data.responseJSON.name+'</p>'+
-        //     //             '</div>'+
-        //     //         '</div>');
-        //     // }
-        // });
     }
     else{
 
         $("#codigopx").focus();
     }
 });
-
 var idCotizacion=0;
 var NroClic=0;
 $('#agregar_pqt').click( function(){
-     console.log(idCotizacion);
+     // console.log(idCotizacion);
     if($('#email_3').val()==""){
         $('#email_3').focus();
         swal(
@@ -104,8 +67,6 @@ $('#agregar_pqt').click( function(){
         )
     }
         if(idCotizacion==0){
-
-                // alert('con datos');
             var pemail=$('#email_3').val();
             var pnropasajeros=$('#nropasajeros').val();
             var pfecha=$('#fecha').val();
@@ -117,13 +78,12 @@ $('#agregar_pqt').click( function(){
             });
             $.post('http://gotoperu.mo/guardar_pre_cotizacion', {email: pemail,nropasajeros:pnropasajeros,fecha:pfecha}, function(markup) {
                 if(markup!='0'){
-                     console.log(markup);
-                    // alert(markup);
+                     // console.log(markup);
                      idCotizacion=markup;
                     NroClic=1;
                 }
                 else{
-                      console.log('error de registro cerrarmos :'+markup);
+                      // console.log('error de registro cerrarmos :'+markup);
                     idCotizacion=markup;
                     swal(
                         'Oops...',
@@ -133,7 +93,7 @@ $('#agregar_pqt').click( function(){
                     $( "#cerrar_modal" ).trigger( "click" );
                 }
             }).fail(function (markup) {
-                  console.log('Fail cerrarmos :'+markup);
+                  // console.log('Fail cerrarmos :'+markup);
                 idCotizacion=0;
                 swal(
                     'Oops...',
@@ -142,19 +102,7 @@ $('#agregar_pqt').click( function(){
                 );
                 $( "#cerrar_modal" ).trigger( "click" );
             });
-            // alert('estamos guardamos la cotizacion');
-            // idCotizacion=1;
-            // console.log(idCotizacion);
-
-
         }
-        // else {
-        //     if (NroClic == 1) {
-        //         console.log('valor de idCotizacion:' + idCotizacion);
-        //         $("#agregar_pqt").trigger("click");
-        //     }
-        // }
-
     }
 );
 //# sourceMappingURL=funciones-ajax.js.map

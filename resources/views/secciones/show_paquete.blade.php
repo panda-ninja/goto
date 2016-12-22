@@ -2,7 +2,7 @@
 <link href="{{asset('css/admin-theme.css')}}" type="text/css" rel="stylesheet" media="screen,projection"/>
 <script type="text/javascript" src="{{URL::to('js/funciones_cotizacion.js')}}"></script>
 {{--<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>--}}
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.3.0/codemirror.min.js"></script>
+{{--<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.3.0/codemirror.min.js"></script>--}}
 {{--<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.3.0/mode/xml/xml.min.js"></script>--}}
 
 <script type="text/javascript" src="{{URL::to('js/funciones_froala.js')}}"></script>
@@ -200,14 +200,19 @@ $Paquete='';
                                 <div class="portlet-header"  onmousedown="Pasar_datos('{{$j}}','{{$j}}','{{$itinerario->titulo}}')"><span class="cursor-move">DAY <span class="pos_iti" name="posdia[]" id="pos_dia_{{$j}}">{{$itinerario->dia}}</span>: <i id="titulo_{{$j}}">{{$itinerario->titulo}}</i></span></div>
                                 <div class="portlet-content" onmouseenter="estado_edicion(1)" onmouseleave="estado_edicion(0)">
                                     <div class="row">
-                                        <div class="col s12">
+                                        <div class="col s10">
                                                 <span class="grey-text text-darken-3">
                                                     <input name="titulo_itinerario[]" id="titulo_itinerario_{{$j}}" type="text" placeholder="Ingrese el titulo" value="{{$itinerario->titulo}}">
                                                 </span>
                                         </div>
+                                        <div class="col s2">
+                                            <a id="agregar_pq" class="btn cyan waves-effect waves-light right modal-trigger" href="#modal331">Buscar Dia
+                                                <i class="mdi-content-add-circle right"></i>
+                                            </a>
+                                        </div>
                                     </div>
                                     <textarea  name="desc_itinerario[]" id="desc_itinerario_{{$j}}"  >
-
+                                        {{$itinerario->descripcion}}
                                     </textarea>
                                 </div>
                             </div>
@@ -226,12 +231,29 @@ $Paquete='';
                                 var valor=$('#titulo_itinerario_{{$j}}').val();
                                 $('#titulo_{{$j}}').html(valor);
                                 });
+                                $('#titulo_itinerario_{{$j}}').keydown(function() {
+                                    var valor=$('#titulo_itinerario_{{$j}}').val();
+                                    $('#titulo_{{$j}}').html(valor);
+                                });
+                                $('#titulo_itinerario_{{$j}}').keyup(function() {
+                                    var valor=$('#titulo_itinerario_{{$j}}').val();
+                                    $('#titulo_{{$j}}').html(valor);
+                                });
                             </script>
                     @endforeach
                </div>
                </li>
 
             </ul>
+                <div id="modal331" class="modal bottom-sheet">
+                    <div class="modal-content">
+                        <h4>Modal Header</h4>
+                        <p>A bunch of text</p>
+                    </div>
+                    <div class="modal-footer">
+                        <a href="#!" class=" modal-action modal-close waves-effect waves-green btn-flat">Agree</a>
+                    </div>
+                </div>
             <input type="hidden" name="nroItis" id="nroItis" value="{{$j}}">
         </div>
         </form>
