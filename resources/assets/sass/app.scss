@@ -54,13 +54,18 @@ $secondary-color: #f9a825;
 .padding-15{
   padding: 15px;
 }
-
+.padding-top-0{
+  padding-top: 0;
+}
 .padding-bottom{
   padding-bottom: 10px;
 }
 
 .no-margin{
   margin: 0 !important;
+}
+.margin-top-0{
+  margin-top: 0;
 }
 .margin-top-5{
   margin-top: 5px;
@@ -148,7 +153,7 @@ $secondary-color: #f9a825;
 }
 //--
 
-header{
+header.slider .slides li .caption{
   height: 55px;
 }
 header .header-nav li{
@@ -163,7 +168,7 @@ nav ul li a{
 .slider .slides li .caption {
   left:0;
   width: 100%;
-  top:4%;
+  top:1%;
 }
 
 //.box-slider-banner{
@@ -450,6 +455,19 @@ img.desaturada{
 }
 .content-video-btn-1 a:hover{
   color: grey;
+}
+//detail
+.detail-maps .circle-days{
+  background: #f9a825;
+  border-radius: 14px;
+  border: 2px solid #333;
+  color: #fff;
+  font-weight: bold;
+  padding: 0 5px;
+}
+.detail-maps .overview{
+  height: 200px;
+  overflow-y: scroll;
 }
 //footer
 footer{

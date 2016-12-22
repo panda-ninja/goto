@@ -10,10 +10,42 @@
                     <h3 class="grey-text text-darken-2 text-50">A <b>BETTER</b> WAY TO TRAVEL TO PERU</h3>
                     <h5 class="light grey-text text-darken-3">$150 average saving | 24/7 local authentic assitance | 100s of testimonials</h5>
                     
-                    <div class="margin-top-100">
-                        <p>Book Online or customized your dream vacations</p>
-                        <a class="waves-effect waves-light btn lime darken-4">Travel Packages</a>
-                        <a class="waves-effect waves-light btn grey darken-4">Design Your Trip</a>
+                    <div class="row margin-top-50 font-moserrat">
+                        <div class="col s12 m8 offset-m2 l3 offset-l6">
+                            <a href="" class="waves-effect">
+                            <p class="yellow-text text-darken-3 grey darken-4">ALL INCLUDED</p>
+                            <div class="col s3">
+                                <img src="{{asset('img/icons//include/hotels.png')}}" alt="" class="responsive-img">
+                            </div>
+                            <div class="col s3">
+                                <img src="{{asset('img/icons//include/transfers.png')}}" alt="" class="responsive-img">
+                            </div>
+                            <div class="col s3">
+                                <img src="{{asset('img/icons//include/entrances.png')}}" alt="" class="responsive-img">
+                            </div>
+                            <div class="col s3">
+                                <img src="{{asset('img/icons//include/trains.png')}}" alt="" class="responsive-img">
+                            </div>
+                            <div class="col s3">
+                                <img src="{{asset('img/icons//include/tours.png')}}" alt="" class="responsive-img">
+                            </div>
+                            <div class="col s3">
+                                <img src="{{asset('img/icons//include/breakfast.png')}}" alt="" class="responsive-img">
+                            </div>
+                            <div class="col s3">
+                                <img src="{{asset('img/icons//include/assistances.png')}}" alt="" class="responsive-img">
+                            </div>
+                            <div class="col s3">
+                                <img src="{{asset('img/icons//include/flight.png')}}" alt="" class="responsive-img">
+                            </div>
+
+                            <div class="col s12 text-20 white-text">
+                                from New York <span class="yellow-text text-darken-3">5 DAYS</span> $1699
+                            </div>
+                            </a>
+                        </div>
+                        {{--<a class="waves-effect waves-light btn lime darken-4">Travel Packages</a>--}}
+                        {{--<a class="waves-effect waves-light btn grey darken-4">Design Your Trip</a>--}}
                     </div>
                 </div>
             </li>
@@ -131,7 +163,7 @@
                             <p class="no-margin">Small group</p>
                             <p class="no-margin">Tourist to Superior</p>
                             <ul class="font-moserrat">
-                                <li class="text-14 margin-bottom-10">January 21, 2017 <span class="blue-text">$1499</span> <a href="" class="btn"> BOOK</a></li>
+                                <li class="text-14 margin-bottom-10">January 21, 2017 <span class="blue-text">$1499</span> <a href="{{route('home_show_path', array('titulo'=>'SPECIAL-PERU', 'dias'=>'6-days-tours'))}}" class="btn"> BOOK</a></li>
                                 <li class="text-14 margin-bottom-10">January 21, 2017 <span class="blue-text">$1499</span> <a href="" class="btn"> BOOK</a></li>
                                 <li class="text-14 margin-bottom-10">January 21, 2017 <span class="blue-text">$1499</span> <a href="" class="btn"> BOOK</a></li>
                                 <li class="text-14 margin-bottom-10">January 21, 2017 <span class="blue-text">$1499</span> <a href="" class="btn"> BOOK</a></li>

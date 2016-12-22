@@ -20,12 +20,13 @@
 <header class="grey darken-4">
     <div class="container">
         <div class="row valign-wrapper">
-            <div class="col m5 l6 hide-on-small-only hide-on-small-and-down hide-on-med-and-down">
+            <div class="col m4 l4 hide-on-small-only hide-on-small-and-down hide-on-med-and-down">
                 <a href="/" class="brand-logo valign"><img src="{{asset('img/logos/logo-ave.png')}}" alt="" class="responsive-img"></a>
             </div>
-            <div class="col s12 m8 l6">
+            <div class="col s12 m8 l8">
                 <ul class="header-nav white-text right-align valign">
                     <li>(813) 600-3042</li>
+                    <li>Mon to Sun: 9am - 8pm (EST)</li>
                     @if(auth()->guard('cliente')->check())
                         <li><a href="" class="green-text text-darken-3">{{auth()->guard('cliente')->user()->nombres.', '.auth()->guard('cliente')->user()->apellidos}}</a></li>
                         <li><a href="{{route('client_auth_destroy_path')}}" class="yellow-text text-darken-3">Logout</a></li>
@@ -38,21 +39,21 @@
         </div>
     </div>
 </header>
-<nav class="white" role="navigation">
+<nav class="white font-moserrat" role="navigation">
     <div class="nav-wrapper container">
         <a href="/" class="brand-logo"><img src="{{asset('img/logos/logo5.png')}}" alt=""></a>
         <a href="#" data-activates="mobile-demo" class="button-collapse grey-text text-darken-4"><i class="material-icons">menu</i></a>
         <ul class="right hide-on-med-and-down">
-            <li><a href="sass.html">Only Tours</a></li>
-            <li><a href="badges.html">Ground Packages</a></li>
-            <li><a href="collapsible.html">With Flight</a></li>
-            <li><a href="mobile.html">Design My Trip</a></li>
+            <li><a href="sass.html">All Included</a></li>
+            <li><a href="badges.html">Ground Package</a></li>
+            <li><a href="collapsible.html">Offers</a></li>
+            <li><a href="mobile.html">Design</a></li>
         </ul>
         <ul class="side-nav" id="mobile-demo">
-            <li><a href="sass.html">Only Tours</a></li>
-            <li><a href="badges.html">Ground Packages</a></li>
-            <li><a href="collapsible.html">With Flight</a></li>
-            <li><a href="mobile.html">Design My Trip</a></li>
+            <li><a href="sass.html">All Included</a></li>
+            <li><a href="badges.html">Ground Package</a></li>
+            <li><a href="collapsible.html">Offers</a></li>
+            <li><a href="mobile.html">Design</a></li>
         </ul>
     </div>
 </nav>
@@ -208,6 +209,21 @@
 
     });
 </script>
+<script>
+    // JQUERY STICKY KIT
+    // http://leafo.net/sticky-kit/
 
+    $('#pinned')
+        .stick_in_parent({
+            parent: '.main-wrapper',
+            offset_top: 0
+        })
+        .on('sticky_kit:bottom', function(e) {
+            $(this).parent().css('position', 'static');
+        })
+        .on('sticky_kit:unbottom', function(e) {
+            $(this).parent().css('position', 'relative');
+        })
+</script>
 </body>
 </html>
