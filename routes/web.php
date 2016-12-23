@@ -22,10 +22,11 @@ Route::get('/', [
     'as' => 'home_path',
 ]);
 
-Route::get('travel-package/{titulo}_{dias}', [
+Route::any('travel-package/{titulo}_{dias}', [
     'uses' => 'HomeController@show',
     'as' => 'home_show_path',
 ]);
+
 
 /*==begin== rutas para clientes ================================================================*/
 Route::get('cliente/login', [

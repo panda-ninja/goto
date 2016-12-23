@@ -11,6 +11,9 @@ use GotoPeru\TPaquete;
 use Illuminate\Http\Request;
 
 use GotoPeru\Http\Requests;
+use Illuminate\Support\Facades\Input;
+use Illuminate\Support\Facades\Redirect;
+use Illuminate\Support\Facades\Session;
 
 class HomeController extends Controller
 {
@@ -21,6 +24,7 @@ class HomeController extends Controller
      */
     public function index()
     {
+
         $paquete = TPaquete::with('paquetes_destinos', 'precio_paquetes')->get()->where('estado', 1);
         $featured = TPaquete::with('paquetes_destinos', 'precio_paquetes')->get()->where('estadoslider', 1);
 //        dd($paquete);
@@ -56,9 +60,16 @@ class HomeController extends Controller
      */
     public function show($titulo, $dias)
     {
+
+//        if ($_POST){
+//            Session::put('s_date', Input::get('txt_date'));
+//            Session::put('s_country', Input::get('txt_country'));
+//        }
+
         $title = str_replace('-', ' ', $titulo);
         $paquete = TPaquete::with('itinerario','paquetes_destinos', 'precio_paquetes')->get()->where('titulo', $title);
 //        dd($paquete);
+
         return view('travel-package', ['paquetes'=>$paquete]);
     }
 

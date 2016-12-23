@@ -8,12 +8,66 @@
         {{--</div>--}}
     {{--</div>--}}
 
+    <div class="red">
+
+    {{Session::get('s_date')}}
+
+    {{Session::get('s_country')}}
+    </div>
     <div class="container">
         <div class="section">
             <div class="row center">
                 <h4 class="yellow-text text-darken-4">ALL <b>INCLUDED</b></h4>
                 <p class="lime-text text-darken-4 font-moserrat text-20 no-margin">MACHUPICCHU TOURS WITH AIR FROM US</p>
                 <p class="grey-text text-darken-4 text-20 no-margin">DOOR TO DOOR, Including a $50 <img src="{{asset('img/icons/uber.png')}}" width="30" alt=""> Credit</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="section">
+            <div class="row">
+                <div class="col s3">
+                    7 DAYS
+
+                </div>
+                <div class="col s3 input-field">
+                    @php
+                        switch ($_POST["txt_country"]) {
+                            case 'LOS ANGELES':
+                                $select = 'selected';
+                                break;
+                            case 'MIAMI':
+                                $select = 'selected';
+                                break;
+                            case 'NEW YORK':
+                                $select = 'selected';
+                                break;
+
+                            default:
+                                $select = ' ';
+                                break;
+                        }
+
+                            @endphp
+                    <select>
+                        <option value="los angeles" {{$select}}>LOS ANGELES</option>
+                        <option value="miami" {{$select}}>MIAMI</option>
+                        <option value="new york" {{$select}}>NEW YORK</option>
+                    </select>
+                    <label>Country Select</label>
+                </div>
+                <div class="col s3 input-field">
+                    <select>
+                        <option value="1" selected>January 21, 2017</option>
+                        <option value="2">April 21, 2017</option>
+                        <option value="3">June 21, 2017</option>
+                    </select>
+                    <label>Country Selesdsdct</label>
+                </div>
+                <div class="col s3">
+                    from $1999
+                </div>
             </div>
         </div>
     </div>

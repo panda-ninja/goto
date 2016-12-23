@@ -15,6 +15,29 @@
 
     </style>
 
+    <script>
+        $("document").ready(function(){
+            $("#slc_servicio").load("../php/sistema/server/servicios.php");
+
+            $("#slc_servicio").change(function(){
+                var id = $("#slc_servicio").val();
+                $.get("../php/sistema/server/opciones.php",{param_id:id})
+                    .done(function(data){
+                        $("#slc_tipo").html(data);
+                        //
+                        $("#slc_tipo").change(function(){
+                            var idtipo = $("#slc_tipo").val();
+                            var idservicio = $("#slc_servicio").val();
+                            $.get("../php/sistema/server/detalleOpciones.php",{param_id:idtipo,param_servicio:idservicio})
+                                .done(function(data){
+                                    $("#slc_detalle").html(data);
+                                })
+                        })
+                    })
+            })
+        })
+    </script>
+
 </head>
 <body>
 <header class="grey darken-4">
@@ -225,5 +248,7 @@
             $(this).parent().css('position', 'relative');
         })
 </script>
+
+
 </body>
 </html>
