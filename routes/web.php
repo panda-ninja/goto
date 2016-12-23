@@ -27,6 +27,10 @@ Route::get('travel-package/{titulo}_{dias}', [
     'as' => 'home_show_path',
 ]);
 
+Route::post('checkout-package/{titulo}_{dias}', [
+    'uses' => 'HomeController@checkout',
+    'as' => 'checkout_package_path',
+]);
 /*==begin== rutas para clientes ================================================================*/
 Route::get('cliente/login', [
     'uses' => 'ClientAuthController@index',

@@ -61,6 +61,17 @@ class HomeController extends Controller
 //        dd($paquete);
         return view('travel-package', ['paquetes'=>$paquete]);
     }
+    public function checkout(Request $request,$titulo, $dias)
+    {
+        $title = str_replace('-', ' ', $titulo);
+        $codigo=strtoupper($request->input('txt_code'));
+        $date=strtoupper($request->input('txt_date'));
+        $codigo=strtoupper($request->input('txt_code'));
+
+        $paquete = TPaquete::with('itinerario','paquetes_destinos', 'precio_paquetes')->get()->where('titulo', $title);
+//        dd($paquete);
+        return view('travel-package', ['paquetes'=>$paquete]);
+    }
 
     /**
      * Show the form for editing the specified resource.
