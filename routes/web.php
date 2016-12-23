@@ -135,6 +135,10 @@ Route::group(['middleware'=>'admin'],function(){
         'uses' => 'PaqueteController@buscar',
         'as' => 'pqt_buscar_path',
     ]);
+    Route::post('/guardar_pre_cotizacion', [
+        'uses' => 'CotizacionController@guardar_pre_cotizacion',
+        'as' => 'cotizacion_guardar_pre_path',
+    ]);
 });
 /*
 Route::get('login', [

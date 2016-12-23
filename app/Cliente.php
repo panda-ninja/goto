@@ -9,7 +9,7 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 class Cliente extends Authenticatable
 {
     protected $fillable = [
-        'nombres',
+        'id','nombres',
         'apellidos', 'email', 'password',
     ];
 

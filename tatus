@@ -1,0 +1,355 @@
+[33mcommit 015a0d95801196e87911c8834900928bef832a33[m
+Author: freddy silva <fredy1432@hotmail.com>
+Date:   Mon Dec 5 17:37:25 2016 -0500
+
+    cambios de la cotizacion
+
+[33mcommit 9f6655e1b39cf63438ec889ff562e609531d5809[m
+Author: freddy silva <fredy1432@hotmail.com>
+Date:   Fri Dec 2 17:04:07 2016 -0500
+
+    modulos de cotizacion
+
+[33mcommit 34a95fb95f9dc2815400c854a22177200040a872[m
+Author: freddy silva <fredy1432@hotmail.com>
+Date:   Thu Dec 1 17:38:58 2016 -0500
+
+    avance
+
+[33mcommit 29eb10ea73166b690934f5f559585ffb6d9dddb0[m
+Author: freddy silva <fredy1432@hotmail.com>
+Date:   Wed Nov 30 17:23:07 2016 -0500
+
+    cambios cotizacion
+
+[33mcommit feb0570d76d719e3f7bbcd8453f015f4483ff62f[m
+Author: freddy silva <fredy1432@hotmail.com>
+Date:   Tue Nov 29 17:31:48 2016 -0500
+
+    modificacion de la cotizacion
+
+[33mcommit 1cd6cf5d4b5e0663753d290b4ab7cc6ce400e083[m
+Author: freddy silva <fredy1432@hotmail.com>
+Date:   Mon Nov 28 18:44:09 2016 -0500
+
+    modulo de cotizacion
+
+[33mcommit 34e55a573fe8acdd2969a3c7413a3f00e1606e69[m
+Author: freddy silva <fredy1432@hotmail.com>
+Date:   Fri Nov 25 17:37:07 2016 -0500
+
+    cambios cotizacion
+
+[33mcommit 755e80fe6706a524bd349e425bf30f1ebd9fddb5[m
+Merge: d7c66b0 b05453d
+Author: freddy silva <fredy1432@hotmail.com>
+Date:   Fri Nov 25 08:35:52 2016 -0500
+
+    Merge remote-tracking branch 'origin/master'
+
+[33mcommit d7c66b09e49834f0ad7850b2a20ff8efcaeae5cb[m
+Author: freddy silva <fredy1432@hotmail.com>
+Date:   Thu Nov 24 17:44:21 2016 -0500
+
+    cambios parea cotizacion
+
+[33mcommit b05453da2d4ce22dd586f99fb2a8eecc5765624a[m
+Author: hidalgo <hidalgochpnce@gmail.com>
+Date:   Thu Nov 24 16:45:40 2016 -0500
+
+    terminado nueva vista con iconos quotes
+
+[33mcommit 169f3a9dfde906a39cf7af655ab4ddd22b94c2b0[m
+Merge: 64a3e90 8363237
+Author: freddy silva <fredy1432@hotmail.com>
+Date:   Thu Nov 24 11:38:35 2016 -0500
+
+    Fusion realizada
+
+[33mcommit 836323715861756a475ea1d0d06d3a1fef9d7084[m
+Merge: 303da64 b1a83d3
+Author: hidalgo <hidalgochpnce@gmail.com>
+Date:   Thu Nov 24 11:35:48 2016 -0500
+
+    Se realizo la fusion
+
+[33mcommit 64a3e90b6ad8051bb4e34b434035ee32b1b8d650[m
+Merge: 303da64 2088630
+Author: freddy silva <fredy1432@hotmail.com>
+Date:   Thu Nov 24 11:16:14 2016 -0500
+
+    fusion realizada rama_uth_admin/master
+
+[33mcommit 303da646dadd8308bc9723800983fd591817a7e1[m
+Merge: cf4d76c f924350
+Author: hidalgo <hidalgochpnce@gmail.com>
+Date:   Thu Nov 24 11:00:56 2016 -0500
+
+    Merge remote-tracking branch 'origin/master'
+    Actualizamos el branch origin/master
+
+[33mcommit 20886308aaaaab16e4edc11a0a1933a1ae2f1e9a[m
+Author: freddy silva <fredy1432@hotmail.com>
+Date:   Thu Nov 24 10:55:01 2016 -0500
+
+    modulo cotizar paquetenueva cotizacion
+
+[33mcommit cf4d76c8de4cec307f641ac75a0767a8c5d67785[m
+Author: hidalgo <hidalgochpnce@gmail.com>
+Date:   Thu Nov 24 10:54:54 2016 -0500
+
+    Se creo factories, migration, seeds para la nueva tabla incluye del paquete cotizacion. Ademas se agrego iconos de los incluye
+
+[33mcommit b1a83d3fd36ccf979d8b76cb960ae6d5b3e43034[m
+Author: freddy silva <fredy1432@hotmail.com>
+Date:   Wed Nov 23 17:25:41 2016 -0500
+
+    avance de los planes de cotizacion
+
+[33mcommit c0eb83d8f6d9bef0413008c5f4953be69fddb790[m
+Author: hidalgo <hidalgochpnce@gmail.com>
+Date:   Wed Nov 23 16:35:11 2016 -0500
+
+    Se termino con features y reasons del homepage
+
+[33mcommit 053c764e51d44b25415e278970963cb5d1786e5a[m
+Author: freddy silva <fredy1432@hotmail.com>
+Date:   Tue Nov 22 19:19:21 2016 -0500
+
+    modulo de cotizacion
+
+[33mcommit 021691f23a95c75b8aea465deeb852c2ec947971[m
+Author: freddy silva <fredy1432@hotmail.com>
+Date:   Fri Nov 18 17:27:41 2016 -0500
+
+    avances configuracion de paquetes(planes)
+
+[33mcommit d5cb4c2471ced128a5a6ce5b3284b2b00c16f46d[m
+Author: freddy silva <fredy1432@hotmail.com>
+Date:   Wed Nov 16 18:00:19 2016 -0500
+
+    Modulo para logueo de usuarios
+
+[33mcommit 0a080fd8a4c2809f9d84d22419212344d839f618[m
+Author: hidalgo <hidalgochpnce@gmail.com>
+Date:   Wed Nov 16 11:40:14 2016 -0500
+
+    Creamos los modelos para la pagina web
+
+[33mcommit f92435018db57c59177524cb6e1d6c83d3d0bebc[m
+Author: hidalgo27 <hidalgoChPnce@gmail.com>
+Date:   Tue Nov 15 16:58:08 2016 -0500
+
+    Update init.js
+
+[33mcommit 41db226448222a3286a6c6778b1218c9002c25bb[m
+Author: freddy silva <fredy1432@hotmail.com>
+Date:   Mon Nov 14 17:55:20 2016 -0500
+
+    contruccion de modulos para logeo de usuarios del sistema
+
+[33mcommit ebcad439b4b88cad9c680e432dff473f8c654662[m
+Merge: 6964952 9bd79f5
+Author: hidalgo <hidalgochpnce@gmail.com>
+Date:   Mon Nov 14 17:50:11 2016 -0500
+
+    Se realizo la fusion con la rama email
+
+[33mcommit 696495287f2fcfa81b2d0aa7ba6db8a59ab9941e[m
+Author: hidalgo <hidalgochpnce@gmail.com>
+Date:   Mon Nov 14 17:43:37 2016 -0500
+
+    Home page out best seller terminado con carrusel de efecto owl
+
+[33mcommit 74fb4967f88c2edef005d04df12028212dedd7a5[m
+Author: hidalgo <hidalgochpnce@gmail.com>
+Date:   Mon Nov 14 17:35:56 2016 -0500
+
+    Home page out best seller terminado con carrusel de efecto owl
+
+[33mcommit 9bd79f540f53935b4faa2b232842f8ba662bf8da[m
+Author: freddy silva <fredy1432@hotmail.com>
+Date:   Thu Nov 10 17:30:56 2016 -0500
+
+    notificaciones
+
+[33mcommit 737e6ed7b024d5adf2b019a76175026862df06ab[m
+Author: freddy silva <fredy1432@hotmail.com>
+Date:   Wed Nov 9 17:27:18 2016 -0500
+
+    Nuevos cambios a la notificaciones
+
+[33mcommit a097d6e87462f541db4db103914de3fafd3de433[m
+Author: freddy silva <fredy1432@hotmail.com>
+Date:   Tue Nov 8 17:27:51 2016 -0500
+
+    se agrego el modulo para notificaciones del cliente
+
+[33mcommit 619ca5c07615dc01fe0702cca36bd64ca44fd2b3[m
+Author: hidalgo <hidalgochpnce@gmail.com>
+Date:   Mon Nov 7 16:52:21 2016 -0500
+
+    Se actualizaron url del logo
+
+[33mcommit 4e128cc1c60886dceced24fc99a1db2a1d111714[m
+Merge: 32f2cb4 e97851e
+Author: hidalgo <hidalgochpnce@gmail.com>
+Date:   Mon Nov 7 16:29:20 2016 -0500
+
+    Se fusionaron las ramas auth y master
+
+[33mcommit e97851ec6cc041500c27c24859c1ff20a0f1d152[m
+Author: freddy silva <fredy1432@hotmail.com>
+Date:   Mon Nov 7 16:02:53 2016 -0500
+
+    Modulo de pagos terminado
+
+[33mcommit 32f2cb4d5074ba06606d227bd4561116d0ba4c85[m
+Author: hidalgo <hidalgochpnce@gmail.com>
+Date:   Mon Nov 7 16:02:51 2016 -0500
+
+    vendor y node_modules en formato zip
+
+[33mcommit 9bb25540366dc4949d3406efd8454ffbdf7e75d3[m
+Author: hidalgo <hidalgochpnce@gmail.com>
+Date:   Mon Nov 7 15:37:50 2016 -0500
+
+    preparando archivos node_modules
+
+[33mcommit 945e4090b44fead0c4077fa53d6f8dd62821cb35[m
+Author: hidalgo <hidalgochpnce@gmail.com>
+Date:   Mon Nov 7 15:31:17 2016 -0500
+
+    Se termino la ventana emergente de upgrate
+
+[33mcommit ea6589effb72ef475d2c50654db16927ee8a1e33[m
+Author: hidalgo <hidalgochpnce@gmail.com>
+Date:   Mon Nov 7 14:56:18 2016 -0500
+
+    Se termino la confirmacion de la configuracion de un paquete y una cotizacion
+
+[33mcommit adb24c8f6ac896e970645c0f8ddd1044ee799e82[m
+Author: hidalgo <hidalgochpnce@gmail.com>
+Date:   Mon Nov 7 10:40:30 2016 -0500
+
+    Se termino la construccion del la vista pdf (quotes-pdf.blade) y su hoja de estilos pdf.css
+
+[33mcommit ac7b19fedc600730a0db9828f388c914c1b3a00e[m
+Author: hidalgo <hidalgochpnce@gmail.com>
+Date:   Fri Nov 4 18:08:21 2016 -0500
+
+    Se integro PDFDom al sistema copianddo app.php (providers y facades), se creo el blade paral el pdf, css
+
+[33mcommit 855ddc9f8a4b953548dec444ae0dc5b8485141a1[m
+Author: freddy silva <fredy1432@hotmail.com>
+Date:   Fri Nov 4 18:08:11 2016 -0500
+
+    Pruebas de pasarela de pagos con stripe
+
+[33mcommit d1f17326b956a5657d9eaf92bd21864cd4fe9f0a[m
+Author: freddy silva <fredy1432@hotmail.com>
+Date:   Fri Nov 4 12:26:39 2016 -0500
+
+    cambios para la pasarela de pagos 1
+
+[33mcommit 04621af73660f2efb39f92c3838004ab1c87ff62[m
+Author: freddy silva <fredy1432@hotmail.com>
+Date:   Thu Nov 3 17:11:17 2016 -0500
+
+    avance de integracion con stripe
+
+[33mcommit 274ce1bc0ad59a6d46a243e4aea768e36ce5f791[m
+Author: hidalgo <hidalgochpnce@gmail.com>
+Date:   Thu Nov 3 12:01:00 2016 -0500
+
+    Se termino con el resumen de precio de los pantes dentro del balde itineraryquotes
+
+[33mcommit 4363b797f3d3f205de017af7af5ceaa223ad0cbb[m
+Author: freddy silva <fredy1432@hotmail.com>
+Date:   Wed Nov 2 13:47:23 2016 -0500
+
+    Cambios para los pagos
+
+[33mcommit cf58eaf7679f28686df7749eb7db7581c9eeb31f[m
+Author: freddy silva <fredy1432@hotmail.com>
+Date:   Mon Oct 31 17:59:19 2016 -0500
+
+    modulos para realizar pagos
+
+[33mcommit d01d6eaadae4dca70ab80677496f538b663eae04[m
+Author: hidalgo <hidalgochpnce@gmail.com>
+Date:   Mon Oct 31 14:29:24 2016 -0500
+
+    se modifico los seeds para los nuevos modelos
+
+[33mcommit c98120a95ef41ca559f244ae6f838cf7e77b3a33[m
+Author: hidalgo <hidalgochpnce@gmail.com>
+Date:   Mon Oct 31 09:19:06 2016 -0500
+
+    Se creo nuevos archivos migration: precioPaquete, serviciosExtras, destinoCotizaciones, detinoPaqueteCotizacion y sus modelos
+
+[33mcommit e120df772bceaaaef1964eaae9987eb6a6f20d5e[m
+Author: freddy silva <fredy1432@hotmail.com>
+Date:   Fri Oct 28 17:33:11 2016 -0500
+
+    se esta realizando el modulo de pagos
+
+[33mcommit 4047f867f6422bdfaa168a01e32e69304de1f012[m
+Merge: a2b12bc e61648e
+Author: hidalgo <hidalgochpnce@gmail.com>
+Date:   Fri Oct 28 12:02:12 2016 -0500
+
+    Se escogio la mejor configuracion en el modelo cliente y la ruta web
+
+[33mcommit a2b12bc1c3422ae2daba5d1a8c4e2996f7c2ef55[m
+Merge: e44c5f0 40f4da0
+Author: hidalgo <hidalgochpnce@gmail.com>
+Date:   Fri Oct 28 11:52:18 2016 -0500
+
+    Merge remote-tracking branch 'origin/master'
+    Fusion con la creacion del dashboard del administrador
+
+[33mcommit e44c5f06ee492ab5fd952559ed80b37b2d547fd3[m
+Author: hidalgo <hidalgochpnce@gmail.com>
+Date:   Fri Oct 28 11:49:50 2016 -0500
+
+    Se integro el dashboard para administrador utilizando archivos listados en el gulpfile. nombre del template admin.blade
+
+[33mcommit e61648e5a02f3125e13d026747e1d4e166ef8b66[m
+Author: freddy silva <fredy1432@hotmail.com>
+Date:   Thu Oct 27 16:13:55 2016 -0500
+
+    Se termino la programacion para el usuario cliente
+
+[33mcommit 12fe149a18e2d138dfe517f142cd9493b2c2a544[m
+Author: freddy silva <fredy1432@hotmail.com>
+Date:   Thu Oct 27 11:12:51 2016 -0500
+
+    Se creo el controlador para clientes
+
+[33mcommit 40f4da0c5859e477d1e9e92b583c44ce4016ffe4[m
+Merge: 083819b 888573f
+Author: hidalgo27 <hidalgoChPnce@gmail.com>
+Date:   Wed Oct 26 12:19:47 2016 -0500
+
+    Merge pull request #6 from hidalgochponce/master
+    
+    Update readme.md
+
+[33mcommit 888573fc652b8cc3ab6cd3bba2b7aaaf3c827754[m
+Author: hidalgochponce <pk_do2@hotmail.com>
+Date:   Wed Oct 26 12:19:09 2016 -0500
+
+    Update readme.md
+
+[33mcommit 083819bdf018568c17a4457685c70995e8739f43[m
+Author: hidalgo <hidalgochpnce@gmail.com>
+Date:   Wed Oct 26 12:07:13 2016 -0500
+
+    cambio de descripcion del profile
+
+[33mcommit 8bbbcdafda59b89c50c791cfd9298436b5795461[m
+Author: hidalgo <hidalgochpnce@gmail.com>
+Date:   Mon Oct 24 11:34:33 2016 -0500
+
+    Se creo la base de la apliacion, base de datos con factories, migration y seeds, se crearon los modelos de la base de datos, controladores hasta cotizacion, vistas: home, itinerario, itinerario cotizacion, login, cotizaciones. todo esto con dos template (layouts): dashborard, default. Tambien se creo los css con materialize y js con jquery usando elixir compilado con gulp

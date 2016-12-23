@@ -38,7 +38,8 @@ elixir(function(mix) {
         'vendors/style.css',
         'vendors/perfect-scrollbar.css',
         'vendors/jquery-jvectormap.css',
-        'vendors/chartist.min.css'
+        'vendors/chartist.min.css',
+        // 'vendors/nestable.css'
     ], 'public/css/admin-theme.css');
 
     mix.styles([
@@ -96,11 +97,56 @@ elixir(function(mix) {
         // 'vendors/vectormap-script.js',
         <!--google map-->
         // 'vendors/google-map-script.js',
-
+        // 'resources/assets/js/vendors/jquery.nestable.js',
     ], 'public/js/admin-app.js');
 
     mix.styles([
         'vendors/notification.css'
     ], 'public/css/notification.css');
+    mix.copy(['node_modules/sweetalert/dist/sweetalert.css'], 'resources/assets/css/vendors');
+    mix.styles([
+        'resources/assets/css/vendors/sweetalert.css'
+    ], 'public/css/sweetalert.css');
+    mix.copy(['node_modules/sweetalert/dist/sweetalert.min.js'], 'resources/assets/js/vendors');
+    mix.scripts([
+        'resources/assets/js/vendors/sweetalert.min.js',
+    ], 'public/js/sweetalert.js');
+    mix.styles([
+        'resources/assets/css/vendors/notification.css'
+    ], 'public/css/notification.css');
+    mix.styles([
+        'resources/assets/css/vendors/acordeon-sorteable.css'
+    ], 'public/css/acordeon-sorteable.css');
 
+    mix.scripts([
+        'resources/assets/js/vendors/funciones-ajax.js',
+    ], 'public/js/funciones-ajax.js');
+    mix.scripts([
+        'resources/assets/js/vendors/funciones_cotizacion.js',
+    ], 'public/js/funciones_cotizacion.js');
+    mix.scripts([
+        'resources/assets/js/vendors/froala_editor.min.js',
+        'resources/assets/js/vendors/plugins/align.min.js',
+        'resources/assets/js/vendors/plugins/code_beautifier.min.js',
+        'resources/assets/js/vendors/plugins/code_view.min.js',
+        'resources/assets/js/vendors/plugins/draggable.min.js',
+        'resources/assets/js/vendors/plugins/image.min.js',
+        'resources/assets/js/vendors/plugins/image_manager.min.js',
+        'resources/assets/js/vendors/plugins/link.min.js',
+        'resources/assets/js/vendors/plugins/lists.min.js',
+        'resources/assets/js/vendors/plugins/paragraph_format.min.js',
+        'resources/assets/js/vendors/plugins/paragraph_style.min.js',
+        'resources/assets/js/vendors/plugins/table.min.js',
+        'resources/assets/js/vendors/plugins/url.min.js',
+        'resources/assets/js/vendors/plugins/entities.min.js',
+    ], 'public/js/funciones_froala.js');
+    mix.styles([
+        'resources/assets/css/vendors/froala_editor.css',
+        'resources/assets/css/vendors/froala_style.css',
+        'resources/assets/css/vendors/plugins/code_view.css',
+        'resources/assets/css/vendors/plugins/image_manager.css',
+        'resources/assets/css/vendors/plugins/image.min.css',
+        'resources/assets/css/vendors/plugins/table.min.css',
+        'resources/assets/css/vendors/plugins/video.min.css'
+    ], 'public/css/stilos_froala.css');
 });
