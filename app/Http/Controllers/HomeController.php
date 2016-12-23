@@ -54,9 +54,12 @@ class HomeController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show($titulo, $dias)
     {
-
+        $title = str_replace('-', ' ', $titulo);
+        $paquete = TPaquete::with('itinerario','paquetes_destinos', 'precio_paquetes')->get()->where('titulo', $title);
+//        dd($paquete);
+        return view('travel-package', ['paquetes'=>$paquete]);
     }
 
     /**

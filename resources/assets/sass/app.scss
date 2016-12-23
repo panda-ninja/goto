@@ -1,3 +1,4 @@
+$secondary-color: #f9a825;
 
 // Fonts
 @import url(https://fonts.googleapis.com/icon?family=Material+Icons);
@@ -13,10 +14,10 @@
 
 @import "variables";
 
-
-
 //Style
-
+.font-moserrat{
+  font-family: Montserrat;
+}
 //---general
 .spacer-10{
   padding: 10px 0;
@@ -53,13 +54,18 @@
 .padding-15{
   padding: 15px;
 }
-
+.padding-top-0{
+  padding-top: 0;
+}
 .padding-bottom{
   padding-bottom: 10px;
 }
 
 .no-margin{
   margin: 0 !important;
+}
+.margin-top-0{
+  margin-top: 0;
 }
 .margin-top-5{
   margin-top: 5px;
@@ -76,12 +82,15 @@
 .margin-top-40{
   margin-top: 40px;
 }
+.margin-top-80{
+  margin-top: 80px;
+}
 .margin-top-100{
   margin-top: 100px;
 }
 
 .margin-bottom-10{
-  margin-bottom: 20px;
+  margin-bottom: 10px;
 }
 .margin-bottom-20{
   margin-bottom: 20px;
@@ -92,12 +101,18 @@
 .margin-bottom-40{
   margin-bottom: 40px;
 }
+.margin-bottom-50{
+  margin-bottom: 50px;
+}
 //font size
 .text-10{
   font-size: 10px;
 }
 .text-12{
   font-size: 12px;
+}
+.text-13{
+  font-size: 13px;
 }
 .text-14{
   font-size: 14px !important;
@@ -120,7 +135,12 @@
 .text-40{
   font-size: 40px;
 }
-
+.text-42{
+  font-size: 42px;
+}
+.text-50{
+  font-size: 50px;
+}
 .right-absolute-card{
   float: right !important;
   top: 15px !important;
@@ -133,7 +153,7 @@
 }
 //--
 
-header{
+header.slider .slides li .caption{
   height: 55px;
 }
 header .header-nav li{
@@ -148,7 +168,7 @@ nav ul li a{
 .slider .slides li .caption {
   left:0;
   width: 100%;
-  top:4%;
+  top:1%;
 }
 
 //.box-slider-banner{
@@ -184,12 +204,12 @@ nav ul li a{
 }
 
 .parallax-container-1 {
-  height: 450px;
+  height: 590px;
   background: rgba(0,0,0,.2);
 
 }
 .parallax-container-2 {
-  height: 600px;
+  height: 780px;
 }
 .parallax-container-3{
   min-height: 150px;
@@ -219,7 +239,76 @@ nav ul li a{
 .card .card-reveal{
   left: 0;
 }
-//cotizaciones
+
+//formulario
+.card-customize .card-title{
+  padding: 0 0 0 3px !important;
+  width: 100%;
+  font-size: 14px;
+  background: rgba(255,255,255,.8);
+}
+
+.card-customize label{
+  color: #000;
+  line-height: 22px;
+  height: auto;
+  padding-left: 25px;
+  width: 100%;
+}
+
+.check-form{
+  position: absolute;
+  text-align: center;
+  display: block !important;
+  width: 100%;
+  top: 10%;
+}
+.check-form i{
+  font-size: 80px;
+}
+.box-check-form{
+  display: none;
+}
+
+.form-design label{
+  font-family: 'Montserrat';
+}
+
+.form-optional-check label, .form-check-travelers label{
+  width: 100%;
+  padding: 30px 0px;
+  background: #f1f1f1;
+  line-height: 0px;
+  text-align: center;
+  font-family: Montserrat;
+  border-radius: 5px;
+  color: #797979;
+  border-bottom: solid 1px #a9a9a9;
+}
+.form-check-travelers label{
+  line-height: 0;
+}
+.form-optional-check label span{
+  display: block;
+  line-height: 25px;
+  font-size: 10px;
+}
+
+.form-check-travelers label{
+  font-size: 28px;
+}
+//.form-check-travelers label span{
+//  display: block;
+//  margin-top: 10px;
+//}
+.form-check-travelers label span i{
+  line-height:0;
+}
+//.card-customize [type="checkbox"]:checked  ~ label{
+//  background: white !important;
+//}
+  //cotizaciones
+
 span.quotes-duration{
   font-weight: 500;
 }
@@ -307,7 +396,79 @@ img.desaturada{
 .box-client-right p{
   margin: 0;
 }
-
+//Ground packages
+.include-services .list-services{
+  display: block;
+  width: 100%;
+}
+.include-services li{
+  padding: 10px;
+  display: inline-block;
+  width: 85px;
+}
+.include-services span{
+  display: block;
+  text-align: center;
+}
+.list-services.uber li{
+  width: 60px;
+  padding: 0px;
+}
+.box-door .card-title{
+  font-size: 30px;
+}
+//testimonials
+.testimonials-box{
+  position: relative;
+}
+.testimonials-box-text i{
+  font-size: 90px;
+}
+.testimonials-box .testimonials-box-text{
+  position: absolute;
+  top: 0;
+  right: 60px !important;
+}
+.content-video-1 {
+  position: relative;
+}
+.content-video-btn-1{
+  background: rgba(255,255,255,0.7);
+  border-radius: 50%;
+  height: 80px;
+  left: 0;
+  margin: 0 auto;
+  position: absolute;
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 80px;
+  text-align: center;
+}
+.content-video-btn-1 i{
+  line-height:1.6;
+  font-size:50px;
+}
+.content-video-btn-1 a{
+  border-radius:50%;
+  line-height:1.6;
+}
+.content-video-btn-1 a:hover{
+  color: grey;
+}
+//detail
+.detail-maps .circle-days{
+  background: #f9a825;
+  border-radius: 14px;
+  border: 2px solid #333;
+  color: #fff;
+  font-weight: bold;
+  padding: 0 5px;
+}
+.detail-maps .overview{
+  height: 200px;
+  overflow-y: scroll;
+}
 //footer
 footer{
   background: #303030;

@@ -28,6 +28,12 @@ $(document).ready(function(){
     items : 3
   });
 
+    var owl = $("#owl-demo2");
+
+    owl.owlCarousel({
+        items : 3
+    });
+
   // Custom Navigation Events
   $(".next").click(function(){
     owl.trigger('owl.next');
@@ -43,6 +49,7 @@ $(document).ready(function(){
         selectYears: 15 // Creates a dropdown of 15 years to control year
     });
 
+  //SCROLLSPY
+    $('.scrollspy').scrollSpy();
+
 });
-
-
