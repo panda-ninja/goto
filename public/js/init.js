@@ -51,5 +51,6 @@ $(document).ready(function(){
 
   //SCROLLSPY
     $('.scrollspy').scrollSpy();
-
+  //SELECT
+  $('select').material_select();
 });

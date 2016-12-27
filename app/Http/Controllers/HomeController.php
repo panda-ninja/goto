@@ -66,11 +66,10 @@ class HomeController extends Controller
         $title = str_replace('-', ' ', $titulo);
         $codigo=strtoupper($request->input('txt_code'));
         $date=strtoupper($request->input('txt_date'));
-        $codigo=strtoupper($request->input('txt_code'));
 
         $paquete = TPaquete::with('itinerario','paquetes_destinos', 'precio_paquetes')->get()->where('titulo', $title);
 //        dd($paquete);
-        return view('travel-package', ['paquetes'=>$paquete]);
+        return view('checkout-package', ['paquetes'=>$paquete]);
     }
 
     /**

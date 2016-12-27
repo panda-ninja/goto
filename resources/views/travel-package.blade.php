@@ -24,7 +24,12 @@
 
                     <div class="col s12 m9 l7">
                         <a href="" class></a>
-                        <a href="{{route('checkout_package_path', array('titulo'=>'SPECIAL-PERU', 'dias'=>'6-days-tours'))}}" class="btn"> CHECKOUT</a>
+                        <form action="{{route('checkout_package_path', array('titulo'=>'SPECIAL-PERU', 'dias'=>'6-days-tours'))}}" method="post">
+                            {{csrf_field()}}
+                            <input type="text" name="txt_code">
+                            <input type="text" name="txt_date">
+                            <button type="submit" class="btn"> CHECKOUT</button>
+                        </form>
                         <div>
                             <h4 class="no-margin font-moserrat row">ITINERARY</h4>
                         </div>
