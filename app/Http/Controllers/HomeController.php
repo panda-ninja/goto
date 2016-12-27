@@ -58,7 +58,7 @@ class HomeController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($titulo, $dias)
+    public function showdate($titulo, $dias)
     {
 
 //        if ($_POST){
@@ -71,6 +71,15 @@ class HomeController extends Controller
 //        dd($paquete);
 
         return view('travel-package', ['paquetes'=>$paquete]);
+    }
+
+    public function showcheckout($titulo)
+    {
+        $title = str_replace('-', ' ', $titulo);
+        $paquete = TPaquete::with('itinerario','paquetes_destinos', 'precio_paquetes')->get()->where('titulo', $title);
+//        dd($paquete);
+
+        return view('checkout', ['paquetes'=>$paquete]);
     }
 
     /**

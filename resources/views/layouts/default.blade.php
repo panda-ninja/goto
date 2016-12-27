@@ -239,7 +239,7 @@
     $('#pinned')
         .stick_in_parent({
             parent: '.main-wrapper',
-            offset_top: 0
+            offset_top: 25
         })
         .on('sticky_kit:bottom', function(e) {
             $(this).parent().css('position', 'static');
