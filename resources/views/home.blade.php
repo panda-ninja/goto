@@ -163,7 +163,18 @@
                             <p class="no-margin">Small group</p>
                             <p class="no-margin">Tourist to Superior</p>
                             <ul class="font-moserrat">
-                                <li class="text-14 margin-bottom-10">January 21, 2017 <span class="blue-text">$1499</span> <a href="{{route('home_show_path', array('titulo'=>'SPECIAL-PERU', 'dias'=>'6-days-tours'))}}" class="btn"> BOOK</a></li>
+
+                                <li class="text-14 margin-bottom-10">
+                                    <form action="{{route('home_show_date_path', array('titulo'=>'SPECIAL-PERU', 'dias'=>'6-days-tours'))}}" method="post">
+                                        {{csrf_field()}}
+                                        <input type="hidden" value="1" name="txt_iddate">
+                                        <input type="hidden" value="January 21, 2017" name="txt_date">
+                                        <input type="hidden" value="NEW YORK" name="txt_country">
+                                        <input type="hidden" value="1599" name="txt_price">
+                                        January 21, 2017 <span class="blue-text">$1499</span>
+                                        <input type="submit" class="btn" value="BOOK">
+                                    </form>
+                                </li>
                                 <li class="text-14 margin-bottom-10">January 21, 2017 <span class="blue-text">$1499</span> <a href="" class="btn"> BOOK</a></li>
                                 <li class="text-14 margin-bottom-10">January 21, 2017 <span class="blue-text">$1499</span> <a href="" class="btn"> BOOK</a></li>
                                 <li class="text-14 margin-bottom-10">January 21, 2017 <span class="blue-text">$1499</span> <a href="" class="btn"> BOOK</a></li>
