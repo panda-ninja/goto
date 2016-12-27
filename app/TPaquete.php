@@ -23,4 +23,9 @@ class TPaquete extends Model
         return $this->hasMany(TPaqueteDestino::class, 'idpaquetes');
     }
 
+    public function paquetes_categoria()
+    {
+        return $this->hasMany(TPaqueteCategoria::class, 'idpaquetes');
+    }
+
 }

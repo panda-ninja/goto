@@ -76,7 +76,8 @@ elixir(function(mix) {
         'vendors/materialize.js',
         'vendors/owl.carousel.js',
         'vendors/video.js',
-        'vendors/jquery.sticky-kit.min.js'
+        'vendors/jquery.sticky-kit.min.js',
+        'vendors/masonry.pkgd.js'
     ], 'public/js/app.js');
 
     mix.scripts([
