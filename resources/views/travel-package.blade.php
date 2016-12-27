@@ -40,9 +40,10 @@
                                     <form action="{{route('home_show_checkout_path', array('titulo'=>'SPECIAL-PERU', 'dias'=>'7-days-tours'))}}" method="post">
                                         {{csrf_field()}}
                                         <input type="hidden" value="1" name="txt_iddate">
+                                        <input type="hidden" value="2017-01-21" name="txt_date_number">
                                         <input type="hidden" value="January 21, 2017" name="txt_date">
                                         <input type="hidden" value="NEW YORK" name="txt_country">
-                                        <input type="hidden" value="1599" name="txt_price">
+                                        <input type="hidden" value="1499" name="txt_price">
                                         January 21, 2017 <span class="@php if ($_POST['txt_iddate'] == 1) echo 'blue-text'; else echo 'grey-text' @endphp">$1499</span>
                                         <input type="submit" class="btn @php if ($_POST['txt_iddate'] == 1) echo ''; else echo 'grey' @endphp" value="BOOK">
                                     </form>
@@ -197,13 +198,6 @@
             <div class="row main-wrapper">
 
                     <div class="col s12 m9 l7">
-                        <a href="" class></a>
-                        <form action="{{route('checkout_package_path', array('titulo'=>'SPECIAL-PERU', 'dias'=>'6-days-tours'))}}" method="post">
-                            {{csrf_field()}}
-                            <input type="text" name="txt_code">
-                            <input type="text" name="txt_date">
-                            <button type="submit" class="btn"> CHECKOUT</button>
-                        </form>
                         <div>
                             <h4 class="no-margin font-moserrat row">ITINERARY</h4>
                         </div>

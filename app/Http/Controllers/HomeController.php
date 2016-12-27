@@ -83,13 +83,20 @@ class HomeController extends Controller
         return view('checkout-package', ['paquetes'=>$paquete]);
     }
 
-    public function showcheckout($titulo)
+    public function showcheckout(Request $request,$titulo)
     {
         $title = str_replace('-', ' ', $titulo);
-        $paquete = TPaquete::with('itinerario','paquetes_destinos', 'precio_paquetes')->get()->where('titulo', $title);
-//        dd($paquete);
+        $txt_price=($request->input('txt_price'));
+        $txt_date_number=($request->input('txt_date_number'));
+        $txt_country=($request->input('txt_country'));
+//        dd($txt_price);
+        $paquete = TPaquete::with('itinerario','paquetes_destinos', 'precio_paquetes','disponibilidad')
+            ->get()
+            ->where('titulo', $title)
+            ->where('fecha_disponibilidad', $txt_date_number);
+        dd($paquete);
 
-        return view('checkout', ['paquetes'=>$paquete]);
+        return view('checkout', ['paquetes'=>$paquete,'precio'=>$txt_price,'datedispo'=>$txt_date_number,'country'=>$txt_country]);
     }
 
     /**

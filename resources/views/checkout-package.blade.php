@@ -59,7 +59,7 @@
 
                 </div>
             </div>
-            <div class="row main-wrapper">
+            <div class="row">
                 <div class="col s12 m8">
                     <div class="col-lg-8 col-lg-offset-2 table-responsive">
                         <?php
@@ -212,7 +212,6 @@
 
                 </div>
             </div>
-
         </div>
     </div>
 
