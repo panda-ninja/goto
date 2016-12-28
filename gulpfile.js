@@ -149,4 +149,10 @@ elixir(function(mix) {
         'resources/assets/css/vendors/plugins/table.min.css',
         'resources/assets/css/vendors/plugins/video.min.css'
     ], 'public/css/stilos_froala.css');
+    mix.styles([
+        'vendors/style-freddy.css'
+    ], 'public/css/style-freddy.css');
+    mix.scripts([
+        'resources/assets/js/vendors/funciones-checkout.js',
+    ], 'public/js/funciones-checkout.js');
 });

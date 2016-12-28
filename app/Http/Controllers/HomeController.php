@@ -8,6 +8,7 @@ use GotoPeru\ItinerarioXHora;
 use GotoPeru\PaqueteCotizacion;
 use GotoPeru\PaquetePersonalizado;
 use GotoPeru\TPaquete;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Http\Request;
 
 use GotoPeru\Http\Requests;
@@ -90,11 +91,11 @@ class HomeController extends Controller
         $txt_date_number=($request->input('txt_date_number'));
         $txt_country=($request->input('txt_country'));
 //        dd($txt_price);
-        $paquete = TPaquete::with('itinerario','paquetes_destinos', 'precio_paquetes','disponibilidad')
+        $paquete = TPaquete::with(['itinerario','paquetes_destinos', 'precio_paquetes','disponibilidad' => function($query)use($txt_date_number){$query->where('fecha_disponibilidad',$txt_date_number);}])
             ->get()
-            ->where('titulo', $title)
-            ->where('fecha_disponibilidad', $txt_date_number);
-        dd($paquete);
+            ->where('titulo', $title);
+
+//       dd($paquete);
 
         return view('checkout', ['paquetes'=>$paquete,'precio'=>$txt_price,'datedispo'=>$txt_date_number,'country'=>$txt_country]);
     }
