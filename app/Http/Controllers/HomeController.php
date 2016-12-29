@@ -7,8 +7,9 @@ use GotoPeru\ItinerarioPersonalizado;
 use GotoPeru\ItinerarioXHora;
 use GotoPeru\PaqueteCotizacion;
 use GotoPeru\PaquetePersonalizado;
+use GotoPeru\TPaquete_servicio_extra;
 use GotoPeru\TPaquete;
-use Illuminate\Database\Eloquent\Builder;
+//use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Http\Request;
 
 use GotoPeru\Http\Requests;
@@ -84,20 +85,21 @@ class HomeController extends Controller
         return view('checkout-package', ['paquetes'=>$paquete]);
     }
 
-    public function showcheckout(Request $request,$titulo)
+    public function showcheckout()
     {
-        $title = str_replace('-', ' ', $titulo);
-        $txt_price=($request->input('txt_price'));
-        $txt_date_number=($request->input('txt_date_number'));
-        $txt_country=($request->input('txt_country'));
+//        $title = str_replace('-', ' ', $titulo);
+//        $txt_price=($request->input('txt_price'));
+//        $txt_date_number=($request->input('txt_date_number'));
+//        $txt_country=($request->input('txt_country'));
 //        dd($txt_price);
-        $paquete = TPaquete::with(['itinerario','paquetes_destinos', 'precio_paquetes','disponibilidad' => function($query)use($txt_date_number){$query->where('fecha_disponibilidad',$txt_date_number);}])
-            ->get()
-            ->where('titulo', $title);
+//        $paquete = TPaquete::with(['itinerario','paquetes_destinos', 'precio_paquetes','paquete_servicio_extra','disponibilidad' => function($query)use($txt_date_number){$query->where('fecha_disponibilidad',$txt_date_number);}])
+//            ->get()
+//            ->where('titulo', $title);
+//        $paquete = TPaquete::with('itinerario');
+        $paquete = TPaquete::with('paquete_servicio_extra')->get()->where('estado', 1);
+       dd($paquete);
 
-//       dd($paquete);
-
-        return view('checkout', ['paquetes'=>$paquete,'precio'=>$txt_price,'datedispo'=>$txt_date_number,'country'=>$txt_country]);
+//        return view('checkout', ['paquetes'=>$paquete,'precio'=>$txt_price,'datedispo'=>$txt_date_number,'country'=>$txt_country]);
     }
 
     /**

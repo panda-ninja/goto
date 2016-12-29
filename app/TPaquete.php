@@ -26,4 +26,8 @@ class TPaquete extends Model
     {
         return $this->hasMany(TDisponibilidad::class, 'idpaquete');
     }
+    public function paquete_servicio_extra()
+    {
+        return $this->hasMany(TPaquete_servicio_extra::class, 'idpaquete');
+    }
 }

@@ -210,10 +210,10 @@
             <div class="row">
                 <div class="col s12 caja-flotante grey lighten-2">
                     <ul>
-                        <li id="acomodacion_3" class="hide grey-text text-darken-1"><span>On triple accomodation </span><span id="rooms_T">1</span>X<img class="" src="{{asset('images/male.png')}}"><img class="" src="{{asset('images/male.png')}}"><img class="" src="{{asset('images/male.png')}}">X$<span>1499</span></li>
-                        <li id="acomodacion_2" class="grey-text text-darken-1"><span>On double accomodation </span><span id="rooms_D">1</span>X<img class="" src="{{asset('images/male.png')}}"><img class="" src="{{asset('images/male.png')}}">X$<span>1499</span></li>
-                        <li id="acomodacion_M" class="hide grey-text text-darken-1"><span>On matinonial accomodation </span><span id="rooms_M">1</span>X<img class="" src="{{asset('images/male.png')}}"><img class="" src="{{asset('images/male.png')}}">X$<span>1499</span></li>
-                        <li id="acomodacion_1" class="hide grey-text text-darken-1"><span>On simple accomodation </span><span id="rooms_S">1</span>X<img class="" src="{{asset('images/male.png')}}">X$<span>1499</span></li>
+                        <li id="acomodacion_3" class="hide grey-text text-darken-1"><span>On triple accomodation </span><span id="rooms_T">1</span>X<img class="" src="{{asset('images/male.png')}}"><img class="" src="{{asset('images/male.png')}}"><img class="" src="{{asset('images/male.png')}}">X$<span id="precio_3">{{$pre_2_t}}</span></li>
+                        <li id="acomodacion_2" class="grey-text text-darken-1"><span>On double accomodation </span><span id="rooms_D">1</span>X<img class="" src="{{asset('images/male.png')}}"><img class="" src="{{asset('images/male.png')}}">X$<span id="precio_Ma2">{{$pre_2_d}}</span></li>
+                        <li id="acomodacion_M" class="hide grey-text text-darken-1"><span>On matinonial accomodation </span><span id="rooms_M">1</span>X<img class="" src="{{asset('images/male.png')}}"><img class="" src="{{asset('images/male.png')}}">X$<span id="precio_2">{{$pre_2_d}}</span></li>
+                        <li id="acomodacion_1" class="hide grey-text text-darken-1"><span>On simple accomodation </span><span id="rooms_S">1</span>X<img class="" src="{{asset('images/male.png')}}">X$<span id="precio_1">{{$pre_2_s}}</span></li>
                         <li class="hide"><span id="precioPaquete">{{$precio}}</span></li>
 
                     </ul>
@@ -231,6 +231,11 @@
             <div class="row">
                 <div class="col s12">
                     <h6>Optional Activities:</h6>
+                    @foreach($paquetes as $paquete)
+                        @foreach($paquete->paquete_servicio_extra as $extras)
+                            sdsd
+                        @endforeach
+                    @endforeach
                     <p>
                         <input type="checkbox" id="test1" />
                         <label for="test1">Primera opcion</label>
