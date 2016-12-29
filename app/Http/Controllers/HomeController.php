@@ -7,10 +7,11 @@ use GotoPeru\ItinerarioPersonalizado;
 use GotoPeru\ItinerarioXHora;
 use GotoPeru\PaqueteCotizacion;
 use GotoPeru\PaquetePersonalizado;
+use GotoPeru\TPaquete_servicio_extra;
 use GotoPeru\TCategoria;
 use GotoPeru\TDisponibilidad;
 use GotoPeru\TPaquete;
-use GotoPeru\TPaqueteCategoria;
+
 use Illuminate\Http\Request;
 
 use GotoPeru\Http\Requests;
@@ -76,14 +77,30 @@ class HomeController extends Controller
 
         return view('travel-package', ['paquetes'=>$paquete, 'disponibilidad'=>$disponibilidad]);
     }
-
-    public function showcheckout($titulo)
+    public function checkout(Request $request,$titulo, $dias)
     {
         $title = str_replace('-', ' ', $titulo);
+        $codigo=strtoupper($request->input('txt_code'));
+        $date=strtoupper($request->input('txt_date'));
+
         $paquete = TPaquete::with('itinerario','paquetes_destinos', 'precio_paquetes')->get()->where('titulo', $title);
 //        dd($paquete);
+        return view('checkout-package', ['paquetes'=>$paquete]);
+    }
 
-        return view('checkout', ['paquetes'=>$paquete]);
+    public function showcheckout(Request $request,$titulo)
+    {
+        $title = str_replace('-', ' ', $titulo);
+        $txt_price=($request->input('txt_price'));
+        $txt_date_number=($request->input('txt_date_number'));
+        $txt_country=($request->input('txt_country'));
+//        dd($txt_price);
+        $paquete = TPaquete::with(['itinerario','paquetes_destinos', 'precio_paquetes','paquete_servicio_extra.servicio_extra','disponibilidad' => function($query)use($txt_date_number){$query->where('fecha_disponibilidad',$txt_date_number);}])
+            ->get()
+            ->where('titulo', $title);
+//       dd($paquete);
+
+        return view('checkout', ['paquetes'=>$paquete,'precio'=>$txt_price,'datedispo'=>$txt_date_number,'country'=>$txt_country]);
     }
 
     public function viewpackages()

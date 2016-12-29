@@ -2,7 +2,7 @@ body{
     margin: 0;
 }
 .container{
-    margin:  0px 94px;
+    margin:  0px 0px;
 }
 .responsive-img{
     width: 400px;
@@ -38,4 +38,104 @@ body{
 .letra-naranja{
     color: #f9a825;
 }
+.letra-roja{
+    color: #d20404;
+}
+.caja{
+    width: 70px;
+    height: 50px;
+}
+/*== seccion para modal ============================================================================*/
+.modal-ancho{
+    width: 90%;
+    height:  90%;
+    max-height: 1500px;
+}
+.letra-peque{
+    color: rgba(119,119,119,1);
+    font-size: 12px;
+}
+.table1{
+    margin: 0px;
+    padding: 0px;
+    align-content: center;
+    text-align: center;
+}
+.centrar{
+    text-align: center !important;
+}
+.centrar td{
+    text-align: center !important;
+}
+.borde-tabla-habitacion td{
+    border: 1px solid #e3e3e3;
+    padding: 2px 5px;
+    cursor:pointer;
+}
+.text-small{
+    font-size: small;
+}
+.outline-day{
+    border-radius: 14px;
+    border: 2px solid #333;
+    background: #e09e37;
+    color: #fff;
+    font-weight: bold;
+    width: 25px;
+    height: 25px;
+}
+.margin-top-5{
+    margin-top: 5px;
+}
+.text-18{
+    font-size: 18px;
+}
+/*------------------------------------------  Estilos para los draggeables   -------------------------------*/
+
+.cursor-move{
+    cursor:move;
+}
+.textarea_plan_itinerario{
+
+}
+.column {
+    width: 100%;
+    float: left;
+    padding-top: 10px;
+    padding-bottom: 40px;
+    padding-left: 10px;
+    padding-right: 10px;
+
+}
+.portlet {
+    margin: 0 1em 1em 0;
+    padding: 0.3em;
+    background: #f5f5f5;
+    border: 1px solid #c5c5c5;
+}
+.portlet-header {
+    padding: 0.2em 0.3em;
+    margin-bottom: 0.5em;
+    position: relative;
+}
+.portlet-toggle {
+    position: absolute;
+    top: 50%;
+    right: 0;
+    margin-top: -8px;
+}
+.portlet-content {
+    padding: 0.4em;
+}
+.portlet-placeholder {
+    border: 1px dotted black;
+    margin: 0 1em 1em 0;
+    height: 50px;
+}
+
+
+.pos_iti{
+position: relative;
+}
+
 /*# sourceMappingURL=notification.css.map */

@@ -52,6 +52,10 @@ Route::get('travel-packages/{category}', [
     'as' => 'home_show_category_path',
 ]);
 
+Route::post('checkout-package/{titulo}_{dias}', [
+    'uses' => 'HomeController@checkout',
+    'as' => 'checkout_package_path',
+]);
 
 /*==begin== rutas para clientes ================================================================*/
 Route::get('cliente/login', [
@@ -160,6 +164,10 @@ Route::group(['middleware'=>'admin'],function(){
     Route::post('/buscarpaquete', [
         'uses' => 'PaqueteController@buscar',
         'as' => 'pqt_buscar_path',
+    ]);
+    Route::post('/guardar_pre_cotizacion', [
+        'uses' => 'CotizacionController@guardar_pre_cotizacion',
+        'as' => 'cotizacion_guardar_pre_path',
     ]);
 });
 /*

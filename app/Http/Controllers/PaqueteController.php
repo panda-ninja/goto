@@ -2,6 +2,8 @@
 
 namespace GotoPeru\Http\Controllers;
 use GotoPeru\PaquetePersonalizado;
+use GotoPeru\TDestino;
+use GotoPeru\TPaquete;
 use Illuminate\Http\Request;
 
 class PaqueteController extends Controller
@@ -9,10 +11,16 @@ class PaqueteController extends Controller
     //
     public function buscar(Request $request)
     {
-//        $codigo=$request->input('codigo');
-//        $paquete=PaquetePersonalizado::where('codigo',$codigo);
-        return 'holaaaaaaaaaaaaaaaa';
+        $codigo=strtoupper($request->input('codigo'));
+        $paquete = TPaquete::with('paquetes_destinos.destinos', 'precio_paquetes','itinerario')->get()->where('codigo',$codigo);
 
+//        $paquete=Paquete::with('itinerario_personalizados.servicios','itinerario_personalizados.itinerario_x_horas')->get()->where('codigo',$codigo);
+//['paquete'=>$paquete]
+        //return dd($paquete);
+        $destino=TDestino::all();
+        //dd($paquete);
+        return view('secciones.show_paquete',['paquete'=>$paquete],['destino'=>$destino]);
+//    return dd($paquete);
 
         //
 //        if($request->ajax()){

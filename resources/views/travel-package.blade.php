@@ -67,10 +67,10 @@
 
                             {{--<ul class="font-moserrat">--}}
                                 {{--<li class="text-14 margin-bottom-10 @php if ($_POST['txt_iddate'] == 1) echo ' '; else echo 'grey-text' @endphp">--}}
-                                    {{--<form action="{{route('home_show_checkout_path', array('titulo'=>'SPECIAL-PERU', 'dias'=>'7-days-tours'))}}" method="post">--}}
+                                    {{--<form ACTION="{{route('home_show_checkout_path', array('titulo'=>'SPECIAL-PERU', 'dias'=>'7-days-tours'))}}" method="post">--}}
                                         {{--{{csrf_field()}}--}}
                                         {{--<input type="hidden" value="1" name="txt_iddate">--}}
-                                        {{--<input type="hidden" value="January 21, 2017" name="txt_date">--}}
+                                        {{--<input type="hidden" value="january 21, 2017" name="txt_date">--}}
                                         {{--<input type="hidden" value="NEW YORK" name="txt_country">--}}
                                         {{--<input type="hidden" value="1599" name="txt_price">--}}
                                         {{--January 21, 2017 <span class="@php if ($_POST['txt_iddate'] == 1) echo 'blue-text'; else echo 'grey-text' @endphp">$1499</span>--}}

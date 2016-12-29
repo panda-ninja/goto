@@ -22,15 +22,19 @@ class TPaquete extends Model
     {
         return $this->hasMany(TPaqueteDestino::class, 'idpaquetes');
     }
+    public function disponibilidad()
+    {
+        return $this->hasMany(TDisponibilidad::class, 'idpaquete');
+    }
+    public function paquete_servicio_extra()
+    {
+        return $this->hasMany(TPaquete_servicio_extra::class, 'idpaquete');
+    }
+
 
     public function paquetes_categoria()
     {
         return $this->hasMany(TPaqueteCategoria::class, 'idpaquetes');
-    }
-
-    public function disponibilidad()
-    {
-        return $this->hasMany(TDisponibilidad::class, 'idpaquete');
     }
 
 }

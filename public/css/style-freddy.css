@@ -1,0 +1,564 @@
+.img-cartype{
+    width:45px !important;
+    height:32px !important;
+}
+.star{
+    font-style: normal;
+    font-size: bold;
+}
+.star-negrita{
+    font-style: normal;
+    font-size: 19px;
+    font-style: italic;
+    color: black;
+    float: none !important;
+}
+.star-negrita-tercera{
+    font-style: normal;
+    font-size: 14px;
+    font-style: italic;
+    color: black;
+    float: none !important;
+}
+.star-negrita-segunda{
+    font-style: normal;
+    font-size: 22px;
+    font-style: italic;
+    color: black;
+    float: none !important;
+}
+.star-normal{
+    font-style: normal;
+    font-size: 19px;
+    font-style: italic;
+}
+.acomodacion{
+    font-size: 12px;
+    color: black;
+    float: none !important;
+}
+.acomodacion-precio{
+    font-size: 18px;
+    float: none !important;
+}
+.acomodacion-precio-a{
+    font-size: 18px;
+}
+.acomodacion-negrita{
+    font-size: 12px !important;;
+    float: none !important;
+    color: black !important;;
+}
+.titulo-package{
+    font-family: 'Raleway';
+    color: #333;
+    font-size: 24px;
+}
+.color-plomiso{
+    color: #8c9496 !important;
+}
+.no-negra{
+    font-size: 20px;
+    text-decoration: none;
+    font-weight:100 !important;
+}
+/* ======================================== inicio nuevas 21/05/2016 ======================================*/
+.naranja {
+    color: #e67e22 !important;
+    background: #e67e22 !important;
+    background-color: #e67e22 !important;
+}
+.centrar{
+    text-align: center !important;
+    vertical-align: middle !important;
+}
+.derecha{
+    text-align: right !important;
+    vertical-align: middle !important;
+}
+.caja-star{
+    margin-left: 0px;
+    margin-right: 0px;
+    margin-top: 5px;
+    padding-left: 1px;
+    padding-right: 1px;
+    padding-top: 15px;
+    width: 105px;
+}
+.caja-star:hover{
+    /*border-color:#7f8429  !important;*/
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+    border-radius: 10px;
+}
+.caja-star5{
+    margin-left: 0px;
+    margin-right: 0px;
+    margin-top: 5px;
+    padding-left: 1px;
+    padding-right: 1px;
+    padding-top: 15px;
+    height: 126px;
+    width: 168px;
+    color:#e09e37 !important;
+}
+.caja-star5:hover{
+    /*border-color:#7f8429  !important;*/
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+    border-radius: 10px;
+}
+.caja-star1{
+    background:#fff !important;
+    border-color:#fff !important;
+    /*border-color:#7f8429  !important;*/
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+    border-radius: 10px;
+}
+
+.caja-travelers{
+    margin-left: 15px;
+    margin-right: 5px;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    padding-left: 5px;
+    padding-right: 5px;
+    padding-top: 18px;
+    padding-bottom: 18px;
+    width: 45px;
+    font-size: 20px;
+}
+.caja-trip{
+    margin-left: 5px;
+    margin-right: 5px;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    padding-left: 5px;
+    padding-right: 5px;
+    padding-top: 15px;
+    padding-bottom: 15px;
+    width: 54px;
+}
+.caja-star-trip{
+    /*margin-left: 10x;
+    margin-right: 10px;*/
+    margin-top: 5px;
+    margin-bottom: 5px;
+    /*padding-left: 5px;
+    padding-right: 5px;*/
+    padding-top: 22px;
+    padding-bottom: 22px;
+    width: 120px;
+
+}
+.titulo{
+    color: #E09E37;
+    font-size: .9em;
+    text-transform: uppercase;
+    letter-spacing: 2.5px;
+    margin-top: 6px;
+    text-align: center;
+    margin-left: -25px;
+    font-weight: bold;
+}
+.caja{
+    color:#525252 !important;
+    background: #f7f7f7 !important;
+    border-color:#ADADAD  !important;
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+    border-radius: 10px;
+}
+.caja5{
+    color:#fff !important;
+    /*background: #f7f7f7 !important;*/
+    border-color:#ADADAD  !important;
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+    border-radius: 10px;
+    text-align: center !important;
+    vertical-align:middle !important;
+    /*-webkit-text-stroke-color: black;
+  -webkit-text-stroke-width: 0.75px;
+  font-size: 20px !important;*/
+}
+.dorado{
+    color: darkorange !important;
+    font-size: larger;
+    /*background: #fff !important;*/
+}
+
+.caja-star.active, .caja-trip.active, .caja-travelers.active, .caja-star-trip.active{
+    background-color: #E09E37 !important;
+    color: #000;
+    /*border-color:#7f8429  !important;*/
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+    border-radius: 10px;
+
+}
+
+/*.active{
+    background-color: #E09E37;
+    color: #000;
+    border-color:#7f8429  !important;
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+    border-radius: 10px;
+
+}*/
+.active2:focus{
+    background-color: #E09E37!important;
+    color: #333!important;
+    /*border-color:#7f8429  !important;*/
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+    border-radius: 10px;
+
+}
+.verde{
+    background: #7f8429  !important;
+    border-color:#7f8429  !important;
+}
+.verde:hover{
+    background: #000 !important;
+    border-color:#000 !important;
+    color: #f7f7f7 !important;
+}
+/* ======================================== fin nuevas 21/05/2016 ======================================*/
+/* ======================================== inicio nuevas 31/05/2016 ======================================*/
+
+.destination{
+    font-size: 15px !important;
+}
+
+.caja-star1{
+    margin-left: 10px;
+    margin-right: 10px;
+    margin-top: 5px;
+    color: #333!important;
+    padding-left: 5px;
+    padding-right: 5px;
+    padding-top: 3px;
+    padding-bottom: 3px;
+    width: auto;
+}
+.caja-star1:hover{
+    border-color:#7f8429  !important;
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+    border-radius: 10px;
+}
+.caja1 textarea{
+    border-color:#fff !important;
+    height: auto !important;
+    background: #fff !important;
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+    border-radius: 10px;
+}
+/*.destino1{*/
+    /*background-image:  url(../img/contact-destinos/machupicchu.jpg);*/
+    /*background-size: 168px 126px;*/
+    /*background-repeat: no-repeat;*/
+/*}*/
+/*.destino2{*/
+    /*background-image:  url(../img/contact-destinos/lago-titicaca.jpg);*/
+    /*background-size: 168px 126px;*/
+    /*background-repeat: no-repeat;*/
+/*}*/
+/*.destino3{*/
+    /*background-image:  url(../img/contact-destinos/colca.jpg);*/
+    /*background-size: 168px 126px;*/
+    /*background-repeat: no-repeat;*/
+/*}*/
+/*.destino4{*/
+    /*background-image:  url(../img/contact-destinos/amazonas.jpg);*/
+    /*background-size: 168px 126px;*/
+    /*background-repeat: no-repeat;*/
+/*}*/
+/*.destino5{*/
+    /*background-image:  url(../img/contact-destinos/nazca.jpg);*/
+    /*background-size: 168px 126px;*/
+    /*background-repeat: no-repeat;*/
+/*}*/
+/*.destino6{*/
+    /*background-image:  url(../img/contact-destinos/lima.jpg);*/
+    /*background-size: 168px 126px;*/
+    /*background-repeat: no-repeat;*/
+/*}*/
+/*.destino7{*/
+    /*background-image:  url(../img/contact-destinos/trujillo-chiclayo.jpg);*/
+    /*background-size: 168px 126px;*/
+    /*background-repeat: no-repeat;*/
+/*}*/
+/*.destino8{*/
+    /*background-image:  url(../img/contact-destinos/galapagos.jpg);*/
+    /*background-size: 168px 126px;*/
+    /*background-repeat: no-repeat;*/
+/*}*/
+/*.destino9{*/
+    /*background-image:  url(../img/contact-destinos/islas-ballestas.jpg);*/
+    /*background-size: 168px 126px;*/
+    /*background-repeat: no-repeat;*/
+/*}*/
+.sombra{
+    background:rgba(35,35,35,0.70);
+    color:#fff !important;
+    font-size: 15px !important;
+}
+/* ======================================== fin nuevas 31/05/2016 ======================================*/
+
+
+table.uno, table.uno td {
+    border: 1px solid #e3e3e3;
+    border-collapse: collapse;
+    font-family: "Trebuchet MS", Arial, sans-serif;
+    color:rgba(48, 46, 44, 0.71);
+    text-align: center;
+    cursor: pointer;
+    cursor: hand;
+    margin: 0px;
+    padding: 0px;
+}
+/*table, th, td:hover {
+    background-color: chartreuse;
+    border: 1px solid #D4E0EE;
+    border-collapse: collapse;
+    font-family: "Trebuchet MS", Arial, sans-serif;
+    color: aqua;
+    text-align:right;
+}*/
+
+table.uno tbody td{
+    height: 40px !important;
+}
+
+.table-row-info{
+    background: #d8ecf6;
+}
+table.uno caption {
+    font-size: 150%;
+    font-weight: bold;
+    margin: 5px;
+}
+
+td, th {
+
+}
+
+table.uno thead tr th {
+    background: #333;
+    color: #fff;
+    font-family: inherit;
+    text-transform: uppercase;
+    border: 1px groove #e3e3e3;
+    text-align: center;
+    padding: 7px;
+}
+table.uno .calendar-row tr th{
+    background:#616161;
+    color: #fff;
+    border: 1px groove #e3e3e3;
+}
+
+/* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#e5e5e5+0,ffffff+100 */
+
+
+table.uno tbody th {
+    font-weight: bold;
+}
+
+/*tbody tr { background: #FCFDFE; }*/
+
+/*tbody tr.odd { background: #000; }*/
+
+table.uno a:link {
+    color: #718ABE;
+    text-decoration: none;
+}
+
+table.uno a:visited {
+    color: #718ABE;
+    text-decoration: none;
+}
+
+table.uno a:hover {
+    color: #718ABE;
+    text-decoration: underline !important;
+}
+
+table.uno tfoot th, table.uno tfoot td {
+    font-size: 85%;
+}
+
+.table i.fa-star{
+    background: linear-gradient(#ffbd23, #ff953e);
+    -webkit-background-clip: text;
+    color: transparent;
+}
+
+
+table.uno .disabled{
+    color:#CCCCCC;
+}
+
+table.uno .headbox{
+    background: #fafafa;
+    /*width:100%;*/
+    height:100%;
+    /* display:block;*/
+    vertical-align:middle;
+}
+.bodybox{
+    background-color:#fff;
+    width:100%;
+}
+#barcal{
+    background-color:#E6EDF5;
+    width:100%;
+    height:30px;
+}
+/*#calendary_left{*/
+/*float:left;*/
+/*width:300px;*/
+/*height:200px;*/
+/*}*/
+/*#calendary_right{*/
+/*float:right;*/
+/*width:300px;*/
+/*height:200px;*/
+/*}*/
+/*#calendarview1{*/
+/*width:610px;*/
+/*height:250px;*/
+/*}*/
+table.uno .rango{
+    background-color: #e09e37;
+    color: #fff;
+}
+table.uno .extra{
+    background-color: #B6B6F9;
+}
+table.uno .extra_right{
+    background-color: #B6B6F9;
+}
+
+table.uno .precio-verde{
+    /*background: #D9440C;*/
+    background:#e09e37;
+    color: #fff;
+    /*font-size:medium;*/
+    font-family: Tahoma;
+    font-weight: bold;
+}
+.precio-verde{
+    /*background: #D9440C;*/
+    background:#e09e37;
+    color: #fff;
+    /*font-size:medium;*/
+    font-family: Tahoma;
+    font-weight: bold;
+}
+table.uno .precio{
+    color: #232323;
+    font-size:11px;
+    font-family: Tahoma;
+    font-weight: bold;
+}
+table.uno .soul_out{
+    color:rgba(230, 3, 12, 0.71);
+    font-size:small;
+    font-family: Tahoma;
+    font-weight: bold;
+}
+table.uno .pivot{
+    color:#000;
+    /*font-size:small;*/
+    font-family: Tahoma;
+    font-weight: bold;
+}
+.travel_dates{
+    color: #7F8429;
+    /*font-size: 16px;*/
+    text-transform: uppercase;
+}
+.travel_dates1{
+    color: #7F8429;
+    text-transform: uppercase;
+}
+.travel_dates_tam{
+    font-size: 14px !important;
+}
+.centrado{
+    text-align: center !important;
+    color: black;
+}
+.centrado1{
+    text-align: center !important;
+}
+.letra_naranja_14{
+    color: #D9440C !important;
+    font-size: 20px !important;
+}
+.extras-verde{
+    color: #7F8429;
+}
+.negrita_normal{
+    color: black !important;
+}
+.align-rigth{
+    text-align: right !important;
+}
+
+table .cursorsito{
+    cursor:pointer !important;
+}
+.bordeado{
+    border: 1px solid #dddddd;
+}
+
+.borde-tabla-habitacion td{
+    border: 1px solid #e3e3e3;
+    padding: 2px 5px;
+    cursor:pointer;
+}
+
+.aside-list-price1 li{
+    list-style: none;
+    padding: 10px 0;
+    border-bottom: 1px solid #ebf0f1;
+    position: relative;
+}
+.btn-blue{
+    color: #ffffff;
+    background-color: #428bca;
+    border-color: #357ebd;
+}
+.btn-blue:hover{
+    background: #333333;
+    border-bottom: 1px solid #333333;
+    color: #FFFFFF;
+}
+.beds{
+    width: 30px !important;
+    height: 35px !important;
+}
+.bedsm{
+    width: 53px !important;
+    height: 35px !important;
+}
+.rojo{
+    color: #d20404 !important;
+}
+.color-plomo{
+    color: rgba(119,119,119,1) !important;
+}
+
+.caja-flotante{
+    margin-left: 0px;
+    margin-right: 0px;
+    border: 1px solid #ebf0f1;
+}
+/*# sourceMappingURL=style-freddy.css.map */
