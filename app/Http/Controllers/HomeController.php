@@ -7,11 +7,8 @@ use GotoPeru\ItinerarioPersonalizado;
 use GotoPeru\ItinerarioXHora;
 use GotoPeru\PaqueteCotizacion;
 use GotoPeru\PaquetePersonalizado;
-<<<<<<< HEAD
 use GotoPeru\TPaquete_servicio_extra;
-=======
 use GotoPeru\TCategoria;
->>>>>>> origin/master
 use GotoPeru\TPaquete;
 //use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Http\Request;

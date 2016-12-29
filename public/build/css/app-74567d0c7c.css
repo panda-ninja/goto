@@ -6569,6 +6569,9 @@ button.picker__today:focus, button.picker__clear:focus, button.picker__close:foc
 .padding-bottom {
   padding-bottom: 10px; }
 
+.padding-left-20 {
+  padding-left: 20px; }
+
 .no-margin {
   margin: 0 !important; }
 
@@ -6924,7 +6927,7 @@ img.desaturada {
   padding: 0 5px; }
 
 .detail-maps .overview {
-  height: 200px;
+  height: 215px;
   overflow-y: scroll; }
 
 footer {
