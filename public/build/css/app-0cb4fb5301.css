@@ -2651,8 +2651,7 @@ input[type=range] + .thumb {
 
 .row {
   margin-left: auto;
-  margin-right: auto;
-  margin-bottom: 20px; }
+  margin-right: auto; }
   .row:after {
     content: "";
     display: table;
@@ -6551,6 +6550,9 @@ button.picker__today:focus, button.picker__clear:focus, button.picker__close:foc
 .spacer-margin-20 {
   margin: 20px 0; }
 
+.spacer-margin-50 {
+  margin: 50px 0; }
+
 .no-padding {
   padding: 0; }
 
@@ -6592,6 +6594,9 @@ button.picker__today:focus, button.picker__clear:focus, button.picker__close:foc
 
 .margin-top-40 {
   margin-top: 40px; }
+
+.margin-top-60 {
+  margin-top: 60px; }
 
 .margin-top-80 {
   margin-top: 80px; }
@@ -6708,6 +6713,10 @@ nav ul li a {
 
 .parallax-container-3 {
   min-height: 150px;
+  height: auto; }
+
+.parallax-container-4 {
+  min-height: 250px;
   height: auto; }
 
 .parallax-container .section {

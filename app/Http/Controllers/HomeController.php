@@ -90,7 +90,7 @@ class HomeController extends Controller
 
     public function showcheckout(Request $request,$titulo)
     {
-        $title = str_replace('-', ' ', $titulo);
+        $title = str_replace('-', ' ', strtoupper($titulo));
         $txt_price=($request->input('txt_price'));
         $txt_date_number=($request->input('txt_date_number'));
         $txt_country=($request->input('txt_country'));
@@ -100,7 +100,7 @@ class HomeController extends Controller
             ->where('titulo', $title);
 //       dd($paquete);
 
-        return view('checkout', ['paquetes'=>$paquete,'precio'=>$txt_price,'datedispo'=>$txt_date_number,'country'=>$txt_country]);
+        return view('checkout', ['paquetes'=>$paquete,'precio'=>$txt_price,'datedispo'=>$txt_date_number,'country'=>$title]);
     }
 
     public function viewpackages()

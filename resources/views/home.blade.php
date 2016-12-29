@@ -200,7 +200,7 @@
                                             {{csrf_field()}}
                                             <input type="hidden" value="1" name="txt_iddate">
                                             <input type="hidden" value="{{$disponibilidad->fecha_disponibilidad}}" name="txt_date">
-                                            <input type="hidden" value="NEW YORK" name="txt_country">
+                                            <input type="hidden" value="{{$paquetes->titulo}}" name="txt_country">
                                             <input type="hidden" value="{{$disponibilidad->precio}}" name="txt_price">
                                             {{$disponibilidad->fecha_disponibilidad}} <span class="blue-text">${{$disponibilidad->precio}}</span>
                                             <input type="submit" class="btn" value="BOOK">

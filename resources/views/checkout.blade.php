@@ -4,6 +4,22 @@
 
     <?php
         $paquete1='';
+
+        $pre_2_s=$precio;
+        $pre_2_d=$precio;
+        $pre_2_t=$precio;
+
+        $pre_3_s=$precio;
+        $pre_3_d=$precio;
+        $pre_3_t=$precio;
+
+        $pre_4_s=$precio;
+        $pre_4_d=$precio;
+        $pre_4_t=$precio;
+
+        $pre_5_s=$precio;
+        $pre_5_d=$precio;
+        $pre_5_t=$precio;
     ?>
     @foreach($paquetes as $paquete)
         <?php
@@ -103,23 +119,6 @@
 
                          @if($TipoPaquete=='SinHotel')
 
-                             <?php
-                             $pre_2_s=$precio;
-                             $pre_2_d=$precio;
-                             $pre_2_t=$precio;
-
-                             $pre_3_s=$precio;
-                             $pre_3_d=$precio;
-                             $pre_3_t=$precio;
-
-                             $pre_4_s=$precio;
-                             $pre_4_d=$precio;
-                             $pre_4_t=$precio;
-
-                             $pre_5_s=$precio;
-                             $pre_5_d=$precio;
-                             $pre_5_t=$precio;
-                             ?>
 
                          @else
                              @foreach($paquetes as $paquete)
