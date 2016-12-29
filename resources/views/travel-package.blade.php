@@ -28,164 +28,91 @@
 
                 <div class="row">
 
-                    <div class="col s4 right-align">
-                        <div class="card-panel grey lighten-5 z-depth-1 hoverable">
-                            <p class="no-margin text-30 @php if ($_POST['txt_country'] == 'NEW YORK') echo ' '; else echo 'grey-text' @endphp"><a href="" class="left"><img src="{{asset('img/icons/pdf.png')}}" alt="" width="50"></a> NEW YORK</p>
-                            <p class="no-margin text-50 font-moserrat @php if ($_POST['txt_country'] == 'NEW YORK') echo 'teal-text text-lighten-2'; else echo 'grey-text' @endphp"><span class="text-20">from</span> $1999</p>
-                            <p class="no-margin @php if ($_POST['txt_country'] == 'NEW YORK') echo ''; else echo 'grey-text' @endphp">Small group</p>
-                            <p class="no-margin @php if ($_POST['txt_country'] == 'NEW YORK') echo ''; else echo 'grey-text' @endphp">Tourist to Superior</p>
+                    @foreach($disponibilidad as $paquete)
+                        <div class="col s4 right-align">
+                            <div class="card-panel grey lighten-5 z-depth-1 hoverable">
+                                <p class="no-margin text-30"><a href="" class="left"><img src="{{asset('img/icons/pdf.png')}}" alt="" width="50"></a> {{$paquete->titulo}}</p>
+                                @foreach($paquete->disponibilidad->sortBy('precio')->take(1) as $disponibilidad)
+                                    <p class="no-margin text-50 teal-text text-lighten-2 font-moserrat"><span class="text-20">from</span>${{$disponibilidad->precio}}</p>
+                                @endforeach
+                                <p class="no-margin">Small group</p>
+                                <p class="no-margin">Tourist to Superior</p>
+                                <ul class="font-moserrat">
+                                    @foreach($paquete->disponibilidad as $disponibilidad)
 
-                            <ul class="font-moserrat">
-                                <li class="text-14 margin-bottom-10 @php if ($_POST['txt_iddate'] == 1) echo ' '; else echo 'grey-text' @endphp">
-                                    <form action="{{route('home_show_checkout_path', array('titulo'=>'SPECIAL-PERU', 'dias'=>'7-days-tours'))}}" method="post">
-                                        {{csrf_field()}}
-                                        <input type="hidden" value="1" name="txt_iddate">
-                                        <input type="hidden" value="January 21, 2017" name="txt_date">
-                                        <input type="hidden" value="NEW YORK" name="txt_country">
-                                        <input type="hidden" value="1599" name="txt_price">
-                                        January 21, 2017 <span class="@php if ($_POST['txt_iddate'] == 1) echo 'blue-text'; else echo 'grey-text' @endphp">$1499</span>
-                                        <input type="submit" class="btn @php if ($_POST['txt_iddate'] == 1) echo ''; else echo 'grey' @endphp" value="BOOK">
-                                    </form>
-                                </li>
-
-                                <li class="text-14 margin-bottom-10 @php if ($_POST['txt_iddate'] == 2) echo ' '; else echo 'grey-text' @endphp">
-                                    <form action="{{route('home_show_checkout_path', array('titulo'=>'SPECIAL-PERU', 'dias'=>'7-days-tours'))}}" method="post">
-                                        {{csrf_field()}}
-                                        <input type="hidden" value="1" name="txt_iddate">
-                                        <input type="hidden" value="January 21, 2017" name="txt_date">
-                                        <input type="hidden" value="NEW YORK" name="txt_country">
-                                        January 21, 2017 <span class="@php if ($_POST['txt_iddate'] == 2) echo 'blue-text'; else echo 'grey-text' @endphp">$1499</span>
-                                        <input type="submit" class="btn @php if ($_POST['txt_iddate'] == 2) echo ''; else echo 'grey' @endphp" value="BOOK">
-                                    </form>
-                                </li>
-
-                                <li class="text-14 margin-bottom-10 @php if ($_POST['txt_iddate'] == 3) echo ' '; else echo 'grey-text' @endphp">
-                                    <form action="{{route('home_show_checkout_path', array('titulo'=>'SPECIAL-PERU', 'dias'=>'7-days-tours'))}}" method="post">
-                                        {{csrf_field()}}
-                                        <input type="hidden" value="1" name="txt_iddate">
-                                        <input type="hidden" value="January 21, 2017" name="txt_date">
-                                        <input type="hidden" value="NEW YORK" name="txt_country">
-                                        January 21, 2017 <span class="@php if ($_POST['txt_iddate'] == 3) echo 'blue-text'; else echo 'grey-text' @endphp">$1499</span>
-                                        <input type="submit" class="btn @php if ($_POST['txt_iddate'] == 3) echo ''; else echo 'grey' @endphp" value="BOOK">
-                                    </form>
-                                </li>
-                                <li class="text-14 margin-bottom-10 @php if ($_POST['txt_iddate'] == 4) echo ' '; else echo 'grey-text' @endphp">
-                                    <form action="{{route('home_show_checkout_path', array('titulo'=>'SPECIAL-PERU', 'dias'=>'7-days-tours'))}}" method="post">
-                                        {{csrf_field()}}
-                                        <input type="hidden" value="1" name="txt_iddate">
-                                        <input type="hidden" value="January 21, 2017" name="txt_date">
-                                        <input type="hidden" value="NEW YORK" name="txt_country">
-                                        January 21, 2017 <span class="@php if ($_POST['txt_iddate'] == 4) echo 'blue-text'; else echo 'grey-text' @endphp">$1499</span>
-                                        <input type="submit" class="btn @php if ($_POST['txt_iddate'] == 4) echo ''; else echo 'grey' @endphp" value="BOOK">
-                                    </form>
-                                </li>
-                            </ul>
+                                        <li class="text-14 margin-bottom-10">
+                                            <form action="{{route('home_show_date_path', array('titulo'=>str_replace(' ','-', strtolower($paquete->titulo)), 'dias'=>$paquete->duracion.'-days-tours'))}}"
+                                                  method="post">
+                                                {{csrf_field()}}
+                                                <input type="hidden" value="1" name="txt_iddate">
+                                                <input type="hidden" value="{{$disponibilidad->fecha_disponibilidad}}" name="txt_date">
+                                                <input type="hidden" value="NEW YORK" name="txt_country">
+                                                <input type="hidden" value="{{$disponibilidad->precio}}" name="txt_price">
+                                                {{$disponibilidad->fecha_disponibilidad}} <span class="blue-text ">${{$disponibilidad->precio}}</span>
+                                                <input type="submit" class="btn" value="BOOK">
+                                            </form>
+                                        </li>
+                                    @endforeach
+                                </ul>
+                            </div>
                         </div>
-                    </div>
-                    <div class="col s4 right-align">
-                        <div class="card-panel grey lighten-5 z-depth-1 hoverable">
-                            <p class="no-margin text-30 @php if ($_POST['txt_country'] == 'MIAMI') echo ' '; else echo 'grey-text' @endphp"><a href="" class="left"><img src="{{asset('img/icons/pdf.png')}}" alt="" width="50"></a> MIAMI</p>
-                            <p class="no-margin text-50 font-moserrat @php if ($_POST['txt_country'] == 'MIAMI') echo 'teal-text text-lighten-2'; else echo 'grey-text' @endphp"><span class="text-20">from</span> $1999</p>
-                            <p class="no-margin @php if ($_POST['txt_country'] == 'MIAMI') echo ''; else echo 'grey-text' @endphp">Small group</p>
-                            <p class="no-margin @php if ($_POST['txt_country'] == 'MIAMI') echo ''; else echo 'grey-text' @endphp">Tourist to Superior</p>
-                            <ul class="font-moserrat">
-                                <li class="text-14 margin-bottom-10 @php if ($_POST['txt_iddate'] == 5) echo ' '; else echo 'grey-text' @endphp">
-                                    <form action="{{route('home_show_checkout_path', array('titulo'=>'SPECIAL-PERU', 'dias'=>'7-days-tours'))}}" method="post">
-                                        {{csrf_field()}}
-                                        <input type="hidden" value="1" name="txt_iddate">
-                                        <input type="hidden" value="January 21, 2017" name="txt_date">
-                                        <input type="hidden" value="NEW YORK" name="txt_country">
-                                        January 21, 2017 <span class="@php if ($_POST['txt_iddate'] == 5) echo 'blue-text'; else echo 'grey-text' @endphp">$1499</span>
-                                        <input type="submit" class="btn @php if ($_POST['txt_iddate'] == 5) echo ''; else echo 'grey' @endphp" value="BOOK">
-                                    </form>
-                                </li>
+                    @endforeach
 
-                                <li class="text-14 margin-bottom-10 @php if ($_POST['txt_iddate'] == 6) echo ' '; else echo 'grey-text' @endphp">
-                                    <form action="{{route('home_show_checkout_path', array('titulo'=>'SPECIAL-PERU', 'dias'=>'7-days-tours'))}}" method="post">
-                                        {{csrf_field()}}
-                                        <input type="hidden" value="1" name="txt_iddate">
-                                        <input type="hidden" value="January 21, 2017" name="txt_date">
-                                        <input type="hidden" value="NEW YORK" name="txt_country">
-                                        January 21, 2017 <span class="@php if ($_POST['txt_iddate'] == 6) echo 'blue-text'; else echo 'grey-text' @endphp">$1499</span>
-                                        <input type="submit" class="btn @php if ($_POST['txt_iddate'] == 6) echo ''; else echo 'grey' @endphp" value="BOOK">
-                                    </form>
-                                </li>
+                    {{--<div class="col s4 right-align">--}}
+                        {{--<div class="card-panel grey lighten-5 z-depth-1 hoverable">--}}
+                            {{--<p class="no-margin text-30 @php if ($_POST['txt_country'] == 'NEW YORK') echo ' '; else echo 'grey-text' @endphp"><a href="" class="left"><img src="{{asset('img/icons/pdf.png')}}" alt="" width="50"></a> NEW YORK</p>--}}
+                            {{--<p class="no-margin text-50 font-moserrat @php if ($_POST['txt_country'] == 'NEW YORK') echo 'teal-text text-lighten-2'; else echo 'grey-text' @endphp"><span class="text-20">from</span> $1999</p>--}}
+                            {{--<p class="no-margin @php if ($_POST['txt_country'] == 'NEW YORK') echo ''; else echo 'grey-text' @endphp">Small group</p>--}}
+                            {{--<p class="no-margin @php if ($_POST['txt_country'] == 'NEW YORK') echo ''; else echo 'grey-text' @endphp">Tourist to Superior</p>--}}
 
-                                <li class="text-14 margin-bottom-10 @php if ($_POST['txt_iddate'] == 7) echo ' '; else echo 'grey-text' @endphp">
-                                    <form action="{{route('home_show_checkout_path', array('titulo'=>'SPECIAL-PERU', 'dias'=>'7-days-tours'))}}" method="post">
-                                        {{csrf_field()}}
-                                        <input type="hidden" value="1" name="txt_iddate">
-                                        <input type="hidden" value="January 21, 2017" name="txt_date">
-                                        <input type="hidden" value="NEW YORK" name="txt_country">
-                                        January 21, 2017 <span class="@php if ($_POST['txt_iddate'] == 7) echo 'blue-text'; else echo 'grey-text' @endphp">$1499</span>
-                                        <input type="submit" class="btn @php if ($_POST['txt_iddate'] == 7) echo ''; else echo 'grey' @endphp" value="BOOK">
-                                    </form>
-                                </li>
-                                <li class="text-14 margin-bottom-10 @php if ($_POST['txt_iddate'] == 8) echo ' '; else echo 'grey-text' @endphp">
-                                    <form action="{{route('home_show_checkout_path', array('titulo'=>'SPECIAL-PERU', 'dias'=>'7-days-tours'))}}" method="post">
-                                        {{csrf_field()}}
-                                        <input type="hidden" value="1" name="txt_iddate">
-                                        <input type="hidden" value="January 21, 2017" name="txt_date">
-                                        <input type="hidden" value="NEW YORK" name="txt_country">
-                                        January 21, 2017 <span class="@php if ($_POST['txt_iddate'] == 8) echo 'blue-text'; else echo 'grey-text' @endphp">$1499</span>
-                                        <input type="submit" class="btn @php if ($_POST['txt_iddate'] == 8) echo ''; else echo 'grey' @endphp" value="BOOK">
-                                    </form>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                    <div class="col s4 right-align">
-                        <div class="card-panel grey lighten-5 z-depth-1 hoverable">
-                            <p class="no-margin text-30 @php if ($_POST['txt_country'] == 'LOS ANGELES') echo ' '; else echo 'grey-text' @endphp"><a href="" class="left"><img src="{{asset('img/icons/pdf.png')}}" alt="" width="50"></a> LOS ANGELES</p>
-                            <p class="no-margin text-50 font-moserrat @php if ($_POST['txt_country'] == 'MIAMI') echo 'teal-text text-lighten-2'; else echo 'grey-text' @endphp"><span class="text-20">from</span> $1999</p>
-                            <p class="no-margin @php if ($_POST['txt_country'] == 'LOS ANGELES') echo ''; else echo 'grey-text' @endphp">Small group</p>
-                            <p class="no-margin @php if ($_POST['txt_country'] == 'LOS ANGELES') echo ''; else echo 'grey-text' @endphp">Tourist to Superior</p>
-                            <ul class="font-moserrat">
-                                <li class="text-14 margin-bottom-10 @php if ($_POST['txt_iddate'] == 9) echo ' '; else echo 'grey-text' @endphp">
-                                    <form action="{{route('home_show_checkout_path', array('titulo'=>'SPECIAL-PERU', 'dias'=>'7-days-tours'))}}" method="post">
-                                        {{csrf_field()}}
-                                        <input type="hidden" value="1" name="txt_iddate">
-                                        <input type="hidden" value="January 21, 2017" name="txt_date">
-                                        <input type="hidden" value="NEW YORK" name="txt_country">
-                                        January 21, 2017 <span class="@php if ($_POST['txt_iddate'] == 9) echo 'blue-text'; else echo 'grey-text' @endphp">$1499</span>
-                                        <input type="submit" class="btn @php if ($_POST['txt_iddate'] == 9) echo ''; else echo 'grey' @endphp" value="BOOK">
-                                    </form>
-                                </li>
+                            {{--<ul class="font-moserrat">--}}
+                                {{--<li class="text-14 margin-bottom-10 @php if ($_POST['txt_iddate'] == 1) echo ' '; else echo 'grey-text' @endphp">--}}
+                                    {{--<form action="{{route('home_show_checkout_path', array('titulo'=>'SPECIAL-PERU', 'dias'=>'7-days-tours'))}}" method="post">--}}
+                                        {{--{{csrf_field()}}--}}
+                                        {{--<input type="hidden" value="1" name="txt_iddate">--}}
+                                        {{--<input type="hidden" value="January 21, 2017" name="txt_date">--}}
+                                        {{--<input type="hidden" value="NEW YORK" name="txt_country">--}}
+                                        {{--<input type="hidden" value="1599" name="txt_price">--}}
+                                        {{--January 21, 2017 <span class="@php if ($_POST['txt_iddate'] == 1) echo 'blue-text'; else echo 'grey-text' @endphp">$1499</span>--}}
+                                        {{--<input type="submit" class="btn @php if ($_POST['txt_iddate'] == 1) echo ''; else echo 'grey' @endphp" value="BOOK">--}}
+                                    {{--</form>--}}
+                                {{--</li>--}}
 
-                                <li class="text-14 margin-bottom-10 @php if ($_POST['txt_iddate'] == 10) echo ' '; else echo 'grey-text' @endphp">
-                                    <form action="{{route('home_show_checkout_path', array('titulo'=>'SPECIAL-PERU', 'dias'=>'7-days-tours'))}}" method="post">
-                                        {{csrf_field()}}
-                                        <input type="hidden" value="1" name="txt_iddate">
-                                        <input type="hidden" value="January 21, 2017" name="txt_date">
-                                        <input type="hidden" value="NEW YORK" name="txt_country">
-                                        January 21, 2017 <span class="@php if ($_POST['txt_iddate'] == 10) echo 'blue-text'; else echo 'grey-text' @endphp">$1499</span>
-                                        <input type="submit" class="btn @php if ($_POST['txt_iddate'] ==10) echo ''; else echo 'grey' @endphp" value="BOOK">
-                                    </form>
-                                </li>
+                                {{--<li class="text-14 margin-bottom-10 @php if ($_POST['txt_iddate'] == 2) echo ' '; else echo 'grey-text' @endphp">--}}
+                                    {{--<form action="{{route('home_show_checkout_path', array('titulo'=>'SPECIAL-PERU', 'dias'=>'7-days-tours'))}}" method="post">--}}
+                                        {{--{{csrf_field()}}--}}
+                                        {{--<input type="hidden" value="1" name="txt_iddate">--}}
+                                        {{--<input type="hidden" value="January 21, 2017" name="txt_date">--}}
+                                        {{--<input type="hidden" value="NEW YORK" name="txt_country">--}}
+                                        {{--January 21, 2017 <span class="@php if ($_POST['txt_iddate'] == 2) echo 'blue-text'; else echo 'grey-text' @endphp">$1499</span>--}}
+                                        {{--<input type="submit" class="btn @php if ($_POST['txt_iddate'] == 2) echo ''; else echo 'grey' @endphp" value="BOOK">--}}
+                                    {{--</form>--}}
+                                {{--</li>--}}
 
-                                <li class="text-14 margin-bottom-10 @php if ($_POST['txt_iddate'] == 11) echo ' '; else echo 'grey-text' @endphp">
-                                    <form action="{{route('home_show_checkout_path', array('titulo'=>'SPECIAL-PERU', 'dias'=>'7-days-tours'))}}" method="post">
-                                        {{csrf_field()}}
-                                        <input type="hidden" value="1" name="txt_iddate">
-                                        <input type="hidden" value="January 21, 2017" name="txt_date">
-                                        <input type="hidden" value="NEW YORK" name="txt_country">
-                                        January 21, 2017 <span class="@php if ($_POST['txt_iddate'] == 11) echo 'blue-text'; else echo 'grey-text' @endphp">$1499</span>
-                                        <input type="submit" class="btn @php if ($_POST['txt_iddate'] == 11) echo ''; else echo 'grey' @endphp" value="BOOK">
-                                    </form>
-                                </li>
-                                <li class="text-14 margin-bottom-10 @php if ($_POST['txt_iddate'] == 12) echo ' '; else echo 'grey-text' @endphp">
-                                    <form action="{{route('home_show_checkout_path', array('titulo'=>'SPECIAL-PERU', 'dias'=>'7-days-tours'))}}" method="post">
-                                        {{csrf_field()}}
-                                        <input type="hidden" value="1" name="txt_iddate">
-                                        <input type="hidden" value="January 21, 2017" name="txt_date">
-                                        <input type="hidden" value="NEW YORK" name="txt_country">
-                                        January 21, 2017 <span class="@php if ($_POST['txt_iddate'] == 12) echo 'blue-text'; else echo 'grey-text' @endphp">$1499</span>
-                                        <input type="submit" class="btn @php if ($_POST['txt_iddate'] == 12) echo ''; else echo 'grey' @endphp" value="BOOK">
-                                    </form>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
+                                {{--<li class="text-14 margin-bottom-10 @php if ($_POST['txt_iddate'] == 3) echo ' '; else echo 'grey-text' @endphp">--}}
+                                    {{--<form action="{{route('home_show_checkout_path', array('titulo'=>'SPECIAL-PERU', 'dias'=>'7-days-tours'))}}" method="post">--}}
+                                        {{--{{csrf_field()}}--}}
+                                        {{--<input type="hidden" value="1" name="txt_iddate">--}}
+                                        {{--<input type="hidden" value="January 21, 2017" name="txt_date">--}}
+                                        {{--<input type="hidden" value="NEW YORK" name="txt_country">--}}
+                                        {{--January 21, 2017 <span class="@php if ($_POST['txt_iddate'] == 3) echo 'blue-text'; else echo 'grey-text' @endphp">$1499</span>--}}
+                                        {{--<input type="submit" class="btn @php if ($_POST['txt_iddate'] == 3) echo ''; else echo 'grey' @endphp" value="BOOK">--}}
+                                    {{--</form>--}}
+                                {{--</li>--}}
+                                {{--<li class="text-14 margin-bottom-10 @php if ($_POST['txt_iddate'] == 4) echo ' '; else echo 'grey-text' @endphp">--}}
+                                    {{--<form action="{{route('home_show_checkout_path', array('titulo'=>'SPECIAL-PERU', 'dias'=>'7-days-tours'))}}" method="post">--}}
+                                        {{--{{csrf_field()}}--}}
+                                        {{--<input type="hidden" value="1" name="txt_iddate">--}}
+                                        {{--<input type="hidden" value="January 21, 2017" name="txt_date">--}}
+                                        {{--<input type="hidden" value="NEW YORK" name="txt_country">--}}
+                                        {{--January 21, 2017 <span class="@php if ($_POST['txt_iddate'] == 4) echo 'blue-text'; else echo 'grey-text' @endphp">$1499</span>--}}
+                                        {{--<input type="submit" class="btn @php if ($_POST['txt_iddate'] == 4) echo ''; else echo 'grey' @endphp" value="BOOK">--}}
+                                    {{--</form>--}}
+                                {{--</li>--}}
+                            {{--</ul>--}}
+                        {{--</div>--}}
+                    {{--</div>--}}
+
                 </div>
             </div>
 

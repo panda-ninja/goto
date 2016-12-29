@@ -8,7 +8,9 @@ use GotoPeru\ItinerarioXHora;
 use GotoPeru\PaqueteCotizacion;
 use GotoPeru\PaquetePersonalizado;
 use GotoPeru\TCategoria;
+use GotoPeru\TDisponibilidad;
 use GotoPeru\TPaquete;
+use GotoPeru\TPaqueteCategoria;
 use Illuminate\Http\Request;
 
 use GotoPeru\Http\Requests;
@@ -25,11 +27,12 @@ class HomeController extends Controller
      */
     public function index()
     {
-
-        $paquete = TPaquete::with('paquetes_destinos', 'precio_paquetes')->get()->where('estado', 1);
+        $duracion = TPaquete::select('duracion')->distinct()->get();
+        $paquete = TPaquete::with('paquetes_destinos', 'precio_paquetes', 'disponibilidad')->get()->where('estado', 1);
         $featured = TPaquete::with('paquetes_destinos', 'precio_paquetes')->get()->where('estadoslider', 1);
-//        dd($paquete);
-        return view('home', ['paquete'=>$paquete, 'featured'=>$featured]);
+        $disponibilidad = TPaquete::with('disponibilidad')->where('codigo','GTPF700')->orwhere('codigo','GTPF701')->orwhere('codigo','GTPF702')->get();
+//        dd($disponibilidad);
+        return view('home', ['paquete'=>$paquete, 'featured'=>$featured, 'duracion'=>$duracion, 'disponibilidad'=>$disponibilidad]);
     }
 
     /**
@@ -66,12 +69,12 @@ class HomeController extends Controller
 //            Session::put('s_date', Input::get('txt_date'));
 //            Session::put('s_country', Input::get('txt_country'));
 //        }
-
-        $title = str_replace('-', ' ', $titulo);
+        $disponibilidad = TPaquete::with('disponibilidad')->where('codigo','GTPF700')->orwhere('codigo','GTPF701')->orwhere('codigo','GTPF702')->get();
+        $title = str_replace('-', ' ', strtoupper($titulo));
         $paquete = TPaquete::with('itinerario','paquetes_destinos', 'precio_paquetes')->get()->where('titulo', $title);
 //        dd($paquete);
 
-        return view('travel-package', ['paquetes'=>$paquete]);
+        return view('travel-package', ['paquetes'=>$paquete, 'disponibilidad'=>$disponibilidad]);
     }
 
     public function showcheckout($titulo)
@@ -86,9 +89,38 @@ class HomeController extends Controller
     public function viewpackages()
     {
         $categoria = TCategoria::get();
+        $duracion = TPaquete::select('duracion')->distinct()->get();
         $paquete = TPaquete::with('paquetes_destinos', 'precio_paquetes', 'paquetes_categoria')->where('codigo', 'NOT LIKE', 'GTPF%')->where('codigo', 'NOT LIKE', 'GTPX%')->where('codigo', 'NOT LIKE', 'GTPV%')->get();
-//        dd($categoria);
-        return view('ground', ['paquete'=>$paquete, 'categoria'=>$categoria]);
+//        dd($duracion );
+        return view('ground', ['paquete'=>$paquete, 'categoria'=>$categoria, 'duracion'=>$duracion]);
+    }
+
+    public function showdays($dias)
+    {
+        $categoria = TCategoria::get();
+        $duracion = TPaquete::select('duracion')->distinct()->get();
+        $paquete = TPaquete::with('paquetes_destinos', 'precio_paquetes', 'paquetes_categoria')->where('codigo', 'NOT LIKE', 'GTPF%')->where('codigo', 'NOT LIKE', 'GTPX%')->where('codigo', 'NOT LIKE', 'GTPV%')->where('duracion', $dias)->get();
+//        dd($paquete );
+        return view('ground', ['paquete'=>$paquete, 'categoria'=>$categoria, 'duracion'=>$duracion]);
+    }
+
+    public function showcategory($category)
+    {
+        $duracion = TPaquete::select('duracion')->distinct()->get();
+        $categoria = TPaqueteCategoria::with(['categoria'=>function($query) use ($category) { $query->where('nombre', $category);}])->get();
+//        dd($categoria );
+
+        return view('category', ['categoria'=>$categoria, 'duracion'=>$duracion]);
+    }
+
+    public function showpackages($titulo, $dias)
+    {
+
+
+        $title = str_replace('-', ' ', strtoupper($titulo));
+        $paquete = TPaquete::with('itinerario','paquetes_destinos', 'precio_paquetes')->get()->where('titulo', $title);
+//        dd($paquete);
+        return view('detail-program', ['paquetes'=>$paquete]);
     }
 
     /**

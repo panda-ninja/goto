@@ -10,12 +10,12 @@
                     <div id="pinned">
                         <div class="row">
                             <div class="col s12">
-                                <p class="yellow-text text-darken-4 text-20">BY CATEGORY</p>
+                                <p class="yellow-text text-darken-4 text-20">BY DURATION</p>
                             </div>
                         </div>
                         <ul class="no-margin">
-                            @foreach($categoria->sortBy('nombre') as $categorias)
-                                <li class="valign-wrapper"><i class="material-icons">keyboard_arrow_right</i> <a href="#introduction" class="lime-text text-darken-4">{{$categorias->nombre}}</a></li>
+                            @foreach($duracion->sortBy('duracion') as $duraciones)
+                                <li class="valign-wrapper"><i class="material-icons">keyboard_arrow_right</i> <a href="{{route('home_show_days_path', $duraciones->duracion)}}" class="font-moserrat lime-text text-darken-4">{{$duraciones->duracion}} days</a></li>
                             @endforeach
                         </ul>
                     </div>
@@ -24,27 +24,59 @@
                 <div class="col s10">
                     <div class="row">
                         <div class="col s12">
-
-                            <p class="yellow-text text-darken-4 text-20 right-align">BY DAYS</p>
-
-                            <ul class="pagination right-align">
-                                <li class="waves-effect"><a href="#!">1</a></li>
-                                <li class="waves-effect"><a href="#!">2</a></li>
-                                <li class="waves-effect"><a href="#!">3</a></li>
-                                <li class="waves-effect"><a href="#!">4</a></li>
-                                <li class="waves-effect"><a href="#!">5</a></li>
-                                <li class="waves-effect"><a href="#!">6</a></li>
-                                <li class="waves-effect"><a href="#!">7</a></li>
-                                <li class="waves-effect"><a href="#!">8</a></li>
-                                <li class="waves-effect"><a href="#!">9</a></li>
-                                <li class="waves-effect"><a href="#!">10</a></li>
-                                <li class="waves-effect"><a href="#!">11</a></li>
-                                <li class="waves-effect"><a href="#!">12</a></li>
-                                <li class="waves-effect"><a href="#!">13</a></li>
-                                <li class="waves-effect"><a href="#!">14</a></li>
-                                <li class="waves-effect"><a href="#!">15</a></li>
-                                <li class="waves-effect active"><a href="#!">16+</a></li>
-                            </ul>
+                            <p class="yellow-text text-darken-4 text-20 right-align">BY CATEGORY</p>
+                        </div>
+                        <div class="col s3 valign-wrapper">
+                            <a href="{{route('home_show_category_path', 'adventure')}}" class="card hoverable waves-effect">
+                                <div class="col s3">
+                                    <img src="{{asset('img/icons/trekking.png')}}" alt="" class="circle responsive-img">
+                                    <!-- notice the "circle" class -->
+                                </div>
+                                <div class="col s9">
+                            <span class="black-text">
+                                ADVENTURE
+                            </span>
+                                </div>
+                            </a>
+                        </div>
+                        <div class="col s3 valign-wrapper">
+                            <a href="{{route('home_show_category_path', 'family')}}" class="card hoverable waves-effect">
+                                <div class="col s3">
+                                    <img src="{{asset('img/icons/family.png')}}" alt="" class="circle responsive-img">
+                                    <!-- notice the "circle" class -->
+                                </div>
+                                <div class="col s9">
+                            <span class="black-text">
+                                FAMILY
+                            </span>
+                                </div>
+                            </a>
+                        </div>
+                        <div class="col s3 valign-wrapper">
+                            <a href="{{route('home_show_category_path', 'classic')}}" class="card hoverable waves-effect">
+                                <div class="col s3">
+                                    <img src="{{asset('img/icons/classic.png')}}" alt="" class="circle responsive-img">
+                                    <!-- notice the "circle" class -->
+                                </div>
+                                <div class="col s9">
+                            <span class="black-text">
+                                CLASSIC
+                            </span>
+                                </div>
+                            </a>
+                        </div>
+                        <div class="col s3 valign-wrapper">
+                            <a href="{{route('home_show_category_path', 'luxury')}}" class="card hoverable waves-effect">
+                                <div class="col s3">
+                                    <img src="{{asset('img/icons/human.png')}}" alt="" class="circle responsive-img">
+                                    <!-- notice the "circle" class -->
+                                </div>
+                                <div class="col s9">
+                            <span class="black-text">
+                                LUXURY
+                            </span>
+                                </div>
+                            </a>
                         </div>
                     </div>
 
@@ -94,7 +126,7 @@
                                                             class="material-icons valign small">favorite</i></a>
                                             </div>
                                             <div class="col s10">
-                                                <a class="waves-effect waves-light btn yellow darken-3"><i
+                                                <a href="{{route('home_show_travel_path', array('titulo'=>str_replace(' ','-', strtolower($paquetes->titulo)), 'dias'=>$paquetes->duracion.'-days-tours'))}}" class="waves-effect waves-light btn yellow darken-3"><i
                                                             class="material-icons right">send</i>View Trip</a>
                                             </div>
                                         </div>

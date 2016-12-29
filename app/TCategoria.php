@@ -8,7 +8,7 @@ class TCategoria extends Model
 {
     protected $table = "tcategoria";
 
-    public function paquetes_categoria()
+    public function paquetes_categorias()
     {
         return $this->hasMany(TPaqueteCategoria::class, 'idcategoria');
     }

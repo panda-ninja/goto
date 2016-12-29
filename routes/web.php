@@ -22,20 +22,36 @@ Route::get('/', [
     'as' => 'home_path',
 ]);
 
-Route::any('travel-package/{titulo}_{dias}', [
+Route::any('packages/{titulo}_{dias}', [
+    'uses' => 'HomeController@showpackages',
+    'as' => 'home_show_travel_path',
+]);
+
+Route::any('travel-packages/{titulo}_{dias}', [
     'uses' => 'HomeController@showdate',
     'as' => 'home_show_date_path',
 ]);
 
-Route::any('travel-package/', [
+Route::any('travel-packages/', [
     'uses' => 'HomeController@viewpackages',
     'as' => 'home_show_packages_path',
 ]);
 
-Route::any('ground-packages/{titulo}_{dias}/checkout', [
+Route::any('travel-packages/{titulo}_{dias}/checkout', [
     'uses' => 'HomeController@showcheckout',
     'as' => 'home_show_checkout_path',
 ]);
+
+Route::get('travel-packages/{dias}-days', [
+    'uses' => 'HomeController@showdays',
+    'as' => 'home_show_days_path',
+]);
+
+Route::get('travel-packages/{category}', [
+    'uses' => 'HomeController@showcategory',
+    'as' => 'home_show_category_path',
+]);
+
 
 /*==begin== rutas para clientes ================================================================*/
 Route::get('cliente/login', [

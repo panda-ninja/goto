@@ -11,10 +11,10 @@
                     <h5 class="light grey-text text-darken-3">$150 average saving | 24/7 local authentic assitance |
                         100s of testimonials</h5>
 
-                    <div class="row margin-top-50 font-moserrat">
+                    <div class="row margin-top-60 font-moserrat">
                         <div class="col s12 m8 offset-m2 l3 offset-l6">
                             <a href="" class="waves-effect">
-                                <p class="yellow-text text-darken-3 grey darken-4">ALL INCLUDED</p>
+                                {{--<p class="yellow-text text-darken-3 grey darken-4">ALL INCLUDED</p>--}}
                                 <div class="col s3">
                                     <img src="{{asset('img/icons//include/hotels.png')}}" alt="" class="responsive-img">
                                 </div>
@@ -127,7 +127,7 @@
 
 
     <div class="container">
-        <div class="section">
+        <div class="section scrollspy" id="vacations">
             <div class="row center">
                 <h4 class="yellow-text text-darken-4"><b>VACATION PACKAGES</b> WHIT INTERNATIONAL FLIGHTS</h4>
                 <div class="col s12 m9 l12 include-services margin-bottom-10">
@@ -165,6 +165,7 @@
                             <h3 class="lime-text text-darken-4 no-margin padding-left-20">7 DAYS</h3>
                         </div>
                         <ul class="text-18">
+
                             <li><b>Day 1:</b> Flight From US to Peru</li>
                             <li><b>Day 2:</b> Lima City Tour</li>
                             <li><b>Day 3:</b> Flight to Cusco - Transfer to the Sacred Valley of the Incas</li>
@@ -177,81 +178,40 @@
                     <div class="col s7">
                         <p class="yellow-text text-darken-3 font-moserrat text-20 no-margin center">LIMA, CUSCO, SACRED
                             VALLEY, MACHU PICCHU</p>
-                        <img src="{{asset('img/maps/GTP600.jpg')}}" alt="" class="responsive-img">
+                        <img src="{{asset('img/all.jpg')}}" alt="" class="responsive-img">
                     </div>
                 </div>
                 <div class="row">
+                    @foreach($disponibilidad as $paquetes)
                     <div class="col s4 right-align">
                         <div class="card-panel grey lighten-5 z-depth-1 hoverable">
-                            <p class="no-margin text-30"><a href="" class="left"><img
-                                            src="{{asset('img/icons/pdf.png')}}" alt="" width="50"></a> NEW YORK</p>
-                            <p class="no-margin text-50 teal-text text-lighten-2 font-moserrat"><span class="text-20">from</span>
-                                $1999</p>
+                            <p class="no-margin text-30"><a href="" class="left"><img src="{{asset('img/icons/pdf.png')}}" alt="" width="50"></a> {{$paquetes->titulo}}</p>
+                            @foreach($paquetes->disponibilidad->sortBy('precio')->take(1) as $disponibilidad)
+                                <p class="no-margin text-50 teal-text text-lighten-2 font-moserrat"><span class="text-20">from</span>${{$disponibilidad->precio}}</p>
+                            @endforeach
                             <p class="no-margin">Small group</p>
                             <p class="no-margin">Tourist to Superior</p>
                             <ul class="font-moserrat">
+                                @foreach($paquetes->disponibilidad as $disponibilidad)
 
-                                <li class="text-14 margin-bottom-10">
-                                    <form action="{{route('home_show_date_path', array('titulo'=>'SPECIAL-PERU', 'dias'=>'6-days-tours'))}}"
-                                          method="post">
-                                        {{csrf_field()}}
-                                        <input type="hidden" value="1" name="txt_iddate">
-                                        <input type="hidden" value="January 21, 2017" name="txt_date">
-                                        <input type="hidden" value="NEW YORK" name="txt_country">
-                                        <input type="hidden" value="1599" name="txt_price">
-                                        January 21, 2017 <span class="blue-text">$1499</span>
-                                        <input type="submit" class="btn" value="BOOK">
-                                    </form>
-                                </li>
-                                <li class="text-14 margin-bottom-10">January 21, 2017 <span
-                                            class="blue-text">$1499</span> <a href="" class="btn"> BOOK</a></li>
-                                <li class="text-14 margin-bottom-10">January 21, 2017 <span
-                                            class="blue-text">$1499</span> <a href="" class="btn"> BOOK</a></li>
-                                <li class="text-14 margin-bottom-10">January 21, 2017 <span
-                                            class="blue-text">$1499</span> <a href="" class="btn"> BOOK</a></li>
+                                    <li class="text-14 margin-bottom-10">
+                                        <form action="{{route('home_show_date_path', array('titulo'=>str_replace(' ','-', strtolower($paquetes->titulo)), 'dias'=>$paquetes->duracion.'-days-tours'))}}"
+                                              method="post">
+                                            {{csrf_field()}}
+                                            <input type="hidden" value="1" name="txt_iddate">
+                                            <input type="hidden" value="{{$disponibilidad->fecha_disponibilidad}}" name="txt_date">
+                                            <input type="hidden" value="NEW YORK" name="txt_country">
+                                            <input type="hidden" value="{{$disponibilidad->precio}}" name="txt_price">
+                                            {{$disponibilidad->fecha_disponibilidad}} <span class="blue-text">${{$disponibilidad->precio}}</span>
+                                            <input type="submit" class="btn" value="BOOK">
+                                        </form>
+                                    </li>
+                                @endforeach
                             </ul>
                         </div>
                     </div>
-                    <div class="col s4 right-align">
-                        <div class="card-panel grey lighten-5 z-depth-1 hoverable">
-                            <p class="no-margin text-30"><a href="" class="left"><img
-                                            src="{{asset('img/icons/pdf.png')}}" alt="" width="50"></a> MIAMI</p>
-                            <p class="no-margin text-50 teal-text text-lighten-2 font-moserrat"><span class="text-20">from</span>
-                                $1999</p>
-                            <p class="no-margin">Small group</p>
-                            <p class="no-margin">Tourist to Superior</p>
-                            <ul class="font-moserrat">
-                                <li class="text-14 margin-bottom-10">January 21, 2017 <span
-                                            class="blue-text">$1499</span> <a href="" class="btn"> BOOK</a></li>
-                                <li class="text-14 margin-bottom-10">January 21, 2017 <span
-                                            class="blue-text">$1499</span> <a href="" class="btn"> BOOK</a></li>
-                                <li class="text-14 margin-bottom-10">January 21, 2017 <span
-                                            class="blue-text">$1499</span> <a href="" class="btn"> BOOK</a></li>
-                                <li class="text-14 margin-bottom-10">January 21, 2017 <span
-                                            class="blue-text">$1499</span> <a href="" class="btn"> BOOK</a></li>
-                            </ul>
-                        </div>
-                    </div>
-                    <div class="col s4 right-align">
-                        <div class="card-panel grey lighten-5 z-depth-1 hoverable">
-                            <p class="no-margin text-30"><a href="" class="left"><img
-                                            src="{{asset('img/icons/pdf.png')}}" alt="" width="50"></a> LOS ANGELES</p>
-                            <p class="no-margin text-50 teal-text text-lighten-2 font-moserrat"><span class="text-20">from</span>
-                                $1999</p>
-                            <p class="no-margin">Small group</p>
-                            <p class="no-margin">Tourist to Superior</p>
-                            <ul class="font-moserrat">
-                                <li class="text-14 margin-bottom-10">January 21, 2017 <span
-                                            class="blue-text">$1499</span> <a href="" class="btn"> BOOK</a></li>
-                                <li class="text-14 margin-bottom-10">January 21, 2017 <span
-                                            class="blue-text">$1499</span> <a href="" class="btn"> BOOK</a></li>
-                                <li class="text-14 margin-bottom-10">January 21, 2017 <span
-                                            class="blue-text">$1499</span> <a href="" class="btn"> BOOK</a></li>
-                                <li class="text-14 margin-bottom-10">January 21, 2017 <span
-                                            class="blue-text">$1499</span> <a href="" class="btn"> BOOK</a></li>
-                            </ul>
-                        </div>
-                    </div>
+                    @endforeach
+
                 </div>
             </div>
 
@@ -506,7 +466,7 @@
 
                                     <div class="card card-packages">
                                         <div class="card-image waves-effect waves-block waves-light">
-                                            <a href=""><img src="http://gotoperu.travel/img/maps/GTP600.jpg"
+                                            <a href="{{route('home_show_travel_path', array('titulo'=>str_replace(' ','-', strtolower($paquetes->titulo)), 'dias'=>$paquetes->duracion.'-days-tours'))}}"><img src="http://gotoperu.travel/img/maps/GTP600.jpg"
                                                             class="responsive-img"></a>
                                             <span class="card-title activator"><i
                                                         class="material-icons right">more_vert</i></span>
@@ -544,17 +504,17 @@
                                                                 class="material-icons valign small">favorite</i></a>
                                                 </div>
                                                 <div class="col s10">
-                                                    <a class="waves-effect waves-light btn yellow darken-3"><i
+                                                    <a href="{{route('home_show_travel_path', array('titulo'=>str_replace(' ','-', strtolower($paquetes->titulo)), 'dias'=>$paquetes->duracion.'-days-tours'))}}" class="waves-effect waves-light btn yellow darken-3"><i
                                                                 class="material-icons right">send</i>View Trip</a>
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class="card-reveal">
-                                            <span class="card-title grey-text text-darken-4">Card Title<i
-                                                        class="material-icons right">close</i></span>
-                                            <p>Here is some more information about this product that is only revealed
-                                                once clicked on.</p>
-                                        </div>
+                                        {{--<div class="card-reveal">--}}
+                                            {{--<span class="card-title grey-text text-darken-4">Card Title<i--}}
+                                                        {{--class="material-icons right">close</i></span>--}}
+                                            {{--<p>Here is some more information about this product that is only revealed--}}
+                                                {{--once clicked on.</p>--}}
+                                        {{--</div>--}}
                                     </div>
                                 </div>
                             </div>
@@ -565,15 +525,14 @@
 
                 <div class="row">
                     <div class="col s12">
-                        <a href="" class="font-moserrat valign-wrapper right">View All Programs <i
-                                    class="material-icons">input</i></a>
+                        <a href="{{route('home_show_packages_path')}}" class="font-moserrat valign-wrapper right">View All Programs <i class="material-icons">input</i></a>
                     </div>
                 </div>
 
             </div>
         </div>
 
-        <div class="parallax"><img src="{{asset('img/bg/pharalax-package4.jpg')}}" alt="Unsplashed background img 3">
+        <div class="parallax"><img src="{{asset('img/bg/pharalax-package4.jpg')}}" alt="">
         </div>
     </div>
 
@@ -704,7 +663,7 @@
             </div>
             <div class="row">
                 <div class="col s3 valign-wrapper">
-                    <a href="" class="card hoverable waves-effect">
+                    <a href="{{route('home_show_category_path', 'adventure')}}" class="card hoverable waves-effect">
                         <div class="col s3">
                             <img src="{{asset('img/icons/trekking.png')}}" alt="" class="circle responsive-img">
                             <!-- notice the "circle" class -->
@@ -717,7 +676,7 @@
                     </a>
                 </div>
                 <div class="col s3 valign-wrapper">
-                    <a href="" class="card hoverable waves-effect">
+                    <a href="{{route('home_show_category_path', 'family')}}" class="card hoverable waves-effect">
                         <div class="col s3">
                             <img src="{{asset('img/icons/family.png')}}" alt="" class="circle responsive-img">
                             <!-- notice the "circle" class -->
@@ -730,7 +689,7 @@
                     </a>
                 </div>
                 <div class="col s3 valign-wrapper">
-                    <a href="" class="card hoverable waves-effect">
+                    <a href="{{route('home_show_category_path', 'classic')}}" class="card hoverable waves-effect">
                         <div class="col s3">
                             <img src="{{asset('img/icons/classic.png')}}" alt="" class="circle responsive-img">
                             <!-- notice the "circle" class -->
@@ -743,7 +702,7 @@
                     </a>
                 </div>
                 <div class="col s3 valign-wrapper">
-                    <a href="" class="card hoverable waves-effect">
+                    <a href="{{route('home_show_category_path', 'luxury')}}" class="card hoverable waves-effect">
                         <div class="col s3">
                             <img src="{{asset('img/icons/human.png')}}" alt="" class="circle responsive-img">
                             <!-- notice the "circle" class -->
@@ -758,7 +717,7 @@
             </div>
             <div class="row">
                 <div class="col s12">
-                    <a href="" class="font-moserrat valign-wrapper right">View All Category <i class="material-icons">input</i></a>
+                    <a href="{{route('home_show_packages_path')}}" class="font-moserrat valign-wrapper right">View All Category <i class="material-icons">input</i></a>
                 </div>
             </div>
 
@@ -769,28 +728,16 @@
             <div class="row">
                 <div class="col s12">
                     <ul class="pagination">
-                        <li class="waves-effect"><a href="#!">1</a></li>
-                        <li class="waves-effect"><a href="#!">2</a></li>
-                        <li class="waves-effect"><a href="#!">3</a></li>
-                        <li class="waves-effect"><a href="#!">4</a></li>
-                        <li class="waves-effect"><a href="#!">5</a></li>
-                        <li class="waves-effect"><a href="#!">6</a></li>
-                        <li class="waves-effect"><a href="#!">7</a></li>
-                        <li class="waves-effect"><a href="#!">8</a></li>
-                        <li class="waves-effect"><a href="#!">9</a></li>
-                        <li class="waves-effect"><a href="#!">10</a></li>
-                        <li class="waves-effect"><a href="#!">11</a></li>
-                        <li class="waves-effect"><a href="#!">12</a></li>
-                        <li class="waves-effect"><a href="#!">13</a></li>
-                        <li class="waves-effect"><a href="#!">14</a></li>
-                        <li class="waves-effect"><a href="#!">15</a></li>
-                        <li class="waves-effect active"><a href="#!">16+</a></li>
+                    @foreach($duracion->sortBy('duracion') as $duraciones)
+                            <li class="waves-effect"><a href="{{route('home_show_days_path', $duraciones->duracion)}}">{{$duraciones->duracion}}</a></li>
+                    @endforeach
+                        {{--<li class="waves-effect active"><a href="#!">16+</a></li>--}}
                     </ul>
                 </div>
             </div>
             <div class="row">
                 <div class="col s12">
-                    <a href="" class="font-moserrat valign-wrapper right">View All Durations<i class="material-icons">input</i></a>
+                    <a href="{{route('home_show_packages_path')}}" class="font-moserrat valign-wrapper right">View All Durations<i class="material-icons">input</i></a>
                 </div>
             </div>
         </div>
@@ -870,623 +817,6 @@
 
     {{--</div>--}}
     {{--</div>--}}
-    {{--</div>--}}
-
-
-    <div class="row testimonials-box">
-        <img src="{{asset('img/banners/banner_1.jpg')}}" alt="" class="responsive-img">
-        <div class="col s5 testimonials-box-text margin-top-40">
-            <i class="material-icons right white-text">format_quote</i>
-            <h5 class="white-text margin-top-80">Everything about this trip was wonderful and it was because of the
-                service and attention of the great staff at GOTOPERU</h5>
-            <p class="white-text right-align">ennifer Powers & Family New York - USA</p>
-            <a href="" class="btn waves-effect right">View all testimonials</a>
-        </div>
-    </div>
-
-
-    <div class="container">
-        <div class="section">
-            <div class="row center">
-                <h4>Design Your <b>TRIP</b></h4>
-            </div>
-        </div>
-    </div>
-
-    <div class="margin-bottom-50">
-        <div class="container">
-
-            <div class="row">
-                <div class="col s12">
-                    <h5 class="yellow-text text-darken-3">SELECT <b>DESTINATIONS</b></h5>
-                    <h6 class="font-moserrat text-18 red-text text-darken-4 center">PERU</h6>
-                    <div class="divider"></div>
-                </div>
-            </div>
-
-            <div class="row">
-                <div class="col s3">
-                    <div class="card hoverable card-customize">
-                        <div class="card-image">
-                            <img src="{{asset('img/form/machupicchu-2.jpg')}}" id="img_filter_cusco">
-                            <span class="card-title">
-                                <input type="checkbox" id="cusco" onchange="javascript:imgfilter('cusco')"
-                                       class="yellow-text"/>
-                                <label for="cusco">Cusco & Machupicchu</label>
-                            </span>
-                            <div id="check_i_cusco" class="hide">
-                                <i class="material-icons blue-text text-lighten-1">check_circle</i>
-                            </div>
-                        </div>
-
-                    </div>
-                </div>
-
-                <div class="col s3">
-                    <div class="card hoverable card-customize">
-                        <div class="card-image">
-                            <img src="{{asset('img/form/ballestas.jpg')}}" id="img_filter_ballestas">
-                            <span class="card-title">
-                                <input type="checkbox" id="ballestas" onchange="javascript:imgfilter('ballestas')"/>
-                                <label for="ballestas">Ballestas Island & Paracas</label>
-                            </span>
-                            <div id="check_i_ballestas" class="hide">
-                                <i class="material-icons blue-text text-lighten-1">check_circle</i>
-                            </div>
-                        </div>
-
-                    </div>
-                </div>
-                <div class="col s3">
-                    <div class="card hoverable card-customize">
-                        <div class="card-image">
-                            <img src="{{asset('img/form/colca.jpg')}}" id="img_filter_arequipa">
-                            <span class="card-title">
-                                <input type="checkbox" id="arequipa" onchange="javascript:imgfilter('arequipa')"/>
-                                <label for="arequipa">Arequipa & Colca Canyon</label>
-                            </span>
-                            <div id="check_i_arequipa" class="hide">
-                                <i class="material-icons blue-text text-lighten-1">check_circle</i>
-                            </div>
-                        </div>
-
-                    </div>
-                </div>
-                <div class="col s3">
-                    <div class="card hoverable card-customize">
-                        <div class="card-image">
-                            <img src="{{asset('img/form/amazon.jpg')}}" id="img_filter_amazon">
-                            <span class="card-title">
-                                <input type="checkbox" id="amazon" onchange="javascript:imgfilter('amazon')"/>
-                                <label for="amazon">Amazon</label>
-                            </span>
-                            <div id="check_i_amazon" class="hide">
-                                <i class="material-icons blue-text text-lighten-1">check_circle</i>
-                            </div>
-                        </div>
-
-                    </div>
-                </div>
-
-                <div class="col s3">
-                    <div class="card hoverable card-customize">
-                        <div class="card-image">
-                            <img src="{{asset('img/form/lima.jpg')}}" id="img_filter_lima">
-                            <span class="card-title">
-                                <input type="checkbox" id="lima" onchange="javascript:imgfilter('lima')"/>
-                                <label for="lima">Lima</label>
-                            </span>
-                            <div id="check_i_lima" class="hide">
-                                <i class="material-icons blue-text text-lighten-1">check_circle</i>
-                            </div>
-                        </div>
-
-                    </div>
-                </div>
-
-                <div class="col s3">
-                    <div class="card hoverable card-customize">
-                        <div class="card-image">
-                            <img src="{{asset('img/form/nazca.jpg')}}" id="img_filter_nazca">
-                            <span class="card-title">
-                                <input type="checkbox" id="nazca" onchange="javascript:imgfilter('nazca')"/>
-                                <label for="nazca">Nazca Lines</label>
-                            </span>
-                            <div id="check_i_nazca" class="hide">
-                                <i class="material-icons blue-text text-lighten-1">check_circle</i>
-                            </div>
-                        </div>
-
-                    </div>
-                </div>
-
-                <div class="col s3">
-                    <div class="card hoverable card-customize">
-                        <div class="card-image">
-                            <img src="{{asset('img/form/puno.jpg')}}" id="img_filter_puno">
-                            <span class="card-title">
-                                <input type="checkbox" id="puno" onchange="javascript:imgfilter('puno')"/>
-                                <label for="puno">Puno & Titicaca</label>
-                            </span>
-                            <div id="check_i_puno" class="hide">
-                                <i class="material-icons blue-text text-lighten-1">check_circle</i>
-                            </div>
-                        </div>
-
-                    </div>
-                </div>
-
-                <div class="col s3">
-                    <div class="card hoverable card-customize">
-                        <div class="card-image">
-                            <img src="{{asset('img/form/trujillo.jpg')}}" id="img_filter_trujillo">
-                            <span class="card-title">
-                                <input type="checkbox" id="trujillo" onchange="javascript:imgfilter('trujillo')"/>
-                                <label for="trujillo">Trujillo &amp; Chiclayo</label>
-                            </span>
-                            <div id="check_i_trujillo" class="hide">
-                                <i class="material-icons blue-text text-lighten-1">check_circle</i>
-                            </div>
-                        </div>
-
-                    </div>
-                </div>
-            </div>
-
-            <div class="row">
-                <div class="col s12">
-                    <h6 class="font-moserrat text-18 red-text text-darken-4 center">MULTICOUNTRIES</h6>
-                    <div class="divider"></div>
-                </div>
-            </div>
-
-            <div class="row">
-                <div class="col s3">
-                    <div class="card hoverable card-customize">
-                        <div class="card-image">
-                            <img src="{{asset('img/form/galapagos.jpg')}}" id="img_filter_galapagos">
-                            <span class="card-title">
-                                <input type="checkbox" id="galapagos" onchange="javascript:imgfilter('galapagos')"/>
-                                <label for="galapagos">Galapagos (Ecuador)</label>
-                            </span>
-                            <div id="check_i_galapagos" class="hide">
-                                <i class="material-icons blue-text text-lighten-1">check_circle</i>
-                            </div>
-                        </div>
-
-                    </div>
-                </div>
-
-                <div class="col s3">
-                    <div class="card hoverable card-customize">
-                        <div class="card-image">
-                            <img src="{{asset('img/form/rio.jpg')}}" id="img_filter_rio">
-                            <span class="card-title">
-                                <input type="checkbox" id="rio" onchange="javascript:imgfilter('rio')"/>
-                                <label for="rio">Rio &amp; Iguazu (Brasil)</label>
-                            </span>
-                            <div id="check_i_rio" class="hide">
-                                <i class="material-icons blue-text text-lighten-1">check_circle</i>
-                            </div>
-                        </div>
-
-                    </div>
-                </div>
-
-                <div class="col s3">
-                    <div class="card hoverable card-customize">
-                        <div class="card-image">
-                            <img src="{{asset('img/form/patagonia.jpg')}}" id="img_filter_buenos">
-                            <span class="card-title">
-                                <input type="checkbox" id="buenos" onchange="javascript:imgfilter('buenos')"/>
-                                <label for="buenos">Buenos Aires (Argentina)</label>
-                            </span>
-                            <div id="check_i_buenos" class="hide">
-                                <i class="material-icons blue-text text-lighten-1">check_circle</i>
-                            </div>
-                        </div>
-
-                    </div>
-                </div>
-
-                <div class="col s3">
-                    <div class="card hoverable card-customize">
-                        <div class="card-image">
-                            <img src="{{asset('img/form/uyuni.jpg')}}" id="img_filter_uyuni">
-                            <span class="card-title">
-                                <input type="checkbox" id="uyuni" onchange="javascript:imgfilter('uyuni')"/>
-                                <label for="uyuni">Uyuni (Bolivia)</label>
-                            </span>
-                            <div id="check_i_uyuni" class="hide">
-                                <i class="material-icons blue-text text-lighten-1">check_circle</i>
-                            </div>
-                        </div>
-
-                    </div>
-                </div>
-            </div>
-
-            <div class="row margin-top-20">
-                <div class="col s12">
-                    <h5 class="yellow-text text-darken-3">HOTEL <b>CATEGORY</b></h5>
-                    <p class="font-moserrat">(<span class="red-text darken-4">Optional</span> you may choose more than
-                        one)</p>
-                </div>
-            </div>
-
-            <div class="row form-optional-check">
-                <div class="col s3">
-                    <input type="checkbox" class="filled-in" id="luxury"/>
-                    <label for="luxury" class="hoverable">Luxury 5 Stars</label>
-                </div>
-                <div class="col s3">
-                    <input type="checkbox" class="filled-in" id="superior"/>
-                    <label for="superior" class="hoverable">Superior 4 Stars</label>
-                </div>
-                <div class="col s3">
-                    <input type="checkbox" class="filled-in" id="best"/>
-                    <label for="best" class="hoverable">Best Value 3 Stars</label>
-                </div>
-                <div class="col s3">
-                    <input type="checkbox" class="filled-in" id="budget"/>
-                    <label for="budget" class="hoverable">Budget 2 Stars</label>
-                </div>
-            </div>
-
-            <div class="row margin-top-20">
-                <div class="col s12">
-                    <h5 class="yellow-text text-darken-3">Trip <b>length</b></h5>
-                    <p class="font-moserrat">Cuanto tiempo desea que sea su viaje</p>
-                </div>
-            </div>
-
-            <div class="row form-optional-check">
-                <div class="col s2">
-                    <input type="checkbox" class="filled-in" id="3d"/>
-                    <label for="3d" class="hoverable">03 - 05 <span>DAYS</span></label>
-                </div>
-                <div class="col s2">
-                    <input type="checkbox" class="filled-in" id="6d"/>
-                    <label for="6d" class="hoverable">06 - 08 <span>DAYS</span></label>
-                </div>
-                <div class="col s2">
-                    <input type="checkbox" class="filled-in" id="9d"/>
-                    <label for="9d" class="hoverable">09 - 11 <span>DAYS</span></label>
-                </div>
-                <div class="col s2">
-                    <input type="checkbox" class="filled-in" id="12d"/>
-                    <label for="12d" class="hoverable">12 - 15 <span>DAYS</span></label>
-                </div>
-                <div class="col s2">
-                    <input type="checkbox" class="filled-in" id="16d"/>
-                    <label for="16d" class="hoverable">16+ <span>DAYS</span></label>
-                </div>
-                <div class="col s2">
-                    <input type="checkbox" class="filled-in" id="unknow"/>
-                    <label for="unknow" class="hoverable">UNKNOW</label>
-                </div>
-            </div>
-
-
-            <div class="row margin-top-20">
-                <div class="col s12">
-                    <h5 class="yellow-text text-darken-3">NUMBER OF <b>TRAVELERS</b></h5>
-                    <p class="font-moserrat">Numero de personas que viajaran con ud.</p>
-                </div>
-            </div>
-
-            <div class="row form-check-travelers">
-                <div class="col s2">
-                    <input type="checkbox" class="filled-in" id="1p"/>
-                    <label for="1p" class="hoverable">1 <span><i class="material-icons">person</i></span></label>
-                </div>
-                <div class="col s2">
-                    <input type="checkbox" class="filled-in" id="2p"/>
-                    <label for="2p" class="hoverable">2 <span><i class="material-icons">person</i></span></label>
-                </div>
-                <div class="col s2">
-                    <input type="checkbox" class="filled-in" id="3p"/>
-                    <label for="3p" class="hoverable">3 <span><i class="material-icons">person</i></span></label>
-                </div>
-                <div class="col s2">
-                    <input type="checkbox" class="filled-in" id="4p"/>
-                    <label for="4p" class="hoverable">4 <span><i class="material-icons">person</i></span></label>
-                </div>
-                <div class="col s2">
-                    <input type="checkbox" class="filled-in" id="5p"/>
-                    <label for="5p" class="hoverable">5+ <span><i class="material-icons">person</i></span></label>
-                </div>
-                <div class="col s2">
-                    <input type="checkbox" class="filled-in" id="undecided"/>
-                    <label for="undecided" class="hoverable text-14">UNDECIDED</label>
-                </div>
-            </div>
-
-            <div class="row margin-top-20">
-                <div class="col s12">
-                    <h5 class="yellow-text text-darken-3">PERSONAL <b>INFORMATION</b></h5>
-                    <p class="font-moserrat">Numero de personas que viajaran con ud.</p>
-                </div>
-            </div>
-
-
-            <div class="row form-design">
-                <div class="col s6">
-                    <div class="input-field col s12">
-                        <i class="material-icons prefix grey-text text-darken-1">account_circle</i>
-                        <input id="icon_prefix" type="text" class="validate">
-                        <label for="icon_prefix">Name</label>
-                    </div>
-                    <div class="input-field col s12">
-                        <i class="material-icons prefix grey-text text-darken-1">mail</i>
-                        <input id="email" type="email" class="validate">
-                        <label for="email" data-error="wrong" data-success="right">Email</label>
-                    </div>
-                    <div class="input-field col s12">
-                        <i class="material-icons prefix grey-text text-darken-1">phone</i>
-                        <input id="icon_telephone" type="tel" class="validate">
-                        <label for="icon_telephone">Telephone</label>
-                    </div>
-                    <div class="input-field col s12">
-                        <i class="material-icons prefix grey-text text-darken-1">date_range</i>
-                        <input id="last_name" type="date" class="datepicker">
-                        <label for="last_name">Travel Date</label>
-                    </div>
-                    <div class="input-field col s12">
-                        <i class="material-icons prefix grey-text text-darken-1">mode_edit</i>
-                        <textarea id="icon_prefix2" class="materialize-textarea"></textarea>
-                        <label for="icon_prefix2">Comentarios</label>
-                    </div>
-                </div>
-
-                <div class="col s6">
-                    <img src="{{asset('img/why/team-travel.jpg')}}" alt="" class="responsive-img">
-                    <div class="col s4">
-                        <img src="{{asset('img/logos/prom-peru.png')}}" alt="" class="responsive-img">
-                    </div>
-                    <div class="col s8">
-                        <p>Our Local representatives will receive and send you the first travel plan "A" in less than 24
-                            hours.</p>
-                        <p>And based on your important feedback we will customize a new plan B, C ... until we design
-                            together a dream vacations!</p>
-                    </div>
-
-                </div>
-            </div>
-
-            <div class="row">
-                <div class="col s12 center">
-                    <a href="" class="waves-effect waves-light btn-large"><i class="material-icons right">send</i>
-                        Submit</a>
-                </div>
-            </div>
-
-        </div>
-        {{--<div class="container">--}}
-        {{----}}
-        {{--</div>--}}
-    </div>
-
-    <div class="row">
-
-
-        <div id="sync1" class="owl-carousel">
-            <div class="item"><img src="{{asset('img/banners/care2.jpg')}}" alt="" class="responsive-img"></div>
-            <div class="item"><img src="{{asset('img/banners/care1.jpg')}}" alt="" class="responsive-img"></div>
-            <div class="item"><img src="{{asset('img/banners/care3.jpg')}}" alt="" class="responsive-img"></div>
-            <div class="item"><img src="{{asset('img/banners/care4.jpg')}}" alt="" class="responsive-img"></div>
-
-        </div>
-
-        <div id="sync2" class="owl-carousel">
-            <div class="item"><img src="{{asset('img/banners/care2.jpg')}}" alt="" class="responsive-img"></div>
-            <div class="item"><img src="{{asset('img/banners/care1.jpg')}}" alt="" class="responsive-img"></div>
-            <div class="item"><img src="{{asset('img/banners/care3.jpg')}}" alt="" class="responsive-img"></div>
-            <div class="item"><img src="{{asset('img/banners/care4.jpg')}}" alt="" class="responsive-img"></div>
-        </div>
-
-
-    </div>
-
-    <div class="container margin-top-40 margin-bottom-40">
-        <div class="section">
-            <div class="row center">
-                <h4>THERE'S AN AMAZING <b>"LOST CITY"</b> OUT THERE</h4>
-                <p>Closer than you think: 8 hours from New York or Los Angeles!</p>
-            </div>
-            <div class="row">
-                <div class="col s5">
-                    <h5 class="margin-top-40">WE ARE ONE PERU´S LEADING GROUP TRAVEL PROVIDERS : GOTOPERU</h5>
-                    <p>A local company with local knowledge, expertise and resources, specializing in the design of
-                        unforgettable vacations. Our unique activities, Peru tours & excursions, Peru hotel deals,
-                        transportation and program logistics make us Peru leading travel experts. GOTOPERU offer you
-                        every kind of travel services you need; ranging from all inclusive Peru travel packages,
-                        accommodations, and entertainment and leisure activities. In addition offering different types
-                        of travel products like "Online-Booking" and personal "Custom-made Trips"</p>
-                </div>
-                <div class="col s7">
-                    <div class="content-video-1">
-                        <img src="{{asset('img/prom-peru.jpg')}}" alt="video" class="responsive-img">
-
-                        <div class="content-video-btn-1">
-                            <a href="https://player.vimeo.com/video/102732914?title=0&amp;byline=0&amp;portrait=0&amp;color=11b1c2&amp;wmode=opaque"
-                               class="html5lightbox content-vbtn-color-blue" data-width="570" data-height="320"
-                               title="title here "><i class="material-icons">play_circle_filled</i></a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-
-    <div class="container">
-        <div class="section">
-            <div class="row center">
-                <h4>WHY <b>GOTOPERU</b></h4>
-            </div>
-        </div>
-    </div>
-
-    {{--<div class="container">--}}
-    {{--<div class="section">--}}
-    {{--<div class="row">--}}
-    {{--<div class="col s6">--}}
-    {{--<h5 class="center">CONTACT OUR TRAVEL ADVISOR</h5>--}}
-    {{--<div class="divider margin-bottom-10"></div>--}}
-    {{--<img src="{{asset('img/team-travel.jpg')}}" alt="" class="responsive-img hoverable">--}}
-    {{--<h6><b>LETS CREATE TOGETHER A DREAM JOURNEY!</b></h6>--}}
-    {{--<p>Will custom design your dream Peru trip exactly how you have always envisioned it.</p>--}}
-    {{--<p>Our trip planner gives you the freedom to describe your Peru dream trip while giving us all the info we need to make that dream a reality. You're dealing with travel advisors who have yeasrs of experience creating south america adventures - so sit down with a Pisco Sour, imagine yourself in Peru and let us know what you see</p>--}}
-    {{--<p class="right">... ALREADY HAVE YOUR PERFECT TRIP IN MIND?</p>--}}
-    {{--</div>--}}
-    {{--<div class="col s6 ">--}}
-    {{--<h5 class="center">BOOK ONLINE</h5>--}}
-    {{--<div class="divider margin-bottom-10"></div>--}}
-    {{--<img src="{{asset('img/travel-book.jpg')}}" alt="" class="responsive-img hoverable">--}}
-    {{--<h6><b>YOU'RE IN COMPLETE CONTROL</b></h6>--}}
-    {{--<p>It's never been easier to plan the Peru adventure of your dreams! Book and receive an instant confirmation. MachuPicchu unforgettble vacations are only 5 minutes away! Daily Departures! Find the best Peru travel tours, today!</p>--}}
-    {{--<div class="col s3">--}}
-    {{--<img src="{{asset('img/logos/continental.jpg')}}" alt="" class="responsive-img">--}}
-    {{--</div>--}}
-    {{--<div class="col s3">--}}
-    {{--<img src="{{asset('img/logos/avianca.jpg')}}" alt="" class="responsive-img">--}}
-    {{--</div>--}}
-    {{--<div class="col s3">--}}
-    {{--<img src="{{asset('img/logos/lan.jpg')}}" alt="" class="responsive-img">--}}
-    {{--</div>--}}
-    {{--<div class="col s3">--}}
-    {{--<img src="{{asset('img/logos/american.jpg')}}" alt="" class="responsive-img">--}}
-    {{--</div>--}}
-    {{--</div>--}}
-    {{--</div>--}}
-    {{--</div>--}}
-    {{--</div>--}}
-
-    <div class="container">
-        <div class="section">
-            <div class="row" id="demo2">
-                <div class="col s4">
-                    <div class="card">
-                        <div class="card-image">
-                            <img src="{{asset('img/why/service.jpg')}}" class="circle responsive-img">
-                            <span class="card-title text-14"><b>#1 PERSONALIZE SERVICE</b></span>
-                        </div>
-                        <div class="card-content">
-                            <p><b>Small Groups and Private tours</b></p>
-                            <div class="divider spacer-margin-10"></div>
-                            <p>Our groups range from 4 to 14 travelers with an average of 7-9, and always with the
-                                option to upgrade to Vip services with a private guide and private driver.</p>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col s4">
-                    <div class="card">
-                        <div class="card-image">
-                            <img src="{{asset('img/why/local-travel.jpg')}}" class="circle responsive-img">
-                            <span class="card-title text-14"><b>#2 LOCAL OPERATOR</b></span>
-                        </div>
-                        <div class="card-content">
-                            <p><b>We live here, trully a 24/7 Assistance</b></p>
-                            <div class="divider spacer-margin-10"></div>
-                            <p>Always you will have a direct local number where to call, from a last minute itinerary
-                                change or to request a doctor to come to your hotel.</p>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col s4">
-                    <div class="card">
-                        <div class="card-image">
-                            <img src="{{asset('img/why/team-travel.jpg')}}" class="circle responsive-img">
-                            <span class="card-title text-14"><b>#3 BEST QUOTES</b></span>
-                        </div>
-                        <div class="card-content">
-                            <p><b>Cutting the middlemen, headquarters at Peru</b></p>
-                            <div class="divider spacer-margin-10"></div>
-                            <p>You are free to compare we will be able to beat any publish price, we live and work here,
-                                you dont have to pay high overhead cost from other overseas agencies.</p>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col s4">
-                    <div class="card">
-                        <div class="card-image">
-                            <img src="{{asset('img/why/testimonials.jpg')}}" class="circle responsive-img">
-                            <span class="card-title text-14"><b>#4 BEST TESTIMONIALS</b></span>
-                        </div>
-                        <div class="card-content">
-                            <p><b>We take pride of our tripadvisor reviews!</b></p>
-                            <div class="divider spacer-margin-10"></div>
-                            <p>The most important rewards are the authentic hundreds reviews we receive in different
-                                travel boards, from single travelers to university trips.</p>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col s4">
-                    <div class="card">
-                        <div class="card-image">
-                            <img src="{{asset('img/why/daily.jpg')}}" class="circle responsive-img">
-                            <span class="card-title text-14"><b>#5 DAILY DEPARTURES</b></span>
-                        </div>
-                        <div class="card-content">
-                            <p><b>We can adapt to any arrival and departure</b></p>
-                            <div class="divider spacer-margin-10"></div>
-                            <p>We know that international airfares are a factor for that reason we can adapt any of our
-                                programs to any arrival flight to Lima or Cusco.</p>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col s4">
-                    <div class="card">
-                        <div class="card-image">
-                            <img src="{{asset('img/why/convenient.jpg')}}" class="circle responsive-img">
-                            <span class="card-title text-14"><b>#6 CONVENIENT</b></span>
-                        </div>
-                        <div class="card-content">
-                            <p><b>Book Now option or Customize a dream trip!</b></p>
-                            <div class="divider spacer-margin-10"></div>
-                            <p>You can now book a lifetime trip in 5 minutes and be ready to Vacation to the Land of the
-                                Incas, or you can also leave our travel local peruvian advisors the design of a lifetime
-                                trip!.</p>
-                        </div>
-                    </div>
-                </div>
-
-
-            </div>
-        </div>
-    </div>
-
-
-    {{--<div class="container">--}}
-    {{--<div class="section">--}}
-
-    {{--<div class="row">--}}
-    {{--<div class="col s12 center">--}}
-    {{--<h3><i class="mdi-content-send brown-text"></i></h3>--}}
-    {{--<h4>Contact Us</h4>--}}
-    {{--<p class="left-align light">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam scelerisque id nunc nec volutpat. Etiam pellentesque tristique arcu, non consequat magna fermentum ac. Cras ut ultricies eros. Maecenas eros justo, ullamcorper a sapien id, viverra ultrices eros. Morbi sem neque, posuere et pretium eget, bibendum sollicitudin lacus. Aliquam eleifend sollicitudin diam, eu mattis nisl maximus sed. Nulla imperdiet semper molestie. Morbi massa odio, condimentum sed ipsum ac, gravida ultrices erat. Nullam eget dignissim mauris, non tristique erat. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae;</p>--}}
-    {{--</div>--}}
-    {{--</div>--}}
-
-    {{--</div>--}}
-    {{--</div>--}}
-
-
-    {{--<div class="parallax-container valign-wrapper">--}}
-    {{--<div class="section no-pad-bot">--}}
-    {{--<div class="container">--}}
-    {{--<div class="row center">--}}
-    {{--<h5 class="header col s12 light">A modern responsive front-end framework based on Material Design</h5>--}}
-    {{--</div>--}}
-    {{--</div>--}}
-    {{--</div>--}}
-    {{--<div class="parallax"><img src="{{asset('img/background3.jpg')}}" alt="Unsplashed background img 3"></div>--}}
     {{--</div>--}}
 
 
