@@ -27,7 +27,12 @@ Route::any('travel-package/{titulo}_{dias}', [
     'as' => 'home_show_date_path',
 ]);
 
-Route::any('travel-package/{titulo}_{dias}/checkout', [
+Route::any('travel-package/', [
+    'uses' => 'HomeController@viewpackages',
+    'as' => 'home_show_packages_path',
+]);
+
+Route::any('ground-packages/{titulo}_{dias}/checkout', [
     'uses' => 'HomeController@showcheckout',
     'as' => 'home_show_checkout_path',
 ]);

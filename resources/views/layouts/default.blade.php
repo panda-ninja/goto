@@ -68,7 +68,7 @@
         <a href="#" data-activates="mobile-demo" class="button-collapse grey-text text-darken-4"><i class="material-icons">menu</i></a>
         <ul class="right hide-on-med-and-down">
             <li><a href="sass.html">All Included</a></li>
-            <li><a href="badges.html">Ground Package</a></li>
+            <li><a href="{{route('home_show_packages_path')}}">Ground Package</a></li>
             <li><a href="collapsible.html">Offers</a></li>
             <li><a href="mobile.html">Design</a></li>
         </ul>
@@ -247,6 +247,14 @@
         .on('sticky_kit:unbottom', function(e) {
             $(this).parent().css('position', 'relative');
         })
+</script>
+
+<script>
+    $('.grid').masonry({
+        // options...
+        itemSelector: '.grid-item',
+        columnWidth: '.grid-item'
+    });
 </script>
 
 

@@ -7,7 +7,11 @@ use GotoPeru\ItinerarioPersonalizado;
 use GotoPeru\ItinerarioXHora;
 use GotoPeru\PaqueteCotizacion;
 use GotoPeru\PaquetePersonalizado;
+<<<<<<< HEAD
 use GotoPeru\TPaquete_servicio_extra;
+=======
+use GotoPeru\TCategoria;
+>>>>>>> origin/master
 use GotoPeru\TPaquete;
 //use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Http\Request;
@@ -98,6 +102,14 @@ class HomeController extends Controller
 //       dd($paquete);
 
         return view('checkout', ['paquetes'=>$paquete,'precio'=>$txt_price,'datedispo'=>$txt_date_number,'country'=>$txt_country]);
+    }
+
+    public function viewpackages()
+    {
+        $categoria = TCategoria::get();
+        $paquete = TPaquete::with('paquetes_destinos', 'precio_paquetes', 'paquetes_categoria')->where('codigo', 'NOT LIKE', 'GTPF%')->where('codigo', 'NOT LIKE', 'GTPX%')->where('codigo', 'NOT LIKE', 'GTPV%')->get();
+//        dd($categoria);
+        return view('ground', ['paquete'=>$paquete, 'categoria'=>$categoria]);
     }
 
     /**
