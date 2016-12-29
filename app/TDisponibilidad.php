@@ -10,6 +10,6 @@ class TDisponibilidad extends Model
 
     public function disponibilidad()
     {
-        return $this->belongsTo(TPaquete::class, 'idpaquetes');
+        return $this->belongsTo(TPaquete::class, 'idpaquete');
     }
 }

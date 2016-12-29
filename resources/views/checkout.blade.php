@@ -221,7 +221,7 @@
                 <div class=" col s12 grey darken-4">
                     <div class="text-14 white-text" >Total (USD)
                         <span class="text-30 blue-text text-lighten-1 ">$
-                        <span id="total"> <?php echo 2*$precio;?></span>
+                        <span id="subtotal"> {{2*$precio}}</span>
                     </span>
                     </div>
                     <div class="text-12 align-rigth white-text">taxes included
@@ -231,24 +231,24 @@
             <div class="row">
                 <div class="col s12">
                     <h6>Optional Activities:</h6>
+                    <?php $i=0;?>
                     @foreach($paquetes as $paquete)
-                        @foreach($paquete->paquete_servicio_extra as $extras)
-                            sdsd
+                        @foreach($paquete->paquete_servicio_extra as $servicios)
+                            <?php $i++;?>
+                            <p>
+                                <input type="hidden" id="ch_extras_id_{{$i}}" value="{{$servicios->servicio_extra->id}}">
+                                <input type="hidden" id="ch_extras_name_{{$i}}" value="{{$servicios->servicio_extra->titulo}}">
+                                <input type="checkbox" id="ch_extras_{{$i}}" name="ch_extras[]" value="{{$servicios->servicio_extra->precio}}" onchange="ch_extra()"/>
+                                <label for="ch_extras_{{$i}}" >{{$servicios->servicio_extra->titulo}}<span id="p_{{$i}}}"> ${{2*$servicios->servicio_extra->precio}}(${{$servicios->servicio_extra->precio}} for traveller)</span></label>
+                            </p>
                         @endforeach
                     @endforeach
-                    <p>
-                        <input type="checkbox" id="test1" />
-                        <label for="test1">Primera opcion</label>
-                    </p>
-                    <p>
-                        <input type="checkbox" id="test2" />
-                        <label for="test2">Segunda opcion</label>
-                    </p>
+                    <br>
                 </div>
                 <div class=" col s12 orange lighten-1">
                     <div class="text-14 white-text" >Total (USD)
                         <span class="text-30 ">$
-                        <span id="total"> <?php echo 2*$precio;?></span>
+                        <span id="total"> {{2*$precio}}</span>
                     </span>
                     </div>
                     <div class="text-12 align-rigth white-text">taxes included
@@ -264,7 +264,11 @@
             <div class="row">
                 <div class="col m12"><p>TRAVELLERS</p></div>
             </div>
+            <div class="row">
+                <div class="col m12">
 
+                </div>
+            </div>
             <div class="row">
                 <div class="col m1">
                     <h6>1</h6>
@@ -294,29 +298,6 @@
             <div class="row">
                 <div class="col m1">
                     <h6>2</h6>
-                </div>
-                <div class="col m3">
-                    <div class="input-field">
-                        <input id="last_name" type="text" class="validate">
-                        <label for="last_name">Name</label>
-                    </div>
-                </div>
-                <div class="col m3">
-                    <div class="input-field">
-                        <input id="last_name" type="text" class="validate">
-                        <label for="last_name">Last Name</label>
-                    </div>
-                </div>
-                <div class="col m3">
-                    <div class="input-field">
-                        <input id="last_name" type="text" class="validate">
-                        <label for="last_name">Country</label>
-                    </div>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col m1">
-                    <h6>3</h6>
                 </div>
                 <div class="col m3">
                     <div class="input-field">
@@ -520,7 +501,7 @@
                             </div>
                         </div>
                         <div class="col m3">
-                            <input type="hidden" name="ch_extras_total" id="ch_extras_total" value="0">
+                            <input type="hidden" name="ch_extras_total" id="ch_extras_total" value="{{$i}}">
                             <button  class="waves-effect  waves-light btn">Place Order</button>
                         </div>
                     </div>

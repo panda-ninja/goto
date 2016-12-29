@@ -671,7 +671,31 @@ function recalcular_total(){
     $('#precio_1').html(precio_S);
 
     //alert('Precio paquete:'+precio_paquete+'\nnro travelers:'+nro_travelers+'\nnro estrellas:'+nro_estrellas+'\nprecio_T:'+precio_T+'\nprecio_D:'+precio_D+'\nprecio_S:'+precio_S+'\nnro_camas_T:'+nro_camas_T+'\nnro_camas_D:'+nro_camas_D+'\nnro_camas_S:'+nro_camas_S);
-    var total=/*(precio_paquete*nro_travelers)+*/(nro_camas_T*precio_T*3)+(nro_camas_M*precio_Ma*2)+(nro_camas_D*precio_D*2)+(nro_camas_S*precio_S)+subtotal_estras;
+    var subtotal=/*(precio_paquete*nro_travelers)+*/(nro_camas_T*precio_T*3)+(nro_camas_M*precio_Ma*2)+(nro_camas_D*precio_D*2)+(nro_camas_S*precio_S);
+    var total=subtotal+subtotal_estras
+    $('#subtotal').html(subtotal);
     $('#total').html(total);
 
+}
+
+var subtotal_estras=0;
+function ch_extra(){
+
+    var ch_total=$('#ch_extras_total').val();
+    subtotal_estras=0;
+    for(var o=1;o<=ch_total;o++){
+        if($('#ch_extras_' + o).prop('checked')){
+            $('#v_extras_' + o).html('$ '+parseInt($('#ch_extras_' + o).val()*$('#travelers').val()));
+            // $('#visible_li_' + o).removeClass("hidden");
+            subtotal_estras+=parseInt($('#ch_extras_' + o).val()*$('#travelers').val());
+            console.log(subtotal_estras);
+        }
+        else{
+            $('#v_extras_' + o).html(parseInt($('#ch_extras_' + o).val()*$('#travelers').val()));
+            // $('#visible_li_' +o).addClass("hidden");
+            console.log(subtotal_estras);
+
+        }
+    }
+    recalcular_total();
 }

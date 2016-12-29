@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class TPaquete_servicio_extra extends Model
 {
     //
-    protected $table = "paquete_servicio_extra";
+    protected $table = "tpaquete_servicio_extra";
 
     public function paquete_servicio_extra()
     {
@@ -15,7 +15,7 @@ class TPaquete_servicio_extra extends Model
     }
     public function servicio_extra()
     {
-        return $this->belongsTo(ServicioExtra::class,'idservicio_extras');
+        return $this->belongsTo(ServicioExtra::class,'idservicio_extra');
 //        return $this->hasMany(ServicioExtra::class, 'idservicio_extras');
     }
 }
