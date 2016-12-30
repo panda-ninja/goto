@@ -2,11 +2,54 @@
 
 @section('content')
 
-    {{--<div class="parallax-container parallax-container-1">--}}
-        {{--<div class="parallax">--}}
-            {{--<img src="{{asset('img/bg/meetup3.jpg')}}" alt="">--}}
-        {{--</div>--}}
-    {{--</div>--}}
+    <div class="parallax-container parallax-container-4">
+        <div class="parallax valign-wrapper">
+            <img src="{{asset('img/banners/group.jpg')}}" alt="" class="responsive-img">
+            <div class="container">
+                <h5 class="position-relative white-text font-moserrat">VACATION PACKAGES WHIT INTERNATIONAL FLIGHTS</h5>
+            </div>
+        </div>
+    </div>
+    <section class="spacer-10">
+        <div class="row no-margin">
+            <div class="col s1">
+                <img src="{{asset('img/logos/apavit.png')}}" alt="" class="responsive-img">
+            </div>
+            <div class="col s1">
+                <img src="{{asset('img/logos/apotur.png')}}" alt="" class="responsive-img">
+            </div>
+            <div class="col s1">
+                <img src="{{asset('img/logos/asta.png')}}" alt="" class="responsive-img">
+            </div>
+            <div class="col s1">
+                <img src="{{asset('img/logos/expedia.png')}}" alt="" class="responsive-img">
+            </div>
+            <div class="col s1">
+                <img src="{{asset('img/logos/facebook.png')}}" alt="" class="responsive-img">
+            </div>
+            <div class="col s1">
+                <img src="{{asset('img/logos/meetup.png')}}" alt="" class="responsive-img">
+            </div>
+            <div class="col s1">
+                <img src="{{asset('img/logos/new.png')}}" alt="" class="responsive-img">
+            </div>
+            <div class="col s1">
+                <img src="{{asset('img/logos/peru.png')}}" alt="" class="responsive-img">
+            </div>
+            <div class="col s1">
+                <img src="{{asset('img/logos/prom-peru.png')}}" alt="" class="responsive-img">
+            </div>
+            <div class="col s1">
+                <img src="{{asset('img/logos/tripadvisor.png')}}" alt="" class="responsive-img">
+            </div>
+            <div class="col s1">
+                <img src="{{asset('img/logos/yelp.png')}}" alt="" class="responsive-img">
+            </div>
+            <div class="col s1">
+                <img src="{{asset('img/logos/youtube.png')}}" alt="" class="responsive-img">
+            </div>
+        </div>
+    </section>
 
     <div class="container">
         <div class="section">

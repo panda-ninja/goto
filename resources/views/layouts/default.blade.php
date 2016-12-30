@@ -70,7 +70,7 @@
             <li><a href="{{route('home_show_packages_path')}}">Programs</a></li>
             <li><a href="{{route('home_path')}}#vacations">Vacation Packages</a></li>
             <li><a href="#design">Design</a></li>
-            <li><a href="#" class="btn">Inquire Now</a></li>
+            <li><a href="#inquire" class="modal-trigger waves-effect waves-light btn">Inquire Now</a></li>
         </ul>
         <ul class="side-nav" id="mobile-demo">
             <li><a href="sass.html">All Included</a></li>
@@ -80,6 +80,55 @@
         </ul>
     </div>
 </nav>
+
+
+<!-- Modal Structure -->
+<div id="inquire" class="modal modal-inquire">
+    <div class="modal-content font-moserrat">
+        <div class="row">
+            <div class="col s12">
+                <p>EMAIL US AT INFO@GOTOPERU.COM OR PLEASE FILL THE FOLLOWING FORM:</p>
+            </div>
+        </div>
+        <form action="" method="post">
+            {{csrf_field()}}
+            <div class="row left-align">
+                <div class="input-field col s12">
+                    <i class="material-icons prefix">account_circle</i>
+                    <input id="icon_prefix" type="text" class="validate">
+                    <label for="icon_prefix">Full Name</label>
+                </div>
+
+                <div class="input-field col s12">
+                    <i class="material-icons prefix">mail</i>
+                    <input id="icon_telephone" type="email" class="validate">
+                    <label for="icon_telephone">Email</label>
+                </div>
+
+                <div class="input-field col s12">
+                    <i class="material-icons prefix">phone</i>
+                    <input id="icon_telephone" type="email" class="validate">
+                    <label for="icon_telephone">Phone</label>
+                </div>
+
+                <div class="row">
+                    <div class="input-field col s12">
+                        <i class="material-icons prefix">mode_edit</i>
+                        <textarea id="icon_prefix2" class="materialize-textarea"></textarea>
+                        <label for="icon_prefix2">Comment</label>
+                    </div>
+                </div>
+
+                <div class="col s12 center">
+                    <button class="btn waves-effect waves-light yellow darken-4" type="submit" name="action">Submit
+                        <i class="material-icons right">send</i>
+                    </button>
+                </div>
+            </div>
+        </form>
+    </div>
+
+</div>
 
 @yield('content')
 

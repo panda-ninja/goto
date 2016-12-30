@@ -12,6 +12,7 @@ use GotoPeru\TCategoria;
 use GotoPeru\TDisponibilidad;
 use GotoPeru\TPaquete;
 
+use GotoPeru\TPaqueteCategoria;
 use Illuminate\Http\Request;
 
 use GotoPeru\Http\Requests;
@@ -138,6 +139,14 @@ class HomeController extends Controller
         $paquete = TPaquete::with('itinerario','paquetes_destinos', 'precio_paquetes')->get()->where('titulo', $title);
 //        dd($paquete);
         return view('detail-program', ['paquetes'=>$paquete]);
+    }
+
+    public function pdf($id)
+    {
+        $paquete = TPaquete::with('itinerario','paquetes_destinos', 'precio_paquetes')->get()->where('id', $id);
+//        dd($paquete);
+        $pdf = \PDF::loadView('vacations_pdf', ['paquete'=>$paquete])->setPaper('a4')->setWarnings(true);
+        return $pdf->download('itinerary.pdf');
     }
 
     /**

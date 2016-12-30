@@ -173,7 +173,9 @@
                             <li><b>Day 5:</b> MachuPicchu tour</li>
                             <li><b>Day 6:</b> Cusco Free Day</li>
                             <li><b>Day 7:</b> Cusco Departure &amp; Return to US</li>
+                            <li><a href="" class="font-moserrat valign-wrapper left margin-top-10">Detailed Program <i class="material-icons">input</i></a></li>
                         </ul>
+
                     </div>
                     <div class="col s7">
                         <p class="yellow-text text-darken-3 font-moserrat text-20 no-margin center">LIMA, CUSCO, SACRED
@@ -185,7 +187,7 @@
                     @foreach($disponibilidad as $paquetes)
                     <div class="col s4 right-align">
                         <div class="card-panel grey lighten-5 z-depth-1 hoverable">
-                            <p class="no-margin text-30"><a href="" class="left"><img src="{{asset('img/icons/pdf.png')}}" alt="" width="50"></a> {{$paquetes->titulo}}</p>
+                            <p class="no-margin text-30"><a href="#modal-{{$paquetes->codigo}}" class="left modal-trigger waves-effect"><img src="{{asset('img/icons/pdf.png')}}" alt="" width="50"></a> {{$paquetes->titulo}}</p>
                             @foreach($paquetes->disponibilidad->sortBy('precio')->take(1) as $disponibilidad)
                                 <p class="no-margin text-50 teal-text text-lighten-2 font-moserrat"><span class="text-20">from</span>${{$disponibilidad->precio}}</p>
                             @endforeach
@@ -208,6 +210,44 @@
                                     </li>
                                 @endforeach
                             </ul>
+
+                            <!-- Modal Structure -->
+                            <div id="modal-{{$paquetes->codigo}}" class="modal">
+                                <div class="modal-content font-moserrat">
+                                    <div class="row">
+                                        <div class="col s6">
+
+                                        </div>
+                                        <div class="col s6">
+                                            <h5 class="center">{{$paquetes->titulo}}</h5>
+                                            <form action="{{route('view_vacations_pdf_path', $paquetes->id)}}" method="post">
+                                                {{csrf_field()}}
+                                                <div class="row left-align">
+                                                    <div class="input-field col s12">
+                                                        <i class="material-icons prefix">account_circle</i>
+                                                        <input id="icon_prefix" type="text" class="validate" required>
+                                                        <label for="icon_prefix">Full Name</label>
+                                                    </div>
+
+                                                    <div class="input-field col s12">
+                                                        <i class="material-icons prefix">mail</i>
+                                                        <input id="icon_telephone" type="email" class="validate" required>
+                                                        <label for="icon_telephone">Email</label>
+                                                    </div>
+
+                                                    <div class="col s12 center">
+                                                        <button class="btn waves-effect waves-light yellow darken-4" type="submit" name="action">Download
+                                                            <i class="material-icons right">file_download</i>
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                            </form>
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
                         </div>
                     </div>
                     @endforeach

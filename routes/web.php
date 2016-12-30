@@ -57,6 +57,11 @@ Route::post('checkout-package/{titulo}_{dias}', [
     'as' => 'checkout_package_path',
 ]);
 
+Route::post('pdf/{id}', [
+    'uses' => 'HomeController@pdf',
+    'as' => 'view_vacations_pdf_path',
+]);
+
 /*==begin== rutas para clientes ================================================================*/
 Route::get('cliente/login', [
     'uses' => 'ClientAuthController@index',
