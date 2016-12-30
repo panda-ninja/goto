@@ -263,57 +263,159 @@
             <div class="row">
                 <div class="col m12"><p>TRAVELLERS</p></div>
             </div>
-            <div class="row">
-                <div class="col m12">
-
-                </div>
-            </div>
-            <div class="row">
+            <div class="row" id="travellers_1">
                 <div class="col m1">
                     <h6>1</h6>
                 </div>
                 <div class="col m3">
                     <h6>NAME</h6>
                     <div class="input-field">
-                        <input id="last_name" type="text" class="validate">
-                        <label for="last_name">Name</label>
+                        <input id="name_1" name="txt_name[]" type="text" class="validate">
+                        <label for="name_1">Name</label>
                     </div>
                 </div>
                 <div class="col m3">
                     <h6>LAST NAME</h6>
                     <div class="input-field">
-                        <input id="last_name" type="text" class="validate">
-                        <label for="last_name">Last Name</label>
+                        <input id="last_name_1" name="last_name[]" type="text" class="validate">
+                        <label for="last_name_1">Last Name</label>
                     </div>
                 </div>
                 <div class="col m3">
                     <h6>COUNTRY</h6>
                     <div class="input-field">
-                        <input id="last_name" type="text" class="validate">
-                        <label for="last_name">Country</label>
+                        <input id="country_1" name="country[]" type="text" class="validate">
+                        <label for="country_1">Country</label>
                     </div>
                 </div>
             </div>
-            <div class="row">
+            <div class="row" id="travellers_2">
                 <div class="col m1">
                     <h6>2</h6>
                 </div>
                 <div class="col m3">
+                    <h6>NAME</h6>
                     <div class="input-field">
-                        <input id="last_name" type="text" class="validate">
-                        <label for="last_name">Name</label>
+                        <input id="name_2" name="txt_name[]" type="text" class="validate">
+                        <label for="name_2">Name</label>
                     </div>
                 </div>
                 <div class="col m3">
+                    <h6>LAST NAME</h6>
                     <div class="input-field">
-                        <input id="last_name" type="text" class="validate">
-                        <label for="last_name">Last Name</label>
+                        <input id="last_name_2" name="last_name[]" type="text" class="validate">
+                        <label for="last_name_2">Last Name</label>
                     </div>
                 </div>
                 <div class="col m3">
+                    <h6>COUNTRY</h6>
                     <div class="input-field">
-                        <input id="last_name" type="text" class="validate">
-                        <label for="last_name">Country</label>
+                        <input id="country_2" name="country[]" type="text" class="validate">
+                        <label for="country_2">Country</label>
+                    </div>
+                </div>
+            </div>
+            <div class="row hide" id="travellers_3">
+                <div class="col m1">
+                    <h6>3</h6>
+                </div>
+                <div class="col m3">
+                    <h6>NAME</h6>
+                    <div class="input-field">
+                        <input id="name_3" name="txt_name[]" type="text" class="validate">
+                        <label for="name_3">Name</label>
+                    </div>
+                </div>
+                <div class="col m3">
+                    <h6>LAST NAME</h6>
+                    <div class="input-field">
+                        <input id="last_name_3" name="last_name[]" type="text" class="validate">
+                        <label for="last_name_3">Last Name</label>
+                    </div>
+                </div>
+                <div class="col m3">
+                    <h6>COUNTRY</h6>
+                    <div class="input-field">
+                        <input id="country_3" name="country[]" type="text" class="validate">
+                        <label for="country_3">Country</label>
+                    </div>
+                </div>
+            </div>
+            <div class="row hide" id="travellers_4">
+                <div class="col m1">
+                    <h6>4</h6>
+                </div>
+                <div class="col m3">
+                    <h6>NAME</h6>
+                    <div class="input-field">
+                        <input id="name_4" name="txt_name[]" type="text" class="validate">
+                        <label for="name_4">Name</label>
+                    </div>
+                </div>
+                <div class="col m3">
+                    <h6>LAST NAME</h6>
+                    <div class="input-field">
+                        <input id="last_name_4" name="last_name[]" type="text" class="validate">
+                        <label for="last_name_4">Last Name</label>
+                    </div>
+                </div>
+                <div class="col m3">
+                    <h6>COUNTRY</h6>
+                    <div class="input-field">
+                        <input id="country_4" name="country[]" type="text" class="validate">
+                        <label for="country_4">Country</label>
+                    </div>
+                </div>
+            </div>
+            <div class="row hide" id="travellers_5">
+                <div class="col m1">
+                    <h6>5</h6>
+                </div>
+                <div class="col m3">
+                    <h6>NAME</h6>
+                    <div class="input-field">
+                        <input id="name_5" name="txt_name[]" type="text" class="validate">
+                        <label for="name_5">Name</label>
+                    </div>
+                </div>
+                <div class="col m3">
+                    <h6>LAST NAME</h6>
+                    <div class="input-field">
+                        <input id="last_name_5" name="last_name[]" type="text" class="validate">
+                        <label for="last_name_5">Last Name</label>
+                    </div>
+                </div>
+                <div class="col m3">
+                    <h6>COUNTRY</h6>
+                    <div class="input-field">
+                        <input id="country_5" name="country[]" type="text" class="validate">
+                        <label for="country_5">Country</label>
+                    </div>
+                </div>
+            </div>
+            <div class="row hide" id="travellers_6">
+                <div class="col m1">
+                    <h6>6</h6>
+                </div>
+                <div class="col m3">
+                    <h6>NAME</h6>
+                    <div class="input-field">
+                        <input id="name_6" name="txt_name[]" type="text" class="validate">
+                        <label for="name_6">Name</label>
+                    </div>
+                </div>
+                <div class="col m3">
+                    <h6>LAST NAME</h6>
+                    <div class="input-field">
+                        <input id="last_name_6" name="last_name[]" type="text" class="validate">
+                        <label for="last_name_6">Last Name</label>
+                    </div>
+                </div>
+                <div class="col m3">
+                    <h6>COUNTRY</h6>
+                    <div class="input-field">
+                        <input id="country_6" name="country[]" type="text" class="validate">
+                        <label for="country_6">Country</label>
                     </div>
                 </div>
             </div>
@@ -329,13 +431,13 @@
                     <div class="row">
                         <div class="col m6">
                             <div class="input-field">
-                                <input id="first_name_p" type="text" class="validate">
+                                <input id="first_name_p" name="first_name_p" type="text" class="validate">
                                 <label for="first_name_p">First name*</label>
                             </div>
                         </div>
                         <div class="col m6">
                             <div class="input-field">
-                                <input id="last_name_p" type="text" class="validate">
+                                <input id="last_name_p" name="last_name_p" type="text" class="validate">
                                 <label for="last_name_p">Last name*</label>
                             </div>
                         </div>
@@ -343,13 +445,13 @@
                     <div class="row">
                         <div class="col m6">
                             <div class="input-field">
-                                <input id="company_p" type="text" class="validate">
+                                <input id="company_p" name="company_p" type="text" class="validate">
                                 <label for="company_p">Company*</label>
                             </div>
                         </div>
                         <div class="col m6">
                             <div class="input-field">
-                                <input id="email_p" type="text" class="validate">
+                                <input id="email_p" name="email_p" type="email" class="validate">
                                 <label for="email_p">Email*</label>
                             </div>
                         </div>
@@ -357,7 +459,7 @@
                     <div class="row">
                         <div class="col m12">
                             <div class="input-field">
-                                <input id="address_p" type="text" class="validate">
+                                <input id="address_p" name="address_p" type="text" class="validate">
                                 <label for="address_p">Address*</label>
                             </div>
                         </div>
@@ -365,7 +467,7 @@
                     <div class="row">
                         <div class="col m12">
                             <div class="input-field">
-                                <input id="telephone_p" type="text" class="validate">
+                                <input id="telephone_p" name="telephone_p" type="text" class="validate">
                                 <label for="telephone_p">Telephone*</label>
                             </div>
                         </div>
@@ -373,14 +475,28 @@
                     <div class="row">
                         <div class="col m6">
                             <div class="input-field">
-                                <input id="city_p" type="text" class="validate">
-                                <label for="city_p">City*</label>
+                                <select name="country_p" id="country_p" class="validate">
+                                    @foreach($country1 as $county11)
+                                        @if($county11->name=='United States')
+                                            <option value="{{$county11->id}}" selected>{{$county11->name}}</option>
+                                        @else
+                                            <option value="{{$county11->id}}">{{$county11->name}}</option>
+                                        @endif
+                                    @endforeach
+                                </select>
+                                <label for="country_p">Country*</label>
                             </div>
                         </div>
                         <div class="col m6">
                             <div class="input-field">
                                 <select name="state_p" id="state_p" class="validate">
-                                    <option value="Select">Select</option>
+                                    @foreach($state as $state1)
+                                        @if($state1->id=='231')
+                                            <option value="{{$state1->id}}" selected>{{$state1->name}}</option>
+                                        @else
+                                            <option value="{{$state1->id}}">{{$state1->name}}</option>
+                                        @endif
+                                    @endforeach
                                 </select>
                                 <label for="state_p">State/Province*</label>
                             </div>
@@ -389,16 +505,22 @@
                     <div class="row">
                         <div class="col m6">
                             <div class="input-field">
-                                <input id="city_p" type="text" class="validate">
-                                <label for="city_p">Zip/Postal Code*</label>
+                                <input id="zip_p" mame="zip_p" type="text" class="validate">
+                                <label for="zip_p">Zip/Postal Code*</label>
                             </div>
                         </div>
                         <div class="col m6">
                             <div class="input-field">
-                                <select name="country_p" id="country_p" class="validate">
-                                    <option value="Select">Select</option>
+                                <select name="city_p" id="city_p" class="validate">
+                                    @foreach($city as $city1)
+                                        @if($city1->id=='3930')
+                                            <option value="{{$city1->id}}" selected>{{$city1->name}}</option>
+                                        @else
+                                            <option value="{{$city1->id}}">{{$city1->name}}</option>
+                                        @endif
+                                    @endforeach
                                 </select>
-                                <label for="country_p">Country*</label>
+                                <label for="city_p">City*</label>
                             </div>
                         </div>
                     </div>
@@ -409,7 +531,7 @@
 
                         <div class="col m12">
                             <div class="input-field">
-                                <input id="name_card_p" name="name_card_p" type="text" class="validate">
+                                <input id="name_card_p" name="name_card_p" type="text"  class="validate">
                                 <label for="name_card_p">Name Card*</label>
                             </div>
                         </div>
@@ -419,6 +541,16 @@
                             <div class="input-field">
                                 <select name="credit_card_type_p" id="credit_card_type_p" class="validate">
                                     <option value="Select">Please Select</option>
+                                    <option value="Visa">Visa</option>
+                                    <option value="Visa (debit)">Visa (debit)</option>
+                                    <option value="MasterCard">MasterCard</option>
+                                    <option value="MasterCard (debit)">MasterCard (debit)</option>
+                                    <option value="American Express">American Express</option>
+                                    <option value="Discover">Discover</option>
+                                    <option value="Diners Clud">Diners Clud</option>
+                                    <option value="JCB">JCB</option>
+                                    <option value="Otros">Otros</option>
+
                                 </select>
                                 <label for="credit_card_type_p">Credit Card Type*</label>
                             </div>
@@ -427,7 +559,7 @@
                     <div class="row">
                         <div class="col m12">
                             <div class="input-field">
-                                <input id="credit_card_number_p" name="credit_card_number_p" type="text" class="validate">
+                                <input id="credit_card_number_p" name="credit_card_number_p" max="16" maxlength="16" type="text" class="validate">
                                 <label for="credit_card_number_p">Credit Card Number*</label>
                             </div>
                         </div>
@@ -435,28 +567,24 @@
                     <div class="row">
                         <div class="col m6">
                             <div class="input-field">
-                                <select name="expiration_date_month_p" id="expiration_date_month_p" class="validate">
-                                    <option value="Select">Month</option>
-                                </select>
+                                <input id="expiration_date_month_p" name="expiration_date_month_p"  max="2" maxlength="2" type="text" class="validate">
                                 <label for="expiration_date_month_p">Expiration Date*</label>
                             </div>
                         </div>
                         <div class="col m6">
                             <div class="input-field">
-                                <select name="expiration_date_year_p" id="expiration_date_year_p" class="validate">
-                                    <option value="Select">Year</option>
-                                </select>
+                                <input id="expiration_date_year_p" name="expiration_date_year_p" min="4" max="4" maxlength="4" type="text" class="validate">
                             </div>
                         </div>
                     </div>
                     <div class="row">
-                        <div class="col m9">
+                        <div class="col m6">
                             <div class="input-field">
                                 <input id="card_verification_p" type="text" class="validate">
-                                <label for="card_verification_p">Card Verification Number*</label>
+                                <label for="card_verification_p">Validation code*</label>
                             </div>
                         </div>
-                        <div class="col m3">
+                        <div class="col m6">
                             <div class="input-field">
                                 <span>What is this?</span>Fappl
                             </div>
@@ -467,7 +595,29 @@
                     <h5><i class="material-icons  orange-text text-darken-2">filter_drama</i>Order Review</h5>
                     <div class="row">
                         <div class="col m12">
+                            <table class="striped">
+                                <thead>
+                                <tr>
+                                    <th data-field="id">Product Name</th>
+                                    <th data-field="price">SubTotal</th>
+                                </tr>
+                                </thead>
 
+                                <tbody>
+                                <tr>
+                                    <td>{{$paquete1->duracion}} DAYS FROM {{$_POST['txt_country']}}</td>
+                                    <td>$<span>{{$precio}}</span></td>
+                                </tr>
+                                <tr>
+                                    <td>SubTotal</td>
+                                    <td>$<span>{{$precio}}</span></td>
+                                </tr>
+                                <tr>
+                                    <td><b>Grand Total</b>/td>
+                                    <td><b>$<span>{{$precio}}</span></b></td>
+                                </tr>
+                                </tbody>
+                            </table>
                         </div>
 
                     </div>
@@ -486,22 +636,26 @@
                     </div>
                     <div class="row">
                         <div class="col m12">
-                            <div class="input-field">
-                                <textarea name="comments_p" id="comments_p" cols="30" rows="10"></textarea>
-                                <label for="comments_p">Comments</label>
+                            <div class="input-field col s12">
+                                <textarea id="comments_p" class="materialize-textarea"></textarea>
+                                <label for="comments_p">Textarea</label>
                             </div>
+
                         </div>
                     </div>
                     <div class="row">
-                        <div class="col m9">
+                        <div class="col m12">
                             <div class="input-field">
                                 <input id="terminos_p" name="terminos_p" type="checkbox" class="validate">
                                 <label for="terminos_p">I accept the <a href="">Terms and conditions*</a></label>
                             </div>
                         </div>
-                        <div class="col m3">
+                    </div>
+                    <div class="row">
+                        <div class="col m12">
                             <input type="hidden" name="ch_extras_total" id="ch_extras_total" value="{{$i}}">
-                            <button  class="waves-effect  waves-light btn">Place Order</button>
+                            <input type="hidden" name="total_p" id="total_p" value="{{$precio}}">
+                            <button class="waves-effect  waves-light btn">Place Order</button>
                         </div>
                     </div>
                 </div>

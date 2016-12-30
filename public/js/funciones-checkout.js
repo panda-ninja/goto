@@ -3,10 +3,6 @@ var max_D;
 var max_S;
 var max_M;
 function ch_travelers(){
-
-
-
-
     // $('#idTravelers').val($('#travelers').val());
     // $('#idTravelers').html($('#travelers').val());
 
@@ -14,6 +10,12 @@ function ch_travelers(){
     // $('#NroTra').html(nrotra);
     // alert(nrotra);
     if(nrotra>0){
+        $('#travellers_1').addClass('hide');
+        $('#travellers_2').addClass('hide');
+        $('#travellers_3').addClass('hide');
+        $('#travellers_4').addClass('hide');
+        $('#travellers_5').addClass('hide');
+        $('#travellers_6').addClass('hide');
         if(nrotra==1){
             $('#nro_travelers').html('<i class="fa fa-male fa-2x"></i>');
             $('#nroHabitacionesT').val('0');
@@ -28,6 +30,7 @@ function ch_travelers(){
             $('#nroHabitacionesS').val('1');
             $('#nroHabitacionesS').attr("max",1);
             max_S=1;
+            $('#travellers_1').removeClass('hide');
         }
         if(nrotra==2){
             $('#nro_travelers').html('<i class="fa fa-male fa-2x"></i><i class="fa fa-male fa-2x"></i>');
@@ -43,6 +46,8 @@ function ch_travelers(){
             $('#nroHabitacionesS').val('0');
             $('#nroHabitacionesS').attr("max",2);
             max_S=2;
+            $('#travellers_1').removeClass('hide');
+            $('#travellers_2').removeClass('hide');
         }
         if(nrotra==3){
             $('#nro_travelers').html('<i class="fa fa-male fa-2x"></i><i class="fa fa-male fa-2x"></i><i class="fa fa-male fa-2x"></i>');
@@ -58,6 +63,9 @@ function ch_travelers(){
             $('#nroHabitacionesS').val('0');
             $('#nroHabitacionesS').attr("max",3);
             max_S=3;
+            $('#travellers_1').removeClass('hide');
+            $('#travellers_2').removeClass('hide');
+            $('#travellers_3').removeClass('hide');
         }
         if(nrotra==4){
             $('#nro_travelers').html('<i class="fa fa-male fa-2x"></i><i class="fa fa-male fa-2x"></i><i class="fa fa-male fa-2x"></i><i class="fa fa-male fa-2x"></i>');
@@ -69,6 +77,10 @@ function ch_travelers(){
             $('#nroHabitacionesM').attr("max",2);
             $('#nroHabitacionesS').val('0');
             $('#nroHabitacionesS').attr("max",4);
+            $('#travellers_1').removeClass('hide');
+            $('#travellers_2').removeClass('hide');
+            $('#travellers_3').removeClass('hide');
+            $('#travellers_4').removeClass('hide');
         }
         if(nrotra==5){
             $('#nro_travelers').html('<i class="fa fa-male fa-2x"></i><i class="fa fa-male fa-2x"></i><i class="fa fa-male fa-2x"></i><i class="fa fa-male fa-2x"></i><i class="fa fa-male fa-2x"></i>');
@@ -80,6 +92,11 @@ function ch_travelers(){
             $('#nroHabitacionesM').attr("max",2);
             $('#nroHabitacionesS').val('0');
             $('#nroHabitacionesS').attr("max",5);
+            $('#travellers_1').removeClass('hide');
+            $('#travellers_2').removeClass('hide');
+            $('#travellers_3').removeClass('hide');
+            $('#travellers_4').removeClass('hide');
+            $('#travellers_5').removeClass('hide');
         }
         if(nrotra==6){
             $('#nro_travelers').html('<i class="fa fa-male fa-2x"></i><i class="fa fa-male fa-2x"></i><i class="fa fa-male fa-2x"></i><i class="fa fa-male fa-2x"></i><i class="fa fa-male fa-2x"></i><i class="fa fa-male fa-2x"></i>');
@@ -91,6 +108,12 @@ function ch_travelers(){
             $('#nroHabitacionesM').attr("max",3);
             $('#nroHabitacionesS').val('0');
             $('#nroHabitacionesS').attr("max",6);
+            $('#travellers_1').removeClass('hide');
+            $('#travellers_2').removeClass('hide');
+            $('#travellers_3').removeClass('hide');
+            $('#travellers_4').removeClass('hide');
+            $('#travellers_5').removeClass('hide');
+            $('#travellers_6').removeClass('hide');
         }
         var nroT=0;
         var nroD=0;
