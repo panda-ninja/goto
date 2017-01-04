@@ -11,7 +11,7 @@
                     <h5 class="light grey-text text-darken-3">$150 average saving | 24/7 local authentic assitance |
                         100s of testimonials</h5>
 
-                    <div class="row margin-top-60 font-moserrat">
+                    <div class="row margin-top-40">
                         <div class="col s12 m8 offset-m2 l3 offset-l6">
                             <a href="" class="waves-effect">
                                 {{--<p class="yellow-text text-darken-3 grey darken-4">ALL INCLUDED</p>--}}
@@ -44,8 +44,9 @@
                                     <img src="{{asset('img/icons//include/flight.png')}}" alt="" class="responsive-img">
                                 </div>
 
-                                <div class="col s12 text-20 white-text">
-                                    from New York <span class="yellow-text text-darken-3">5 DAYS</span> $1699
+                                <div class="col s12 white-text">
+                                    <p class="no-margin text-22">MachuPicchu, Lima, Cusco</p>
+                                    <p class="no-margin text-21"><b>With air from</b> <span class="yellow-text text-darken-3">7 DAYS</span> $1699</p>
                                 </div>
                             </a>
                         </div>
@@ -121,7 +122,7 @@
 
     <div class="parallax-container parallax-container-1">
         <div class="parallax">
-            <img src="{{asset('img/bg/meetup3.jpg')}}" alt="">
+            <img src="{{asset('img/bg/meetup4.jpg')}}" alt="">
         </div>
     </div>
 

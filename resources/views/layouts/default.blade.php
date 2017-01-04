@@ -15,28 +15,6 @@
 
     </style>
 
-    <script>
-        $("document").ready(function(){
-            $("#slc_servicio").load("../php/sistema/server/servicios.php");
-
-            $("#slc_servicio").change(function(){
-                var id = $("#slc_servicio").val();
-                $.get("../php/sistema/server/opciones.php",{param_id:id})
-                    .done(function(data){
-                        $("#slc_tipo").html(data);
-                        //
-                        $("#slc_tipo").change(function(){
-                            var idtipo = $("#slc_tipo").val();
-                            var idservicio = $("#slc_servicio").val();
-                            $.get("../php/sistema/server/detalleOpciones.php",{param_id:idtipo,param_servicio:idservicio})
-                                .done(function(data){
-                                    $("#slc_detalle").html(data);
-                                })
-                        })
-                    })
-            })
-        })
-    </script>
 
 </head>
 <body>
@@ -47,17 +25,24 @@
                 <a href="/" class="brand-logo valign"><img src="{{asset('img/logos/logo-ave.png')}}" alt="" class="responsive-img"></a>
             </div>
             <div class="col s12 m8 l8">
-                <ul class="header-nav white-text right-align valign">
-                    <li>(813) 600-3042</li>
+                <ul class="header-nav white-text right-align no-margin">
+                    <li>(813) 454-9707</li>
                     <li>Mon to Sun: 9am - 8pm (EST)</li>
                     @if(auth()->guard('cliente')->check())
                         <li><a href="" class="green-text text-darken-3">{{auth()->guard('cliente')->user()->nombres.', '.auth()->guard('cliente')->user()->apellidos}}</a></li>
                         <li><a href="{{route('client_auth_destroy_path')}}" class="yellow-text text-darken-3">Logout</a></li>
                     @else
-                        <li><a href="{{route('client_auth_index_path')}}" class="white-text">sign in</a></li>
-                        <li><a href="" class="yellow-text text-darken-3">new account</a></li>
+                        <li><a href="#inquire" class="modal-trigger waves-effect waves-light btn">Inquire Now</a></li>
+                        <li><a href="#" class="dropdown-button waves-effect" data-activates='dropdown1' data-beloworigin="true"><img src="{{asset('img/icons/user.png')}}" alt="" class="responsive-img valign-wrapper" width="30"></a></li>
                     @endif
                 </ul>
+
+                <!-- Dropdown Structure -->
+                <ul id='dropdown1' class='dropdown-content header-nav-drop'>
+                    <li><a href="{{route('client_auth_index_path')}}"><i class="material-icons right">input</i> Sign in</a></li>
+                    <li><a href="#!">New acoount</a></li>
+                </ul>
+
             </div>
         </div>
     </div>
@@ -70,7 +55,7 @@
             <li><a href="{{route('home_show_packages_path')}}">Programs</a></li>
             <li><a href="{{route('home_path')}}#vacations">Vacation Packages</a></li>
             <li><a href="#design">Design</a></li>
-            <li><a href="#inquire" class="modal-trigger waves-effect waves-light btn">Inquire Now</a></li>
+            <li></li>
         </ul>
         <ul class="side-nav" id="mobile-demo">
             <li><a href="sass.html">All Included</a></li>
