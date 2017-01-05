@@ -181,7 +181,7 @@
                     <div class="col s7">
                         <p class="yellow-text text-darken-3 font-moserrat text-20 no-margin center">LIMA, CUSCO, SACRED
                             VALLEY, MACHU PICCHU</p>
-                        <img src="{{asset('img/all.jpg')}}" alt="" class="responsive-img">
+                        <img src="{{asset('img/maps/GTPF700.jpg')}}" alt="" class="responsive-img margin-top-15">
                     </div>
                 </div>
                 <div class="row">
@@ -706,7 +706,7 @@
                 <div class="col s3 valign-wrapper">
                     <a href="{{route('home_show_category_path', 'adventure')}}" class="card hoverable waves-effect">
                         <div class="col s3">
-                            <img src="{{asset('img/icons/trekking.png')}}" alt="" class="circle responsive-img">
+                            <img src="{{asset('img/icons/trekking.png')}}" alt="" class="circle responsive-img valign">
                             <!-- notice the "circle" class -->
                         </div>
                         <div class="col s9">
