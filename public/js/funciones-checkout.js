@@ -2,11 +2,24 @@ var max_T;
 var max_D;
 var max_S;
 var max_M;
+function cambiarfecha(){
+    var dat=$('#date_travel').val();
+    $('#travellers_p').val(dat);
+}
+
 function ch_travelers(){
     // $('#idTravelers').val($('#travelers').val());
     // $('#idTravelers').html($('#travelers').val());
-
+// alert('hola1');
     var nrotra=$('#travelers').val();
+    var nroextr=$('#ch_extras_total').val();
+
+    for(var e=1;e<=nroextr;e++){
+        var precio_o=$('#precio_optional_activities_'+e).val();
+        $('#extra_precioP_'+e).html(nrotra*precio_o);
+        $('#extra_precioS_'+e).html(precio_o);
+    }
+    $('#travellers_p').val(nrotra);
     // $('#NroTra').html(nrotra);
     // alert(nrotra);
     if(nrotra>0){
@@ -200,6 +213,7 @@ function ch_travelers(){
             $('#p_'+oe).html($('#ch_extras_' + oe).val()*nrotra+' ($'+$('#ch_extras_' + oe).val());
             $('#v_extras_' + oe).html('$ '+parseInt($('#ch_extras_' + oe).val()*$('#travelers').val()));
         }
+        ch_extra();
         recalcular_total();
     }
 }
@@ -677,6 +691,7 @@ function distribucion(tipo){
     recalcular_total();
 }
 function recalcular_total(){
+
     var precio_paquete=$('#precioPaquete').html();
     var nro_travelers=$('#travelers').val();
     var nro_estrellas=$('#nro_estrellas').val();
@@ -695,9 +710,15 @@ function recalcular_total(){
 
     //alert('Precio paquete:'+precio_paquete+'\nnro travelers:'+nro_travelers+'\nnro estrellas:'+nro_estrellas+'\nprecio_T:'+precio_T+'\nprecio_D:'+precio_D+'\nprecio_S:'+precio_S+'\nnro_camas_T:'+nro_camas_T+'\nnro_camas_D:'+nro_camas_D+'\nnro_camas_S:'+nro_camas_S);
     var subtotal=/*(precio_paquete*nro_travelers)+*/(nro_camas_T*precio_T*3)+(nro_camas_M*precio_Ma*2)+(nro_camas_D*precio_D*2)+(nro_camas_S*precio_S);
-    var total=subtotal+subtotal_estras
+    var total=subtotal+subtotal_estras;
     $('#subtotal').html(subtotal);
     $('#total').html(total);
+    $('#total_p').val(total);
+    $('#st_precio0').html(total);
+    $('#st_precio1').html(total);
+    $('#st_precio2').html(total);
+    // alert('hola ');
+    // console.log('recalculamos el total: '+total);
 
 }
 

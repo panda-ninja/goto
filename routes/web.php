@@ -57,6 +57,11 @@ Route::post('checkout-package/{titulo}_{dias}', [
     'as' => 'checkout_package_path',
 ]);
 
+Route::post('checkout/', [
+    'uses' => 'CheckoutController@store',
+    'as' => 'checkout_store_path',
+]);
+
 /*==begin== rutas para clientes ================================================================*/
 Route::get('cliente/login', [
     'uses' => 'ClientAuthController@index',

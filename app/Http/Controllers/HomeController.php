@@ -96,7 +96,7 @@ class HomeController extends Controller
     {
         $title = str_replace('-', ' ', strtoupper($titulo));
         $txt_price=($request->input('txt_price'));
-        $txt_date_number=($request->input('txt_date_number'));
+        $txt_date_number=($request->input('txt_date'));
         $txt_country=($request->input('txt_country'));
 //        dd($txt_price);
         $paquete = TPaquete::with(['itinerario','paquetes_destinos', 'precio_paquetes','paquete_servicio_extra.servicio_extra','disponibilidad' => function($query)use($txt_date_number){$query->where('fecha_disponibilidad',$txt_date_number);}])
@@ -107,7 +107,7 @@ class HomeController extends Controller
         $state=TState::get();
         $city=TCity::get();
 
-//       dd($paquete);
+//      dd($paquete);
 
         return view('checkout', ['paquetes'=>$paquete,'precio'=>$txt_price,'datedispo'=>$txt_date_number,'country'=>$title,'country1'=>$country, 'state'=>$state,'city'=>$city]);
     }
