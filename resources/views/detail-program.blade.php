@@ -234,15 +234,7 @@
                             </ul>
                         </div>
                         <div class="margin-top-20 center">
-                            {{--<p class="font-moserrat blue-text">@php echo $_POST['txt_country'].' | '.$_POST['txt_date'].' | $'.$_POST['txt_price'].'' @endphp</p>--}}
-                            {{--<form action="{{route('home_show_checkout_path', array('titulo'=>'SPECIAL-PERU', 'dias'=>'7-days-tours'))}}" method="post">--}}
-                                {{--{{csrf_field()}}--}}
-                                {{--<input type="hidden" value="{{$_POST['txt_iddate']}}" name="txt_iddate">--}}
-                                {{--<input type="hidden" value="{{$_POST['txt_date']}}" name="txt_date">--}}
-                                {{--<input type="hidden" value="{{$_POST['txt_country']}}" name="txt_country">--}}
-                                {{--<input type="hidden" value="{{$_POST['txt_price']}}" name="txt_price">--}}
-                                {{--<input type="submit" class="waves-effect waves-light btn" value="BOOK NOW">--}}
-                            {{--</form>--}}
+                            {{--formulario availability--}}
                             <form action="{{route('home_show_checkout_path', array('titulo'=>str_replace(' ','-', strtolower($paquete->titulo)), 'dias'=>$paquete->duracion.'-days-tours'))}}"
                                   method="post">
                                 {{csrf_field()}}
