@@ -147,6 +147,7 @@ class HomeController extends Controller
 //        dd($paquete);
         $pdf = \PDF::loadView('vacations_pdf', ['paquete'=>$paquete])->setPaper('a4')->setWarnings(true);
         return $pdf->download('itinerary.pdf');
+
     }
 
     /**
