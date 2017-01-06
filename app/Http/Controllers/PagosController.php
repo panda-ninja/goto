@@ -68,9 +68,11 @@ class PagosController extends Controller
             $pago->estado=0;
             $pago->medio="Tarjeta electronica";
             $pago->transaccion=$operacion->id;
+//            $pago->transaccion=98;
             $pago->save();
-            /* auth()->guard('cliente')->user()->nombres;*/
-            $email='fredy1432@hotmail.com';
+//            /* auth()->guard('cliente')->user()->nombres;*/
+//            $email='fredy1432@hotmail.com';
+            $email=$request->input('email');
             Mail::send(['html'=>'notification'], ['pago'=>$pago], function ($messaje) use ($email){
                 $messaje->to($email,'Freddy')
                     ->subject('You have a new payment')

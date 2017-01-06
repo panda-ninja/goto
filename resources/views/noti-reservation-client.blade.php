@@ -11,19 +11,19 @@
             <td bgcolor="#f7f7f7" style="width: 600px;padding: 7px">
                 <table>
                     <tr><td><b>Client:</b> {{$first_name_p.', '.$last_name_p}}</td></tr>
-                    {{--<tr><td><b>Nacionalidad:</b> {{auth()->guard('cliente')->user()->nacionalidad}}</td></tr>--}}
+                    <tr><td>Nacionalidad:</b> {{$name_country}}</td></tr>
                     {{--<tr><td><b>Residenca:</b> {{auth()->guard('cliente')->user()->residencia}}</td></tr>--}}
                     {{--<tr><td><b>Pasaporte:</b> {{auth()->guard('cliente')->user()->pasaporte}}</td></tr>--}}
-                    {{--<tr><td><b>Telefono:</b> {{auth()->guard('cliente')->user()->telefono}}</td></tr>--}}
+                    <tr><td><b>Telefono:</b> {{$telephone_p}}</td></tr>
                 </table>
             </td>
             <td bgcolor="#f7f7f7" style="width: 300px;padding: 7px">
                 {{--<table>--}}
                     {{--<tr><td><b>Numero de factura:</b> {{$pago->id}}</td></tr>--}}
-                    {{--<tr><td><b>Fecha de la factura:</b> {{$pago->vencimiento}}</td></tr>--}}
-                    {{--<tr><td><b>Medio:</b> {{$pago->medio}}</td></tr>--}}
-                    {{--<tr><td><b>Transaccion:</b> {{$pago->transaccion}}</td></tr>--}}
-                    {{--<tr><td><b>Total:</b> $. {{$pago->monto}}</td></tr>--}}
+                    <tr><td><b>Fecha de la factura:</b> {{$fecha_factura}}</td></tr>
+                    <tr><td><b>Medio:</b> {{$medio}}</td></tr>
+                    <tr><td><b>Transaccion:</b> {{$transaccion}}</td></tr>
+                    <tr><td><b>Total:</b> $. {{$total}}</td></tr>
                 {{--</table>--}}
             </td>
         </tr>
