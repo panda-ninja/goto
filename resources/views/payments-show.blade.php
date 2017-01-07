@@ -161,17 +161,20 @@
                     </div>
                     <div class="row">
                         <div class="input-field col s3">
-                            <input type="text" id="card-expiry-month" name="card-expiry-month" value="05" data-stripe="exp-month">
+                            <input type="text" id="card-expiry-month" name="card-expiry-month" value="12" data-stripe="exp-month">
                             <label for="card-expiry-month">Expiration month (MM)</label>
                         </div>
                         <div class="input-field col s3">
-                            <input type="text" id="card-expiry-year" name="card-expiry-year" value="2019" data-stripe="exp-year">
+                            <input type="text" id="card-expiry-year" name="card-expiry-year" value="2018" data-stripe="exp-year">
                             <label for="card-expiry-year">Expiration year(YYYY)</label>
                         </div>
                     </div>
                     <div class="row">
                         <div class="input-field col s6">
                             {{csrf_field()}}
+                            <button class="btn waves-effect waves-light" type="submit" value="Submita"  onclic="mensaje9()">mensaje
+                                <i class="material-icons right">send</i>
+                            </button>
                             <button class="btn waves-effect waves-light" type="submit" value="Submit Payment" id="pago" name="pago">SUBMIT PAYMENT
                                 <i class="material-icons right">send</i>
                             </button>

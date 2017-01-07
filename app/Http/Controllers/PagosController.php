@@ -9,6 +9,10 @@ use GotoPeru\Cliente;
 use GotoPeru\Http\Requests;
 use Illuminate\Support\Facades\Mail;
 use Stripe\Stripe;
+use Stripe\Charge;
+use Stripe\Customer;
+use Stripe\Stripe_CardError;
+use Stripe\Stripe_InvalidRequestError;
 
 class PagosController extends Controller
 {
@@ -55,12 +59,17 @@ class PagosController extends Controller
     public function store(Request $request,$idPago)
     {
         //dd($request);
-        \Stripe\Stripe::setApiKey("sk_test_LrBb0V9M539t1l7f9x7LhfvJ");
+        \Stripe\Stripe::setApiKey("sk_test_ApAk9pY4WREiBYmKe8GyqlHC");
         try{
+//            $customer = Customer::create([
+//                'card' => $request->input('stripeToken'),
+//                'description' => $request->input('email')
+//            ]);
             $operacion=\Stripe\Charge::create(array(
                 "amount"=>$request->input('amount')*100,
                 "currency"=>"usd",
                 "source"=>$request->input('stripeToken'),
+//                "customer"=>$customer->id,
                 "description"=>"New payment - Email:".$request->input('email')." - Pasaporte:".$request->input('pasaporte')." - Name:".$request->input('first-name').", ".$request->input('last-name'),
             ));
             $pago=Pago::findOrFail($idPago);
@@ -71,8 +80,8 @@ class PagosController extends Controller
 //            $pago->transaccion=98;
             $pago->save();
 //            /* auth()->guard('cliente')->user()->nombres;*/
-//            $email='fredy1432@hotmail.com';
-            $email=$request->input('email');
+            $email='fredy1432@hotmail.com';
+//            $email=$request->input('email');
             Mail::send(['html'=>'notification'], ['pago'=>$pago], function ($messaje) use ($email){
                 $messaje->to($email,'Freddy')
                     ->subject('You have a new payment')
@@ -82,6 +91,15 @@ class PagosController extends Controller
             //return redirect()->route('payments_noti_path',['pago'=>$pago])->with('success','Your pay was succesfull');
             return redirect()->route('payments_show_path',$idPago)->with('success','Your pay was succesfull');
 
+        }
+        catch (Stripe_InvalidRequestError $e ) {
+
+            return redirect()->route('payments_show_path',$idPago)->with('error','Invalid request error');
+
+
+        }
+        catch (Stripe_CardError $e) {
+            return redirect()->route('payments_show_path',$idPago)->with('error','Card was declined');
         }
         catch(Exception $e){
             return redirect()->route('payments_show_path',$idPago)->with('error',$e->getMessage());

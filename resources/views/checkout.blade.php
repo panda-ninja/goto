@@ -41,7 +41,7 @@
         <div class="col s3 m3">
         </div>
     </div>
-    <form action="{{route('checkout_store_path')}}" method="post" id="checkout-form">
+    <form action="{{route('checkout_store_path')}}" method="post" id="checkout-form1">
         {{csrf_field()}}
         <div class="row">
             <div class="col s3 m3">
