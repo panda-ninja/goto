@@ -52,38 +52,47 @@
     </section>
 
     <div class="container">
-        <div class="section">
+        <div class="">
             <div class="row center">
-                <h4 class="yellow-text text-darken-4">ALL <b>INCLUDED</b></h4>
-                <p class="lime-text text-darken-4 font-moserrat text-20 no-margin">MACHUPICCHU TOURS WITH AIR FROM US</p>
-                <p class="grey-text text-darken-4 text-20 no-margin">DOOR TO DOOR, Including a $50 <img src="{{asset('img/icons/uber.png')}}" width="30" alt=""> Credit</p>
+                @foreach($paquetes as $paquete)
+                    <h1 class="yellow-text text-darken-4 no-margin text-50">ALL <b>INCLUDED</b></h1>
+                    <p class="grey-text text-darken-1 font-moserrat text-20 no-margin">MACHUPICCHU TOURS WITH AIR FROM US | DOOR TO DOOR, Including a $50 <img src="{{asset('img/icons/uber.png')}}" width="30" alt=""> Credit</p>
+                    <h3 class="lime-text text-darken-4 margin-top-20 margin-bottom-0"><b>{{$paquete->duracion}} DAYS</b></h3>
+                @endforeach
+
             </div>
         </div>
     </div>
 
     <div class="container">
-        <div class="section">
+
             <div class="row">
-                <div class="col s12 center margin-bottom-30">
-                    <h3 class="grey-text text-darken-2 no-margin">7 DAYS</h3>
-                    {{--<p class="yellow-text text-darken-3 font-moserrat text-25 no-margin">LIMA, CUSCO, SACRED VALLEY, MACHU PICCHU</p>--}}
+                <div class="col s12 font-moserrat">
+                    <a href="#itinerary">Itinerary</a> | <a href="#included">Included</a> | <a href="#not-included">Not Included</a>
                 </div>
+            </div>
+
+    </div>
+
+    <div class="container">
+        <div class="section">
+            <div class="col s12">
 
                 <div class="row">
 
                     @foreach($disponibilidad as $paquete)
-                        <div class="col s4 right-align">
-                            <div class="card-panel grey lighten-5 z-depth-1 hoverable">
-                                <p class="no-margin text-30"><a href="" class="left"><img src="{{asset('img/icons/pdf.png')}}" alt="" width="50"></a> {{$paquete->titulo}}</p>
+                        <div class="col s3 right-align">
+                            <div class="card-panel grey lighten-5 z-depth-1 hoverable padding-10">
+                                <p class="no-margin text-25"><a href="#modal-{{$paquete->codigo}}" class="left modal-trigger waves-effect"><img src="{{asset('img/icons/pdf.png')}}" alt="" width="30"></a> {{$paquete->titulo}}</p>
                                 @foreach($paquete->disponibilidad->sortBy('precio')->take(1) as $disponibilidad)
-                                    <p class="no-margin text-50 teal-text text-lighten-2 font-moserrat"><span class="text-20">from</span>${{$disponibilidad->precio}}</p>
+                                    <p class="no-margin text-40 teal-text text-lighten-2 font-moserrat"><span class="text-20">from</span>${{$disponibilidad->precio}}</p>
                                 @endforeach
                                 <p class="no-margin">Small group</p>
                                 <p class="no-margin">Tourist to Superior</p>
                                 <ul class="font-moserrat">
                                     @foreach($paquete->disponibilidad as $disponibilidad)
 
-                                        <li class="text-14 margin-bottom-10">
+                                        <li class="text-11 margin-bottom-10">
                                             <form action="{{route('home_show_checkout_path', array('titulo'=>str_replace(' ','-', strtolower($paquete->titulo)), 'dias'=>$paquete->duracion.'-days-tours'))}}"
                                                   method="post">
                                                 {{csrf_field()}}
@@ -97,6 +106,43 @@
                                         </li>
                                     @endforeach
                                 </ul>
+
+                                <!-- Modal Structure -->
+                                <div id="modal-{{$paquete->codigo}}" class="modal">
+                                    <div class="modal-content font-moserrat">
+                                        <div class="row">
+                                            <div class="col s6">
+
+                                            </div>
+                                            <div class="col s6">
+                                                <h5 class="center">{{$paquete->titulo}}</h5>
+                                                <form action="{{route('view_vacations_pdf_path', $paquete->id)}}" method="post">
+                                                    {{csrf_field()}}
+                                                    <div class="row left-align">
+                                                        <div class="input-field col s12">
+                                                            <i class="material-icons prefix">account_circle</i>
+                                                            <input id="icon_prefix" type="text" class="validate" required>
+                                                            <label for="icon_prefix">Full Name</label>
+                                                        </div>
+
+                                                        <div class="input-field col s12">
+                                                            <i class="material-icons prefix">mail</i>
+                                                            <input id="icon_telephone" type="email" class="validate" required>
+                                                            <label for="icon_telephone">Email</label>
+                                                        </div>
+
+                                                        <div class="col s12 center">
+                                                            <button class="btn waves-effect waves-light yellow darken-4" type="submit" name="action">Download
+                                                                <i class="material-icons right">file_download</i>
+                                                            </button>
+                                                        </div>
+                                                    </div>
+                                                </form>
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     @endforeach
@@ -163,9 +209,8 @@
     </div>
 
     <div class="container">
-        <div class="section">
+        <div class="section scrollspy" id="itinerary">
             <div class="row main-wrapper">
-
                     <div class="col s12 m9 l7">
                         <div>
                             <h4 class="no-margin font-moserrat row">ITINERARY</h4>
@@ -215,17 +260,17 @@
                     </div>
             </div>
 
-            <div class="row margin-top-40">
-                <div class="col s12">
+            <div class="row spacer-margin-50">
+                <div class="col s6 scrollspy" id="included">
                     <div>
                         <h4 class="no-margin font-moserrat row">What's Included</h4>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquam culpa expedita, labore magni pariatur rem totam voluptates. Assumenda, facere, similique. Autem doloremque, ea harum odio reiciendis saepe tempora veritatis voluptas?</p>
+                        @php echo $paquete->incluye @endphp
                     </div>
                 </div>
-                <div class="col s12">
+                <div class="col s6 scrollspy" id="not-included">
                     <div>
                         <h4 class="no-margin font-moserrat row">What's Not Included</h4>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquam culpa expedita, labore magni pariatur rem totam voluptates. Assumenda, facere, similique. Autem doloremque, ea harum odio reiciendis saepe tempora veritatis voluptas?</p>
+                        @php echo $paquete->noincluye @endphp
                     </div>
                 </div>
             </div>

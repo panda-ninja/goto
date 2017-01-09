@@ -6604,6 +6604,9 @@ button.picker__today:focus, button.picker__clear:focus, button.picker__close:foc
 .margin-top-100 {
   margin-top: 100px; }
 
+.margin-bottom-0 {
+  margin-bottom: 0px; }
+
 .margin-bottom-10 {
   margin-bottom: 10px; }
 
@@ -6619,8 +6622,20 @@ button.picker__today:focus, button.picker__clear:focus, button.picker__close:foc
 .margin-bottom-50 {
   margin-bottom: 50px; }
 
+.bg-rgba-black-5 {
+  background: rgba(0, 0, 0, 0.5); }
+
+.bg-rgba-white-5 {
+  background: rgba(255, 255, 255, 0.5); }
+
+.bg-rgba-white-9 {
+  background: rgba(255, 255, 255, 0.9); }
+
 .text-10 {
   font-size: 10px; }
+
+.text-11 {
+  font-size: 11px; }
 
 .text-12 {
   font-size: 12px; }
@@ -6669,6 +6684,11 @@ button.picker__today:focus, button.picker__clear:focus, button.picker__close:foc
   top: 15px !important;
   position: absolute;
   right: 15px; }
+
+.img-absolute-top-left {
+  position: absolute;
+  top: -65px;
+  left: -65px; }
 
 .line-through {
   text-decoration: line-through; }

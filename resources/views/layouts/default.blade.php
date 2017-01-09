@@ -483,9 +483,12 @@
             </div>
 
             <div class="col s6">
-                <img src="{{asset('img/why/team-travel.jpg')}}" alt="" class="responsive-img">
+                <div class="col s12 position-relative">
+                    <img src="{{asset('img/why/team-travel.jpg')}}" alt="" class="responsive-img">
+                    <img src="{{asset('img/icons/24-hours.png')}}" alt="" width="150" class="margin-top-20 img-absolute-top-left">
+                </div>
                 <div class="col s4">
-                    <img src="{{asset('img/logos/prom-peru.png')}}" alt="" class="responsive-img">
+                    <img src="{{asset('img/icons/abc.png')}}" alt="" class="responsive-img margin-top-20">
                 </div>
                 <div class="col s8">
                     <p>Our Local representatives will receive and send you the first travel plan "A" in less than 24
@@ -675,30 +678,79 @@
         <img src="{{asset('img/banners/footer-1.jpg')}}" alt="" class="responsive-img">
     </div>
     <div class="container">
+        <div class="row margin-bottom-20">
+            <div class="col s3">
+                <img src="{{'img/logos/logo-gotoperu.png'}}" alt="">
+            </div>
+            <div class="col s3">
+                <img src="{{'img/logos/logo-latinamerica-2.png'}}" alt="">
+            </div>
+        </div>
         <div class="row">
-            <div class="col l6 s12">
-                <h5 class="white-text">ABOUT US</h5>
-                <p class="grey-text text-lighten-4">Is built on one very simple principle. Do the right thing all the time, every time. For our team, for our travelers, for the people and places we visit ...
-                    <a href="">read more</a></p>
-            </div>
-            <div class="col l3 s12">
-                <h5 class="white-text">GOTOPERU GROUP</h5>
-                <ul>
-                    <li><a class="white-text" href="#!"><b class="light yellow-text text-darken-3">English:</b> www.gotoperu.com</a></li>
-                    <li><a class="white-text" href="#!"><b class="light yellow-text text-darken-3">Portuguese:</b> www.andesviagens.com</a></li>
-                    <li><a class="white-text" href="#!"><b class="light yellow-text text-darken-3">French:</b> www.andesperou.com</a></li>
-                    <li><a class="white-text" href="#!"><b class="light yellow-text text-darken-3">Luxury:</b> www.incaluxury.com</a></li>
+            <div class="col s2">
+                <h5 class="yellow-text text-darken-3 text-18 font-moserrat">Peru</h5>
+                <ul class="white-text">
+                    <li>Conca Canyon</li>
+                    <li>Inca Trail</li>
+                    <li>Lake Tititcaca</li>
+                    <li>Machu Picchu</li>
+                    <li>Nazca Lines</li>
+                    <li>Peruvian Amazon</li>
                 </ul>
             </div>
-            <div class="col l3 s12">
-                <h5 class="white-text">COMPANY INFO</h5>
-                <ul>
-                    <li></li>
-                    <li class="light white-text text-darken-3"><b>USA:</b> 1(800) 610-8406</a></li>
-                    <li class="light white-text text-darken-3"><b>CHILE:</b> 1(230) 020-9019</li>
-                    <li class="light white-text text-darken-3"><b>BRAZIL:</b>(11) 3230-1121</li>
-                    <li class="light white-text text-darken-3"><b>PERU:</b> (51) 84 262-555</li>
+            <div class="col s2">
+                <h5 class="yellow-text text-darken-3 text-18 font-moserrat">Brasil</h5>
+                <ul class="white-text">
+                    <li>Rio</li>
                 </ul>
+            </div>
+            <div class="col s2">
+                <h5 class="yellow-text text-darken-3 text-18 font-moserrat">Argentina</h5>
+                <ul class="white-text">
+                    <li>Buenos Aires</li>
+                    <li>Iguazu</li>
+                    <li>Patagonia</li>
+                </ul>
+            </div>
+            <div class="col s2">
+                <h5 class="yellow-text text-darken-3 text-18 font-moserrat">Chile</h5>
+                <ul class="white-text">
+                    <li>Atacama</li>
+                    <li>Easter Island</li>
+                    <li>Lake District</li>
+                    <li>Santago</li>
+                    <li>Valparaiso</li>
+                </ul>
+            </div>
+            <div class="col s2">
+                <h5 class="yellow-text text-darken-3 text-18 font-moserrat">Ecuador</h5>
+                <ul class="white-text">
+                    <li>Amazon Ecuador</li>
+                    <li>Cuenca</li>
+                    <li>Galapagos</li>
+                    <li>Quito</li>
+                </ul>
+            </div>
+            <div class="col s2">
+                <h5 class="yellow-text text-darken-3 text-18 font-moserrat">Bolivia</h5>
+                <ul class="white-text">
+                    <li>La Paz</li>
+                    <li>Uyuni</li>
+                </ul>
+            </div>
+        </div>
+        <div class="row white-text">
+            <div class="col s3">
+                <p><b>Peru:</b> (051) (84)-262-555</p>
+            </div>
+            <div class="col s3">
+                <p><b>USA:</b> (001) (813)-454-9707</p>
+            </div>
+            <div class="col s3">
+                <p><a href="">info@gotoperu.com</a></p>
+            </div>
+            <div class="col s3">
+                <p><a href="">www.gotoperu.com</a></p>
             </div>
         </div>
     </div>

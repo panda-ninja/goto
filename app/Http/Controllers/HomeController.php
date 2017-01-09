@@ -32,9 +32,9 @@ class HomeController extends Controller
         $duracion = TPaquete::select('duracion')->distinct()->get();
         $paquete = TPaquete::with('paquetes_destinos', 'precio_paquetes', 'disponibilidad')->get()->where('estado', 1);
         $featured = TPaquete::with('paquetes_destinos', 'precio_paquetes')->get()->where('estadoslider', 1);
-        $disponibilidad = TPaquete::with('disponibilidad')->where('codigo','GTPF700')->orwhere('codigo','GTPF701')->orwhere('codigo','GTPF702')->get();
+        $disponibilidad7 = TPaquete::with('disponibilidad')->where('codigo','GTPF700')->orwhere('codigo','GTPF701')->orwhere('codigo','GTPF702')->get();
 //        dd($disponibilidad);
-        return view('home', ['paquete'=>$paquete, 'featured'=>$featured, 'duracion'=>$duracion, 'disponibilidad'=>$disponibilidad]);
+        return view('home', ['paquete'=>$paquete, 'featured'=>$featured, 'duracion'=>$duracion, 'disponibilidad7'=>$disponibilidad7]);
     }
 
     /**

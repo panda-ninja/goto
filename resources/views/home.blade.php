@@ -45,13 +45,8 @@
                                 </div>
 
                                 <div class="col s12 white-text">
-<<<<<<< HEAD
                                     <p class="no-margin text-22">ALL INCLUDED FROM MIAMI</p>
                                     <p class="no-margin text-35"><b class="">5 DAYS</b> <span class="btn black-text">$1399</span></p>
-=======
-                                    <p class="no-margin text-22">MachuPicchu, Lima, Cusco</p>
-                                    <p class="no-margin text-21"><b>With air from</b> <span class="yellow-text text-darken-3">7 DAYS</span> $1699</p>
->>>>>>> origin/master
                                 </div>
                             </a>
                         </div>
@@ -126,8 +121,20 @@
 
 
     <div class="parallax-container parallax-container-1">
-        <div class="parallax">
+        <div class="parallax valign-wrapper">
             <img src="{{asset('img/bg/meetup4.jpg')}}" alt="">
+            <div class="container">
+                <div class="row">
+                    <div class="col s3 position-relative right">
+                        <div class="padding-10 bg-rgba-white-9 card-panel">
+                            <h5 class="font-moserrat">EXPERIENCE</h5>
+                            <p>Established in 2009, qe are a company founded by a team of travel professionals with decades of experience operating tours in Peru</p>
+                            <h5 class="font-moserrat">Local &amp; International</h5>
+                            <p>Our headquarters are local in Cusco with operational offices at MachuPicchu, Lima, Arequipa and Puno. And satellite offices at Washington DC and Tampa, FL.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 
@@ -163,114 +170,67 @@
 
     <div class="container">
         <div class="section no-padding">
+            <div class="row center margin-bottom-20">
+                <h5 class="yellow-text text-darken-4 no-margin font-moserrat"><b><span class="lime-text text-darken-3">7 DAYS</span></b> CUSCO, SACRED VALLEY, MACHU PICCHU <b class="grey-text text-darken-4">from $1299</b></h5>
+            </div>
+
             <div class="row">
-                <div class="row margin-bottom-30">
-                    <div class="col s5">
-                        <div class="valign-wrapper">
-                            <img src="{{asset('img/icons/all-included.png')}}" alt="" width="100" class="left">
-                            <h3 class="lime-text text-darken-4 no-margin padding-left-20">7 DAYS</h3>
-                        </div>
-                        <ul class="text-18">
+                <div class="col s12 ">
+                    <div class="col s12 card-panel lighten-5 z-depth-1 hoverable grey">
+                        @foreach($disponibilidad7 as $paquetes)
+                            <div class="col s3">
 
-                            <li><b>Day 1:</b> Flight From US to Peru</li>
-                            <li><b>Day 2:</b> Lima City Tour</li>
-                            <li><b>Day 3:</b> Flight to Cusco - Transfer to the Sacred Valley of the Incas</li>
-                            <li><b>Day 4:</b> Authentic Sacred Valley Tour</li>
-                            <li><b>Day 5:</b> MachuPicchu tour</li>
-                            <li><b>Day 6:</b> Cusco Free Day</li>
-                            <li><b>Day 7:</b> Cusco Departure &amp; Return to US</li>
-                            {{--<li><a href="{{route('home_show_date_path', array('titulo'=>'new-york', 'dias'=>'7-days-tours'))}}" class="font-moserrat valign-wrapper left margin-top-10">Detailed Program <i class="material-icons">input</i></a></li>--}}
-                            <li>
-                                <form action="{{route('home_show_date_path', array('titulo'=>'new-york', 'dias'=>'7-days-tours'))}}"
-                                      method="post">
-                                    {{csrf_field()}}
-                                    <input type="hidden" value="1" name="txt_iddate">
-                                    <input type="hidden" value="2017-03-18" name="txt_date">
-                                    <input type="hidden" value="NEW YORK" name="txt_country">
-                                    <input type="hidden" value="1799 " name="txt_price">
-                                    <input type="submit" class="btn valign-wrapper left margin-top-10" value="Detailed Program">
-                                </form>
-                            </li>
-                        </ul>
+                                    <p class="no-margin text-20 center font-moserrat"><span class="text-18">from</span> {{$paquetes->titulo}}</p>
+                                    {{--@foreach($paquetes->disponibilidad->sortBy('precio')->take(1) as $disponibilidad)--}}
+                                        {{--<p class="no-margin text-50 teal-text text-lighten-2 font-moserrat"><span class="text-20">from</span>${{$disponibilidad->precio}}</p>--}}
+                                    {{--@endforeach--}}
+                                    {{--<p class="no-margin">Small group</p>--}}
+                                    {{--<p class="no-margin">Tourist to Superior</p>--}}
+                                    <ul class="font-moserrat right-align">
+                                        @foreach($paquetes->disponibilidad->take(3) as $disponibilidad)
 
-                    </div>
-                    <div class="col s7">
-                        <p class="yellow-text text-darken-3 font-moserrat text-20 no-margin center">LIMA, CUSCO, SACRED
-                            VALLEY, MACHU PICCHU</p>
-                        <img src="{{asset('img/maps/GTPF700.jpg')}}" alt="" class="responsive-img margin-top-15">
-                    </div>
-                </div>
-                <div class="row">
-                    @foreach($disponibilidad as $paquetes)
-                    <div class="col s4 right-align">
-                        <div class="card-panel grey lighten-5 z-depth-1 hoverable">
-                            <p class="no-margin text-30"><a href="#modal-{{$paquetes->codigo}}" class="left modal-trigger waves-effect"><img src="{{asset('img/icons/pdf.png')}}" alt="" width="50"></a> {{$paquetes->titulo}}</p>
-                            @foreach($paquetes->disponibilidad->sortBy('precio')->take(1) as $disponibilidad)
-                                <p class="no-margin text-50 teal-text text-lighten-2 font-moserrat"><span class="text-20">from</span>${{$disponibilidad->precio}}</p>
-                            @endforeach
-                            <p class="no-margin">Small group</p>
-                            <p class="no-margin">Tourist to Superior</p>
-                            <ul class="font-moserrat">
-                                @foreach($paquetes->disponibilidad as $disponibilidad)
+                                            <li class="text-12 margin-bottom-10">
+                                                <form action="{{route('home_show_date_path', array('titulo'=>str_replace(' ','-', strtolower($paquetes->titulo)), 'dias'=>$paquetes->duracion.'-days-tours'))}}"
+                                                      method="post">
+                                                    {{csrf_field()}}
+                                                    <input type="hidden" value="1" name="txt_iddate">
+                                                    <input type="hidden" value="{{$disponibilidad->fecha_disponibilidad}}" name="txt_date">
+                                                    <input type="hidden" value="{{$paquetes->titulo}}" name="txt_country">
+                                                    <input type="hidden" value="{{$disponibilidad->precio}}" name="txt_price">
+                                                    {{$disponibilidad->fecha_disponibilidad}} <span class="blue-text">${{$disponibilidad->precio}}</span>
+                                                    <input type="submit" class="btn" value="BOOK">
+                                                </form>
+                                            </li>
+                                        @endforeach
+                                    </ul>
 
-                                    <li class="text-14 margin-bottom-10">
-                                        <form action="{{route('home_show_date_path', array('titulo'=>str_replace(' ','-', strtolower($paquetes->titulo)), 'dias'=>$paquetes->duracion.'-days-tours'))}}"
-                                              method="post">
-                                            {{csrf_field()}}
-                                            <input type="hidden" value="1" name="txt_iddate">
-                                            <input type="hidden" value="{{$disponibilidad->fecha_disponibilidad}}" name="txt_date">
-                                            <input type="hidden" value="{{$paquetes->titulo}}" name="txt_country">
-                                            <input type="hidden" value="{{$disponibilidad->precio}}" name="txt_price">
-                                            {{$disponibilidad->fecha_disponibilidad}} <span class="blue-text">${{$disponibilidad->precio}}</span>
-                                            <input type="submit" class="btn" value="BOOK">
-                                        </form>
-                                    </li>
-                                @endforeach
-                            </ul>
-
-                            <!-- Modal Structure -->
-                            <div id="modal-{{$paquetes->codigo}}" class="modal">
-                                <div class="modal-content font-moserrat">
-                                    <div class="row">
-                                        <div class="col s6">
-
-                                        </div>
-                                        <div class="col s6">
-                                            <h5 class="center">{{$paquetes->titulo}}</h5>
-                                            <form action="{{route('view_vacations_pdf_path', $paquetes->id)}}" method="post">
-                                                {{csrf_field()}}
-                                                <div class="row left-align">
-                                                    <div class="input-field col s12">
-                                                        <i class="material-icons prefix">account_circle</i>
-                                                        <input id="icon_prefix" type="text" class="validate" required>
-                                                        <label for="icon_prefix">Full Name</label>
-                                                    </div>
-
-                                                    <div class="input-field col s12">
-                                                        <i class="material-icons prefix">mail</i>
-                                                        <input id="icon_telephone" type="email" class="validate" required>
-                                                        <label for="icon_telephone">Email</label>
-                                                    </div>
-
-                                                    <div class="col s12 center">
-                                                        <button class="btn waves-effect waves-light yellow darken-4" type="submit" name="action">Download
-                                                            <i class="material-icons right">file_download</i>
-                                                        </button>
-                                                    </div>
-                                                </div>
-                                            </form>
-
-                                        </div>
-                                    </div>
-                                </div>
                             </div>
-
-                        </div>
+                        @endforeach
                     </div>
-                    @endforeach
-
                 </div>
             </div>
+
+            <div class="row margin-bottom-30">
+                <div class="col s5">
+                    <div class="valign-wrapper">
+                        {{--<img src="{{asset('img/icons/all-included.png')}}" alt="" width="100" class="left">--}}
+
+                    </div>
+                    <ul class="text-15">
+                        @foreach($paquetes->itinerario as $itinerario)
+                            <li><b>Day {{$itinerario->dia}}:</b> {{$itinerario->titulo}}</li>
+                        @endforeach
+                        <li>
+                            <a href="" class="btn valign-wrapper left margin-top-10">Detailed Program</a>
+                        </li>
+                    </ul>
+
+                </div>
+                <div class="col s7">
+                    <img src="{{asset('img/maps/GTPF700.jpg')}}" alt="" class="responsive-img margin-top-15">
+                </div>
+            </div>
+
 
         </div>
     </div>
