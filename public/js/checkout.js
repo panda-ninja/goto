@@ -9,8 +9,6 @@ Stripe.setPublishableKey('pk_test_dyIe8bpwdnHasxw7a27HhPoW');
 
 var $form=$('#checkout-form');
 $form.submit(function(event){
-    console.log('holaaaa');
-    alert('hola que pasa');
     $form.find('button').prop('disabled',true);
     Stripe.card.createToken({
         name: $('#name-card').val(),
@@ -24,6 +22,20 @@ $form.submit(function(event){
     return false;
 });
 
+var $form=$('#checkout-form1');
+$form.submit(function(event){
+    $form.find('button').prop('disabled',true);
+    Stripe.card.createToken({
+        name: $('#name_card_p').val(),
+        number: $('#credit_card_number_p').val(),
+        cvc: $('#card_verification_p').val(),
+        exp_month: $('#expiration_date_month_p').val(),
+        exp_year: $('#expiration_date_year_p').val(),
+        address_zip: $('#zip_p').val()
+    }, stripeResponseHandler);
+
+    return false;
+});
 function stripeResponseHandler(status,response){
 
     if(response.error){
@@ -42,8 +54,5 @@ function stripeResponseHandler(status,response){
     }
 }
 
-function mensaje9(){
-    alert('hola papi!!!');
-}
 
 //# sourceMappingURL=checkout.js.map

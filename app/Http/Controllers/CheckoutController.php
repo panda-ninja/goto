@@ -5,6 +5,10 @@ namespace GotoPeru\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
 use Stripe\Stripe;
+use Stripe\Charge;
+use Stripe\Customer;
+use Stripe\Stripe_CardError;
+use Stripe\Stripe_InvalidRequestError;
 
 
 class CheckoutController extends Controller
@@ -13,7 +17,7 @@ class CheckoutController extends Controller
     public function store(Request $request)
     {
         //dd($request);
-        \Stripe\Stripe::setApiKey("sk_test_LrBb0V9M539t1l7f9x7LhfvJ");
+        \Stripe\Stripe::setApiKey("sk_test_ApAk9pY4WREiBYmKe8GyqlHC");
         try{
             $operacion=\Stripe\Charge::create(array(
                 "amount"=>$request->input('total_p')*100,

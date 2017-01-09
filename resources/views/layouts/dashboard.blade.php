@@ -150,6 +150,6 @@
 <!--  Scripts-->
 <script src="{{asset('js/app.js')}}"></script>
 <script src="{{asset('js/init.js')}}"></script>
-{{--@yield('scripts')--}}
+@yield('scripts')
 </body>
 </html>

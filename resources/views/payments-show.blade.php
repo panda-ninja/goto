@@ -172,9 +172,7 @@
                     <div class="row">
                         <div class="input-field col s6">
                             {{csrf_field()}}
-                            <button class="btn waves-effect waves-light" type="submit" value="Submita"  onclic="mensaje9()">mensaje
-                                <i class="material-icons right">send</i>
-                            </button>
+
                             <button class="btn waves-effect waves-light" type="submit" value="Submit Payment" id="pago" name="pago">SUBMIT PAYMENT
                                 <i class="material-icons right">send</i>
                             </button>
@@ -186,6 +184,9 @@
 
 
         </form>
+        <button class="btn waves-effect waves-light"   onclick="mensaje9()">mensaje
+            <i class="material-icons right">send</i>
+        </button>
     </div>
 @stop
 @section('scripts')
