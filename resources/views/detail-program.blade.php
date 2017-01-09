@@ -59,9 +59,128 @@
                             <p class="font-moserrat center text-20 no-margin grey-text ">{{$paquete->duracion}} DAYS | from ${{$precio->precio_d}}</p>
                         @endif
                     @endforeach
-                    <a href="" class="waves-effect waves-light btn lime darken-4">CHECK AVAILABILITY</a>
-                    <a href="" class="waves-effect waves-light btn blue">BOOK NOW</a>
+
+                    <form action="{{route('home_show_checkout_path', array('titulo'=>str_replace(' ','-', strtolower($paquete->titulo)), 'dias'=>$paquete->duracion.'-days-tours'))}}"
+                          method="post">
+                        {{csrf_field()}}
+                        <input type="hidden" value="1" name="txt_iddate">
+                        <input type="hidden" value="{{$paquete->codigo}}" name="txt_codigo">
+                        <input type="hidden" value="{{$paquete->titulo}}" name="txt_country">
+                        <a href="#availability" class="waves-effect waves-light btn lime darken-4 modal-trigger">CHECK AVAILABILITY</a>
+                        <button class="btn waves-effect waves-light blue" type="submit" name="action">BOOK NOW</button>
+                    </form>
+
+
                 @endforeach
+            </div>
+
+            <!-- Modal Structure -->
+            <div id="availability" class="modal modal-availability">
+                <div class="modal-content font-moserrat">
+                    <h4 class="center yellow-text text-darken-4">REQUEST INFORMATION</h4>
+                    <p class="center lime-text text-darken-3"><b>Trip: {{$paquete->duracion}} DAYS : {{$paquete->titulo}}</b></p>
+                    <div class="divider"></div>
+                    <div class="row margin-top-20">
+                        <form>
+                            <div class="col s6">
+                                <div class="row">
+                                    <div class="input-field col s6">
+                                        <input placeholder="Your name (required)" id="first_name" type="text" class="validate">
+                                        <label for="first_name" class="blue-text">First Name *</label>
+                                    </div>
+                                    <div class="input-field col s6">
+                                        <input placeholder="Last name (required)" id="first_name" type="text" class="validate">
+                                        <label for="first_name" class="blue-text">Last Name *</label>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="input-field col s12">
+                                        <i class="material-icons prefix">mail</i>
+                                        <input placeholder="mail@example.com (required)" id="email" type="email" class="validate">
+                                        <label for="email" class="blue-text">Email *</label>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="input-field col s12">
+                                        <i class="material-icons prefix">phone</i>
+                                        <input id="icon_telephone" type="tel" class="validate">
+                                        <label for="icon_telephone">Telephone</label>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="input-field col s12">
+                                        <select>
+                                            <option value="" disabled selected>Choose your option</option>
+                                            <option value="1">Option 1</option>
+                                            <option value="2">Option 2</option>
+                                            <option value="3">Option 3</option>
+                                        </select>
+                                        <label>Group Size</label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col s6">
+                                <div class="row">
+                                    <div class="col s12 red-text text-darken-3">
+                                        Departure Date:
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="input-field col s6">
+                                        <i class="material-icons prefix grey-text text-darken-1">date_range</i>
+                                        <input id="date" type="date" class="datepicker">
+                                        <label for="date">Travel date</label>
+                                    </div>
+                                    <div class="input-field col s6">
+                                        <select>
+                                            <option value="" disabled selected>Choose your option</option>
+                                            <option value="1">Option 1</option>
+                                            <option value="2">Option 2</option>
+                                            <option value="3">Option 3</option>
+                                        </select>
+                                        <label>I have a travel range</label>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col s12 margin-bottom-20">
+                                        Preferred Accommodations
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col s12">
+                                        <input name="group1" type="radio" id="test1" />
+                                        <label for="test1">2 Star</label>
+
+                                        <input name="group1" type="radio" id="test1" />
+                                        <label for="test1">3 Star</label>
+
+                                        <input name="group1" type="radio" id="test1" />
+                                        <label for="test1">4 Star</label>
+
+                                        <input name="group1" type="radio" id="test1" />
+                                        <label for="test1">5 Star</label>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="input-field col s12">
+                                        <i class="material-icons prefix">mode_edit</i>
+                                        <textarea id="icon_prefix2" class="materialize-textarea"></textarea>
+                                        <label for="icon_prefix2">Comments</label>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col s12">
+                                <div class="row center margin-top-40 margin-bottom-20">
+                                    <button class="btn-large waves-effect waves-light" type="submit" name="action">Submit
+                                        <i class="material-icons right">send</i>
+                                    </button>
+                                </div>
+                            </div>
+
+                        </form>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
@@ -115,17 +234,16 @@
                             </ul>
                         </div>
                         <div class="margin-top-20 center">
-                            {{--<p class="font-moserrat blue-text">@php echo $_POST['txt_country'].' | '.$_POST['txt_date'].' | $'.$_POST['txt_price'].'' @endphp</p>--}}
-                            {{--<form action="{{route('home_show_checkout_path', array('titulo'=>'SPECIAL-PERU', 'dias'=>'7-days-tours'))}}" method="post">--}}
-                                {{--{{csrf_field()}}--}}
-                                {{--<input type="hidden" value="{{$_POST['txt_iddate']}}" name="txt_iddate">--}}
-                                {{--<input type="hidden" value="{{$_POST['txt_date']}}" name="txt_date">--}}
-                                {{--<input type="hidden" value="{{$_POST['txt_country']}}" name="txt_country">--}}
-                                {{--<input type="hidden" value="{{$_POST['txt_price']}}" name="txt_price">--}}
-                                {{--<input type="submit" class="waves-effect waves-light btn" value="BOOK NOW">--}}
-                            {{--</form>--}}
-                            <a href="" class="waves-effect waves-light btn lime darken-4">CHECK AVAILABILITY</a>
-                            <a href="" class="waves-effect waves-light btn blue">BOOK NOW</a>
+                            {{--formulario availability--}}
+                            <form action="{{route('home_show_checkout_path', array('titulo'=>str_replace(' ','-', strtolower($paquete->titulo)), 'dias'=>$paquete->duracion.'-days-tours'))}}"
+                                  method="post">
+                                {{csrf_field()}}
+                                <input type="hidden" value="1" name="txt_iddate">
+                                <input type="hidden" value="{{$paquete->codigo}}" name="txt_codigo">
+                                <input type="hidden" value="{{$paquete->titulo}}" name="txt_country">
+                                <a href="#availability" class="waves-effect waves-light btn lime darken-4 modal-trigger">CHECK AVAILABILITY</a>
+                                <button class="btn waves-effect waves-light blue" type="submit" name="action">BOOK NOW</button>
+                            </form>
                         </div>
                     </div>
                 </div>

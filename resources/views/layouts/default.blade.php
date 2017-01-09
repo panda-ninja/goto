@@ -15,28 +15,6 @@
 
     </style>
 
-    <script>
-        $("document").ready(function(){
-            $("#slc_servicio").load("../php/sistema/server/servicios.php");
-
-            $("#slc_servicio").change(function(){
-                var id = $("#slc_servicio").val();
-                $.get("../php/sistema/server/opciones.php",{param_id:id})
-                    .done(function(data){
-                        $("#slc_tipo").html(data);
-                        //
-                        $("#slc_tipo").change(function(){
-                            var idtipo = $("#slc_tipo").val();
-                            var idservicio = $("#slc_servicio").val();
-                            $.get("../php/sistema/server/detalleOpciones.php",{param_id:idtipo,param_servicio:idservicio})
-                                .done(function(data){
-                                    $("#slc_detalle").html(data);
-                                })
-                        })
-                    })
-            })
-        })
-    </script>
 
 </head>
 <body>
@@ -47,17 +25,24 @@
                 <a href="/" class="brand-logo valign"><img src="{{asset('img/logos/logo-ave.png')}}" alt="" class="responsive-img"></a>
             </div>
             <div class="col s12 m8 l8">
-                <ul class="header-nav white-text right-align valign">
-                    <li>(813) 600-3042</li>
-                    <li>Mon to Sun: 9am - 8pm (EST)</li>
+                <ul class="header-nav white-text right-align no-margin valign-wrapper right">
+                    <li class="text-20">(813) 454-9707</li>
                     @if(auth()->guard('cliente')->check())
                         <li><a href="" class="green-text text-darken-3">{{auth()->guard('cliente')->user()->nombres.', '.auth()->guard('cliente')->user()->apellidos}}</a></li>
                         <li><a href="{{route('client_auth_destroy_path')}}" class="yellow-text text-darken-3">Logout</a></li>
                     @else
-                        <li><a href="{{route('client_auth_index_path')}}" class="white-text">sign in</a></li>
-                        <li><a href="" class="yellow-text text-darken-3">new account</a></li>
+                        <li><a href="#" class="waves-effect waves-light btn lime darken-4" onclick="startOlark()"><i class="material-icons left">chat</i> Chat</a></li>
+                        <li><a href="#inquire" class="modal-trigger waves-effect waves-light btn">Inquire Now</a></li>
+                        <li><a href="#" class="dropdown-button waves-effect" data-activates='dropdown1' data-beloworigin="true"><img src="{{asset('img/icons/user.png')}}" alt="" class="responsive-img valign-wrapper" width="30"></a></li>
                     @endif
                 </ul>
+
+                <!-- Dropdown Structure -->
+                <ul id='dropdown1' class='dropdown-content header-nav-drop'>
+                    <li><a href="{{route('client_auth_index_path')}}"><i class="material-icons right">input</i> Sign in</a></li>
+                    <li><a href="#!">New acoount</a></li>
+                </ul>
+
             </div>
         </div>
     </div>
@@ -70,7 +55,7 @@
             <li><a href="{{route('home_show_packages_path')}}">Programs</a></li>
             <li><a href="{{route('home_path')}}#vacations">Vacation Packages</a></li>
             <li><a href="#design">Design</a></li>
-            <li><a href="#inquire" class="modal-trigger waves-effect waves-light btn">Inquire Now</a></li>
+            <li></li>
         </ul>
         <ul class="side-nav" id="mobile-demo">
             <li><a href="sass.html">All Included</a></li>
@@ -858,6 +843,33 @@
         columnWidth: '.grid-item'
     });
 </script>
+
+<script>
+    /*=========================================================================================OLARK*/
+    /*<![CDATA[*/window.olark||(function(c){var f=window,d=document,l=f.location.protocol=="https:"?"https:":"http:",z=c.name,r="load";var nt=function(){
+        f[z]=function(){
+            (a.s=a.s||[]).push(arguments)};var a=f[z]._={
+        },q=c.methods.length;while(q--){(function(n){f[z][n]=function(){
+            f[z]("call",n,arguments)}})(c.methods[q])}a.l=c.loader;a.i=nt;a.p={
+            0:+new Date};a.P=function(u){
+            a.p[u]=new Date-a.p[0]};function s(){
+            a.P(r);f[z](r)}f.addEventListener?f.addEventListener(r,s,false):f.attachEvent("on"+r,s);var ld=function(){function p(hd){
+            hd="head";return["<",hd,"></",hd,"><",i,' onl' + 'oad="var d=',g,";d.getElementsByTagName('head')[0].",j,"(d.",h,"('script')).",k,"='",l,"//",a.l,"'",'"',"></",i,">"].join("")}var i="body",m=d[i];if(!m){
+            return setTimeout(ld,100)}a.P(1);var j="appendChild",h="createElement",k="src",n=d[h]("div"),v=n[j](d[h](z)),b=d[h]("iframe"),g="document",e="domain",o;n.style.display="none";m.insertBefore(n,m.firstChild).id=z;b.frameBorder="0";b.id=z+"-loader";if(/MSIE[ ]+6/.test(navigator.userAgent)){
+            b.src="javascript:false"}b.allowTransparency="true";v[j](b);try{
+            b.contentWindow[g].open()}catch(w){
+            c[e]=d[e];o="javascript:var d="+g+".open();d.domain='"+d.domain+"';";b[k]=o+"void(0);"}try{
+            var t=b.contentWindow[g];t.write(p());t.close()}catch(x){
+            b[k]=o+'d.write("'+p().replace(/"/g,String.fromCharCode(92)+'"')+'");d.close();'}a.P(2)};ld()};nt()})({
+        loader: "static.olark.com/jsclient/loader0.js",name:"olark",methods:["configure","extend","declare","identify"]});
+    /* custom configuration goes here (www.olark.com/documentation) */
+    olark.identify('8407-174-10-8084');/*]]>*/
+    //jQuery for page scrolling feature - requires jQuery Easing plugin
+    function startOlark() {
+        olark('api.box.expand');
+    }
+</script>
+
 
 
 </body>

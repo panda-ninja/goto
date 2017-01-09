@@ -11,7 +11,7 @@
                     <h5 class="light grey-text text-darken-3">$150 average saving | 24/7 local authentic assitance |
                         100s of testimonials</h5>
 
-                    <div class="row margin-top-60 font-moserrat">
+                    <div class="row margin-top-40">
                         <div class="col s12 m8 offset-m2 l3 offset-l6">
                             <a href="" class="waves-effect">
                                 {{--<p class="yellow-text text-darken-3 grey darken-4">ALL INCLUDED</p>--}}
@@ -44,8 +44,9 @@
                                     <img src="{{asset('img/icons//include/flight.png')}}" alt="" class="responsive-img">
                                 </div>
 
-                                <div class="col s12 text-20 white-text">
-                                    from New York <span class="yellow-text text-darken-3">5 DAYS</span> $1699
+                                <div class="col s12 white-text">
+                                    <p class="no-margin text-22">MachuPicchu, Lima, Cusco</p>
+                                    <p class="no-margin text-21"><b>With air from</b> <span class="yellow-text text-darken-3">7 DAYS</span> $1699</p>
                                 </div>
                             </a>
                         </div>
@@ -121,7 +122,7 @@
 
     <div class="parallax-container parallax-container-1">
         <div class="parallax">
-            <img src="{{asset('img/bg/meetup3.jpg')}}" alt="">
+            <img src="{{asset('img/bg/meetup4.jpg')}}" alt="">
         </div>
     </div>
 
@@ -191,7 +192,7 @@
                     <div class="col s7">
                         <p class="yellow-text text-darken-3 font-moserrat text-20 no-margin center">LIMA, CUSCO, SACRED
                             VALLEY, MACHU PICCHU</p>
-                        <img src="{{asset('img/all.jpg')}}" alt="" class="responsive-img">
+                        <img src="{{asset('img/maps/GTPF700.jpg')}}" alt="" class="responsive-img margin-top-15">
                     </div>
                 </div>
                 <div class="row">
@@ -716,7 +717,7 @@
                 <div class="col s3 valign-wrapper">
                     <a href="{{route('home_show_category_path', 'adventure')}}" class="card hoverable waves-effect">
                         <div class="col s3">
-                            <img src="{{asset('img/icons/trekking.png')}}" alt="" class="circle responsive-img">
+                            <img src="{{asset('img/icons/trekking.png')}}" alt="" class="circle responsive-img valign">
                             <!-- notice the "circle" class -->
                         </div>
                         <div class="col s9">

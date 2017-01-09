@@ -137,6 +137,12 @@ $secondary-color: #f9a825;
 .text-20{
   font-size: 20px;
 }
+.text-21{
+  font-size: 21px;
+}
+.text-22{
+  font-size: 22px;
+}
 .text-25{
   font-size: 25px;
 }
@@ -169,9 +175,11 @@ header.slider .slides li .caption{
 }
 header .header-nav li{
   display: inline-block;
-  padding: 0 .9em;
+  padding: 0 .5em;
 }
-
+header .header-nav-drop{
+  width: 200px !important;
+}
 nav ul li a{
   color: #000;
 }
@@ -179,7 +187,11 @@ nav ul li a{
 .modal-inquire{
   max-height: 100% !important;
 }
-
+.modal-availability{
+  width: 70%;
+  top: 5% !important;
+  max-height: 100% !important;
+}
 .slider .slides li .caption {
   left:0;
   width: 100%;
