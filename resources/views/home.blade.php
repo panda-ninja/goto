@@ -173,7 +173,18 @@
                             <li><b>Day 5:</b> MachuPicchu tour</li>
                             <li><b>Day 6:</b> Cusco Free Day</li>
                             <li><b>Day 7:</b> Cusco Departure &amp; Return to US</li>
-                            <li><a href="" class="font-moserrat valign-wrapper left margin-top-10">Detailed Program <i class="material-icons">input</i></a></li>
+                            {{--<li><a href="{{route('home_show_date_path', array('titulo'=>'new-york', 'dias'=>'7-days-tours'))}}" class="font-moserrat valign-wrapper left margin-top-10">Detailed Program <i class="material-icons">input</i></a></li>--}}
+                            <li>
+                                <form action="{{route('home_show_date_path', array('titulo'=>'new-york', 'dias'=>'7-days-tours'))}}"
+                                      method="post">
+                                    {{csrf_field()}}
+                                    <input type="hidden" value="1" name="txt_iddate">
+                                    <input type="hidden" value="2017-03-18" name="txt_date">
+                                    <input type="hidden" value="NEW YORK" name="txt_country">
+                                    <input type="hidden" value="1799 " name="txt_price">
+                                    <input type="submit" class="btn valign-wrapper left margin-top-10" value="Detailed Program">
+                                </form>
+                            </li>
                         </ul>
 
                     </div>
