@@ -45,8 +45,8 @@
                                 </div>
 
                                 <div class="col s12 white-text">
-                                    <p class="no-margin text-22">MachuPicchu, Lima, Cusco</p>
-                                    <p class="no-margin text-21"><b>With air from</b> <span class="yellow-text text-darken-3">7 DAYS</span> $1699</p>
+                                    <p class="no-margin text-22">ALL INCLUDED FROM MIAMI</p>
+                                    <p class="no-margin text-35"><b class="">5 DAYS</b> <span class="btn black-text">$1399</span></p>
                                 </div>
                             </a>
                         </div>
