@@ -35,6 +35,25 @@ class CheckoutController extends Controller
 //            $pago->transaccion=$operacion->id;
 //            $pago->save();
             /* auth()->guard('cliente')->user()->nombres;*/
+
+            $arre_extras_valor=array();
+            $i=0;
+            foreach ($request->input('ch_extras_valor') as $valor){
+                $i++;
+                $arre_extras_valor[$i]=$valor;
+            }
+            $arre_extras_name=array();
+            $j=0;
+            foreach ($request->input('ch_extras_name') as $valor){
+                $j++;
+                $arre_extras_name[$j]=$valor;
+            }
+            $arre_extras=array();
+            $k=0;
+            foreach ($request->input('ch_extras') as $valor){
+                $k++;
+                $arre_extras_valor[$k]=$valor;
+            }
             $name_country='';
             $emaila_agencia='fredy1432@hotmail.com';
             Mail::send(['html'=>'noti-reservation-client'], ['first_name_p'=>$request->input('first_name_p'),
@@ -55,9 +74,9 @@ class CheckoutController extends Controller
                 'precio_onmatrimonial_p'=>$request->input('precio_onmatrimonial_p'),
                 'nro_onsimple_p'=>$request->input('nro_onsimple_p'),
                 'precio_ononsimple_p'=>$request->input('precio_onsimple_p'),
-                'ch_extras'=>$request->input('ch_extras_name'),
-                'ch_extras_precio'=>$request->input('ch_extras'),
-                'ch_extras_valor'=>$request->input('ch_extras_valor'),
+                'ch_extras'=>$arre_extras_name,
+                'ch_extras_precio'=>$arre_extras,
+                'ch_extras_valor'=>$arre_extras_valor,
                 'txt_name'=>$request->input('txt_name'),
                 'last_name'=>$request->input('last_name'),
                 'country'=>$request->input('country'),

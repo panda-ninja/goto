@@ -72,11 +72,11 @@
                 <p><b class="text-18">Optional Activities:</b></p>
                 {{--<ul>--}}
                 {{--<?php $pos=0;?>--}}
-                {{--@foreach($ch_extras_valor as $ch_extra)--}}
-                    {{--<?php $pos++;?>--}}
-                    {{--<li>{{$ch_extra}}$ {{$travellers_p*$ch_extras_precio[$pos]}} ({{$ch_extras_precio[$pos]}} for traveller)</li>--}}
-                {{--@endforeach--}}
-                {{--</ul>--}}
+                @foreach($ch_extras_valor as $ch_extra)
+                    <?php $pos++;?>
+                    <li>{{$ch_extra}}$ {{$travellers_p*$ch_extras_precio[$pos]}} ({{$ch_extras_precio[$pos]}} for traveller)</li>
+                @endforeach
+                </ul>
                 <b class="text-20">TOTAL ${{$total}}</b>
             </td>
         </tr>
