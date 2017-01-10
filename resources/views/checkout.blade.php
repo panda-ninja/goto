@@ -719,17 +719,16 @@
                         </div>
                     </div>
                 </div>
-
             </form>
-
+            <button class="btn waves-effect waves-light"   onclick="mensaje9()">mensaje
+                <i class="material-icons right">send</i>
+            </button>
         </div>
     </div>
-
-
 @stop
 @section('scripts')
-    <script src="https://use.fontawesome.com/1d452fa330.js"></script>
-    <script type="text/javascript" src="{{URL::to('js/funciones-checkout.js')}}"></script>
     <script type="text/javascript" src="https://js.stripe.com/v2/"></script>
     <script type="text/javascript" src="{{URL::to('js/checkout.js')}}"></script>
+    <script src="https://use.fontawesome.com/1d452fa330.js"></script>
+    <script type="text/javascript" src="{{URL::to('js/funciones-checkout.js')}}"></script>
 @endsection

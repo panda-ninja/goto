@@ -184,9 +184,6 @@
 
 
         </form>
-        <button class="btn waves-effect waves-light"   onclick="mensaje9()">mensaje
-            <i class="material-icons right">send</i>
-        </button>
     </div>
 @stop
 @section('scripts')
