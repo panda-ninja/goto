@@ -412,13 +412,13 @@
                                             </div>
                                         </div>
                                         <div class="row">
-                                            <div class="col m6">
+                                            <div class="col m4">
                                                 <div class="input-field">
                                                     <input id="passport_p" name="passport_p" type="text" class="validate">
                                                     <label for="passport_p">Passport*</label>
                                                 </div>
                                             </div>
-                                            <div class="col m6">
+                                            <div class="col m8">
                                                 <div class="input-field">
                                                     <input id="email_p" name="email_p" type="email" class="validate">
                                                     <label for="email_p">Email*</label>
@@ -566,17 +566,17 @@
                                                 <input type="hidden" name="titulo_p" id="titulo_p" value="{{$_POST['txt_country']}}">
                                                 <input type="hidden" name="nrodias_p" id="nrodias_p" value="{{$paquete1->duracion}}">
 
-                                                <input type="hidden" name="nro_ontriple_p" id="nro_ontriple_p" value="">
-                                                <input type="hidden" name="precio_ontriple_p" id="precio_ontriple_p" value="">
+                                                <input type="hidden" name="nro_ontriple_p" id="nro_ontriple_p" value="0">
+                                                <input type="hidden" name="precio_ontriple_p" id="precio_ontriple_p" value="{{$pre_3_t}}">
 
-                                                <input type="hidden" name="nro_ondouble_p" id="nro_ondouble_p" value="">
-                                                <input type="hidden" name="precio_ondouble_p" id="precio_ondouble_p" value="">
+                                                <input type="hidden" name="nro_ondouble_p" id="nro_ondouble_p" value="1">
+                                                <input type="hidden" name="precio_ondouble_p" id="precio_ondouble_p" value="{{$pre_3_d}}">
 
-                                                <input type="hidden" name="nro_onmatrimonial_p" id="nro_onmatrimonial_p" value="">
-                                                <input type="hidden" name="precio_onmatrimonial_p" id="precio_onmatrimonial_p" value="">
+                                                <input type="hidden" name="nro_onmatrimonial_p" id="nro_onmatrimonial_p" value="0">
+                                                <input type="hidden" name="precio_onmatrimonial_p" id="precio_onmatrimonial_p" value="{{$pre_3_d}}">
 
-                                                <input type="hidden" name="nro_onsimple_p" id="nro_ononsimple_p" value="">
-                                                <input type="hidden" name="precio_ononsimple_p" id="precio_ononsimple_p" value="">
+                                                <input type="hidden" name="nro_onsimple_p" id="nro_onsimple_p" value="0">
+                                                <input type="hidden" name="precio_onsimple_p" id="precio_onsimple_p" value="{{$pre_3_s}}">
                                                 <?php $j=0;?>
                                                 @foreach($paquetes as $paquete)
                                                     @foreach($paquete->paquete_servicio_extra as $servicios)
@@ -696,8 +696,10 @@
                                         <?php $i++;?>
                                         <p>
                                             <input type="hidden" id="ch_extras_id_{{$i}}" value="{{$servicios->servicio_extra->id}}">
-                                            <input type="hidden" id="ch_extras_name_{{$i}}" value="{{$servicios->servicio_extra->titulo}}">
-                                            <input type="checkbox" id="ch_extras_{{$i}}" name="ch_extras[]" value="{{$servicios->servicio_extra->precio}}" onchange="ch_extra()"/>
+                                            <input type="hidden" id="ch_extras_name_{{$i}}" name="ch_extras_name[]" value="{{$servicios->servicio_extra->titulo}}">
+                                            <input type="hidden" id="ch_extras_valor_{{$i}}" name="ch_extras_valor[]" value="0">
+
+                                            <input type="checkbox" id="ch_extras_{{$i}}" name="ch_extras[]" value="{{$servicios->servicio_extra->precio}}" onchange="ch_extra({{$i}})"/>
                                             <label for="ch_extras_{{$i}}" >{{$servicios->servicio_extra->titulo}}<span id="p_{{$i}}}"> $ <span id="extra_precioP_{{$i}}">{{2*$servicios->servicio_extra->precio}}</span> ($<span id="extra_precioS_{{$i}}">{{$servicios->servicio_extra->precio}}</span> for traveller)</span></label>
 
                                         </p>

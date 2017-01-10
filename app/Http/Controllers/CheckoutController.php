@@ -14,6 +14,7 @@ use Stripe\Stripe_InvalidRequestError;
 class CheckoutController extends Controller
 {
     //
+
     public function store(Request $request)
     {
         //dd($request);
@@ -40,7 +41,7 @@ class CheckoutController extends Controller
                 'last_name_p'=>$request->input('last_name_p'),
                 'name_country'=>$name_country,
                 'telephone_p'=>$request->input('telephone_p'),
-                'medio'=>'Tarjeta electronica',
+                'medio'=>'Electronic card',
                 'transaccion'=>$operacion->id,
                 'fecha_factura'=>Date('Y-m-d h:m:s'),
                 'total'=>$request->input('total_p'),
@@ -53,12 +54,18 @@ class CheckoutController extends Controller
                 'nro_onmatrimonial_p'=>$request->input('nro_onmatrimonial_p'),
                 'precio_onmatrimonial_p'=>$request->input('precio_onmatrimonial_p'),
                 'nro_onsimple_p'=>$request->input('nro_onsimple_p'),
-                'precio_ononsimple_p'=>$request->input('precio_ononsimple_p'),
-                'ch_extras'=>$request->input('ch_extras'),
+                'precio_ononsimple_p'=>$request->input('precio_onsimple_p'),
+                'ch_extras'=>$request->input('ch_extras_name'),
+                'ch_extras_precio'=>$request->input('ch_extras'),
+                'ch_extras_valor'=>$request->input('ch_extras_valor'),
                 'txt_name'=>$request->input('txt_name'),
                 'last_name'=>$request->input('last_name'),
                 'country'=>$request->input('country'),
                 'travellers_p'=>$request->input('travellers_p'),
+                'destino_travel'=>$request->input('destino_travel'),
+                'date_travel'=>$request->input('date_travel'),
+                'nro_estrellas'=>$request->input('nro_estrellas'),
+
             ], function ($messaje) use ($emaila_agencia){
                 $messaje->to($emaila_agencia,'Freddy')
                     ->subject('New reservation')
@@ -66,7 +73,7 @@ class CheckoutController extends Controller
                     ->from('info@gotoperu.com','Gotoperu');
             });
             return redirect()->route('home_path');
-            //return redirect()->route('payments_noti_path',['pago'=>$pago])->with('success','Your pay was succesfull');
+//            return redirect()->route('checkout_noti_path',['pago'=>$pago])->with('success','Your pay was succesfull');
 //            return redirect()->route('payments_show_path',$idPago)->with('success','Your pay was succesfull');
 
         }

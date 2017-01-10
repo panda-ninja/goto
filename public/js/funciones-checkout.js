@@ -29,6 +29,12 @@ function ch_travelers(){
         $('#travellers_4').addClass('hide');
         $('#travellers_5').addClass('hide');
         $('#travellers_6').addClass('hide');
+        // alert('hola');
+        $('#nro_ontriple_p').val(0);
+        $('#nro_ondouble_p').val(0);
+        $('#nro_onmatrimonial_p').val(0);
+        $('#nro_onsimple_p').val(0);
+
         if(nrotra==1){
             $('#nro_travelers').html('<i class="fa fa-male fa-2x"></i>');
             $('#nroHabitacionesT').val('0');
@@ -44,6 +50,7 @@ function ch_travelers(){
             $('#nroHabitacionesS').attr("max",1);
             max_S=1;
             $('#travellers_1').removeClass('hide');
+            $('#nro_onsimple_p').val(1);
         }
         if(nrotra==2){
             $('#nro_travelers').html('<i class="fa fa-male fa-2x"></i><i class="fa fa-male fa-2x"></i>');
@@ -61,6 +68,7 @@ function ch_travelers(){
             max_S=2;
             $('#travellers_1').removeClass('hide');
             $('#travellers_2').removeClass('hide');
+            $('#nro_ondouble_p').val(1);
         }
         if(nrotra==3){
             $('#nro_travelers').html('<i class="fa fa-male fa-2x"></i><i class="fa fa-male fa-2x"></i><i class="fa fa-male fa-2x"></i>');
@@ -79,6 +87,7 @@ function ch_travelers(){
             $('#travellers_1').removeClass('hide');
             $('#travellers_2').removeClass('hide');
             $('#travellers_3').removeClass('hide');
+            $('#nro_ontriple_p').val(1);
         }
         if(nrotra==4){
             $('#nro_travelers').html('<i class="fa fa-male fa-2x"></i><i class="fa fa-male fa-2x"></i><i class="fa fa-male fa-2x"></i><i class="fa fa-male fa-2x"></i>');
@@ -94,6 +103,7 @@ function ch_travelers(){
             $('#travellers_2').removeClass('hide');
             $('#travellers_3').removeClass('hide');
             $('#travellers_4').removeClass('hide');
+            $('#nro_ondouble_p').val(2);
         }
         if(nrotra==5){
             $('#nro_travelers').html('<i class="fa fa-male fa-2x"></i><i class="fa fa-male fa-2x"></i><i class="fa fa-male fa-2x"></i><i class="fa fa-male fa-2x"></i><i class="fa fa-male fa-2x"></i>');
@@ -110,6 +120,8 @@ function ch_travelers(){
             $('#travellers_3').removeClass('hide');
             $('#travellers_4').removeClass('hide');
             $('#travellers_5').removeClass('hide');
+            $('#nro_ontriple_p').val(1);
+            $('#nro_ondouble_p').val(1);
         }
         if(nrotra==6){
             $('#nro_travelers').html('<i class="fa fa-male fa-2x"></i><i class="fa fa-male fa-2x"></i><i class="fa fa-male fa-2x"></i><i class="fa fa-male fa-2x"></i><i class="fa fa-male fa-2x"></i><i class="fa fa-male fa-2x"></i>');
@@ -127,6 +139,7 @@ function ch_travelers(){
             $('#travellers_4').removeClass('hide');
             $('#travellers_5').removeClass('hide');
             $('#travellers_6').removeClass('hide');
+            $('#nro_ondouble_p').val(3);
         }
         var nroT=0;
         var nroD=0;
@@ -204,6 +217,10 @@ function ch_travelers(){
                 $('#aco_'+roms+'_S').addClass('precio-verde');
             }
         }
+        $('#nro_ontriple_p').val(nroT);
+        $('#nro_ondouble_p').val(nroD);
+        $('#nro_onmatrimonial_p').val(nroM);
+        $('#nro_onsimple_p').val(nroS);
         $('#rooms').html(roms);
         $('#nroHabitaciones').html(parseInt(nroT)+parseInt(nroM)+parseInt(nroD)+parseInt(nroS));
         $('#precioPaquete').val($('#precio_D').val());
@@ -221,13 +238,21 @@ function ch_travelers(){
 function acomodacion(nro_estrellas){
     $("#acomodacion"+nro_estrellas).prop("checked", true);
     $('#precio_T').val($('#aco_'+nro_estrellas+'_T').html().split('$')[1].trim());
+    $('#precio_ontriple_p').val($('#aco_'+nro_estrellas+'_T').html().split('$')[1].trim());
     var a=$('#aco_'+nro_estrellas+'_D').html().split('$');
-    if(a.length>1)
+    if(a.length>1) {
         $('#precio_D').val(a[1].trim());
-    else
-        $('#precio_D').val($('#aco_'+nro_estrellas+'_D').html().split('$')[1].trim());
+        $('#precio_ondouble_p').val(a[1].trim());
+
+    }else {
+        $('#precio_D').val($('#aco_' + nro_estrellas + '_D').html().split('$')[1].trim());
+        $('#precio_ondouble_p').val($('#aco_' + nro_estrellas + '_D').html().split('$')[1].trim());
+    }
     $('#precio_Ma').val($('#aco_'+nro_estrellas+'_M').html().split('$')[1].trim());
+    $('#precio_onmatrimonial_p').val($('#aco_'+nro_estrellas+'_M').html().split('$')[1].trim());
+
     $('#precio_S').val($('#aco_'+nro_estrellas+'_S').html().split('$')[1].trim());
+    $('#precio_ononsimple_p').val($('#aco_'+nro_estrellas+'_S').html().split('$')[1].trim());
     $('#nro_estrellas').val(nro_estrellas);
     var nroT=0;
     var nroD=0;
@@ -281,7 +306,10 @@ function acomodacion(nro_estrellas){
     $('#nroHabitaciones').html(parseInt(nroT)+parseInt(nroD)+parseInt(nroM)+parseInt(nroS));
     $('#precioPaquete').val($('#precio_D').val());
     $('#precioPaquete').html($('#precio_D').val());
-
+    $('#nro_ontriple_p').val(nroT);
+    $('#nro_ondouble_p').val(nroD);
+    $('#nro_onmatrimonial_p').val(nroM);
+    $('#nro_onsimple_p').val(nroS);
 
     var ch_total=$('#ch_extras_total').val();
     subtotal_estras=0;
@@ -659,31 +687,42 @@ function distribucion(tipo){
             }
         }
     }
-
+    $('#nro_ontriple_p').val(0);
+    $('#nro_ondouble_p').val(0);
+    $('#nro_onmatrimonial_p').val(0);
+    $('#nro_onsimple_p').val(0);
     if($('#nroHabitacionesT').val()>0){
         nroT = $('#nroHabitacionesT').val();
         $('#rooms_T').html(nroT);
         $('#acomodacion_3').removeClass('hide');
         $('#aco_'+roms+'_T').addClass('precio-verde');
+
     }
     if($('#nroHabitacionesD').val()>0){
         nroD = $('#nroHabitacionesD').val();
         $('#rooms_D').html(nroD);
         $('#acomodacion_2').removeClass('hide');
         $('#aco_'+roms+'_D').addClass('precio-verde');
+
     }
     if($('#nroHabitacionesM').val()>0){
         nroM = $('#nroHabitacionesM').val();
         $('#rooms_M').html(nroM);
         $('#acomodacion_M').removeClass('hide');
         $('#aco_'+roms+'_M').addClass('precio-verde');
+
     }
     if($('#nroHabitacionesS').val()>0){
         nroS = $('#nroHabitacionesS').val();
         $('#rooms_S').html(nroS);
         $('#acomodacion_1').removeClass('hide');
         $('#aco_'+roms+'_S').addClass('precio-verde');
+
     }
+    $('#nro_ontriple_p').val(nroT);
+    $('#nro_ondouble_p').val(nroD);
+    $('#nro_onmatrimonial_p').val(nroM);
+    $('#nro_onsimple_p').val(nroS);
 
     $('#rooms').html(roms);
     $('#nroHabitaciones').html(parseInt(nroT)+parseInt(nroD)+parseInt(nroS)+parseInt(nroM));
@@ -723,7 +762,7 @@ function recalcular_total(){
 }
 
 var subtotal_estras=0;
-function ch_extra(){
+function ch_extra(posi){
 
     var ch_total=$('#ch_extras_total').val();
     subtotal_estras=0;
@@ -732,12 +771,14 @@ function ch_extra(){
             $('#v_extras_' + o).html('$ '+parseInt($('#ch_extras_' + o).val()*$('#travelers').val()));
             // $('#visible_li_' + o).removeClass("hidden");
             subtotal_estras+=parseInt($('#ch_extras_' + o).val()*$('#travelers').val());
-            console.log(subtotal_estras);
+            // console.log(subtotal_estras);
+            $('#ch_extras_valor_' + o).val(1);
         }
         else{
             $('#v_extras_' + o).html(parseInt($('#ch_extras_' + o).val()*$('#travelers').val()));
+            $('#ch_extras_valor_' + o).val(0);
             // $('#visible_li_' +o).addClass("hidden");
-            console.log(subtotal_estras);
+            // console.log(subtotal_estras);
 
         }
     }
