@@ -89,7 +89,7 @@
 
                                     <div class="card card-packages">
                                         <div class="card-image waves-effect waves-block waves-light">
-                                            <a href=""><img src="http://gotoperu.travel/img/maps/GTP600.jpg"
+                                            <a href=""><img src="{{asset('img/maps/'.$categorias->paquetes->imagen.'')}}"
                                                             class="responsive-img"></a>
                                             <span class="card-title activator"><i
                                                         class="material-icons right">more_vert</i></span>
