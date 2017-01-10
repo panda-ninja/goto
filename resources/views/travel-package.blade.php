@@ -51,20 +51,75 @@
         </div>
     </section>
 
-    <div class="container">
-        <div class="">
-            <div class="row center">
-                @foreach($paquetes as $paquete)
-                    <h1 class="yellow-text text-darken-4 no-margin text-50">ALL <b>INCLUDED</b></h1>
-                    <p class="grey-text text-darken-1 font-moserrat text-20 no-margin">MACHUPICCHU TOURS WITH AIR FROM US | DOOR TO DOOR, Including a $50 <img src="{{asset('img/icons/uber.png')}}" width="30" alt=""> Credit</p>
-                    <h3 class="lime-text text-darken-4 margin-top-20 margin-bottom-0"><b>{{$paquete->duracion}} DAYS</b></h3>
-                @endforeach
+    {{--<div class="container">--}}
+        {{--<div class="">--}}
+            {{--<div class="row center">--}}
+                {{--@foreach($paquetes as $paquete)--}}
+                    {{--<h1 class="yellow-text text-darken-4 no-margin text-50">ALL <b>INCLUDED</b></h1>--}}
+                    {{--<p class="grey-text text-darken-1 font-moserrat text-20 no-margin">MACHUPICCHU TOURS WITH AIR FROM US | DOOR TO DOOR, Including a $50 <img src="{{asset('img/icons/uber.png')}}" width="30" alt=""> Credit</p>--}}
+                    {{--<h3 class="lime-text text-darken-4 margin-top-20 margin-bottom-0"><b>{{$paquete->duracion}} DAYS</b></h3>--}}
+                {{--@endforeach--}}
 
+            {{--</div>--}}
+        {{--</div>--}}
+    {{--</div>--}}
+
+    <div class="container">
+        <div class="section scrollspy" id="vacations">
+            <div class="row center">
+                <h4 class="yellow-text text-darken-4"><b>VACATION PACKAGES</b> WHIT INTERNATIONAL FLIGHTS</h4>
+                <div class="col s12 m9 l12 include-services margin-bottom-10">
+                    <ul class="list-services no-margin">
+                        <li><img src="{{asset('img/icons//include/hotels.png')}}" alt="" class="responsive-img"><span>Hotels</span>
+                        </li>
+                        <li><img src="{{asset('img/icons//include/transfers.png')}}" alt=""
+                                 class="responsive-img"><span>Transfers</span></li>
+                        <li><img src="{{asset('img/icons//include/entrances.png')}}" alt=""
+                                 class="responsive-img"><span>Entrances</span></li>
+                        <li><img src="{{asset('img/icons//include/trains.png')}}" alt="" class="responsive-img"><span>Trains</span>
+                        </li>
+                        <li><img src="{{asset('img/icons//include/tours.png')}}" alt="" class="responsive-img"><span>Tours</span>
+                        </li>
+                        <li><img src="{{asset('img/icons//include/breakfast.png')}}" alt=""
+                                 class="responsive-img"><span>Breakfast</span></li>
+                        <li><img src="{{asset('img/icons//include/assistances.png')}}" alt=""
+                                 class="responsive-img"><span>Assistances</span></li>
+                        <li><img src="{{asset('img/icons//include/flight.png')}}" alt="" class="responsive-img"><span>Flights</span>
+                        </li>
+
+                    </ul>
+                </div>
             </div>
         </div>
     </div>
 
+
     <div class="container">
+        <div class="section no-padding">
+            @foreach($paquetes as $paquete)
+                {{--<h1 class="yellow-text text-darken-4 no-margin text-50">ALL <b>INCLUDED</b></h1>--}}
+                {{--<p class="grey-text text-darken-1 font-moserrat text-20 no-margin">MACHUPICCHU TOURS WITH AIR FROM US | DOOR TO DOOR, Including a $50 <img src="{{asset('img/icons/uber.png')}}" width="30" alt=""> Credit</p>--}}
+                {{--<h3 class="lime-text text-darken-4 margin-top-20 margin-bottom-0"><b>{{$paquete->duracion}} DAYS</b></h3>--}}
+                @if($paquete->duracion == 5)
+                    @php
+                        $dias = $paquete->duracion;
+                        $titulo = "CUSCO, SACRED VALLEY, MACHU PICCHU";
+                        $precio = "1250"
+
+                    @endphp
+                @else
+                    @php
+                        $dias = $paquete->duracion;
+                        $titulo = "LIMA, CUSCO, SACRED VALLEY, MACHU PICCHU";
+                        $precio = "1450"
+                    @endphp
+                @endif
+                <div class="row center margin-bottom-20">
+                    <h5 class="yellow-text text-darken-4 no-margin font-moserrat"><b><span class="lime-text text-darken-3">{{$dias}} DAYS</span></b> {{$titulo}} <b class="grey-text text-darken-4">from ${{$precio}}</b></h5>
+                </div>
+            @endforeach
+
+
 
             <div class="row">
                 <div class="col s12 font-moserrat">
@@ -72,10 +127,6 @@
                 </div>
             </div>
 
-    </div>
-
-    <div class="container">
-        <div class="section">
             <div class="col s12">
 
                 <div class="row">
@@ -83,16 +134,17 @@
                     @foreach($disponibilidad as $paquete)
                         <div class="col s3 right-align">
                             <div class="card-panel grey lighten-5 z-depth-1 hoverable padding-10">
-                                <p class="no-margin text-25"><a href="#modal-{{$paquete->codigo}}" class="left modal-trigger waves-effect"><img src="{{asset('img/icons/pdf.png')}}" alt="" width="30"></a> {{$paquete->titulo}}</p>
-                                @foreach($paquete->disponibilidad->sortBy('precio')->take(1) as $disponibilidad)
-                                    <p class="no-margin text-40 teal-text text-lighten-2 font-moserrat"><span class="text-20">from</span>${{$disponibilidad->precio}}</p>
-                                @endforeach
-                                <p class="no-margin">Small group</p>
-                                <p class="no-margin">Tourist to Superior</p>
+                                {{--<p class="no-margin text-25"><a href="#modal-{{$paquete->codigo}}" class="left modal-trigger waves-effect"><img src="{{asset('img/icons/pdf.png')}}" alt="" width="30"></a> {{$paquete->titulo}}</p>--}}
+                                {{--@foreach($paquete->disponibilidad->sortBy('precio')->take(1) as $disponibilidad)--}}
+                                    {{--<p class="no-margin text-40 teal-text text-lighten-2 font-moserrat"><span class="text-20">from</span>${{$disponibilidad->precio}}</p>--}}
+                                {{--@endforeach--}}
+                                {{--<p class="no-margin">Small group</p>--}}
+                                {{--<p class="no-margin">Tourist to Superior</p>--}}
+                                <p class="no-margin text-16 center font-moserrat"><span class="text-12">from</span> {{$paquete->titulo}}</p>
                                 <ul class="font-moserrat">
                                     @foreach($paquete->disponibilidad as $disponibilidad)
 
-                                        <li class="text-11 margin-bottom-10">
+                                        <li class="text-13 margin-bottom-10">
                                             <form action="{{route('home_show_checkout_path', array('titulo'=>str_replace(' ','-', strtolower($paquete->titulo)), 'dias'=>$paquete->duracion.'-days-tours'))}}"
                                                   method="post">
                                                 {{csrf_field()}}
@@ -100,49 +152,26 @@
                                                 <input type="hidden" value="{{$disponibilidad->fecha_disponibilidad}}" name="txt_date">
                                                 <input type="hidden" value="{{$paquete->titulo}}" name="txt_country">
                                                 <input type="hidden" value="{{$disponibilidad->precio}}" name="txt_price">
-                                                {{$disponibilidad->fecha_disponibilidad}} <span class="blue-text ">${{$disponibilidad->precio}}</span>
-                                                <input type="submit" class="btn" value="BOOK">
+                                                {{$disponibilidad->fecha_disponibilidad}} <span class="blue-text">${{$disponibilidad->precio}}</span>
+                                                <input type="submit" class="btn btn-date" value="BOOK">
                                             </form>
                                         </li>
                                     @endforeach
+
+
+                                        {{--<form action="{{route('home_show_checkout_path', array('titulo'=>str_replace(' ','-', strtolower($paquete->titulo)), 'dias'=>$paquete->duracion.'-days-tours'))}}"--}}
+                                              {{--method="post">--}}
+                                            {{--{{csrf_field()}}--}}
+                                            {{--<input type="hidden" value="1" name="txt_iddate">--}}
+                                            {{--<input type="hidden" value="{{$disponibilidad->fecha_disponibilidad}}" name="txt_date">--}}
+                                            {{--<input type="hidden" value="{{$paquete->titulo}}" name="txt_country">--}}
+                                            {{--<input type="hidden" value="{{$disponibilidad->precio}}" name="txt_price">--}}
+                                            {{--{{$disponibilidad->fecha_disponibilidad}} <span class="blue-text ">${{$disponibilidad->precio}}</span>--}}
+                                            {{--<input type="submit" class="btn" value="BOOK">--}}
+                                        {{--</form>--}}
+
                                 </ul>
 
-                                <!-- Modal Structure -->
-                                <div id="modal-{{$paquete->codigo}}" class="modal">
-                                    <div class="modal-content font-moserrat">
-                                        <div class="row">
-                                            <div class="col s6">
-
-                                            </div>
-                                            <div class="col s6">
-                                                <h5 class="center">{{$paquete->titulo}}</h5>
-                                                <form action="{{route('view_vacations_pdf_path', $paquete->id)}}" method="post">
-                                                    {{csrf_field()}}
-                                                    <div class="row left-align">
-                                                        <div class="input-field col s12">
-                                                            <i class="material-icons prefix">account_circle</i>
-                                                            <input id="icon_prefix" type="text" class="validate" required>
-                                                            <label for="icon_prefix">Full Name</label>
-                                                        </div>
-
-                                                        <div class="input-field col s12">
-                                                            <i class="material-icons prefix">mail</i>
-                                                            <input id="icon_telephone" type="email" class="validate" required>
-                                                            <label for="icon_telephone">Email</label>
-                                                        </div>
-
-                                                        <div class="col s12 center">
-                                                            <button class="btn waves-effect waves-light yellow darken-4" type="submit" name="action">Download
-                                                                <i class="material-icons right">file_download</i>
-                                                            </button>
-                                                        </div>
-                                                    </div>
-                                                </form>
-
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
                             </div>
                         </div>
                     @endforeach
@@ -234,6 +263,10 @@
                     </div>
                     <div class="col hide-on-small-only m3 l5">
                         <div class="detail-maps" id="pinned">
+                            <div class="margin-bottom-10 center">
+                                <a href="" class="waves-effect waves-light btn lime darken-4">BOOK</a>
+                                <a href="#availability" class="waves-effect waves-light btn blue modal-trigger">INQUIRE NOW</a>
+                            </div>
                             <img src="{{asset('img/maps/GTP600.jpg')}}" alt="" class="materialboxed responsive-img">
                             <h5 class="font-moserrat">OUTLINE</h5>
                             <div class="overview">
@@ -245,19 +278,128 @@
                                     @endforeach
                                 </ul>
                             </div>
-                            <div class="margin-top-20 center">
-                                <p class="font-moserrat blue-text">@php echo $_POST['txt_country'].' | '.$_POST['txt_date'].' | $'.$_POST['txt_price'].'' @endphp</p>
-                                <form action="{{route('home_show_checkout_path', array('titulo'=>'SPECIAL-PERU', 'dias'=>'7-days-tours'))}}" method="post">
-                                    {{csrf_field()}}
-                                    <input type="hidden" value="{{$_POST['txt_iddate']}}" name="txt_iddate">
-                                    <input type="hidden" value="{{$_POST['txt_date']}}" name="txt_date">
-                                    <input type="hidden" value="{{$_POST['txt_country']}}" name="txt_country">
-                                    <input type="hidden" value="{{$_POST['txt_price']}}" name="txt_price">
-                                    <input type="submit" class="waves-effect waves-light btn" value="BOOK NOW">
-                                </form>
-                            </div>
+                            {{--<div class="margin-top-20 center">--}}
+                                {{--<p class="font-moserrat blue-text">@php echo $_POST['txt_country'].' | '.$_POST['txt_date'].' | $'.$_POST['txt_price'].'' @endphp</p>--}}
+                                {{--<form action="{{route('home_show_checkout_path', array('titulo'=>'SPECIAL-PERU', 'dias'=>'7-days-tours'))}}" method="post">--}}
+                                    {{--{{csrf_field()}}--}}
+                                    {{--<input type="hidden" value="{{$_POST['txt_iddate']}}" name="txt_iddate">--}}
+                                    {{--<input type="hidden" value="{{$_POST['txt_date']}}" name="txt_date">--}}
+                                    {{--<input type="hidden" value="{{$_POST['txt_country']}}" name="txt_country">--}}
+                                    {{--<input type="hidden" value="{{$_POST['txt_price']}}" name="txt_price">--}}
+                                    {{--<input type="submit" class="waves-effect waves-light btn" value="BOOK NOW">--}}
+                                {{--</form>--}}
+                            {{--</div>--}}
                         </div>
                     </div>
+
+                <!-- Modal Structure -->
+                <div id="availability" class="modal modal-availability">
+                    <div class="modal-content font-moserrat">
+                        <h4 class="center yellow-text text-darken-4">REQUEST INFORMATION</h4>
+                        <p class="center lime-text text-darken-3"><b>Trip: {{$paquete->duracion}} DAYS : {{$paquete->titulo}}</b></p>
+                        <div class="divider"></div>
+                        <div class="row margin-top-20">
+                            <form>
+                                <div class="col s6">
+                                    <div class="row">
+                                        <div class="input-field col s6">
+                                            <input placeholder="Your name (required)" id="first_name" type="text" class="validate">
+                                            <label for="first_name" class="blue-text">First Name *</label>
+                                        </div>
+                                        <div class="input-field col s6">
+                                            <input placeholder="Last name (required)" id="first_name" type="text" class="validate">
+                                            <label for="first_name" class="blue-text">Last Name *</label>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="input-field col s12">
+                                            <i class="material-icons prefix">mail</i>
+                                            <input placeholder="mail@example.com (required)" id="email" type="email" class="validate">
+                                            <label for="email" class="blue-text">Email *</label>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="input-field col s12">
+                                            <i class="material-icons prefix">phone</i>
+                                            <input id="icon_telephone" type="tel" class="validate">
+                                            <label for="icon_telephone">Telephone</label>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="input-field col s12">
+                                            <select>
+                                                <option value="" disabled selected>Choose your option</option>
+                                                <option value="1">Option 1</option>
+                                                <option value="2">Option 2</option>
+                                                <option value="3">Option 3</option>
+                                            </select>
+                                            <label>Group Size</label>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col s6">
+                                    <div class="row">
+                                        <div class="col s12 red-text text-darken-3">
+                                            Departure Date:
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="input-field col s6">
+                                            <i class="material-icons prefix grey-text text-darken-1">date_range</i>
+                                            <input id="date" type="date" class="datepicker">
+                                            <label for="date">Travel date</label>
+                                        </div>
+                                        <div class="input-field col s6">
+                                            <select>
+                                                <option value="" disabled selected>Choose your option</option>
+                                                <option value="1">Option 1</option>
+                                                <option value="2">Option 2</option>
+                                                <option value="3">Option 3</option>
+                                            </select>
+                                            <label>I have a travel range</label>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col s12 margin-bottom-20">
+                                            Preferred Accommodations
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col s12">
+                                            <input name="group1" type="radio" id="test1" />
+                                            <label for="test1">2 Star</label>
+
+                                            <input name="group1" type="radio" id="test1" />
+                                            <label for="test1">3 Star</label>
+
+                                            <input name="group1" type="radio" id="test1" />
+                                            <label for="test1">4 Star</label>
+
+                                            <input name="group1" type="radio" id="test1" />
+                                            <label for="test1">5 Star</label>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="input-field col s12">
+                                            <i class="material-icons prefix">mode_edit</i>
+                                            <textarea id="icon_prefix2" class="materialize-textarea"></textarea>
+                                            <label for="icon_prefix2">Comments</label>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col s12">
+                                    <div class="row center margin-top-40 margin-bottom-20">
+                                        <button class="btn-large waves-effect waves-light" type="submit" name="action">Submit
+                                            <i class="material-icons right">send</i>
+                                        </button>
+                                    </div>
+                                </div>
+
+                            </form>
+                        </div>
+                    </div>
+                </div>
             </div>
 
             <div class="row spacer-margin-50">

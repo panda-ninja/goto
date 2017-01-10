@@ -171,16 +171,16 @@
     <div class="container">
         <div class="section no-padding">
             <div class="row center margin-bottom-20">
-                <h5 class="yellow-text text-darken-4 no-margin font-moserrat"><b><span class="lime-text text-darken-3">7 DAYS</span></b> CUSCO, SACRED VALLEY, MACHU PICCHU <b class="grey-text text-darken-4">from $1299</b></h5>
+                <h5 class="yellow-text text-darken-4 no-margin font-moserrat"><b><span class="lime-text text-darken-3">5 DAYS</span></b> CUSCO, SACRED VALLEY, MACHU PICCHU <b class="grey-text text-darken-4">from $1299</b></h5>
             </div>
 
             <div class="row">
                 <div class="col s12 ">
                     <div class="col s12 card-panel lighten-5 z-depth-1 hoverable grey">
-                        @foreach($disponibilidad7 as $paquetes)
+                        @foreach($disponibilidad5 as $paquetes)
                             <div class="col s3">
 
-                                    <p class="no-margin text-20 center font-moserrat"><span class="text-18">from</span> {{$paquetes->titulo}}</p>
+                                    <p class="no-margin text-16 center font-moserrat"><span class="text-12">from</span> {{$paquetes->titulo}}</p>
                                     {{--@foreach($paquetes->disponibilidad->sortBy('precio')->take(1) as $disponibilidad)--}}
                                         {{--<p class="no-margin text-50 teal-text text-lighten-2 font-moserrat"><span class="text-20">from</span>${{$disponibilidad->precio}}</p>--}}
                                     {{--@endforeach--}}
@@ -189,8 +189,8 @@
                                     <ul class="font-moserrat right-align">
                                         @foreach($paquetes->disponibilidad->take(3) as $disponibilidad)
 
-                                            <li class="text-12 margin-bottom-10">
-                                                <form action="{{route('home_show_date_path', array('titulo'=>str_replace(' ','-', strtolower($paquetes->titulo)), 'dias'=>$paquetes->duracion.'-days-tours'))}}"
+                                            <li class="text-13 margin-bottom-10">
+                                                <form action="{{route('home_show_checkout_path', array('titulo'=>str_replace(' ','-', strtolower($paquetes->titulo)), 'dias'=>$paquetes->duracion.'-days-tours'))}}"
                                                       method="post">
                                                     {{csrf_field()}}
                                                     <input type="hidden" value="1" name="txt_iddate">
@@ -198,11 +198,78 @@
                                                     <input type="hidden" value="{{$paquetes->titulo}}" name="txt_country">
                                                     <input type="hidden" value="{{$disponibilidad->precio}}" name="txt_price">
                                                     {{$disponibilidad->fecha_disponibilidad}} <span class="blue-text">${{$disponibilidad->precio}}</span>
-                                                    <input type="submit" class="btn" value="BOOK">
+                                                    <input type="submit" class="btn btn-date" value="BOOK">
                                                 </form>
                                             </li>
                                         @endforeach
                                     </ul>
+
+                            </div>
+                        @endforeach
+                    </div>
+                </div>
+            </div>
+
+            <div class="row margin-bottom-30">
+                <div class="col s5">
+                    <div class="valign-wrapper">
+                        {{--<img src="{{asset('img/icons/all-included.png')}}" alt="" width="100" class="left">--}}
+
+                    </div>
+                    <ul class="text-15 margin-top-40">
+                        @foreach($paquetes->itinerario as $itinerario)
+                            <li><b>Day {{$itinerario->dia}}:</b> {{$itinerario->titulo}}</li>
+                        @endforeach
+                        <li>
+                            <a href="{{route('home_show_date_path', array('titulo'=>str_replace(' ','-', strtolower($paquetes->titulo)), 'dias'=>$paquetes->duracion.'-days-tours'))}}" class="btn valign-wrapper left margin-top-10">Detailed Program</a>
+                        </li>
+                    </ul>
+
+                </div>
+                <div class="col s7">
+                    <img src="{{asset('img/maps/GTPF701.jpg')}}" alt="" class="responsive-img margin-top-15">
+                </div>
+            </div>
+
+
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="section no-padding">
+            <div class="row center margin-bottom-20">
+                <h5 class="yellow-text text-darken-4 no-margin font-moserrat"><b><span class="lime-text text-darken-3">7 DAYS</span></b> LIMA, CUSCO, SACRED VALLEY, MACHU PICCHU <b class="grey-text text-darken-4">from $1299</b></h5>
+            </div>
+
+            <div class="row">
+                <div class="col s12 ">
+                    <div class="col s12 card-panel lighten-5 z-depth-1 hoverable grey">
+                        @foreach($disponibilidad7 as $paquetes)
+                            <div class="col s3">
+
+                                <p class="no-margin text-16 center font-moserrat"><span class="text-12">from</span> {{$paquetes->titulo}}</p>
+                                {{--@foreach($paquetes->disponibilidad->sortBy('precio')->take(1) as $disponibilidad)--}}
+                                {{--<p class="no-margin text-50 teal-text text-lighten-2 font-moserrat"><span class="text-20">from</span>${{$disponibilidad->precio}}</p>--}}
+                                {{--@endforeach--}}
+                                {{--<p class="no-margin">Small group</p>--}}
+                                {{--<p class="no-margin">Tourist to Superior</p>--}}
+                                <ul class="font-moserrat right-align">
+                                    @foreach($paquetes->disponibilidad->take(3) as $disponibilidad)
+
+                                        <li class="text-13 margin-bottom-10">
+                                            <form action="{{route('home_show_checkout_path', array('titulo'=>str_replace(' ','-', strtolower($paquetes->titulo)), 'dias'=>$paquetes->duracion.'-days-tours'))}}"
+                                                  method="post">
+                                                {{csrf_field()}}
+                                                <input type="hidden" value="1" name="txt_iddate">
+                                                <input type="hidden" value="{{$disponibilidad->fecha_disponibilidad}}" name="txt_date">
+                                                <input type="hidden" value="{{$paquetes->titulo}}" name="txt_country">
+                                                <input type="hidden" value="{{$disponibilidad->precio}}" name="txt_price">
+                                                {{$disponibilidad->fecha_disponibilidad}} <span class="blue-text">${{$disponibilidad->precio}}</span>
+                                                <input type="submit" class="btn btn-date" value="BOOK">
+                                            </form>
+                                        </li>
+                                    @endforeach
+                                </ul>
 
                             </div>
                         @endforeach
@@ -221,13 +288,13 @@
                             <li><b>Day {{$itinerario->dia}}:</b> {{$itinerario->titulo}}</li>
                         @endforeach
                         <li>
-                            <a href="" class="btn valign-wrapper left margin-top-10">Detailed Program</a>
+                            <a href="{{route('home_show_date_path', array('titulo'=>str_replace(' ','-', strtolower($paquetes->titulo)), 'dias'=>$paquetes->duracion.'-days-tours'))}}" class="btn valign-wrapper left margin-top-10">Detailed Program</a>
                         </li>
                     </ul>
 
                 </div>
                 <div class="col s7">
-                    <img src="{{asset('img/maps/GTPF700.jpg')}}" alt="" class="responsive-img margin-top-15">
+                    <img src="{{asset('img/maps/GTPF701.jpg')}}" alt="" class="responsive-img margin-top-15">
                 </div>
             </div>
 

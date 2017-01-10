@@ -52,9 +52,12 @@
         <a href="/" class="brand-logo"><img src="{{asset('img/logos/logo5.png')}}" alt=""></a>
         <a href="#" data-activates="mobile-demo" class="button-collapse grey-text text-darken-4"><i class="material-icons">menu</i></a>
         <ul class="right hide-on-med-and-down">
-            <li><a href="{{route('home_show_packages_path')}}">Programs</a></li>
-            <li><a href="{{route('home_path')}}#vacations">Vacation Packages</a></li>
-            <li><a href="#design">Design</a></li>
+            <li><a href="{{route('home_show_packages_path')}}">Tours Packages</a></li>
+            <li><a href="https://gotoperu.com/destinations/">Destinations</a></li>
+            <li><a href="https://gotoperu.com/getting-to-peru/">Getting to Peru</a></li>
+            <li><a href="https://gotoperu.com/about-us/">About Us</a></li>
+            <li><a href="https://gotoperu.com/faq/">FAQ</a></li>
+            <li><a href="#design" class="yellow-text text-darken-4">DESIGN</a></li>
             <li></li>
         </ul>
         <ul class="side-nav" id="mobile-demo">

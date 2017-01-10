@@ -6897,6 +6897,11 @@ span.quotes-duration {
   text-align: center;
   display: block; }
 
+.btn-date {
+  height: 25px;
+  line-height: 25px;
+  padding: 0 11px; }
+
 img.desaturada {
   filter: grayscale(100%);
   -webkit-filter: grayscale(100%);

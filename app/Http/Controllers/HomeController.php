@@ -33,8 +33,9 @@ class HomeController extends Controller
         $paquete = TPaquete::with('paquetes_destinos', 'precio_paquetes', 'disponibilidad')->get()->where('estado', 1);
         $featured = TPaquete::with('paquetes_destinos', 'precio_paquetes')->get()->where('estadoslider', 1);
         $disponibilidad7 = TPaquete::with('disponibilidad')->where('codigo','GTPF700')->orwhere('codigo','GTPF701')->orwhere('codigo','GTPF702')->get();
+        $disponibilidad5 = TPaquete::with('disponibilidad')->where('codigo','GTPF500')->orwhere('codigo','GTPF501')->orwhere('codigo','GTPF502')->orwhere('codigo','GTPF503')->get();
 //        dd($disponibilidad);
-        return view('home', ['paquete'=>$paquete, 'featured'=>$featured, 'duracion'=>$duracion, 'disponibilidad7'=>$disponibilidad7]);
+        return view('home', ['paquete'=>$paquete, 'featured'=>$featured, 'duracion'=>$duracion, 'disponibilidad7'=>$disponibilidad7, 'disponibilidad5'=>$disponibilidad5]);
     }
 
     /**
@@ -73,7 +74,7 @@ class HomeController extends Controller
 //        }
         $disponibilidad = TPaquete::with('disponibilidad')->where('codigo','GTPF700')->orwhere('codigo','GTPF701')->orwhere('codigo','GTPF702')->get();
         $title = str_replace('-', ' ', strtoupper($titulo));
-        $paquete = TPaquete::with('itinerario','paquetes_destinos', 'precio_paquetes')->get()->where('titulo', $title);
+        $paquete = TPaquete::with('itinerario','paquetes_destinos', 'precio_paquetes')->where('titulo', $title)->where('duracion', $dias)->get();
 //        dd($paquete);
 
         return view('travel-package', ['paquetes'=>$paquete, 'disponibilidad'=>$disponibilidad]);
