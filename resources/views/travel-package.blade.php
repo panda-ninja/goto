@@ -104,14 +104,16 @@
                     @php
                         $dias = $paquete->duracion;
                         $titulo = "CUSCO, SACRED VALLEY, MACHU PICCHU";
-                        $precio = "1250"
+                        $precio = "1250";
+                        $mapa = "GTPF500B.jpg"
 
                     @endphp
                 @else
                     @php
                         $dias = $paquete->duracion;
                         $titulo = "LIMA, CUSCO, SACRED VALLEY, MACHU PICCHU";
-                        $precio = "1450"
+                        $precio = "1450";
+                        $mapa = "GTPF700B.jpg"
                     @endphp
                 @endif
                 <div class="row center margin-bottom-20">
@@ -264,10 +266,10 @@
                     <div class="col hide-on-small-only m3 l5">
                         <div class="detail-maps" id="pinned">
                             <div class="margin-bottom-10 center">
-                                <a href="" class="waves-effect waves-light btn lime darken-4">BOOK</a>
+                                {{--<a href="" class="waves-effect waves-light btn lime darken-4">BOOK</a>--}}
                                 <a href="#availability" class="waves-effect waves-light btn blue modal-trigger">INQUIRE NOW</a>
                             </div>
-                            <img src="{{asset('img/maps/GTP600.jpg')}}" alt="" class="materialboxed responsive-img">
+                            <img src="{{asset('img/maps/'.$mapa.'')}}" alt="" class="materialboxed responsive-img">
                             <h5 class="font-moserrat">OUTLINE</h5>
                             <div class="overview">
                                 <ul class="section table-of-contents margin-top-0 padding-top-0">

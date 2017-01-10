@@ -230,7 +230,7 @@
 
                 </div>
                 <div class="col s7">
-                    <img src="{{asset('img/maps/GTPF701.jpg')}}" alt="" class="responsive-img margin-top-15">
+                    <img src="{{asset('img/maps/GTPF500B.jpg')}}" alt="" class="responsive-img margin-top-15">
                 </div>
             </div>
 
@@ -300,7 +300,7 @@
 
                 </div>
                 <div class="col s7">
-                    <img src="{{asset('img/maps/GTPF701.jpg')}}" alt="" class="responsive-img margin-top-15">
+                    <img src="{{asset('img/maps/GTPF700B.jpg')}}" alt="" class="responsive-img margin-top-15">
                 </div>
             </div>
 
