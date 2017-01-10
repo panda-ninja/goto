@@ -180,7 +180,7 @@
                         @foreach($disponibilidad5 as $paquetes)
                             <div class="col s3">
 
-                                    <p class="no-margin text-16 center font-moserrat"><span class="text-12">from</span> {{$paquetes->titulo}}</p>
+                                    <div class="text-22 grey-text text-darken-4 margin-top-10"><b><span class="text-12 display-block grey-text text-darken-5">from</span> {{$paquetes->titulo}}</b></div>
                                     {{--@foreach($paquetes->disponibilidad->sortBy('precio')->take(1) as $disponibilidad)--}}
                                         {{--<p class="no-margin text-50 teal-text text-lighten-2 font-moserrat"><span class="text-20">from</span>${{$disponibilidad->precio}}</p>--}}
                                     {{--@endforeach--}}
@@ -206,6 +206,9 @@
 
                             </div>
                         @endforeach
+                            <div class="col s12">
+                                <a href="{{route('home_show_date_path', array('titulo'=>str_replace(' ','-', strtolower($paquetes->titulo)), 'dias'=>$paquetes->duracion.'-days-tours'))}}" class="font-moserrat valign-wrapper right margin-bottom-10">View All Programs <i class="material-icons">input</i></a>
+                            </div>
                     </div>
                 </div>
             </div>
@@ -247,7 +250,7 @@
                         @foreach($disponibilidad7 as $paquetes)
                             <div class="col s3">
 
-                                <p class="no-margin text-16 center font-moserrat"><span class="text-12">from</span> {{$paquetes->titulo}}</p>
+                                <div class="text-22 grey-text text-darken-4 margin-top-10"><b><span class="text-12 display-block grey-text text-darken-5">from</span> {{$paquetes->titulo}}</b></div>
                                 {{--@foreach($paquetes->disponibilidad->sortBy('precio')->take(1) as $disponibilidad)--}}
                                 {{--<p class="no-margin text-50 teal-text text-lighten-2 font-moserrat"><span class="text-20">from</span>${{$disponibilidad->precio}}</p>--}}
                                 {{--@endforeach--}}
@@ -273,6 +276,9 @@
 
                             </div>
                         @endforeach
+                        <div class="col s12">
+                            <a href="{{route('home_show_date_path', array('titulo'=>str_replace(' ','-', strtolower($paquetes->titulo)), 'dias'=>$paquetes->duracion.'-days-tours'))}}" class="font-moserrat valign-wrapper right margin-bottom-10">View All Programs <i class="material-icons">input</i></a>
+                        </div>
                     </div>
                 </div>
             </div>

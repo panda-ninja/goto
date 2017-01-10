@@ -6693,6 +6693,9 @@ button.picker__today:focus, button.picker__clear:focus, button.picker__close:foc
 .line-through {
   text-decoration: line-through; }
 
+.display-block {
+  display: block; }
+
 header.slider .slides li .caption {
   height: 55px; }
 

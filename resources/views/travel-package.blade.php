@@ -132,7 +132,7 @@
                 <div class="row">
 
                     @foreach($disponibilidad as $paquete)
-                        <div class="col s3 right-align">
+                        <div class="col s3">
                             <div class="card-panel grey lighten-5 z-depth-1 hoverable padding-10">
                                 {{--<p class="no-margin text-25"><a href="#modal-{{$paquete->codigo}}" class="left modal-trigger waves-effect"><img src="{{asset('img/icons/pdf.png')}}" alt="" width="30"></a> {{$paquete->titulo}}</p>--}}
                                 {{--@foreach($paquete->disponibilidad->sortBy('precio')->take(1) as $disponibilidad)--}}
@@ -140,8 +140,8 @@
                                 {{--@endforeach--}}
                                 {{--<p class="no-margin">Small group</p>--}}
                                 {{--<p class="no-margin">Tourist to Superior</p>--}}
-                                <p class="no-margin text-16 center font-moserrat"><span class="text-12">from</span> {{$paquete->titulo}}</p>
-                                <ul class="font-moserrat">
+                                <div class="text-22 grey-text text-darken-4 margin-top-10"><b><span class="text-12 display-block grey-text text-darken-5">from</span> {{$paquete->titulo}}</b></div>
+                                <ul class="font-moserrat right-align">
                                     @foreach($paquete->disponibilidad as $disponibilidad)
 
                                         <li class="text-13 margin-bottom-10">
