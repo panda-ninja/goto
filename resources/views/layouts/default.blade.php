@@ -167,13 +167,13 @@
                 <div class="col s3">
                     <div class="card hoverable card-customize">
                         <div class="card-image">
-                            <img src="{{asset('img/form/machupicchu-2.jpg')}}" id="img_filter_cusco">
+                            <img src="{{asset('img/form/machupicchu-2.jpg')}}" id="img_filter_d_cusco">
                             <span class="card-title">
-                                    <input type="checkbox" id="d_cusco" value="Cusco y Machupicchu" name="peru[]" onchange="javascript:imgfilter('cusco')"
+                                    <input type="checkbox" id="d_cusco" value="Cusco y Machupicchu" name="peru[]" onchange="javascript:imgfilter('d_cusco')"
                                            class="yellow-text"/>
                                     <label for="d_cusco">Cusco & Machupicchu</label>
                                 </span>
-                            <div id="check_i_cusco" class="hide">
+                            <div id="check_i_d_cusco" class="hide">
                                 <i class="material-icons blue-text text-lighten-1">check_circle</i>
                             </div>
                         </div>
@@ -184,12 +184,12 @@
                 <div class="col s3">
                     <div class="card hoverable card-customize">
                         <div class="card-image">
-                            <img src="{{asset('img/form/ballestas.jpg')}}" id="img_filter_ballestas">
+                            <img src="{{asset('img/form/ballestas.jpg')}}" id="img_filter_d_ballestas">
                             <span class="card-title">
-                                    <input type="checkbox" id="d_ballestas" value="Islas Ballestas y Paracas" name="peru[]" onchange="javascript:imgfilter('ballestas')"/>
+                                    <input type="checkbox" id="d_ballestas" value="Islas Ballestas y Paracas" name="peru[]" onchange="javascript:imgfilter('d_ballestas')"/>
                                     <label for="d_ballestas">Ballestas Island & Paracas</label>
                                 </span>
-                            <div id="check_i_ballestas" class="hide">
+                            <div id="check_i_d_ballestas" class="hide">
                                 <i class="material-icons blue-text text-lighten-1">check_circle</i>
                             </div>
                         </div>
@@ -199,12 +199,12 @@
                 <div class="col s3">
                     <div class="card hoverable card-customize">
                         <div class="card-image">
-                            <img src="{{asset('img/form/colca.jpg')}}" id="img_filter_arequipa">
+                            <img src="{{asset('img/form/colca.jpg')}}" id="img_filter_d_arequipa">
                             <span class="card-title">
-                                    <input type="checkbox" id="d_arequipa" value="Arequipa y Caño del Colca" name="peru[]" onchange="javascript:imgfilter('arequipa')"/>
+                                    <input type="checkbox" id="d_arequipa" value="Arequipa y Caño del Colca" name="peru[]" onchange="javascript:imgfilter('d_arequipa')"/>
                                     <label for="d_arequipa">Arequipa & Colca Canyon</label>
                                 </span>
-                            <div id="check_i_arequipa" class="hide">
+                            <div id="check_i_d_arequipa" class="hide">
                                 <i class="material-icons blue-text text-lighten-1">check_circle</i>
                             </div>
                         </div>
@@ -214,12 +214,12 @@
                 <div class="col s3">
                     <div class="card hoverable card-customize">
                         <div class="card-image">
-                            <img src="{{asset('img/form/amazon.jpg')}}" id="img_filter_amazon">
+                            <img src="{{asset('img/form/amazon.jpg')}}" id="img_filter_d_amazon">
                             <span class="card-title">
-                                    <input type="checkbox" id="d_amazon" value="Amazonas" name="peru[]" onchange="javascript:imgfilter('amazon')"/>
+                                    <input type="checkbox" id="d_amazon" value="Amazonas" name="peru[]" onchange="javascript:imgfilter('d_amazon')"/>
                                     <label for="d_amazon">Amazon</label>
                                 </span>
-                            <div id="check_i_amazon" class="hide">
+                            <div id="check_i_d_amazon" class="hide">
                                 <i class="material-icons blue-text text-lighten-1">check_circle</i>
                             </div>
                         </div>
@@ -230,12 +230,12 @@
                 <div class="col s3">
                     <div class="card hoverable card-customize">
                         <div class="card-image">
-                            <img src="{{asset('img/form/lima.jpg')}}" id="img_filter_lima">
+                            <img src="{{asset('img/form/lima.jpg')}}" id="img_filter_d_lima">
                             <span class="card-title">
-                                    <input type="checkbox" id="d_lima" value="Lima" name="peru[]" onchange="javascript:imgfilter('lima')"/>
+                                    <input type="checkbox" id="d_lima" value="Lima" name="peru[]" onchange="javascript:imgfilter('d_lima')"/>
                                     <label for="d_lima">Lima</label>
                                 </span>
-                            <div id="check_i_lima" class="hide">
+                            <div id="check_i_d_lima" class="hide">
                                 <i class="material-icons blue-text text-lighten-1">check_circle</i>
                             </div>
                         </div>
@@ -246,12 +246,12 @@
                 <div class="col s3">
                     <div class="card hoverable card-customize">
                         <div class="card-image">
-                            <img src="{{asset('img/form/nazca.jpg')}}" id="img_filter_nazca">
+                            <img src="{{asset('img/form/nazca.jpg')}}" id="img_filter_d_nazca">
                             <span class="card-title">
-                                    <input type="checkbox" id="d_nazca" value="Lineas de Nazca" name="peru[]" onchange="javascript:imgfilter('nazca')"/>
+                                    <input type="checkbox" id="d_nazca" value="Lineas de Nazca" name="peru[]" onchange="javascript:imgfilter('d_nazca')"/>
                                     <label for="d_nazca">Nazca Lines</label>
                                 </span>
-                            <div id="check_i_nazca" class="hide">
+                            <div id="check_i_d_nazca" class="hide">
                                 <i class="material-icons blue-text text-lighten-1">check_circle</i>
                             </div>
                         </div>
@@ -262,12 +262,12 @@
                 <div class="col s3">
                     <div class="card hoverable card-customize">
                         <div class="card-image">
-                            <img src="{{asset('img/form/puno.jpg')}}" id="img_filter_puno">
+                            <img src="{{asset('img/form/puno.jpg')}}" id="img_filter_d_puno">
                             <span class="card-title">
-                                    <input type="checkbox" id="d_puno" value="Puno y Titicaca" name="peru[]" onchange="javascript:imgfilter('puno')"/>
+                                    <input type="checkbox" id="d_puno" value="Puno y Titicaca" name="peru[]" onchange="javascript:imgfilter('d_puno')"/>
                                     <label for="d_puno">Puno & Titicaca</label>
                                 </span>
-                            <div id="check_i_puno" class="hide">
+                            <div id="check_i_d_puno" class="hide">
                                 <i class="material-icons blue-text text-lighten-1">check_circle</i>
                             </div>
                         </div>
@@ -278,12 +278,12 @@
                 <div class="col s3">
                     <div class="card hoverable card-customize">
                         <div class="card-image">
-                            <img src="{{asset('img/form/trujillo.jpg')}}" id="img_filter_trujillo">
+                            <img src="{{asset('img/form/trujillo.jpg')}}" id="img_filter_d_trujillo">
                             <span class="card-title">
-                                    <input type="checkbox" id="d_trujillo" value="Trujillo y Chiclayo" name="peru[]" onchange="javascript:imgfilter('trujillo')"/>
+                                    <input type="checkbox" id="d_trujillo" value="Trujillo y Chiclayo" name="peru[]" onchange="javascript:imgfilter('d_trujillo')"/>
                                     <label for="d_trujillo">Trujillo &amp; Chiclayo</label>
                                 </span>
-                            <div id="check_i_trujillo" class="hide">
+                            <div id="check_i_d_trujillo" class="hide">
                                 <i class="material-icons blue-text text-lighten-1">check_circle</i>
                             </div>
                         </div>
@@ -303,12 +303,12 @@
                 <div class="col s3">
                     <div class="card hoverable card-customize">
                         <div class="card-image">
-                            <img src="{{asset('img/form/galapagos.jpg')}}" id="img_filter_galapagos">
+                            <img src="{{asset('img/form/galapagos.jpg')}}" id="img_filter_d_galapagos">
                             <span class="card-title">
-                                    <input type="checkbox" id="d_galapagos" value="Galapagos" name="multicountries[]" onchange="javascript:imgfilter('galapagos')"/>
+                                    <input type="checkbox" id="d_galapagos" value="Galapagos" name="multicountries[]" onchange="javascript:imgfilter('d_galapagos')"/>
                                     <label for="d_galapagos">Galapagos (Ecuador)</label>
                                 </span>
-                            <div id="check_i_galapagos" class="hide">
+                            <div id="check_i_d_galapagos" class="hide">
                                 <i class="material-icons blue-text text-lighten-1">check_circle</i>
                             </div>
                         </div>
@@ -319,12 +319,12 @@
                 <div class="col s3">
                     <div class="card hoverable card-customize">
                         <div class="card-image">
-                            <img src="{{asset('img/form/rio.jpg')}}" id="img_filter_rio">
+                            <img src="{{asset('img/form/rio.jpg')}}" id="img_filter_d_rio">
                             <span class="card-title">
-                                    <input type="checkbox" id="d_rio" value="Rio" name="multicountries[]" onchange="javascript:imgfilter('rio')"/>
+                                    <input type="checkbox" id="d_rio" value="Rio" name="multicountries[]" onchange="javascript:imgfilter('d_rio')"/>
                                     <label for="d_rio">Rio &amp; Iguazu (Brasil)</label>
                                 </span>
-                            <div id="check_i_rio" class="hide">
+                            <div id="check_i_d_rio" class="hide">
                                 <i class="material-icons blue-text text-lighten-1">check_circle</i>
                             </div>
                         </div>
@@ -335,12 +335,12 @@
                 <div class="col s3">
                     <div class="card hoverable card-customize">
                         <div class="card-image">
-                            <img src="{{asset('img/form/patagonia.jpg')}}" id="img_filter_buenos">
+                            <img src="{{asset('img/form/patagonia.jpg')}}" id="img_filter_d_buenos">
                             <span class="card-title">
-                                    <input type="checkbox" id="d_buenos" value="Buenos Aires" name="multicountries[]" onchange="javascript:imgfilter('buenos')"/>
+                                    <input type="checkbox" id="d_buenos" value="Buenos Aires" name="multicountries[]" onchange="javascript:imgfilter('d_buenos')"/>
                                     <label for="d_buenos">Buenos Aires (Argentina)</label>
                                 </span>
-                            <div id="check_i_buenos" class="hide">
+                            <div id="check_i_d_buenos" class="hide">
                                 <i class="material-icons blue-text text-lighten-1">check_circle</i>
                             </div>
                         </div>
@@ -351,12 +351,12 @@
                 <div class="col s3">
                     <div class="card hoverable card-customize">
                         <div class="card-image">
-                            <img src="{{asset('img/form/uyuni.jpg')}}" id="img_filter_uyuni">
+                            <img src="{{asset('img/form/uyuni.jpg')}}" id="img_filter_d_uyuni">
                             <span class="card-title">
-                                    <input type="checkbox" id="d_uyuni" value="Uyuni" name="multicountries[]" onchange="javascript:imgfilter('uyuni')"/>
+                                    <input type="checkbox" id="d_uyuni" value="Uyuni" name="multicountries[]" onchange="javascript:imgfilter('d_uyuni')"/>
                                     <label for="d_uyuni">Uyuni (Bolivia)</label>
                                 </span>
-                            <div id="check_i_uyuni" class="hide">
+                            <div id="check_i_d_uyuni" class="hide">
                                 <i class="material-icons blue-text text-lighten-1">check_circle</i>
                             </div>
                         </div>
