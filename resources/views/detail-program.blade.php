@@ -81,39 +81,44 @@
                     <p class="center lime-text text-darken-3"><b>Trip: {{$paquete->duracion}} DAYS : {{$paquete->titulo}}</b></p>
                     <div class="divider"></div>
                     <div class="row margin-top-20">
-                        <form>
+                        <form id="a_form">
                             <div class="col s6">
                                 <div class="row">
                                     <div class="input-field col s6">
-                                        <input placeholder="Your name (required)" id="first_name" type="text" class="validate">
-                                        <label for="first_name" class="blue-text">First Name *</label>
+                                        <input placeholder="Your name (required)" id="a_name" type="text" class="validate">
+                                        <label for="a_name" class="blue-text">First Name *</label>
+
+                                        <input id="a_code" type="hidden" value="{{$paquete->codigo.': '.$paquete->titulo}}">
+
                                     </div>
                                     <div class="input-field col s6">
-                                        <input placeholder="Last name (required)" id="first_name" type="text" class="validate">
-                                        <label for="first_name" class="blue-text">Last Name *</label>
+                                        <input placeholder="Last name (required)" id="a_last_name" type="text" class="validate">
+                                        <label for="a_last_name" class="blue-text">Last Name *</label>
                                     </div>
                                 </div>
                                 <div class="row">
                                     <div class="input-field col s12">
                                         <i class="material-icons prefix">mail</i>
-                                        <input placeholder="mail@example.com (required)" id="email" type="email" class="validate">
-                                        <label for="email" class="blue-text">Email *</label>
+                                        <input placeholder="mail@example.com (required)" id="a_email" type="email" class="validate">
+                                        <label for="a_email" class="blue-text">Email *</label>
                                     </div>
                                 </div>
                                 <div class="row">
                                     <div class="input-field col s12">
                                         <i class="material-icons prefix">phone</i>
-                                        <input id="icon_telephone" type="tel" class="validate">
-                                        <label for="icon_telephone">Telephone</label>
+                                        <input id="a_phone" type="tel" class="validate">
+                                        <label for="a_phone">Telephone</label>
                                     </div>
                                 </div>
                                 <div class="row">
                                     <div class="input-field col s12">
-                                        <select>
-                                            <option value="" disabled selected>Choose your option</option>
-                                            <option value="1">Option 1</option>
-                                            <option value="2">Option 2</option>
-                                            <option value="3">Option 3</option>
+                                        <select id="a_group_size">
+                                            <option value="0" disabled selected>Choose one</option>
+                                            <option value="1">1</option>
+                                            <option value="2">2</option>
+                                            <option value="3">3</option>
+                                            <option value="4">4</option>
+                                            <option value="5">5+</option>
                                         </select>
                                         <label>Group Size</label>
                                     </div>
@@ -128,15 +133,16 @@
                                 <div class="row">
                                     <div class="input-field col s6">
                                         <i class="material-icons prefix grey-text text-darken-1">date_range</i>
-                                        <input id="date" type="date" class="datepicker">
-                                        <label for="date">Travel date</label>
+                                        <input id="a_date" type="date" class="datepicker">
+                                        <label for="a_date">Travel date</label>
                                     </div>
                                     <div class="input-field col s6">
-                                        <select>
-                                            <option value="" disabled selected>Choose your option</option>
-                                            <option value="1">Option 1</option>
-                                            <option value="2">Option 2</option>
-                                            <option value="3">Option 3</option>
+                                        <select id="a_departure_date">
+                                            <option value="0" disabled selected>choose one</option>
+                                            <option value="within 3 months">within 3 months</option>
+                                            <option value="3 - 6 months">3 - 6 months</option>
+                                            <option value="6 - 12 months">6 - 12 months</option>
+                                            <option value="12+ months">12+ months</option>
                                         </select>
                                         <label>I have a travel range</label>
                                     </div>
@@ -148,33 +154,43 @@
                                 </div>
                                 <div class="row">
                                     <div class="col s12">
-                                        <input name="group1" type="radio" id="test1" />
-                                        <label for="test1">2 Star</label>
+                                        <input name="a_accommodations" type="radio" id="a_accommodations_2" value="2"/>
+                                        <label for="a_accommodations_2">2 Star</label>
 
-                                        <input name="group1" type="radio" id="test1" />
-                                        <label for="test1">3 Star</label>
+                                        <input name="a_accommodations" type="radio" id="a_accommodations_3" value="3"/>
+                                        <label for="a_accommodations_3">3 Star</label>
 
-                                        <input name="group1" type="radio" id="test1" />
-                                        <label for="test1">4 Star</label>
+                                        <input name="a_accommodations" type="radio" id="a_accommodations_4" value="4"/>
+                                        <label for="a_accommodations_4">4 Star</label>
 
-                                        <input name="group1" type="radio" id="test1" />
-                                        <label for="test1">5 Star</label>
+                                        <input name="a_accommodations" type="radio" id="a_accommodations_5" value="5"/>
+                                        <label for="a_accommodations_5">5 Star</label>
                                     </div>
                                 </div>
                                 <div class="row">
                                     <div class="input-field col s12">
                                         <i class="material-icons prefix">mode_edit</i>
-                                        <textarea id="icon_prefix2" class="materialize-textarea"></textarea>
-                                        <label for="icon_prefix2">Comments</label>
+                                        <textarea id="a_comments" class="materialize-textarea"></textarea>
+                                        <label for="a_comments">Comments</label>
                                     </div>
                                 </div>
                             </div>
 
                             <div class="col s12">
-                                <div class="row center margin-top-40 margin-bottom-20">
-                                    <button class="btn-large waves-effect waves-light" type="submit" name="action">Submit
+                                <div class="row center margin-top-20 margin-bottom-10">
+
+                                    <button class="btn-large waves-effect waves-light yellow darken-4" id="a_send" type="button" onclick="SendMailAvailability()">Submit
                                         <i class="material-icons right">send</i>
                                     </button>
+                                </div>
+                            </div>
+
+
+                            <div class="col s12">
+                                <div class="row center margin-top-10 margin-bottom-10">
+                                    <div id="a_congratulation" class="hidden card green padding-10">
+                                        <p class="white-text no-margin center"></p>
+                                    </div>
                                 </div>
                             </div>
 

@@ -17,6 +17,7 @@ use Illuminate\Http\Request;
 
 use GotoPeru\Http\Requests;
 use Illuminate\Support\Facades\Input;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Session;
 
@@ -32,10 +33,9 @@ class HomeController extends Controller
         $duracion = TPaquete::select('duracion')->distinct()->get();
         $paquete = TPaquete::with('paquetes_destinos', 'precio_paquetes', 'disponibilidad')->get()->where('estado', 1);
         $featured = TPaquete::with('paquetes_destinos', 'precio_paquetes')->get()->where('estadoslider', 1);
-        $disponibilidad7 = TPaquete::with('disponibilidad')->where('codigo','GTPF700')->orwhere('codigo','GTPF701')->orwhere('codigo','GTPF702')->orwhere('codigo','GTPF703')->get();
-        $disponibilidad5 = TPaquete::with('disponibilidad')->where('codigo','GTPF500')->orwhere('codigo','GTPF501')->orwhere('codigo','GTPF502')->orwhere('codigo','GTPF503')->get();
-//        dd($disponibilidad);
-        return view('home', ['paquete'=>$paquete, 'featured'=>$featured, 'duracion'=>$duracion, 'disponibilidad7'=>$disponibilidad7, 'disponibilidad5'=>$disponibilidad5]);
+        $paquete2 = TPaquete::with('paquetes_destinos', 'precio_paquetes', 'disponibilidad')->where('estadoslider',2)->get();
+//        dd($paquete2);
+        return view('home', ['paquete'=>$paquete, 'featured'=>$featured, 'duracion'=>$duracion, 'paquetes2'=>$paquete2]);
     }
 
     /**
@@ -46,6 +46,115 @@ class HomeController extends Controller
     public function create()
     {
         //
+    }
+
+    public function inquire()
+    {
+
+        $from = 'hidalgochpnce@gmail.com';
+
+        $name = $_GET['name_txt'];
+        $email = $_GET['email_txt'];
+        $telephone = $_GET['phone_txt'];
+        $comment = $_GET['comment_txt'];
+
+//        return $name;
+
+        try {
+            Mail::send(['html' => 'inquire_notification'], ['name' => $name], function ($messaje) use ($email, $name) {
+                $messaje->to($email, $name)
+                    ->subject('Menssage GotoPeru')
+                    /*->attach('ruta')*/
+                    ->from('info@gotoperu.com', 'GotoPeru');
+            });
+
+
+            Mail::send(['html' => 'inquire_notifications_admin'], ['name' => $name, 'email' => $email, 'telephone' => $telephone, 'comment' => $comment], function ($messaje) use ($from) {
+                $messaje->to($from, 'GotoPeru')
+                    ->subject('Menssage GotoPeru.Travel')
+                    /*->attach('ruta')*/
+                    ->from('info@gotoperu.com', 'GotoPeru.Travel');
+            });
+
+
+//            Session::flash('message', $name.' hola');
+
+            return 'THANK YOU FOR CONTACT US, YOU WILL RECEIVE A REPLY IN LESS THAN 24 HOURS, GURANTEE. :)';
+
+
+//            return redirect()->route('home_path');
+        }
+        catch (Exception $e){
+            return $e;
+        }
+
+    }
+
+    public function availability()
+    {
+        if (isset($_GET['accommodations_opt'])){
+            $accommodations2 = $_GET['accommodations_opt'];
+        }else{
+            $accommodations2 = "-";
+        }
+
+        $from = 'hidalgochpnce@gmail.com';
+
+        $code = $_GET['code_txt'];
+        $name = $_GET['name_txt'];
+        $last_name = $_GET['last_name_txt'];
+        $email = $_GET['email_txt'];
+        $telephone = $_GET['phone_txt'];
+        $date = $_GET['date_txt'];
+        $group_size = $_GET['group_size_slc'];
+        $accommodations = $accommodations2;
+        $departure_date = $_GET['departure_date_slc'];
+        $comments = $_GET['comments_txt'];
+
+
+
+//        return $name;
+
+        try {
+            Mail::send(['html' => 'inquire_notification'], ['name' => $name], function ($messaje) use ($email, $name) {
+                $messaje->to($email, $name)
+                    ->subject('Menssage GotoPeru')
+                    /*->attach('ruta')*/
+                    ->from('info@gotoperu.com', 'GotoPeru');
+            });
+
+
+            Mail::send(['html' => 'availability_notifications'], [
+                'code' => $code,
+                'name' => $name,
+                'last_name' => $last_name,
+                'email' => $email,
+                'telephone' => $telephone,
+                'date' => $date,
+                'group_size' => $group_size,
+                'accommodations' => $accommodations,
+                'departure_date' => $departure_date,
+                'comments' => $comments
+
+            ], function ($messaje) use ($from) {
+                $messaje->to($from, 'GotoPeru')
+                    ->subject('Menssage GotoPeru.Travel')
+                    /*->attach('ruta')*/
+                    ->from('info@gotoperu.com', 'GotoPeru.Travel');
+            });
+
+
+//            Session::flash('message', $name.' hola');
+
+            return 'THANK YOU FOR CONTACT US, YOU WILL RECEIVE A REPLY IN LESS THAN 24 HOURS, GURANTEE. :)';
+
+
+//            return redirect()->route('home_path');
+        }
+        catch (Exception $e){
+            return $e;
+        }
+
     }
 
     /**
@@ -65,19 +174,18 @@ class HomeController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function showdate($titulo, $dias)
+    public function showdate($dias)
     {
 
 //        if ($_POST){
 //            Session::put('s_date', Input::get('txt_date'));
 //            Session::put('s_country', Input::get('txt_country'));
 //        }
-        $disponibilidad = TPaquete::with('disponibilidad')->where('codigo','GTPF700')->orwhere('codigo','GTPF701')->orwhere('codigo','GTPF702')->orwhere('codigo','GTPF703')->get();
-        $title = str_replace('-', ' ', strtoupper($titulo));
-        $paquete = TPaquete::with('itinerario','paquetes_destinos', 'precio_paquetes')->where('titulo', $title)->where('duracion', $dias)->get();
+        $paquete2 = TPaquete::with('paquetes_destinos', 'precio_paquetes', 'disponibilidad')->where('estadoslider',2)->where('duracion',$dias)->get();
+        $paquete = TPaquete::with('itinerario','paquetes_destinos', 'precio_paquetes')->get();
 //        dd($paquete);
 
-        return view('travel-package', ['paquetes'=>$paquete, 'disponibilidad'=>$disponibilidad]);
+        return view('travel-package', ['paquetes'=>$paquete, 'paquetes2'=>$paquete2]);
     }
     public function checkout(Request $request,$titulo, $dias)
     {

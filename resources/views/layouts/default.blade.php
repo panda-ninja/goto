@@ -78,39 +78,48 @@
                 <p>EMAIL US AT INFO@GOTOPERU.COM OR PLEASE FILL THE FOLLOWING FORM:</p>
             </div>
         </div>
-        <form action="" method="post">
+        <form id="i_form">
             {{csrf_field()}}
             <div class="row left-align">
                 <div class="input-field col s12">
                     <i class="material-icons prefix">account_circle</i>
-                    <input id="icon_prefix" type="text" class="validate">
-                    <label for="icon_prefix">Full Name</label>
+                    <input id="i_name" name="txt_name" type="text" class="validate">
+                    <label for="txt_name">Full Name</label>
                 </div>
 
                 <div class="input-field col s12">
                     <i class="material-icons prefix">mail</i>
-                    <input id="icon_telephone" type="email" class="validate">
-                    <label for="icon_telephone">Email</label>
+                    <input id="i_email" type="email" class="validate">
+                    <label for="i_email">Email</label>
                 </div>
 
                 <div class="input-field col s12">
                     <i class="material-icons prefix">phone</i>
-                    <input id="icon_telephone" type="email" class="validate">
-                    <label for="icon_telephone">Phone</label>
+                    <input id="i_telephone" type="text" class="validate">
+                    <label for="i_telephone">Phone</label>
                 </div>
 
                 <div class="row">
                     <div class="input-field col s12">
                         <i class="material-icons prefix">mode_edit</i>
-                        <textarea id="icon_prefix2" class="materialize-textarea"></textarea>
-                        <label for="icon_prefix2">Comment</label>
+                        <textarea id="i_comment" class="materialize-textarea"></textarea>
+                        <label for="i_comment">Comment</label>
                     </div>
                 </div>
 
                 <div class="col s12 center">
-                    <button class="btn waves-effect waves-light yellow darken-4" type="submit" name="action">Submit
+                    <button class="btn waves-effect waves-light yellow darken-4" id="i_send" type="button" onclick="sendInquire()">Submit
                         <i class="material-icons right">send</i>
                     </button>
+                    {{--<input class="btn waves-effect waves-light yellow darken-4" id="f_send" value="Send"  type="button" onclick="sendInquire()">--}}
+
+                </div>
+                <div class="col s12">
+                    <div class="row center margin-top-10 margin-bottom-10">
+                        <div id="i_congratulation" class="hidden card green padding-10">
+                            <p class="white-text no-margin center"></p>
+                        </div>
+                    </div>
                 </div>
             </div>
         </form>
@@ -683,10 +692,10 @@
     <div class="container">
         <div class="row margin-bottom-20">
             <div class="col s3">
-                <img src="{{'img/logos/logo-gotoperu.png'}}" alt="">
+                <img src="{{asset('img/logos/logo-gotoperu.png')}}" alt="">
             </div>
             <div class="col s3">
-                <img src="{{'img/logos/logo-latinamerica-2.png'}}" alt="">
+                <img src="{{asset('img/logos/logo-latinamerica-2.png')}}" alt="">
             </div>
         </div>
         <div class="row">
@@ -925,6 +934,166 @@
     }
 </script>
 
+<script>
+    function sendInquire(){
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('[name="_token"]').val()
+            }
+        });
+
+        $("#i_send").attr("disabled", true);
+
+        $(".u_error-contact").remove();
+
+        var filter=/^[A-Za-z][A-Za-z0-9_]*@[A-Za-z0-9_]+.[A-Za-z0-9_.]+[A-za-z]$/;
+
+        var s_name = $('#i_name').val();
+        var s_email = $('#i_email').val();
+        var s_telephone = $('#i_telephone').val();
+        var s_comment = $('#i_comment').val();
+
+        if (filter.test(s_email)){
+            sendMail = "true";
+        } else{
+            $('#i_email').css("border-bottom", "2px solid #FF0000");
+            sendMail = "false";
+        }
+        if (s_name.length == 0 ){
+            $('#i_name').css("border-bottom", "2px solid #FF0000");
+            var sendMail = "false";
+        }
+
+        if(sendMail == "true"){
+            var datos = {
+
+                "name_txt" : s_name,
+                "email_txt" : s_email,
+                "phone_txt" : s_telephone,
+                "comment_txt" : s_comment
+            };
+            $.ajax({
+                data:  datos,
+                url:   '{{route('home_inquire_path')}}',
+                type:  'get',
+
+                beforeSend: function () {
+                    $("#i_send").html('<div class="preloader-wrapper small active">'+
+                        '<div class="spinner-layer spinner-green-only">'+
+                        '<div class="circle-clipper left">'+
+                        '<div class="circle"></div>'+
+                        '</div><div class="gap-patch">'+
+                        '<div class="circle"></div>'+
+                        '</div><div class="circle-clipper right">'+
+                        '<div class="circle"></div>'+
+                        '</div>'+
+                        '</div>'+
+                        '</div>');;
+                },
+                success:  function (response) {
+                    $('#i_form')[0].reset();
+                    $("#i_send").html("Send");
+                    $("#i_congratulation p").html(response);
+                    $("#i_congratulation").fadeIn('slow');
+                    $("#i_send").removeAttr("disabled");
+                }
+            });
+        } else{
+            $("#i_send").removeAttr("disabled");
+        }
+    }
+
+    //FORMULARIO AVAILABILITY
+
+    function SendMailAvailability(){
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('[name="_token"]').val()
+            }
+        });
+
+        $("#a_send").attr("disabled", true);
+
+        $(".u_error-contact").remove();
+
+        var filter=/^[A-Za-z][A-Za-z0-9_]*@[A-Za-z0-9_]+.[A-Za-z0-9_.]+[A-za-z]$/;
+
+        var s_code = $('#a_code').val();
+        var s_name = $('#a_name').val();
+        var s_last_name = $('#a_last_name').val();
+        var s_email = $('#a_email').val();
+        var s_phone = $('#a_phone').val();
+        var s_date = $('#a_date').val();
+
+        var s_group_size = $('#a_group_size :selected').val();
+
+        var s_accommodations = $('input:checked').val();
+
+        var s_departure_date = $('#a_departure_date :selected').val();
+
+        var s_comments = $('#a_comments').val();
+
+
+        if (filter.test(s_email)){
+            sendMail = "true";
+        } else{
+            $('#a_email').css("border-bottom", "2px solid #FF0000");
+            sendMail = "false";
+        }
+        if (s_name.length == 0 ){
+            $('#a_name').css("border-bottom", "2px solid #FF0000");
+            var sendMail = "false";
+        }
+
+        if(sendMail == "true"){
+            var datos = {
+
+                "code_txt" : s_code,
+                "name_txt" : s_name,
+                "last_name_txt" : s_last_name,
+                "email_txt" : s_email,
+                "phone_txt" : s_phone,
+                "date_txt" : s_date,
+
+                "group_size_slc" : s_group_size,
+
+                "accommodations_opt" : s_accommodations,
+
+                "departure_date_slc" : s_departure_date,
+
+                "comments_txt" : s_comments
+            };
+            $.ajax({
+                data:  datos,
+                url:   '{{route('home_availability_path')}}',
+                type:  'get',
+
+                beforeSend: function () {
+                    $("#a_send").html('<div class="preloader-wrapper small active">'+
+                        '<div class="spinner-layer spinner-green-only">'+
+                        '<div class="circle-clipper left">'+
+                        '<div class="circle"></div>'+
+                        '</div><div class="gap-patch">'+
+                        '<div class="circle"></div>'+
+                        '</div><div class="circle-clipper right">'+
+                        '<div class="circle"></div>'+
+                        '</div>'+
+                        '</div>'+
+                        '</div>');;
+                },
+                success:  function (response) {
+                    $('#a_form')[0].reset();
+                    $("#a_send").html("Send");
+                    $("#a_congratulation p").html(response);
+                    $("#a_congratulation").fadeIn('slow');
+                    $("#a_send").removeAttr("disabled");
+                }
+            });
+        } else{
+            $("#a_send").removeAttr("disabled");
+        }
+    }
+</script>
 
 
 </body>

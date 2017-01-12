@@ -27,10 +27,25 @@ Route::any('packages/{titulo}_{dias}', [
     'as' => 'home_show_travel_path',
 ]);
 
-Route::any('travel-packages/{titulo}_{dias}', [
+
+Route::get('travel-packages-all-included/{dias}-days', [
     'uses' => 'HomeController@showdate',
     'as' => 'home_show_date_path',
 ]);
+
+Route::get('inquire', [
+    'uses' => 'HomeController@inquire',
+    'as' => 'home_inquire_path',
+]);
+Route::get('availability', [
+    'uses' => 'HomeController@availability',
+    'as' => 'home_availability_path',
+]);
+
+//Route::any('travel-packages/{titulo}_{dias}', [
+//    'uses' => 'HomeController@showdate',
+//    'as' => 'home_show_date_path',
+//]);
 
 Route::any('travel-packages/', [
     'uses' => 'HomeController@viewpackages',

@@ -110,11 +110,19 @@
                                             <div class="margin-bottom-10">
                                                 @foreach($categorias->paquetes->precio_paquetes as $precio)
                                                     @if($precio->estrellas == 2)
+
+                                                        @php
+                                                            if($precio->precio_d == 0)
+                                                                $precio2 = 'Inquire';
+                                                            else
+                                                                $precio2 = '$'.$precio->precio_d;
+                                                        @endphp
+
                                                         <h4 class="text-18 no-margin valign-wrapper"><b
                                                                     class="lime-text text-darken-4">{{$categorias->paquetes->duracion}}
                                                                 days</b> <i class="material-icons valign tiny">arrow_forward</i>
                                                             <b class="grey-text spacer-m-5 text-12">from</b> <span
-                                                                    class="yellow-text text-darken-3 text-25"><b>${{$precio->precio_d}}</b></span>
+                                                                    class="yellow-text text-darken-3 text-25"><b>${{$precio2}}</b></span>
                                                         </h4>
                                                     @endif
                                                 @endforeach
@@ -127,7 +135,8 @@
                                                                 class="material-icons valign small">favorite</i></a>
                                                 </div>
                                                 <div class="col s10">
-                                                    <a class="waves-effect waves-light btn yellow darken-3"><i
+
+                                                    <a href="{{route('home_show_travel_path', array('titulo'=>str_replace(' ','-', strtolower($categorias->paquetes->titulo)), 'dias'=>$categorias->paquetes->duracion.'-days-tours'))}}" class="waves-effect waves-light btn yellow darken-3"><i
                                                                 class="material-icons right">send</i>View Trip</a>
                                                 </div>
                                             </div>
