@@ -33,7 +33,7 @@ function stripeResponseHandler(status,response){
         //alert('no error'+response.id);
         var token=response.id;
         $form.append($('<input type="hidden" name="stripeToken" id="stripeToken"/>').val(token));
-        console.log(token);
+        // console.log(token);
         //$('#pago').val('Proccesing ...');
         $form.get(0).submit();
     }

@@ -73,6 +73,10 @@ Route::post('checkout-confirmation-empresa/', [
     'uses' => 'CheckoutController@pay_confirmation_empresa',
     'as' => 'noti-reservation-empresa',
 ]);
+Route::post('/buscardisponibilidad', [
+    'uses' => 'CheckoutController@buscar_disponibilidad',
+    'as' => 'pqt_buscar_disponibilidad_path',
+]);
 /*==begin== rutas para clientes ================================================================*/
 Route::get('cliente/login', [
     'uses' => 'ClientAuthController@index',

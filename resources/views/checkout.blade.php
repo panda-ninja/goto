@@ -77,21 +77,23 @@
                         <select name="destino_travel" id="destino_travel">
                             @foreach($paqueteCombo as $paquete)
                                 @if($paquete->codigo==$paquete1->codigo)
-                                    <option value="{{$paquete->titulo}}" selected>{{$paquete->titulo}}</option>
+                                    <option value="{{$paquete->id}}" selected>{{$paquete->titulo}}</option>
                                 @else
-                                    <option value="{{$paquete->titulo}}">{{$paquete->titulo}}</option>
+                                    <option value="{{$paquete->id}}">{{$paquete->titulo}}</option>
                                 @endif
                             @endforeach
                         </select>
                     </div>
-                    <div class="col m3">
+                    <div class="col m3" id="dispo">
                         <select name="date_travel" id="date_travel">
-                            @foreach($paquetes as $paquete)
-                                @foreach($paquete->disponibilidad as $disponibilidad)
-                                    @if($disponibilidad->estado=='1')
-                                        <option value="{{$disponibilidad->fecha_disponibilidad}}">{{obtenerFechaEnLetra($disponibilidad->fecha_disponibilidad)}}</option>
-                                    @endif
-                                @endforeach
+                            @foreach($paqueteCombo as $paquete)
+                                @if($paquete->codigo==$paquete1->codigo)
+                                    @foreach($paquete->disponibilidad as $disponibilidad)
+                                        @if($disponibilidad->estado=='1')
+                                            <option value="{{$disponibilidad->fecha_disponibilidad}}">{{obtenerFechaEnLetra($disponibilidad->fecha_disponibilidad)}}</option>
+                                        @endif
+                                    @endforeach
+                                @endif
                             @endforeach
                         </select>
                     </div>
@@ -458,7 +460,7 @@
                                                 <div class="input-field">
                                                     <select name="state_p" id="state_p" class="validate">
                                                         @foreach($state as $state1)
-                                                            @if($state1->id=='231')
+                                                            @if($state1->id=='3930')
                                                                 <option value="{{$state1->id}}" selected>{{$state1->name}}</option>
                                                             @else
                                                                 <option value="{{$state1->id}}">{{$state1->name}}</option>
@@ -480,7 +482,7 @@
                                                 <div class="input-field">
                                                     <select name="city_p" id="city_p" class="validate">
                                                         @foreach($city as $city1)
-                                                            @if($city1->id=='3930')
+                                                            @if($city1->id=='43885')
                                                                 <option value="{{$city1->id}}" selected>{{$city1->name}}</option>
                                                             @else
                                                                 <option value="{{$city1->id}}">{{$city1->name}}</option>
@@ -552,7 +554,7 @@
                                                     <label for="card_verification_p">Validation code*</label>
                                                 </div>
                                             </div>
-                                            <div class="col m6">
+                                            <div class="col m6 hide">
                                                 <div class="input-field">
                                                     <span>What is this?</span>Fappl
                                                 </div>
@@ -666,7 +668,7 @@
                         </div>
                     </div>
                     <div class="col m4">
-                        <div class="row">
+                        <div class="row no-margin-botton">
                             <div class="col s12 caja-flotante grey lighten-2">
                                 <ul>
                                     <li id="acomodacion_3" class="hide grey-text text-darken-1"><span>On triple accomodation </span><span id="rooms_T">1</span>X<img class="" src="{{asset('images/male.png')}}"><img class="" src="{{asset('images/male.png')}}"><img class="" src="{{asset('images/male.png')}}">X$<span id="precio_3">{{$pre_3_t}}</span></li>
@@ -688,7 +690,7 @@
                             </div>
                         </div>
                         <div class="row">
-                            <div class="col s12">
+                            <div class="col s12  grey lighten-2">
                                 <h6>Optional Activities:</h6>
                                 <?php $i=0;?>
                                 @foreach($paquetes as $paquete)
@@ -698,12 +700,10 @@
                                             <input type="hidden" id="ch_extras_id_{{$i}}" value="{{$servicios->servicio_extra->id}}">
                                             <input type="hidden" id="ch_extras_name_{{$i}}" name="ch_extras_name[]" value="{{$servicios->servicio_extra->titulo}}">
                                             <input type="hidden" id="ch_extras_valor_{{$i}}" name="ch_extras_valor[]" value="0">
-
                                             <input type="checkbox" id="ch_extras_{{$i}}" name="ch_extras[]" value="{{$servicios->servicio_extra->precio}}" onchange="ch_extra({{$i}})"/>
-                                            <label for="ch_extras_{{$i}}" >{{$servicios->servicio_extra->titulo}}<span id="p_{{$i}}}"> $ <span id="extra_precioP_{{$i}}">{{2*$servicios->servicio_extra->precio}}</span> ($<span id="extra_precioS_{{$i}}">{{$servicios->servicio_extra->precio}}</span> for traveller)</span></label>
-
+                                            <label for="ch_extras_{{$i}}" class="grey-text text-darken-3">{{$servicios->servicio_extra->titulo}}<span id="p_{{$i}}}"> $ <span id="extra_precioP_{{$i}}">{{2*$servicios->servicio_extra->precio}}</span> ($<span id="extra_precioS_{{$i}}">{{$servicios->servicio_extra->precio}}</span> for traveller)</span></label>
                                         </p>
-                                        <br>
+
                                         <hr>
                                     @endforeach
                                 @endforeach
@@ -722,9 +722,6 @@
                     </div>
                 </div>
             </form>
-            <button class="btn waves-effect waves-light"   onclick="mensaje9()">mensaje
-                <i class="material-icons right">send</i>
-            </button>
         </div>
     </div>
 @stop

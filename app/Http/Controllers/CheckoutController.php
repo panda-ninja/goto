@@ -232,6 +232,22 @@ class CheckoutController extends Controller
     {
         return view('mensaje-confirmation_empresa');
     }
+    public function buscar_disponibilidad(Request $request)
+    {
+        $codigo=strtoupper($request->input('codigo'));
+        $paqueteCombo = TPaquete::with('disponibilidad')->where('id',$codigo)->get();
+//        return view('mensaje-confirmation_empresa');
+        $valor='';
+        foreach ($paqueteCombo as $paquete){
+            foreach ($paquete->disponibilidad as $disponibilidad) {
+                if ($disponibilidad->estado == '1') {
+                    $valor.='<option value="'.$disponibilidad->fecha_disponibilidad.'">'.$disponibilidad->fecha_disponibilidad.'</option>';
+//                $valor +=  $disponibilidad->fecha_disponibilidad;
+                }
+            }
+        }
+        return  '<select name="date_travel" id="date_travel">'.$valor.'</select>';
+    }
 
 
 }

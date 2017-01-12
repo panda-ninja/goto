@@ -1,10 +1,10 @@
 /**
  * Created by freddy on 4/11/2016.
  */
-$(document).ready(function() {
-    $('select').material_select();
-    $('#charge-error').addClass('hide');
-});
+// $(document).ready(function() {
+//     $('select').material_select();
+//     $('#charge-error').addClass('hide');
+// });
 Stripe.setPublishableKey('pk_test_dyIe8bpwdnHasxw7a27HhPoW');
 
 var $form=$('#checkout-form');
@@ -33,7 +33,7 @@ function stripeResponseHandler(status,response){
         //alert('no error'+response.id);
         var token=response.id;
         $form.append($('<input type="hidden" name="stripeToken" id="stripeToken"/>').val(token));
-        console.log(token);
+        // console.log(token);
         //$('#pago').val('Proccesing ...');
         $form.get(0).submit();
     }

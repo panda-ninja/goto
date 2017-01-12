@@ -784,3 +784,56 @@ function ch_extra(posi){
     }
     recalcular_total();
 }
+
+$("#destino_travel").change(function(){
+    alert('hola');
+    $.ajaxSetup({
+        headers: {
+            'X-CSRF-TOKEN': $('[name="_token"]').val()
+        }
+    });
+    var codigopx=$("#destino_travel").val();
+    alert(codigopx);
+    if(codigopx.length>0){
+        var datastring="codigo="+codigopx;
+
+        $.post('http://gotoperu.mo/buscardisponibilidad', {codigo: codigopx}, function(markup) {
+            if(markup){
+                // console.log(markup);
+                alert('correcto:'+markup);
+                $('#dispo').html(markup);
+                // document.write('<script src="{{asset(\'js/init.js\')}}"></script>');
+                // $('#list_planes').html('');
+                // $('#list_planes').html(markup);
+                // $('#idLoad').html('');
+            }
+            else{
+                alert('na');
+                // $('#idLoad').html('');
+                // $('#list_planes').html('<div id="card-alert" class="card red lighten-5">'+
+                //     '<div class="card-content red-text">'+
+                //     '<p>ERROR : Ocurrio un error al cargar los datos '+markup+'</p>'+
+                //     '</div>'+
+                //     '<button type="button" class="close red-text" data-dismiss="alert" aria-label="Close">'+
+                //     '<span aria-hidden="true">×</span>'+
+                //     '</button>'+
+                //     '</div>');
+            }
+        }).fail(function (markup) {
+            alert('error:'+markup);
+            // $('#idLoad').html('');
+            // $('#list_planes').html('<div id="card-alert" class="card red lighten-5">'+
+            //     '<div class="card-content red-text">'+
+            //     '<p>ERROR : No se encontró el paquete con codigo: '+codigopx+'</p>'+
+            //     '</div>'+
+            //     '<button type="button" class="close red-text" data-dismiss="alert" aria-label="Close">'+
+            //     '<span aria-hidden="true">×</span>'+
+            //     '</button>'+
+            //     '</div>');
+        });
+    }
+    else{
+
+        $("#destino_travel").focus();
+    }
+});
