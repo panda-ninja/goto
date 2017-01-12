@@ -785,27 +785,33 @@ function ch_extra(posi){
     recalcular_total();
 }
 
+
+
 $("#destino_travel").change(function(){
-    alert('hola');
+    // alert('hola');
     $.ajaxSetup({
         headers: {
             'X-CSRF-TOKEN': $('[name="_token"]').val()
         }
     });
     var codigopx=$("#destino_travel").val();
-    alert(codigopx);
+    // alert(codigopx);
     if(codigopx.length>0){
         var datastring="codigo="+codigopx;
 
         $.post('http://gotoperu.mo/buscardisponibilidad', {codigo: codigopx}, function(markup) {
             if(markup){
                 // console.log(markup);
-                alert('correcto:'+markup);
+                // alert('correcto:'+markup);
                 $('#dispo').html(markup);
                 // document.write('<script src="{{asset(\'js/init.js\')}}"></script>');
                 // $('#list_planes').html('');
                 // $('#list_planes').html(markup);
                 // $('#idLoad').html('');
+                // $.getScript("../../js/app.js", function(){
+                // });
+                $.getScript("../../js/init.js", function(){
+                });
             }
             else{
                 alert('na');
@@ -837,3 +843,6 @@ $("#destino_travel").change(function(){
         $("#destino_travel").focus();
     }
 });
+
+
+

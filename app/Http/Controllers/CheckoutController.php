@@ -241,7 +241,17 @@ class CheckoutController extends Controller
         foreach ($paqueteCombo as $paquete){
             foreach ($paquete->disponibilidad as $disponibilidad) {
                 if ($disponibilidad->estado == '1') {
-                    $valor.='<option value="'.$disponibilidad->fecha_disponibilidad.'">'.$disponibilidad->fecha_disponibilidad.'</option>';
+                    $fecha1=explode('-',$disponibilidad->fecha_disponibilidad);
+                    $fecha=$fecha1[2].'-'.$fecha1[1].'-'.$fecha1[0];
+                    $dias = array('Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday');
+                    $dia = $dias[date('w', strtotime($fecha))];
+
+                    $num = date("j", strtotime($fecha));
+                    $anno = date("Y", strtotime($fecha));
+                    $mes = array('January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December');
+                    $mes = $mes[(date('m', strtotime($fecha))*1)-1];
+                    $fecha_letra= $dia.', '.$mes.' '.$num.', '.$anno;
+                    $valor.='<option value="'.$disponibilidad->fecha_disponibilidad.'">'.$fecha_letra.'</option>';
 //                $valor +=  $disponibilidad->fecha_disponibilidad;
                 }
             }
