@@ -63,7 +63,7 @@ class HomeController extends Controller
         try {
             Mail::send(['html' => 'inquire_notification'], ['name' => $name], function ($messaje) use ($email, $name) {
                 $messaje->to($email, $name)
-                    ->subject('Menssage GotoPeru')
+                    ->subject('Inquire GotoPeru')
                     /*->attach('ruta')*/
                     ->from('info@gotoperu.com', 'GotoPeru');
             });
@@ -71,7 +71,7 @@ class HomeController extends Controller
 
             Mail::send(['html' => 'inquire_notifications_admin'], ['name' => $name, 'email' => $email, 'telephone' => $telephone, 'comment' => $comment], function ($messaje) use ($from) {
                 $messaje->to($from, 'GotoPeru')
-                    ->subject('Menssage GotoPeru.Travel')
+                    ->subject('Inquire GotoPeru.Travel')
                     /*->attach('ruta')*/
                     ->from('info@gotoperu.com', 'GotoPeru.Travel');
             });
@@ -118,7 +118,7 @@ class HomeController extends Controller
         try {
             Mail::send(['html' => 'inquire_notification'], ['name' => $name], function ($messaje) use ($email, $name) {
                 $messaje->to($email, $name)
-                    ->subject('Menssage GotoPeru')
+                    ->subject('Inquire GotoPeru')
                     /*->attach('ruta')*/
                     ->from('info@gotoperu.com', 'GotoPeru');
             });
@@ -138,7 +138,7 @@ class HomeController extends Controller
 
             ], function ($messaje) use ($from) {
                 $messaje->to($from, 'GotoPeru')
-                    ->subject('Menssage GotoPeru.Travel')
+                    ->subject('Inquire GotoPeru.Travel')
                     /*->attach('ruta')*/
                     ->from('info@gotoperu.com', 'GotoPeru.Travel');
             });
@@ -176,7 +176,7 @@ class HomeController extends Controller
         try {
             Mail::send(['html' => 'inquire_notification'], ['name' => $name], function ($messaje) use ($email, $name) {
                 $messaje->to($email, $name)
-                    ->subject('Menssage GotoPeru')
+                    ->subject('Inquire GotoPeru')
                     /*->attach('ruta')*/
                     ->from('info@gotoperu.com', 'GotoPeru');
             });
@@ -195,7 +195,7 @@ class HomeController extends Controller
                 'comment' => $comment
             ], function ($messaje) use ($from) {
                 $messaje->to($from, 'GotoPeru')
-                    ->subject('Menssage GotoPeru.Travel')
+                    ->subject('Inquire GotoPeru.Travel')
                     /*->attach('ruta')*/
                     ->from('info@gotoperu.com', 'GotoPeru.Travel');
             });
