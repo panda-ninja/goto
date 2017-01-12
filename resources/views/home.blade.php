@@ -231,7 +231,7 @@
 
                         </div>
                         <div class="col s6">
-                            <img src="{{asset('img/maps/GTPF700B.jpg')}}" alt="" class="responsive-img margin-top-15">
+                            <img src="{{asset('img/maps/'.$paquetes->imagen.'')}}" alt="" class="responsive-img margin-top-15">
                         </div>
                     </div>
 
