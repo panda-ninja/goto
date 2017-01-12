@@ -2,28 +2,17 @@
 @extends('layouts.notification')
 
 @section('content')
-<!--    --><?php
-//    public function obtenerFechaEnLetra($fecha0){
-//        $fecha1=explode('-',$fecha0);
-//        $fecha=$fecha1[2].'-'.$fecha1[1].'-'.$fecha1[0];
-//        $dia= conocerDiaSemanaFecha($fecha);
-//        $num = date("j", strtotime($fecha));
-//        $anno = date("Y", strtotime($fecha));
-//        $mes = array('January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December');
-//        $mes = $mes[(date('m', strtotime($fecha))*1)-1];
-//        return $dia.', '.$mes.' '.$num.', '.$anno;
-//    }
-//
-//    public function conocerDiaSemanaFecha($fecha) {
-//        $dias = array('Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday');
-//        $dia = $dias[date('w', strtotime($fecha))];
-//        return $dia;
-//    }
-//    ?>
+    <?php
+    $paquete1='';
+    ?>
+    @foreach ($paquetes as $paquete)
+        $paquete1=$paquete;
+    @endforeach
+
     <table class="x_full" border="0" cellpadding="0" width="100%" cellspacing="0"  align="center" style="max-width:900px;">
         <tbody>
         <tr>
-            <td bgcolor="#f7f7f7" style="width: 900px;padding: 7px" colspan="2"><h2>Format Pay</h2>
+            <td bgcolor="#f7f7f7" style="width: 900px;padding: 7px" colspan="2"><h2>New invoice</h2>
             </td>
         </tr>
         <tr>
@@ -31,6 +20,7 @@
                 <table>
                     <tr><td><b>Client:</b> {{$first_name_p.', '.$last_name_p}}</td></tr>
                     <tr><td><b>Nationality:</b> {{$name_country}}</td></tr>
+                    <tr><td><b>Email:</b> {{$email_p}}</td></tr>
                     {{--<tr><td><b>Residenca:</b> {{auth()->guard('cliente')->user()->residencia}}</td></tr>--}}
                     {{--<tr><td><b>Passport:</b> {{auth()->guard('cliente')->user()->pasaporte}}</td></tr>--}}
                     <tr><td><b>Telephone:</b> {{$telephone_p}}</td></tr>
@@ -42,6 +32,8 @@
                     <tr><td><b>Fecha de la factura:</b> {{$fecha_factura}}</td></tr>
                     <tr><td><b>Payment method:</b> {{$medio}}</td></tr>
                     <tr><td><b>Transaction:</b> {{$transaccion}}</td></tr>
+                    {{--<tr><td><b>Codigo Paquete:</b> {{$paquete1->codigo}}</td></tr>--}}
+
                     <tr><td><b>Total:</b> $ {{$total}}.00</td></tr>
                 </table>
             </td>
@@ -102,50 +94,7 @@
             </table>
         </tr>
         <tr style="text-align: right"><td colspan="2" style="text-align: right"><b style="text-decoration:none; color:#ff8c00; font-weight:bold" class="text-20">TOTAL </b><b class="text-24" style="text-decoration:none; color:#42A5F5; font-weight:bold">${{$total}}.00</b></td></tr>
-        <tr>
-            <td colspan="2">
-                <div class="container">
-                    <div class="section">
-                        <div class="row main-wrapper">
 
-                            <div class="col s12 m9 l7">
-                                <div>
-                                    <h4 class="no-margin font-moserrat row">ITINERARY</h4>
-                                </div>
-                                @foreach($paquetes as $paquete)
-                                    @foreach($paquete->itinerario as $itinerario)
-
-                                        <div id="days-{{$itinerario->iditinerario}}" class="scrollspy clearfix">
-                                            <p class="text-18 font-moserrat"><b style="color: #2196F3;font-weight:bold;font-size: 18px">DAY {{$itinerario->dia}}:</b> <b>{{$itinerario->titulo}}</b></p>
-
-                                            <div class="col s12 no-padding" style="width: 90%">
-                                                <p class="no-margin">@php echo $itinerario->descripcion @endphp</p>
-                                            </div>
-                                        </div>
-                                    @endforeach
-                                @endforeach
-                            </div>
-
-                        </div>
-
-                        <div class="row margin-top-40">
-                            <div class="col s12">
-                                <div>
-                                    <h4 class="no-margin font-moserrat row">What's Included</h4>
-                                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquam culpa expedita, labore magni pariatur rem totam voluptates. Assumenda, facere, similique. Autem doloremque, ea harum odio reiciendis saepe tempora veritatis voluptas?</p>
-                                </div>
-                            </div>
-                            <div class="col s12">
-                                <div>
-                                    <h4 class="no-margin font-moserrat row">What's Not Included</h4>
-                                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquam culpa expedita, labore magni pariatur rem totam voluptates. Assumenda, facere, similique. Autem doloremque, ea harum odio reiciendis saepe tempora veritatis voluptas?</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </td>
-        </tr>
         </tbody>
     </table>
 

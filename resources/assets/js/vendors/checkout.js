@@ -1,10 +1,10 @@
 /**
  * Created by freddy on 4/11/2016.
  */
-$(document).ready(function() {
-    $('select').material_select();
-    $('#charge-error').addClass('hide');
-});
+// $(document).ready(function() {
+//     $('select').material_select();
+//     $('#charge-error').addClass('hide');
+// });
 Stripe.setPublishableKey('pk_test_dyIe8bpwdnHasxw7a27HhPoW');
 
 var $form=$('#checkout-form');

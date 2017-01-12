@@ -61,7 +61,18 @@ Route::post('checkout/', [
     'uses' => 'CheckoutController@store',
     'as' => 'checkout_store_path',
 ]);
-
+Route::post('checkout-confirmation/', [
+    'uses' => 'CheckoutController@confirmation',
+    'as' => 'noti-reservation-client',
+]);
+Route::any('pay-confirmation/',[
+    'uses' => 'CheckoutController@pay_confirmation',
+    'as' => 'noti-pay-confirmation-client',
+]);
+Route::post('checkout-confirmation-empresa/', [
+    'uses' => 'CheckoutController@pay_confirmation_empresa',
+    'as' => 'noti-reservation-empresa',
+]);
 /*==begin== rutas para clientes ================================================================*/
 Route::get('cliente/login', [
     'uses' => 'ClientAuthController@index',
