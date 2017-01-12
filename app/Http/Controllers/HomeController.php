@@ -51,7 +51,7 @@ class HomeController extends Controller
     public function inquire()
     {
 
-        $from = 'hidalgochpnce@gmail.com';
+        $from = 'info@gotoperu.com';
 
         $name = $_GET['name_txt'];
         $email = $_GET['email_txt'];
@@ -98,7 +98,7 @@ class HomeController extends Controller
             $accommodations2 = "-";
         }
 
-        $from = 'hidalgochpnce@gmail.com';
+        $from = 'info@gotoperu.com';
 
         $code = $_GET['code_txt'];
         $name = $_GET['name_txt'];

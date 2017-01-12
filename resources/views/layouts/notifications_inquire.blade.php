@@ -8,7 +8,7 @@
                         <tbody>
                         <tr bgcolor="#ffffff">
                             <td valign="top" style="padding:10px 35px 0 35px;color:#ffffff">
-                                <img class="CToWUd" width="250" alt="Platzi" src="https://gotoperu.com/img/logos/logo-gotoperu.png" style="vertical-align:top;max-width:220px">
+                                <img class="CToWUd" width="250" alt="logo gotoperu" src="https://gotoperu.com/img/logos/logo-gotoperu.png" style="vertical-align:top;max-width:220px">
                             </td>
                         </tr>
                         @yield('content')
@@ -30,8 +30,7 @@
                         <br>
                         <b>THE BEST PERU VACATIONS FROM THE BEST PERUVIAN OPERATOR</b>
                         <br>
-                        <a target="_blank" href="https://gotoperu.com/packages/" style="color:#4d4d4d">View all programs</a>
-                        .
+                        <a target="_blank" href="http://gotoperu.travel/" style="color:#4d4d4d">View all programs</a>
                     </p>
                     <img class="CToWUd" width="100" alt="logo goto peru" src="https://gotoperu.com/img/logos/logo-gotoperu.png">
                     <br>

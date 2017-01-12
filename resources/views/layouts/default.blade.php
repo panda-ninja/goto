@@ -3,7 +3,10 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no"/>
-    <title>Parallax Template - Materialize</title>
+    <meta name="description" content="Want to travel to Peru? GoToPeru offers a variety travel packages all over Peru. Call one of our offices today to start planning your Machu Picchu trip!"/>
+    <meta name="keywords" content="peru travel packages, travel packages to peru, Go To Peru, machu picchu travel, peru vacations, peru vacation packages, machu picchu deals, peru travel offers, machu picchu travel offers, Machu Picchu packages, customize peru travel packages, tour packages to machu picchu"/>
+    <meta name="author" content="info@gotoperu.com | hidalgochpnce@gmail.com" />
+    <title>Travel Packages to Peru | Peru Vacations | Machu Picchu Travel</title>
 
     <!-- CSS  -->
     <link href="{{asset('css/app.css')}}" type="text/css" rel="stylesheet" media="screen,projection"/>
