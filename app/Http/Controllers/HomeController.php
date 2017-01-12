@@ -157,6 +157,64 @@ class HomeController extends Controller
 
     }
 
+    public function design()
+    {
+        $from = 'info@gotoperu.com';
+
+        $peru = $_GET['txt_peru'];
+        $multicountries = $_GET['txt_multicountries'];
+        $hotel = $_GET['txt_hotel'];
+        $trip = $_GET['txt_trip'];
+        $travelers = $_GET['txt_travelers'];
+
+        $name = $_GET['txt_name'];
+        $email = $_GET['txt_email'];
+        $telephone = $_GET['txt_telephone'];
+        $travel_date = $_GET['txt_travel_date'];
+        $comment = $_GET['txt_comment'];
+
+        try {
+            Mail::send(['html' => 'inquire_notification'], ['name' => $name], function ($messaje) use ($email, $name) {
+                $messaje->to($email, $name)
+                    ->subject('Menssage GotoPeru')
+                    /*->attach('ruta')*/
+                    ->from('info@gotoperu.com', 'GotoPeru');
+            });
+
+
+            Mail::send(['html' => 'notifications_design'], [
+                'peru' => $peru,
+                'multicountries' => $multicountries,
+                'hotel' => $hotel,
+                'trip' => $trip,
+                'travelers' => $travelers,
+                'name' => $name,
+                'email' => $email,
+                'telephone' => $telephone,
+                'travel_date' => $travel_date,
+                'comment' => $comment
+            ], function ($messaje) use ($from) {
+                $messaje->to($from, 'GotoPeru')
+                    ->subject('Menssage GotoPeru.Travel')
+                    /*->attach('ruta')*/
+                    ->from('info@gotoperu.com', 'GotoPeru.Travel');
+            });
+
+
+//            Session::flash('message', $name.' hola');
+
+            return 'THANK YOU FOR CONTACT US, YOU WILL RECEIVE A REPLY IN LESS THAN 24 HOURS, GURANTEE. :)';
+
+
+//            return redirect()->route('home_path');
+        }
+        catch (Exception $e){
+            return $e;
+        }
+
+
+    }
+
     /**
      * Store a newly created resource in storage.
      *

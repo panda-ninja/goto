@@ -153,375 +153,386 @@
 
 <div class="margin-bottom-50">
     <div class="container">
-
-        <div class="row">
-            <div class="col s12">
-                <h5 class="yellow-text text-darken-3">SELECT <b>DESTINATIONS</b></h5>
-                <h6 class="font-moserrat text-18 red-text text-darken-4 center">PERU</h6>
-                <div class="divider"></div>
+        <form id="d_form">
+            {{csrf_field()}}
+            <div class="row">
+                <div class="col s12">
+                    <h5 class="yellow-text text-darken-3">SELECT <b>DESTINATIONS</b></h5>
+                    <h6 class="font-moserrat text-18 red-text text-darken-4 center">PERU</h6>
+                    <div class="divider"></div>
+                </div>
             </div>
-        </div>
 
-        <div class="row">
-            <div class="col s3">
-                <div class="card hoverable card-customize">
-                    <div class="card-image">
-                        <img src="{{asset('img/form/machupicchu-2.jpg')}}" id="img_filter_cusco">
-                        <span class="card-title">
-                                <input type="checkbox" id="cusco" onchange="javascript:imgfilter('cusco')"
-                                       class="yellow-text"/>
-                                <label for="cusco">Cusco & Machupicchu</label>
-                            </span>
-                        <div id="check_i_cusco" class="hide">
-                            <i class="material-icons blue-text text-lighten-1">check_circle</i>
+            <div class="row">
+                <div class="col s3">
+                    <div class="card hoverable card-customize">
+                        <div class="card-image">
+                            <img src="{{asset('img/form/machupicchu-2.jpg')}}" id="img_filter_cusco">
+                            <span class="card-title">
+                                    <input type="checkbox" id="d_cusco" value="Cusco y Machupicchu" name="peru[]" onchange="javascript:imgfilter('cusco')"
+                                           class="yellow-text"/>
+                                    <label for="d_cusco">Cusco & Machupicchu</label>
+                                </span>
+                            <div id="check_i_cusco" class="hide">
+                                <i class="material-icons blue-text text-lighten-1">check_circle</i>
+                            </div>
                         </div>
+
+                    </div>
+                </div>
+
+                <div class="col s3">
+                    <div class="card hoverable card-customize">
+                        <div class="card-image">
+                            <img src="{{asset('img/form/ballestas.jpg')}}" id="img_filter_ballestas">
+                            <span class="card-title">
+                                    <input type="checkbox" id="d_ballestas" value="Islas Ballestas y Paracas" name="peru[]" onchange="javascript:imgfilter('ballestas')"/>
+                                    <label for="d_ballestas">Ballestas Island & Paracas</label>
+                                </span>
+                            <div id="check_i_ballestas" class="hide">
+                                <i class="material-icons blue-text text-lighten-1">check_circle</i>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+                <div class="col s3">
+                    <div class="card hoverable card-customize">
+                        <div class="card-image">
+                            <img src="{{asset('img/form/colca.jpg')}}" id="img_filter_arequipa">
+                            <span class="card-title">
+                                    <input type="checkbox" id="d_arequipa" value="Arequipa y Caño del Colca" name="peru[]" onchange="javascript:imgfilter('arequipa')"/>
+                                    <label for="d_arequipa">Arequipa & Colca Canyon</label>
+                                </span>
+                            <div id="check_i_arequipa" class="hide">
+                                <i class="material-icons blue-text text-lighten-1">check_circle</i>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+                <div class="col s3">
+                    <div class="card hoverable card-customize">
+                        <div class="card-image">
+                            <img src="{{asset('img/form/amazon.jpg')}}" id="img_filter_amazon">
+                            <span class="card-title">
+                                    <input type="checkbox" id="d_amazon" value="Amazonas" name="peru[]" onchange="javascript:imgfilter('amazon')"/>
+                                    <label for="d_amazon">Amazon</label>
+                                </span>
+                            <div id="check_i_amazon" class="hide">
+                                <i class="material-icons blue-text text-lighten-1">check_circle</i>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+                <div class="col s3">
+                    <div class="card hoverable card-customize">
+                        <div class="card-image">
+                            <img src="{{asset('img/form/lima.jpg')}}" id="img_filter_lima">
+                            <span class="card-title">
+                                    <input type="checkbox" id="d_lima" value="Lima" name="peru[]" onchange="javascript:imgfilter('lima')"/>
+                                    <label for="d_lima">Lima</label>
+                                </span>
+                            <div id="check_i_lima" class="hide">
+                                <i class="material-icons blue-text text-lighten-1">check_circle</i>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+                <div class="col s3">
+                    <div class="card hoverable card-customize">
+                        <div class="card-image">
+                            <img src="{{asset('img/form/nazca.jpg')}}" id="img_filter_nazca">
+                            <span class="card-title">
+                                    <input type="checkbox" id="d_nazca" value="Lineas de Nazca" name="peru[]" onchange="javascript:imgfilter('nazca')"/>
+                                    <label for="d_nazca">Nazca Lines</label>
+                                </span>
+                            <div id="check_i_nazca" class="hide">
+                                <i class="material-icons blue-text text-lighten-1">check_circle</i>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+                <div class="col s3">
+                    <div class="card hoverable card-customize">
+                        <div class="card-image">
+                            <img src="{{asset('img/form/puno.jpg')}}" id="img_filter_puno">
+                            <span class="card-title">
+                                    <input type="checkbox" id="d_puno" value="Puno y Titicaca" name="peru[]" onchange="javascript:imgfilter('puno')"/>
+                                    <label for="d_puno">Puno & Titicaca</label>
+                                </span>
+                            <div id="check_i_puno" class="hide">
+                                <i class="material-icons blue-text text-lighten-1">check_circle</i>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+                <div class="col s3">
+                    <div class="card hoverable card-customize">
+                        <div class="card-image">
+                            <img src="{{asset('img/form/trujillo.jpg')}}" id="img_filter_trujillo">
+                            <span class="card-title">
+                                    <input type="checkbox" id="d_trujillo" value="Trujillo y Chiclayo" name="peru[]" onchange="javascript:imgfilter('trujillo')"/>
+                                    <label for="d_trujillo">Trujillo &amp; Chiclayo</label>
+                                </span>
+                            <div id="check_i_trujillo" class="hide">
+                                <i class="material-icons blue-text text-lighten-1">check_circle</i>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col s12">
+                    <h6 class="font-moserrat text-18 red-text text-darken-4 center">MULTICOUNTRIES</h6>
+                    <div class="divider"></div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col s3">
+                    <div class="card hoverable card-customize">
+                        <div class="card-image">
+                            <img src="{{asset('img/form/galapagos.jpg')}}" id="img_filter_galapagos">
+                            <span class="card-title">
+                                    <input type="checkbox" id="d_galapagos" value="Galapagos" name="multicountries[]" onchange="javascript:imgfilter('galapagos')"/>
+                                    <label for="d_galapagos">Galapagos (Ecuador)</label>
+                                </span>
+                            <div id="check_i_galapagos" class="hide">
+                                <i class="material-icons blue-text text-lighten-1">check_circle</i>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+                <div class="col s3">
+                    <div class="card hoverable card-customize">
+                        <div class="card-image">
+                            <img src="{{asset('img/form/rio.jpg')}}" id="img_filter_rio">
+                            <span class="card-title">
+                                    <input type="checkbox" id="d_rio" value="Rio" name="multicountries[]" onchange="javascript:imgfilter('rio')"/>
+                                    <label for="d_rio">Rio &amp; Iguazu (Brasil)</label>
+                                </span>
+                            <div id="check_i_rio" class="hide">
+                                <i class="material-icons blue-text text-lighten-1">check_circle</i>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+                <div class="col s3">
+                    <div class="card hoverable card-customize">
+                        <div class="card-image">
+                            <img src="{{asset('img/form/patagonia.jpg')}}" id="img_filter_buenos">
+                            <span class="card-title">
+                                    <input type="checkbox" id="d_buenos" value="Buenos Aires" name="multicountries[]" onchange="javascript:imgfilter('buenos')"/>
+                                    <label for="d_buenos">Buenos Aires (Argentina)</label>
+                                </span>
+                            <div id="check_i_buenos" class="hide">
+                                <i class="material-icons blue-text text-lighten-1">check_circle</i>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+                <div class="col s3">
+                    <div class="card hoverable card-customize">
+                        <div class="card-image">
+                            <img src="{{asset('img/form/uyuni.jpg')}}" id="img_filter_uyuni">
+                            <span class="card-title">
+                                    <input type="checkbox" id="d_uyuni" value="Uyuni" name="multicountries[]" onchange="javascript:imgfilter('uyuni')"/>
+                                    <label for="d_uyuni">Uyuni (Bolivia)</label>
+                                </span>
+                            <div id="check_i_uyuni" class="hide">
+                                <i class="material-icons blue-text text-lighten-1">check_circle</i>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+            <div class="row margin-top-20">
+                <div class="col s12">
+                    <h5 class="yellow-text text-darken-3">HOTEL <b>CATEGORY</b></h5>
+                    <p class="font-moserrat">(<span class="red-text darken-4">Optional</span> you may choose more than
+                        one)</p>
+                </div>
+            </div>
+
+            <div class="row form-optional-check">
+                <div class="col s3">
+                    <input type="checkbox" class="filled-in" id="d_budget" name="hotel[]" value="Budget 2 Stars"/>
+                    <label for="d_budget" class="hoverable">Budget 2 Stars</label>
+                </div>
+                <div class="col s3">
+                    <input type="checkbox" class="filled-in" id="d_best" name="hotel[]" value="Best Value 3 Stars"/>
+                    <label for="d_best" class="hoverable">Best Value 3 Stars</label>
+                </div>
+                <div class="col s3">
+                    <input type="checkbox" class="filled-in" id="d_superior" name="hotel[]" value="Superior 4 Stars"/>
+                    <label for="d_superior" class="hoverable">Superior 4 Stars</label>
+                </div>
+                <div class="col s3">
+                    <input type="checkbox" class="filled-in" id="d_luxury" name="hotel[]" value="Luxury 5 Stars"/>
+                    <label for="d_luxury" class="hoverable">Luxury 5 Stars</label>
+                </div>
+            </div>
+
+            <div class="row margin-top-20">
+                <div class="col s12">
+                    <h5 class="yellow-text text-darken-3">Trip <b>length</b></h5>
+                    <p class="font-moserrat">Cuanto tiempo desea que sea su viaje</p>
+                </div>
+            </div>
+
+            <div class="row form-optional-check">
+                <div class="col s2">
+                    <input type="checkbox" class="filled-in" id="d_3d" name="trip[]" value="03 - 05 Dias"/>
+                    <label for="d_3d" class="hoverable">03 - 05 <span>DAYS</span></label>
+                </div>
+                <div class="col s2">
+                    <input type="checkbox" class="filled-in" id="d_6d" name="trip[]" value="06 - 08 Dias"/>
+                    <label for="d_6d" class="hoverable">06 - 08 <span>DAYS</span></label>
+                </div>
+                <div class="col s2">
+                    <input type="checkbox" class="filled-in" id="d_9d" name="trip[]" value="09 - 11 Dias"/>
+                    <label for="d_9d" class="hoverable">09 - 11 <span>DAYS</span></label>
+                </div>
+                <div class="col s2">
+                    <input type="checkbox" class="filled-in" id="d_12d" name="trip[]" value="12 - 15 Dias"/>
+                    <label for="d_12d" class="hoverable">12 - 15 <span>DAYS</span></label>
+                </div>
+                <div class="col s2">
+                    <input type="checkbox" class="filled-in" id="d_16d" name="trip[]" value="16+ Dias"/>
+                    <label for="d_16d" class="hoverable">16+ <span>DAYS</span></label>
+                </div>
+                <div class="col s2">
+                    <input type="checkbox" class="filled-in" id="d_unknow" name="trip[]" value="UNKNOW"/>
+                    <label for="d_unknow" class="hoverable">UNKNOW</label>
+                </div>
+            </div>
+
+
+            <div class="row margin-top-20">
+                <div class="col s12">
+                    <h5 class="yellow-text text-darken-3">NUMBER OF <b>TRAVELERS</b></h5>
+                    <p class="font-moserrat">Numero de personas que viajaran con ud.</p>
+                </div>
+            </div>
+
+            <div class="row form-check-travelers">
+                <div class="col s2">
+                    <input type="checkbox" class="filled-in" id="d_1p" name="travelers[]" value="1 Persona"/>
+                    <label for="d_1p" class="hoverable">1 <span><i class="material-icons">person</i></span></label>
+                </div>
+                <div class="col s2">
+                    <input type="checkbox" class="filled-in" id="d_2p" name="travelers[]" value="2 Personas"/>
+                    <label for="d_2p" class="hoverable">2 <span><i class="material-icons">person</i></span></label>
+                </div>
+                <div class="col s2">
+                    <input type="checkbox" class="filled-in" id="d_3p" name="travelers[]" value="3 Personas"/>
+                    <label for="d_3p" class="hoverable">3 <span><i class="material-icons">person</i></span></label>
+                </div>
+                <div class="col s2">
+                    <input type="checkbox" class="filled-in" id="d_4p" name="travelers[]" value="4 Personas"/>
+                    <label for="d_4p" class="hoverable">4 <span><i class="material-icons">person</i></span></label>
+                </div>
+                <div class="col s2">
+                    <input type="checkbox" class="filled-in" id="d_5p" name="travelers[]" value="5 Personas"/>
+                    <label for="d_5p" class="hoverable">5+ <span><i class="material-icons">person</i></span></label>
+                </div>
+                <div class="col s2">
+                    <input type="checkbox" class="filled-in" id="d_undecided" name="travelers[]" value="UNDECIDED"/>
+                    <label for="d_undecided" class="hoverable text-14">UNDECIDED</label>
+                </div>
+            </div>
+
+            <div class="row margin-top-20">
+                <div class="col s12">
+                    <h5 class="yellow-text text-darken-3">PERSONAL <b>INFORMATION</b></h5>
+                    <p class="font-moserrat">Numero de personas que viajaran con ud.</p>
+                </div>
+            </div>
+
+
+            <div class="row form-design">
+                <div class="col s6">
+                    <div class="input-field col s12">
+                        <i class="material-icons prefix grey-text text-darken-1">account_circle</i>
+                        <input id="d_name" type="text" class="validate">
+                        <label for="d_name">Name</label>
+                    </div>
+                    <div class="input-field col s12">
+                        <i class="material-icons prefix grey-text text-darken-1">mail</i>
+                        <input id="d_email" type="email" class="validate">
+                        <label for="d_email" data-error="wrong" data-success="right">Email</label>
+                    </div>
+                    <div class="input-field col s12">
+                        <i class="material-icons prefix grey-text text-darken-1">phone</i>
+                        <input id="d_telephone" type="tel" class="validate">
+                        <label for="d_telephone">Telephone</label>
+                    </div>
+                    <div class="input-field col s12">
+                        <i class="material-icons prefix grey-text text-darken-1">date_range</i>
+                        <input id="d_travel_date" type="date" class="datepicker">
+                        <label for="d_travel_date">Travel Date</label>
+                    </div>
+                    <div class="input-field col s12">
+                        <i class="material-icons prefix grey-text text-darken-1">mode_edit</i>
+                        <textarea id="d_comment" class="materialize-textarea"></textarea>
+                        <label for="d_comment">Comentarios</label>
+                    </div>
+                </div>
+
+                <div class="col s6">
+                    <div class="col s12 position-relative">
+                        <img src="{{asset('img/why/team-travel.jpg')}}" alt="" class="responsive-img">
+                        <img src="{{asset('img/icons/24-hours.png')}}" alt="" width="150" class="margin-top-20 img-absolute-top-left">
+                    </div>
+                    <div class="col s4">
+                        <img src="{{asset('img/icons/abc.png')}}" alt="" class="responsive-img margin-top-20">
+                    </div>
+                    <div class="col s8">
+                        <p>Our Local representatives will receive and send you the first travel plan "A" in less than 24
+                            hours.</p>
+                        <p>And based on your important feedback we will customize a new plan B, C ... until we design
+                            together a dream vacations!</p>
                     </div>
 
                 </div>
             </div>
 
-            <div class="col s3">
-                <div class="card hoverable card-customize">
-                    <div class="card-image">
-                        <img src="{{asset('img/form/ballestas.jpg')}}" id="img_filter_ballestas">
-                        <span class="card-title">
-                                <input type="checkbox" id="ballestas" onchange="javascript:imgfilter('ballestas')"/>
-                                <label for="ballestas">Ballestas Island & Paracas</label>
-                            </span>
-                        <div id="check_i_ballestas" class="hide">
-                            <i class="material-icons blue-text text-lighten-1">check_circle</i>
+            <div class="row">
+                <div class="col s12 center">
+                    <button class="btn waves-effect waves-light yellow darken-4" id="d_send" type="button" onclick="sendDesign()">Submit
+                        <i class="material-icons right">send</i>
+                    </button>
+                </div>
+
+                <div class="col s12">
+                    <div class="row center margin-top-10 margin-bottom-10">
+                        <div id="d_congratulation" class="hidden card green padding-10">
+                            <p class="white-text no-margin center"></p>
                         </div>
                     </div>
-
-                </div>
-            </div>
-            <div class="col s3">
-                <div class="card hoverable card-customize">
-                    <div class="card-image">
-                        <img src="{{asset('img/form/colca.jpg')}}" id="img_filter_arequipa">
-                        <span class="card-title">
-                                <input type="checkbox" id="arequipa" onchange="javascript:imgfilter('arequipa')"/>
-                                <label for="arequipa">Arequipa & Colca Canyon</label>
-                            </span>
-                        <div id="check_i_arequipa" class="hide">
-                            <i class="material-icons blue-text text-lighten-1">check_circle</i>
-                        </div>
-                    </div>
-
-                </div>
-            </div>
-            <div class="col s3">
-                <div class="card hoverable card-customize">
-                    <div class="card-image">
-                        <img src="{{asset('img/form/amazon.jpg')}}" id="img_filter_amazon">
-                        <span class="card-title">
-                                <input type="checkbox" id="amazon" onchange="javascript:imgfilter('amazon')"/>
-                                <label for="amazon">Amazon</label>
-                            </span>
-                        <div id="check_i_amazon" class="hide">
-                            <i class="material-icons blue-text text-lighten-1">check_circle</i>
-                        </div>
-                    </div>
-
-                </div>
-            </div>
-
-            <div class="col s3">
-                <div class="card hoverable card-customize">
-                    <div class="card-image">
-                        <img src="{{asset('img/form/lima.jpg')}}" id="img_filter_lima">
-                        <span class="card-title">
-                                <input type="checkbox" id="lima" onchange="javascript:imgfilter('lima')"/>
-                                <label for="lima">Lima</label>
-                            </span>
-                        <div id="check_i_lima" class="hide">
-                            <i class="material-icons blue-text text-lighten-1">check_circle</i>
-                        </div>
-                    </div>
-
-                </div>
-            </div>
-
-            <div class="col s3">
-                <div class="card hoverable card-customize">
-                    <div class="card-image">
-                        <img src="{{asset('img/form/nazca.jpg')}}" id="img_filter_nazca">
-                        <span class="card-title">
-                                <input type="checkbox" id="nazca" onchange="javascript:imgfilter('nazca')"/>
-                                <label for="nazca">Nazca Lines</label>
-                            </span>
-                        <div id="check_i_nazca" class="hide">
-                            <i class="material-icons blue-text text-lighten-1">check_circle</i>
-                        </div>
-                    </div>
-
-                </div>
-            </div>
-
-            <div class="col s3">
-                <div class="card hoverable card-customize">
-                    <div class="card-image">
-                        <img src="{{asset('img/form/puno.jpg')}}" id="img_filter_puno">
-                        <span class="card-title">
-                                <input type="checkbox" id="puno" onchange="javascript:imgfilter('puno')"/>
-                                <label for="puno">Puno & Titicaca</label>
-                            </span>
-                        <div id="check_i_puno" class="hide">
-                            <i class="material-icons blue-text text-lighten-1">check_circle</i>
-                        </div>
-                    </div>
-
-                </div>
-            </div>
-
-            <div class="col s3">
-                <div class="card hoverable card-customize">
-                    <div class="card-image">
-                        <img src="{{asset('img/form/trujillo.jpg')}}" id="img_filter_trujillo">
-                        <span class="card-title">
-                                <input type="checkbox" id="trujillo" onchange="javascript:imgfilter('trujillo')"/>
-                                <label for="trujillo">Trujillo &amp; Chiclayo</label>
-                            </span>
-                        <div id="check_i_trujillo" class="hide">
-                            <i class="material-icons blue-text text-lighten-1">check_circle</i>
-                        </div>
-                    </div>
-
-                </div>
-            </div>
-        </div>
-
-        <div class="row">
-            <div class="col s12">
-                <h6 class="font-moserrat text-18 red-text text-darken-4 center">MULTICOUNTRIES</h6>
-                <div class="divider"></div>
-            </div>
-        </div>
-
-        <div class="row">
-            <div class="col s3">
-                <div class="card hoverable card-customize">
-                    <div class="card-image">
-                        <img src="{{asset('img/form/galapagos.jpg')}}" id="img_filter_galapagos">
-                        <span class="card-title">
-                                <input type="checkbox" id="galapagos" onchange="javascript:imgfilter('galapagos')"/>
-                                <label for="galapagos">Galapagos (Ecuador)</label>
-                            </span>
-                        <div id="check_i_galapagos" class="hide">
-                            <i class="material-icons blue-text text-lighten-1">check_circle</i>
-                        </div>
-                    </div>
-
-                </div>
-            </div>
-
-            <div class="col s3">
-                <div class="card hoverable card-customize">
-                    <div class="card-image">
-                        <img src="{{asset('img/form/rio.jpg')}}" id="img_filter_rio">
-                        <span class="card-title">
-                                <input type="checkbox" id="rio" onchange="javascript:imgfilter('rio')"/>
-                                <label for="rio">Rio &amp; Iguazu (Brasil)</label>
-                            </span>
-                        <div id="check_i_rio" class="hide">
-                            <i class="material-icons blue-text text-lighten-1">check_circle</i>
-                        </div>
-                    </div>
-
-                </div>
-            </div>
-
-            <div class="col s3">
-                <div class="card hoverable card-customize">
-                    <div class="card-image">
-                        <img src="{{asset('img/form/patagonia.jpg')}}" id="img_filter_buenos">
-                        <span class="card-title">
-                                <input type="checkbox" id="buenos" onchange="javascript:imgfilter('buenos')"/>
-                                <label for="buenos">Buenos Aires (Argentina)</label>
-                            </span>
-                        <div id="check_i_buenos" class="hide">
-                            <i class="material-icons blue-text text-lighten-1">check_circle</i>
-                        </div>
-                    </div>
-
-                </div>
-            </div>
-
-            <div class="col s3">
-                <div class="card hoverable card-customize">
-                    <div class="card-image">
-                        <img src="{{asset('img/form/uyuni.jpg')}}" id="img_filter_uyuni">
-                        <span class="card-title">
-                                <input type="checkbox" id="uyuni" onchange="javascript:imgfilter('uyuni')"/>
-                                <label for="uyuni">Uyuni (Bolivia)</label>
-                            </span>
-                        <div id="check_i_uyuni" class="hide">
-                            <i class="material-icons blue-text text-lighten-1">check_circle</i>
-                        </div>
-                    </div>
-
-                </div>
-            </div>
-        </div>
-
-        <div class="row margin-top-20">
-            <div class="col s12">
-                <h5 class="yellow-text text-darken-3">HOTEL <b>CATEGORY</b></h5>
-                <p class="font-moserrat">(<span class="red-text darken-4">Optional</span> you may choose more than
-                    one)</p>
-            </div>
-        </div>
-
-        <div class="row form-optional-check">
-            <div class="col s3">
-                <input type="checkbox" class="filled-in" id="luxury"/>
-                <label for="luxury" class="hoverable">Luxury 5 Stars</label>
-            </div>
-            <div class="col s3">
-                <input type="checkbox" class="filled-in" id="superior"/>
-                <label for="superior" class="hoverable">Superior 4 Stars</label>
-            </div>
-            <div class="col s3">
-                <input type="checkbox" class="filled-in" id="best"/>
-                <label for="best" class="hoverable">Best Value 3 Stars</label>
-            </div>
-            <div class="col s3">
-                <input type="checkbox" class="filled-in" id="budget"/>
-                <label for="budget" class="hoverable">Budget 2 Stars</label>
-            </div>
-        </div>
-
-        <div class="row margin-top-20">
-            <div class="col s12">
-                <h5 class="yellow-text text-darken-3">Trip <b>length</b></h5>
-                <p class="font-moserrat">Cuanto tiempo desea que sea su viaje</p>
-            </div>
-        </div>
-
-        <div class="row form-optional-check">
-            <div class="col s2">
-                <input type="checkbox" class="filled-in" id="3d"/>
-                <label for="3d" class="hoverable">03 - 05 <span>DAYS</span></label>
-            </div>
-            <div class="col s2">
-                <input type="checkbox" class="filled-in" id="6d"/>
-                <label for="6d" class="hoverable">06 - 08 <span>DAYS</span></label>
-            </div>
-            <div class="col s2">
-                <input type="checkbox" class="filled-in" id="9d"/>
-                <label for="9d" class="hoverable">09 - 11 <span>DAYS</span></label>
-            </div>
-            <div class="col s2">
-                <input type="checkbox" class="filled-in" id="12d"/>
-                <label for="12d" class="hoverable">12 - 15 <span>DAYS</span></label>
-            </div>
-            <div class="col s2">
-                <input type="checkbox" class="filled-in" id="16d"/>
-                <label for="16d" class="hoverable">16+ <span>DAYS</span></label>
-            </div>
-            <div class="col s2">
-                <input type="checkbox" class="filled-in" id="unknow"/>
-                <label for="unknow" class="hoverable">UNKNOW</label>
-            </div>
-        </div>
-
-
-        <div class="row margin-top-20">
-            <div class="col s12">
-                <h5 class="yellow-text text-darken-3">NUMBER OF <b>TRAVELERS</b></h5>
-                <p class="font-moserrat">Numero de personas que viajaran con ud.</p>
-            </div>
-        </div>
-
-        <div class="row form-check-travelers">
-            <div class="col s2">
-                <input type="checkbox" class="filled-in" id="1p"/>
-                <label for="1p" class="hoverable">1 <span><i class="material-icons">person</i></span></label>
-            </div>
-            <div class="col s2">
-                <input type="checkbox" class="filled-in" id="2p"/>
-                <label for="2p" class="hoverable">2 <span><i class="material-icons">person</i></span></label>
-            </div>
-            <div class="col s2">
-                <input type="checkbox" class="filled-in" id="3p"/>
-                <label for="3p" class="hoverable">3 <span><i class="material-icons">person</i></span></label>
-            </div>
-            <div class="col s2">
-                <input type="checkbox" class="filled-in" id="4p"/>
-                <label for="4p" class="hoverable">4 <span><i class="material-icons">person</i></span></label>
-            </div>
-            <div class="col s2">
-                <input type="checkbox" class="filled-in" id="5p"/>
-                <label for="5p" class="hoverable">5+ <span><i class="material-icons">person</i></span></label>
-            </div>
-            <div class="col s2">
-                <input type="checkbox" class="filled-in" id="undecided"/>
-                <label for="undecided" class="hoverable text-14">UNDECIDED</label>
-            </div>
-        </div>
-
-        <div class="row margin-top-20">
-            <div class="col s12">
-                <h5 class="yellow-text text-darken-3">PERSONAL <b>INFORMATION</b></h5>
-                <p class="font-moserrat">Numero de personas que viajaran con ud.</p>
-            </div>
-        </div>
-
-
-        <div class="row form-design">
-            <div class="col s6">
-                <div class="input-field col s12">
-                    <i class="material-icons prefix grey-text text-darken-1">account_circle</i>
-                    <input id="icon_prefix" type="text" class="validate">
-                    <label for="icon_prefix">Name</label>
-                </div>
-                <div class="input-field col s12">
-                    <i class="material-icons prefix grey-text text-darken-1">mail</i>
-                    <input id="email" type="email" class="validate">
-                    <label for="email" data-error="wrong" data-success="right">Email</label>
-                </div>
-                <div class="input-field col s12">
-                    <i class="material-icons prefix grey-text text-darken-1">phone</i>
-                    <input id="icon_telephone" type="tel" class="validate">
-                    <label for="icon_telephone">Telephone</label>
-                </div>
-                <div class="input-field col s12">
-                    <i class="material-icons prefix grey-text text-darken-1">date_range</i>
-                    <input id="last_name" type="date" class="datepicker">
-                    <label for="last_name">Travel Date</label>
-                </div>
-                <div class="input-field col s12">
-                    <i class="material-icons prefix grey-text text-darken-1">mode_edit</i>
-                    <textarea id="icon_prefix2" class="materialize-textarea"></textarea>
-                    <label for="icon_prefix2">Comentarios</label>
-                </div>
-            </div>
-
-            <div class="col s6">
-                <div class="col s12 position-relative">
-                    <img src="{{asset('img/why/team-travel.jpg')}}" alt="" class="responsive-img">
-                    <img src="{{asset('img/icons/24-hours.png')}}" alt="" width="150" class="margin-top-20 img-absolute-top-left">
-                </div>
-                <div class="col s4">
-                    <img src="{{asset('img/icons/abc.png')}}" alt="" class="responsive-img margin-top-20">
-                </div>
-                <div class="col s8">
-                    <p>Our Local representatives will receive and send you the first travel plan "A" in less than 24
-                        hours.</p>
-                    <p>And based on your important feedback we will customize a new plan B, C ... until we design
-                        together a dream vacations!</p>
                 </div>
 
             </div>
-        </div>
-
-        <div class="row">
-            <div class="col s12 center">
-                <a href="" class="waves-effect waves-light btn-large"><i class="material-icons right">send</i>
-                    Submit</a>
-            </div>
-        </div>
-
+        </form>
     </div>
     {{--<div class="container">--}}
     {{----}}
@@ -938,6 +949,7 @@
 </script>
 
 <script>
+    //FORMULARIO INQUIRE
     function sendInquire(){
         $.ajaxSetup({
             headers: {
@@ -1007,7 +1019,6 @@
     }
 
     //FORMULARIO AVAILABILITY
-
     function SendMailAvailability(){
         $.ajaxSetup({
             headers: {
@@ -1094,6 +1105,139 @@
             });
         } else{
             $("#a_send").removeAttr("disabled");
+        }
+    }
+
+    //FORMULARIO DESIGN
+    function sendDesign(){
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('[name="_token"]').val()
+            }
+        });
+
+        $("#d_send").attr("disabled", true);
+
+        var filter=/^[A-Za-z][A-Za-z0-9_]*@[A-Za-z0-9_]+.[A-Za-z0-9_.]+[A-za-z]$/;
+
+        var s_peru = document.getElementsByName('peru[]');
+        var $peru = "";
+        for (var i = 0, l = s_peru.length; i < l; i++) {
+            if (s_peru[i].checked) {
+                $peru += s_peru[i].value+' , ';
+            }
+        }
+        s_peru = $peru.substring(0,$peru.length-3);
+
+        var s_multicountries = document.getElementsByName('multicountries[]');
+        var $multicountries = "";
+        for (var i = 0, l = s_multicountries.length; i < l; i++) {
+            if (s_multicountries[i].checked) {
+                $multicountries += s_multicountries[i].value+' , ';
+            }
+        }
+
+        s_multicountries = $multicountries.substring(0,$multicountries.length-3);
+
+        var s_hotel = document.getElementsByName('hotel[]');
+        var $hotel = "";
+        for (var i = 0, l = s_hotel.length; i < l; i++) {
+            if (s_hotel[i].checked) {
+                $hotel += s_hotel[i].value+' , ';
+            }
+        }
+
+        s_hotel = $hotel.substring(0,$hotel.length-3);
+
+        var s_trip = document.getElementsByName('trip[]');
+        var $trip = "";
+        for (var i = 0, l = s_trip.length; i < l; i++) {
+            if (s_trip[i].checked) {
+                $trip += s_trip[i].value+' , ';
+            }
+        }
+
+        s_trip = $trip.substring(0,$trip.length-3);
+
+        var s_travelers = document.getElementsByName('travelers[]');
+        var $travelers = "";
+        for (var i = 0, l = s_travelers.length; i < l; i++) {
+            if (s_travelers[i].checked) {
+                $travelers += s_travelers[i].value+' , ';
+            }
+        }
+
+        s_travelers = $travelers.substring(0,$travelers.length-3);
+
+
+//        var s_peru = document.getElementsByName('peru[]');
+//        var s_multicountries = document.getElementsByName('multicountries[]');
+//        var s_hotel = document.getElementsByName('hotel[]');
+//        var s_trip = document.getElementsByName('trip[]');
+//        var s_travelers = document.getElementsByName('travelers[]');
+
+        var s_name = $('#d_name').val();
+        var s_email = $('#d_email').val();
+        var s_telephone = $('#d_telephone').val();
+        var s_travel_date = $('#d_travel_date').val();
+        var s_comment = $('#d_comment').val();
+
+
+        if (filter.test(s_email)){
+            sendMail = "true";
+        } else{
+            $('#d_email').css("border-bottom", "2px solid #FF0000");
+            sendMail = "false";
+        }
+        if (s_name.length == 0 ){
+            $('#d_name').css("border-bottom", "2px solid #FF0000");
+            var sendMail = "false";
+        }
+
+        if(sendMail == "true"){
+            var datos = {
+
+                "txt_peru" : s_peru,
+                "txt_multicountries" : s_multicountries,
+                "txt_hotel" : s_hotel,
+                "txt_trip" : s_trip,
+                "txt_travelers" : s_travelers,
+
+                "txt_name" : s_name,
+                "txt_email" : s_email,
+                "txt_telephone" : s_telephone,
+                "txt_travel_date" : s_travel_date,
+                "txt_comment" : s_comment
+
+            };
+            $.ajax({
+                data:  datos,
+                url:   '{{route('home_design_path')}}',
+                type:  'get',
+
+                beforeSend: function () {
+                    $("#d_send").html('<div class="preloader-wrapper small active">'+
+                        '<div class="spinner-layer spinner-green-only">'+
+                        '<div class="circle-clipper left">'+
+                        '<div class="circle"></div>'+
+                        '</div><div class="gap-patch">'+
+                        '<div class="circle"></div>'+
+                        '</div><div class="circle-clipper right">'+
+                        '<div class="circle"></div>'+
+                        '</div>'+
+                        '</div>'+
+                        '</div>');;
+                },
+                success:  function (response) {
+                    $('#d_form')[0].reset();
+                    $("#d_send").html("Send");
+                    $("#d_congratulation p").html(response);
+                    $("#d_congratulation").fadeIn('slow');
+                    $("#d_send").removeAttr("disabled");
+                }
+            });
+        } else{
+            $("#d_send").removeAttr("disabled");
         }
     }
 </script>

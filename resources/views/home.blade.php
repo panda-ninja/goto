@@ -13,7 +13,7 @@
 
                     <div class="row margin-top-40">
                         <div class="col s12 m8 offset-m2 l3 offset-l6">
-                            <a href="" class="waves-effect">
+                            <a href="{{route('home_show_date_path', 5)}}" class="waves-effect">
                                 {{--<p class="yellow-text text-darken-3 grey darken-4">ALL INCLUDED</p>--}}
                                 <div class="col s3">
                                     <img src="{{asset('img/icons//include/hotels.png')}}" alt="" class="responsive-img">
@@ -46,7 +46,7 @@
 
                                 <div class="col s12 white-text">
                                     <p class="no-margin text-22">ALL INCLUDED FROM MIAMI</p>
-                                    <p class="no-margin text-35"><b class="">5 DAYS</b> <span class="btn black-text">$1399</span></p>
+                                    <p class="no-margin text-35"><b class="">5 DAYS</b> <span class="btn black-text">$1299</span></p>
                                 </div>
                             </a>
                         </div>
@@ -170,71 +170,71 @@
     </div>
 
     @foreach($paquetes2->unique('duracion') as $paquete2)
-        <div class="container margin-bottom-20">
+        <div class="container margin-bottom-40">
             <div class="section no-padding">
                 <div class="row center">
                     @foreach($paquete2->disponibilidad->sortBy('precio')->take(1) as $precio)
-                        <h5 class="yellow-text text-darken-4 no-margin font-moserrat"><b><span class="lime-text text-darken-3">{{$paquete2->duracion}} DAYS</span></b> CUSCO, SACRED VALLEY, MACHU PICCHU <b class="grey-text text-darken-4">from ${{$precio->precio}}</b></h5>
+                        <h5 class="grey-text text-darken-1  font-moserrat"><b><span class="lime-text text-darken-3 padding-right-25">{{$paquete2->duracion}} DAYS</span></b> CUSCO, SACRED VALLEY, MACHU PICCHU <b class="grey-text text-darken-4 padding-left-25">from ${{$precio->precio}}</b></h5>
                     @endforeach
                 </div>
 
                 <div class="row">
-                    <div class="col s12 ">
-                        <div class="col s12 card-panel lighten-5 z-depth-1 hoverable grey">
-                            @foreach($paquetes2->where('duracion', $paquete2->duracion) as $paquetes)
-                                <div class="col s3">
 
-                                    <div class="text-22 grey-text text-darken-4 margin-top-10"><b><span class="text-12 display-block grey-text text-darken-5">from</span> {{$paquetes->titulo}}</b></div>
+                    <div class="col s12 grey card lighten-4 card no-margin z-depth-1">
+                        @foreach($paquetes2->where('duracion', $paquete2->duracion) as $paquetes)
+                            <div class="col s3">
 
-                                    {{--<p class="no-margin">Small group</p>--}}
-                                    {{--<p class="no-margin">Tourist to Superior</p>--}}
-                                    <ul class="font-moserrat right-align">
-                                        @foreach($paquetes->disponibilidad->take(3) as $disponibilidad)
+                                <div class="text-22 grey-text text-darken-4 margin-top-10"><b><span class="text-12 display-block grey-text text-darken-5">from</span> {{$paquetes->titulo}}</b></div>
 
-                                            <li class="text-13 margin-bottom-10">
-                                                <form action="{{route('home_show_checkout_path', array('titulo'=>str_replace(' ','-', strtolower($paquetes->titulo)), 'dias'=>$paquetes->duracion.'-days-tours'))}}"
-                                                      method="post">
-                                                    {{csrf_field()}}
-                                                    <input type="hidden" value="1" name="txt_iddate">
-                                                    <input type="hidden" value="{{$disponibilidad->fecha_disponibilidad}}" name="txt_date">
-                                                    <input type="hidden" value="{{$paquetes->titulo}}" name="txt_country">
-                                                    <input type="hidden" value="{{$disponibilidad->precio}}" name="txt_price">
-                                                    {{strftime("%B, %d", strtotime(str_replace('-','/', $disponibilidad->fecha_disponibilidad)))}} <span class="blue-text">${{$disponibilidad->precio}}</span>
-                                                    <input type="submit" class="btn btn-date" value="BOOK">
-                                                </form>
-                                            </li>
-                                        @endforeach
-                                    </ul>
+                                {{--<p class="no-margin">Small group</p>--}}
+                                {{--<p class="no-margin">Tourist to Superior</p>--}}
+                                <ul class="font-moserrat right-align">
+                                    @foreach($paquetes->disponibilidad->take(3)->sortBy('fecha_disponibilidad') as $disponibilidad)
 
-                                </div>
-                            @endforeach
-                            <div class="col s12">
-                                <a href="{{route('home_show_date_path', $paquetes->duracion)}}" class="font-moserrat valign-wrapper right margin-bottom-10">View All Programs <i class="material-icons">input</i></a>
-                            </div>
-
-                            <div class="col s12 divider"></div>
-                            <div class="s12 margin-bottom-30">
-                                <div class="col s5">
-                                    {{--<div class="valign-wrapper">--}}
-                                        {{--<img src="{{asset('img/icons/all-included.png')}}" alt="" width="100" class="left">--}}
-                                    {{--</div>--}}
-                                    <h5 class="font-moserrat">ITINERARIES</h5>
-                                    <ul class="text-15">
-                                        @foreach($paquetes->itinerario as $itinerario)
-                                            <li><b>Day {{$itinerario->dia}}:</b> {{$itinerario->titulo}}</li>
-                                        @endforeach
-                                        <li>
-                                            <a href="{{route('home_show_date_path', $paquetes->duracion)}}" class="btn valign-wrapper left margin-top-10">Detailed Program</a>
+                                        <li class="text-13 margin-bottom-10">
+                                            <form action="{{route('home_show_checkout_path', array('titulo'=>str_replace(' ','-', strtolower($paquetes->titulo)), 'dias'=>$paquetes->duracion.'-days-tours'))}}"
+                                                  method="post">
+                                                {{csrf_field()}}
+                                                <input type="hidden" value="1" name="txt_iddate">
+                                                <input type="hidden" value="{{$disponibilidad->fecha_disponibilidad}}" name="txt_date">
+                                                <input type="hidden" value="{{$paquetes->titulo}}" name="txt_country">
+                                                <input type="hidden" value="{{$disponibilidad->precio}}" name="txt_price">
+                                                {{strftime("%B, %d", strtotime(str_replace('-','/', $disponibilidad->fecha_disponibilidad)))}} <span class="blue-text">${{$disponibilidad->precio}}</span>
+                                                <input type="submit" class="btn btn-date" value="BOOK">
+                                            </form>
                                         </li>
-                                    </ul>
+                                    @endforeach
+                                </ul>
 
-                                </div>
-                                <div class="col s7">
-                                    <img src="{{asset('img/maps/GTPF700B.jpg')}}" alt="" class="responsive-img margin-top-15">
-                                </div>
                             </div>
+                        @endforeach
+                    </div>
+
+                    {{--<div class="col s12 divider"></div>--}}
+
+
+                    <div class="col s12 margin-bottom-30 card no-margin">
+                        <a href="{{route('home_show_date_path', $paquetes->duracion)}}" class="font-moserrat valign-wrapper right margin-top-10 deep-orange-text text-accent-3">View All Dates <i class="material-icons">input</i></a>
+                        <div class="col s6">
+                            {{--<div class="valign-wrapper">--}}
+                            {{--<img src="{{asset('img/icons/all-included.png')}}" alt="" width="100" class="left">--}}
+                            {{--</div>--}}
+                            <h5 class="font-moserrat">Travel Outline</h5>
+                            <ul class="text-17">
+                                @foreach($paquetes->itinerario as $itinerario)
+                                    <li><b>Day {{$itinerario->dia}}:</b> {{ucwords(strtolower($itinerario->titulo))}}</li>
+                                @endforeach
+                                <li>
+                                    <a href="{{route('home_show_date_path', $paquetes->duracion)}}" class="btn valign-wrapper waves-effect left margin-top-10 deep-orange accent-3">Detailed Program</a>
+                                </li>
+                            </ul>
+
+                        </div>
+                        <div class="col s6">
+                            <img src="{{asset('img/maps/GTPF700B.jpg')}}" alt="" class="responsive-img margin-top-15">
                         </div>
                     </div>
+
                 </div>
 
 

@@ -101,7 +101,7 @@
                                     <div class="text-22 grey-text text-darken-4 margin-top-10"><b><span class="text-12 display-block grey-text text-darken-5">from</span> {{$paquetes->titulo}}</b></div>
 
                                     <ul class="font-moserrat right-align">
-                                        @foreach($paquetes->disponibilidad->take(7) as $disponibilidad)
+                                        @foreach($paquetes->disponibilidad->take(10)->sortBy('fecha_disponibilidad') as $disponibilidad)
 
                                             <li class="text-13 margin-bottom-10">
                                                 <form action="{{route('home_show_checkout_path', array('titulo'=>str_replace(' ','-', strtolower($paquetes->titulo)), 'dias'=>$paquetes->duracion.'-days-tours'))}}"

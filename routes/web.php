@@ -41,6 +41,10 @@ Route::get('availability', [
     'uses' => 'HomeController@availability',
     'as' => 'home_availability_path',
 ]);
+Route::get('design', [
+    'uses' => 'HomeController@design',
+    'as' => 'home_design_path',
+]);
 
 //Route::any('travel-packages/{titulo}_{dias}', [
 //    'uses' => 'HomeController@showdate',
