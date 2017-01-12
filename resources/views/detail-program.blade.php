@@ -67,7 +67,7 @@
                         <input type="hidden" value="{{$paquete->codigo}}" name="txt_codigo">
                         <input type="hidden" value="{{$paquete->titulo}}" name="txt_country">
                         <a href="#availability" class="waves-effect waves-light btn lime darken-4 modal-trigger">CHECK AVAILABILITY</a>
-                        <button class="btn waves-effect waves-light blue" type="submit" name="action">BOOK NOW</button>
+                        {{--<button class="btn waves-effect waves-light blue" type="submit" name="action">BOOK NOW</button>--}}
                     </form>
 
 
@@ -258,7 +258,7 @@
                                 <input type="hidden" value="{{$paquete->codigo}}" name="txt_codigo">
                                 <input type="hidden" value="{{$paquete->titulo}}" name="txt_country">
                                 <a href="#availability" class="waves-effect waves-light btn lime darken-4 modal-trigger">CHECK AVAILABILITY</a>
-                                <button class="btn waves-effect waves-light blue" type="submit" name="action">BOOK NOW</button>
+                                {{--<button class="btn waves-effect waves-light blue" type="submit" name="action">BOOK NOW</button>--}}
                             </form>
                         </div>
                     </div>
