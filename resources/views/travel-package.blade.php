@@ -101,7 +101,7 @@
                                     <div class="text-22 grey-text text-darken-4 margin-top-10"><b><span class="text-12 display-block grey-text text-darken-5">from</span> {{$paquetes->titulo}}</b></div>
 
                                     <ul class="font-moserrat right-align">
-                                        @foreach($paquetes->disponibilidad->take(10)->sortBy('fecha_disponibilidad') as $disponibilidad)
+                                        @foreach($paquetes->disponibilidad->take(10)->sortBy('fecha_disponibilidad')->where('estrellas', 3) as $disponibilidad)
 
                                             <li class="text-13 margin-bottom-10">
                                                 <form action="{{route('home_show_checkout_path', array('titulo'=>str_replace(' ','-', strtolower($paquetes->titulo)), 'dias'=>$paquetes->duracion.'-days-tours'))}}"
@@ -112,7 +112,7 @@
                                                     <input type="hidden" value="{{$paquetes->titulo}}" name="txt_country">
                                                     <input type="hidden" value="{{$disponibilidad->precio}}" name="txt_price">
 
-                                                    {{strftime("%B, %d", strtotime(str_replace('-','/', $disponibilidad->fecha_disponibilidad)))}} <span class="blue-text">${{$disponibilidad->precio}}</span>
+                                                    {{strftime("%B, %d", strtotime(str_replace('-','/', $disponibilidad->fecha_disponibilidad)))}} <span class="blue-text">${{$disponibilidad->precio_t}}</span>
                                                     <input type="submit" class="btn btn-date" value="BOOK">
                                                 </form>
                                             </li>
