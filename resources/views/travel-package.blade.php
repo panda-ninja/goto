@@ -51,7 +51,6 @@
         </div>
     </section>
 
-
     <div class="container">
         <div class="section scrollspy" id="vacations">
 
@@ -161,7 +160,6 @@
         </div>
 
     @endforeach
-
 
     <div class="container">
         <div class="section scrollspy" id="itinerary">
@@ -357,6 +355,5 @@
             </div>
         </div>
     </div>
-
-
+    
 @stop
