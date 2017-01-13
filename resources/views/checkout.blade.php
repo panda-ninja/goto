@@ -92,10 +92,12 @@
                                 @if($paquete->codigo==$paquete1->codigo)
                                     @foreach($paquete->disponibilidad as $disponibilidad)
                                         @if($disponibilidad->estado=='1')
-                                            @if($disponibilidad->fecha_disponibilidad==$_POST['txt_date'])
-                                                <option value="{{$disponibilidad->fecha_disponibilidad.'_'.$disponibilidad->precio}}" selected>{{obtenerFechaEnLetra($disponibilidad->fecha_disponibilidad)}}</option>
-                                            @else
-                                                <option value="{{$disponibilidad->fecha_disponibilidad.'_'.$disponibilidad->precio}}" >{{obtenerFechaEnLetra($disponibilidad->fecha_disponibilidad)}}</option>
+                                            @if($disponibilidad->estrellas=='3')
+                                                @if($disponibilidad->fecha_disponibilidad==$datedispo)
+                                                    <option value="{{$disponibilidad->fecha_disponibilidad.'_'.$disponibilidad->precio}}" selected>{{obtenerFechaEnLetra($disponibilidad->fecha_disponibilidad)}}</option>
+                                                @else
+                                                    <option value="{{$disponibilidad->fecha_disponibilidad.'_'.$disponibilidad->precio}}" >{{obtenerFechaEnLetra($disponibilidad->fecha_disponibilidad)}}</option>
+                                                @endif
                                             @endif
                                         @endif
                                     @endforeach
@@ -156,7 +158,7 @@
 
                                         @else
                                             @foreach($paquetes as $paquete)
-                                                @foreach($paquete->precio_paquetes as $precio_paquetes)
+                                                @foreach($paquete->disponibilidad as $precio_paquetes)
                                                     @if($precio_paquetes->estrellas=='2')
                                                         <?php
                                                         $pre_2_s=$precio_paquetes->precio_s;

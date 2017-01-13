@@ -6,7 +6,9 @@
     $paquete1='';
     ?>
     @foreach ($paquetes as $paquete)
+        <?php
         $paquete1=$paquete;
+        ?>
     @endforeach
 
     <table class="x_full" border="0" cellpadding="0" width="100%" cellspacing="0"  align="center" style="max-width:900px;">
@@ -32,7 +34,7 @@
                     <tr><td><b>Fecha de la factura:</b> {{$fecha_factura}}</td></tr>
                     <tr><td><b>Payment method:</b> {{$medio}}</td></tr>
                     <tr><td><b>Transaction:</b> {{$transaccion}}</td></tr>
-                    {{--<tr><td><b>Codigo Paquete:</b> {{$paquete1->codigo}}</td></tr>--}}
+                    <tr><td><b>Codigo Paquete:</b> {{$paquete1->codigo}}</td></tr>
 
                     <tr><td><b>Total:</b> $ {{$total}}.00</td></tr>
                 </table>
