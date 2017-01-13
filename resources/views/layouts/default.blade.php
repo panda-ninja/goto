@@ -3,20 +3,15 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no"/>
-    <meta name="description" content="Want to travel to Peru? GoToPeru offers a variety travel packages all over Peru. Call one of our offices today to start planning your Machu Picchu trip!"/>
-    <meta name="keywords" content="peru travel packages, travel packages to peru, Go To Peru, machu picchu travel, peru vacations, peru vacation packages, machu picchu deals, peru travel offers, machu picchu travel offers, Machu Picchu packages, customize peru travel packages, tour packages to machu picchu"/>
     <meta name="author" content="info@gotoperu.com | hidalgochpnce@gmail.com" />
-    <title>Travel Packages to Peru | Peru Vacations | Machu Picchu Travel</title>
+    {!! SEOMeta::generate() !!}
 
     <!-- CSS  -->
-    <link href="{{asset('css/app.css')}}" type="text/css" rel="stylesheet" media="screen,projection"/>
-    <link href="{{asset('css/carousel.css')}}" type="text/css" rel="stylesheet" media="screen,projection"/>
+    <link href="{{elixir('css/app.css')}}" type="text/css" rel="stylesheet" media="screen,projection"/>
+    <link href="{{elixir('css/carousel.css')}}" type="text/css" rel="stylesheet" media="screen,projection"/>
     <link href="{{asset('css/style-freddy.css')}}" type="text/css" rel="stylesheet" media="screen,projection"/>
     <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
-
-    <style>
-
-    </style>
+    <link href="{{asset('img/icons/favicon/favicon.ico')}}" rel="icon" type="image/x-icon">
 
 
 </head>
@@ -581,9 +576,7 @@
                     <img src="{{asset('img/prom-peru.jpg')}}" alt="video" class="responsive-img">
 
                     <div class="content-video-btn-1">
-                        <a href="https://player.vimeo.com/video/102732914?title=0&amp;byline=0&amp;portrait=0&amp;color=11b1c2&amp;wmode=opaque"
-                           class="html5lightbox content-vbtn-color-blue" data-width="570" data-height="320"
-                           title="title here "><i class="material-icons">play_circle_filled</i></a>
+                        <a href="https://www.youtube.com/embed/gGq_U1DYUCs" class="html5lightbox content-vbtn-color-blue" data-width="570" data-height="320"><i class="material-icons">play_circle_filled</i></a>
                     </div>
                 </div>
             </div>

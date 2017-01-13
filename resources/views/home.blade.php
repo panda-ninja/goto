@@ -1,5 +1,7 @@
 @extends('layouts.default')
 
+@section('title', 'Travel Packages to Peru | Peru Vacations | Machu Picchu Travel')
+
 @section('content')
 
     <div class="slider">
@@ -189,7 +191,7 @@
                                 {{--<p class="no-margin">Small group</p>--}}
                                 {{--<p class="no-margin">Tourist to Superior</p>--}}
                                 <ul class="font-moserrat right-align">
-                                    @foreach($paquetes->disponibilidad->take(3)->sortBy('fecha_disponibilidad') as $disponibilidad)
+                                    @foreach($paquetes->disponibilidad->take(3)->sortBy('fecha_disponibilidad')->where('estrellas', 3) as $disponibilidad)
 
                                         <li class="text-13 margin-bottom-10">
                                             <form action="{{route('home_show_checkout_path', array('titulo'=>str_replace(' ','-', strtolower($paquetes->titulo)), 'dias'=>$paquetes->duracion.'-days-tours'))}}"
@@ -199,7 +201,7 @@
                                                 <input type="hidden" value="{{$disponibilidad->fecha_disponibilidad}}" name="txt_date">
                                                 <input type="hidden" value="{{$paquetes->titulo}}" name="txt_country">
                                                 <input type="hidden" value="{{$disponibilidad->precio}}" name="txt_price">
-                                                {{strftime("%B, %d", strtotime(str_replace('-','/', $disponibilidad->fecha_disponibilidad)))}} <span class="blue-text">${{$disponibilidad->precio}}</span>
+                                                {{strftime("%B, %d", strtotime(str_replace('-','/', $disponibilidad->fecha_disponibilidad)))}} <span class="blue-text">${{$disponibilidad->precio_t}}</span>
                                                 <input type="submit" class="btn btn-date" value="BOOK">
                                             </form>
                                         </li>
@@ -280,8 +282,8 @@
                     </div>
 
                     <div class="customNavigation center">
-                        <a class="btn prev"><i class="material-icons left">arrow_back</i> Previous</a>
-                        <a class="btn next"><i class="material-icons right">arrow_forward</i>Next</a>
+                        <a class="btn preva"><i class="material-icons left">arrow_back</i> Previous</a>
+                        <a class="btn nexta"><i class="material-icons right">arrow_forward</i>Next</a>
                     </div>
                     <div id="owl-demo" class="owl-carousel">
 
