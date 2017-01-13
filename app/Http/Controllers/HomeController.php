@@ -2,6 +2,7 @@
 
 namespace GotoPeru\Http\Controllers;
 
+use Artesaos\SEOTools\Facades\SEOMeta;
 use GotoPeru\Cotizacion;
 use GotoPeru\ItinerarioPersonalizado;
 use GotoPeru\ItinerarioXHora;
@@ -30,6 +31,12 @@ class HomeController extends Controller
      */
     public function index()
     {
+        SEOMeta::setTitle('Travel Packages to Peru | Peru Vacations | Machu Picchu Travel');
+        SEOMeta::setDescription('Want to travel to Peru? GoToPeru offers a variety travel packages all over Peru. Call one of our offices today to start planning your Machu Picchu trip!');
+        SEOMeta::setCanonical('https://gotoperu.com/');
+        SEOMeta::addKeyword(['peru travel packages', 'travel packages to peru', 'Go To Peru', 'machu picchu travel', 'peru vacations', 'peru vacation packages', 'machu picchu deals', 'peru travel offers', 'machu picchu travel offers', 'Machu Picchu packages', 'customize peru travel packages', 'tour packages to machu picchu']);
+
+
         $duracion = TPaquete::select('duracion')->distinct()->get();
         $paquete = TPaquete::with('paquetes_destinos', 'precio_paquetes', 'disponibilidad')->get()->where('estado', 1);
         $featured = TPaquete::with('paquetes_destinos', 'precio_paquetes')->get()->where('estadoslider', 1);
@@ -234,11 +241,11 @@ class HomeController extends Controller
      */
     public function showdate($dias)
     {
+        SEOMeta::setTitle('Travel Packages All Included | Customized Peru Travel Packages');
+        SEOMeta::setDescription('Discover beautiful places to visit in Peru Machu Picchu tours with gotoperu. Experience best places in Peru- Ica and Vineyards, Mancora Beach, Nazca Lines and more.');
+        SEOMeta::setCanonical('http://goto2.nu/travel-packages-all-included/');
+        SEOMeta::addKeyword(['Customized Peru travel Packages', 'Peru Travel', 'Peru Travel Destinations', 'Peru Travel Packages']);
 
-//        if ($_POST){
-//            Session::put('s_date', Input::get('txt_date'));
-//            Session::put('s_country', Input::get('txt_country'));
-//        }
         $paquete2 = TPaquete::with('paquetes_destinos', 'precio_paquetes', 'disponibilidad')->where('estadoslider',2)->where('duracion',$dias)->get();
         $paquete = TPaquete::with('itinerario','paquetes_destinos', 'precio_paquetes')->get();
 //        dd($paquete);
@@ -273,6 +280,11 @@ class HomeController extends Controller
 
     public function viewpackages()
     {
+        SEOMeta::setTitle('Machu Picchu Tour Packages | Machu Picchu Vacation Packages | Machu Picchu Deals | Peru Honeymoon Travel Packages');
+        SEOMeta::setDescription('Discover Peru with Gotoperu Tour &amp; Travel Packages. We offer amazing deals on Machu Picchu Vacation Packages.');
+        SEOMeta::setCanonical('https://gotoperu.com/packages/');
+        SEOMeta::addKeyword(['Machu Picchu Tour Packages', 'Machu Picchu Packages', 'Machu Picchu Vacation Packages', 'Machu Picchu Deals', 'Peru Honeymoon Travel Packages']);
+
         $categoria = TCategoria::get();
         $duracion = TPaquete::select('duracion')->distinct()->get();
         $paquete = TPaquete::with('paquetes_destinos', 'precio_paquetes', 'paquetes_categoria')->where('codigo', 'NOT LIKE', 'GTPF%')->where('codigo', 'NOT LIKE', 'GTPX%')->where('codigo', 'NOT LIKE', 'GTPV%')->get();
@@ -282,6 +294,11 @@ class HomeController extends Controller
 
     public function showdays($dias)
     {
+        SEOMeta::setTitle('Travel Packages '.$dias.' days - Peru Travel Packages | Machu Picchu Tour Packages');
+        SEOMeta::setDescription('Travel Packages '.$dias.' days. Discover Peru with Gotoperu Tour &amp; Travel Packages. We offer amazing deals on Machu Picchu Vacation Packages.');
+        SEOMeta::setCanonical('http://goto2.nu/travel-packages/');
+        SEOMeta::addKeyword(['Machu Picchu Tour Packages', 'Machu Picchu Packages', 'Machu Picchu Vacation Packages', 'Machu Picchu Deals', 'Peru Honeymoon Travel Packages']);
+
         $categoria = TCategoria::get();
         $duracion = TPaquete::select('duracion')->distinct()->get();
         $paquete = TPaquete::with('paquetes_destinos', 'precio_paquetes', 'paquetes_categoria')->where('codigo', 'NOT LIKE', 'GTPF%')->where('codigo', 'NOT LIKE', 'GTPX%')->where('codigo', 'NOT LIKE', 'GTPV%')->where('duracion', $dias)->get();
@@ -291,6 +308,18 @@ class HomeController extends Controller
 
     public function showcategory($category)
     {
+        SEOMeta::setTitle('Peru Tour Packages by Category | Peru  '.ucwords(strtolower($category)).'');
+        SEOMeta::setDescription('Discover beautiful places to visit in Peru Machu Picchu tours with gotoperu. Experience best places in Peru- Ica and Vineyards, Mancora Beach, Nazca Lines and more.');
+        SEOMeta::setCanonical('http://goto2.nu/travel-packages/');
+        SEOMeta::addMeta('article:section', 'Peru '.ucwords(strtolower($category)).' Travel Packages', 'property');
+        SEOMeta::addKeyword(['Peru '.ucwords(strtolower($category)).' Travel Packages','Machu Picchu Tour Packages', 'Machu Picchu Packages', 'Machu Picchu Vacation Packages', 'Machu Picchu Deals']);
+
+//        SEOMeta::setTitle($post->title);
+//        SEOMeta::setDescription($post->resume);
+//        SEOMeta::addMeta('article:published_time', $post->published_date->toW3CString(), 'property');
+//        SEOMeta::addMeta('article:section', $post->category, 'property');
+//        SEOMeta::addKeyword(['key1', 'key2', 'key3']);
+
         $duracion = TPaquete::select('duracion')->distinct()->get();
         $categoria = TPaqueteCategoria::with(['categoria'=>function($query) use ($category) { $query->where('nombre', $category);}])->get();
 //        dd($categoria );
@@ -300,9 +329,14 @@ class HomeController extends Controller
 
     public function showpackages($titulo, $dias)
     {
-
-
         $title = str_replace('-', ' ', strtoupper($titulo));
+
+        SEOMeta::setTitle('Travel Packages: '.ucwords(strtolower($title)).' | GotoPeru');
+        SEOMeta::setDescription('Want to travel to Peru? GoToPeru offers a variety travel packages all over Peru. Call one of our offices today to start planning your Machu Picchu trip!');
+        SEOMeta::setCanonical('https://gotoperu.com/packages/');
+        SEOMeta::addKeyword(['peru travel packages', 'cusco tours', 'travel packages to peru', 'peru vacations', 'peru vacation packages', 'machu picchu deals', 'peru travel offers', 'machu picchu travel offers', 'Machu Picchu packages', 'customize peru travel packages']);
+
+
         $paquete = TPaquete::with('itinerario','paquetes_destinos', 'precio_paquetes')->get()->where('titulo', $title);
 //        dd($paquete);
         return view('detail-program', ['paquetes'=>$paquete]);

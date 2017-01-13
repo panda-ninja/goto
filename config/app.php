@@ -178,6 +178,7 @@ return [
         GotoPeru\Providers\EventServiceProvider::class,
         GotoPeru\Providers\RouteServiceProvider::class,
         Barryvdh\DomPDF\ServiceProvider::class,
+        Artesaos\SEOTools\Providers\SEOToolsServiceProvider::class,
 
 
     ],
@@ -228,6 +229,11 @@ return [
         'View' => Illuminate\Support\Facades\View::class,
         'PDF' => Barryvdh\DomPDF\Facade::class,
 
+        'SEOMeta'   => Artesaos\SEOTools\Facades\SEOMeta::class,
+        'OpenGraph' => Artesaos\SEOTools\Facades\OpenGraph::class,
+        'Twitter'   => Artesaos\SEOTools\Facades\TwitterCard::class,
+        // or
+//        'SEO' => Artesaos\SEOTools\Facades\SEOTools::class,
     ],
 
 ];

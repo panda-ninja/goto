@@ -28,17 +28,17 @@ $(document).ready(function(){
     items : 3
   });
 
-    var owl = $("#owl-demo2");
-
-    owl.owlCarousel({
-        items : 3
-    });
+    // var owl = $("#owl-demo2");
+    //
+    // owl.owlCarousel({
+    //     items : 3
+    // });
 
   // Custom Navigation Events
-  $(".next").click(function(){
+  $(".nexta").click(function(){
     owl.trigger('owl.next');
   })
-  $(".prev").click(function(){
+  $(".preva").click(function(){
     owl.trigger('owl.prev');
   })
 
