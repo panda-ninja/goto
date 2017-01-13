@@ -54,7 +54,8 @@
                 <h1 class="yellow-text text-darken-4 no-margin text-50"><b>{{$_POST['txt_country']}}</b></h1>
                 <p class="font-moserrat center text-20 no-margin grey-text ">{{$paquete1->duracion}} DAYS | from ${{$precio}}</p>
             </div>
-            <form action="{{route('checkout_store_path')}}" method="post" id="checkout-form1">
+            <form id="form_buscar" action="{{route('home_show_checkout_path', array('titulo'=>str_replace(' ','-', strtolower($_POST['txt_country'])), 'dias'=>$paquete1->duracion.'-days-tours'))}}"
+                  method="post">
                 {{csrf_field()}}
                 <div class="row center">
                     <div class="col m6">
@@ -74,23 +75,28 @@
                         </div>
                     </div>
                     <div class="col m3">
-                        <select name="destino_travel" id="destino_travel">
+                        <select name="txt_country" id="destino_travel">
                             @foreach($paqueteCombo as $paquete)
-                                @if($paquete->codigo==$paquete1->codigo)
-                                    <option value="{{$paquete->id}}" selected>{{$paquete->titulo}}</option>
+                                @if($paquete->titulo==$paquete1->titulo)
+                                    <option value="{{$paquete->titulo}}" selected>{{$paquete->titulo}}</option>
                                 @else
-                                    <option value="{{$paquete->id}}">{{$paquete->titulo}}</option>
+                                    <option value="{{$paquete->titulo}}">{{$paquete->titulo}}</option>
                                 @endif
                             @endforeach
                         </select>
                     </div>
                     <div class="col m3" id="dispo">
-                        <select name="date_travel" id="date_travel">
+                        <input type="hidden" value="{{$precio}}" name="txt_price" id="txt_price">
+                        <select name="txt_date" id="date_travel" onclick="pasar()" onchange="this.form.submit();">
                             @foreach($paqueteCombo as $paquete)
                                 @if($paquete->codigo==$paquete1->codigo)
                                     @foreach($paquete->disponibilidad as $disponibilidad)
                                         @if($disponibilidad->estado=='1')
-                                            <option value="{{$disponibilidad->fecha_disponibilidad}}">{{obtenerFechaEnLetra($disponibilidad->fecha_disponibilidad)}}</option>
+                                            @if($disponibilidad->fecha_disponibilidad==$_POST['txt_date'])
+                                                <option value="{{$disponibilidad->fecha_disponibilidad.'_'.$disponibilidad->precio}}" selected>{{obtenerFechaEnLetra($disponibilidad->fecha_disponibilidad)}}</option>
+                                            @else
+                                                <option value="{{$disponibilidad->fecha_disponibilidad.'_'.$disponibilidad->precio}}" >{{obtenerFechaEnLetra($disponibilidad->fecha_disponibilidad)}}</option>
+                                            @endif
                                         @endif
                                     @endforeach
                                 @endif
@@ -98,6 +104,9 @@
                         </select>
                     </div>
                 </div>
+            </form>
+            <form action="{{route('checkout_store_path')}}" method="post" id="checkout-form1">
+                {{csrf_field()}}
                 <div class="row ">
                     <div class="col m8">
                         <div class="row center">

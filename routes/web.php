@@ -77,6 +77,14 @@ Route::post('/buscardisponibilidad', [
     'uses' => 'CheckoutController@buscar_disponibilidad',
     'as' => 'pqt_buscar_disponibilidad_path',
 ]);
+Route::post('/buscarotradisponibilidad', [
+    'uses' => 'CheckoutController@buscar_otra_disponibilidad',
+    'as' => 'pqt_buscar_otra_disponibilidad_path',
+]);
+Route::any('travel-packages/{titulo}_{dias}/checkout1', [
+    'uses' => 'HomeController@showcheckout1',
+    'as' => 'home_show_checkout_path1',
+]);
 /*==begin== rutas para clientes ================================================================*/
 Route::get('cliente/login', [
     'uses' => 'ClientAuthController@index',

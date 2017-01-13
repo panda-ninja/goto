@@ -27,7 +27,8 @@ class CheckoutController extends Controller
                 "source"=>$request->input('stripeToken'),
                 "description"=>"New payment - Email:".$request->input('email_p')." - Name:".$request->input('first_name_p').", ".$request->input('last_name_p'),
             ));
-            $txt_date_number=$request->input('date_travel');
+            $dat=$request->input('date_travel_p');
+            $txt_date_number=$dat[0];
             $title=$request->input('titulo_p');
             $paquete = TPaquete::with(['itinerario','paquetes_destinos', 'precio_paquetes','paquete_servicio_extra.servicio_extra','disponibilidad' => function($query)use($txt_date_number){$query->where('fecha_disponibilidad',$txt_date_number);}])
                 ->get()
@@ -62,7 +63,7 @@ class CheckoutController extends Controller
                 $k++;
             }
 
-                $fecha1=explode('-',$request->input('date_travel'));
+                $fecha1=explode('-',$dat);
                 $fecha=$fecha1[2].'-'.$fecha1[1].'-'.$fecha1[0];
                 $dias = array('Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday');
                 $dia = $dias[date('w', strtotime($fecha))];
@@ -74,8 +75,12 @@ class CheckoutController extends Controller
                 $fecha_letra= $dia.', '.$mes.' '.$num.', '.$anno;
 
             $name_country='';
-            $email_cliente='fredy1432@hotmail.com';
-            $email_empresa='fredy1432@hotmail.com';
+//            $email_cliente='fredy1432@hotmail.com';
+//            $email_empresa='fredy1432@hotmail.com';
+
+            $email_cliente=$request->input('email_p');
+            $email_empresa='info@gotoperu.com';
+
             $name_pq=$request->input('first_name_p');
 //            $emaila_agencia=$request->input('email_p');
             Mail::send(['html'=>'noti-reservation-client'], ['paquetes'=>$paquete,'first_name_p'=>$request->input('first_name_p'),
@@ -235,9 +240,11 @@ class CheckoutController extends Controller
     public function buscar_disponibilidad(Request $request)
     {
         $codigo=strtoupper($request->input('codigo'));
-        $paqueteCombo = TPaquete::with('disponibilidad')->where('id',$codigo)->get();
+        $paqueteCombo = TPaquete::with('disponibilidad')->where('titulo',$codigo)->get();
 //        return view('mensaje-confirmation_empresa');
         $valor='';
+        $valor.='<option value="0">Choose a date</option>';
+        $precio=0;
         foreach ($paqueteCombo as $paquete){
             foreach ($paquete->disponibilidad as $disponibilidad) {
                 if ($disponibilidad->estado == '1') {
@@ -251,13 +258,19 @@ class CheckoutController extends Controller
                     $mes = array('January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December');
                     $mes = $mes[(date('m', strtotime($fecha))*1)-1];
                     $fecha_letra= $dia.', '.$mes.' '.$num.', '.$anno;
-                    $valor.='<option value="'.$disponibilidad->fecha_disponibilidad.'">'.$fecha_letra.'</option>';
+                    $valor.='<option value="'.$disponibilidad->fecha_disponibilidad.'_'.$disponibilidad->precio.'">'.$fecha_letra.'</option>';
+                    $precio=$disponibilidad->precio;
 //                $valor +=  $disponibilidad->fecha_disponibilidad;
                 }
             }
         }
-        return  '<select name="date_travel" id="date_travel">'.$valor.'</select>';
+        return  '<input type="hidden" value="'.$precio.'" name="txt_price"><select name="txt_date" id="date_travel" onchange="this.form.submit();">'.$valor.'</select>';
     }
+    public function buscar_otra_disponibilidad(Request $request)
+    {
+        $codigo=strtoupper($request->input('codigo'));
+        $paqueteCombo = TPaquete::with('disponibilidad')->where('id',$codigo)->get();
 
-
+        return redirect()->route('home_show_checkout_path', array('titulo'=>str_replace(' ','-', strtolower($codigo)), 'dias'=>$paqueteCombo->duracion.'-days-tours'));
+    }
 }

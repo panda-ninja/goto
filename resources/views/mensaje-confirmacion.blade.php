@@ -25,7 +25,7 @@
         <div class="section">
             <div class="row center">
                 <h1 class="yellow-text text-darken-4 no-margin text-50"><b>{{$titulo_p}}</b></h1>
-                <p class="font-moserrat center text-20 no-margin grey-text ">{{$nrodias_p}} DAYS</p>
+                <p class="font-moserrat center text-20 no-margin grey-text ">{{$nrodias_p}} DAYS | {{$date_travel}}</p>
             </div>
         </div>
         <div class="section">

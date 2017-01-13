@@ -789,6 +789,7 @@ function ch_extra(posi){
 
 $("#destino_travel").change(function(){
     // alert('hola');
+
     $.ajaxSetup({
         headers: {
             'X-CSRF-TOKEN': $('[name="_token"]').val()
@@ -814,7 +815,7 @@ $("#destino_travel").change(function(){
                 });
             }
             else{
-                alert('na');
+                // alert('na');
                 // $('#idLoad').html('');
                 // $('#list_planes').html('<div id="card-alert" class="card red lighten-5">'+
                 //     '<div class="card-content red-text">'+
@@ -826,7 +827,7 @@ $("#destino_travel").change(function(){
                 //     '</div>');
             }
         }).fail(function (markup) {
-            alert('error:'+markup);
+            // alert('error:'+markup);
             // $('#idLoad').html('');
             // $('#list_planes').html('<div id="card-alert" class="card red lighten-5">'+
             //     '<div class="card-content red-text">'+
@@ -844,5 +845,44 @@ $("#destino_travel").change(function(){
     }
 });
 
+function date_travel_dispo() {
+    // alert('hola');
+    // $.ajaxSetup({
+    //     headers: {
+    //         'X-CSRF-TOKEN': $('[name="_token"]').val()
+    //     }
+    // });
+    var txt_data1 = $("#date_travel").val();
+    var txt_data = txt_data1.split("_");
+    // alert(txt_data1);
+    var txt_date = txt_data[0];
+    var txt_country = txt_data[1];
+    var txt_dias = txt_data[2];
+    var txt_precio = txt_data[3];
+    // alert(codigopx);
+    if (txt_date.length > 0) {
+        var datos = {
+            "txt_date": txt_date,
+            "txt_country": txt_country,
+            "txt_dias": txt_dias,
+            "txt_precio": txt_precio
+        };
+        $.ajax({
+            data: datos,
+            url: "http://gotoperu.mo/travel-packages/{"+txt_country+"}_{"+txt_dias+"}/checkout1",
+            type: 'post'
+        });
+    }
+    else {
 
+        $("#date_travel").focus();
+    }
+};
 
+var $form12=$('#form_buscar');
+function pasar(){
+    var dat=$('#date_travel').val().split('_');
+    $('#txt_price').val(dat[0]);
+    alert(dat[0]);
+
+};

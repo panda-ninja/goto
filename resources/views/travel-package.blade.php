@@ -39,7 +39,6 @@
                                 <p class="no-margin">Tourist to Superior</p>
                                 <ul class="font-moserrat">
                                     @foreach($paquete->disponibilidad as $disponibilidad)
-
                                         <li class="text-14 margin-bottom-10">
                                             <form action="{{route('home_show_checkout_path', array('titulo'=>str_replace(' ','-', strtolower($paquete->titulo)), 'dias'=>$paquete->duracion.'-days-tours'))}}"
                                                   method="post">
