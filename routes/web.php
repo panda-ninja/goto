@@ -27,10 +27,29 @@ Route::any('packages/{titulo}_{dias}', [
     'as' => 'home_show_travel_path',
 ]);
 
-Route::any('travel-packages/{titulo}_{dias}', [
+
+Route::get('travel-packages-all-included/{dias}-days', [
     'uses' => 'HomeController@showdate',
     'as' => 'home_show_date_path',
 ]);
+
+Route::get('inquire', [
+    'uses' => 'HomeController@inquire',
+    'as' => 'home_inquire_path',
+]);
+Route::get('availability', [
+    'uses' => 'HomeController@availability',
+    'as' => 'home_availability_path',
+]);
+Route::get('design', [
+    'uses' => 'HomeController@design',
+    'as' => 'home_design_path',
+]);
+
+//Route::any('travel-packages/{titulo}_{dias}', [
+//    'uses' => 'HomeController@showdate',
+//    'as' => 'home_show_date_path',
+//]);
 
 Route::any('travel-packages/', [
     'uses' => 'HomeController@viewpackages',
@@ -84,6 +103,10 @@ Route::post('/buscarotradisponibilidad', [
 Route::any('travel-packages/{titulo}_{dias}/checkout1', [
     'uses' => 'HomeController@showcheckout1',
     'as' => 'home_show_checkout_path1',
+]);
+Route::post('pdf/{id}', [
+    'uses' => 'HomeController@pdf',
+    'as' => 'view_vacations_pdf_path',
 ]);
 /*==begin== rutas para clientes ================================================================*/
 Route::get('cliente/login', [

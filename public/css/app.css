@@ -6575,6 +6575,12 @@ button.picker__today:focus, button.picker__clear:focus, button.picker__close:foc
 .padding-left-20 {
   padding-left: 20px; }
 
+.padding-left-25 {
+  padding-left: 25px; }
+
+.padding-right-25 {
+  padding-right: 25px; }
+
 .no-margin {
   margin: 0 !important; }
 
@@ -6605,6 +6611,9 @@ button.picker__today:focus, button.picker__clear:focus, button.picker__close:foc
 .margin-top-100 {
   margin-top: 100px; }
 
+.margin-bottom-0 {
+  margin-bottom: 0px; }
+
 .margin-bottom-10 {
   margin-bottom: 10px; }
 
@@ -6620,8 +6629,20 @@ button.picker__today:focus, button.picker__clear:focus, button.picker__close:foc
 .margin-bottom-50 {
   margin-bottom: 50px; }
 
+.bg-rgba-black-5 {
+  background: rgba(0, 0, 0, 0.5); }
+
+.bg-rgba-white-5 {
+  background: rgba(255, 255, 255, 0.5); }
+
+.bg-rgba-white-9 {
+  background: rgba(255, 255, 255, 0.9); }
+
 .text-10 {
   font-size: 10px; }
+
+.text-11 {
+  font-size: 11px; }
 
 .text-12 {
   font-size: 12px; }
@@ -6635,17 +6656,29 @@ button.picker__today:focus, button.picker__clear:focus, button.picker__close:foc
 .text-16 {
   font-size: 16px; }
 
+.text-17 {
+  font-size: 17px; }
+
 .text-18 {
   font-size: 18px; }
 
 .text-20 {
   font-size: 20px; }
 
+.text-21 {
+  font-size: 21px; }
+
+.text-22 {
+  font-size: 22px; }
+
 .text-25 {
   font-size: 25px; }
 
 .text-30 {
   font-size: 30px; }
+
+.text-35 {
+  font-size: 35px; }
 
 .text-40 {
   font-size: 40px; }
@@ -6662,18 +6695,40 @@ button.picker__today:focus, button.picker__clear:focus, button.picker__close:foc
   position: absolute;
   right: 15px; }
 
+.img-absolute-top-left {
+  position: absolute;
+  top: -65px;
+  left: -65px; }
+
 .line-through {
   text-decoration: line-through; }
+
+.display-block {
+  display: block; }
+
+.hidden {
+  display: none; }
 
 header.slider .slides li .caption {
   height: 55px; }
 
 header .header-nav li {
   display: inline-block;
-  padding: 0 .9em; }
+  padding: 0 .5em; }
+
+header .header-nav-drop {
+  width: 200px !important; }
 
 nav ul li a {
   color: #000; }
+
+.modal-inquire {
+  max-height: 100% !important; }
+
+.modal-availability {
+  width: 70%;
+  top: 5% !important;
+  max-height: 100% !important; }
 
 .slider .slides li .caption {
   left: 0;
@@ -6857,6 +6912,11 @@ span.quotes-duration {
   font-size: 60px;
   text-align: center;
   display: block; }
+
+.btn-date {
+  height: 25px;
+  line-height: 25px;
+  padding: 0 11px; }
 
 img.desaturada {
   filter: grayscale(100%);
