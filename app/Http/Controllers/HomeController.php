@@ -270,18 +270,23 @@ class HomeController extends Controller
     public function showcheckout(Request $request,$titulo)
     {
         $title = str_replace('-', ' ', strtoupper($titulo));
-        $date_precio=explode('_',$request->input('txt_date'));
         $txt_price=0;
-        $txt_date_number='';
-        if(count($date_precio)>1){
-            $txt_price=$date_precio[1];
-            $txt_date_number=$date_precio[0];
-        }
-        else{
-            $txt_price=$request->input('txt_price');
-            $txt_date_number=$request->input('txt_date');
-        }
+        if(!empty($request->input('txt_date'))) {
+            $date_precio = explode('_', $request->input('txt_date'));
 
+            $txt_date_number = '';
+            if (count($date_precio) > 1) {
+                $txt_price = $date_precio[1];
+                $txt_date_number = $date_precio[0];
+            } else {
+                $txt_price = $request->input('txt_price');
+                $txt_date_number = $request->input('txt_date');
+            }
+        }
+        else {
+            $txt_price = $request->input('txt_price');
+            $txt_date_number = $request->input('txt_date');
+        }
 
 //        $txt_date_number=($request->input('txt_date'));
         $txt_country=($request->input('txt_country'));

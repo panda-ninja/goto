@@ -43,24 +43,30 @@ class CheckoutController extends Controller
 
             $arre_extras_valor=array();
             $i=0;
-            foreach ($request->input('ch_extras_valor') as $valor){
+            if(!empty($request->input('ch_extras_valor'))){
+                foreach ($request->input('ch_extras_valor') as $valor){
 
-                $arre_extras_valor[$i]=$valor;
-                $i++;
+                    $arre_extras_valor[$i]=$valor;
+                    $i++;
+                }
             }
             $arre_extras_name=array();
             $j=0;
-            foreach ($request->input('ch_extras_name') as $valor){
+            if(!empty($request->input('ch_extras_valor'))){
+                foreach ($request->input('ch_extras_name') as $valor){
 
-                $arre_extras_name[$j]=$valor;
-                $j++;
+                    $arre_extras_name[$j]=$valor;
+                    $j++;
+                }
             }
             $arre_extras=array();
             $k=0;
-            foreach ($request->input('precio_optional_activities') as $valor){
+            if(!empty($request->input('ch_extras_valor'))){
+                foreach ($request->input('precio_optional_activities') as $valor){
 
-                $arre_extras[$k]=$valor;
-                $k++;
+                    $arre_extras[$k]=$valor;
+                    $k++;
+                }
             }
 
                 $fecha1=explode('-',$dat);
