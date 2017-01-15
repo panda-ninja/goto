@@ -54,27 +54,11 @@
                 <h1 class="yellow-text text-darken-4 no-margin text-50"><b>{{$_POST['txt_country']}}</b></h1>
                 <p class="font-moserrat center text-20 no-margin grey-text ">{{$paquete1->duracion}} DAYS | from ${{$precio}}</p>
             </div>
-            <form id="form_buscar" action="{{route('home_show_checkout_path', array('titulo'=>str_replace(' ','-', strtolower($_POST['txt_country'])), 'dias'=>$paquete1->duracion.'-days-tours'))}}"
+            <form class="font-moserrat" id="form_buscar" action="{{route('home_show_checkout_path', array('titulo'=>str_replace(' ','-', strtolower($_POST['txt_country'])), 'dias'=>$paquete1->duracion.'-days-tours'))}}"
                   method="post">
                 {{csrf_field()}}
                 <div class="row center">
-                    <div class="col m6">
-                        <div class="row">
-                            <span class=" col m4 no-margin text-20 ">Travellers:</span>
-                            <select class="col m2" name="travelers" id="travelers" onchange="ch_travelers()">
-                                <option value="1">1</option>
-                                <option value="2" selected>2</option>
-                                <option value="3">3</option>
-                                <option value="4">4</option>
-                                <option value="5">5</option>
-                                <option value="6">6</option>
-                            </select>
-                            <div id="nro_travelers" class="col m6">
-                                <i class="fa fa-male fa-2x"></i><i class="fa fa-male fa-2x"></i>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col m3">
+                    <div class="input-field col m3">
                         <select name="txt_country" id="destino_travel">
                             @foreach($paqueteCombo as $paquete)
                                 @if($paquete->titulo==$paquete1->titulo)
@@ -84,8 +68,9 @@
                                 @endif
                             @endforeach
                         </select>
+                        <label for="destino_travel" class="grey-text text-darken-3">From</label>
                     </div>
-                    <div class="col m3" id="dispo">
+                    <div class="input-field col m4" id="dispo">
                         <input type="hidden" value="{{$precio}}" name="txt_price" id="txt_price">
                         <select name="txt_date" id="date_travel" onclick="pasar()" onchange="this.form.submit();">
                             @foreach($paqueteCombo as $paquete)
@@ -94,9 +79,9 @@
                                         @if($disponibilidad->estado=='1')
                                             @if($disponibilidad->estrellas=='3')
                                                 @if($disponibilidad->fecha_disponibilidad==$datedispo)
-                                                    <option value="{{$disponibilidad->fecha_disponibilidad.'_'.$disponibilidad->precio}}" selected>{{obtenerFechaEnLetra($disponibilidad->fecha_disponibilidad)}}</option>
+                                                    <option value="{{$disponibilidad->fecha_disponibilidad.'_'.$disponibilidad->precio_d}}" selected>{{obtenerFechaEnLetra($disponibilidad->fecha_disponibilidad)}}</option>
                                                 @else
-                                                    <option value="{{$disponibilidad->fecha_disponibilidad.'_'.$disponibilidad->precio}}" >{{obtenerFechaEnLetra($disponibilidad->fecha_disponibilidad)}}</option>
+                                                    <option value="{{$disponibilidad->fecha_disponibilidad.'_'.$disponibilidad->precio_d}}" >{{obtenerFechaEnLetra($disponibilidad->fecha_disponibilidad)}}</option>
                                                 @endif
                                             @endif
                                         @endif
@@ -104,15 +89,36 @@
                                 @endif
                             @endforeach
                         </select>
+                        <label for="date_travel" class="grey-text text-darken-3">Other Dates</label>
+                    </div>
+                    <div class="col m5">
+                        <div class="row">
+                            <div class="input-field col m6" >
+                                <select  name="travelers" id="travelers" onchange="ch_travelers()">
+                                    <option value="1">1</option>
+                                    <option value="2" selected>2</option>
+                                    <option value="3">3</option>
+                                    <option value="4">4</option>
+                                    <option value="5">5</option>
+                                    <option value="6">6</option>
+                                </select>
+                                <label for="travelers" class="grey-text text-darken-3">Travellers</label>
+                            </div>
+                            <div class="col m6">
+                                <div id="nro_travelers" class=" margin-top-20">
+                                    <i class="fa fa-male fa-2x" ></i><i class="fa fa-male fa-2x"></i>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </form>
-            <form action="{{route('checkout_store_path')}}" method="post" id="checkout-form1">
+            <form class="font-moserrat" action="{{route('checkout_store_path')}}" method="post" id="checkout-form1">
                 {{csrf_field()}}
                 <div class="row ">
                     <div class="col m8">
                         <div class="row center">
-                            <div class="col m7  table-responsive">
+                            <div class="col m12  table-responsive">
 
                                 <?php
                                 $TipoPaquete='ConHotel';
@@ -402,280 +408,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="col m12">
 
-                                <div class="row">
-                                    <div class="col m12"><h4>PAYMENTS</h4></div>
-                                </div>
-                                <div class="row">
-                                    <div class="col m6">
-                                        <h5><i class="material-icons orange-text text-darken-2">contacts</i>Billing Information</h5>
-                                        <div class="row">
-                                            <div class="col m6">
-                                                <div class="input-field">
-                                                    <input id="first_name_p" name="first_name_p" type="text" class="validate">
-                                                    <label for="first_name_p">First name*</label>
-                                                </div>
-                                            </div>
-                                            <div class="col m6">
-                                                <div class="input-field">
-                                                    <input id="last_name_p" name="last_name_p" type="text" class="validate">
-                                                    <label for="last_name_p">Last name*</label>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="row">
-                                            <div class="col m4">
-                                                <div class="input-field">
-                                                    <input id="passport_p" name="passport_p" type="text" class="validate">
-                                                    <label for="passport_p">Passport*</label>
-                                                </div>
-                                            </div>
-                                            <div class="col m8">
-                                                <div class="input-field">
-                                                    <input id="email_p" name="email_p" type="email" class="validate">
-                                                    <label for="email_p">Email*</label>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="row">
-                                            <div class="col m7">
-                                                <div class="input-field">
-                                                    <input id="address_p" name="address_p" type="text" class="validate">
-                                                    <label for="address_p">Address*</label>
-                                                </div>
-                                            </div>
-                                            <div class="col m5">
-                                                <div class="input-field">
-                                                    <input id="telephone_p" name="telephone_p" type="text" class="validate">
-                                                    <label for="telephone_p">Telephone*</label>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="row">
-                                            <div class="col m6">
-                                                <div class="input-field">
-                                                    <select name="country_p" id="country_p" class="validate">
-                                                        @foreach($country1 as $county11)
-                                                            @if($county11->name=='United States')
-                                                                <option value="{{$county11->id}}" selected>{{$county11->name}}</option>
-                                                            @else
-                                                                <option value="{{$county11->id}}">{{$county11->name}}</option>
-                                                            @endif
-                                                        @endforeach
-                                                    </select>
-                                                    <label for="country_p">Country*</label>
-                                                </div>
-                                            </div>
-                                            <div class="col m6">
-                                                <div class="input-field">
-                                                    <select name="state_p" id="state_p" class="validate">
-                                                        @foreach($state as $state1)
-                                                            @if($state1->id=='3930')
-                                                                <option value="{{$state1->id}}" selected>{{$state1->name}}</option>
-                                                            @else
-                                                                <option value="{{$state1->id}}">{{$state1->name}}</option>
-                                                            @endif
-                                                        @endforeach
-                                                    </select>
-                                                    <label for="state_p">State/Province*</label>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="row">
-                                            <div class="col m6">
-                                                <div class="input-field">
-                                                    <input id="zip_p" mame="zip_p" type="text" class="validate">
-                                                    <label for="zip_p">Zip/Postal Code*</label>
-                                                </div>
-                                            </div>
-                                            <div class="col m6">
-                                                <div class="input-field">
-                                                    <select name="city_p" id="city_p" class="validate">
-                                                        @foreach($city as $city1)
-                                                            @if($city1->id=='43885')
-                                                                <option value="{{$city1->id}}" selected>{{$city1->name}}</option>
-                                                            @else
-                                                                <option value="{{$city1->id}}">{{$city1->name}}</option>
-                                                            @endif
-                                                        @endforeach
-                                                    </select>
-                                                    <label for="city_p">City*</label>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col m6">
-                                        <h5><i class="material-icons  orange-text text-darken-2">payment</i>Payments Methods</h5>
-                                        <div class="row">
-
-                                            <div class="col m12">
-                                                <div class="input-field">
-                                                    <input id="name_card_p" name="name_card_p" type="text"  class="validate" value="Visa">
-                                                    <label for="name_card_p">Name Card*</label>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="row">
-                                            <div class="col m12">
-                                                <div class="input-field">
-                                                    <select name="credit_card_type_p" id="credit_card_type_p" class="validate">
-                                                        <option value="Select">Please Select</option>
-                                                        <option value="Visa">Visa</option>
-                                                        <option value="Visa (debit)">Visa (debit)</option>
-                                                        <option value="MasterCard">MasterCard</option>
-                                                        <option value="MasterCard (debit)">MasterCard (debit)</option>
-                                                        <option value="American Express">American Express</option>
-                                                        <option value="Discover">Discover</option>
-                                                        <option value="Diners Clud">Diners Clud</option>
-                                                        <option value="JCB">JCB</option>
-                                                        <option value="Otros">Otros</option>
-
-                                                    </select>
-                                                    <label for="credit_card_type_p">Credit Card Type*</label>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="row">
-                                            <div class="col m12">
-                                                <div class="input-field">
-                                                    <input id="credit_card_number_p" name="credit_card_number_p" max="16" maxlength="16" type="text" class="validate" value="4242424242424242">
-                                                    <label for="credit_card_number_p">Credit Card Number*</label>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="row">
-                                            <div class="col m6">
-                                                <div class="input-field">
-                                                    <input id="expiration_date_month_p" name="expiration_date_month_p"  max="2" maxlength="2" type="text" class="validate" value="12">
-                                                    <label for="expiration_date_month_p">Exp. Date Month*</label>
-                                                </div>
-                                            </div>
-                                            <div class="col m6">
-                                                <div class="input-field">
-                                                    <input id="expiration_date_year_p" name="expiration_date_year_p" min="4" max="4" maxlength="4" type="text" class="validate" value="2018">
-                                                    <label for="expiration_date_year_p">Exp. Date Year*</label>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="row">
-                                            <div class="col m6">
-                                                <div class="input-field">
-                                                    <input id="card_verification_p" type="text" class="validate"  value="123">
-                                                    <label for="card_verification_p">Validation code*</label>
-                                                </div>
-                                            </div>
-                                            <div class="col m6 hide">
-                                                <div class="input-field">
-                                                    <span>What is this?</span>Fappl
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="row">
-
-                                            <div class="col m12">
-                                                <input type="hidden" name="ch_extras_total" id="ch_extras_total" value="{{$i1}}">
-
-                                                <input type="hidden" name="titulo_p" id="titulo_p" value="{{$_POST['txt_country']}}">
-                                                <input type="hidden" name="nrodias_p" id="nrodias_p" value="{{$paquete1->duracion}}">
-
-                                                <input type="hidden" name="nro_ontriple_p" id="nro_ontriple_p" value="0">
-                                                <input type="hidden" name="precio_ontriple_p" id="precio_ontriple_p" value="{{$pre_3_t}}">
-
-                                                <input type="hidden" name="nro_ondouble_p" id="nro_ondouble_p" value="1">
-                                                <input type="hidden" name="precio_ondouble_p" id="precio_ondouble_p" value="{{$pre_3_d}}">
-
-                                                <input type="hidden" name="nro_onmatrimonial_p" id="nro_onmatrimonial_p" value="0">
-                                                <input type="hidden" name="precio_onmatrimonial_p" id="precio_onmatrimonial_p" value="{{$pre_3_d}}">
-
-                                                <input type="hidden" name="nro_onsimple_p" id="nro_onsimple_p" value="0">
-                                                <input type="hidden" name="precio_onsimple_p" id="precio_onsimple_p" value="{{$pre_3_s}}">
-                                                <?php $j=0;?>
-                                                @foreach($paquetes as $paquete)
-                                                    @foreach($paquete->paquete_servicio_extra as $servicios)
-                                                        <?php $j++;?>
-                                                        <input type="hidden" name="name_optional_activities[]" id="optional_activities_{{$j}}" value="{{$servicios->servicio_extra->titulo}}">
-                                                        <input type="hidden" name="precio_optional_activities[]" id="precio_optional_activities_{{$j}}" value="{{$servicios->servicio_extra->precio}}">
-                                                    @endforeach
-                                                @endforeach
-
-                                                <input type="hidden" name="date_travel_p" id="date_travel_p" value="{{$datedispo}}">
-                                                <input type="hidden" name="travellers_p" id="travellers_p" value="2">
-                                                <input type="hidden" name="total_p" id="total_p" value="{{2*$precio}}">
-
-                                                <button class="btn-large waves-effect waves-light lime darken-4" type="submit" name="action">Place Order
-                                                    <i class="material-icons right">send</i>
-                                                </button>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="row hide">
-                                    <div class=" col m6">
-                                        <h5><i class="material-icons  orange-text text-darken-2">filter_drama</i>Order Review</h5>
-                                        <div class="row">
-                                            <div class="col m12">
-                                                <table class="striped">
-                                                    <thead>
-                                                    <tr>
-                                                        <th data-field="id">Product Name</th>
-                                                        <th data-field="price">SubTotal</th>
-                                                    </tr>
-                                                    </thead>
-
-                                                    <tbody>
-                                                    <tr>
-                                                        <td>{{$paquete1->duracion}} DAYS FROM {{$_POST['txt_country']}}</td>
-                                                        <td>$<span id="st_precio0">{{2*$precio}}</span></td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>SubTotal</td>
-                                                        <td>$<span id="st_precio1">{{2*$precio}}</span></td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td><b>Grand Total</b></td>
-                                                        <td><b>$<span id="st_precio2">{{2*$precio}}</span></b></td>
-                                                    </tr>
-                                                    </tbody>
-                                                </table>
-                                            </div>
-
-                                        </div>
-                                        <div class="row">
-                                            <div class="col m6">
-                                                <div class="input-field">
-                                                    <input id="coupon_code_p" type="text" class="validate">
-                                                    <label for="coupon_code_p">Coupon code</label>
-                                                </div>
-                                            </div>
-                                            <div class="col m6">
-                                                <div class="input-field">
-                                                    <button class="waves-effect  waves-light btn">Apply Coupon</button>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="row">
-                                            <div class="col m12">
-                                                <div class="input-field col s12">
-                                                    <textarea id="comments_p" class="materialize-textarea"></textarea>
-                                                    <label for="comments_p">Textarea</label>
-                                                    Product Name               </div>
-
-                                            </div>
-                                        </div>
-                                        <div class="row">
-                                            <div class="col m12">
-                                                <div class="input-field">
-                                                    <input id="terminos_p" name="terminos_p" type="checkbox" class="validate">
-                                                    <label for="terminos_p">I accept the <a href="">Terms and conditions*</a></label>
-                                                </div>
-                                            </div>
-                                        </div>
-
-                                    </div>
-                                </div>
-
-                            </div>
                         </div>
                     </div>
                     <div class="col m4">
@@ -730,6 +463,281 @@
                                 </div>
                             </div>
                         </div>
+                    </div>
+                </div>
+                <div class="row" >
+                    <div class="col m12">
+                        <div class="row">
+                            <div class="col m12"><h4 class="no-margin">PAYMENTS</h4></div>
+                        </div>
+                        <div class="row">
+                            <div class="col m6">
+                                <h5><i class="material-icons orange-text text-darken-2">contacts</i>Billing Information</h5>
+                                <div class="row">
+                                    <div class="col m6">
+                                        <div class="input-field">
+                                            <input id="first_name_p" name="first_name_p" type="text" class="validate" placeholder="First name(required)">
+                                            <label for="first_name_p" class="grey-text text-darken-3">First name <span class="blue-text">*</span></label>
+                                        </div>
+                                    </div>
+                                    <div class="col m6">
+                                        <div class="input-field">
+                                            <input id="last_name_p" name="last_name_p" type="text" class="validate" placeholder="Last name(required)">
+                                            <label for="last_name_p" class="grey-text text-darken-3">Last name <span class="blue-text">*</span></label>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col m4">
+                                        <div class="input-field">
+                                            <input id="passport_p" name="passport_p" type="text" class="validate" placeholder="Passport(required)">
+                                            <label for="passport_p" class="grey-text text-darken-3">Passport <span class="blue-text">*</span></label>
+                                        </div>
+                                    </div>
+                                    <div class="col m8">
+                                        <div class="input-field">
+                                            <input id="email_p" name="email_p" type="email" class="validate" placeholder="mail@example.com(required)">
+                                            <label for="email_p" class="grey-text text-darken-3">Email <span class="blue-text">*</span></label>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col m7">
+                                        <div class="input-field">
+                                            <input id="address_p" name="address_p" type="text" class="validate" placeholder="Your address(required)">
+                                            <label for="address_p" class="grey-text text-darken-3">Address <span class="blue-text">*</span></label>
+                                        </div>
+                                    </div>
+                                    <div class="col m5">
+                                        <div class="input-field">
+                                            <input id="telephone_p" name="telephone_p" type="text" class="validate" placeholder="Telephone(required)">
+                                            <label for="telephone_p" class="grey-text text-darken-3">Telephone <span class="blue-text">*</span></label>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col m6">
+                                        <div class="input-field">
+                                            <select name="country_p" id="country_p" class="validate">
+                                                @foreach($country1 as $county11)
+                                                    @if($county11->name=='United States')
+                                                        <option value="{{$county11->id}}" selected>{{$county11->name}}</option>
+                                                    @else
+                                                        <option value="{{$county11->id}}">{{$county11->name}}</option>
+                                                    @endif
+                                                @endforeach
+                                            </select>
+                                            <label for="country_p" class="grey-text text-darken-3">Country <span class="blue-text">*</span></label>
+                                        </div>
+                                    </div>
+                                    <div class="col m6">
+                                        <div class="input-field">
+                                            <select name="state_p" id="state_p" class="validate">
+                                                @foreach($state as $state1)
+                                                    @if($state1->id=='3930')
+                                                        <option value="{{$state1->id}}" selected>{{$state1->name}}</option>
+                                                    @else
+                                                        <option value="{{$state1->id}}">{{$state1->name}}</option>
+                                                    @endif
+                                                @endforeach
+                                            </select>
+                                            <label for="state_p" class="grey-text text-darken-3">State/Province <span class="blue-text">*</span></label>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col m6">
+                                        <div class="input-field">
+                                            <input id="zip_p" mame="zip_p" type="text" class="validate" placeholder="Zip or Postal code(required)">
+                                            <label for="zip_p" class="grey-text text-darken-3">Zip/Postal Code <span class="blue-text">*</span></label>
+                                        </div>
+                                    </div>
+                                    <div class="col m6">
+                                        <div class="input-field">
+                                            <select name="city_p" id="city_p" class="validate">
+                                                @foreach($city as $city1)
+                                                    @if($city1->id=='43885')
+                                                        <option value="{{$city1->id}}" selected>{{$city1->name}}</option>
+                                                    @else
+                                                        <option value="{{$city1->id}}">{{$city1->name}}</option>
+                                                    @endif
+                                                @endforeach
+                                            </select>
+                                            <label for="city_p" class="grey-text text-darken-3">City <span class="blue-text">*</span></label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col m6">
+                                <h5><i class="material-icons  orange-text text-darken-2">payment</i>Payments Methods</h5>
+                                <div class="row">
+
+                                    <div class="col m12">
+                                        <div class="input-field">
+                                            <input id="name_card_p" name="name_card_p" type="text"  class="validate" value="Visa" placeholder="Example: Visa(required)">
+                                            <label for="name_card_p" class="grey-text text-darken-3">Name Card <span class="blue-text">*</span></label>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col m12">
+                                        <div class="input-field">
+                                            <select name="credit_card_type_p" id="credit_card_type_p" class="validate">
+                                                <option value="Select">Please Select</option>
+                                                <option value="Visa">Visa</option>
+                                                <option value="Visa (debit)">Visa (debit)</option>
+                                                <option value="MasterCard">MasterCard</option>
+                                                <option value="MasterCard (debit)">MasterCard (debit)</option>
+                                                <option value="American Express">American Express</option>
+                                                <option value="Discover">Discover</option>
+                                                <option value="Diners Clud">Diners Clud</option>
+                                                <option value="JCB">JCB</option>
+                                                <option value="Otros">Otros</option>
+
+                                            </select>
+                                            <label for="credit_card_type_p" class="grey-text text-darken-3">Credit Card Type <span class="blue-text">*</span></label>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col m12">
+                                        <div class="input-field">
+                                            <input id="credit_card_number_p" name="credit_card_number_p" max="16" maxlength="16" type="text" class="validate" value="" placeholder="Card number(required)">
+                                            <label for="credit_card_number_p" class="grey-text text-darken-3">Credit Card Number <span class="blue-text">*</span></label>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col m6">
+                                        <div class="input-field">
+                                            <input id="expiration_date_month_p" name="expiration_date_month_p"  max="2" maxlength="2" type="text" class="validate" value="" placeholder="DD (required)">
+                                            <label for="expiration_date_month_p" class="grey-text text-darken-3">Exp. Date Month <span class="blue-text">*</span></label>
+                                        </div>
+                                    </div>
+                                    <div class="col m6">
+                                        <div class="input-field">
+                                            <input id="expiration_date_year_p" name="expiration_date_year_p" min="4" max="4" maxlength="4" type="text" class="validate" value="" placeholder="YYYY (required)">
+                                            <label for="expiration_date_year_p" class="grey-text text-darken-3">Exp. Date Year <span class="blue-text">*</span></label>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col m6">
+                                        <div class="input-field">
+                                            <input id="card_verification_p" type="text" class="validate"  value="" placeholder="**** (required)">
+                                            <label for="card_verification_p" class="grey-text text-darken-3">Validation code <span class="blue-text">*</span></label>
+                                        </div>
+                                    </div>
+                                    <div class="col m6 hide">
+                                        <div class="input-field">
+                                            <span>What is this?</span>Fappl
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+
+                                    <div class="col m12">
+                                        <input type="hidden" name="ch_extras_total" id="ch_extras_total" value="{{$i1}}">
+
+                                        <input type="hidden" name="titulo_p" id="titulo_p" value="{{$_POST['txt_country']}}">
+                                        <input type="hidden" name="nrodias_p" id="nrodias_p" value="{{$paquete1->duracion}}">
+
+                                        <input type="hidden" name="nro_ontriple_p" id="nro_ontriple_p" value="0">
+                                        <input type="hidden" name="precio_ontriple_p" id="precio_ontriple_p" value="{{$pre_3_t}}">
+
+                                        <input type="hidden" name="nro_ondouble_p" id="nro_ondouble_p" value="1">
+                                        <input type="hidden" name="precio_ondouble_p" id="precio_ondouble_p" value="{{$pre_3_d}}">
+
+                                        <input type="hidden" name="nro_onmatrimonial_p" id="nro_onmatrimonial_p" value="0">
+                                        <input type="hidden" name="precio_onmatrimonial_p" id="precio_onmatrimonial_p" value="{{$pre_3_d}}">
+
+                                        <input type="hidden" name="nro_onsimple_p" id="nro_onsimple_p" value="0">
+                                        <input type="hidden" name="precio_onsimple_p" id="precio_onsimple_p" value="{{$pre_3_s}}">
+                                        <?php $j=0;?>
+                                        @foreach($paquetes as $paquete)
+                                            @foreach($paquete->paquete_servicio_extra as $servicios)
+                                                <?php $j++;?>
+                                                <input type="hidden" name="name_optional_activities[]" id="optional_activities_{{$j}}" value="{{$servicios->servicio_extra->titulo}}">
+                                                <input type="hidden" name="precio_optional_activities[]" id="precio_optional_activities_{{$j}}" value="{{$servicios->servicio_extra->precio}}">
+                                            @endforeach
+                                        @endforeach
+
+                                        <input type="hidden" name="date_travel_p" id="date_travel_p" value="{{$datedispo}}">
+                                        <input type="hidden" name="travellers_p" id="travellers_p" value="2">
+                                        <input type="hidden" name="total_p" id="total_p" value="{{2*$precio}}">
+
+                                        <button class="btn-checkout btn-large waves-effect waves-light lime darken-4" type="submit" name="action">Place Order
+                                            <i class="material-icons right">send</i>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row hide">
+                            <div class=" col m6">
+                                <h5><i class="material-icons  orange-text text-darken-2">filter_drama</i>Order Review</h5>
+                                <div class="row">
+                                    <div class="col m12">
+                                        <table class="striped">
+                                            <thead>
+                                            <tr>
+                                                <th data-field="id">Product Name</th>
+                                                <th data-field="price">SubTotal</th>
+                                            </tr>
+                                            </thead>
+
+                                            <tbody>
+                                            <tr>
+                                                <td>{{$paquete1->duracion}} DAYS FROM {{$_POST['txt_country']}}</td>
+                                                <td>$<span id="st_precio0">{{2*$precio}}</span></td>
+                                            </tr>
+                                            <tr>
+                                                <td>SubTotal</td>
+                                                <td>$<span id="st_precio1">{{2*$precio}}</span></td>
+                                            </tr>
+                                            <tr>
+                                                <td><b>Grand Total</b></td>
+                                                <td><b>$<span id="st_precio2">{{2*$precio}}</span></b></td>
+                                            </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+
+                                </div>
+                                <div class="row">
+                                    <div class="col m6">
+                                        <div class="input-field">
+                                            <input id="coupon_code_p" type="text" class="validate">
+                                            <label for="coupon_code_p">Coupon code</label>
+                                        </div>
+                                    </div>
+                                    <div class="col m6">
+                                        <div class="input-field">
+                                            <button class="waves-effect  waves-light btn">Apply Coupon</button>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col m12">
+                                        <div class="input-field col s12">
+                                            <textarea id="comments_p" class="materialize-textarea"></textarea>
+                                            <label for="comments_p">Textarea</label>
+                                            Product Name               </div>
+
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col m12">
+                                        <div class="input-field">
+                                            <input id="terminos_p" name="terminos_p" type="checkbox" class="validate">
+                                            <label for="terminos_p">I accept the <a href="">Terms and conditions*</a></label>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+
                     </div>
                 </div>
             </form>

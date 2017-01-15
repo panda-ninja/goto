@@ -98,35 +98,6 @@
                                 <div class="col s3">
 
 
-                    @foreach($disponibilidad as $paquete)
-                        <div class="col s4 right-align">
-                            <div class="card-panel grey lighten-5 z-depth-1 hoverable">
-                                <p class="no-margin text-30"><a href="" class="left"><img src="{{asset('img/icons/pdf.png')}}" alt="" width="50"></a> {{$paquete->titulo}}</p>
-                                @foreach($paquete->disponibilidad->sortBy('precio')->take(1) as $disponibilidad)
-                                    <p class="no-margin text-50 teal-text text-lighten-2 font-moserrat"><span class="text-20">from</span>${{$disponibilidad->precio}}</p>
-                                @endforeach
-                                <p class="no-margin">Small group</p>
-                                <p class="no-margin">Tourist to Superior</p>
-                                <ul class="font-moserrat">
-                                    @foreach($paquete->disponibilidad as $disponibilidad)
-                                        <li class="text-14 margin-bottom-10">
-                                            <form action="{{route('home_show_checkout_path', array('titulo'=>str_replace(' ','-', strtolower($paquete->titulo)), 'dias'=>$paquete->duracion.'-days-tours'))}}"
-                                                  method="post">
-                                                {{csrf_field()}}
-                                                <input type="hidden" value="1" name="txt_iddate">
-                                                <input type="hidden" value="{{$disponibilidad->fecha_disponibilidad}}" name="txt_date">
-                                                <input type="hidden" value="{{$paquete->titulo}}" name="txt_country">
-                                                <input type="hidden" value="{{$disponibilidad->precio}}" name="txt_price">
-                                                {{$disponibilidad->fecha_disponibilidad}} <span class="blue-text ">${{$disponibilidad->precio}}</span>
-                                                <input type="submit" class="btn" value="BOOK">
-                                            </form>
-                                        </li>
-                                    @endforeach
-                                </ul>
-                            </div>
-                        </div>
-                    @endforeach
-
                                     <div class="text-22 grey-text text-darken-4 margin-top-10"><b><span class="text-12 display-block grey-text text-darken-5">from</span> {{$paquetes->titulo}}</b></div>
 
                                     <ul class="font-moserrat right-align">
@@ -139,9 +110,9 @@
                                                     <input type="hidden" value="1" name="txt_iddate">
                                                     <input type="hidden" value="{{$disponibilidad->fecha_disponibilidad}}" name="txt_date">
                                                     <input type="hidden" value="{{$paquetes->titulo}}" name="txt_country">
-                                                    <input type="hidden" value="{{$disponibilidad->precio}}" name="txt_price">
+                                                    <input type="hidden" value="{{$disponibilidad->precio_d}}" name="txt_price">
 
-                                                    {{strftime("%B, %d", strtotime(str_replace('-','/', $disponibilidad->fecha_disponibilidad)))}} <span class="blue-text">${{$disponibilidad->precio_t}}</span>
+                                                    {{strftime("%B, %d", strtotime(str_replace('-','/', $disponibilidad->fecha_disponibilidad)))}} <span class="blue-text">${{$disponibilidad->precio_d}}</span>
                                                     <input type="submit" class="btn btn-date" value="BOOK">
                                                 </form>
                                             </li>
