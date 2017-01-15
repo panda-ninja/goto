@@ -298,7 +298,7 @@ class HomeController extends Controller
         $country=TCountry::get();
         $state=TState::where('country_id','231')->get();
         $city=TCity::where('state_id','3930')->get();
-        $paqueteCombo = TPaquete::with('disponibilidad')->where('codigo','GTPF700')->orwhere('codigo','GTPF701')->orwhere('codigo','GTPF702')->get();
+        $paqueteCombo = TPaquete::with('disponibilidad')->where('codigo','GTPF700')->orwhere('codigo','GTPF701')->orwhere('codigo','GTPF702')->orwhere('codigo','GTPF703')->get();
 //      dd($paqueteCombo);
 
         return view('checkout', ['paqueteCombo'=>$paqueteCombo,'paquetes'=>$paquete,'precio'=>$txt_price,'datedispo'=>$txt_date_number,'country'=>$title,'country1'=>$country, 'state'=>$state,'city'=>$city]);

@@ -264,13 +264,13 @@ class CheckoutController extends Controller
                     $mes = array('January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December');
                     $mes = $mes[(date('m', strtotime($fecha))*1)-1];
                     $fecha_letra= $dia.', '.$mes.' '.$num.', '.$anno;
-                    $valor.='<option value="'.$disponibilidad->fecha_disponibilidad.'_'.$disponibilidad->precio.'">'.$fecha_letra.'</option>';
+                    $valor.='<option value="'.$disponibilidad->fecha_disponibilidad.'_'.$disponibilidad->precio_d.'">'.$fecha_letra.'</option>';
                     $precio=$disponibilidad->precio;
 //                $valor +=  $disponibilidad->fecha_disponibilidad;
                 }
             }
         }
-        return  '<input type="hidden" value="'.$precio.'" name="txt_price"><select name="txt_date" id="date_travel" onchange="this.form.submit();">'.$valor.'</select>';
+        return  '<input type="hidden" value="'.$precio.'" name="txt_price"><select name="txt_date" id="date_travel" onchange="this.form.submit();">'.$valor.'</select><label for="date_travel" class="grey-text text-darken-3">Other Dates</label>';
     }
     public function buscar_otra_disponibilidad(Request $request)
     {
