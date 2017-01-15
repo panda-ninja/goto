@@ -5,7 +5,7 @@
 //     $('select').material_select();
 //     $('#charge-error').addClass('hide');
 // });
-Stripe.setPublishableKey('pk_test_dyIe8bpwdnHasxw7a27HhPoW');
+Stripe.setPublishableKey('pk_live_REwwDqPEJ4Jh4mI9u8htxZTk');
 
 var $form=$('#checkout-form');
 $form.submit(function(event){

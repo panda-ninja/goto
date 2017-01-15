@@ -59,7 +59,7 @@ class PagosController extends Controller
     public function store(Request $request,$idPago)
     {
         //dd($request);
-        \Stripe\Stripe::setApiKey("sk_test_ApAk9pY4WREiBYmKe8GyqlHC");
+        \Stripe\Stripe::setApiKey("sk_live_kyaJ1qTzBut6TqCFV9Wd5Vea");
         try{
 //            $customer = Customer::create([
 //                'card' => $request->input('stripeToken'),

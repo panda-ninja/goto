@@ -800,7 +800,7 @@ $("#destino_travel").change(function(){
     if(codigopx.length>0){
         var datastring="codigo="+codigopx;
 
-        $.post('http://gotoperu.mo/buscardisponibilidad', {codigo: codigopx}, function(markup) {
+        $.post('http://gotoperu.travel/buscardisponibilidad', {codigo: codigopx}, function(markup) {
             if(markup){
                 // console.log(markup);
                 // alert('correcto:'+markup);
@@ -811,7 +811,7 @@ $("#destino_travel").change(function(){
                 // $('#idLoad').html('');
                 // $.getScript("../../js/app.js", function(){
                 // });
-                $.getScript("../../js/init.js", function(){
+                $.getScript("http://gotoperu.travel/js/init.js", function(){
                 });
             }
             else{
@@ -869,7 +869,7 @@ function date_travel_dispo() {
         };
         $.ajax({
             data: datos,
-            url: "http://gotoperu.mo/travel-packages/{"+txt_country+"}_{"+txt_dias+"}/checkout1",
+            url: "http://gotoperu.travel/travel-packages/{"+txt_country+"}_{"+txt_dias+"}/checkout1",
             type: 'post'
         });
     }
