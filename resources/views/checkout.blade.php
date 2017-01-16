@@ -202,44 +202,44 @@
                                         <td><input class="form-control ancho_number" type="number" name="nroHabitacionesT" id="nroHabitacionesT" value="0" min="0" max="0" onchange="distribucion('T')"></td>
                                         <td><label for="" class="text-center">Triple Beds</label><br><img class="beds" src="{{asset('images/single.png')}}"><img class="beds" src="{{asset('images/single.png')}}"><img class="beds" src="{{asset('images/single.png')}}"></td>
                                         <?php
-//                                        echo '<input type="hidden" id="precio_T" name="precio_T" value="'.$pre_3_t.'">';
-//                                        echo'<td class=" hide" id="aco_2_T" onclick="acomodacion(2)">$ '.$pre_2_t.'</td>';
-//                                        echo'<td id="aco_3_T" onclick="acomodacion(3)">$ '.$pre_3_t.'</td>';
-//                                        echo'<td id="aco_4_T" onclick="acomodacion(4)">$ '.$pre_4_t.'</td>';
-//                                        echo'<td class=" hide"  id="aco_5_T" onclick="acomodacion(5)">$ '.$pre_5_t.'</td>';
+                                        echo '<input type="hidden" id="precio_T" name="precio_T" value="'.$pre_3_t.'">';
+                                        echo'<td class=" hide" id="aco_2_T" onclick="acomodacion(2)">$ '.$pre_2_t.'</td>';
+                                        echo'<td id="aco_3_T" onclick="acomodacion(3)">$ '.$pre_3_t.'</td>';
+                                        echo'<td id="aco_4_T" onclick="acomodacion(4)">$ '.$pre_4_t.'</td>';
+                                        echo'<td class=" hide"  id="aco_5_T" onclick="acomodacion(5)">$ '.$pre_5_t.'</td>';
                                         ?>
                                     </tr>
                                     <tr>
                                         <td><input class="form-control ancho_number" type="number" name="nroHabitacionesD" id="nroHabitacionesD" value="1" min="0"  max="1"  onchange="distribucion('D')"></td>
                                         <td><label for="" class="text-center">Double Beds</label><br><img class="beds" src="{{asset('images/single.png')}}"><img class="beds" src="{{asset('images/single.png')}}"></td>
                                         <?php
-//                                        echo '<input type="hidden" id="precio_D" name="precio_D" value="'.$pre_3_d.'">';
-//                                        echo'<td class=" hide"  id="aco_2_D" class="" onclick="acomodacion(2)">$ '.$pre_2_d.'</td>';
-//                                        echo'<td id="aco_3_D" class="precio-verde" onclick="acomodacion(3)">$ '.$pre_3_d.'</td>';
-//                                        echo'<td id="aco_4_D" onclick="acomodacion(4)">$ '.$pre_4_d.'</td>';
-//                                        echo'<td class=" hide"  id="aco_5_D" onclick="acomodacion(5)">$ '.$pre_5_d.'</td>';
+                                        echo '<input type="hidden" id="precio_D" name="precio_D" value="'.$pre_3_d.'">';
+                                        echo'<td class=" hide"  id="aco_2_D" class="" onclick="acomodacion(2)">$ '.$pre_2_d.'</td>';
+                                        echo'<td id="aco_3_D" class="precio-verde" onclick="acomodacion(3)">$ '.$pre_3_d.'</td>';
+                                        echo'<td id="aco_4_D" onclick="acomodacion(4)">$ '.$pre_4_d.'</td>';
+                                        echo'<td class=" hide"  id="aco_5_D" onclick="acomodacion(5)">$ '.$pre_5_d.'</td>';
                                         ?>
                                     </tr>
                                     <tr>
                                         <td><input class="form-control ancho_number" type="number" name="nroHabitacionesM" id="nroHabitacionesM" value="0" min="0"  max="1"  onchange="distribucion('M')"></td>
                                         <td><label for="" class="text-center">Matrimonial Beds</label><br><img class="bedsm" src="{{asset('images/matrimonial1.png')}}"></td>
                                         <?php
-//                                        echo'<input type="hidden" id="precio_Ma" name="precio_Ma" value="'.$pre_3_d.'">';
-//                                        echo'<td class=" hide"  id="aco_2_M" onclick="acomodacion(2)">$ '.$pre_2_d.'</td>';
-//                                        echo'<td id="aco_3_M" onclick="acomodacion(3)">$ '.$pre_3_d.'</td>';
-//                                        echo'<td id="aco_4_M" onclick="acomodacion(4)">$ '.$pre_4_d.'</td>';
-//                                        echo'<td class=" hide"  id="aco_5_M" onclick="acomodacion(5)">$ '.$pre_5_d.'</td>';
+                                        echo'<input type="hidden" id="precio_Ma" name="precio_Ma" value="'.$pre_3_d.'">';
+                                        echo'<td class=" hide"  id="aco_2_M" onclick="acomodacion(2)">$ '.$pre_2_d.'</td>';
+                                        echo'<td id="aco_3_M" onclick="acomodacion(3)">$ '.$pre_3_d.'</td>';
+                                        echo'<td id="aco_4_M" onclick="acomodacion(4)">$ '.$pre_4_d.'</td>';
+                                        echo'<td class=" hide"  id="aco_5_M" onclick="acomodacion(5)">$ '.$pre_5_d.'</td>';
                                         ?>
                                     </tr>
                                     <tr>
                                         <td><input class="form-control ancho_number" type="number" name="nroHabitacionesS" id="nroHabitacionesS" value="0"  min="0"  max="2" onchange="distribucion('S')"></td>
                                         <td><label for="" class="text-center">Single Beds</label><br><img class="beds" src="{{asset('images/single.png')}}"></td>
                                         <?php
-//                                        echo '<input type="hidden" id="precio_S" name="precio_S" value="'.$pre_3_s.'">';
-//                                        echo'<td class=" hide"  id="aco_2_S" onclick="acomodacion(2)">$ '.$pre_2_s.'</td>';
-//                                        echo'<td id="aco_3_S" onclick="acomodacion(3)">$ '.$pre_3_s.'</td>';
-//                                        echo'<td id="aco_4_S" onclick="acomodacion(4)">$ '.$pre_4_s.'</td>';
-//                                        echo'<td class=" hide"  id="aco_5_S" onclick="acomodacion(5)">$ '.$pre_5_s.'</td>';
+                                        echo '<input type="hidden" id="precio_S" name="precio_S" value="'.$pre_3_s.'">';
+                                        echo'<td class=" hide"  id="aco_2_S" onclick="acomodacion(2)">$ '.$pre_2_s.'</td>';
+                                        echo'<td id="aco_3_S" onclick="acomodacion(3)">$ '.$pre_3_s.'</td>';
+                                        echo'<td id="aco_4_S" onclick="acomodacion(4)">$ '.$pre_4_s.'</td>';
+                                        echo'<td class=" hide"  id="aco_5_S" onclick="acomodacion(5)">$ '.$pre_5_s.'</td>';
                                         ?>
                                     </tr>
                                 </table>
