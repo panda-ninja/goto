@@ -300,8 +300,6 @@ class HomeController extends Controller
         $state=TState::where('country_id','231')->get();
         $city=TCity::where('state_id','3930')->get();
         $paqueteCombo = TPaquete::with('disponibilidad')->where('codigo','GTPF700')->orwhere('codigo','GTPF701')->orwhere('codigo','GTPF702')->orwhere('codigo','GTPF703')->get();
-//      dd($paqueteCombo);
-//        dd($paquete);
 
         return view('checkout', ['paqueteCombo'=>$paqueteCombo,'paquetes'=>$paquete,'precio'=>$txt_price,'datedispo'=>$txt_date_number,'country'=>$title,'country1'=>$country, 'state'=>$state,'city'=>$city]);
     }
@@ -337,6 +335,7 @@ class HomeController extends Controller
         $paquete = TPaquete::with('paquetes_destinos', 'precio_paquetes', 'paquetes_categoria')->where('codigo', 'NOT LIKE', 'GTPF%')->where('codigo', 'NOT LIKE', 'GTPX%')->where('codigo', 'NOT LIKE', 'GTPV%')->where('duracion', $dias)->get();
 //        dd($paquete );
         return view('ground', ['paquete'=>$paquete, 'categoria'=>$categoria, 'duracion'=>$duracion]);
+
     }
 
     public function showcategory($category)
