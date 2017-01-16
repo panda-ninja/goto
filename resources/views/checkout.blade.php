@@ -434,28 +434,21 @@
                             </div>
                         </div>
                         <div class="row">
-                            <div class="col s12  light-green lighten-2">
+                            <div class="col s12  grey lighten-2">
                                 <h6>Optional Activities:</h6>
                                 <?php $i=0;?>
                                 @foreach($paquetes as $paquete)
                                     @foreach($paquete->paquete_servicio_extra as $servicios)
                                         <?php $i++;?>
-                                        <div class="row">
-                                            <div class="col m9">
-                                                <p>
-                                                    <input type="hidden" id="ch_extras_id_{{$i}}" value="{{$servicios->servicio_extra->id}}">
-                                                    <input type="hidden" id="ch_extras_name_{{$i}}" name="ch_extras_name[]" value="{{$servicios->servicio_extra->titulo}}">
-                                                    <input type="hidden" id="ch_extras_valor_{{$i}}" name="ch_extras_valor[]" value="0">
-                                                    <input type="checkbox" id="ch_extras_{{$i}}" name="ch_extras[]" value="{{$servicios->servicio_extra->precio}}" onchange="ch_extra({{$i}})"/>
-                                                    <label for="ch_extras_{{$i}}" class="grey-text text-darken-4">{{$servicios->servicio_extra->titulo}}<span id="p_{{$i}}}"> ($<span id="extra_precioS_{{$i}}">{{$servicios->servicio_extra->precio}}</span> for traveller)</span><br><span class="text-12 grey-text text-darken-3">{{$servicios->servicio_extra->descripcion}}</span></label>
+                                        <p>
+                                            <input type="hidden" id="ch_extras_id_{{$i}}" value="{{$servicios->servicio_extra->id}}">
+                                            <input type="hidden" id="ch_extras_name_{{$i}}" name="ch_extras_name[]" value="{{$servicios->servicio_extra->titulo}}">
+                                            <input type="hidden" id="ch_extras_valor_{{$i}}" name="ch_extras_valor[]" value="0">
+                                            <input type="checkbox" id="ch_extras_{{$i}}" name="ch_extras[]" value="{{$servicios->servicio_extra->precio}}" onchange="ch_extra({{$i}})"/>
+                                            <label for="ch_extras_{{$i}}" class="grey-text text-darken-3">{{$servicios->servicio_extra->titulo}}<span id="p_{{$i}}}"> $ <span id="extra_precioP_{{$i}}">{{2*$servicios->servicio_extra->precio}}</span> ($<span id="extra_precioS_{{$i}}">{{$servicios->servicio_extra->precio}}</span> for traveller)</span></label>
+                                        </p>
 
-                                                </p>
-                                            </div>
-                                            <div class="col m3">
-                                                $ <span id="extra_precioP_{{$i}}">{{2*$servicios->servicio_extra->precio}}</span>
-                                            </div>
-                                        </div>
-
+                                        <hr>
                                     @endforeach
                                 @endforeach
                                 <br>
@@ -525,7 +518,7 @@
                                 <div class="row">
                                     <div class="col m6">
                                         <div class="input-field">
-                                            <select name="country_p" id="country_p" onchange="country_p_ch()" class="validate">
+                                            <select name="country_p" id="country_p" class="validate">
                                                 @foreach($country1 as $county11)
                                                     @if($county11->name=='United States')
                                                         <option value="{{$county11->id}}" selected>{{$county11->name}}</option>
@@ -538,8 +531,8 @@
                                         </div>
                                     </div>
                                     <div class="col m6">
-                                        <div id="state_goto" class="input-field">
-                                            <select name="state_p" id="state_p" onchange="state_p_ch()" class="validate">
+                                        <div class="input-field">
+                                            <select name="state_p" id="state_p" class="validate">
                                                 @foreach($state as $state1)
                                                     @if($state1->id=='3930')
                                                         <option value="{{$state1->id}}" selected>{{$state1->name}}</option>
@@ -560,7 +553,7 @@
                                         </div>
                                     </div>
                                     <div class="col m6">
-                                        <div id="city_goto" class="input-field">
+                                        <div class="input-field">
                                             <select name="city_p" id="city_p" class="validate">
                                                 @foreach($city as $city1)
                                                     @if($city1->id=='43885')
