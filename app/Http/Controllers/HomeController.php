@@ -289,6 +289,7 @@ class HomeController extends Controller
         }
 
 //        $txt_date_number=($request->input('txt_date'));
+//        $txt_country=($request->input('txt_country'));
         $txt_country=($request->input('txt_country'));
 //        dd($txt_price);
         $paquete = TPaquete::with(['itinerario','paquetes_destinos', 'precio_paquetes','paquete_servicio_extra.servicio_extra','disponibilidad' => function($query)use($txt_date_number){$query->where('fecha_disponibilidad',$txt_date_number);}])
@@ -300,6 +301,7 @@ class HomeController extends Controller
         $city=TCity::where('state_id','3930')->get();
         $paqueteCombo = TPaquete::with('disponibilidad')->where('codigo','GTPF700')->orwhere('codigo','GTPF701')->orwhere('codigo','GTPF702')->orwhere('codigo','GTPF703')->get();
 //      dd($paqueteCombo);
+//        dd($paquete);
 
         return view('checkout', ['paqueteCombo'=>$paqueteCombo,'paquetes'=>$paquete,'precio'=>$txt_price,'datedispo'=>$txt_date_number,'country'=>$title,'country1'=>$country, 'state'=>$state,'city'=>$city]);
     }
