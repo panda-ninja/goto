@@ -159,45 +159,7 @@
 
                                     <tr>
 
-                                        @if($TipoPaquete=='SinHotel')
-
-
-                                        @else
-                                            {{--@foreach($paquetes as $paquete)--}}
-                                                {{--@foreach($paquete->disponibilidad as $precio_paquetes)--}}
-                                                    {{--@if($precio_paquetes->estrellas=='2')--}}
-                                                        {{--<?php--}}
-                                                        {{--$pre_2_s=$precio_paquetes->precio_s;--}}
-                                                        {{--$pre_2_d=$precio_paquetes->precio_d;--}}
-                                                        {{--$pre_2_t=$precio_paquetes->precio_t;--}}
-                                                        {{--?>--}}
-                                                    {{--@endif--}}
-                                                    {{--@if($precio_paquetes->estrellas=='3')--}}
-                                                        {{--<?php--}}
-                                                        {{--$pre_3_s=$precio_paquetes->precio_s;--}}
-                                                        {{--$pre_3_d=$precio_paquetes->precio_d;--}}
-                                                        {{--$pre_3_t=$precio_paquetes->precio_t;--}}
-                                                        {{--?>--}}
-                                                    {{--@endif--}}
-                                                    {{--@if($precio_paquetes->estrellas=='4')--}}
-                                                        {{--<?php--}}
-                                                        {{--$pre_4_s=$precio_paquetes->precio_s;--}}
-                                                        {{--$pre_4_d=$precio_paquetes->precio_d;--}}
-                                                        {{--$pre_4_t=$precio_paquetes->precio_t;--}}
-                                                        {{--?>--}}
-                                                    {{--@endif--}}
-                                                    {{--@if($precio_paquetes->estrellas=='5')--}}
-                                                        {{--<?php--}}
-                                                        {{--$pre_5_s=$precio_paquetes->precio_s;--}}
-                                                        {{--$pre_5_d=$precio_paquetes->precio_d;--}}
-                                                        {{--$pre_5_t=$precio_paquetes->precio_t;--}}
-                                                        {{--?>--}}
-                                                    {{--@endif--}}
-                                                {{--@endforeach--}}
-                                            {{--@endforeach--}}
-
-
-                                        @endif
+                                        
 
                                         <td><input class="form-control ancho_number" type="number" name="nroHabitacionesT" id="nroHabitacionesT" value="0" min="0" max="0" onchange="distribucion('T')"></td>
                                         <td><label for="" class="text-center">Triple Beds</label><br><img class="beds" src="{{asset('images/single.png')}}"><img class="beds" src="{{asset('images/single.png')}}"><img class="beds" src="{{asset('images/single.png')}}"></td>
