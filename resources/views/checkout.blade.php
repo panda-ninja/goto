@@ -73,21 +73,21 @@
                     <div class="input-field col m4" id="dispo">
                         <input type="hidden" value="{{$precio}}" name="txt_price" id="txt_price">
                         <select name="txt_date" id="date_travel" onclick="pasar()" onchange="this.form.submit();">
-                            {{--@foreach($paqueteCombo as $paquete)--}}
-                                {{--@if($paquete->codigo==$paquete1->codigo)--}}
-                                    {{--@foreach($paquete->disponibilidad as $disponibilidad)--}}
-                                        {{--@if($disponibilidad->estado=='1')--}}
-                                            {{--@if($disponibilidad->estrellas=='3')--}}
-                                                {{--@if($disponibilidad->fecha_disponibilidad==$datedispo)--}}
-                                                    {{--<option value="{{$disponibilidad->fecha_disponibilidad.'_'.$disponibilidad->precio_d}}" selected>{{obtenerFechaEnLetra($disponibilidad->fecha_disponibilidad)}}</option>--}}
-                                                {{--@else--}}
-                                                    {{--<option value="{{$disponibilidad->fecha_disponibilidad.'_'.$disponibilidad->precio_d}}" >{{obtenerFechaEnLetra($disponibilidad->fecha_disponibilidad)}}</option>--}}
-                                                {{--@endif--}}
-                                            {{--@endif--}}
-                                        {{--@endif--}}
-                                    {{--@endforeach--}}
-                                {{--@endif--}}
-                            {{--@endforeach--}}
+                            @foreach($paqueteCombo as $paquete)
+                                @if($paquete->codigo==$paquete1->codigo)
+                                    @foreach($paquete->disponibilidad as $disponibilidad)
+                                        @if($disponibilidad->estado=='1')
+                                            @if($disponibilidad->estrellas=='3')
+                                                @if($disponibilidad->fecha_disponibilidad==$datedispo)
+                                                    <option value="{{$disponibilidad->fecha_disponibilidad.'_'.$disponibilidad->precio_d}}" selected>{{obtenerFechaEnLetra($disponibilidad->fecha_disponibilidad)}}</option>
+                                                @else
+                                                    <option value="{{$disponibilidad->fecha_disponibilidad.'_'.$disponibilidad->precio_d}}" >{{obtenerFechaEnLetra($disponibilidad->fecha_disponibilidad)}}</option>
+                                                @endif
+                                            @endif
+                                        @endif
+                                    @endforeach
+                                @endif
+                            @endforeach
                         </select>
                         <label for="date_travel" class="grey-text text-darken-3">Other Dates</label>
                     </div>
