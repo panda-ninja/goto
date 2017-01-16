@@ -315,4 +315,5 @@ class CheckoutController extends Controller
 
         return redirect()->route('home_show_checkout_path', array('titulo'=>str_replace(' ','-', strtolower($codigo)), 'dias'=>$paqueteCombo->duracion.'-days-tours'));
     }
+
 }

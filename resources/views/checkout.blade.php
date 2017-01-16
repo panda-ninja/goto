@@ -8,6 +8,7 @@
         @endforeach
     @endforeach
     <?php
+            
         $paquete1='';
 
         $pre_2_s=$precio;
