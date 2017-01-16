@@ -784,9 +784,7 @@ function ch_extra(posi){
     }
     recalcular_total();
 }
-
-
-
+var url3='http://gotoperu.travel';
 $("#destino_travel").change(function(){
     // alert('hola');
 
@@ -796,48 +794,17 @@ $("#destino_travel").change(function(){
         }
     });
     var codigopx=$("#destino_travel").val();
-    // alert(codigopx);
-    if(codigopx.length>0){
+     if(codigopx.length>0){
         var datastring="codigo="+codigopx;
-
-        $.post('http://gotoperu.mo/buscardisponibilidad', {codigo: codigopx}, function(markup) {
-            if(markup){
-                // console.log(markup);
-                // alert('correcto:'+markup);
-                $('#dispo').html(markup);
-                // document.write('<script src="{{asset(\'js/init.js\')}}"></script>');
-                // $('#list_planes').html('');
-                // $('#list_planes').html(markup);
-                // $('#idLoad').html('');
-                // $.getScript("../../js/app.js", function(){
-                // });
-                $.getScript("http://gotoperu.mo/js/init.js", function(){
+        $.post(url3+'/buscardisponibilidad', {codigo: codigopx}, function(markup) {
+            if(markup){$('#dispo').html(markup);
+               $.getScript(url3+'/js/init.js', function(){
                 });
             }
             else{
-                // alert('na');
-                // $('#idLoad').html('');
-                // $('#list_planes').html('<div id="card-alert" class="card red lighten-5">'+
-                //     '<div class="card-content red-text">'+
-                //     '<p>ERROR : Ocurrio un error al cargar los datos '+markup+'</p>'+
-                //     '</div>'+
-                //     '<button type="button" class="close red-text" data-dismiss="alert" aria-label="Close">'+
-                //     '<span aria-hidden="true">×</span>'+
-                //     '</button>'+
-                //     '</div>');
-            }
+              }
         }).fail(function (markup) {
-            // alert('error:'+markup);
-            // $('#idLoad').html('');
-            // $('#list_planes').html('<div id="card-alert" class="card red lighten-5">'+
-            //     '<div class="card-content red-text">'+
-            //     '<p>ERROR : No se encontró el paquete con codigo: '+codigopx+'</p>'+
-            //     '</div>'+
-            //     '<button type="button" class="close red-text" data-dismiss="alert" aria-label="Close">'+
-            //     '<span aria-hidden="true">×</span>'+
-            //     '</button>'+
-            //     '</div>');
-        });
+            });
     }
     else{
 
@@ -846,12 +813,6 @@ $("#destino_travel").change(function(){
 });
 
 function date_travel_dispo() {
-    // alert('hola');
-    // $.ajaxSetup({
-    //     headers: {
-    //         'X-CSRF-TOKEN': $('[name="_token"]').val()
-    //     }
-    // });
     var txt_data1 = $("#date_travel").val();
     var txt_data = txt_data1.split("_");
     // alert(txt_data1);
@@ -869,7 +830,7 @@ function date_travel_dispo() {
         };
         $.ajax({
             data: datos,
-            url: "http://gotoperu.travel/travel-packages/{"+txt_country+"}_{"+txt_dias+"}/checkout1",
+            url: url3+"/travel-packages/{"+txt_country+"}_{"+txt_dias+"}/checkout1",
             type: 'post'
         });
     }
@@ -887,4 +848,60 @@ function pasar(){
 
 };
 
+function country_p_ch(){
+    $.ajaxSetup({
+        headers: {
+            'X-CSRF-TOKEN': $('[name="_token"]').val()
+        }
+    });
+    var codigopx=$("#country_p").val();
+    // alert(codigopx);
+    if(codigopx.length>0){
+        var datastring="codigo="+codigopx;
+        $.post(url3+'/buscarstate', {codigo: codigopx}, function(markup) {
+            if(markup){
+                $('#state_goto').html(markup);
+                $.getScript(url3+"/js/init.js", function(){
+                });
+            }
+            else{
+
+            }
+        }).fail(function (markup) {
+
+        });
+    }
+    else{
+
+        $("#country_p").focus();
+    }
+};
+function state_p_ch(){
+    $.ajaxSetup({
+        headers: {
+            'X-CSRF-TOKEN': $('[name="_token"]').val()
+        }
+    });
+    var codigopx=$("#state_p").val();
+    // alert(codigopx);
+    if(codigopx.length>0){
+        var datastring="codigo="+codigopx;
+        $.post(url3+'/buscarcity', {codigo: codigopx}, function(markup) {
+            if(markup){
+                $('#city_goto').html(markup);
+                $.getScript(url3+"/js/init.js", function(){
+                });
+            }
+            else{
+
+            }
+        }).fail(function (markup) {
+
+        });
+    }
+    else{
+
+        $("#state_p").focus();
+    }
+};
 //# sourceMappingURL=funciones-checkout.js.map

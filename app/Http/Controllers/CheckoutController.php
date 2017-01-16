@@ -2,7 +2,10 @@
 
 namespace GotoPeru\Http\Controllers;
 
+use GotoPeru\TCity;
+use GotoPeru\TCountry;
 use GotoPeru\TPaquete;
+use GotoPeru\TState;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
 use Stripe\Stripe;
@@ -19,7 +22,7 @@ class CheckoutController extends Controller
     public function store(Request $request)
     {
         //dd($request);
-        \Stripe\Stripe::setApiKey("sk_live_kyaJ1qTzBut6TqCFV9Wd5Vea");
+        \Stripe\Stripe::setApiKey("sk_test_ApAk9pY4WREiBYmKe8GyqlHC");
         try{
             $operacion=\Stripe\Charge::create(array(
                 "amount"=>$request->input('total_p')*100,
@@ -33,6 +36,9 @@ class CheckoutController extends Controller
             $paquete = TPaquete::with(['itinerario','paquetes_destinos', 'precio_paquetes','paquete_servicio_extra.servicio_extra','disponibilidad' => function($query)use($txt_date_number){$query->where('fecha_disponibilidad',$txt_date_number);}])
                 ->get()
                 ->where('titulo', $title);
+            $country_=TCountry::findOrFail($request->input('country_p'));
+            $state_=TState::findOrFail($request->input('state_p'));
+            $city_=TCity::findOrFail($request->input('city_p'));
 //            $pago=Pago::findOrFail($idPago);
 //            $pago->fecha=date("Y-m-d");
 //            $pago->estado=0;
@@ -82,10 +88,10 @@ class CheckoutController extends Controller
 
             $name_country='';
 //            $email_cliente='fredy1432@hotmail.com';
-//            $email_empresa='fredy1432@hotmail.com';
+            $email_empresa='fredy1432@hotmail.com';
 
             $email_cliente=$request->input('email_p');
-            $email_empresa='info@gotoperu.com';
+//            $email_empresa='info@gotoperu.com';
 
             $name_pq=$request->input('first_name_p');
 //            $emaila_agencia=$request->input('email_p');
@@ -118,7 +124,11 @@ class CheckoutController extends Controller
                 'date_travel'=>$fecha_letra,
                 'nro_estrellas'=>$request->input('nro_estrellas'),
                 'ch_extras_valor_count'=>$i,
-                'email_p'=>$request->input('email_p')
+                'email_p'=>$request->input('email_p'),
+                'country_'=>$country_->name,
+                'state_'=>$state_->name,
+                'city_'=>$city_->name,
+                'address_p'=>$request->input('address_p'),
 
             ], function ($messaje) use ($email_cliente,$name_pq){
                 $messaje->to($email_cliente,$name_pq)
@@ -155,8 +165,11 @@ class CheckoutController extends Controller
                 'date_travel'=>$fecha_letra,
                 'nro_estrellas'=>$request->input('nro_estrellas'),
                 'ch_extras_valor_count'=>$i,
-                'email_p'=>$request->input('email_p')
-
+                'email_p'=>$request->input('email_p'),
+                'country_'=>$country_->name,
+                'state_'=>$state_->name,
+                'city_'=>$city_->name,
+                'address_p'=>$request->input('address_p'),
             ],function ($messaje) use ($email_empresa,$email_cliente,$name_pq){
                 $messaje->to($email_empresa,'Gotperu')
                     ->subject('Gotoperu - new purchase')
@@ -194,7 +207,10 @@ class CheckoutController extends Controller
                 'nro_estrellas'=>$request->input('nro_estrellas'),
                 'ch_extras_valor_count'=>$i,
                 'estado'=>'1',
-
+                'country_'=>$country_->name,
+                'state_'=>$state_->name,
+                'city_'=>$city_->name,
+                'address_p'=>$request->input('address_p'),
             ])->with('success','Your pay was succesfull');
 //            return redirect()->route('checkout_noti_path',['pago'=>$pago])->with('success','Your pay was succesfull');
 //            return redirect()->route('payments_show_path',$idPago)->with('success','Your pay was succesfull');
@@ -271,6 +287,26 @@ class CheckoutController extends Controller
             }
         }
         return  '<input type="hidden" value="'.$precio.'" name="txt_price"><select name="txt_date" id="date_travel" onclick="pasar()" onchange="this.form.submit();">'.$valor.'</select><label for="date_travel" class="grey-text text-darken-3">Other Dates</label>';
+    }
+    public function buscar_state(Request $request)
+    {
+        $codigo=strtoupper($request->input('codigo'));
+        $states = TState::where('country_id',$codigo)->get();
+      $valor='';
+      foreach ($states as $state){
+            $valor.='<option value="'.$state->id.'">'.$state->name.'</option>';
+        }
+        return  '<select name="state_p" id="state_p"  onchange="state_p_ch()" class="validate">'.$valor.'</select><label for="state_p" class="grey-text text-darken-3">State/Province <span class="blue-text">*</span></label>';
+    }
+    public function buscar_city(Request $request)
+    {
+        $codigo=strtoupper($request->input('codigo'));
+        $cities = TCity::where('state_id',$codigo)->get();
+        $valor='';
+        foreach ($cities as $city){
+            $valor.='<option value="'.$city->id.'">'.$city->name.'</option>';
+        }
+        return  '<select name="city_p" id="city_p" class="validate">'.$valor.'</select><label for="city_p" class="grey-text text-darken-3">City <span class="blue-text">*</span></label>';
     }
     public function buscar_otra_disponibilidad(Request $request)
     {

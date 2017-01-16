@@ -96,6 +96,14 @@ Route::post('/buscardisponibilidad', [
     'uses' => 'CheckoutController@buscar_disponibilidad',
     'as' => 'pqt_buscar_disponibilidad_path',
 ]);
+Route::post('/buscarstate', [
+    'uses' => 'CheckoutController@buscar_state',
+    'as' => 'pqt_buscar_state_path',
+]);
+Route::post('/buscarcity', [
+    'uses' => 'CheckoutController@buscar_city',
+    'as' => 'pqt_buscar_city_path',
+]);
 Route::post('/buscarotradisponibilidad', [
     'uses' => 'CheckoutController@buscar_otra_disponibilidad',
     'as' => 'pqt_buscar_otra_disponibilidad_path',

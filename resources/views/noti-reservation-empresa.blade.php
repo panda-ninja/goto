@@ -23,8 +23,8 @@
                     <tr><td><b>Client:</b> {{$first_name_p.', '.$last_name_p}}</td></tr>
                     <tr><td><b>Nationality:</b> {{$name_country}}</td></tr>
                     <tr><td><b>Email:</b> {{$email_p}}</td></tr>
-                    {{--<tr><td><b>Residenca:</b> {{auth()->guard('cliente')->user()->residencia}}</td></tr>--}}
-                    {{--<tr><td><b>Passport:</b> {{auth()->guard('cliente')->user()->pasaporte}}</td></tr>--}}
+                    <tr><td><b>Residenca:</b> {{$country_}} / {{$state_}} / {{$city_}}</td></tr>
+                    <tr><td><b>Address:</b> {{$address_p}}</td></tr>
                     <tr><td><b>Telephone:</b> {{$telephone_p}}</td></tr>
                 </table>
             </td>
