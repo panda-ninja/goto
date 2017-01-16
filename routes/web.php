@@ -76,11 +76,38 @@ Route::post('checkout-package/{titulo}_{dias}', [
     'as' => 'checkout_package_path',
 ]);
 
+Route::post('checkout/', [
+    'uses' => 'CheckoutController@store',
+    'as' => 'checkout_store_path',
+]);
+Route::post('checkout-confirmation/', [
+    'uses' => 'CheckoutController@confirmation',
+    'as' => 'noti-reservation-client',
+]);
+Route::any('pay-confirmation/',[
+    'uses' => 'CheckoutController@pay_confirmation',
+    'as' => 'noti-pay-confirmation-client',
+]);
+Route::post('checkout-confirmation-empresa/', [
+    'uses' => 'CheckoutController@pay_confirmation_empresa',
+    'as' => 'noti-reservation-empresa',
+]);
+Route::post('/buscardisponibilidad', [
+    'uses' => 'CheckoutController@buscar_disponibilidad',
+    'as' => 'pqt_buscar_disponibilidad_path',
+]);
+Route::post('/buscarotradisponibilidad', [
+    'uses' => 'CheckoutController@buscar_otra_disponibilidad',
+    'as' => 'pqt_buscar_otra_disponibilidad_path',
+]);
+Route::any('travel-packages/{titulo}_{dias}/checkout1', [
+    'uses' => 'HomeController@showcheckout1',
+    'as' => 'home_show_checkout_path1',
+]);
 Route::post('pdf/{id}', [
     'uses' => 'HomeController@pdf',
     'as' => 'view_vacations_pdf_path',
 ]);
-
 /*==begin== rutas para clientes ================================================================*/
 Route::get('cliente/login', [
     'uses' => 'ClientAuthController@index',

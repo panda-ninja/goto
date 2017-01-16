@@ -2651,7 +2651,8 @@ input[type=range] + .thumb {
 
 .row {
   margin-left: auto;
-  margin-right: auto; }
+  margin-right: auto;
+  margin-bottom: 20px; }
   .row:after {
     content: "";
     display: table;
@@ -6916,6 +6917,9 @@ span.quotes-duration {
   height: 25px;
   line-height: 25px;
   padding: 0 11px; }
+
+.btn-checkout {
+  width: 100%; }
 
 img.desaturada {
   filter: grayscale(100%);

@@ -74,5 +74,3 @@ function mensaje9(){
     alert('hola papi');
 }
 
-
-//# sourceMappingURL=checkout.js.map

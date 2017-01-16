@@ -200,8 +200,8 @@
                                                 <input type="hidden" value="1" name="txt_iddate">
                                                 <input type="hidden" value="{{$disponibilidad->fecha_disponibilidad}}" name="txt_date">
                                                 <input type="hidden" value="{{$paquetes->titulo}}" name="txt_country">
-                                                <input type="hidden" value="{{$disponibilidad->precio}}" name="txt_price">
-                                                {{strftime("%B, %d", strtotime(str_replace('-','/', $disponibilidad->fecha_disponibilidad)))}} <span class="blue-text">${{$disponibilidad->precio_t}}</span>
+                                                <input type="hidden" value="{{$disponibilidad->precio_d}}" name="txt_price">
+                                                {{strftime("%B, %d", strtotime(str_replace('-','/', $disponibilidad->fecha_disponibilidad)))}} <span class="blue-text">${{$disponibilidad->precio_d}}</span>
                                                 <input type="submit" class="btn btn-date" value="BOOK">
                                             </form>
                                         </li>

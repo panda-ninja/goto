@@ -156,4 +156,7 @@ elixir(function(mix) {
     mix.scripts([
         'resources/assets/js/vendors/funciones-checkout.js',
     ], 'public/js/funciones-checkout.js');
+    mix.scripts([
+        'resources/assets/js/vendors/checkout.js',
+    ], 'public/js/checkout.js');
 });

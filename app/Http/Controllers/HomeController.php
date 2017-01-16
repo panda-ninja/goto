@@ -8,6 +8,10 @@ use GotoPeru\ItinerarioPersonalizado;
 use GotoPeru\ItinerarioXHora;
 use GotoPeru\PaqueteCotizacion;
 use GotoPeru\PaquetePersonalizado;
+use GotoPeru\TCountry;
+use GotoPeru\TState;
+use GotoPeru\TCity;
+
 use GotoPeru\TPaquete_servicio_extra;
 use GotoPeru\TCategoria;
 use GotoPeru\TDisponibilidad;
@@ -266,18 +270,45 @@ class HomeController extends Controller
     public function showcheckout(Request $request,$titulo)
     {
         $title = str_replace('-', ' ', strtoupper($titulo));
-        $txt_price=($request->input('txt_price'));
-        $txt_date_number=($request->input('txt_date_number'));
+        $txt_price=0;
+        if(!empty($request->input('txt_date'))) {
+            $date_precio = explode('_', $request->input('txt_date'));
+
+            $txt_date_number = '';
+            if (count($date_precio) > 1) {
+                $txt_price = $date_precio[1];
+                $txt_date_number = $date_precio[0];
+            } else {
+                $txt_price = $request->input('txt_price');
+                $txt_date_number = $request->input('txt_date');
+            }
+        }
+        else {
+            $txt_price = $request->input('txt_price');
+            $txt_date_number = $request->input('txt_date');
+        }
+
+//        $txt_date_number=($request->input('txt_date'));
         $txt_country=($request->input('txt_country'));
 //        dd($txt_price);
         $paquete = TPaquete::with(['itinerario','paquetes_destinos', 'precio_paquetes','paquete_servicio_extra.servicio_extra','disponibilidad' => function($query)use($txt_date_number){$query->where('fecha_disponibilidad',$txt_date_number);}])
             ->get()
-            ->where('titulo', $title);
-//       dd($paquete);
+            ->where('titulo', $txt_country);
 
-        return view('checkout', ['paquetes'=>$paquete,'precio'=>$txt_price,'datedispo'=>$txt_date_number,'country'=>$title]);
+        $country=TCountry::get();
+        $state=TState::where('country_id','231')->get();
+        $city=TCity::where('state_id','3930')->get();
+        $paqueteCombo = TPaquete::with('disponibilidad')->where('codigo','GTPF700')->orwhere('codigo','GTPF701')->orwhere('codigo','GTPF702')->orwhere('codigo','GTPF703')->get();
+//      dd($paqueteCombo);
+
+        return view('checkout', ['paqueteCombo'=>$paqueteCombo,'paquetes'=>$paquete,'precio'=>$txt_price,'datedispo'=>$txt_date_number,'country'=>$title,'country1'=>$country, 'state'=>$state,'city'=>$city]);
     }
+    public function showcheckout1(Request $request1,$titulo)
+    {
+//        return redirect()->route('home_path');
+        return view('home');
 
+    }
     public function viewpackages()
     {
         SEOMeta::setTitle('Machu Picchu Tour Packages | Machu Picchu Vacation Packages | Machu Picchu Deals | Peru Honeymoon Travel Packages');

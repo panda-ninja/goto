@@ -915,6 +915,8 @@
     });
 </script>
 
+
+@yield('scripts')
 <script>
     /*=========================================================================================OLARK*/
     /*<![CDATA[*/window.olark||(function(c){var f=window,d=document,l=f.location.protocol=="https:"?"https:":"http:",z=c.name,r="load";var nt=function(){
