@@ -426,7 +426,7 @@
                             <div class=" col s12 grey darken-4">
                                 <div class="text-14 white-text" >Total (USD)
                                     <span class="text-30 blue-text text-lighten-1 ">$
-{{--                            <span id="subtotal"> {{2*$precio}}</span>--}}
+                            <span id="subtotal"> {{2*$precio}}</span>
                         </span>
                                 </div>
                                 <div class="text-12 align-rigth white-text">taxes included
@@ -461,11 +461,11 @@
                                 <br>
                             </div>
                             <div class=" col s12 orange lighten-1">
-                                {{--<div class="text-14 white-text" >Total (USD)--}}
-                                    {{--<span class="text-30 ">$--}}
-                            {{--<span id="total"> {{2*$precio}}</span>--}}
-                        {{--</span>--}}
-                                {{--</div>--}}
+                                <div class="text-14 white-text" >Total (USD)
+                                    <span class="text-30 ">$
+                                        <span id="total"> {{2*$precio}}</span>
+                                    </span>
+                                </div>
                                 <div class="text-12 align-rigth white-text">taxes included
                                 </div>
                             </div>
@@ -524,32 +524,32 @@
                                 </div>
                                 <div class="row">
                                     <div class="col m6">
-                                        {{--<div class="input-field">--}}
-                                            {{--<select name="country_p" id="country_p" onchange="country_p_ch()" class="validate">--}}
-                                                {{--@foreach($country1 as $county11)--}}
-                                                    {{--@if($county11->name=='United States')--}}
-                                                        {{--<option value="{{$county11->id}}" selected>{{$county11->name}}</option>--}}
-                                                    {{--@else--}}
-                                                        {{--<option value="{{$county11->id}}">{{$county11->name}}</option>--}}
-                                                    {{--@endif--}}
-                                                {{--@endforeach--}}
-                                            {{--</select>--}}
-                                            {{--<label for="country_p" class="grey-text text-darken-3">Country <span class="blue-text">*</span></label>--}}
-                                        {{--</div>--}}
+                                        <div class="input-field">
+                                            <select name="country_p" id="country_p" onchange="country_p_ch()" class="validate">
+                                                @foreach($country1 as $county11)
+                                                    @if($county11->name=='United States')
+                                                        <option value="{{$county11->id}}" selected>{{$county11->name}}</option>
+                                                    @else
+                                                        <option value="{{$county11->id}}">{{$county11->name}}</option>
+                                                    @endif
+                                                @endforeach
+                                            </select>
+                                            <label for="country_p" class="grey-text text-darken-3">Country <span class="blue-text">*</span></label>
+                                        </div>
                                     </div>
                                     <div class="col m6">
-                                        {{--<div id="state_goto" class="input-field">--}}
-                                            {{--<select name="state_p" id="state_p" onchange="state_p_ch()" class="validate">--}}
-                                                {{--@foreach($state as $state1)--}}
-                                                    {{--@if($state1->id=='3930')--}}
-                                                        {{--<option value="{{$state1->id}}" selected>{{$state1->name}}</option>--}}
-                                                    {{--@else--}}
-                                                        {{--<option value="{{$state1->id}}">{{$state1->name}}</option>--}}
-                                                    {{--@endif--}}
-                                                {{--@endforeach--}}
-                                            {{--</select>--}}
-                                            {{--<label for="state_p" class="grey-text text-darken-3">State/Province <span class="blue-text">*</span></label>--}}
-                                        {{--</div>--}}
+                                        <div id="state_goto" class="input-field">
+                                            <select name="state_p" id="state_p" onchange="state_p_ch()" class="validate">
+                                                @foreach($state as $state1)
+                                                    @if($state1->id=='3930')
+                                                        <option value="{{$state1->id}}" selected>{{$state1->name}}</option>
+                                                    @else
+                                                        <option value="{{$state1->id}}">{{$state1->name}}</option>
+                                                    @endif
+                                                @endforeach
+                                            </select>
+                                            <label for="state_p" class="grey-text text-darken-3">State/Province <span class="blue-text">*</span></label>
+                                        </div>
                                     </div>
                                 </div>
                                 <div class="row">
@@ -560,18 +560,18 @@
                                         </div>
                                     </div>
                                     <div class="col m6">
-                                        {{--<div id="city_goto" class="input-field">--}}
-                                            {{--<select name="city_p" id="city_p" class="validate">--}}
-                                                {{--@foreach($city as $city1)--}}
-                                                    {{--@if($city1->id=='43885')--}}
-                                                        {{--<option value="{{$city1->id}}" selected>{{$city1->name}}</option>--}}
-                                                    {{--@else--}}
-                                                        {{--<option value="{{$city1->id}}">{{$city1->name}}</option>--}}
-                                                    {{--@endif--}}
-                                                {{--@endforeach--}}
-                                            {{--</select>--}}
-                                            {{--<label for="city_p" class="grey-text text-darken-3">City <span class="blue-text">*</span></label>--}}
-                                        {{--</div>--}}
+                                        <div id="city_goto" class="input-field">
+                                            <select name="city_p" id="city_p" class="validate">
+                                                @foreach($city as $city1)
+                                                    @if($city1->id=='43885')
+                                                        <option value="{{$city1->id}}" selected>{{$city1->name}}</option>
+                                                    @else
+                                                        <option value="{{$city1->id}}">{{$city1->name}}</option>
+                                                    @endif
+                                                @endforeach
+                                            </select>
+                                            <label for="city_p" class="grey-text text-darken-3">City <span class="blue-text">*</span></label>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -644,22 +644,22 @@
                                 <div class="row">
 
                                     <div class="col m12">
-                                        {{--<input type="hidden" name="ch_extras_total" id="ch_extras_total" value="{{$i1}}">--}}
+                                        <input type="hidden" name="ch_extras_total" id="ch_extras_total" value="{{$i1}}">
 
-                                        {{--<input type="hidden" name="titulo_p" id="titulo_p" value="{{$_POST['txt_country']}}">--}}
-                                        {{--<input type="hidden" name="nrodias_p" id="nrodias_p" value="{{$paquete1->duracion}}">--}}
+                                        <input type="hidden" name="titulo_p" id="titulo_p" value="{{$_POST['txt_country']}}">
+                                        <input type="hidden" name="nrodias_p" id="nrodias_p" value="{{$paquete1->duracion}}">
 
-                                        {{--<input type="hidden" name="nro_ontriple_p" id="nro_ontriple_p" value="0">--}}
-                                        {{--<input type="hidden" name="precio_ontriple_p" id="precio_ontriple_p" value="{{$pre_3_t}}">--}}
+                                        <input type="hidden" name="nro_ontriple_p" id="nro_ontriple_p" value="0">
+                                        <input type="hidden" name="precio_ontriple_p" id="precio_ontriple_p" value="{{$pre_3_t}}">
 
-                                        {{--<input type="hidden" name="nro_ondouble_p" id="nro_ondouble_p" value="1">--}}
-                                        {{--<input type="hidden" name="precio_ondouble_p" id="precio_ondouble_p" value="{{$pre_3_d}}">--}}
+                                        <input type="hidden" name="nro_ondouble_p" id="nro_ondouble_p" value="1">
+                                        <input type="hidden" name="precio_ondouble_p" id="precio_ondouble_p" value="{{$pre_3_d}}">
 
-                                        {{--<input type="hidden" name="nro_onmatrimonial_p" id="nro_onmatrimonial_p" value="0">--}}
-                                        {{--<input type="hidden" name="precio_onmatrimonial_p" id="precio_onmatrimonial_p" value="{{$pre_3_d}}">--}}
+                                        <input type="hidden" name="nro_onmatrimonial_p" id="nro_onmatrimonial_p" value="0">
+                                        <input type="hidden" name="precio_onmatrimonial_p" id="precio_onmatrimonial_p" value="{{$pre_3_d}}">
 
-                                        {{--<input type="hidden" name="nro_onsimple_p" id="nro_onsimple_p" value="0">--}}
-                                        {{--<input type="hidden" name="precio_onsimple_p" id="precio_onsimple_p" value="{{$pre_3_s}}">--}}
+                                        <input type="hidden" name="nro_onsimple_p" id="nro_onsimple_p" value="0">
+                                        <input type="hidden" name="precio_onsimple_p" id="precio_onsimple_p" value="{{$pre_3_s}}">
                                         {{--<?php $j=0;?>--}}
                                         {{--@foreach($paquetes as $paquete)--}}
                                             {{--@foreach($paquete->paquete_servicio_extra as $servicios)--}}
@@ -669,7 +669,7 @@
                                             {{--@endforeach--}}
                                         {{--@endforeach--}}
 
-                                        {{--<input type="hidden" name="date_travel_p" id="date_travel_p" value="{{$datedispo}}">--}}
+                                        <input type="hidden" name="date_travel_p" id="date_travel_p" value="{{$datedispo}}">
                                         <input type="hidden" name="travellers_p" id="travellers_p" value="2">
                                         <input type="hidden" name="total_p" id="total_p" value="{{2*$precio}}">
 
@@ -695,16 +695,16 @@
 
                                             <tbody>
                                             <tr>
-                                                {{--<td>{{$paquete1->duracion}} DAYS FROM {{$_POST['txt_country']}}</td>--}}
-                                                {{--<td>$<span id="st_precio0">{{2*$precio}}</span></td>--}}
+                                                <td>{{$paquete1->duracion}} DAYS FROM {{$_POST['txt_country']}}</td>
+                                                <td>$<span id="st_precio0">{{2*$precio}}</span></td>
                                             </tr>
                                             <tr>
                                                 <td>SubTotal</td>
-                                                {{--<td>$<span id="st_precio1">{{2*$precio}}</span></td>--}}
+                                                <td>$<span id="st_precio1">{{2*$precio}}</span></td>
                                             </tr>
                                             <tr>
                                                 <td><b>Grand Total</b></td>
-                                                {{--<td><b>$<span id="st_precio2">{{2*$precio}}</span></b></td>--}}
+                                                <td><b>$<span id="st_precio2">{{2*$precio}}</span></b></td>
                                             </tr>
                                             </tbody>
                                         </table>
