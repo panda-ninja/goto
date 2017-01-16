@@ -8,7 +8,6 @@
         @endforeach
     @endforeach
     <?php
-            
         $paquete1='';
 
         $pre_2_s=$precio;
@@ -435,7 +434,7 @@
                             </div>
                         </div>
                         <div class="row">
-                            <div class="col s12  light-green lighten-2">
+                            <div class="col s12  grey lighten-2">
                                 <h6>Optional Activities:</h6>
                                 <?php $i=0;?>
                                 @foreach($paquetes as $paquete)
