@@ -660,14 +660,14 @@
 
                                         <input type="hidden" name="nro_onsimple_p" id="nro_onsimple_p" value="0">
                                         <input type="hidden" name="precio_onsimple_p" id="precio_onsimple_p" value="{{$pre_3_s}}">
-                                        {{--<?php $j=0;?>--}}
-                                        {{--@foreach($paquetes as $paquete)--}}
-                                            {{--@foreach($paquete->paquete_servicio_extra as $servicios)--}}
-                                                {{--<?php $j++;?>--}}
-                                                {{--<input type="hidden" name="name_optional_activities[]" id="optional_activities_{{$j}}" value="{{$servicios->servicio_extra->titulo}}">--}}
-                                                {{--<input type="hidden" name="precio_optional_activities[]" id="precio_optional_activities_{{$j}}" value="{{$servicios->servicio_extra->precio}}">--}}
-                                            {{--@endforeach--}}
-                                        {{--@endforeach--}}
+                                        <?php $j=0;?>
+                                        @foreach($paquetes as $paquete)
+                                            @foreach($paquete->paquete_servicio_extra as $servicios)
+                                                <?php $j++;?>
+                                                <input type="hidden" name="name_optional_activities[]" id="optional_activities_{{$j}}" value="{{$servicios->servicio_extra->titulo}}">
+                                                <input type="hidden" name="precio_optional_activities[]" id="precio_optional_activities_{{$j}}" value="{{$servicios->servicio_extra->precio}}">
+                                            @endforeach
+                                        @endforeach
 
                                         <input type="hidden" name="date_travel_p" id="date_travel_p" value="{{$datedispo}}">
                                         <input type="hidden" name="travellers_p" id="travellers_p" value="2">
