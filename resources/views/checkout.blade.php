@@ -436,28 +436,31 @@
                         <div class="row">
                             <div class="col s12  light-green lighten-2">
                                 <h6>Optional Activities:</h6>
-                                {{--<?php $i=0;?>--}}
-                                {{--@foreach($paquetes as $paquete)--}}
-                                    {{--@foreach($paquete->paquete_servicio_extra as $servicios)--}}
-                                        {{--<?php $i++;?>--}}
-                                        {{--<div class="row">--}}
-                                            {{--<div class="col m9">--}}
-                                                {{--<p>--}}
-                                                    {{--<input type="hidden" id="ch_extras_id_{{$i}}" value="{{$servicios->servicio_extra->id}}">--}}
-                                                    {{--<input type="hidden" id="ch_extras_name_{{$i}}" name="ch_extras_name[]" value="{{$servicios->servicio_extra->titulo}}">--}}
-                                                    {{--<input type="hidden" id="ch_extras_valor_{{$i}}" name="ch_extras_valor[]" value="0">--}}
-                                                    {{--<input type="checkbox" id="ch_extras_{{$i}}" name="ch_extras[]" value="{{$servicios->servicio_extra->precio}}" onchange="ch_extra({{$i}})"/>--}}
-                                                    {{--<label for="ch_extras_{{$i}}" class="grey-text text-darken-4">{{$servicios->servicio_extra->titulo}}<span id="p_{{$i}}}"> ($<span id="extra_precioS_{{$i}}">{{$servicios->servicio_extra->precio}}</span> for traveller)</span><br><span class="text-12 grey-text text-darken-3">{{$servicios->servicio_extra->descripcion}}</span></label>--}}
+                                <?php $i=0;?>
+                                @foreach($paquetes as $paquete)
+                                    @foreach($paquete->paquete_servicio_extra as $servicios2)
+                                        <?php $i++;?>
+                                        @foreach($servicio_extras as $extra)
+                                            @if($servicios2->idservicio_extra==$extra->id)
+                                        <div class="row">
+                                            <div class="col m9">
+                                                <p>
+                                                    <input type="hidden" id="ch_extras_id_{{$i}}" value="{{$extra->id}}">
+                                                    <input type="hidden" id="ch_extras_name_{{$i}}" name="ch_extras_name[]" value="{{$extra->titulo}}">
+                                                    <input type="hidden" id="ch_extras_valor_{{$i}}" name="ch_extras_valor[]" value="0">
+                                                    <input type="checkbox" id="ch_extras_{{$i}}" name="ch_extras[]" value="{{$extra->precio}}" onchange="ch_extra({{$i}})"/>
+                                                    <label for="ch_extras_{{$i}}" class="grey-text text-darken-4">{{$extra->titulo}}<span id="p_{{$i}}}"> ($<span id="extra_precioS_{{$i}}">{{$extra->precio}}</span> for traveller)</span><br><span class="text-12 grey-text text-darken-3">{{$extra->descripcion}}</span></label>
 
-                                                {{--</p>--}}
-                                            {{--</div>--}}
-                                            {{--<div class="col m3">--}}
-                                                {{--$ <span id="extra_precioP_{{$i}}">{{2*$servicios->servicio_extra->precio}}</span>--}}
-                                            {{--</div>--}}
-                                        {{--</div>--}}
-
-                                    {{--@endforeach--}}
-                                {{--@endforeach--}}
+                                                </p>
+                                            </div>
+                                            <div class="col m3">
+                                                $ <span id="extra_precioP_{{$i}}">{{2*$extra->precio}}</span>
+                                            </div>
+                                        </div>
+                                                @endif
+                                            @endforeach
+                                    @endforeach
+                                @endforeach
                                 <br>
                             </div>
                             <div class=" col s12 orange lighten-1">
@@ -662,10 +665,14 @@
                                         <input type="hidden" name="precio_onsimple_p" id="precio_onsimple_p" value="{{$pre_3_s}}">
                                         <?php $j=0;?>
                                         @foreach($paquetes as $paquete)
-                                            @foreach($paquete->paquete_servicio_extra as $servicios)
-                                                <?php $j++;?>
-                                                <input type="hidden" name="name_optional_activities[]" id="optional_activities_{{$j}}" value="{{$servicios->servicio_extra->titulo}}">
-                                                <input type="hidden" name="precio_optional_activities[]" id="precio_optional_activities_{{$j}}" value="{{$servicios->servicio_extra->precio}}">
+                                            @foreach($paquete->paquete_servicio_extra as $servicios2)
+                                                     <?php $j++;?>
+                                                @foreach($servicio_extras as $servicios)
+                                                    @if($servicios2->idservicio_extra==$servicios->id)
+                                                        <input type="hidden" name="name_optional_activities[]" id="optional_activities_{{$j}}" value="{{$servicios->titulo}}">
+                                                        <input type="hidden" name="precio_optional_activities[]" id="precio_optional_activities_{{$j}}" value="{{$servicios->precio}}">
+                                                    @endif
+                                                @endforeach
                                             @endforeach
                                         @endforeach
 
