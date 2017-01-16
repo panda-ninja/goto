@@ -13,6 +13,9 @@ $secondary-color: #f9a825;
 @import "node_modules/materialize-css/sass/materialize.scss";
 
 @import "variables";
+.row{
+  margin-bottom: 0 !important;
+}
 
 //Style
 .font-moserrat{
@@ -481,7 +484,7 @@ img.desaturada{
 .include-services li{
   padding: 10px;
   display: inline-block;
-  width: 85px;
+  width: 80px;
 }
 .include-services span{
   display: block;

@@ -19,18 +19,18 @@
 <header class="grey darken-4">
     <div class="container">
         <div class="row valign-wrapper">
-            <div class="col m4 l4 hide-on-small-only hide-on-small-and-down hide-on-med-and-down">
+            <div class="col m5 l5 hide-on-small-only hide-on-small-and-down hide-on-large-and-down">
                 <a href="/" class="brand-logo valign"><img src="{{asset('img/logos/logo-ave.png')}}" alt="" class="responsive-img"></a>
             </div>
-            <div class="col s12 m8 l8">
+            <div class="col s12 m8 l7">
                 <ul class="header-nav white-text right-align no-margin valign-wrapper right">
-                    <li class="text-20">(813) 454-9707</li>
+                    <li class="header-phone">(813) 454-9707</li>
                     @if(auth()->guard('cliente')->check())
                         <li><a href="" class="green-text text-darken-3">{{auth()->guard('cliente')->user()->nombres.', '.auth()->guard('cliente')->user()->apellidos}}</a></li>
                         <li><a href="{{route('client_auth_destroy_path')}}" class="yellow-text text-darken-3">Logout</a></li>
                     @else
-                        <li><a href="#" class="waves-effect waves-light btn lime darken-4" onclick="startOlark()"><i class="material-icons left">chat</i> Chat</a></li>
-                        <li><a href="#inquire" class="modal-trigger waves-effect waves-light btn">Inquire Now</a></li>
+                        <li class="hide-on-med-only hide-on-small-only"><a href="#" class="waves-effect waves-light btn lime darken-4 btn-header" onclick="startOlark()"><i class="material-icons left">chat</i> Chat</a></li>
+                        <li><a href="#inquire" class="modal-trigger waves-effect waves-light btn btn-header">Inquire Now</a></li>
                         <li><a href="#" class="dropdown-button waves-effect" data-activates='dropdown1' data-beloworigin="true"><img src="{{asset('img/icons/user.png')}}" alt="" class="responsive-img valign-wrapper" width="30"></a></li>
                     @endif
                 </ul>
@@ -47,7 +47,7 @@
 </header>
 <nav class="white font-moserrat" role="navigation">
     <div class="nav-wrapper container">
-        <a href="/" class="brand-logo"><img src="{{asset('img/logos/logo5.png')}}" alt=""></a>
+        <a href="/" class="brand-logo"><img src="{{asset('img/logos/logo5.png')}}" alt="" class="responsive-img"></a>
         <a href="#" data-activates="mobile-demo" class="button-collapse grey-text text-darken-4"><i class="material-icons">menu</i></a>
         <ul class="right hide-on-med-and-down">
             <li><a href="{{route('home_show_packages_path')}}">Tours Packages</a></li>
@@ -55,7 +55,7 @@
             <li><a href="https://gotoperu.com/getting-to-peru/">Getting to Peru</a></li>
             <li><a href="https://gotoperu.com/about-us/">About Us</a></li>
             <li><a href="https://gotoperu.com/faq/">FAQ</a></li>
-            <li><a href="#design" class="yellow-text text-darken-4">DESIGN</a></li>
+            <li><a href="#design" class="yellow-text text-darken-4 header-top-menu">DESIGN</a></li>
             <li></li>
         </ul>
         <ul class="side-nav" id="mobile-demo">

@@ -20,6 +20,18 @@ $link-color: color("light-blue", "darken-1") !default;
     #index-banner .section {
       top: 0;
     }
+    .btn-header{
+      padding: 0 10px;
+    }
+    .nav .button-collapse i{
+      font-size: 2.1rem;
+    }
+    .brand-logo{
+      margin-top: 5px;
+    }
+    .include-services li{
+      width: 95px !important;
+    }
   }
   @media #{$medium-and-up} {
 
@@ -35,11 +47,35 @@ $link-color: color("light-blue", "darken-1") !default;
     #index-banner .section {
       top: 10%;
     }
+    .header-phone{
+      font-size: 15px;
+    }
+    .btn-header{
+      padding: 0 10px;
+    }
+
+    .include-services li{
+      width: 10px;
+    }
 
   }
   @media #{$medium-and-down} {
     // styles for medium screens and down
+
+    .include-services li{
+      width: 60px !important;
+    }
   }
   @media #{$large-and-up} {
     // styles for large screens and up
+    .header-phone{
+      font-size: 16px;
+    }
+    .btn-header{
+      padding: 0 10px;
+    }
+    .btn-header i{
+      margin-right: 5px;
+    }
+
   }

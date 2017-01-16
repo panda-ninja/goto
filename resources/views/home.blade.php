@@ -10,7 +10,7 @@
                 <img src="{{asset('img/bg/mapi-3.jpg')}}"> <!-- random image -->
                 <div class="caption center-align">
                     <h3 class="grey-text text-darken-2 text-50">A <b>BETTER</b> WAY TO TRAVEL TO PERU</h3>
-                    <h5 class="light grey-text text-darken-3">$150 average saving | 24/7 local authentic assitance |
+                    <h5 class="light grey-text text-darken-3 hide-on-small-only">$150 average saving | 24/7 local authentic assitance |
                         100s of testimonials</h5>
 
                     <div class="row margin-top-40">
@@ -57,30 +57,10 @@
                     </div>
                 </div>
             </li>
-            {{--<li>--}}
-            {{--<img src="{{asset('img/bg/cusco-1.jpg')}}"> <!-- random image -->--}}
-            {{--<div class="caption center-align">--}}
-            {{--<h3>Left Aligned Caption</h3>--}}
-            {{--<h5 class="light grey-text text-lighten-3">Here's our small slogan.</h5>--}}
-            {{--</div>--}}
-            {{--</li>--}}
-            {{--<li>--}}
-            {{--<img src="http://lorempixel.com/580/250/nature/3"> <!-- random image -->--}}
-            {{--<div class="caption right-align">--}}
-            {{--<h3>Right Aligned Caption</h3>--}}
-            {{--<h5 class="light grey-text text-lighten-3">Here's our small slogan.</h5>--}}
-            {{--</div>--}}
-            {{--</li>--}}
-            {{--<li>--}}
-            {{--<img src="http://lorempixel.com/580/250/nature/4"> <!-- random image -->--}}
-            {{--<div class="caption center-align">--}}
-            {{--<h3>This is our big Tagline!</h3>--}}
-            {{--<h5 class="light grey-text text-lighten-3">Here's our small slogan.</h5>--}}
-            {{--</div>--}}
-            {{--</li>--}}
+
         </ul>
     </div>
-    <section class="spacer-10">
+    <section class="spacer-10 hide-on-small-only">
         <div class="row no-margin">
             <div class="col s1">
                 <img src="{{asset('img/logos/apavit.png')}}" alt="" class="responsive-img">
@@ -127,7 +107,7 @@
             <img src="{{asset('img/bg/meetup4.jpg')}}" alt="">
             <div class="container">
                 <div class="row">
-                    <div class="col s3 position-relative right">
+                    <div class="col s12 m5 l4 position-relative right">
                         <div class="padding-10 bg-rgba-white-9 card-panel">
                             <h5 class="font-moserrat">EXPERIENCE</h5>
                             <p>Established in 2009, qe are a company founded by a team of travel professionals with decades of experience operating tours in Peru</p>
@@ -146,7 +126,7 @@
         <div class="section scrollspy" id="vacations">
             <div class="row center">
                 <h4 class="yellow-text text-darken-4"><b>VACATION PACKAGES</b> WHIT INTERNATIONAL FLIGHTS</h4>
-                <div class="col s12 m9 l12 include-services margin-bottom-10">
+                <div class="col s12 m12 l12 include-services margin-bottom-10">
                     <ul class="list-services no-margin">
                         <li><img src="{{asset('img/icons//include/hotels.png')}}" alt="" class="responsive-img"><span>Hotels</span>
                         </li>
@@ -176,7 +156,7 @@
             <div class="section no-padding">
                 <div class="row center">
                     @foreach($paquete2->disponibilidad->sortBy('precio')->take(1) as $precio)
-                        <h5 class="grey-text text-darken-1  font-moserrat"><b><span class="lime-text text-darken-3 padding-right-25">{{$paquete2->duracion}} DAYS</span></b> CUSCO, SACRED VALLEY, MACHU PICCHU <b class="grey-text text-darken-4 padding-left-25">from ${{$precio->precio}}</b></h5>
+                        <h5 class="grey-text text-darken-1  font-moserrat text-22"><b><span class="lime-text text-darken-3 padding-right-25">{{$paquete2->duracion}} DAYS</span></b> CUSCO, SACRED VALLEY, MACHU PICCHU <b class="grey-text text-darken-4 padding-left-25">from ${{$precio->precio_t}}</b></h5>
                     @endforeach
                 </div>
 
@@ -184,16 +164,16 @@
 
                     <div class="col s12 grey card lighten-4 card no-margin z-depth-1">
                         @foreach($paquetes2->where('duracion', $paquete2->duracion) as $paquetes)
-                            <div class="col s3">
+                            <div class="col s6 m3 l3">
 
-                                <div class="text-22 grey-text text-darken-4 margin-top-10"><b><span class="text-12 display-block grey-text text-darken-5">from</span> {{$paquetes->titulo}}</b></div>
+                                <div class="text-18 grey-text text-darken-4 margin-top-10"><b><span class="text-12 display-block grey-text text-darken-5">from</span> {{$paquetes->titulo}}</b></div>
 
                                 {{--<p class="no-margin">Small group</p>--}}
                                 {{--<p class="no-margin">Tourist to Superior</p>--}}
                                 <ul class="font-moserrat right-align">
                                     @foreach($paquetes->disponibilidad->take(3)->sortBy('fecha_disponibilidad')->where('estrellas', 3) as $disponibilidad)
 
-                                        <li class="text-13 margin-bottom-10">
+                                        <li class="text-12 margin-bottom-10">
                                             <form action="{{route('home_show_checkout_path', array('titulo'=>str_replace(' ','-', strtolower($paquetes->titulo)), 'dias'=>$paquetes->duracion.'-days-tours'))}}"
                                                   method="post">
                                                 {{csrf_field()}}

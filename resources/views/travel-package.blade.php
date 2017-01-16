@@ -87,7 +87,7 @@
             <div class="section no-padding">
                 <div class="row center">
                     @foreach($paquete2->disponibilidad->sortBy('precio')->take(1) as $precio)
-                        <h5 class="yellow-text text-darken-4 no-margin font-moserrat"><b><span class="lime-text text-darken-3">{{$paquete2->duracion}} DAYS</span></b> CUSCO, SACRED VALLEY, MACHU PICCHU <b class="grey-text text-darken-4">from ${{$precio->precio}}</b></h5>
+                        <h5 class="yellow-text text-darken-4 no-margin font-moserrat"><b><span class="lime-text text-darken-3">{{$paquete2->duracion}} DAYS</span></b> CUSCO, SACRED VALLEY, MACHU PICCHU <b class="grey-text text-darken-4">from ${{$precio->precio_t}}</b></h5>
                     @endforeach
                 </div>
 
@@ -140,7 +140,7 @@
                             <h4 class="no-margin font-moserrat row">ITINERARY</h4>
                         </div>
                         @foreach($paquetes2 as $paquete)
-                            @foreach($paquete->itinerario as $itinerario)
+                            @foreach($paquete->itinerario->where('idpaquetes', $paquetes->id) as $itinerario)
 
                                 <div id="days-{{$itinerario->iditinerario}}" class="scrollspy clearfix">
                                     <p class="text-18 font-moserrat"><b class="blue-text">DAY {{$itinerario->dia}}:</b> {{$itinerario->titulo}}</p>
@@ -169,7 +169,7 @@
                             <div class="overview">
                                 <ul class="section table-of-contents margin-top-0 padding-top-0">
                                     @foreach($paquetes2 as $paquete)
-                                        @foreach($paquete->itinerario as $itinerario)
+                                        @foreach($paquete->itinerario->where('idpaquetes', $paquetes->id) as $itinerario)
                                             <li><a href="#days-{{$itinerario->iditinerario}}"><span class="circle-days">{{$itinerario->dia}}</span> {{$itinerario->titulo}}</a></li>
                                         @endforeach
                                     @endforeach
