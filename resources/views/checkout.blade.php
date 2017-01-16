@@ -163,38 +163,38 @@
 
 
                                         @else
-                                            {{--@foreach($paquetes as $paquete)--}}
-                                                {{--@foreach($paquete->disponibilidad as $precio_paquetes)--}}
-                                                    {{--@if($precio_paquetes->estrellas=='2')--}}
-                                                        {{--<?php--}}
-                                                        {{--$pre_2_s=$precio_paquetes->precio_s;--}}
-                                                        {{--$pre_2_d=$precio_paquetes->precio_d;--}}
-                                                        {{--$pre_2_t=$precio_paquetes->precio_t;--}}
-                                                        {{--?>--}}
-                                                    {{--@endif--}}
-                                                    {{--@if($precio_paquetes->estrellas=='3')--}}
-                                                        {{--<?php--}}
-                                                        {{--$pre_3_s=$precio_paquetes->precio_s;--}}
-                                                        {{--$pre_3_d=$precio_paquetes->precio_d;--}}
-                                                        {{--$pre_3_t=$precio_paquetes->precio_t;--}}
-                                                        {{--?>--}}
-                                                    {{--@endif--}}
-                                                    {{--@if($precio_paquetes->estrellas=='4')--}}
-                                                        {{--<?php--}}
-                                                        {{--$pre_4_s=$precio_paquetes->precio_s;--}}
-                                                        {{--$pre_4_d=$precio_paquetes->precio_d;--}}
-                                                        {{--$pre_4_t=$precio_paquetes->precio_t;--}}
-                                                        {{--?>--}}
-                                                    {{--@endif--}}
-                                                    {{--@if($precio_paquetes->estrellas=='5')--}}
-                                                        {{--<?php--}}
-                                                        {{--$pre_5_s=$precio_paquetes->precio_s;--}}
-                                                        {{--$pre_5_d=$precio_paquetes->precio_d;--}}
-                                                        {{--$pre_5_t=$precio_paquetes->precio_t;--}}
-                                                        {{--?>--}}
-                                                    {{--@endif--}}
-                                                {{--@endforeach--}}
-                                            {{--@endforeach--}}
+                                            @foreach($paquetes as $paquete)
+                                                @foreach($paquete->disponibilidad as $precio_paquetes)
+                                                    @if($precio_paquetes->estrellas=='2')
+                                                        <?php
+                                                        $pre_2_s=$precio_paquetes->precio_s;
+                                                        $pre_2_d=$precio_paquetes->precio_d;
+                                                        $pre_2_t=$precio_paquetes->precio_t;
+                                                        ?>
+                                                    @endif
+                                                    @if($precio_paquetes->estrellas=='3')
+                                                        <?php
+                                                        $pre_3_s=$precio_paquetes->precio_s;
+                                                        $pre_3_d=$precio_paquetes->precio_d;
+                                                        $pre_3_t=$precio_paquetes->precio_t;
+                                                        ?>
+                                                    @endif
+                                                    @if($precio_paquetes->estrellas=='4')
+                                                        <?php
+                                                        $pre_4_s=$precio_paquetes->precio_s;
+                                                        $pre_4_d=$precio_paquetes->precio_d;
+                                                        $pre_4_t=$precio_paquetes->precio_t;
+                                                        ?>
+                                                    @endif
+                                                    @if($precio_paquetes->estrellas=='5')
+                                                        <?php
+                                                        $pre_5_s=$precio_paquetes->precio_s;
+                                                        $pre_5_d=$precio_paquetes->precio_d;
+                                                        $pre_5_t=$precio_paquetes->precio_t;
+                                                        ?>
+                                                    @endif
+                                                @endforeach
+                                            @endforeach
 
 
                                         @endif
