@@ -273,7 +273,7 @@ class HomeController extends Controller
         SEOMeta::setDescription('Discover Peru with Gotoperu Tour &amp; Travel Packages. We offer amazing deals on Machu Picchu Vacation Packages.');
         SEOMeta::setCanonical('https://gotoperu.com/packages/');
         SEOMeta::addKeyword(['Machu Picchu Tour Packages', 'Machu Picchu Packages', 'Machu Picchu Vacation Packages', 'Machu Picchu Deals', 'Peru Honeymoon Travel Packages']);
-        
+
         $title = str_replace('-', ' ', strtoupper($titulo));
         $txt_price=0;
         if(!empty($request->input('txt_date'))) {
