@@ -88,10 +88,10 @@ class CheckoutController extends Controller
 
             $name_country='';
 //            $email_cliente='fredy1432@hotmail.com';
-            $email_empresa='fredy1432@hotmail.com';
+//            $email_empresa='fredy1432@hotmail.com';
 
             $email_cliente=$request->input('email_p');
-//            $email_empresa='info@gotoperu.com';
+            $email_empresa='info@gotoperu.com';
 
             $name_pq=$request->input('first_name_p');
 //            $emaila_agencia=$request->input('email_p');
@@ -174,7 +174,7 @@ class CheckoutController extends Controller
                 $messaje->to($email_empresa,'Gotperu')
                     ->subject('Gotoperu - new purchase')
                     /*->attach('ruta')*/
-                    ->from('info@gotoperu.com','Gotperu');
+                    ->from('info@gotoperu.com','Gotoperu');
             });
 
             return view('mensaje-confirmacion',['first_name_p'=>$request->input('first_name_p'),
