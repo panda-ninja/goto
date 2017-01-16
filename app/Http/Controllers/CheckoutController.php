@@ -270,7 +270,7 @@ class CheckoutController extends Controller
                 }
             }
         }
-        return  '<input type="hidden" value="'.$precio.'" name="txt_price"><select name="txt_date" id="date_travel" onchange="this.form.submit();">'.$valor.'</select><label for="date_travel" class="grey-text text-darken-3">Other Dates</label>';
+        return  '<input type="hidden" value="'.$precio.'" name="txt_price"><select name="txt_date" id="date_travel" onclick="pasar()" onchange="this.form.submit();">'.$valor.'</select><label for="date_travel" class="grey-text text-darken-3">Other Dates</label>';
     }
     public function buscar_otra_disponibilidad(Request $request)
     {
