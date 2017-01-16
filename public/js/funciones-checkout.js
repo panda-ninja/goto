@@ -788,11 +788,11 @@ var url3='http://gotoperu.travel';
 $("#destino_travel").change(function(){
     // alert('hola');
 
-    $.ajaxSetup({
-        headers: {
-            'X-CSRF-TOKEN': $('[name="_token"]').val()
-        }
-    });
+    // $.ajaxSetup({
+    //     headers: {
+    //         'X-CSRF-TOKEN': $('[name="_token"]').val()
+    //     }
+    // });
     var codigopx=$("#destino_travel").val();
      if(codigopx.length>0){
         var datastring="codigo="+codigopx;
@@ -849,11 +849,11 @@ function pasar(){
 };
 
 function country_p_ch(){
-    $.ajaxSetup({
-        headers: {
-            'X-CSRF-TOKEN': $('[name="_token"]').val()
-        }
-    });
+    // $.ajaxSetup({
+    //     headers: {
+    //         'X-CSRF-TOKEN': $('[name="_token"]').val()
+    //     }
+    // });
     var codigopx=$("#country_p").val();
     // alert(codigopx);
     if(codigopx.length>0){
@@ -877,11 +877,11 @@ function country_p_ch(){
     }
 };
 function state_p_ch(){
-    $.ajaxSetup({
-        headers: {
-            'X-CSRF-TOKEN': $('[name="_token"]').val()
-        }
-    });
+    // $.ajaxSetup({
+    //     headers: {
+    //         'X-CSRF-TOKEN': $('[name="_token"]').val()
+    //     }
+    // });
     var codigopx=$("#state_p").val();
     // alert(codigopx);
     if(codigopx.length>0){
