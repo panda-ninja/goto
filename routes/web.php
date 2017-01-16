@@ -56,7 +56,7 @@ Route::any('travel-packages/', [
     'as' => 'home_show_packages_path',
 ]);
 
-Route::any('travel-packages/{titulo}_{dias}/checkout', [
+Route::post('travel-packages/{titulo}_{dias}/checkout', [
     'uses' => 'HomeController@showcheckout',
     'as' => 'home_show_checkout_path',
 ]);
