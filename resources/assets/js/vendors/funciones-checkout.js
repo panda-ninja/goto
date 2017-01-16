@@ -830,7 +830,7 @@ function date_travel_dispo() {
         };
         $.ajax({
             data: datos,
-            url: url3+"/travel-packages/{"+txt_country+"}_{"+txt_dias+"}/checkout1",
+            url: url3+'/travel-packages/{'+txt_country+'}_{'+txt_dias+'}/checkout1',
             type: 'post'
         });
     }

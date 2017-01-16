@@ -784,7 +784,7 @@ function ch_extra(posi){
     }
     recalcular_total();
 }
-var url3='http://gotoperu.mo';
+var url3='http://gotoperu.travel';
 $("#destino_travel").change(function(){
     // alert('hola');
 
@@ -830,7 +830,7 @@ function date_travel_dispo() {
         };
         $.ajax({
             data: datos,
-            url: url3+"/travel-packages/{"+txt_country+"}_{"+txt_dias+"}/checkout1",
+            url: url3+'/travel-packages/{'+txt_country+'}_{'+txt_dias+'}/checkout1',
             type: 'post'
         });
     }
