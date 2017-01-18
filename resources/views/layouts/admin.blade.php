@@ -172,7 +172,7 @@
                         </li>
                     </ul>
                 </li>
-                <li class="bold"><a href="{{route('cotizacion_path')}}" class="waves-effect waves-cyan"><i class="mdi-action-perm-data-setting"></i> Nueva Cotizacion </a>
+                <li class="bold"><a href="{{route('cotizaciones_path')}}" class="waves-effect waves-cyan"><i class="mdi-action-perm-data-setting"></i> Cotizaciones </a>
                 </li>
                 <li class="bold"><a href="app-email.html" class="waves-effect waves-cyan"><i class="mdi-communication-email"></i> Mailbox <span class="new badge">4</span></a>
                 </li>
