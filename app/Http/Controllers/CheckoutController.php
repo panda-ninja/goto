@@ -22,7 +22,7 @@ class CheckoutController extends Controller
     public function store(Request $request)
     {
         //dd($request);
-        \Stripe\Stripe::setApiKey("sk_test_ApAk9pY4WREiBYmKe8GyqlHC");
+        \Stripe\Stripe::setApiKey("sk_live_kyaJ1qTzBut6TqCFV9Wd5Vea");
         try{
             $operacion=\Stripe\Charge::create(array(
                 "amount"=>$request->input('total_p')*100,

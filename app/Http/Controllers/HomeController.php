@@ -311,10 +311,11 @@ class HomeController extends Controller
         $country=TCountry::get();
         $state=TState::where('country_id','231')->get();
         $city=TCity::where('state_id','3930')->get();
-        $paqueteCombo = TPaquete::with('disponibilidad')->where('codigo','GTPF700')->orwhere('codigo','GTPF701')->orwhere('codigo','GTPF702')->orwhere('codigo','GTPF703')
+        $paqueteCombo = TPaquete::with('disponibilidad')
+            ->where('titulo', $txt_country)
             ->where('duracion', $dias)
             ->get();
-        dd($txt_date_number,$paqueteCombo);
+//        dd($txt_date_number,$paqueteCombo);
         return view('checkout', ['servicio_extras'=>$servicio_extra,'paqueteCombo'=>$paqueteCombo,'paquetes'=>$paquete,'precio'=>$txt_price,'datedispo'=>$txt_date_number,'country'=>$title,'country1'=>$country, 'state'=>$state,'city'=>$city]);
     }
     public function showcheckout1(Request $request1,$titulo)
