@@ -59,6 +59,7 @@
                 {{csrf_field()}}
                 <div class="row center">
                     <div class="input-field col m3">
+                        <input type="hidden" value="{{$paquete1->duracion}}" name="dias">
                         <select name="txt_country" id="destino_travel">
                             @foreach($paqueteCombo as $paquete)
                                 @if($paquete->titulo==$paquete1->titulo)
@@ -71,6 +72,7 @@
                         <label for="destino_travel" class="grey-text text-darken-3">From</label>
                     </div>
                     <div class="input-field col m4" id="dispo">
+
                         <input type="hidden" value="{{$precio}}" name="txt_price" id="txt_price">
                         <select name="txt_date" id="date_travel" onclick="pasar()" onchange="this.form.submit();">
                             @foreach($paqueteCombo as $paquete)
@@ -438,7 +440,7 @@
                                 <h6>Optional Activities:</h6>
                                 <?php $i=0;?>
                                 @foreach($paquetes as $paquete)
-                                    @if($paquete->disponibilidad->estrellas=3)
+{{--                                    @if($paquete->disponibilidad->estrellas=3)--}}
                                         @foreach($paquete->paquete_servicio_extra as $servicios2)
                                             <?php $i++;?>
                                             @foreach($servicio_extras as $extra)
@@ -460,7 +462,7 @@
                                                     @endif
                                                 @endforeach
                                         @endforeach
-                                    @endif
+                                    {{--@endif--}}
                                 @endforeach
                                 <br>
                             </div>
