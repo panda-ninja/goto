@@ -314,7 +314,7 @@ class HomeController extends Controller
         $paqueteCombo = TPaquete::with('disponibilidad')->where('codigo','GTPF700')->orwhere('codigo','GTPF701')->orwhere('codigo','GTPF702')->orwhere('codigo','GTPF703')
             ->where('duracion', $dias)
             ->get();
-//        dd($txt_date_number,$paqueteCombo);
+        dd($txt_date_number,$paqueteCombo);
         return view('checkout', ['servicio_extras'=>$servicio_extra,'paqueteCombo'=>$paqueteCombo,'paquetes'=>$paquete,'precio'=>$txt_price,'datedispo'=>$txt_date_number,'country'=>$title,'country1'=>$country, 'state'=>$state,'city'=>$city]);
     }
     public function showcheckout1(Request $request1,$titulo)
