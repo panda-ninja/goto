@@ -298,16 +298,22 @@ class HomeController extends Controller
 //        $txt_date_number=($request->input('txt_date'));
 //        $txt_country=($request->input('txt_country'));
         $txt_country=($request->input('txt_country'));
+        $dias=($request->input('dias'));
+
 //        dd($txt_price);
         $paquete = TPaquete::with(['itinerario','paquetes_destinos', 'precio_paquetes','paquete_servicio_extra','disponibilidad' => function($query)use($txt_date_number){$query->where('fecha_disponibilidad',$txt_date_number);}])
             ->get()
-            ->where('titulo', $txt_country);
-        dd($paquete);
+            ->where('titulo', $txt_country)
+            ->where('duracion', $dias);
+
+//        dd($paquete);
         $servicio_extra=ServicioExtra::get();
         $country=TCountry::get();
         $state=TState::where('country_id','231')->get();
         $city=TCity::where('state_id','3930')->get();
-        $paqueteCombo = TPaquete::with('disponibilidad')->where('codigo','GTPF700')->orwhere('codigo','GTPF701')->orwhere('codigo','GTPF702')->orwhere('codigo','GTPF703')->get();
+        $paqueteCombo = TPaquete::with('disponibilidad')->where('codigo','GTPF700')->orwhere('codigo','GTPF701')->orwhere('codigo','GTPF702')->orwhere('codigo','GTPF703')
+            ->where('duracion', $dias)
+            ->get();
 
         return view('checkout', ['servicio_extras'=>$servicio_extra,'paqueteCombo'=>$paqueteCombo,'paquetes'=>$paquete,'precio'=>$txt_price,'datedispo'=>$txt_date_number,'country'=>$title,'country1'=>$country, 'state'=>$state,'city'=>$city]);
     }
