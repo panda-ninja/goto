@@ -24,8 +24,8 @@ class CheckoutController extends Controller
         //dd($request);
         \Stripe\Stripe::setApiKey("sk_test_ApAk9pY4WREiBYmKe8GyqlHC");
         try{
-            if(!empty($request->input('bloq'))){
-                if($request->input('bloq')=='bloque_1'){
+//            if(!empty($request->input('bloq'))){
+//                if($request->input('bloq')=='bloque_1'){
                     $operacion=\Stripe\Charge::create(array(
                         "amount"=>$request->input('total_p')*100,
                         "currency"=>"usd",
@@ -217,8 +217,8 @@ class CheckoutController extends Controller
         //            return redirect()->route('checkout_noti_path',['pago'=>$pago])->with('success','Your pay was succesfull');
         //            return redirect()->route('payments_show_path',$idPago)->with('success','Your pay was succesfull');
 
-                }
-                }
+//                }
+//                }
         }
         catch(Exception $e){
             return view('mensaje-confirmacion',['first_name_p'=>$request->input('first_name_p'),
