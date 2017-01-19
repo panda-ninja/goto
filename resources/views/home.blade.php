@@ -152,11 +152,16 @@
     </div>
 
     @foreach($paquetes2->unique('duracion') as $paquete2)
+        @if($paquete2->duracion == 5)
+            @php $precio_c = '1299'; @endphp
+        @else
+            @php $precio_c = '1599'; @endphp
+        @endif
         <div class="container margin-bottom-40">
             <div class="section no-padding">
                 <div class="row center">
                     @foreach($paquete2->disponibilidad->sortBy('precio')->take(1) as $precio)
-                        <h5 class="grey-text text-darken-1  font-moserrat text-22"><b><span class="lime-text text-darken-3 padding-right-25">{{$paquete2->duracion}} DAYS</span></b> CUSCO, SACRED VALLEY, MACHU PICCHU <b class="grey-text text-darken-4 padding-left-25">from ${{$precio->precio_t}}</b></h5>
+                        <h5 class="grey-text text-darken-1  font-moserrat text-22"><b><span class="lime-text text-darken-3 padding-right-25">{{$paquete2->duracion}} DAYS</span></b> CUSCO, SACRED VALLEY, MACHU PICCHU <b class="grey-text text-darken-4 padding-left-25">from ${{$precio_c}}</b></h5>
                     @endforeach
                 </div>
 

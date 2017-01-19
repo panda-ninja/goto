@@ -9,7 +9,9 @@ class TPaquete_servicio_extra extends Model
     //
     protected $table = "tpaquete_servicio_extra";
 
+
     public function paquete()
+
     {
         return $this->belongsTo(TPaquete::class,'idpaquete');
     }
