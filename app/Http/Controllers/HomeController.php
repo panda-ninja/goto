@@ -302,7 +302,7 @@ class HomeController extends Controller
         $paquete = TPaquete::with(['itinerario','paquetes_destinos', 'precio_paquetes','paquete_servicio_extra','disponibilidad' => function($query)use($txt_date_number){$query->where('fecha_disponibilidad',$txt_date_number);}])
             ->get()
             ->where('titulo', $txt_country);
-//        dd($paquete);
+        dd($paquete);
         $servicio_extra=ServicioExtra::get();
         $country=TCountry::get();
         $state=TState::where('country_id','231')->get();
