@@ -117,6 +117,7 @@
             </form>
             <form class="font-moserrat" action="{{route('checkout_store_path')}}" method="post" id="checkout-form1">
                 {{csrf_field()}}
+                <input type="hidden" name="bloq" id="bloq" value="bloque_0"/>
                 <div class="row ">
                     <div class="col m8">
                         <div class="row center">
