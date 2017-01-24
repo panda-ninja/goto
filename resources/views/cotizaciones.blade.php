@@ -30,7 +30,7 @@
                 <div class="card-panel">
                     <div class="row">
                         <div class="input-field col s3">
-                            <a id="agregar_pqt" class="btn cyan waves-effect waves-light right modal-trigger" href="#modal1">Nueva Cotizacion
+                            <a id="agregar_pqt" class="btn cyan waves-effect waves-light right modal-trigger" href="{{route('cotizacion_path')}}">Nueva Cotizacion
                                 <i class="mdi-content-add-circle right"></i>
                             </a>
                         </div>
