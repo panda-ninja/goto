@@ -25,6 +25,7 @@ elixir(function(mix) {
         'node_modules/materialize-css/js/plugins/perfect-scrollbar/perfect-scrollbar.css',
         'node_modules/materialize-css/js/plugins/jvectormap/jquery-jvectormap.css',
         'node_modules/materialize-css/js/plugins/chartist-js/chartist.min.css',
+        'node_modules/materialize-css/js/plugins/data-tables/css/jquery.dataTables.min.css',
 
     ], 'resources/assets/css/vendors');
 
@@ -39,6 +40,8 @@ elixir(function(mix) {
         'vendors/perfect-scrollbar.css',
         'vendors/jquery-jvectormap.css',
         'vendors/chartist.min.css',
+        'vendors/jquery.dataTables.min.css',
+
         // 'vendors/nestable.css'
     ], 'public/css/admin-theme.css');
 
@@ -65,6 +68,8 @@ elixir(function(mix) {
         'node_modules/materialize-css/js/plugins/jvectormap/jquery-jvectormap-1.2.2.min.js',
         'node_modules/materialize-css/js/plugins/jvectormap/jquery-jvectormap-world-mill-en.js',
         'node_modules/materialize-css/js/plugins/jvectormap/vectormap-script.js',
+        'node_modules/materialize-css/js/plugins/data-tables/data-tables-script.js',
+        'node_modules/materialize-css/js/plugins/data-tables/js/jquery.dataTables.min.js',
 
         <!--google map-->
         'node_modules/materialize-css/js/plugins/google-map/google-map-script.js',
@@ -78,7 +83,9 @@ elixir(function(mix) {
         'vendors/owl.carousel.js',
         'vendors/video.js',
         'vendors/jquery.sticky-kit.min.js',
-        'vendors/masonry.pkgd.js'
+        'vendors/masonry.pkgd.js',
+        'vendors/data-tables-script.js',
+        'vendors/jquery.dataTables.min.js'
     ], 'public/js/app.js');
 
     mix.scripts([
