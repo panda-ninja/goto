@@ -47,8 +47,8 @@
                                 </div>
 
                                 <div class="col s12 white-text">
-                                    <p class="no-margin text-22 text-15-ip">ALL INCLUDED FROM MIAMI</p>
-                                    <p class="no-margin text-35 text-20-ip"><b class="">5 DAYS</b> <span class="btn black-text">$1299</span></p>
+                                    <p class="no-margin text-22 text-15-ip text-20-ips">ALL INCLUDED FROM MIAMI</p>
+                                    <p class="no-margin text-35 text-20-ip text-30-ips"><b class="">5 DAYS</b> <span class="btn black-text">$1299</span></p>
                                 </div>
                             </a>
                         </div>

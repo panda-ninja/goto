@@ -63,6 +63,12 @@ $link-color: color("light-blue", "darken-1") !default;
     .include-services li{
       width: 95px !important;
     }
+    .text-20-ips{
+      font-size: 20px !important;
+    }
+    .text-30-ips{
+      font-size: 30px !important;
+    }
   }
   @media #{$medium-and-up} {
 

@@ -6541,7 +6541,11 @@ button.picker__today:focus, button.picker__clear:focus, button.picker__close:foc
   .brand-logo {
     margin-top: 5px; }
   .include-services li {
-    width: 95px !important; } }
+    width: 95px !important; }
+  .text-20-ips {
+    font-size: 20px !important; }
+  .text-30-ips {
+    font-size: 30px !important; } }
 
 @media only screen and (min-width: 601px) {
   nav, nav .nav-wrapper i, nav a.button-collapse, nav a.button-collapse i {
