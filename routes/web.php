@@ -233,7 +233,7 @@ Route::group(['middleware'=>'admin'],function(){
         'as' => 'cotizaciones_path',
     ]);
     Route::get('/cotizacion', [
-        'uses' => 'AdminController@cotizacion',
+        'uses' => 'CotizacionController@cotizacion',
         'as' => 'cotizacion_path',
     ]);
 });

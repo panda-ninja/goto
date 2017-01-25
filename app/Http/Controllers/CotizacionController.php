@@ -15,10 +15,13 @@ class CotizacionController extends Controller
     {
         return view('profile');
     }
-
     public function nuevacotizacion()
     {
         return view('nuevacotizacion');
+    }
+    public function cotizacion()
+    {
+        return view('cotizacion');
     }
 
     /**

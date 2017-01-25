@@ -18,15 +18,20 @@ $Paquete='';
 @endforeach
 <div class="card-panel">
     <div class="row">
-        <div class="col s12 m6 l6">
-
+        <div class="col m6 l6">
             <h5 class="THIN letra-naranja">
                 {{$Paquete->codigo.' '.$Paquete->titulo}}
             </h5>
                 <b>Duracion: </b><label class="letra-verde">{{$Paquete->duracion}} DAYS & {{$Paquete->duracion-1}} NIGHTS</label>
-
         </div>
-
+        <div class="col m6 16">
+            <div class="row right">
+                <div class="col m12">
+                    <b class="grey-text text-darken-3">Total </b>
+                    <h5 class="blue-text text-accent-3" id="total">$ <b class="blue-text text-accent-3" id="total">000.00</b></h5>
+                </div>
+            </div>
+        </div>
     </div>
     <hr>
     <div class="row">
@@ -89,36 +94,36 @@ $Paquete='';
 
                     @endforeach
                     <tr>
-                        <td><input type="number" name="room_t" value="0"></td>
+                        <td><input type="number" name="room_t" value="0" onchange="coti_romms('T')"></td>
                         <td class="centrar"><img src="{{asset('images')}}/single.png" alt="" width="30px" height="30px"><img src="{{asset('images')}}/single.png" alt="" width="30px" height="30px"><img src="{{asset('images')}}/single.png" alt="" width="30px" height="30px"></td>
-                        <td><input type="number" name="precio_2_t" id="precio_2_t" value="{{$precio_2_t}}"></td>
-                        <td><input type="number" name="precio_3_t" id="precio_3_t" value="{{$precio_3_t}}"></td>
-                        <td><input type="number" name="precio_4_t" id="precio_4_t" value="{{$precio_4_t}}"></td>
-                        <td><input type="number" name="precio_5_t" id="precio_5_t" value="{{$precio_5_t}}"></td>
+                        <td><input type="number" name="precio_2_t" id="precio_2_t" value="{{$precio_2_t}}"  onchange="coti_precio_acom('2','t')"></td>
+                        <td><input type="number" name="precio_3_t" id="precio_3_t" value="{{$precio_3_t}}" onchange="coti_precio_acom('3','t')"></td>
+                        <td><input type="number" name="precio_4_t" id="precio_4_t" value="{{$precio_4_t}}" onchange="coti_precio_acom('4','t')"></td>
+                        <td><input type="number" name="precio_5_t" id="precio_5_t" value="{{$precio_5_t}}" onchange="coti_precio_acom('5','t')"></td>
                     </tr>
                     <tr>
-                        <td><input type="number" name="room_d" value="0"></td>
+                        <td><input type="number" name="room_d" value="0"  onchange="coti_romms('D')"></td>
                         <td class="centrar"><img src="{{asset('images')}}/single.png" alt="" width="30px" height="30px"><img src="{{asset('images')}}/single.png" alt="" width="30px" height="30px"></td>
-                        <td><input type="number" name="precio_2_d" id="precio_2_d" value="{{$precio_2_d}}"></td>
-                        <td><input type="number" name="precio_3_d" id="precio_3_d" value="{{$precio_3_d}}"></td>
-                        <td><input type="number" name="precio_4_d" id="precio_4_d" value="{{$precio_4_d}}"></td>
-                        <td><input type="number" name="precio_5_d" id="precio_5_d" value="{{$precio_5_d}}"></td>
+                        <td><input type="number" name="precio_2_d" id="precio_2_d" value="{{$precio_2_d}}"  onchange="coti_precio_acom('2','d')"></td>
+                        <td><input type="number" name="precio_3_d" id="precio_3_d" value="{{$precio_3_d}}" onchange="coti_precio_acom('3','d')"></td>
+                        <td><input type="number" name="precio_4_d" id="precio_4_d" value="{{$precio_4_d}}" onchange="coti_precio_acom('4','d')"></td>
+                        <td><input type="number" name="precio_5_d" id="precio_5_d" value="{{$precio_5_d}}" onchange="coti_precio_acom('5','d')"></td>
                     </tr>
                     <tr>
-                        <td><input type="number" name="room_m" value="0"></td>
+                        <td><input type="number" name="room_m" value="0"  onchange="coti_romms('M')"></td>
                         <td class="centrar"><img src="{{asset('images')}}/matrimonial.png" alt="" width="50px" height="30px"></td>
-                        <td><input type="number" name="precio_2_d_m" id="precio_2_d_m" value="{{$precio_2_d}}"></td>
-                        <td><input type="number" name="precio_3_d_m" id="precio_3_d_m" value="{{$precio_3_d}}"></td>
-                        <td><input type="number" name="precio_4_d_m" id="precio_4_d_m" value="{{$precio_4_d}}"></td>
-                        <td><input type="number" name="precio_5_d_m" id="precio_5_d_m" value="{{$precio_5_d}}"></td>
+                        <td><input type="number" name="precio_2_d_m" id="precio_2_d_m" value="{{$precio_2_d}}" onchange="coti_precio_acom('2','m')"></td>
+                        <td><input type="number" name="precio_3_d_m" id="precio_3_d_m" value="{{$precio_3_d}}" onchange="coti_precio_acom('3','m')"></td>
+                        <td><input type="number" name="precio_4_d_m" id="precio_4_d_m" value="{{$precio_4_d}}" onchange="coti_precio_acom('4','m')"></td>
+                        <td><input type="number" name="precio_5_d_m" id="precio_5_d_m" value="{{$precio_5_d}}" onchange="coti_precio_acom('5','m')"></td>
                     </tr>
                     <tr>
-                        <td><input type="number" name="room_s" value="0"></td>
+                        <td><input type="number" name="room_s" value="0"  onchange="coti_romms('S')"></td>
                         <td class="centrar"><img src="{{asset('images')}}/single.png" alt="" width="30px" height="30px"></td>
-                        <td><input type="number" name="precio_2_s" id="precio_2_s" value="{{$precio_2_s}}"></td>
-                        <td><input type="number" name="precio_3_s" id="precio_3_s" value="{{$precio_3_s}}"></td>
-                        <td><input type="number" name="precio_4_s" id="precio_4_s" value="{{$precio_4_s}}"></td>
-                        <td><input type="number" name="precio_5_s" id="precio_5_s" value="{{$precio_5_s}}"></td>
+                        <td><input type="number" name="precio_2_s" id="precio_2_s" value="{{$precio_2_s}}" onchange="coti_precio_acom('2','s')"></td>
+                        <td><input type="number" name="precio_3_s" id="precio_3_s" value="{{$precio_3_s}}" onchange="coti_precio_acom('3','s')"></td>
+                        <td><input type="number" name="precio_4_s" id="precio_4_s" value="{{$precio_4_s}}" onchange="coti_precio_acom('4','s')"></td>
+                        <td><input type="number" name="precio_5_s" id="precio_5_s" value="{{$precio_5_s}}" onchange="coti_precio_acom('5','s')"></td>
                     </tr>
                 </table>
                 <br>
@@ -191,6 +196,24 @@ $Paquete='';
                     </div>
                 </li>
                 <?php $j=0;?>
+               <li>
+                   <div class="row">
+                       <div class="col m6">
+                           <a class="waves-effect waves-light btn"><i class="material-icons left">cloud</i>button</a>
+                           <a class="btn red"><i class="large material-icons">insert_chart</i></a>
+
+                           <i class="large material-icons">insert_chart</i>
+                       </div>
+                       <div class="col m6">
+                           <a class=""><i class="large material-icons">search</i></a>
+                       </div>
+                   </div>
+                   <div class="row">
+                       <div class="col m12">
+
+                       </div>
+                   </div>
+               </li>
                <li>
                <div class="column lista_itinerario"  onmouseup="poner_valor()">
 

@@ -172,8 +172,21 @@
                         </li>
                     </ul>
                 </li>
-                <li class="bold"><a href="{{route('cotizaciones_path')}}" class="waves-effect waves-cyan"><i class="mdi-action-perm-data-setting"></i> Cotizaciones </a>
+                <li class="no-padding">
+                    <ul class="collapsible collapsible-accordion">
+                        <li class="bold"><a class="collapsible-header waves-effect waves-cyan"><i class="mdi-action-view-carousel"></i> Cotizaciones</a>
+                            <div class="collapsible-body">
+                                <ul>
+                                    <li><a href="{{route('cotizacion_path')}}">Nueva cotizacion</a>
+                                    </li>
+                                    <li><a href="{{route('cotizaciones_path')}}">Lista de cotizacionn</a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </li>
+                    </ul>
                 </li>
+
                 <li class="bold"><a href="app-email.html" class="waves-effect waves-cyan"><i class="mdi-communication-email"></i> Mailbox <span class="new badge">4</span></a>
                 </li>
                 <li class="bold"><a href="app-calendar.html" class="waves-effect waves-cyan"><i class="mdi-editor-insert-invitation"></i> Calender</a>
