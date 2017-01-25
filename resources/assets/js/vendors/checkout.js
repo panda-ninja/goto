@@ -5,7 +5,7 @@
 //     $('select').material_select();
 //     $('#charge-error').addClass('hide');
 // });
-Stripe.setPublishableKey('pk_test_dyIe8bpwdnHasxw7a27HhPoW');
+Stripe.setPublishableKey('pk_live_REwwDqPEJ4Jh4mI9u8htxZTk');
 
 var $form=$('#checkout-form');
 $form.submit(function(event){
@@ -64,6 +64,7 @@ function stripeResponseHandler1(status,response){
         //alert('no error'+response.id);
         var token=response.id;
         $form1.append($('<input type="hidden" name="stripeToken" id="stripeToken"/>').val(token));
+        $('#bloq').val('bloque_1');
         console.log(token);
         //$('#pago').val('Proccesing ...');
         $form1.get(0).submit();

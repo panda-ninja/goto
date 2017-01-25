@@ -228,6 +228,10 @@ Route::group(['middleware'=>'admin'],function(){
         'uses' => 'CotizacionController@guardar_pre_cotizacion',
         'as' => 'cotizacion_guardar_pre_path',
     ]);
+    Route::get('/cotizaciones', [
+        'uses' => 'AdminController@cotizaciones',
+        'as' => 'cotizaciones_path',
+    ]);
 });
 /*
 Route::get('login', [

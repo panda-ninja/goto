@@ -59,6 +59,7 @@
                 {{csrf_field()}}
                 <div class="row center">
                     <div class="input-field col m3">
+                        <input type="hidden" value="{{$paquete1->duracion}}" name="dias">
                         <select name="txt_country" id="destino_travel">
                             @foreach($paqueteCombo as $paquete)
                                 @if($paquete->titulo==$paquete1->titulo)
@@ -71,6 +72,7 @@
                         <label for="destino_travel" class="grey-text text-darken-3">From</label>
                     </div>
                     <div class="input-field col m4" id="dispo">
+
                         <input type="hidden" value="{{$precio}}" name="txt_price" id="txt_price">
                         <select name="txt_date" id="date_travel" onclick="pasar()" onchange="this.form.submit();">
                             @foreach($paqueteCombo as $paquete)
@@ -115,6 +117,8 @@
             </form>
             <form class="font-moserrat" action="{{route('checkout_store_path')}}" method="post" id="checkout-form1">
                 {{csrf_field()}}
+                <input type="hidden" name="bloq0" id="bloq0" value=""/>
+                <input type="hidden" name="bloq" id="bloq" value="bloque_0"/>
                 <div class="row ">
                     <div class="col m8">
                         <div class="row center">
@@ -438,28 +442,29 @@
                                 <h6>Optional Activities:</h6>
                                 <?php $i=0;?>
                                 @foreach($paquetes as $paquete)
-                                    @foreach($paquete->paquete_servicio_extra as $servicios2)
-                                        <?php $i++;?>
-                                        @foreach($servicio_extras as $extra)
-                                            @if($servicios2->idservicio_extra==$extra->id)
-                                        <div class="row">
-                                            <div class="col m9">
-                                                <p>
-                                                    <input type="hidden" id="ch_extras_id_{{$i}}" value="{{$extra->id}}">
-                                                    <input type="hidden" id="ch_extras_name_{{$i}}" name="ch_extras_name[]" value="{{$extra->titulo}}">
-                                                    <input type="hidden" id="ch_extras_valor_{{$i}}" name="ch_extras_valor[]" value="0">
-                                                    <input type="checkbox" id="ch_extras_{{$i}}" name="ch_extras[]" value="{{$extra->precio}}" onchange="ch_extra({{$i}})"/>
-                                                    <label for="ch_extras_{{$i}}" class="grey-text text-darken-4">{{$extra->titulo}}<span id="p_{{$i}}}"> ($<span id="extra_precioS_{{$i}}">{{$extra->precio}}</span> for traveller)</span><br><span class="text-12 grey-text text-darken-3">{{$extra->descripcion}}</span></label>
-
-                                                </p>
+{{--                                    @if($paquete->disponibilidad->estrellas=3)--}}
+                                        @foreach($paquete->paquete_servicio_extra as $servicios2)
+                                            <?php $i++;?>
+                                            @foreach($servicio_extras as $extra)
+                                                @if($servicios2->idservicio_extra==$extra->id)
+                                            <div class="row">
+                                                <div class="col m9">
+                                                    <p>
+                                                        <input type="hidden" id="ch_extras_id_{{$i}}" value="{{$extra->id}}">
+                                                        <input type="hidden" id="ch_extras_name_{{$i}}" name="ch_extras_name[]" value="{{$extra->titulo}}">
+                                                        <input type="hidden" id="ch_extras_valor_{{$i}}" name="ch_extras_valor[]" value="0">
+                                                        <input type="checkbox" id="ch_extras_{{$i}}" name="ch_extras[]" value="{{$extra->precio}}" onchange="ch_extra({{$i}})"/>
+                                                        <label for="ch_extras_{{$i}}" class="grey-text text-darken-4">{{$extra->titulo}}<span id="p_{{$i}}}"> ($<span id="extra_precioS_{{$i}}">{{$extra->precio}}</span> for traveller)</span><br><span class="text-12 grey-text text-darken-3">{{$extra->descripcion}}</span></label>
+                                                    </p>
+                                                </div>
+                                                <div class="col m3">
+                                                    $ <span id="extra_precioP_{{$i}}">{{2*$extra->precio}}</span>
+                                                </div>
                                             </div>
-                                            <div class="col m3">
-                                                $ <span id="extra_precioP_{{$i}}">{{2*$extra->precio}}</span>
-                                            </div>
-                                        </div>
-                                                @endif
-                                            @endforeach
-                                    @endforeach
+                                                    @endif
+                                                @endforeach
+                                        @endforeach
+                                    {{--@endif--}}
                                 @endforeach
                                 <br>
                             </div>
