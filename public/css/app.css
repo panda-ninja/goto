@@ -2651,8 +2651,7 @@ input[type=range] + .thumb {
 
 .row {
   margin-left: auto;
-  margin-right: auto;
-  margin-bottom: 20px; }
+  margin-right: auto; }
   .row:after {
     content: "";
     display: table;
@@ -6517,6 +6516,21 @@ button.picker__today:focus, button.picker__clear:focus, button.picker__close:foc
   .picker--time .picker__box {
     margin-bottom: 5em; } }
 
+@media only screen and (min-device-width: 768px) and (max-device-width: 1024px) and (orientation: portrait) and (-webkit-min-device-pixel-ratio: 2) {
+  /* STYLES GO HERE */
+  .hide-ipad-large {
+    display: none !important; }
+  .item-2 {
+    width: 25% !important; }
+  .text-15-ip {
+    font-size: 15px !important; }
+  .text-20-ip {
+    font-size: 20px !important; }
+  .margin-top-ip-0 {
+    margin-top: 0 !important; }
+  .check-form i {
+    font-size: 40px !important; } }
+
 @media only screen and (max-width: 600px) {
   #index-banner .section {
     top: 0; }
@@ -6533,6 +6547,8 @@ button.picker__today:focus, button.picker__clear:focus, button.picker__close:foc
   nav, nav .nav-wrapper i, nav a.button-collapse, nav a.button-collapse i {
     height: 48px;
     line-height: 48px; }
+  nav ul a {
+    padding: 0 8px; }
   .parallax-container .section {
     position: absolute; }
   #index-banner .section {
@@ -6555,6 +6571,9 @@ button.picker__today:focus, button.picker__clear:focus, button.picker__close:foc
     padding: 0 10px; }
   .btn-header i {
     margin-right: 5px; } }
+
+body {
+  background: #FFF; }
 
 .row {
   margin-bottom: 0 !important; }
@@ -6945,7 +6964,7 @@ span.quotes-duration {
 .btn-date {
   height: 25px;
   line-height: 25px;
-  padding: 0 11px; }
+  padding: 0 9px; }
 
 .btn-checkout {
   width: 100%; }

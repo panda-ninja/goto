@@ -10,7 +10,7 @@
                 <img src="{{asset('img/bg/mapi-3.jpg')}}"> <!-- random image -->
                 <div class="caption center-align">
                     <h3 class="grey-text text-darken-2 text-50">A <b>BETTER</b> WAY TO TRAVEL TO PERU</h3>
-                    <h5 class="light grey-text text-darken-3 hide-on-small-only">$150 average saving | 24/7 local authentic assitance |
+                    <h5 class="light grey-text text-darken-3 hide-on-small-only">$150 average saving | 24/7 local authentic assistance |
                         100s of testimonials</h5>
 
                     <div class="row margin-top-40">
@@ -47,8 +47,8 @@
                                 </div>
 
                                 <div class="col s12 white-text">
-                                    <p class="no-margin text-22">ALL INCLUDED FROM MIAMI</p>
-                                    <p class="no-margin text-35"><b class="">5 DAYS</b> <span class="btn black-text">$1299</span></p>
+                                    <p class="no-margin text-22 text-15-ip">ALL INCLUDED FROM MIAMI</p>
+                                    <p class="no-margin text-35 text-20-ip"><b class="">5 DAYS</b> <span class="btn black-text">$1299</span></p>
                                 </div>
                             </a>
                         </div>
@@ -110,7 +110,7 @@
                     <div class="col s12 m5 l4 position-relative right">
                         <div class="padding-10 bg-rgba-white-9 card-panel">
                             <h5 class="font-moserrat">EXPERIENCE</h5>
-                            <p>Established in 2009, qe are a company founded by a team of travel professionals with decades of experience operating tours in Peru</p>
+                            <p>Established in 2009, we are a company founded by a team of travel professionals with decades of experience operating tours in Peru</p>
                             <h5 class="font-moserrat">Local &amp; International</h5>
                             <p>Our headquarters are local in Cusco with operational offices at MachuPicchu, Lima, Arequipa and Puno. And satellite offices at Washington DC and Tampa, FL.</p>
 
@@ -144,7 +144,6 @@
                                  class="responsive-img"><span>Assistances</span></li>
                         <li><img src="{{asset('img/icons//include/flight.png')}}" alt="" class="responsive-img"><span>Flights</span>
                         </li>
-
                     </ul>
                 </div>
             </div>
@@ -167,9 +166,9 @@
 
                 <div class="row">
 
-                    <div class="col s12 grey card lighten-4 card no-margin z-depth-1">
+                    <div class="row grey card lighten-4 card no-margin z-depth-1">
                         @foreach($paquetes2->where('duracion', $paquete2->duracion) as $paquetes)
-                            <div class="col s6 m3 l3">
+                            <div class="col s6 m4 l3">
 
                                 <div class="text-18 grey-text text-darken-4 margin-top-10"><b><span class="text-12 display-block grey-text text-darken-5">from</span> {{$paquetes->titulo}}</b></div>
 
@@ -202,7 +201,7 @@
 
                     <div class="col s12 margin-bottom-30 card no-margin">
                         <a href="{{route('home_show_date_path', $paquetes->duracion)}}" class="font-moserrat valign-wrapper right margin-top-10 deep-orange-text text-accent-3">View All Dates <i class="material-icons">input</i></a>
-                        <div class="col s6">
+                        <div class="col s12 m6 l6">
                             {{--<div class="valign-wrapper">--}}
                             {{--<img src="{{asset('img/icons/all-included.png')}}" alt="" width="100" class="left">--}}
                             {{--</div>--}}
@@ -212,12 +211,12 @@
                                     <li><b>Day {{$itinerario->dia}}:</b> {{ucwords(strtolower($itinerario->titulo))}}</li>
                                 @endforeach
                                 <li>
-                                    <a href="{{route('home_show_date_path', $paquetes->duracion)}}" class="btn valign-wrapper waves-effect left margin-top-10 deep-orange accent-3">Detailed Program</a>
+                                    <a href="{{route('home_show_date_path', $paquetes->duracion)}}" class="btn valign-wrapper waves-effect left margin-top-10 margin-bottom-10 deep-orange accent-3">Detailed Program</a>
                                 </li>
                             </ul>
 
                         </div>
-                        <div class="col s6">
+                        <div class="col s12 m6 l6">
                             <img src="{{asset('img/maps/'.$paquetes->imagen.'')}}" alt="" class="responsive-img margin-top-15">
                         </div>
                     </div>
@@ -234,30 +233,23 @@
 
 
 
-
-    <div class="parallax-container parallax-container-2">
+    <div class="parallax-container parallax-container-2 hide-ipad-large">
         <div class="section">
             <div class="container">
-                <div class="row margin-bottom-20">
-
-                    <div class="col s12 center">
-                        <h3><i class="mdi-content-send brown-text"></i></h3>
-                        <h4>GROUND <b>PACKAGES</b></h4>
-                        {{--<p class="left-align light">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam scelerisque id nunc nec volutpat. Etiam pellentesque tristique arcu, non consequat magna fermentum ac. Cras ut ultricies eros. Maecenas eros justo, ullamcorper a sapien id, viverra ultrices eros. Morbi sem neque, posuere et pretium eget, bibendum sollicitudin lacus. Aliquam eleifend sollicitudin diam, eu mattis nisl maximus sed. Nulla imperdiet semper molestie. Morbi massa odio, condimentum sed ipsum ac, gravida ultrices erat. Nullam eget dignissim mauris, non tristique erat. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae;</p>--}}
-                    </div>
-
-                    <div class="col s12 m8 offset-m2 l9 offset-l2 include-services margin-bottom-10">
-                        <ul class="list-services">
-                            <li><img src="{{asset('img/icons//include/hotels.png')}}" alt=""
-                                     class="responsive-img"><span>Hotels</span></li>
+                <div class="row center">
+                    <h4 class="yellow-text text-darken-4"><b>GROUND</b> PACKAGES</h4>
+                    <div class="col s12 m12 l12 include-services margin-bottom-10">
+                        <ul class="list-services no-margin">
+                            <li><img src="{{asset('img/icons//include/hotels.png')}}" alt="" class="responsive-img"><span>Hotels</span>
+                            </li>
                             <li><img src="{{asset('img/icons//include/transfers.png')}}" alt=""
                                      class="responsive-img"><span>Transfers</span></li>
                             <li><img src="{{asset('img/icons//include/entrances.png')}}" alt=""
                                      class="responsive-img"><span>Entrances</span></li>
-                            <li><img src="{{asset('img/icons//include/trains.png')}}" alt=""
-                                     class="responsive-img"><span>Trains</span></li>
-                            <li><img src="{{asset('img/icons//include/tours.png')}}" alt=""
-                                     class="responsive-img"><span>Tours</span></li>
+                            <li><img src="{{asset('img/icons//include/trains.png')}}" alt="" class="responsive-img"><span>Trains</span>
+                            </li>
+                            <li><img src="{{asset('img/icons//include/tours.png')}}" alt="" class="responsive-img"><span>Tours</span>
+                            </li>
                             <li><img src="{{asset('img/icons//include/breakfast.png')}}" alt=""
                                      class="responsive-img"><span>Breakfast</span></li>
                             <li><img src="{{asset('img/icons//include/assistances.png')}}" alt=""
@@ -265,6 +257,8 @@
 
                         </ul>
                     </div>
+                </div>
+                <div class="row margin-bottom-20">
 
                     <div class="customNavigation center">
                         <a class="btn preva"><i class="material-icons left">arrow_back</i> Previous</a>
@@ -356,7 +350,7 @@
                 <p class="yellow-text text-darken-4 text-20">BY CATEGORY</p>
             </div>
             <div class="row">
-                <div class="col s3 valign-wrapper">
+                <div class="col s6 m3 l3 valign-wrapper">
                     <a href="{{route('home_show_category_path', 'adventure')}}" class="card hoverable waves-effect">
                         <div class="col s3">
                             <img src="{{asset('img/icons/trekking.png')}}" alt="" class="circle responsive-img valign">
@@ -369,7 +363,7 @@
                         </div>
                     </a>
                 </div>
-                <div class="col s3 valign-wrapper">
+                <div class="col s6 m3 l3 valign-wrapper">
                     <a href="{{route('home_show_category_path', 'family')}}" class="card hoverable waves-effect">
                         <div class="col s3">
                             <img src="{{asset('img/icons/family.png')}}" alt="" class="circle responsive-img">
@@ -382,7 +376,7 @@
                         </div>
                     </a>
                 </div>
-                <div class="col s3 valign-wrapper">
+                <div class="col s6 m3 l3 valign-wrapper">
                     <a href="{{route('home_show_category_path', 'classic')}}" class="card hoverable waves-effect">
                         <div class="col s3">
                             <img src="{{asset('img/icons/classic.png')}}" alt="" class="circle responsive-img">
@@ -395,7 +389,7 @@
                         </div>
                     </a>
                 </div>
-                <div class="col s3 valign-wrapper">
+                <div class="col s6 m3 l3 valign-wrapper">
                     <a href="{{route('home_show_category_path', 'luxury')}}" class="card hoverable waves-effect">
                         <div class="col s3">
                             <img src="{{asset('img/icons/human.png')}}" alt="" class="circle responsive-img">

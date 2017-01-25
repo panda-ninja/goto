@@ -16,6 +16,37 @@ $link-color: color("light-blue", "darken-1") !default;
 
 
 //media querys
+
+  @media only screen
+  and (min-device-width : 768px)
+  and (max-device-width : 1024px)
+  and (orientation : portrait)
+  and (-webkit-min-device-pixel-ratio: 2) {
+    /* STYLES GO HERE */
+    .hide-ipad-large{
+      display: none !important;
+    }
+    .item-2{
+      width: 25% !important;
+    }
+    .text-15-ip{
+      font-size: 15px !important;
+    }
+    .text-20-ip{
+      font-size: 20px !important;
+    }
+    //.owl-carousel .owl-item{
+    //  width: 248px !important;
+    //  transform: translate3d(-248px, 0px, 0px) !important;
+    //}
+    .margin-top-ip-0{
+      margin-top: 0 !important;
+    }
+    .check-form i{
+      font-size: 40px !important;
+    }
+  }
+
   @media #{$small-and-down} {
     #index-banner .section {
       top: 0;
@@ -39,7 +70,9 @@ $link-color: color("light-blue", "darken-1") !default;
       height: 48px;
       line-height: 48px;
     }
-
+    nav ul a{
+      padding: 0 8px;
+    }
     .parallax-container .section {
       position: absolute;
       //top: 40%;
@@ -57,7 +90,6 @@ $link-color: color("light-blue", "darken-1") !default;
     .include-services li{
       width: 10px;
     }
-
   }
   @media #{$medium-and-down} {
     // styles for medium screens and down
