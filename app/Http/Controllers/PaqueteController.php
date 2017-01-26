@@ -3,8 +3,14 @@
 namespace GotoPeru\Http\Controllers;
 use GotoPeru\PaquetePersonalizado;
 use GotoPeru\TDestino;
+use GotoPeru\TItinerario;
 use GotoPeru\TPaquete;
 use Illuminate\Http\Request;
+
+
+
+
+
 
 class PaqueteController extends Controller
 {
@@ -19,8 +25,9 @@ class PaqueteController extends Controller
         //return dd($paquete);
         $destino=TDestino::all();
         //dd($paquete);
-        return view('secciones.show_paquete',['paquete'=>$paquete],['destino'=>$destino]);
-//    return dd($paquete);
+        $itinerios=TItinerario::get();
+        return view('secciones.show_paquete',['paquete'=>$paquete],['destino'=>$destino],['itinerarios'=>$itinerios]);
+//return dd($itinerios);
 
         //
 //        if($request->ajax()){

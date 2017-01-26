@@ -154,6 +154,13 @@ function poner_valor(){
          // console.log('se asigno: '+pos);
      });
  }
-
+function Mostrar_busqueda_text(){
+    $('#buscar_iti').removeClass('hide');
+    $('#jalar_iti').addClass('hide');
+}
+function Mostrar_busqueda_jalar(){
+    $('#buscar_iti').addClass('hide');
+    $('#jalar_iti').removeClass('hide');
+}
 
 //# sourceMappingURL=funciones_cotizacion.js.map

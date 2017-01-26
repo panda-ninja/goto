@@ -198,19 +198,42 @@ $Paquete='';
                 <?php $j=0;?>
                <li>
                    <div class="row">
-                       <div class="col m6">
-                           <a class="waves-effect waves-light btn"><i class="material-icons left">cloud</i>button</a>
-                           <a class="btn red"><i class="large material-icons">insert_chart</i></a>
-
-                           <i class="large material-icons">insert_chart</i>
-                       </div>
-                       <div class="col m6">
-                           <a class=""><i class="large material-icons">search</i></a>
+                       <div class="col m12">
+                           <a class="waves-effect waves-light btn" onclick="Mostrar_busqueda_text()"><i class="mdi-action-spellcheck"></i></a>
+                           <a class="waves-effect waves-light btn" onclick="Mostrar_busqueda_jalar()"><i class="mdi-action-search"></i></a>
                        </div>
                    </div>
-                   <div class="row">
+                   <div id="buscar_iti" class="row">
+                       <div class="col m10">
+                           <div class="input-field col s12">
+                               <input id="buscar_itinerio" type="text" placeholder="Ingrese el titulo">
+                               <label for="buscar_itinerio" class="">Ingrese el titulo</label>
+                           </div>
+                       </div>
+                       <div class="col m2">
+                           <a class="waves-effect waves-light btn green"><i class="mdi-content-add-circle"></i></a>
+                       </div>
+                   </div>
+                   <div id="jalar_iti" class="row column lista_itinerario hide">
                        <div class="col m12">
-
+                           @foreach($itinerarios as $itinerario)
+                               {{--{{$itinerario}}--}}
+                               {{--<div class="portlet">--}}
+                                   {{--<div class="portlet-header"  onmousedown="Pasar_datos('{{$j1}}','{{$j1}}','{{$itinerario->titulo}}')"><span class="cursor-move">DAY <span class="pos_iti" name="posdia[]" id="pos_dia_{{$j1}}">{{$itinerario->dia}}</span>: <i id="titulo_{{$j1}}">{{$itinerario->titulo}}</i></span></div>--}}
+                                   {{--<div class="portlet-content" onmouseenter="estado_edicion(1)" onmouseleave="estado_edicion(0)">--}}
+                                       {{--<div class="row">--}}
+                                           {{--<div class="col s12">--}}
+                                                {{--<span class="grey-text text-darken-3">--}}
+                                                    {{--<input name="titulo_itinerario[]" id="titulo_itinerario_{{$j1}}" type="text" placeholder="Ingrese el titulo" value="{{$itinerario->titulo}}">--}}
+                                                {{--</span>--}}
+                                           {{--</div>--}}
+                                       {{--</div>--}}
+                                       {{--<textarea  name="desc_itinerario[]" id="desc_itinerario_{{$j1}}"  >--}}
+                                        {{--{{$itinerario->descripcion}}--}}
+                                    {{--</textarea>--}}
+                                   {{--</div>--}}
+                               {{--</div>--}}
+                            @endforeach
                        </div>
                    </div>
                </li>
@@ -223,16 +246,12 @@ $Paquete='';
                                 <div class="portlet-header"  onmousedown="Pasar_datos('{{$j}}','{{$j}}','{{$itinerario->titulo}}')"><span class="cursor-move">DAY <span class="pos_iti" name="posdia[]" id="pos_dia_{{$j}}">{{$itinerario->dia}}</span>: <i id="titulo_{{$j}}">{{$itinerario->titulo}}</i></span></div>
                                 <div class="portlet-content" onmouseenter="estado_edicion(1)" onmouseleave="estado_edicion(0)">
                                     <div class="row">
-                                        <div class="col s10">
+                                        <div class="col s12">
                                                 <span class="grey-text text-darken-3">
                                                     <input name="titulo_itinerario[]" id="titulo_itinerario_{{$j}}" type="text" placeholder="Ingrese el titulo" value="{{$itinerario->titulo}}">
                                                 </span>
                                         </div>
-                                        <div class="col s2">
-                                            <a id="agregar_pq" class="btn cyan waves-effect waves-light right modal-trigger" href="#modal331">Buscar Dia
-                                                <i class="mdi-content-add-circle right"></i>
-                                            </a>
-                                        </div>
+
                                     </div>
                                     <textarea  name="desc_itinerario[]" id="desc_itinerario_{{$j}}"  >
                                         {{$itinerario->descripcion}}
