@@ -15,10 +15,10 @@ $(document).ready(function(){
 
 $(document).ready(function(){
   $('.slider').slider({
-    full_width: true,
+
     height: 500,
     indicators: false,
-    no_wrap: true
+
   });
 
   //carousel owl

@@ -29,11 +29,35 @@ $link-color: color("light-blue", "darken-1") !default;
     .item-2{
       width: 25% !important;
     }
+    .text-9-ip{
+      font-size: 9px !important;
+    }
+    .text-10-ip{
+      font-size: 10px !important;
+    }
+    .text-14-ip{
+      font-size: 14px !important;
+    }
     .text-15-ip{
       font-size: 15px !important;
     }
+    .text-16-ip{
+      font-size: 16px !important;
+    }
+    .text-18-ip{
+      font-size: 18px !important;
+    }
     .text-20-ip{
       font-size: 20px !important;
+    }
+    .text-30-ip{
+      font-size: 30px !important;
+    }
+    .text-40-ip{
+      font-size: 40px !important;
+    }
+    .btn-pd-large{
+      padding: 0 5px;
     }
     //.owl-carousel .owl-item{
     //  width: 248px !important;
@@ -45,11 +69,26 @@ $link-color: color("light-blue", "darken-1") !default;
     .check-form i{
       font-size: 40px !important;
     }
+    .btn-checkout{
+      text-align: center;
+    }
   }
 
   @media #{$small-and-down} {
     #index-banner .section {
       top: 0;
+    }
+    .text-15-ip{
+      font-size: 15px !important;
+    }
+    .text-20-ips{
+      font-size: 20px !important;
+    }
+    .text-30-ips{
+      font-size: 30px !important;
+    }
+    .text-40-ips{
+      font-size: 40px !important;
     }
     .btn-header{
       padding: 0 10px;
@@ -68,6 +107,17 @@ $link-color: color("light-blue", "darken-1") !default;
     }
     .text-30-ips{
       font-size: 30px !important;
+    }
+    .btn-date {
+      height: 30px !important;
+      line-height: 30px !important;
+      padding: 0 15px !important;
+    }
+    .text-16-ip{
+      font-size: 16px !important;
+    }
+    .text-11-ip{
+      font-size: 11px !important;
     }
   }
   @media #{$medium-and-up} {
@@ -95,6 +145,12 @@ $link-color: color("light-blue", "darken-1") !default;
 
     .include-services li{
       width: 10px;
+    }
+    .text-16-ip{
+      font-size: 16px !important;
+    }
+    .text-11-ip{
+      font-size: 11px !important;
     }
   }
   @media #{$medium-and-down} {

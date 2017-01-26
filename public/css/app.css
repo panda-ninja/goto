@@ -6522,18 +6522,44 @@ button.picker__today:focus, button.picker__clear:focus, button.picker__close:foc
     display: none !important; }
   .item-2 {
     width: 25% !important; }
+  .text-9-ip {
+    font-size: 9px !important; }
+  .text-10-ip {
+    font-size: 10px !important; }
+  .text-14-ip {
+    font-size: 14px !important; }
   .text-15-ip {
     font-size: 15px !important; }
+  .text-16-ip {
+    font-size: 16px !important; }
+  .text-18-ip {
+    font-size: 18px !important; }
   .text-20-ip {
     font-size: 20px !important; }
+  .text-30-ip {
+    font-size: 30px !important; }
+  .text-40-ip {
+    font-size: 40px !important; }
+  .btn-pd-large {
+    padding: 0 5px; }
   .margin-top-ip-0 {
     margin-top: 0 !important; }
   .check-form i {
-    font-size: 40px !important; } }
+    font-size: 40px !important; }
+  .btn-checkout {
+    text-align: center; } }
 
 @media only screen and (max-width: 600px) {
   #index-banner .section {
     top: 0; }
+  .text-15-ip {
+    font-size: 15px !important; }
+  .text-20-ips {
+    font-size: 20px !important; }
+  .text-30-ips {
+    font-size: 30px !important; }
+  .text-40-ips {
+    font-size: 40px !important; }
   .btn-header {
     padding: 0 10px; }
   .nav .button-collapse i {
@@ -6545,7 +6571,15 @@ button.picker__today:focus, button.picker__clear:focus, button.picker__close:foc
   .text-20-ips {
     font-size: 20px !important; }
   .text-30-ips {
-    font-size: 30px !important; } }
+    font-size: 30px !important; }
+  .btn-date {
+    height: 30px !important;
+    line-height: 30px !important;
+    padding: 0 15px !important; }
+  .text-16-ip {
+    font-size: 16px !important; }
+  .text-11-ip {
+    font-size: 11px !important; } }
 
 @media only screen and (min-width: 601px) {
   nav, nav .nav-wrapper i, nav a.button-collapse, nav a.button-collapse i {
@@ -6562,7 +6596,11 @@ button.picker__today:focus, button.picker__clear:focus, button.picker__close:foc
   .btn-header {
     padding: 0 10px; }
   .include-services li {
-    width: 10px; } }
+    width: 10px; }
+  .text-16-ip {
+    font-size: 16px !important; }
+  .text-11-ip {
+    font-size: 11px !important; } }
 
 @media only screen and (max-width: 992px) {
   .include-services li {
@@ -6787,6 +6825,9 @@ nav ul li a {
   width: 100%;
   top: 1%; }
 
+.pagination li a {
+  padding: 0 30px; }
+
 .box-circle-absolute {
   position: absolute;
   top: 29%;
@@ -6966,9 +7007,9 @@ span.quotes-duration {
   display: block; }
 
 .btn-date {
-  height: 25px;
-  line-height: 25px;
-  padding: 0 9px; }
+  height: 30px;
+  line-height: 30px;
+  padding: 0 15px; }
 
 .btn-checkout {
   width: 100%; }

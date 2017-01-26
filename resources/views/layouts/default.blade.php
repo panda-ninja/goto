@@ -16,7 +16,7 @@
 
 </head>
 <body>
-<header class="grey darken-4">
+<header class="grey darken-4 hide-on-small-only">
     <div class="container">
         <div class="row valign-wrapper">
             <div class="col m5 l5 hide-on-small-only hide-on-small-and-down hide-on-large-and-down">
@@ -58,15 +58,34 @@
             <li><a href="#design" class="yellow-text text-darken-4 header-top-menu">DESIGN</a></li>
             <li></li>
         </ul>
+
         <ul class="side-nav" id="mobile-demo">
-            <li><a href="sass.html">All Included</a></li>
-            <li><a href="badges.html">Ground Package</a></li>
-            <li><a href="collapsible.html">Offers</a></li>
-            <li><a href="mobile.html">Design</a></li>
+            <li><div class="userView">
+                    <div class="background">
+                        <img src="{{asset('img/why/local-travel.jpg')}}" class="responsive-img">
+                    </div>
+                    <a href="#!user"><img class="circle" src="{{asset('img/logos/logo-ave-gotoperu.png')}}"></a>
+                    <a href="#!name"><span class="white-text name">Once in your lifetime!</span></a>
+                    <a href="#!email"><span class="white-text email">(813) 454-9707</span></a>
+                </div>
+            </li>
+            <li><a href="#!" class="waves-effect"><i class="material-icons">input</i>Sign in</a></li>
+            <li><a href="#!" class="waves-effect"><i class="material-icons">account_circle</i> New acoount</a></li>
+            <li><div class="divider"></div></li>
+            <li><a href="#inquire" class="modal-trigger waves-effect yellow-text text-darken-4"><i class="material-icons yellow-text text-darken-4">message</i>Inquire now</a></li>
+            <li><a href="#design" class="waves-effect"><i class="material-icons">brush</i>Design my trip</a></li>
+            <li><div class="divider"></div></li>
+            {{--<li><a class="subheader">Subheader</a></li>--}}
+            <li><a href="{{route('home_show_packages_path')}}" class="waves-effect">Tours Packages</a></li>
+            <li><a href="https://gotoperu.com/destinations/" class="waves-effect">Destinations</a></li>
+            <li><a href="https://gotoperu.com/getting-to-peru/" class="waves-effect">Getting to Peru</a></li>
+            <li><a href="https://gotoperu.com/about-us/" class="waves-effect">About Us</a></li>
+            <li><a href="https://gotoperu.com/faq/" class="waves-effect">FAQ</a></li>
+
         </ul>
+
     </div>
 </nav>
-
 
 <!-- Modal Structure -->
 <div id="inquire" class="modal modal-inquire">

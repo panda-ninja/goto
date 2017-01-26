@@ -57,7 +57,6 @@
                     </div>
                 </div>
             </li>
-
         </ul>
     </div>
     <section class="spacer-10 hide-on-small-only">
@@ -127,7 +126,7 @@
             <div class="row center">
                 <h4 class="yellow-text text-darken-4"><b>VACATION PACKAGES</b> WHIT INTERNATIONAL FLIGHTS</h4>
                 <div class="col s12 m12 l12 include-services margin-bottom-10">
-                    <ul class="list-services no-margin">
+                    <ul class="list-services no-margin text-11-ip">
                         <li><img src="{{asset('img/icons//include/hotels.png')}}" alt="" class="responsive-img"><span>Hotels</span>
                         </li>
                         <li><img src="{{asset('img/icons//include/transfers.png')}}" alt=""
@@ -170,14 +169,14 @@
                         @foreach($paquetes2->where('duracion', $paquete2->duracion) as $paquetes)
                             <div class="col s6 m4 l3">
 
-                                <div class="text-18 grey-text text-darken-4 margin-top-10"><b><span class="text-12 display-block grey-text text-darken-5">from</span> {{$paquetes->titulo}}</b></div>
+                                <div class="text-18 text-16-ip grey-text text-darken-4 margin-top-10"><b><span class="text-12 display-block grey-text text-darken-5">from</span> {{$paquetes->titulo}}</b></div>
 
                                 {{--<p class="no-margin">Small group</p>--}}
                                 {{--<p class="no-margin">Tourist to Superior</p>--}}
                                 <ul class="font-moserrat right-align">
                                     @foreach($paquetes->disponibilidad->take(3)->sortBy('fecha_disponibilidad')->where('estrellas', 3) as $disponibilidad)
 
-                                        <li class="text-12 margin-bottom-10">
+                                        <li class="text-15 text-15-ip margin-bottom-10">
                                             <form action="{{route('home_show_checkout_path', array('titulo'=>str_replace(' ','-', strtolower($paquetes->titulo)), 'dias'=>$paquetes->duracion.'-days-tours'))}}"
                                                   method="post">
                                                 {{csrf_field()}}
@@ -240,7 +239,7 @@
                 <div class="row center">
                     <h4 class="yellow-text text-darken-4"><b>GROUND</b> PACKAGES</h4>
                     <div class="col s12 m12 l12 include-services margin-bottom-10">
-                        <ul class="list-services no-margin">
+                        <ul class="list-services no-margin text-11-ip">
                             <li><img src="{{asset('img/icons//include/hotels.png')}}" alt="" class="responsive-img"><span>Hotels</span>
                             </li>
                             <li><img src="{{asset('img/icons//include/transfers.png')}}" alt=""
@@ -294,11 +293,11 @@
                                             <div class="margin-bottom-10">
                                                 @foreach($paquetes->precio_paquetes as $precio)
                                                     @if($precio->estrellas == 2)
-                                                        <h4 class="text-18 no-margin valign-wrapper"><b
+                                                        <h4 class="text-18 text-30-ip no-margin valign-wrapper"><b
                                                                     class="lime-text text-darken-4">{{$paquetes->duracion}}
                                                                 days</b> <i class="material-icons valign tiny">arrow_forward</i>
-                                                            <b class="grey-text spacer-m-5 text-12">from</b> <span
-                                                                    class="yellow-text text-darken-3 text-25"><b>${{$precio->precio_d}}</b></span>
+                                                            <b class="grey-text spacer-m-5 text-12 text-20-ip">from</b> <span
+                                                                    class="yellow-text text-darken-3 text-25 text-40-ip"><b>${{$precio->precio_d}}</b></span>
                                                         </h4>
                                                     @endif
                                                 @endforeach
@@ -351,55 +350,49 @@
                 <p class="yellow-text text-darken-4 text-20">BY CATEGORY</p>
             </div>
             <div class="row">
-                <div class="col s6 m3 l3 valign-wrapper">
-                    <a href="{{route('home_show_category_path', 'adventure')}}" class="card hoverable waves-effect">
+                <div class="col s6 m3 l3">
+                    <a href="{{route('home_show_category_path', 'adventure')}}" class="card hoverable waves-effect grey lighten-4">
                         <div class="col s3">
-                            <img src="{{asset('img/icons/trekking.png')}}" alt="" class="circle responsive-img valign">
+                            <img src="{{asset('img/icons/trekking.png')}}" alt="" class="circle responsive-img margin-top-10">
                             <!-- notice the "circle" class -->
                         </div>
-                        <div class="col s9">
-                            <span class="black-text">
-                                ADVENTURE
-                            </span>
+                        <div class="col s9 black-text">
+                               <p>ADVENTURE</p>
                         </div>
                     </a>
                 </div>
-                <div class="col s6 m3 l3 valign-wrapper">
-                    <a href="{{route('home_show_category_path', 'family')}}" class="card hoverable waves-effect">
+                <div class="col s6 m3 l3">
+                    <a href="{{route('home_show_category_path', 'family')}}" class="card hoverable waves-effect grey lighten-4">
                         <div class="col s3">
-                            <img src="{{asset('img/icons/family.png')}}" alt="" class="circle responsive-img">
+                            <img src="{{asset('img/icons/family.png')}}" alt="" class="circle responsive-img margin-top-10">
                             <!-- notice the "circle" class -->
                         </div>
-                        <div class="col s9">
-                            <span class="black-text">
-                                FAMILY
-                            </span>
+
+                        <div class="col s9 black-text">
+                            <p>FAMILY</p>
+                        </div>
+
+                    </a>
+                </div>
+                <div class="col s6 m3 l3">
+                    <a href="{{route('home_show_category_path', 'classic')}}" class="card hoverable waves-effect grey lighten-4">
+                        <div class="col s3">
+                            <img src="{{asset('img/icons/classic.png')}}" alt="" class="circle responsive-img margin-top-10">
+                            <!-- notice the "circle" class -->
+                        </div>
+                        <div class="col s9 black-text">
+                            <p>CLASSIC</p>
                         </div>
                     </a>
                 </div>
-                <div class="col s6 m3 l3 valign-wrapper">
-                    <a href="{{route('home_show_category_path', 'classic')}}" class="card hoverable waves-effect">
+                <div class="col s6 m3 l3">
+                    <a href="{{route('home_show_category_path', 'luxury')}}" class="card hoverable waves-effect grey lighten-4">
                         <div class="col s3">
-                            <img src="{{asset('img/icons/classic.png')}}" alt="" class="circle responsive-img">
+                            <img src="{{asset('img/icons/human.png')}}" alt="" class="circle responsive-img margin-top-10">
                             <!-- notice the "circle" class -->
                         </div>
-                        <div class="col s9">
-                            <span class="black-text">
-                                CLASSIC
-                            </span>
-                        </div>
-                    </a>
-                </div>
-                <div class="col s6 m3 l3 valign-wrapper">
-                    <a href="{{route('home_show_category_path', 'luxury')}}" class="card hoverable waves-effect">
-                        <div class="col s3">
-                            <img src="{{asset('img/icons/human.png')}}" alt="" class="circle responsive-img">
-                            <!-- notice the "circle" class -->
-                        </div>
-                        <div class="col s9">
-                            <span class="black-text">
-                                LUXURY
-                            </span>
+                        <div class="col s9 black-text">
+                            <p>LUXURY</p>
                         </div>
                     </a>
                 </div>
@@ -418,7 +411,7 @@
                 <div class="col s12">
                     <ul class="pagination">
                     @foreach($duracion->sortBy('duracion') as $duraciones)
-                            <li class="waves-effect"><a href="{{route('home_show_days_path', $duraciones->duracion)}}">{{$duraciones->duracion}}</a></li>
+                            <li class="waves-effect hoverable grey lighten-4 card"><a href="{{route('home_show_days_path', $duraciones->duracion)}}">{{$duraciones->duracion}}</a></li>
                     @endforeach
                         {{--<li class="waves-effect active"><a href="#!">16+</a></li>--}}
                     </ul>
