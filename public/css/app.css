@@ -6579,7 +6579,9 @@ button.picker__today:focus, button.picker__clear:focus, button.picker__close:foc
   .text-16-ip {
     font-size: 16px !important; }
   .text-11-ip {
-    font-size: 11px !important; } }
+    font-size: 11px !important; }
+  .checkout-form [type="radio"]:not(:checked) + label, .checkout-form [type="radio"]:checked + label {
+    font-size: 8px; } }
 
 @media only screen and (min-width: 601px) {
   nav, nav .nav-wrapper i, nav a.button-collapse, nav a.button-collapse i {
@@ -6892,6 +6894,12 @@ nav ul li a {
 
 .checkout-form label {
   left: 0; }
+
+.checkout-form [type="radio"]:not(:checked) + label, .checkout-form [type="radio"]:checked + label {
+  display: block;
+  height: 53px;
+  line-height: 63px;
+  padding: 0; }
 
 .card-customize .card-title {
   padding: 0 0 0 3px !important;

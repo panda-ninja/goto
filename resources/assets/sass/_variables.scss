@@ -119,6 +119,10 @@ $link-color: color("light-blue", "darken-1") !default;
     .text-11-ip{
       font-size: 11px !important;
     }
+
+    .checkout-form [type="radio"]:not(:checked) + label, .checkout-form [type="radio"]:checked + label{
+      font-size: 8px;
+    }
   }
   @media #{$medium-and-up} {
 

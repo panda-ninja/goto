@@ -322,6 +322,12 @@ nav ul li a{
 .checkout-form label{
   left: 0;
 }
+.checkout-form [type="radio"]:not(:checked) + label, .checkout-form [type="radio"]:checked + label{
+  display: block;
+  height: 53px;
+  line-height: 63px;
+  padding: 0;
+}
 .card-customize .card-title{
   padding: 0 0 0 3px !important;
   width: 100%;

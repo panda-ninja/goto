@@ -120,9 +120,9 @@
                 <input type="hidden" name="bloq0" id="bloq0" value=""/>
                 <input type="hidden" name="bloq" id="bloq" value="bloque_0"/>
                 <div class="row ">
-                    <div class="col m8">
+                    <div class="col s12 m8 l8 margin-bottom-20">
                         <div class="row center">
-                            <div class="col m12  table-responsive">
+                            <div class="col s12 m12 l12 table-responsive">
 
                                 <?php
                                 $TipoPaquete='ConHotel';
@@ -415,38 +415,36 @@
 
                         </div>
                     </div>
-                    <div class="col m4">
-                        <div class="row no-margin-botton">
-                            <div class="col s12 caja-flotante grey lighten-2">
-                                <ul>
-                                    <li id="acomodacion_3" class="hide grey-text text-darken-1"><span>On triple accomodation </span><span id="rooms_T">1</span>X<img class="" src="{{asset('images/male.png')}}"><img class="" src="{{asset('images/male.png')}}"><img class="" src="{{asset('images/male.png')}}">X$<span id="precio_3">{{$pre_3_t}}</span></li>
-                                    <li id="acomodacion_2" class="grey-text text-darken-1"><span>On double accomodation </span><span id="rooms_D">1</span>X<img class="" src="{{asset('images/male.png')}}"><img class="" src="{{asset('images/male.png')}}">X$<span id="precio_Ma2">{{$pre_3_d}}</span></li>
-                                    <li id="acomodacion_M" class="hide grey-text text-darken-1"><span>On matinonial accomodation </span><span id="rooms_M">1</span>X<img class="" src="{{asset('images/male.png')}}"><img class="" src="{{asset('images/male.png')}}">X$<span id="precio_2">{{$pre_3_d}}</span></li>
-                                    <li id="acomodacion_1" class="hide grey-text text-darken-1"><span>On simple accomodation </span><span id="rooms_S">1</span>X<img class="" src="{{asset('images/male.png')}}">X$<span id="precio_1">{{$pre_3_s}}</span></li>
-                                    <li class="hide"><span id="precioPaquete">{{$precio}}</span></li>
+                    <div class="col s12 m4 l4">
+                        <div class="col s12 caja-flotante grey lighten-2">
+                            <ul>
+                                <li id="acomodacion_3" class="hide grey-text text-darken-1"><span>On triple accomodation </span><span id="rooms_T">1</span>X<img class="" src="{{asset('images/male.png')}}"><img class="" src="{{asset('images/male.png')}}"><img class="" src="{{asset('images/male.png')}}">X$<span id="precio_3">{{$pre_3_t}}</span></li>
+                                <li id="acomodacion_2" class="grey-text text-darken-1"><span>On double accomodation </span><span id="rooms_D">1</span>X<img class="" src="{{asset('images/male.png')}}"><img class="" src="{{asset('images/male.png')}}">X$<span id="precio_Ma2">{{$pre_3_d}}</span></li>
+                                <li id="acomodacion_M" class="hide grey-text text-darken-1"><span>On matinonial accomodation </span><span id="rooms_M">1</span>X<img class="" src="{{asset('images/male.png')}}"><img class="" src="{{asset('images/male.png')}}">X$<span id="precio_2">{{$pre_3_d}}</span></li>
+                                <li id="acomodacion_1" class="hide grey-text text-darken-1"><span>On simple accomodation </span><span id="rooms_S">1</span>X<img class="" src="{{asset('images/male.png')}}">X$<span id="precio_1">{{$pre_3_s}}</span></li>
+                                <li class="hide"><span id="precioPaquete">{{$precio}}</span></li>
 
-                                </ul>
+                            </ul>
+                        </div>
+                        <div class=" col s12 grey darken-4">
+                            <div class="text-14 white-text" >Total (USD)
+                                <span class="text-30 blue-text text-lighten-1 ">$
+                                        <span id="subtotal"> {{2*$precio}}</span>
+                                    </span>
                             </div>
-                            <div class=" col s12 grey darken-4">
-                                <div class="text-14 white-text" >Total (USD)
-                                    <span class="text-30 blue-text text-lighten-1 ">$
-                            <span id="subtotal"> {{2*$precio}}</span>
-                        </span>
-                                </div>
-                                <div class="text-12 align-rigth white-text">taxes included
-                                </div>
+                            <div class="text-12 align-rigth white-text">taxes included
                             </div>
                         </div>
-                        <div class="row">
-                            <div class="col s12  light-green lighten-2">
-                                <h6>Optional Activities:</h6>
-                                <?php $i=0;?>
-                                @foreach($paquetes as $paquete)
-{{--                                    @if($paquete->disponibilidad->estrellas=3)--}}
-                                        @foreach($paquete->paquete_servicio_extra as $servicios2)
-                                            <?php $i++;?>
-                                            @foreach($servicio_extras as $extra)
-                                                @if($servicios2->idservicio_extra==$extra->id)
+
+                        <div class="col s12  light-green lighten-2">
+                            <h6>Optional Activities:</h6>
+                            <?php $i=0;?>
+                            @foreach($paquetes as $paquete)
+                                {{--                                    @if($paquete->disponibilidad->estrellas=3)--}}
+                                @foreach($paquete->paquete_servicio_extra as $servicios2)
+                                    <?php $i++;?>
+                                    @foreach($servicio_extras as $extra)
+                                        @if($servicios2->idservicio_extra==$extra->id)
                                             <div class="row">
                                                 <div class="col m9">
                                                     <p>
@@ -461,21 +459,20 @@
                                                     $ <span id="extra_precioP_{{$i}}">{{2*$extra->precio}}</span>
                                                 </div>
                                             </div>
-                                                    @endif
-                                                @endforeach
-                                        @endforeach
-                                    {{--@endif--}}
+                                        @endif
+                                    @endforeach
                                 @endforeach
-                                <br>
-                            </div>
-                            <div class=" col s12 orange lighten-1">
-                                <div class="text-14 white-text" >Total (USD)
-                                    <span class="text-30 ">$
+                                {{--@endif--}}
+                            @endforeach
+                            <br>
+                        </div>
+                        <div class=" col s12 orange lighten-1">
+                            <div class="text-14 white-text" >Total (USD)
+                                <span class="text-30 ">$
                                         <span id="total"> {{2*$precio}}</span>
                                     </span>
-                                </div>
-                                <div class="text-12 align-rigth white-text">taxes included
-                                </div>
+                            </div>
+                            <div class="text-12 align-rigth white-text">taxes included
                             </div>
                         </div>
                     </div>
