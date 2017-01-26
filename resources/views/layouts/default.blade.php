@@ -69,7 +69,7 @@
                     <a href="#!email"><span class="white-text email">(813) 454-9707</span></a>
                 </div>
             </li>
-            <li><a href="#!" class="waves-effect"><i class="material-icons">input</i>Sign in</a></li>
+            <li><a href="{{route('client_auth_index_path')}}" class="waves-effect"><i class="material-icons">input</i>Sign in</a></li>
             <li><a href="#!" class="waves-effect"><i class="material-icons">account_circle</i> New acoount</a></li>
             <li><div class="divider"></div></li>
             <li><a href="#inquire" class="modal-trigger waves-effect yellow-text text-darken-4"><i class="material-icons yellow-text text-darken-4">message</i>Inquire now</a></li>
