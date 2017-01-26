@@ -6890,6 +6890,9 @@ nav ul li a {
 .card .card-reveal {
   left: 0; }
 
+.checkout-form label {
+  left: 0; }
+
 .card-customize .card-title {
   padding: 0 0 0 3px !important;
   width: 100%;
