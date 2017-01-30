@@ -16,6 +16,8 @@ $Paquete='';
 @foreach($paquete as $paquete)
     <?php $Paquete=$paquete;?>
 @endforeach
+
+
 <div class="card-panel">
     <div class="row">
         <div class="col m6 l6">
@@ -214,25 +216,26 @@ $Paquete='';
                            <a class="waves-effect waves-light btn green"><i class="mdi-content-add-circle"></i></a>
                        </div>
                    </div>
-                   <div id="jalar_iti" class="row column lista_itinerario hide">
+                   <div id="jalar_iti" class="row column lista_itinerario hide" style="height: 100px;">
                        <div class="col m12">
-                           @foreach($itinerarios as $itinerario)
-                               {{--{{$itinerario}}--}}
-                               {{--<div class="portlet">--}}
-                                   {{--<div class="portlet-header"  onmousedown="Pasar_datos('{{$j1}}','{{$j1}}','{{$itinerario->titulo}}')"><span class="cursor-move">DAY <span class="pos_iti" name="posdia[]" id="pos_dia_{{$j1}}">{{$itinerario->dia}}</span>: <i id="titulo_{{$j1}}">{{$itinerario->titulo}}</i></span></div>--}}
-                                   {{--<div class="portlet-content" onmouseenter="estado_edicion(1)" onmouseleave="estado_edicion(0)">--}}
-                                       {{--<div class="row">--}}
-                                           {{--<div class="col s12">--}}
-                                                {{--<span class="grey-text text-darken-3">--}}
-                                                    {{--<input name="titulo_itinerario[]" id="titulo_itinerario_{{$j1}}" type="text" placeholder="Ingrese el titulo" value="{{$itinerario->titulo}}">--}}
-                                                {{--</span>--}}
-                                           {{--</div>--}}
-                                       {{--</div>--}}
-                                       {{--<textarea  name="desc_itinerario[]" id="desc_itinerario_{{$j1}}"  >--}}
-                                        {{--{{$itinerario->descripcion}}--}}
-                                    {{--</textarea>--}}
-                                   {{--</div>--}}
-                               {{--</div>--}}
+                           <?php $j1=0;?>
+                           @foreach($itinerarios1 as $itinerario)
+                                   <?php $j1++;?>
+                               <div class="portlet">
+                                   <div class="portlet-header"  onmousedown="Pasar_datos('{{$j1}}','{{$j1}}','{{$itinerario->titulo}}')"><span class="cursor-move">DAY <span class="pos_iti" name="posdia[]" id="pos_dia_{{$j1}}">{{$itinerario->dia}}</span>: <i id="titulo_{{$j1}}">{{$itinerario->titulo}}</i></span></div>
+                                   <div class="portlet-content" onmouseenter="estado_edicion(1)" onmouseleave="estado_edicion(0)">
+                                       <div class="row">
+                                           <div class="col s12">
+                                                <span class="grey-text text-darken-3">
+                                                    <input name="titulo_itinerario[]" id="titulo_itinerario_{{$j1}}" type="text" placeholder="Ingrese el titulo" value="{{$itinerario->titulo}}">
+                                                </span>
+                                           </div>
+                                       </div>
+                                       <textarea  name="desc_itinerario[]" id="desc_itinerario_{{$j1}}"  >
+                                        {{$itinerario->descripcion}}
+                                    </textarea>
+                                   </div>
+                               </div>
                             @endforeach
                        </div>
                    </div>
