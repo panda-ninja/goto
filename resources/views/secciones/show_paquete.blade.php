@@ -205,38 +205,63 @@ $Paquete='';
                            <a class="waves-effect waves-light btn" onclick="Mostrar_busqueda_jalar()"><i class="mdi-action-search"></i></a>
                        </div>
                    </div>
-                   <div id="buscar_iti" class="row">
-                       <div class="col m10">
-                           <div class="input-field col s12">
-                               <input id="buscar_itinerio" type="text" placeholder="Ingrese el titulo">
-                               <label for="buscar_itinerio" class="">Ingrese el titulo</label>
-                           </div>
-                       </div>
-                       <div class="col m2">
-                           <a class="waves-effect waves-light btn green"><i class="mdi-content-add-circle"></i></a>
-                       </div>
-                   </div>
-                   <div id="jalar_iti" class="row column lista_itinerario hide" style="height: 100px;">
+                   <div id="jalar_iti" class="row">
                        <div class="col m12">
                            <?php $j1=0;?>
-                           @foreach($itinerarios1 as $itinerario)
-                                   <?php $j1++;?>
-                               <div class="portlet">
-                                   <div class="portlet-header"  onmousedown="Pasar_datos('{{$j1}}','{{$j1}}','{{$itinerario->titulo}}')"><span class="cursor-move">DAY <span class="pos_iti" name="posdia[]" id="pos_dia_{{$j1}}">{{$itinerario->dia}}</span>: <i id="titulo_{{$j1}}">{{$itinerario->titulo}}</i></span></div>
-                                   <div class="portlet-content" onmouseenter="estado_edicion(1)" onmouseleave="estado_edicion(0)">
-                                       <div class="row">
-                                           <div class="col s12">
-                                                <span class="grey-text text-darken-3">
-                                                    <input name="titulo_itinerario[]" id="titulo_itinerario_{{$j1}}" type="text" placeholder="Ingrese el titulo" value="{{$itinerario->titulo}}">
-                                                </span>
-                                           </div>
-                                       </div>
-                                       <textarea  name="desc_itinerario[]" id="desc_itinerario_{{$j1}}"  >
-                                        {{$itinerario->descripcion}}
-                                    </textarea>
+                           <div id="table-datatables">
+                               <div class="row">
+                                   <div class="col s12 m12 l9">
+                                       <table id="data-table-simple" class="responsive-table " cellspacing="0">
+                                           <thead>
+                                           <tr>
+                                               <th>Codigo</th>
+                                               <th>Cliente</th>
+                                               <th>Paquetes&nbsp;turisticos</th>
+                                           </tr>
+                                           </thead>
+                                           <tfoot>
+                                           <tr>
+                                               <th>Codigo</th>
+                                               <th>Cliente</th>
+                                               <th>Paquetes&nbsp;turisticos</th>
+                                           </tr>
+                                           </tfoot>
+                                           <tbody>
+                                           <tr>
+                                               <td>001</td>
+                                               <td>Hermann ChristiansenSystem Architect</td>
+                                               <td>Cusco Mapi, Nazca, Madre de dios</td>
+                                           </tr>
+                                           </tbody>
+                                       </table>
                                    </div>
                                </div>
-                            @endforeach
+                           </div>
+
+
+                           {{--<table class="striped">--}}
+                               {{--<thead>--}}
+                               {{--<tr>--}}
+                                   {{--<th data-field="name">Titulo</th>--}}
+                                   {{--<th data-field="name">Descripcion</th>--}}
+
+                               {{--</tr>--}}
+                               {{--</thead>--}}
+                               {{--<tbody>--}}
+                               {{--@foreach($itinerarios1 as $itinerario)--}}
+                                   {{--<?php $j1++;?>--}}
+                                   {{--<tr>--}}
+                                       {{--<td>--}}
+                                           {{--<p>--}}
+                                               {{--<input name="titinerario[]" type="checkbox" id="titinerario_{{$j1}}">--}}
+                                               {{--<label for="titinerario_{{$j1}}">{{$itinerario->titulo}}</label>--}}
+                                           {{--</p>--}}
+                                       {{--</td>--}}
+                                       {{--<td>{{$itinerario->descripcion}}</td>--}}
+                                   {{--</tr>--}}
+                               {{--@endforeach--}}
+                               {{--</tbody>--}}
+                           {{--</table>--}}
                        </div>
                    </div>
                </li>
@@ -301,6 +326,7 @@ $Paquete='';
                 </div>
             <input type="hidden" name="nroItis" id="nroItis" value="{{$j}}">
         </div>
+
         </form>
 
     </div>

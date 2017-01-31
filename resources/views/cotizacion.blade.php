@@ -29,7 +29,16 @@
                     </div>
                 </nav>
                 <div class="card-panel">
-                    <h4 class="header2">Datos del cliente</h4>
+                    <nav class="navbar-color">
+                        <div class="nav-wrapper">
+                            <div class="col s12">
+                                <a href="#!" class="brand-logo">Datos del cliente</a>
+                                <ul class="right hide-on-med-and-down">
+                                    <li><h5>Paso 1 de 3</h5></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </nav>
                     <div class="row">
                         <form class="col s12">
                             <div class="row">
@@ -53,12 +62,38 @@
                             </div>
                         </form>
                     </div>
-                    <h4 class="header2">Paquetes</h4>
+                    <nav class="navbar-color">
+                        <div class="nav-wrapper">
+                            <div class="col s12">
+                                <a href="#!" class="brand-logo">Nuevo Plan</a>
+                                <ul class="right hide-on-med-and-down">
+                                    <li><h5>Paso 2 de 3</h5></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </nav>
                     <div class="row">
-                        <div class="input-field col s3">
-                            <a id="agregar_pqt" class="btn cyan waves-effect waves-light right modal-trigger" href="#modal1">Agregar paquete
-                                <i class="mdi-content-add-circle right"></i>
-                            </a>
+                        <div class="col m12">
+                            <div class="row">
+                                <div class="col s6" id="mensaje"></div>
+                            </div>
+                            <div class="row">
+                                <form action="" method="post">
+                                    <div class="input-field col s6">
+                                        <i class="mdi-action-search prefix"></i>
+                                        {{csrf_field()}}
+                                        <input id="codigopx" name="codigopx"  type="text" value="gtp412">
+                                        <label for="codigopx" class="">Ingrese el codigo del paquete</label>
+                                    </div>
+                                    <div class="input-field col s2">
+                                        <a id="btnBuscar_pqt" class="btn cyan waves-effect waves-light right">Buscar
+                                        </a>
+                                    </div>
+                                    <div class="input-field col s2" id="idLoad">
+                                    </div>
+                                </form>
+                            </div>
+                            <div id="list_planes"></div>
                         </div>
                     </div>
                     <form action=""  method="post">
@@ -66,7 +101,27 @@
                             <div class="modal-content">
                                 <div class="row">
                                     <div class="col s6" id="mensaje"></div>
+                                    <div class="row">
+                                        <div class="col s6" id="mensaje"></div>
 
+                                    </div>
+                                    <div class="row">
+                                        <form action="" method="post">
+                                            <div class="input-field col s6">
+                                                <i class="mdi-action-search prefix"></i>
+                                                {{csrf_field()}}
+                                                <input id="codigopx" name="codigopx"  type="text" value="gtp412">
+                                                <label for="codigopx" class="">Ingrese el codigo del paquete</label>
+                                            </div>
+                                            <div class="input-field col s2">
+                                                <a id="btnBuscar_pqt" class="btn cyan waves-effect waves-light right">Buscar
+                                                </a>
+                                            </div>
+                                            <div class="input-field col s2" id="idLoad">
+                                            </div>
+                                        </form>
+                                    </div>
+                                    <div id="list_planes"></div>
                                 </div>
                                 <div class="row">
                                     <form action="" method="post">
@@ -107,6 +162,16 @@
                             </div>
                         </div>
                     </form>
+                    <nav class="navbar-color">
+                        <div class="nav-wrapper">
+                            <div class="col s12">
+                                <a href="#!" class="brand-logo">Lista de planes</a>
+                                <ul class="right hide-on-med-and-down">
+                                    <li><h5>Paso 3 de 3</h5></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </nav>
                     <table class="striped">
                         <thead>
                         <tr>
