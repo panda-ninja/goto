@@ -28,17 +28,17 @@
                         </div>
                     </div>
                 </nav>
-                <div class="card-panel">
-                    <nav class="navbar-color">
-                        <div class="nav-wrapper">
-                            <div class="col s12">
-                                <a href="#!" class="brand-logo">Datos del cliente</a>
-                                <ul class="right hide-on-med-and-down">
-                                    <li><h5>Paso 1 de 3</h5></li>
-                                </ul>
-                            </div>
+                <div class="card-panel ">
+                    <div class="card  light-blue">
+                        <div class="card-content white-text">
+                            <h3>Datos del cliente</h3>
+                            <h5 >Paso 1 de 3</h5>
                         </div>
-                    </nav>
+                        <div class="card-action">
+                            <a href="#" class="lime-text text-accent-1">This is a link</a>
+                            <a href="#" class="lime-text text-accent-1">This is a link</a>
+                        </div>
+                    </div>
                     <div class="row">
                         <form class="col s12">
                             <div class="row">
@@ -62,11 +62,11 @@
                             </div>
                         </form>
                     </div>
-                    <nav class="navbar-color">
+                    <nav class="navbar-color grey lighten-4">
                         <div class="nav-wrapper">
                             <div class="col s12">
-                                <a href="#!" class="brand-logo">Nuevo Plan</a>
-                                <ul class="right hide-on-med-and-down">
+                                <a href="#!" class="brand-logo grey-text">Configuracion de plan</a>
+                                <ul class="right hide-on-med-and-down grey-text">
                                     <li><h5>Paso 2 de 3</h5></li>
                                 </ul>
                             </div>
@@ -162,11 +162,11 @@
                             </div>
                         </div>
                     </form>
-                    <nav class="navbar-color">
+                    <nav class="navbar-color grey lighten-2">
                         <div class="nav-wrapper">
                             <div class="col s12">
-                                <a href="#!" class="brand-logo">Lista de planes</a>
-                                <ul class="right hide-on-med-and-down">
+                                <a href="#!" class="brand-logo grey-text">Lista de planes</a>
+                                <ul class="right hide-on-med-and-down grey-text">
                                     <li><h5>Paso 3 de 3</h5></li>
                                 </ul>
                             </div>
