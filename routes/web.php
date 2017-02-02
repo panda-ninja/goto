@@ -220,6 +220,10 @@ Route::group(['middleware'=>'admin'],function(){
         'uses' => 'CotizacionController@nuevacotizacion',
         'as' => 'cotizacion_path',
     ]);
+    Route::post('/nuevopaquete', [
+        'uses' => 'PaqueteController@nuevo',
+        'as' => 'pqt_nuevo_path',
+    ]);
     Route::post('/buscarpaquete', [
         'uses' => 'PaqueteController@buscar',
         'as' => 'pqt_buscar_path',

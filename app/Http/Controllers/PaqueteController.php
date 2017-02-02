@@ -49,4 +49,19 @@ class PaqueteController extends Controller
 //        return 'holaaaaaaaaaaaaaaaa';
 ////
     }
+    public function nuevo(Request $request)
+    {
+//        $codigo=strtoupper($request->input('codigo'));
+        $paquete = TPaquete::with('paquetes_destinos.destinos', 'precio_paquetes','itinerario')->get()->where('codigo',$codigo);
+
+//        $paquete=Paquete::with('itinerario_personalizados.servicios','itinerario_personalizados.itinerario_x_horas')->get()->where('codigo',$codigo);
+//['paquete'=>$paquete]
+        //return dd($paquete);
+        $destino=TDestino::all();
+        //dd($paquete);
+        $itinerios=TItinerario::distinct()->select('titulo')->get();
+//        dd($itinerios);
+        return view('secciones.show_nuevo_paquete',['paquete'=>$paquete,'destino'=>$destino,'itinerarios1'=>$itinerios]);
+
+    }
 }

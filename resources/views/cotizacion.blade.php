@@ -29,25 +29,24 @@
                     </div>
                 </nav>
                 <div class="card-panel ">
-                    <div class="card  light-blue">
+                    <div class="card grey lighten-4">
                         <div class="card-content white-text">
-                            <h3>Datos del cliente</h3>
-                            <h5 >Paso 1 de 3</h5>
+                            <div class="row">
+                                <div class="col m6">
+                                    <h5 class="cyan-text text-accent-4">Datos del cliente</h5>
+                                </div>
+                                <div class="col m6">
+                                    <h5 class="pink-text text-lighten-1 right">Paso 1 de 3</h5>
+                                </div>
+                            </div>
                         </div>
                         <div class="card-action">
-                            <a href="#" class="lime-text text-accent-1">This is a link</a>
-                            <a href="#" class="lime-text text-accent-1">This is a link</a>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <form class="col s12">
                             <div class="row">
                                 <div class="input-field col s6">
                                     <i class="mdi-communication-email prefix"></i>
                                     <input id="email_3" type="email" value="madyson.ward@example.net">
                                     <label for="email_3" class="">Email</label>
                                 </div>
-
                                 <div class="input-field col s3">
                                     <i class="mdi-social-people prefix"></i>
                                     <input id="nropasajeros" type="number" min="1" value="1">
@@ -60,165 +59,119 @@
                                     <label for="fecha" class="active">Fecha</label>
                                 </div>
                             </div>
-                        </form>
+                        </div>
                     </div>
-                    <nav class="navbar-color grey lighten-4">
-                        <div class="nav-wrapper">
-                            <div class="col s12">
-                                <a href="#!" class="brand-logo grey-text">Configuracion de plan</a>
-                                <ul class="right hide-on-med-and-down grey-text">
-                                    <li><h5>Paso 2 de 3</h5></li>
-                                </ul>
+                    <div class="card grey lighten-4">
+                        <div class="card-content white-text">
+                            <div class="row">
+                                <div class="col m6">
+                                    <h5 class="cyan-text text-accent-4">Configuracion del plan</h5>
+                                </div>
+                                <div class="col m6">
+                                    <h5 class="pink-text text-lighten-1 right">Paso 2 de 2</h5>
+                                </div>
                             </div>
                         </div>
-                    </nav>
-                    <div class="row">
-                        <div class="col m12">
+                        <div class="card-action">
                             <div class="row">
                                 <div class="col s6" id="mensaje"></div>
-                            </div>
-                            <div class="row">
-                                <form action="" method="post">
-                                    <div class="input-field col s6">
-                                        <i class="mdi-action-search prefix"></i>
-                                        {{csrf_field()}}
-                                        <input id="codigopx" name="codigopx"  type="text" value="gtp412">
-                                        <label for="codigopx" class="">Ingrese el codigo del paquete</label>
-                                    </div>
-                                    <div class="input-field col s2">
-                                        <a id="btnBuscar_pqt" class="btn cyan waves-effect waves-light right">Buscar
-                                        </a>
-                                    </div>
-                                    <div class="input-field col s2" id="idLoad">
-                                    </div>
-                                </form>
-                            </div>
-                            <div id="list_planes"></div>
-                        </div>
-                    </div>
-                    <form action=""  method="post">
-                        <div id="modal1" class="modal modal-ancho">
-                            <div class="modal-content">
                                 <div class="row">
                                     <div class="col s6" id="mensaje"></div>
-                                    <div class="row">
-                                        <div class="col s6" id="mensaje"></div>
 
-                                    </div>
-                                    <div class="row">
-                                        <form action="" method="post">
-                                            <div class="input-field col s6">
-                                                <i class="mdi-action-search prefix"></i>
-                                                {{csrf_field()}}
-                                                <input id="codigopx" name="codigopx"  type="text" value="gtp412">
-                                                <label for="codigopx" class="">Ingrese el codigo del paquete</label>
-                                            </div>
-                                            <div class="input-field col s2">
-                                                <a id="btnBuscar_pqt" class="btn cyan waves-effect waves-light right">Buscar
-                                                </a>
-                                            </div>
-                                            <div class="input-field col s2" id="idLoad">
+                                </div>
+                                <div class="row">
+                                    <div class="col m12 white">
+                                        <form action="" method="post" >
+                                            <div class="row">
+                                                <div class="input-field col m3">
+                                                    <i class="mdi-action-search prefix"></i>
+                                                    {{csrf_field()}}
+                                                    <input id="codigopx" name="codigopx"  type="text" value="gtp412">
+                                                    <label for="codigopx" class="">Ingrese el codigo del paquete</label>
+                                                </div>
+                                                <div class="input-field col m2">
+                                                    <a id="btnBuscar_pqt" class="btn cyan waves-effect waves-light right">Buscar
+                                                    </a>
+                                                </div>
+                                                <div class="input-field col m1 " id="idLoad">
+                                                </div>
+                                                <div class="col m6 white">
+                                                    <div class="input-field">
+                                                        <a id="nuevo_pqt" class="btn cyan waves-effect waves-light ">Agregar nuevo plan
+                                                        </a>
+                                                    </div>
+                                                </div>
                                             </div>
                                         </form>
                                     </div>
-                                    <div id="list_planes"></div>
-                                </div>
-                                <div class="row">
-                                    <form action="" method="post">
-                                        <div class="input-field col s6">
-                                            <i class="mdi-action-search prefix"></i>
-                                            {{csrf_field()}}
-                                            <input id="codigopx" name="codigopx"  type="text" value="gtp412">
-                                            <label for="codigopx" class="">Ingrese el codigo del paquete</label>
-                                        </div>
-                                        <div class="input-field col s2">
-                                            <a id="btnBuscar_pqt" class="btn cyan waves-effect waves-light right">Buscar
-                                            </a>
-                                        </div>
-                                        <div class="input-field col s2" id="idLoad">
-                                        </div>
-                                    </form>
+
                                 </div>
                                 <div id="list_planes"></div>
                             </div>
-                            <div class="modal-footer">
-                                <div style="position: relative;">
-                                    <div class="fixed-action-btn horizontal" style="position: absolute; display: inline-block; right: 19px;">
-                                        <a class="btn-floating btn-large cyan darken-1">
-                                            <i class="mdi-navigation-menu"></i>
-                                        </a>
-                                        <ul>
-                                            <li><a id="cerrar_modal" href="#" class="btn-floating red modal-close"><i class="large mdi-content-clear"></i></a>
-                                            </li>
-                                            <li><a class="btn-floating cyan"><i class="mdi-content-content-copy"></i></a>
-                                            </li>
-                                            <li><a type="submit" class="btn-floating blue modal-action"><i class="large mdi-content-save"></i></a>
-                                            </li>
-                                        </ul>
-                                    </div>
+                        </div>
+                    </div>
+                    <div class="card grey lighten-4">
+                        <div class="card-content white-text">
+                            <div class="row">
+                                <div class="col m6">
+                                    <h5 class="cyan-text text-accent-4">Lista de planes</h5>
                                 </div>
-                                {{--<a href="#" class="waves-effect waves-red btn-flat modal-action modal-close">Cerrar</a>--}}
-                                {{--<a href="#" class="waves-effect waves-green btn-flat modal-action ">Agregar</a>--}}
+                                <div class="col m6">
+                                    <h5 class="pink-text text-lighten-1 right">Paso 3 de 3</h5>
+                                </div>
                             </div>
                         </div>
-                    </form>
-                    <nav class="navbar-color grey lighten-2">
-                        <div class="nav-wrapper">
-                            <div class="col s12">
-                                <a href="#!" class="brand-logo grey-text">Lista de planes</a>
-                                <ul class="right hide-on-med-and-down grey-text">
-                                    <li><h5>Paso 3 de 3</h5></li>
-                                </ul>
-                            </div>
+                        <div class="card-action">
+                            <table class="striped">
+                                <thead>
+                                <tr>
+                                    <th data-field="id">Codigo</th>
+                                    <th data-field="name">Titulo</th>
+                                    <th data-field="number">Nro pasajeros</th>
+                                    <th data-field="date">Fecha</th>
+                                    <th data-field="name">Opciones</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr>
+                                    <td>GTP500</td>
+                                    <td>Titulo</td>
+                                    <td>5</td>
+                                    <td>2017-06-11</td>
+                                    <td class="">
+                                        <a href="#!"><i class="mdi-content-create small"></i></a>
+                                        <a href="#!" class="red-text text-darken-2"><i class="mdi-action-delete small"></i></a>
+
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>GTP501</td>
+                                    <td>Titulo</td>
+                                    <td>5</td>
+                                    <td>2017-06-11</td>
+                                    <td class="">
+                                        <a href="#!"><i class="mdi-content-create small"></i></a>
+                                        <a href="#!" class="red-text text-darken-2"><i class="mdi-action-delete small"></i></a>
+
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>GTP502</td>
+                                    <td>Titulo</td>
+                                    <td>5</td>
+                                    <td>2017-06-11</td>
+                                    <td class="">
+                                        <a href="#!"><i class="mdi-content-create small"></i></a>
+                                        <a href="#!" class="red-text text-darken-2"><i class="mdi-action-delete small"></i></a>
+
+                                    </td>
+                                </tr>
+                                </tbody>
+
+                            </table>
                         </div>
-                    </nav>
-                    <table class="striped">
-                        <thead>
-                        <tr>
-                            <th data-field="id">Codigo</th>
-                            <th data-field="name">Titulo</th>
-                            <th data-field="number">Nro pasajeros</th>
-                            <th data-field="date">Fecha</th>
-                            <th data-field="name">Opciones</th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                        <tr>
-                            <td>GTP500</td>
-                            <td>Titulo</td>
-                            <td>5</td>
-                            <td>2017-06-11</td>
-                            <td class="">
-                                <a href="#!"><i class="mdi-content-create small"></i></a>
-                                <a href="#!" class="red-text text-darken-2"><i class="mdi-action-delete small"></i></a>
+                    </div>
 
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>GTP501</td>
-                            <td>Titulo</td>
-                            <td>5</td>
-                            <td>2017-06-11</td>
-                            <td class="">
-                                <a href="#!"><i class="mdi-content-create small"></i></a>
-                                <a href="#!" class="red-text text-darken-2"><i class="mdi-action-delete small"></i></a>
-
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>GTP502</td>
-                            <td>Titulo</td>
-                            <td>5</td>
-                            <td>2017-06-11</td>
-                            <td class="">
-                                <a href="#!"><i class="mdi-content-create small"></i></a>
-                                <a href="#!" class="red-text text-darken-2"><i class="mdi-action-delete small"></i></a>
-
-                            </td>
-                        </tr>
-                        </tbody>
-
-                    </table>
                     <div class="row">
                         <div class="col s12 right">
                             <div class="fixed-action-btn horizontal">

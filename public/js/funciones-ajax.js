@@ -54,6 +54,62 @@ $("#btnBuscar_pqt").click(function(){
         $("#codigopx").focus();
     }
 });
+$("#nuevo_pqt").click(function(){
+    $.ajaxSetup({
+        headers: {
+            'X-CSRF-TOKEN': $('[name="_token"]').val()
+        }
+    });
+    var codigopx=$("#codigopx").val();
+    var token='drmLwc3gMXKsyrhxzMJrr4dlC8rrvtcj9Fuv9vfU';
+    if(codigopx.length>0){
+        var datastring="codigo="+codigopx;
+        $('#idLoad').html('<div class="preloader-wrapper small active">'+
+            '<div class="spinner-layer spinner-green-only">'+
+            '<div class="circle-clipper left">'+
+            '<div class="circle"></div>'+
+            '</div><div class="gap-patch">'+
+            '<div class="circle"></div>'+
+            '</div><div class="circle-clipper right">'+
+            '<div class="circle"></div>'+
+            '</div>'+
+            '</div>'+
+            '</div>');
+        $.post('http://gotoperu.mo/nuevopaquete', {codigo: codigopx}, function(markup) {
+            if(markup){
+                // console.log(markup);
+                $('#list_planes').html('');
+                $('#list_planes').html(markup);
+                $('#idLoad').html('');
+            }
+            else{
+                $('#idLoad').html('');
+                $('#list_planes').html('<div id="card-alert" class="card red lighten-5">'+
+                    '<div class="card-content red-text">'+
+                    '<p>ERROR : Ocurrio un error al cargar los datos '+markup+'</p>'+
+                    '</div>'+
+                    '<button type="button" class="close red-text" data-dismiss="alert" aria-label="Close">'+
+                    '<span aria-hidden="true">×</span>'+
+                    '</button>'+
+                    '</div>');
+            }
+        }).fail(function (markup) {
+            $('#idLoad').html('');
+            $('#list_planes').html('<div id="card-alert" class="card red lighten-5">'+
+                '<div class="card-content red-text">'+
+                '<p>ERROR : No se encontró el paquete con codigo: '+codigopx+'</p>'+
+                '</div>'+
+                '<button type="button" class="close red-text" data-dismiss="alert" aria-label="Close">'+
+                '<span aria-hidden="true">×</span>'+
+                '</button>'+
+                '</div>');
+        });
+    }
+    else{
+
+        $("#codigopx").focus();
+    }
+});
 var idCotizacion=0;
 var NroClic=0;
 $('#agregar_pqt').click( function(){
