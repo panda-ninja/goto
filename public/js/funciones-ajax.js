@@ -1,3 +1,5 @@
+var url3='http://gotoperu.mo';
+
 $("#btnBuscar_pqt").click(function(){
     $.ajaxSetup({
         headers: {
@@ -19,7 +21,7 @@ $("#btnBuscar_pqt").click(function(){
             '</div>'+
             '</div>'+
             '</div>');
-        $.post('http://gotoperu.mo/buscarpaquete', {codigo: codigopx}, function(markup) {
+        $.post(url3+'/buscarpaquete', {codigo: codigopx}, function(markup) {
             if(markup){
                 // console.log(markup);
                 $('#list_planes').html('');
@@ -75,7 +77,7 @@ $("#nuevo_pqt").click(function(){
             '</div>'+
             '</div>'+
             '</div>');
-        $.post('http://gotoperu.mo/nuevopaquete', {codigo: codigopx}, function(markup) {
+        $.post(url3+'/nuevopaquete', {codigo: codigopx}, function(markup) {
             if(markup){
                 // console.log(markup);
                 $('#list_planes').html('');
@@ -110,10 +112,11 @@ $("#nuevo_pqt").click(function(){
         $("#codigopx").focus();
     }
 });
+
 var idCotizacion=0;
 var NroClic=0;
-$('#agregar_pqt').click( function(){
-     // console.log(idCotizacion);
+$('#agregar_pqt').click(function(){
+
     if($('#email_3').val()==""){
         $('#email_3').focus();
         swal(
