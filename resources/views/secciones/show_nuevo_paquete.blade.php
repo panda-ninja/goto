@@ -13,18 +13,24 @@
 <?php
 $Paquete='';
 ?>
+@foreach($paquete as $paquete)
+    <?php $Paquete=$paquete;?>
+@endforeach
+
+
 <div class="card-panel">
     <div class="row">
         <div class="col m6 l6">
-            <div class="input-field col m6">
-                <input id="titulo" name="titulo"  type="text" placeholder="Ingrese el titulo" >
-                <label for="titulo" class="">Titulo para el paquete</label>
+            <div class="input-field col m9">
+                <input placeholder="Titulo para el plan " id="titulo_plan" name="titulo_plan" type="text" class="validate">
+                <label for="titulo_plan">Titulo</label>
             </div>
-            <div class="input-field col m6">
-                <input id="duracion" name="duracion"  type="number" placeholder="Duracion" >
-                <label for="duracion" class="">Duracion</label>
+            <div class="input-field col m3">
+                <input id="dias_plan" name="dias_plan" type="number" class="validate">
+                <label for="dias_plan">Dias</label>
             </div>
-        </div>
+
+             </div>
         <div class="col m6 16">
             <div class="row right">
                 <div class="col m12">
@@ -38,13 +44,8 @@ $Paquete='';
     <div class="row">
         <form action="" method="post" >
             <div class="input-field col s12 m6 l6">
-                <textarea name="text_descripcion" id="text_descripcion">{{$Paquete->descripcion}}</textarea>
+                <textarea name="text_descripcion" id="text_descripcion"></textarea>
                 <script>
-                    //                    $(function(){
-                    //                        $('#text_descripcion').froalaEditor({
-                    //                            iframe: true
-                    //                        })
-                    //                    });
                     $(function(){
                         $('#text_descripcion')
                                 .on('froalaEditor.initialized', function (e, editor) {
@@ -56,9 +57,6 @@ $Paquete='';
                                 .froalaEditor({iframe:false,enter: $.FroalaEditor.ENTER_P, placeholderText: null})
                     });
                 </script>
-                {{--<script>--}}
-                {{--CKEDITOR.replace( 'text_descripcion' );--}}
-                {{--</script>--}}
             </div>
             <div class="input-field col s12 m6 l6">
                 <table class="table table1 borde-tabla-habitacion centrar">
@@ -71,29 +69,28 @@ $Paquete='';
                         <td width="50px"><b class="letra-roja centrar text-small">5 STARS</b></td>
                     </tr>
 
-                    @foreach($Paquete->precio_paquetes as $precio)
-                        @if($precio->estrellas=="2")
-                            <?php $precio_2_s=$precio->precio_s;?>
-                            <?php $precio_2_d=$precio->precio_d;?>
-                            <?php $precio_2_t=$precio->precio_t;?>
-                        @endif
-                        @if($precio->estrellas=="3")
-                            <?php $precio_3_s=$precio->precio_s;?>
-                            <?php $precio_3_d=$precio->precio_d;?>
-                            <?php $precio_3_t=$precio->precio_t;?>
-                        @endif
-                        @if($precio->estrellas=="4")
-                            <?php $precio_4_s=$precio->precio_s;?>
-                            <?php $precio_4_d=$precio->precio_d;?>
-                            <?php $precio_4_t=$precio->precio_t;?>
-                        @endif
-                        @if($precio->estrellas=="5")
-                            <?php $precio_5_s=$precio->precio_s;?>
-                            <?php $precio_5_d=$precio->precio_d;?>
-                            <?php $precio_5_t=$precio->precio_t;?>
-                        @endif
-
-                    @endforeach
+                    {{--@foreach($Paquete->precio_paquetes as $precio)--}}
+                        {{--@if($precio->estrellas=="2")--}}
+                            <?php $precio_2_s=0;?>
+                            <?php $precio_2_d=0;?>
+                            <?php $precio_2_t=0;?>
+                        {{--@endif--}}
+                        {{--@if($precio->estrellas=="3")--}}
+                            <?php $precio_3_s=0;?>
+                            <?php $precio_3_d=0;?>
+                            <?php $precio_3_t=0;?>
+                        {{--@endif--}}
+                        {{--@if($precio->estrellas=="4")--}}
+                            <?php $precio_4_s=0;?>
+                            <?php $precio_4_d=0;?>
+                            <?php $precio_4_t=0;?>
+                        {{--@endif--}}
+                        {{--@if($precio->estrellas=="5")--}}
+                            <?php $precio_5_s=0;?>
+                            <?php $precio_5_d=0;?>
+                            <?php $precio_5_t=0;?>
+                        {{--@endif--}}
+                    {{--@endforeach--}}
                     <tr>
                         <td><input type="number" name="room_t" value="0" onchange="coti_romms('T')"></td>
                         <td class="centrar"><img src="{{asset('images')}}/single.png" alt="" width="30px" height="30px"><img src="{{asset('images')}}/single.png" alt="" width="30px" height="30px"><img src="{{asset('images')}}/single.png" alt="" width="30px" height="30px"></td>
@@ -325,10 +322,6 @@ $Paquete='';
                 </div>
                 <input type="hidden" name="nroItis" id="nroItis" value="{{$j}}">
             </div>
-
         </form>
-
     </div>
 </div>
-
-

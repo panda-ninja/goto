@@ -136,7 +136,7 @@ $('#agregar_pqt').click(function(){
                     'X-CSRF-TOKEN': $('[name="_token"]').val()
                 }
             });
-            $.post('http://gotoperu.mo/guardar_pre_cotizacion', {email: pemail,nropasajeros:pnropasajeros,fecha:pfecha}, function(markup) {
+            $.post(url3+'/guardar_pre_cotizacion', {email: pemail,nropasajeros:pnropasajeros,fecha:pfecha}, function(markup) {
                 if(markup!='0'){
                      // console.log(markup);
                      idCotizacion=markup;

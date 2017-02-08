@@ -61,6 +61,6 @@ class PaqueteController extends Controller
         //dd($paquete);
         $itinerios=TItinerario::distinct()->select('titulo')->get();
 //        dd($itinerios);
-        return view('secciones.show_paquete',['paquete'=>$paquete,'destino'=>$destino,'itinerarios1'=>$itinerios]);
+        return view('secciones.show_nuevo_paquete',['paquete'=>$paquete,'destino'=>$destino,'itinerarios1'=>$itinerios]);
     }
 }
