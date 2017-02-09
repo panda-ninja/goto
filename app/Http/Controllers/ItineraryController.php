@@ -3,6 +3,7 @@
 namespace GotoPeru\Http\Controllers;
 
 use GotoPeru\ItinerarioPersonalizado;
+use GotoPeru\TItinerario;
 use Illuminate\Http\Request;
 
 use GotoPeru\Http\Requests;
@@ -52,7 +53,12 @@ class ItineraryController extends Controller
 
         return view('itinerario', ['itinerario'=>$itineario]);
     }
-
+    public function buscar_itinerario(Request $request)
+    {
+        $titulo=strtoupper($request->input('valor'));
+        $itinerario = TItinerario::where('titulo','like','%'.$titulo.'%')->get();
+        return view('secciones.show_buscar_itinerario',['itinerario'=>$itinerario]);
+    }
     /**
      * Show the form for editing the specified resource.
      *

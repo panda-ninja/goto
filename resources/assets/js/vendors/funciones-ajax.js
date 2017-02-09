@@ -165,3 +165,26 @@ $('#agregar_pqt').click(function(){
         }
     }
 );
+
+function Buscar_iti(){
+    var valor=$('#buscar').val();
+    console.log(valor);
+    if(valor!=""){
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('[name="_token"]').val()
+            }
+        });
+        $.post(url3+'/buscar_itinerario', {valor: valor}, function(markup) {
+            if(markup!='0'){
+                $('#jalar_iti').html(markup);
+                console.log(markup);
+            }
+            else{
+                console.log('error de registro cerrarmos :'+markup);
+            }
+        }).fail(function (markup) {
+             console.log('Fail cerrarmos :'+markup);
+        });
+    }
+}

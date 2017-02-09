@@ -224,6 +224,11 @@ Route::group(['middleware'=>'admin'],function(){
         'uses' => 'PaqueteController@nuevo',
         'as' => 'pqt_nuevo_path',
     ]);
+
+    Route::post('/buscar_itinerario',[
+        'uses' => 'ItineraryController@buscar_itinerario',
+        'as' => 'buscar_itinerario_path',
+    ]);
     Route::post('/buscarpaquete', [
         'uses' => 'PaqueteController@buscar',
         'as' => 'pqt_buscar_path',

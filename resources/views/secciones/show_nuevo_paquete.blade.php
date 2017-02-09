@@ -195,69 +195,16 @@ $Paquete='';
                     </li>
                     <?php $j=0;?>
                     <li>
-                        <div class="row">
-                            <div class="col m12">
-                                <a class="waves-effect waves-light btn" onclick="Mostrar_busqueda_text()"><i class="mdi-action-spellcheck"></i></a>
-                                <a class="waves-effect waves-light btn" onclick="Mostrar_busqueda_jalar()"><i class="mdi-action-search"></i></a>
-                            </div>
+                        <div id="jalar_iti" class="column lista_itinerario">
+
                         </div>
-                        <div id="jalar_iti" class="row">
-                            <div class="col m12">
-                                <?php $j1=0;?>
-                                <div id="table-datatables">
-                                    <div class="row">
-                                        <div class="col s12 m12 l9">
-                                            <table id="data-table-simple" class="responsive-table " cellspacing="0">
-                                                <thead>
-                                                <tr>
-                                                    <th>Codigo</th>
-                                                    <th>Cliente</th>
-                                                    <th>Paquetes&nbsp;turisticos</th>
-                                                </tr>
-                                                </thead>
-                                                <tfoot>
-                                                <tr>
-                                                    <th>Codigo</th>
-                                                    <th>Cliente</th>
-                                                    <th>Paquetes&nbsp;turisticos</th>
-                                                </tr>
-                                                </tfoot>
-                                                <tbody>
-                                                <tr>
-                                                    <td>001</td>
-                                                    <td>Hermann ChristiansenSystem Architect</td>
-                                                    <td>Cusco Mapi, Nazca, Madre de dios</td>
-                                                </tr>
-                                                </tbody>
-                                            </table>
-                                        </div>
-                                    </div>
-                                </div>
-
-
-                                {{--<table class="striped">--}}
-                                {{--<thead>--}}
-                                {{--<tr>--}}
-                                {{--<th data-field="name">Titulo</th>--}}
-                                {{--<th data-field="name">Descripcion</th>--}}
-
-                                {{--</tr>--}}
-                                {{--</thead>--}}
-                                {{--<tbody>--}}
-                                {{--@foreach($itinerarios1 as $itinerario)--}}
-                                {{--<?php $j1++;?>--}}
-                                {{--<tr>--}}
-                                {{--<td>--}}
-                                {{--<p>--}}
-                                {{--<input name="titinerario[]" type="checkbox" id="titinerario_{{$j1}}">--}}
-                                {{--<label for="titinerario_{{$j1}}">{{$itinerario->titulo}}</label>--}}
-                                {{--</p>--}}
-                                {{--</td>--}}
-                                {{--<td>{{$itinerario->descripcion}}</td>--}}
-                                {{--</tr>--}}
-                                {{--@endforeach--}}
-                                {{--</tbody>--}}
-                                {{--</table>--}}
+                    </li>
+                    <li>
+                        <div class="row">
+                            <hr>
+                            <div class="input-field col s6">
+                                <input placeholder="Escriba el itinerario" id="buscar" type="text" class="validate" onkeypress="Buscar_iti()" onkeydown="Buscar_iti()" onkeyup="Buscar_iti()">
+                                <label for="buscar">Buscar Itinerario</label>
                             </div>
                         </div>
                     </li>
@@ -270,7 +217,7 @@ $Paquete='';
                                     <div class="portlet-header"  onmousedown="Pasar_datos('{{$j}}','{{$j}}','{{$itinerario->titulo}}')"><span class="cursor-move">DAY <span class="pos_iti" name="posdia[]" id="pos_dia_{{$j}}">{{$itinerario->dia}}</span>: <i id="titulo_{{$j}}">{{$itinerario->titulo}}</i></span></div>
                                     <div class="portlet-content" onmouseenter="estado_edicion(1)" onmouseleave="estado_edicion(0)">
                                         <div class="row">
-                                            <div class="col s12">
+                                                <div class="col s12">
                                                 <span class="grey-text text-darken-3">
                                                     <input name="titulo_itinerario[]" id="titulo_itinerario_{{$j}}" type="text" placeholder="Ingrese el titulo" value="{{$itinerario->titulo}}">
                                                 </span>
