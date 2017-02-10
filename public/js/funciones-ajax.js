@@ -178,6 +178,8 @@ function Buscar_iti(){
         $.post(url3+'/buscar_itinerario', {valor: valor}, function(markup) {
             if(markup!='0'){
                 $('#jalar_iti').html(markup);
+                // $.getScript('https://code.jquery.com/ui/1.12.1/jquery-ui.js', function(){
+                // });
                 console.log(markup);
             }
             else{

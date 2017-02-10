@@ -203,7 +203,7 @@ $Paquete='';
                         <div class="row">
                             <hr>
                             <div class="input-field col s6">
-                                <input placeholder="Escriba el itinerario" id="buscar" type="text" class="validate" onkeypress="Buscar_iti()" onkeydown="Buscar_iti()" onkeyup="Buscar_iti()">
+                                <input placeholder="Escriba el itinerario" id="buscar" type="text" class="validate"  onkeyup="Buscar_iti()">
                                 <label for="buscar">Buscar Itinerario</label>
                             </div>
                         </div>
