@@ -177,6 +177,37 @@ function Buscar_iti(){
         });
         $.post(url3+'/buscar_itinerario', {valor: valor}, function(markup) {
             if(markup!='0'){
+                $('#jalar_iti').html('');
+                $('#jalar_iti').html(markup);
+                // $.getScript('https://code.jquery.com/ui/1.12.1/jquery-ui.js');
+                // console.log(markup);
+            }
+            else{
+                $('#jalar_iti').html('');
+                // console.log('error de registro cerrarmos :'+markup);
+            }
+        }).fail(function (markup) {
+            $('#jalar_iti').html('');
+             // console.log('Fail cerrarmos :'+markup);
+        });
+    }
+    else{
+        $('#jalar_iti').html('');
+        $('#buscar').focus();
+    }
+}
+
+function Buscar_iti(){
+    var valor=$('#buscar').val();
+    console.log(valor);
+    if(valor!=""){
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('[name="_token"]').val()
+            }
+        });
+        $.post(url3+'/buscar_itinerario', {valor: valor}, function(markup) {
+            if(markup!='0'){
                 $('#jalar_iti').html(markup);
                 // $.getScript('https://code.jquery.com/ui/1.12.1/jquery-ui.js');
                 console.log(markup);
@@ -185,7 +216,7 @@ function Buscar_iti(){
                 console.log('error de registro cerrarmos :'+markup);
             }
         }).fail(function (markup) {
-             console.log('Fail cerrarmos :'+markup);
+            console.log('Fail cerrarmos :'+markup);
         });
     }
 }

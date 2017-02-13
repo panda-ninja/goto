@@ -171,50 +171,36 @@ $Paquete='';
                     <li class="collection-header cyan" data-id="40">
                         <div class="row">
                             <h4 class="task-card-title">Itinerario:</h4>
-                            <div class="row">
-                                <div class="col s12 right">
-                                    <div style="position: relative;">
-                                        <div class="fixed-action-btn horizontal" style="position: absolute; display: inline-block;right:5px;buttom:1px;top:-45px;">
-                                            <a class="btn-floating btn-large cyan  lighten-3">
-                                                <i class="mdi-navigation-menu"></i>
-                                            </a>
-                                            <ul>
-                                                <li><a class="btn-floating red" id="borrar_itinerario"><i class="large mdi-content-clear"></i></a>
-                                                </li>
-                                                <li><a class="btn-floating blue" id="guardar_itinerario"><i class="large mdi-content-save"></i></a>
-                                                </li>
-                                                <li><a class="btn-floating green" id="agregar_dia"><i class="large mdi-content-add"></i></a>
-                                                </li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
+                            {{--<div class="row">--}}
+                                {{--<div class="col s12 right">--}}
+                                    {{--<div style="position: relative;">--}}
+                                        {{--<div class="fixed-action-btn horizontal" style="position: absolute; display: inline-block;right:5px;buttom:1px;top:-45px;">--}}
+                                            {{--<a class="btn-floating btn-large cyan  lighten-3">--}}
+                                                {{--<i class="mdi-navigation-menu"></i>--}}
+                                            {{--</a>--}}
+                                            {{--<ul>--}}
+                                                {{--<li><a class="btn-floating red" id="borrar_itinerario"><i class="large mdi-content-clear"></i></a>--}}
+                                                {{--</li>--}}
+                                                {{--<li><a class="btn-floating blue" id="guardar_itinerario"><i class="large mdi-content-save"></i></a>--}}
+                                                {{--</li>--}}
+                                                {{--<li><a class="btn-floating green" id="agregar_dia"><i class="large mdi-content-add"></i></a>--}}
+                                                {{--</li>--}}
+                                            {{--</ul>--}}
+                                        {{--</div>--}}
+                                    {{--</div>--}}
+                                {{--</div>--}}
+                            {{--</div>--}}
 
                         </div>
                     </li>
-                    <?php $j=0;?>
-                    <li>
-                        <div id="jalar_iti" class="column lista_itinerario">
 
-                        </div>
-                    </li>
-                    <li>
-                        <div class="row">
-                            <hr>
-                            <div class="input-field col s6">
-                                <input placeholder="Escriba el itinerario" id="buscar" type="text" class="validate"  onkeyup="Buscar_iti()">
-                                <label for="buscar">Buscar Itinerario</label>
-                            </div>
-                        </div>
-                    </li>
                     <li>
                         <div class="column lista_itinerario"  onmouseup="poner_valor()">
-
+                            <?php $j=0;?>
                             @foreach($Paquete->itinerario as $itinerario)
                                 <?php $j++;?>
                                 <div class="portlet">
-                                    <div class="portlet-header"  onmousedown="Pasar_datos('{{$j}}','{{$j}}','{{$itinerario->titulo}}')"><span class="cursor-move">DAY <span class="pos_iti" name="posdia[]" id="pos_dia_{{$j}}">{{$itinerario->dia}}</span>: <i id="titulo_{{$j}}">{{$itinerario->titulo}}</i></span></div>
+                                    <div class="portlet-header"  onmousedown="Pasar_datos('{{$j}}','{{$j}}','{{$itinerario->titulo}}')"><span class="cursor-move">DAY <span class="pos_iti" name="posdia[]" id="pos_dia_{{$j}}">{{$itinerario->dia}}</span>: <i id="titulo_{{$j}}">{{$itinerario->titulo}}</i></span><i class="mdi-action-delete"></i></div>
                                     <div class="portlet-content" onmouseenter="estado_edicion(1)" onmouseleave="estado_edicion(0)">
                                         <div class="row">
                                                 <div class="col s12">
@@ -222,7 +208,6 @@ $Paquete='';
                                                     <input name="titulo_itinerario[]" id="titulo_itinerario_{{$j}}" type="text" placeholder="Ingrese el titulo" value="{{$itinerario->titulo}}">
                                                 </span>
                                             </div>
-
                                         </div>
                                         <textarea  name="desc_itinerario[]" id="desc_itinerario_{{$j}}"  >
                                         {{$itinerario->descripcion}}
@@ -256,7 +241,27 @@ $Paquete='';
                             @endforeach
                         </div>
                     </li>
+                    <li>
+                        <div class="row">
+                            <hr>
+                            <div class="input-field col s">
+                                <input placeholder="Escriba el itinerario" id="buscar" type="text" class="validate"  onkeyup="Buscar_iti()">
+                                <label for="buscar">Buscar Itinerario</label>
+                            </div>
+                            <div class="input-field col s2">
+                                <a id="agregar_dia" class="waves-effect waves-light  btn green"><i class="mdi-content-add-circle"></i></a>
+                            </div>
+                            <div class="input-field col s5">
+                                ó
+                                <a class="waves-effect waves-light  btn"><i class="mdi-action-assignment left"></i>Ver todo</a>
+                            </div>
+                        </div>
+                    </li>
+                    <li>
+                        <div id="jalar_iti" class="row">
 
+                        </div>
+                    </li>
                 </ul>
                 <div id="modal331" class="modal bottom-sheet">
                     <div class="modal-content">

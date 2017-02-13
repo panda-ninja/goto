@@ -26,55 +26,67 @@ $('.fixed-action-btn').openFAB();
 $('.fixed-action-btn').closeFAB();
 var nro_iti=0;
 $('#agregar_dia').click(function(){
-    var total=$('#nroItis').val();
-    nro_iti=parseInt(total)+1;
-    $('#nroItis').val(nro_iti);
-    $('.lista_itinerario').append(''+
-        '<div id="pl_'+nro_iti+'" class="portlet">'+
-        '<div id="pl_h_'+nro_iti+'" class="portlet-header"  onmousedown="Pasar_datos(\''+nro_iti+'\',\''+nro_iti+'\',\''+nro_iti+'\')"><span class="cursor-move">DAY <span class="pos_iti" name="posdia[]" id="pos_dia_'+nro_iti+'">'+nro_iti+'</span>: <i id="titulo_'+nro_iti+'">TITULO</i></span></div>'+
-    '<div class="portlet-content" onmouseenter="estado_edicion(1)" onmouseleave="estado_edicion(0)">'+
-        '<div class="row">'+
-        '<div class="col s12">'+
-        '<span class="grey-text text-darken-3">'+
-        '<input name="titulo_itinerario[]" id="titulo_itinerario_'+nro_iti+'" type="text" placeholder="Ingrese el titulo">'+
-        '</span>'+
-        '</div>'+
-        '</div>'+
-        '<textarea  name="desc_itinerario[]" id="desc_itinerario_'+nro_iti+'">'+
-        '</textarea>'+
-        '</div>'+
-        '</div>'+
-        '<script>'+
-        '$(function(){'+
-            '$(\'#desc_itinerario_'+nro_iti+'\')'+
+
+
+    var total=0;
+    $("input[name=chb_itinerario_n]").each(function (index) {
+        if($(this).is(':checked')){
+            var itine = $(this).val().split('[');
+            // alert(itine[0]+'_'+itine[1]);
+            total=$('#nroItis').val();
+            nro_iti=parseInt(total)+1;
+            $('#nroItis').val(nro_iti);
+            $('.lista_itinerario').append(''+
+                '<div id="pl_'+nro_iti+'" class="portlet">'+
+                '<div id="pl_h_'+nro_iti+'" class="portlet-header"  onmousedown="Pasar_datos(\''+nro_iti+'\',\''+nro_iti+'\',\''+nro_iti+'\')"><span class="cursor-move">DAY <span class="pos_iti" name="posdia[]" id="pos_dia_'+nro_iti+'">'+nro_iti+'</span>: <i id="titulo_'+nro_iti+'">'+itine[0]+'</i></span></div>'+
+                '<div class="portlet-content" onmouseenter="estado_edicion(1)" onmouseleave="estado_edicion(0)">'+
+                '<div class="row">'+
+                '<div class="col s12">'+
+                '<span class="grey-text text-darken-3">'+
+                '<input name="titulo_itinerario[]" id="titulo_itinerario_'+nro_iti+'" type="text" value="'+itine[0]+'" placeholder="Ingrese el titulo">'+
+                '</span>'+
+                '</div>'+
+                '</div>'+
+                '<textarea  name="desc_itinerario[]" id="desc_itinerario_'+nro_iti+'">'+itine[1]+
+                '</textarea>'+
+                '</div>'+
+                '</div>'+
+                '<script>'+
+                '$(function(){'+
+                '$(\'#desc_itinerario_'+nro_iti+'\')'+
                 '.on(\'froalaEditor.initialized\', function (e, editor) {'+
-                    '$(\'#desc_itinerario_'+nro_iti+'\').parents(\'form\').on(\'submit\', function () {'+
-                    '  })'+
+                '$(\'#desc_itinerario_'+nro_iti+'\').parents(\'form\').on(\'submit\', function () {'+
+                '  })'+
                 '})'+
                 '.froalaEditor({iframe:false,enter: $.FroalaEditor.ENTER_P, placeholderText: null});'+
-            '$(\'#titulo_itinerario_'+nro_iti+'\').keypress(function() {'+
-            '$(\'#titulo_'+nro_iti+'\').html($(\'#titulo_itinerario_'+nro_iti+'\').val());'+
-            '});'+
-            '$(\'#titulo_itinerario_'+nro_iti+'\').keydown(function() {'+
-            '$(\'#titulo_'+nro_iti+'\').html($(\'#titulo_itinerario_'+nro_iti+'\').val());'+
-            '});'+
-            '$(\'#titulo_itinerario_'+nro_iti+'\').keyup(function() {'+
-            '$(\'#titulo_'+nro_iti+'\').html($(\'#titulo_itinerario_'+nro_iti+'\').val());'+
-            '});'+
-        '});'+
-    '</script>');
-    $('#pl_'+nro_iti)
-        .addClass( "ui-widget ui-widget-content ui-helper-clearfix ui-corner-all" )
-        .find( ".portlet-header" )
-        .addClass( "ui-widget-header ui-corner-all" )
-        .prepend( "<span class='ui-icon ui-icon-plusthick portlet-toggle'></span>");
+                '$(\'#titulo_itinerario_'+nro_iti+'\').keypress(function() {'+
+                '$(\'#titulo_'+nro_iti+'\').html($(\'#titulo_itinerario_'+nro_iti+'\').val());'+
+                '});'+
+                '$(\'#titulo_itinerario_'+nro_iti+'\').keydown(function() {'+
+                '$(\'#titulo_'+nro_iti+'\').html($(\'#titulo_itinerario_'+nro_iti+'\').val());'+
+                '});'+
+                '$(\'#titulo_itinerario_'+nro_iti+'\').keyup(function() {'+
+                '$(\'#titulo_'+nro_iti+'\').html($(\'#titulo_itinerario_'+nro_iti+'\').val());'+
+                '});'+
+                '});'+
+                '</script>');
+            $('#pl_'+nro_iti)
+                .addClass( "ui-widget ui-widget-content ui-helper-clearfix ui-corner-all" )
+                .find( ".portlet-header" )
+                .addClass( "ui-widget-header ui-corner-all" )
+                .prepend( "<span class='ui-icon ui-icon-plusthick portlet-toggle'></span>");
 
-    $('#pl_h_'+nro_iti).on( "click", function() {
-        var icon = $( this );
-        icon.toggleClass( "ui-icon-minusthick ui-icon-plusthick" );
-        icon.closest( ".portlet" ).find( ".portlet-content" ).toggle();
+            $('#pl_h_'+nro_iti).on( "click", function() {
+                var icon = $( this );
+                icon.toggleClass( "ui-icon-minusthick ui-icon-plusthick" );
+                icon.closest( ".portlet" ).find( ".portlet-content" ).toggle();
 
+            });
+        }
     });
+
+
+
 
     });
 
