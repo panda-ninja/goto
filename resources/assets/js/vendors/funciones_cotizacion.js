@@ -37,8 +37,8 @@ $('#agregar_dia').click(function(){
             nro_iti=parseInt(total)+1;
             $('#nroItis').val(nro_iti);
             $('.lista_itinerario').append(''+
-                '<div id="pl_'+nro_iti+'" class="portlet">'+
-                '<div id="pl_h_'+nro_iti+'" class="portlet-header"  onmousedown="Pasar_datos(\''+nro_iti+'\',\''+nro_iti+'\',\''+nro_iti+'\')"><span class="cursor-move">DAY <span class="pos_iti" name="posdia[]" id="pos_dia_'+nro_iti+'">'+nro_iti+'</span>: <i id="titulo_'+nro_iti+'">'+itine[0]+'</i></span></div>'+
+                '<div id="Itine_'+nro_iti+'" class="portlet">'+
+                '<div id="pl_h_'+nro_iti+'" class="portlet-header"  onmousedown="Pasar_datos(\''+nro_iti+'\',\''+nro_iti+'\',\''+itine[0]+'\')"><span class="cursor-move">DAY <span class="pos_iti" name="posdia[]" id="pos_dia_'+nro_iti+'">'+nro_iti+'</span>: <i id="titulo_'+nro_iti+'">'+itine[0]+'</i></span><a href="#!" class="red-text text-darken-2 right" onclick="borrar_itinerario('+nro_iti+')"><i class="mdi-action-delete small"></i></a></div>'+
                 '<div class="portlet-content" onmouseenter="estado_edicion(1)" onmouseleave="estado_edicion(0)">'+
                 '<div class="row">'+
                 '<div class="col s12">'+
@@ -70,7 +70,7 @@ $('#agregar_dia').click(function(){
                 '});'+
                 '});'+
                 '</script>');
-            $('#pl_'+nro_iti)
+            $('#Itine_'+nro_iti)
                 .addClass( "ui-widget ui-widget-content ui-helper-clearfix ui-corner-all" )
                 .find( ".portlet-header" )
                 .addClass( "ui-widget-header ui-corner-all" )
@@ -93,8 +93,9 @@ $('#agregar_dia').click(function(){
 var dia=0;
 var titulo=0;
 var id=0;
-$('#borrar_itinerario').click(function(){
-        if(true) {
+function borrar_itinerario(id1){
+    alert('hola:'+id1);
+        if(id1>0){
             swal({   title: "Esta seguro?",
                     text: "Eliminar el registro 'DIA "+dia+" : "+titulo,
                     type: "warning",
@@ -106,14 +107,14 @@ $('#borrar_itinerario').click(function(){
                     closeOnCancel: false },
                 function(isConfirm){
                     if (isConfirm) {
-                        $('#Itine_'+id).remove();
+                        $('#Itine_'+id1).remove();
                         swal("Borrado!", "Tu registro fue borrado :(", "success");   }
                     else {
                         swal("Cancelado", "Tu registro esta seguro :)", "error");   }
                 });
         }
     }
-);
+
 
 var valor_head='';
 var valor_body='';
@@ -129,6 +130,7 @@ function Pasar_datos(pid,pdia,ptitulo) {
         valor_html=doc.html();
 
     }, 1 );
+    console.log('paso el mouse encima:'+id);
     // console.log('click html: '+valor_html);
 }
 var esta_en_edicion=0;

@@ -168,8 +168,7 @@ $('#agregar_pqt').click(function(){
 
 function Buscar_iti(){
     var valor=$('#buscar').val();
-    console.log(valor);
-    if(valor!=""){
+    if(valor.trim()!=""){
         $.ajaxSetup({
             headers: {
                 'X-CSRF-TOKEN': $('[name="_token"]').val()
