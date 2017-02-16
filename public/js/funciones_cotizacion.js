@@ -177,4 +177,52 @@ function Mostrar_busqueda_jalar(){
     $('#jalar_iti').removeClass('hide');
 }
 
+function foco_acomodacion(tipo){
+    $('#aco2').removeClass('color_oro');
+    $('#aco3').removeClass('color_oro');
+    $('#aco4').removeClass('color_oro');
+    $('#aco5').removeClass('color_oro');
+
+    $('#aco12').removeClass('color_oro');
+    $('#aco13').removeClass('color_oro');
+    $('#aco14').removeClass('color_oro');
+    $('#aco15').removeClass('color_oro');
+
+    $('#aco22').removeClass('color_oro');
+    $('#aco23').removeClass('color_oro');
+    $('#aco24').removeClass('color_oro');
+    $('#aco25').removeClass('color_oro');
+
+    $('#aco32').removeClass('color_oro');
+    $('#aco33').removeClass('color_oro');
+    $('#aco34').removeClass('color_oro');
+    $('#aco35').removeClass('color_oro');
+
+    $('#aco42').removeClass('color_oro');
+    $('#aco43').removeClass('color_oro');
+    $('#aco44').removeClass('color_oro');
+    $('#aco45').removeClass('color_oro');
+
+    $('#aco1'+tipo).addClass('color_oro');
+    $('#aco2'+tipo).addClass('color_oro');
+    $('#aco3'+tipo).addClass('color_oro');
+    $('#aco4'+tipo).addClass('color_oro');
+    $('#aco'+tipo).addClass('color_oro');
+
+    $('#titu_aco2').removeClass('letra-roja');
+    $('#titu_aco3').removeClass('letra-roja');
+    $('#titu_aco4').removeClass('letra-roja');
+    $('#titu_aco5').removeClass('letra-roja');
+
+    $('#titu_aco2').removeClass('color_oro');
+    $('#titu_aco3').removeClass('color_oro');
+    $('#titu_aco4').removeClass('color_oro');
+    $('#titu_aco5').removeClass('color_oro');
+
+
+    $('#titu_aco'+tipo).addClass('color_oro');
+
+
+
+}
 //# sourceMappingURL=funciones_cotizacion.js.map
