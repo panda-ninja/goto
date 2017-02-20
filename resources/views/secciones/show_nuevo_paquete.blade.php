@@ -35,7 +35,7 @@ $Paquete='';
             <div class="row right">
                 <div class="col m12">
                     <b class="grey-text text-darken-3">Total </b>
-                    <h5 class="blue-text text-accent-3" id="total">$ <b class="blue-text text-accent-3" id="total">000.00</b></h5>
+                    <h5 class="blue-text text-accent-3" id="totalM">$ <b class="blue-text text-accent-3" id="total">000.00</b></h5>
                 </div>
             </div>
         </div>
@@ -94,36 +94,36 @@ $Paquete='';
                         {{--@endif--}}
                         {{--@endforeach--}}
                         <tr>
-                            <td><input type="number" name="room_t" value="0" onchange="coti_romms('T')"></td>
+                            <td><input type="number" name="room_t" id="room_t" value="0" min="0" onchange="coti_romms('t')"></td>
                             <td class="centrar"><img src="{{asset('images')}}/single.png" alt="" width="30px" height="30px"><img src="{{asset('images')}}/single.png" alt="" width="30px" height="30px"><img src="{{asset('images')}}/single.png" alt="" width="30px" height="30px"></td>
-                            <td id="aco12"><input type="number" name="precio_2_t" id="precio_2_t" value="{{$precio_2_t}}"  onchange="coti_precio_acom('2','t')"></td>
-                            <td id="aco13"><input type="number" name="precio_3_t" id="precio_3_t" value="{{$precio_3_t}}" onchange="coti_precio_acom('3','t')"></td>
-                            <td id="aco14"><input type="number" name="precio_4_t" id="precio_4_t" value="{{$precio_4_t}}" onchange="coti_precio_acom('4','t')"></td>
-                            <td id="aco15"><input type="number" name="precio_5_t" id="precio_5_t" value="{{$precio_5_t}}" onchange="coti_precio_acom('5','t')"></td>
+                            <td id="aco12"><input type="number" name="precio_2_t" id="precio_2_t" min="0" value="{{$precio_2_t}}"  onchange="coti_precio_acom('2','t')"></td>
+                            <td id="aco13"><input type="number" name="precio_3_t" id="precio_3_t" min="0" value="{{$precio_3_t}}" onchange="coti_precio_acom('3','t')"></td>
+                            <td id="aco14"><input type="number" name="precio_4_t" id="precio_4_t" min="0" value="{{$precio_4_t}}" onchange="coti_precio_acom('4','t')"></td>
+                            <td id="aco15"><input type="number" name="precio_5_t" id="precio_5_t" min="0" value="{{$precio_5_t}}" onchange="coti_precio_acom('5','t')"></td>
                         </tr>
                         <tr>
-                            <td><input type="number" name="room_d" value="0"  onchange="coti_romms('D')"></td>
+                            <td><input type="number" name="room_d" id="room_d" value="0"  min="0" onchange="coti_romms('d')"></td>
                             <td class="centrar"><img src="{{asset('images')}}/single.png" alt="" width="30px" height="30px"><img src="{{asset('images')}}/single.png" alt="" width="30px" height="30px"></td>
-                            <td id="aco22"><input type="number" name="precio_2_d" id="precio_2_d" value="{{$precio_2_d}}"  onchange="coti_precio_acom('2','d')"></td>
-                            <td id="aco23"><input type="number" name="precio_3_d" id="precio_3_d" value="{{$precio_3_d}}" onchange="coti_precio_acom('3','d')"></td>
-                            <td id="aco24"><input type="number" name="precio_4_d" id="precio_4_d" value="{{$precio_4_d}}" onchange="coti_precio_acom('4','d')"></td>
-                            <td id="aco25"><input type="number" name="precio_5_d" id="precio_5_d" value="{{$precio_5_d}}" onchange="coti_precio_acom('5','d')"></td>
+                            <td id="aco22"><input type="number" name="precio_2_d" id="precio_2_d" min="0" value="{{$precio_2_d}}"  onchange="coti_precio_acom('2','d')"></td>
+                            <td id="aco23"><input type="number" name="precio_3_d" id="precio_3_d" min="0" value="{{$precio_3_d}}" onchange="coti_precio_acom('3','d')"></td>
+                            <td id="aco24"><input type="number" name="precio_4_d" id="precio_4_d" min="0" value="{{$precio_4_d}}" onchange="coti_precio_acom('4','d')"></td>
+                            <td id="aco25"><input type="number" name="precio_5_d" id="precio_5_d" min="0" value="{{$precio_5_d}}" onchange="coti_precio_acom('5','d')"></td>
                         </tr>
                         <tr>
-                            <td><input type="number" name="room_m" value="0"  onchange="coti_romms('M')"></td>
+                            <td><input type="number" name="room_m" id="room_m" value="0"  min="0" onchange="coti_romms('m')"></td>
                             <td class="centrar"><img src="{{asset('images')}}/matrimonial.png" alt="" width="50px" height="30px"></td>
-                            <td id="aco32"><input type="number" name="precio_2_d_m" id="precio_2_d_m" value="{{$precio_2_d}}" onchange="coti_precio_acom('2','m')"></td>
-                            <td id="aco33"><input type="number" name="precio_3_d_m" id="precio_3_d_m" value="{{$precio_3_d}}" onchange="coti_precio_acom('3','m')"></td>
-                            <td id="aco34"><input type="number" name="precio_4_d_m" id="precio_4_d_m" value="{{$precio_4_d}}" onchange="coti_precio_acom('4','m')"></td>
-                            <td id="aco35"><input type="number" name="precio_5_d_m" id="precio_5_d_m" value="{{$precio_5_d}}" onchange="coti_precio_acom('5','m')"></td>
+                            <td id="aco32"><input type="number" name="precio_2_d_m" id="precio_2_d_m" min="0" value="{{$precio_2_d}}" onchange="coti_precio_acom('2','m')"></td>
+                            <td id="aco33"><input type="number" name="precio_3_d_m" id="precio_3_d_m" min="0" value="{{$precio_3_d}}" onchange="coti_precio_acom('3','m')"></td>
+                            <td id="aco34"><input type="number" name="precio_4_d_m" id="precio_4_d_m" min="0" value="{{$precio_4_d}}" onchange="coti_precio_acom('4','m')"></td>
+                            <td id="aco35"><input type="number" name="precio_5_d_m" id="precio_5_d_m" min="0" value="{{$precio_5_d}}" onchange="coti_precio_acom('5','m')"></td>
                         </tr>
                         <tr>
-                            <td><input type="number" name="room_s" value="0"  onchange="coti_romms('S')"></td>
+                            <td><input type="number" name="room_s" id="room_s" value="0"  min="0" onchange="coti_romms('s')"></td>
                             <td class="centrar"><img src="{{asset('images')}}/single.png" alt="" width="30px" height="30px"></td>
-                            <td id="aco42"><input type="number" name="precio_2_s" id="precio_2_s" value="{{$precio_2_s}}" onchange="coti_precio_acom('2','s')"></td>
-                            <td id="aco43"><input type="number" name="precio_3_s" id="precio_3_s" value="{{$precio_3_s}}" onchange="coti_precio_acom('3','s')"></td>
-                            <td id="aco44"><input type="number" name="precio_4_s" id="precio_4_s" value="{{$precio_4_s}}" onchange="coti_precio_acom('4','s')"></td>
-                            <td id="aco45"><input type="number" name="precio_5_s" id="precio_5_s" value="{{$precio_5_s}}" onchange="coti_precio_acom('5','s')"></td>
+                            <td id="aco42"><input type="number" name="precio_2_s" id="precio_2_s" min="0" value="{{$precio_2_s}}" onchange="coti_precio_acom('2','s')"></td>
+                            <td id="aco43"><input type="number" name="precio_3_s" id="precio_3_s" min="0" value="{{$precio_3_s}}" onchange="coti_precio_acom('3','s')"></td>
+                            <td id="aco44"><input type="number" name="precio_4_s" id="precio_4_s" min="0" value="{{$precio_4_s}}" onchange="coti_precio_acom('4','s')"></td>
+                            <td id="aco45"><input type="number" name="precio_5_s" id="precio_5_s" min="0" value="{{$precio_5_s}}" onchange="coti_precio_acom('5','s')"></td>
                         </tr>
                     </table>
                     <br>

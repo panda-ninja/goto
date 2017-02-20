@@ -69,7 +69,7 @@
                                     <h5 class="cyan-text text-accent-4">Configuracion del plan</h5>
                                 </div>
                                 <div class="col m6">
-                                    <h5 class="pink-text text-lighten-1 right">Paso 2 de 2</h5>
+                                    <h5 class="pink-text text-lighten-1 right">Paso 2 de 3</h5>
                                 </div>
                             </div>
                         </div>
@@ -84,22 +84,37 @@
                                     <div class="col m12 white">
                                         <form action="" method="post" >
                                             <div class="row">
-                                                <div class="input-field col m3">
-                                                    <i class="mdi-action-search prefix"></i>
-                                                    {{csrf_field()}}
-                                                    <input id="codigopx" name="codigopx"  type="text" value="gtp412">
-                                                    <label for="codigopx" class="">Ingrese el codigo del paquete</label>
+                                                <div class="col m6">
+                                                    <div class="row">
+                                                        <div class="input-field col m6">
+                                                            <i class="mdi-action-search prefix"></i>
+                                                            {{csrf_field()}}
+                                                            <input id="codigopx" name="codigopx"  type="text" value="gtp412">
+                                                            <label for="codigopx" class="">Ingrese el codigo del paquete</label>
+                                                        </div>
+                                                        <div class="input-field col m4">
+                                                            <a id="btnBuscar_pqt" class="btn cyan waves-effect waves-light right">Buscar
+                                                            </a>
+                                                        </div>
+                                                        <div class="input-field col m2 " id="idLoad">
+                                                        </div>
+                                                    </div>
                                                 </div>
-                                                <div class="input-field col m2">
-                                                    <a id="btnBuscar_pqt" class="btn cyan waves-effect waves-light right">Buscar
-                                                    </a>
-                                                </div>
-                                                <div class="input-field col m1 " id="idLoad">
-                                                </div>
-                                                <div class="col m6 white">
-                                                    <div class="input-field">
-                                                        <a id="nuevo_pqt" class="btn cyan waves-effect waves-light ">Agregar nuevo plan
-                                                        </a>
+
+                                                <div class="col m6">
+                                                    <div class="row">
+                                                        <div class="col m6">
+                                                            <div class="input-field">
+                                                                <a id="nuevo_pqt" class="btn  blue darken-4 waves-effect waves-light ">Crear nuevo plan
+                                                                </a>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col m6">
+                                                            <div class="input-field">
+                                                                <a id="generar_pqt" class="btn green waves-effect waves-light" onclick="generar_pqt()">Generar plan
+                                                                </a>
+                                                            </div>
+                                                        </div>
                                                     </div>
                                                 </div>
                                             </div>
@@ -142,7 +157,7 @@
                                     <td class="">
                                         <a href="#!"><i class="mdi-content-create small"></i></a>
                                         <a href="#!" class="red-text text-darken-2"><i class="mdi-action-delete small"></i></a>
-
+                                        <a href="#!" class="green-text text-darken-2"><i class="mdi-content-send small"></i></a>
                                     </td>
                                 </tr>
                                 <tr>
@@ -153,7 +168,7 @@
                                     <td class="">
                                         <a href="#!"><i class="mdi-content-create small"></i></a>
                                         <a href="#!" class="red-text text-darken-2"><i class="mdi-action-delete small"></i></a>
-
+                                        <a href="#!" class="grey-text text-darken-1"><i class="mdi-content-send small"></i></a>
                                     </td>
                                 </tr>
                                 <tr>
@@ -164,7 +179,7 @@
                                     <td class="">
                                         <a href="#!"><i class="mdi-content-create small"></i></a>
                                         <a href="#!" class="red-text text-darken-2"><i class="mdi-action-delete small"></i></a>
-
+                                        <a href="#!" class="green-text text-darken-2"><i class="mdi-content-send small"></i></a>
                                     </td>
                                 </tr>
                                 </tbody>

@@ -176,8 +176,41 @@ function Mostrar_busqueda_jalar(){
     $('#buscar_iti').addClass('hide');
     $('#jalar_iti').removeClass('hide');
 }
+var atipo=0;
+var atotal=0;
+function sumar_acomo_actual(){
+    var fila_t=0;
+    var fila_d=0;
+    var fila_m=0;
+    var fila_s=0;
+    var nropasajeros=$('#nropasajeros').val();
+    var nro_pa_t=0;
+    var nro_pa_d=0;
+    var nro_pa_m=0;
+    var nro_pa_s=0;
+    nro_pa_t=$('#room_t').val();
+    nro_pa_d=$('#room_d').val();
+    nro_pa_m=$('#room_m').val();
+    nro_pa_s=$('#room_s').val();
 
+    fila_t=parseInt(nro_pa_t)*parseInt($('#precio_'+atipo+'_t').val())*3;
+    fila_d=parseInt(nro_pa_d)*parseInt($('#precio_'+atipo+'_d').val())*2;
+    fila_m=parseInt(nro_pa_m)*parseInt($('#precio_'+atipo+'_d_m').val())*2;
+    fila_s=parseInt(nro_pa_s)*parseInt($('#precio_'+atipo+'_s').val());
+
+    atotal=fila_t+fila_d+fila_m+fila_s;
+    $('#total').html(atotal);
+
+    // console.log('fila_t:'+$('#room_t').val()+'_'+$('#precio_'+atipo+'_t').val()+'\n');
+    // console.log('fila_d:'+$('#room_d').val()+'_'+$('#precio_'+atipo+'_d').val()+'\n');
+    // console.log('fila_m:'+$('#room_m').val()+'_'+$('#precio_'+atipo+'_d_m').val()+'\n');
+    // console.log('fila_s:'+$('#room_s').val()+'_'+$('#precio_'+atipo+'_s').val()+'\n');
+    //
+    // console.log('total pivot:'+atotal);
+
+}
 function foco_acomodacion(tipo){
+    atipo=tipo;
     $('#aco2').removeClass('color_oro');
     $('#aco3').removeClass('color_oro');
     $('#aco4').removeClass('color_oro');
@@ -203,11 +236,11 @@ function foco_acomodacion(tipo){
     $('#aco44').removeClass('color_oro');
     $('#aco45').removeClass('color_oro');
 
-    $('#aco1'+tipo).addClass('color_oro');
-    $('#aco2'+tipo).addClass('color_oro');
-    $('#aco3'+tipo).addClass('color_oro');
-    $('#aco4'+tipo).addClass('color_oro');
-    $('#aco'+tipo).addClass('color_oro');
+    $('#aco1'+atipo).addClass('color_oro');
+    $('#aco2'+atipo).addClass('color_oro');
+    $('#aco3'+atipo).addClass('color_oro');
+    $('#aco4'+atipo).addClass('color_oro');
+    $('#aco'+atipo).addClass('color_oro');
 
     $('#titu_aco2').removeClass('letra-roja');
     $('#titu_aco3').removeClass('letra-roja');
@@ -220,16 +253,60 @@ function foco_acomodacion(tipo){
     $('#titu_aco5').removeClass('color_oro');
 
 
-    $('#titu_aco'+tipo).addClass('color_oro');
-
-
-
+    $('#titu_aco'+atipo).addClass('color_oro');
+    sumar_acomo_actual();
 }
-var acomodacion=0;
-var atotal=0;
-function sumar_acomodacion(){
 
+
+
+function coti_romms(acom){
+    var nro_pa_t=0;
+    var nro_pa_d=0;
+    var nro_pa_m=0;
+    var nro_pa_s=0;
+    nro_pa_t=parseInt($('#room_t').val())*3;
+    nro_pa_d=parseInt($('#room_d').val())*2;
+    nro_pa_m=parseInt($('#room_m').val())*2;
+    nro_pa_s=parseInt($('#room_s').val());
+    var pre_nropasajeros=nro_pa_t+nro_pa_d+nro_pa_m+nro_pa_s;
+    var nropasajeros=$('#nropasajeros').val();
+    console.log(pre_nropasajeros+' '+nropasajeros);
+        if(pre_nropasajeros<=nropasajeros) {
+            sumar_acomo_actual();
+        }else{
+            swal({
+                    title: "Mensaje del sistema",
+                    text: "Se supero el maximo de pasajeros para esta cotizacion",
+                    type: "error",
+                    timer:5000
+                });
+            $('#room_'+acom).val(0);
+            sumar_acomo_actual();
+            $('#room_'+acom).focus();
+        }
 }
-function coti_precio_acom(){
+function coti_precio_acom(acom1,tipo1){
+    sumar_acomo_actual();
+}
 
+function generar_pqt(){
+    var titulo=$('#titulo_plan').val();
+    var dia=$('#dias_plan').val();
+    swal({   title: "Mensaje del sistema",
+            text: "Esta seguro de generar el plan "+titulo+" : "+dia,
+            type: "question",
+            showCancelButton: true,
+            confirmButtonColor: "#DD6B55",
+            confirmButtonText: "Si, Generar ahora!",
+            cancelButtonText: "No, Cancelar por favor!",
+            closeOnConfirm: false,
+            closeOnCancel: false },
+        function(isConfirm){
+
+
+            // if (isConfirm) {
+            //     swal("Borrado!", "Tu registro fue borrado :(", "success");   }
+            // else {
+            //     swal("Cancelado", "Tu registro esta seguro :)", "error");   }
+        });
 }
