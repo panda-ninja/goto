@@ -84,6 +84,7 @@ $("#nuevo_pqt").click(function(){
                 $('#list_planes').html('');
                 $('#list_planes').html(markup);
                 $('#idLoad').html('');
+                crear_plan=1;
             }
             else{
                 $('#idLoad').html('');
@@ -116,7 +117,10 @@ $("#nuevo_pqt").click(function(){
 
 var idCotizacion=0;
 var NroClic=0;
-$('#agregar_pqt').click(function(){
+
+var crear_plan=0;
+
+function generar_pqt(){
 
     if($('#email_3').val()==""){
         $('#email_3').focus();
@@ -127,6 +131,7 @@ $('#agregar_pqt').click(function(){
         )
     }
         if(idCotizacion==0){
+            console.log('no hay coti');
             var pemail=$('#email_3').val();
             var pnropasajeros=$('#nropasajeros').val();
             var pfecha=$('#fecha').val();
@@ -139,8 +144,19 @@ $('#agregar_pqt').click(function(){
             $.post(url3+'/guardar_pre_cotizacion', {email: pemail,nropasajeros:pnropasajeros,fecha:pfecha}, function(markup) {
                 if(markup!='0'){
                      // console.log(markup);
-                     idCotizacion=markup;
-                    NroClic=1;
+                    idCotizacion=markup;
+                    console.log('ya se guardo la nueva cotizacion: '+idCotizacion);
+                    $.ajax({
+                        type: 'POST',
+                        url: url3+'/guardar_plan_cotizacion',
+                        data: $('#form_plan').serialize(),
+                        // Mostramos un mensaje con la respuesta de PHP
+                        success: function(data){
+                            $('#lista_plan_cotizacion').html(data);
+                        }
+                    });
+
+                    // NroClic=1;
                 }
                 else{
                       // console.log('error de registro cerrarmos :'+markup);
@@ -160,11 +176,22 @@ $('#agregar_pqt').click(function(){
                     'currio una error vuelva a intentarlo por favor (cliente:'+pemail+', '+markup+')',
                     'warning'
                 );
-                $( "#cerrar_modal" ).trigger( "click" );
+                // $( "#cerrar_modal" ).trigger( "click" );
+            });
+        }
+        else{
+            console.log('ya se guardo la cotizacion: '+idCotizacion);
+            $.ajax({
+                type: 'POST',
+                url: url3+'/guardar_plan_cotizacion',
+                data: $('#form_plan').serialize(),
+                // Mostramos un mensaje con la respuesta de PHP
+                success: function(data){
+                    $('#lista_plan_cotizacion').html(data);
+                }
             });
         }
     }
-);
 
 function Buscar_iti(){
     var valor=$('#buscar').val();

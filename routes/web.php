@@ -237,6 +237,10 @@ Route::group(['middleware'=>'admin'],function(){
         'uses' => 'CotizacionController@guardar_pre_cotizacion',
         'as' => 'cotizacion_guardar_pre_path',
     ]);
+    Route::post('/guardar_plan_cotizacion', [
+        'uses' => 'CotizacionController@guardar_plan_cotizacion',
+        'as' => 'cotizacion_guardar_plan_path',
+    ]);
     Route::get('/cotizaciones', [
         'uses' => 'AdminController@cotizaciones',
         'as' => 'cotizaciones_path',

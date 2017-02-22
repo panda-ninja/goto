@@ -61,6 +61,38 @@ class CotizacionController extends Controller
             return $e;
         }
     }
+    public function guardar_plan_cotizacion(Request $request)
+    {
+        $titulo_plan=$request->input('titulo_plan');
+        $dias_plan=$request->input('dias_plan');
+        $text_descripcion=$request->input('text_descripcion');
+     return $titulo_plan.'/'.$dias_plan.'/'.$text_descripcion;
+//        dd($request);
+//        try{
+//            $cliente = Cliente::where('email',$email)->get();
+//            //dd($cliente);
+//            if(count($cliente)>0){
+//
+////                return $cliente[0]->nombres;
+//                $cotizacion=new Cotizacion();
+//                $cotizacion->nropersonas=$nropasa;
+//                $cotizacion->fecha=$fecha;
+//                $cotizacion->estado="6";/*-- 6=pre cotizacion*/
+//                $cotizacion->clientes_id=$cliente[0]->id;
+//                $cotizacion->users_id=auth()->guard('admin')->user()->id;
+//                $cotizacion->save();
+//                return $cotizacion->id;
+//            }
+//            else{
+//                return '0';
+//            }
+////           return  $cliente->id;
+////            return count($cliente);
+//        }
+//        catch(Exception $e){
+//            return $e;
+//        }
+    }
     public function create()
     {
         //

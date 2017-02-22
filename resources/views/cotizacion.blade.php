@@ -105,7 +105,7 @@
                                                     <div class="row">
                                                         <div class="col m6">
                                                             <div class="input-field">
-                                                                <a id="nuevo_pqt" class="btn  blue darken-4 waves-effect waves-light ">Crear nuevo plan
+                                                                <a id="nuevo_pqt" class="btn  blue darken-4 waves-effect waves-light">Crear nuevo plan
                                                                 </a>
                                                             </div>
                                                         </div>
@@ -122,7 +122,9 @@
                                     </div>
 
                                 </div>
-                                <div id="list_planes"></div>
+                                <form mane="form_plan" id="form_plan" action="" method="post" >
+                                    <div id="list_planes"></div>
+                                </form>
                             </div>
                         </div>
                     </div>
@@ -137,7 +139,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="card-action">
+                        <div id="lista_plan_cotizacion" class="card-action">
                             <table class="striped">
                                 <thead>
                                 <tr>

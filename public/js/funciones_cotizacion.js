@@ -84,10 +84,6 @@ $('#agregar_dia').click(function(){
             });
         }
     });
-
-
-
-
     });
 
 var dia=0;
@@ -193,9 +189,9 @@ function sumar_acomo_actual(){
     nro_pa_m=$('#room_m').val();
     nro_pa_s=$('#room_s').val();
 
-    fila_t=parseInt(nro_pa_t)*parseInt($('#precio_'+atipo+'_t').val());
-    fila_d=parseInt(nro_pa_d)*parseInt($('#precio_'+atipo+'_d').val());
-    fila_m=parseInt(nro_pa_m)*parseInt($('#precio_'+atipo+'_d_m').val());
+    fila_t=parseInt(nro_pa_t)*parseInt($('#precio_'+atipo+'_t').val())*3;
+    fila_d=parseInt(nro_pa_d)*parseInt($('#precio_'+atipo+'_d').val())*2;
+    fila_m=parseInt(nro_pa_m)*parseInt($('#precio_'+atipo+'_d_m').val())*2;
     fila_s=parseInt(nro_pa_s)*parseInt($('#precio_'+atipo+'_s').val());
 
     atotal=fila_t+fila_d+fila_m+fila_s;
@@ -288,6 +284,28 @@ function coti_romms(acom){
 function coti_precio_acom(acom1,tipo1){
     sumar_acomo_actual();
 }
+
+// function generar_pqt(){
+//     var titulo=$('#titulo_plan').val();
+//     var dia=$('#dias_plan').val();
+//     swal({   title: "Mensaje del sistema",
+//             text: "Esta seguro de generar el plan "+titulo+" : "+dia,
+//             type: "question",
+//             showCancelButton: true,
+//             confirmButtonColor: "#DD6B55",
+//             confirmButtonText: "Si, Generar ahora!",
+//             cancelButtonText: "No, Cancelar por favor!",
+//             closeOnConfirm: false,
+//             closeOnCancel: false },
+//         function(isConfirm){
+//
+//
+//             // if (isConfirm) {
+//             //     swal("Borrado!", "Tu registro fue borrado :(", "success");   }
+//             // else {
+//             //     swal("Cancelado", "Tu registro esta seguro :)", "error");   }
+//         });
+// }
 
 
 //# sourceMappingURL=funciones_cotizacion.js.map

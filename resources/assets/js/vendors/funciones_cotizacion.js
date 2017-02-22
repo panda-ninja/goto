@@ -84,10 +84,6 @@ $('#agregar_dia').click(function(){
             });
         }
     });
-
-
-
-
     });
 
 var dia=0;
@@ -289,24 +285,25 @@ function coti_precio_acom(acom1,tipo1){
     sumar_acomo_actual();
 }
 
-function generar_pqt(){
-    var titulo=$('#titulo_plan').val();
-    var dia=$('#dias_plan').val();
-    swal({   title: "Mensaje del sistema",
-            text: "Esta seguro de generar el plan "+titulo+" : "+dia,
-            type: "question",
-            showCancelButton: true,
-            confirmButtonColor: "#DD6B55",
-            confirmButtonText: "Si, Generar ahora!",
-            cancelButtonText: "No, Cancelar por favor!",
-            closeOnConfirm: false,
-            closeOnCancel: false },
-        function(isConfirm){
+// function generar_pqt(){
+//     var titulo=$('#titulo_plan').val();
+//     var dia=$('#dias_plan').val();
+//     swal({   title: "Mensaje del sistema",
+//             text: "Esta seguro de generar el plan "+titulo+" : "+dia,
+//             type: "question",
+//             showCancelButton: true,
+//             confirmButtonColor: "#DD6B55",
+//             confirmButtonText: "Si, Generar ahora!",
+//             cancelButtonText: "No, Cancelar por favor!",
+//             closeOnConfirm: false,
+//             closeOnCancel: false },
+//         function(isConfirm){
+//
+//
+//             // if (isConfirm) {
+//             //     swal("Borrado!", "Tu registro fue borrado :(", "success");   }
+//             // else {
+//             //     swal("Cancelado", "Tu registro esta seguro :)", "error");   }
+//         });
+// }
 
-
-            // if (isConfirm) {
-            //     swal("Borrado!", "Tu registro fue borrado :(", "success");   }
-            // else {
-            //     swal("Cancelado", "Tu registro esta seguro :)", "error");   }
-        });
-}
