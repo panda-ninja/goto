@@ -66,7 +66,12 @@ class CotizacionController extends Controller
         $titulo_plan=$request->input('titulo_plan');
         $dias_plan=$request->input('dias_plan');
         $text_descripcion=$request->input('text_descripcion');
-     return $titulo_plan.'/'.$dias_plan.'/'.$text_descripcion;
+        $valor=$request->input('valor');
+        $val='';
+        for ($i=0;$i<=count($valor);$i++){
+            $val=$valor[$i].'<br>';
+        }
+     return $titulo_plan.'/'.$dias_plan.'/'.$text_descripcion.'/'.$val;
 //        dd($request);
 //        try{
 //            $cliente = Cliente::where('email',$email)->get();

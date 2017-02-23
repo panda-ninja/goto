@@ -57,7 +57,7 @@
                                 <div class="input-field col s3">
                                     <i class="mdi-editor-insert-invitation prefix"></i>
                                     <input id="fecha" type="date" value="{{date("Y-m-d")}}">
-                                    <label for="fecha" class="active">Fecha</label>
+                                    <label for="fecha" class="active">Fecha de viaje</label>
                                 </div>
                             </div>
                         </div>
@@ -93,7 +93,7 @@
                                                             <label for="codigopx" class="">Ingrese el codigo del paquete</label>
                                                         </div>
                                                         <div class="input-field col m4">
-                                                            <a id="btnBuscar_pqt" class="btn cyan waves-effect waves-light right">Buscar
+                                                            <a id="btnBuscar_pqt" class="btn cyan waves-effect waves-light right">Mostrar
                                                             </a>
                                                         </div>
                                                         <div class="input-field col m2 " id="idLoad">
@@ -103,13 +103,13 @@
 
                                                 <div class="col m6">
                                                     <div class="row">
-                                                        <div class="col m6">
+                                                        <div class="col m6 right">
                                                             <div class="input-field">
                                                                 <a id="nuevo_pqt" class="btn  blue darken-4 waves-effect waves-light">Crear nuevo plan
                                                                 </a>
                                                             </div>
                                                         </div>
-                                                        <div class="col m6">
+                                                        <div class="col m6 hide">
                                                             <div class="input-field">
                                                                 <a id="generar_pqt" class="btn green waves-effect waves-light" onclick="generar_pqt()">Generar plan
                                                                 </a>
@@ -193,15 +193,15 @@
                     <div class="row">
                         <div class="col s12 right">
                             <div class="fixed-action-btn horizontal">
-                                <a class="btn-floating btn-large">
-                                    <i class="mdi-navigation-menu"></i>
+                                <a class="btn-floating btn-large" onclick="generar_pqt()">
+                                    <i class="large mdi-content-save"></i>
                                 </a>
-                                <ul>
-                                    <li><a class="btn-floating red" id="borrar_itinerario"><i class="large mdi-content-clear"></i></a>
-                                    </li>
-                                    <li><a class="btn-floating blue" id="guardar_cotizacion"><i class="large mdi-content-save"></i></a>
-                                    </li>
-                                </ul>
+                                {{--<ul>--}}
+                                    {{--<li><a class="btn-floating red" id="borrar_itinerario"><i class="large mdi-content-clear"></i></a>--}}
+                                    {{--</li>--}}
+                                    {{--<li><a class="btn-floating blue" id="guardar_cotizacion"><i class="large mdi-content-save"></i></a>--}}
+                                    {{--</li>--}}
+                                {{--</ul>--}}
                             </div>
                         </div>
                     </div>

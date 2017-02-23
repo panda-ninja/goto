@@ -146,10 +146,13 @@ function generar_pqt(){
                      // console.log(markup);
                     idCotizacion=markup;
                     console.log('ya se guardo la nueva cotizacion: '+idCotizacion);
+                    var descr=$('#text_descripcion').val();
+                    var valor=$("input[name='desc_itinerario']");
+                    console.log(descr);
                     $.ajax({
                         type: 'POST',
                         url: url3+'/guardar_plan_cotizacion',
-                        data: $('#form_plan').serialize(),
+                        data: $('#form_plan').serialize()+'&&descr='+descr+'&&valor='+valor,
                         // Mostramos un mensaje con la respuesta de PHP
                         success: function(data){
                             $('#lista_plan_cotizacion').html(data);
@@ -180,11 +183,13 @@ function generar_pqt(){
             });
         }
         else{
-            console.log('ya se guardo la cotizacion: '+idCotizacion);
+            console.log('ya se tenia guardado la cotizacion: '+idCotizacion);
+            var descr=$('#text_descripcion').val();
+            console.log(descr);
             $.ajax({
                 type: 'POST',
                 url: url3+'/guardar_plan_cotizacion',
-                data: $('#form_plan').serialize(),
+                data: $('#form_plan').serialize()+'&&descr='+descr,
                 // Mostramos un mensaje con la respuesta de PHP
                 success: function(data){
                     $('#lista_plan_cotizacion').html(data);

@@ -69,7 +69,7 @@
 
                             </div>
                             <div class="row">
-                                <form action="" method="post">
+                                {{--<form action="" method="post">--}}
                                     <div class="input-field col s6">
                                         <i class="mdi-action-search prefix"></i>
                                         {{csrf_field()}}
@@ -82,9 +82,9 @@
                                     </div>
                                     <div class="input-field col s2" id="idLoad">
                                     </div>
-                                </form>
+                                {{--</form>--}}
                             </div>
-                            <div id="list_planes"></div>
+                            {{--<div id="list_planes"></div>--}}
                         </div>
                         <div class="modal-footer">
                             <div style="position: relative;">
