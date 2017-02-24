@@ -305,9 +305,15 @@
                                             </div>
                                             <div class="row no-margin valign-wrapper">
                                                 <div class="col s2">
-                                                    <a href="" class="red-text tooltipped" data-position="top"
-                                                       data-delay="50" data-tooltip="Add my wishlist"><i
-                                                                class="material-icons valign small">favorite</i></a>
+                                                    @if($paquetes->estado == 1)
+
+                                                        <a href="" onclick="addwishlist()" id="w_send" class="red-text tooltipped" data-position="top" data-delay="50" data-tooltip="Add my wishlist"><i class="material-icons valign small grey-text">favorite_border</i></a>
+
+                                                    @elseif($paquetes->estado == 2)
+                                                        <a href="" class="red-text tooltipped" data-position="top"
+                                                           data-delay="50" data-tooltip="Add my wishlist"><i
+                                                                    class="material-icons valign small">favorite</i></a>
+                                                    @endif
                                                 </div>
                                                 <div class="col s10">
                                                     <a href="{{route('home_show_travel_path', array('titulo'=>str_replace(' ','-', strtolower($paquetes->titulo)), 'dias'=>$paquetes->duracion.'-days-tours'))}}" class="waves-effect waves-light btn yellow darken-3"><i
