@@ -21,21 +21,28 @@ $Paquete='';
 <div class="card-panel">
     <div class="row">
         <div class="col m6 l6">
+            <div class="input-field col m3">
+                <input placeholder="GTP XXXX" id="codigo_plan" name="codigo_plan" type="text" class="validate">
+                <label for="codigo_plan">Codigo</label>
+            </div>
             <div class="input-field col m9">
                 <input placeholder="Titulo para el plan " id="titulo_plan" name="titulo_plan" type="text" class="validate">
                 <label for="titulo_plan">Titulo</label>
             </div>
-            <div class="input-field col m3">
-                <input id="dias_plan" name="dias_plan" type="number" class="validate">
-                <label for="dias_plan">Dias</label>
-            </div>
-
-             </div>
+         </div>
         <div class="col m6 16">
-            <div class="row right">
-                <div class="col m12">
-                    <b class="grey-text text-darken-3">Total </b>
-                    <h5 class="blue-text text-accent-3" id="totalM">$ <b class="blue-text text-accent-3" id="total">000.00</b></h5>
+            <div class="row ">
+                <div class="input-field col m3">
+                    <input id="dias_plan" name="dias_plan" type="number" class="validate">
+                    <label for="dias_plan">Dias</label>
+                </div>
+                <div class="col m9">
+                    <div class="row right">
+                        <div class="col m12">
+                            <b class="grey-text text-darken-3">Total </b>
+                            <h5 class="blue-text text-accent-3" id="totalM">$ <b class="blue-text text-accent-3" id="total">000.00</b></h5>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -213,7 +220,7 @@ $Paquete='';
                                                 </span>
                                                 </div>
                                             </div>
-                                            <textarea  name="desc_itinerario[]" id="desc_itinerario_{{$j}}"  >
+                                            <textarea class="descripcion1"  name="desc_itinerario" id="desc_itinerario_{{$j}}"  >
                                         {{$itinerario->descripcion}}
                                     </textarea>
                                         </div>

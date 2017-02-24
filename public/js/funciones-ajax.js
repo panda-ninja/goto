@@ -147,14 +147,36 @@ function generar_pqt(){
                     idCotizacion=markup;
                     console.log('ya se guardo la nueva cotizacion: '+idCotizacion);
                     var descr=$('#text_descripcion').val();
-                    var valor=$("input[name='desc_itinerario']");
-                    console.log(descr);
+
+                    var precio_plan=$('#total').html();
+                    console.log('total:'+precio_plan);
+                    var destinos= '';
+                    jQuery("input[name='chb_destinos[]']:checked").each(function(){
+                        destinos+= $(this).val() + '[]';
+                    });
+                    destinos=destinos.substring(0, destinos.length-2);
+
+                    var iti_titulo= '';
+                    jQuery("textarea.iti_titulo").each(function() {
+                        iti_titulo+= $(this).val() + '[]';
+                    });
+                    iti_titulo=iti_titulo.substring(0, iti_titulo.length-2);
+
+                    var iti_descricion= '';
+                    jQuery("textarea.iti_descripcion").each(function() {
+                        iti_descricion+= $(this).val() + '[]';
+                    });
+                    iti_descricion=iti_descricion.substring(0, iti_descricion.length-2);
+                    // console.log(valor);
                     $.ajax({
                         type: 'POST',
                         url: url3+'/guardar_plan_cotizacion',
-                        data: $('#form_plan').serialize()+'&&descr='+descr+'&&valor='+valor,
+                        // data: $('#form_plan').serializeArray(),
+                        data: $('#form_plan').serialize()+'&&descr='+descr+'&&precio_plan='+precio_plan+'&&idCotizacion='+idCotizacion+'&&destinos='+destinos+'&&iti_titulo='+iti_titulo+'&&iti_descricion='+iti_descricion,
+                        // data:valor,
                         // Mostramos un mensaje con la respuesta de PHP
                         success: function(data){
+                            $('#list_planes').html('');
                             $('#lista_plan_cotizacion').html(data);
                         }
                     });
