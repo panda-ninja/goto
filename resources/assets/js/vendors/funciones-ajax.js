@@ -1,4 +1,4 @@
-var url3='http://gotoperu.travel';
+var url3='http://gotoperu.mo';
 
 $("#btnBuscar_pqt").click(function(){
     $.ajaxSetup({
@@ -384,3 +384,23 @@ function Buscar_iti(){
     }
 }
 
+function enviarPlan(id){
+    $.ajaxSetup({
+        headers: {
+            'X-CSRF-TOKEN': $('[name="_token"]').val()
+        }
+    });
+    $.post(url3+'/enviar plan', {id: id}, function(markup) {
+        if(markup!='0'){
+
+            $('#jalar_iti').html(markup);
+            // $.getScript('https://code.jquery.com/ui/1.12.1/jquery-ui.js');
+            console.log(markup);
+        }
+        else{
+            console.log('error de registro cerrarmos :'+markup);
+        }
+    }).fail(function (markup) {
+        console.log('Fail cerrarmos :'+markup);
+    });
+}
