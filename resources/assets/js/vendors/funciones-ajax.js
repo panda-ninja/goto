@@ -1,4 +1,4 @@
-var url3='http://gotoperu.mo';
+var url3='http://gotoperu.travel';
 
 $("#btnBuscar_pqt").click(function(){
     $.ajaxSetup({
