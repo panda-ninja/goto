@@ -31,4 +31,8 @@ class ClientAuthController extends Controller
         auth()->guard('cliente')->logout();
         return redirect()->route('client_auth_index_path');
     }
+
+    public function register(){
+        return view('auth.register');
+    }
 }

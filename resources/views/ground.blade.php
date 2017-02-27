@@ -6,7 +6,7 @@
     <div class="container">
         <div class="section">
             <div class="row main-wrapper">
-                <div class="col s2">
+                <div class="col s2 m3 l2 hide-on-small-only">
                     <div id="pinned">
                         <div class="row">
                             <div class="col s12">
@@ -21,60 +21,54 @@
                     </div>
                 </div>
 
-                <div class="col s10">
+                <div class="col s12 m9 l10">
                     <div class="row">
                         <div class="col s12">
                             <p class="yellow-text text-darken-4 text-20 right-align">BY CATEGORY</p>
                         </div>
-                        <div class="col s3 valign-wrapper">
-                            <a href="{{route('home_show_category_path', 'adventure')}}" class="card hoverable waves-effect">
-                                <div class="col s3">
-                                    <img src="{{asset('img/icons/trekking.png')}}" alt="" class="circle responsive-img">
+                        <div class="col s6 m3 l3">
+                            <a href="{{route('home_show_category_path', 'adventure')}}" class="card hoverable waves-effect grey lighten-4 btn-checkout">
+                                <div class="col s3 hide-ipad-large">
+                                    <img src="{{asset('img/icons/trekking.png')}}" alt="" class="circle responsive-img margin-top-10">
                                     <!-- notice the "circle" class -->
                                 </div>
-                                <div class="col s9">
-                            <span class="black-text">
-                                ADVENTURE
-                            </span>
+                                <div class="col s9 m12 l9 black-text">
+                                    <p>ADVENTURE</p>
                                 </div>
                             </a>
                         </div>
-                        <div class="col s3 valign-wrapper">
-                            <a href="{{route('home_show_category_path', 'family')}}" class="card hoverable waves-effect">
-                                <div class="col s3">
-                                    <img src="{{asset('img/icons/family.png')}}" alt="" class="circle responsive-img">
+                        <div class="col s6 m3 l3">
+                            <a href="{{route('home_show_category_path', 'family')}}" class="card hoverable waves-effect grey lighten-4 btn-checkout">
+                                <div class="col s3 hide-ipad-large">
+                                    <img src="{{asset('img/icons/family.png')}}" alt="" class="circle responsive-img margin-top-10">
                                     <!-- notice the "circle" class -->
                                 </div>
-                                <div class="col s9">
-                            <span class="black-text">
-                                FAMILY
-                            </span>
+
+                                <div class="col s9 m12 l9 black-text">
+                                    <p>FAMILY</p>
+                                </div>
+
+                            </a>
+                        </div>
+                        <div class="col s6 m3 l3">
+                            <a href="{{route('home_show_category_path', 'classic')}}" class="card hoverable waves-effect grey lighten-4 btn-checkout">
+                                <div class="col s3 hide-ipad-large">
+                                    <img src="{{asset('img/icons/classic.png')}}" alt="" class="circle responsive-img margin-top-10">
+                                    <!-- notice the "circle" class -->
+                                </div>
+                                <div class="col s9 m12 l9  black-text">
+                                    <p>CLASSIC</p>
                                 </div>
                             </a>
                         </div>
-                        <div class="col s3 valign-wrapper">
-                            <a href="{{route('home_show_category_path', 'classic')}}" class="card hoverable waves-effect">
-                                <div class="col s3">
-                                    <img src="{{asset('img/icons/classic.png')}}" alt="" class="circle responsive-img">
+                        <div class="col s6 m3 l3">
+                            <a href="{{route('home_show_category_path', 'luxury')}}" class="card hoverable waves-effect grey lighten-4 btn-checkout">
+                                <div class="col s3 hide-ipad-large">
+                                    <img src="{{asset('img/icons/human.png')}}" alt="" class="circle responsive-img margin-top-10">
                                     <!-- notice the "circle" class -->
                                 </div>
-                                <div class="col s9">
-                            <span class="black-text">
-                                CLASSIC
-                            </span>
-                                </div>
-                            </a>
-                        </div>
-                        <div class="col s3 valign-wrapper">
-                            <a href="{{route('home_show_category_path', 'luxury')}}" class="card hoverable waves-effect">
-                                <div class="col s3">
-                                    <img src="{{asset('img/icons/human.png')}}" alt="" class="circle responsive-img">
-                                    <!-- notice the "circle" class -->
-                                </div>
-                                <div class="col s9">
-                            <span class="black-text">
-                                LUXURY
-                            </span>
+                                <div class="col s9 m12 l9 black-text">
+                                    <p>LUXURY</p>
                                 </div>
                             </a>
                         </div>
@@ -84,7 +78,7 @@
 
                     @foreach($paquete->sortBy('duracion') as $paquetes)
 
-                        <div class="col s4 grid-item">
+                        <div class="col s12 m6 l4 grid-item">
 
                                 <div class="card card-packages">
                                     <div class="card-image waves-effect waves-block waves-light">
@@ -127,13 +121,13 @@
 
                                         </div>
                                         <div class="row no-margin valign-wrapper">
-                                            <div class="col s2">
+                                            <div class="col s3">
                                                 <a href="" class="red-text tooltipped" data-position="top"
                                                    data-delay="50" data-tooltip="Add my wishlist"><i
                                                             class="material-icons valign small">favorite</i></a>
                                             </div>
-                                            <div class="col s10">
-                                                <a href="{{route('home_show_travel_path', array('titulo'=>str_replace(' ','-', strtolower($paquetes->titulo)), 'dias'=>$paquetes->duracion.'-days-tours'))}}" class="waves-effect waves-light btn yellow darken-3"><i
+                                            <div class="col s9">
+                                                <a href="{{route('home_show_travel_path', array('titulo'=>str_replace(' ','-', strtolower($paquetes->titulo)), 'dias'=>$paquetes->duracion.'-days-tours'))}}" class="waves-effect waves-light btn yellow darken-3 btn-pd-large"><i
                                                             class="material-icons right">send</i>View Trip</a>
                                             </div>
                                         </div>

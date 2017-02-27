@@ -58,7 +58,7 @@
                   method="post">
                 {{csrf_field()}}
                 <div class="row center">
-                    <div class="input-field col m3">
+                    <div class="input-field col s12 m3 l3">
                         <input type="hidden" value="{{$paquete1->duracion}}" name="dias">
                         <select name="txt_country" id="destino_travel">
                             @foreach($paqueteCombo as $paquete)
@@ -71,7 +71,7 @@
                         </select>
                         <label for="destino_travel" class="grey-text text-darken-3">From</label>
                     </div>
-                    <div class="input-field col m4" id="dispo">
+                    <div class="input-field col s12 m4 l4" id="dispo">
 
                         <input type="hidden" value="{{$precio}}" name="txt_price" id="txt_price">
                         <select name="txt_date" id="date_travel" onclick="pasar()" onchange="this.form.submit();">
@@ -93,7 +93,7 @@
                         </select>
                         <label for="date_travel" class="grey-text text-darken-3">Other Dates</label>
                     </div>
-                    <div class="col m5">
+                    <div class="col s12 m5 l5">
                         <div class="row">
                             <div class="input-field col m6" >
                                 <select  name="travelers" id="travelers" onchange="ch_travelers()">
@@ -115,14 +115,14 @@
                     </div>
                 </div>
             </form>
-            <form class="font-moserrat" action="{{route('checkout_store_path')}}" method="post" id="checkout-form1">
+            <form class="font-moserrat checkout-form" action="{{route('checkout_store_path')}}" method="post" id="checkout-form1">
                 {{csrf_field()}}
                 <input type="hidden" name="bloq0" id="bloq0" value=""/>
                 <input type="hidden" name="bloq" id="bloq" value="bloque_0"/>
                 <div class="row ">
-                    <div class="col m8">
+                    <div class="col s12 m8 l8 margin-bottom-20">
                         <div class="row center">
-                            <div class="col m12  table-responsive">
+                            <div class="col s12 m12 l12 table-responsive">
 
                                 <?php
                                 $TipoPaquete='ConHotel';
@@ -415,38 +415,36 @@
 
                         </div>
                     </div>
-                    <div class="col m4">
-                        <div class="row no-margin-botton">
-                            <div class="col s12 caja-flotante grey lighten-2">
-                                <ul>
-                                    <li id="acomodacion_3" class="hide grey-text text-darken-1"><span>On triple accomodation </span><span id="rooms_T">1</span>X<img class="" src="{{asset('images/male.png')}}"><img class="" src="{{asset('images/male.png')}}"><img class="" src="{{asset('images/male.png')}}">X$<span id="precio_3">{{$pre_3_t}}</span></li>
-                                    <li id="acomodacion_2" class="grey-text text-darken-1"><span>On double accomodation </span><span id="rooms_D">1</span>X<img class="" src="{{asset('images/male.png')}}"><img class="" src="{{asset('images/male.png')}}">X$<span id="precio_Ma2">{{$pre_3_d}}</span></li>
-                                    <li id="acomodacion_M" class="hide grey-text text-darken-1"><span>On matinonial accomodation </span><span id="rooms_M">1</span>X<img class="" src="{{asset('images/male.png')}}"><img class="" src="{{asset('images/male.png')}}">X$<span id="precio_2">{{$pre_3_d}}</span></li>
-                                    <li id="acomodacion_1" class="hide grey-text text-darken-1"><span>On simple accomodation </span><span id="rooms_S">1</span>X<img class="" src="{{asset('images/male.png')}}">X$<span id="precio_1">{{$pre_3_s}}</span></li>
-                                    <li class="hide"><span id="precioPaquete">{{$precio}}</span></li>
+                    <div class="col s12 m4 l4">
+                        <div class="col s12 caja-flotante grey lighten-2">
+                            <ul>
+                                <li id="acomodacion_3" class="hide grey-text text-darken-1"><span>On triple accomodation </span><span id="rooms_T">1</span>X<img class="" src="{{asset('images/male.png')}}"><img class="" src="{{asset('images/male.png')}}"><img class="" src="{{asset('images/male.png')}}">X$<span id="precio_3">{{$pre_3_t}}</span></li>
+                                <li id="acomodacion_2" class="grey-text text-darken-1"><span>On double accomodation </span><span id="rooms_D">1</span>X<img class="" src="{{asset('images/male.png')}}"><img class="" src="{{asset('images/male.png')}}">X$<span id="precio_Ma2">{{$pre_3_d}}</span></li>
+                                <li id="acomodacion_M" class="hide grey-text text-darken-1"><span>On matinonial accomodation </span><span id="rooms_M">1</span>X<img class="" src="{{asset('images/male.png')}}"><img class="" src="{{asset('images/male.png')}}">X$<span id="precio_2">{{$pre_3_d}}</span></li>
+                                <li id="acomodacion_1" class="hide grey-text text-darken-1"><span>On simple accomodation </span><span id="rooms_S">1</span>X<img class="" src="{{asset('images/male.png')}}">X$<span id="precio_1">{{$pre_3_s}}</span></li>
+                                <li class="hide"><span id="precioPaquete">{{$precio}}</span></li>
 
-                                </ul>
+                            </ul>
+                        </div>
+                        <div class=" col s12 grey darken-4">
+                            <div class="text-14 white-text" >Total (USD)
+                                <span class="text-30 blue-text text-lighten-1 ">$
+                                        <span id="subtotal"> {{2*$precio}}</span>
+                                    </span>
                             </div>
-                            <div class=" col s12 grey darken-4">
-                                <div class="text-14 white-text" >Total (USD)
-                                    <span class="text-30 blue-text text-lighten-1 ">$
-                            <span id="subtotal"> {{2*$precio}}</span>
-                        </span>
-                                </div>
-                                <div class="text-12 align-rigth white-text">taxes included
-                                </div>
+                            <div class="text-12 align-rigth white-text">taxes included
                             </div>
                         </div>
-                        <div class="row">
-                            <div class="col s12  light-green lighten-2">
-                                <h6>Optional Activities:</h6>
-                                <?php $i=0;?>
-                                @foreach($paquetes as $paquete)
-{{--                                    @if($paquete->disponibilidad->estrellas=3)--}}
-                                        @foreach($paquete->paquete_servicio_extra as $servicios2)
-                                            <?php $i++;?>
-                                            @foreach($servicio_extras as $extra)
-                                                @if($servicios2->idservicio_extra==$extra->id)
+
+                        <div class="col s12  light-green lighten-2">
+                            <h6>Optional Activities:</h6>
+                            <?php $i=0;?>
+                            @foreach($paquetes as $paquete)
+                                {{--                                    @if($paquete->disponibilidad->estrellas=3)--}}
+                                @foreach($paquete->paquete_servicio_extra as $servicios2)
+                                    <?php $i++;?>
+                                    @foreach($servicio_extras as $extra)
+                                        @if($servicios2->idservicio_extra==$extra->id)
                                             <div class="row">
                                                 <div class="col m9">
                                                     <p>
@@ -461,41 +459,40 @@
                                                     $ <span id="extra_precioP_{{$i}}">{{2*$extra->precio}}</span>
                                                 </div>
                                             </div>
-                                                    @endif
-                                                @endforeach
-                                        @endforeach
-                                    {{--@endif--}}
+                                        @endif
+                                    @endforeach
                                 @endforeach
-                                <br>
-                            </div>
-                            <div class=" col s12 orange lighten-1">
-                                <div class="text-14 white-text" >Total (USD)
-                                    <span class="text-30 ">$
+                                {{--@endif--}}
+                            @endforeach
+                            <br>
+                        </div>
+                        <div class=" col s12 orange lighten-1">
+                            <div class="text-14 white-text" >Total (USD)
+                                <span class="text-30 ">$
                                         <span id="total"> {{2*$precio}}</span>
                                     </span>
-                                </div>
-                                <div class="text-12 align-rigth white-text">taxes included
-                                </div>
+                            </div>
+                            <div class="text-12 align-rigth white-text">taxes included
                             </div>
                         </div>
                     </div>
                 </div>
-                <div class="row" >
-                    <div class="col m12">
+                <div class="row">
+                    <div class="col m12 margin-top-40">
                         <div class="row">
                             <div class="col m12"><h4 class="no-margin">PAYMENTS</h4></div>
                         </div>
                         <div class="row">
-                            <div class="col m6">
+                            <div class="col s12 m6 l6">
                                 <h5><i class="material-icons orange-text text-darken-2">contacts</i>Billing Information</h5>
                                 <div class="row">
-                                    <div class="col m6">
+                                    <div class="col s12 m6 l6">
                                         <div class="input-field">
                                             <input id="first_name_p" name="first_name_p" type="text" class="validate" placeholder="First name(required)">
                                             <label for="first_name_p" class="grey-text text-darken-3">First name <span class="blue-text">*</span></label>
                                         </div>
                                     </div>
-                                    <div class="col m6">
+                                    <div class="col s12 m6 l6">
                                         <div class="input-field">
                                             <input id="last_name_p" name="last_name_p" type="text" class="validate" placeholder="Last name(required)">
                                             <label for="last_name_p" class="grey-text text-darken-3">Last name <span class="blue-text">*</span></label>
@@ -503,13 +500,13 @@
                                     </div>
                                 </div>
                                 <div class="row">
-                                    <div class="col m4">
+                                    <div class="col s12 m4 l4">
                                         <div class="input-field">
                                             <input id="passport_p" name="passport_p" type="text" class="validate" placeholder="Passport(required)">
                                             <label for="passport_p" class="grey-text text-darken-3">Passport <span class="blue-text">*</span></label>
                                         </div>
                                     </div>
-                                    <div class="col m8">
+                                    <div class="col s12 m8 l8">
                                         <div class="input-field">
                                             <input id="email_p" name="email_p" type="email" class="validate" placeholder="mail@example.com(required)">
                                             <label for="email_p" class="grey-text text-darken-3">Email <span class="blue-text">*</span></label>
@@ -517,13 +514,13 @@
                                     </div>
                                 </div>
                                 <div class="row">
-                                    <div class="col m7">
+                                    <div class="col s12 m7 l7">
                                         <div class="input-field">
                                             <input id="address_p" name="address_p" type="text" class="validate" placeholder="Your address(required)">
                                             <label for="address_p" class="grey-text text-darken-3">Address <span class="blue-text">*</span></label>
                                         </div>
                                     </div>
-                                    <div class="col m5">
+                                    <div class="col s12 m5 l5">
                                         <div class="input-field">
                                             <input id="telephone_p" name="telephone_p" type="text" class="validate" placeholder="Telephone(required)">
                                             <label for="telephone_p" class="grey-text text-darken-3">Telephone <span class="blue-text">*</span></label>
@@ -531,7 +528,7 @@
                                     </div>
                                 </div>
                                 <div class="row">
-                                    <div class="col m6">
+                                    <div class="col s12 m6 l6">
                                         <div class="input-field">
                                             <select name="country_p" id="country_p" onchange="country_p_ch()" class="validate">
                                                 @foreach($country1 as $county11)
@@ -545,7 +542,7 @@
                                             <label for="country_p" class="grey-text text-darken-3">Country <span class="blue-text">*</span></label>
                                         </div>
                                     </div>
-                                    <div class="col m6">
+                                    <div class="col s12 m6 l6">
                                         <div id="state_goto" class="input-field">
                                             <select name="state_p" id="state_p" onchange="state_p_ch()" class="validate">
                                                 @foreach($state as $state1)
@@ -561,13 +558,13 @@
                                     </div>
                                 </div>
                                 <div class="row">
-                                    <div class="col m6">
+                                    <div class="col s12 m6 l6">
                                         <div class="input-field">
                                             <input id="zip_p" mame="zip_p" type="text" class="validate" placeholder="Zip or Postal code(required)">
                                             <label for="zip_p" class="grey-text text-darken-3">Zip/Postal Code <span class="blue-text">*</span></label>
                                         </div>
                                     </div>
-                                    <div class="col m6">
+                                    <div class="col s12 m6 l6">
                                         <div id="city_goto" class="input-field">
                                             <select name="city_p" id="city_p" class="validate">
                                                 @foreach($city as $city1)
@@ -583,11 +580,11 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="col m6">
+                            <div class="col s12 m6 l6">
                                 <h5><i class="material-icons  orange-text text-darken-2">payment</i>Payments Methods</h5>
                                 <div class="row">
 
-                                    <div class="col m12">
+                                    <div class="col s12 m12 l12">
                                         <div class="input-field">
                                             <input id="name_card_p" name="name_card_p" type="text"  class="validate" value="Visa" placeholder="Example: Visa(required)">
                                             <label for="name_card_p" class="grey-text text-darken-3">Name Card <span class="blue-text">*</span></label>
@@ -595,7 +592,7 @@
                                     </div>
                                 </div>
                                 <div class="row">
-                                    <div class="col m12">
+                                    <div class="col s12 m12 l12">
                                         <div class="input-field">
                                             <select name="credit_card_type_p" id="credit_card_type_p" class="validate">
                                                 <option value="Select">Please Select</option>
@@ -615,7 +612,7 @@
                                     </div>
                                 </div>
                                 <div class="row">
-                                    <div class="col m12">
+                                    <div class="col s12 m12 l12">
                                         <div class="input-field">
                                             <input id="credit_card_number_p" name="credit_card_number_p" max="16" maxlength="16" type="text" class="validate" value="" placeholder="Card number(required)">
                                             <label for="credit_card_number_p" class="grey-text text-darken-3">Credit Card Number <span class="blue-text">*</span></label>
@@ -623,13 +620,13 @@
                                     </div>
                                 </div>
                                 <div class="row">
-                                    <div class="col m6">
+                                    <div class="col s12 m6 l6">
                                         <div class="input-field">
                                             <input id="expiration_date_month_p" name="expiration_date_month_p"  max="2" maxlength="2" type="text" class="validate" value="" placeholder="DD (required)">
                                             <label for="expiration_date_month_p" class="grey-text text-darken-3">Exp. Date Month <span class="blue-text">*</span></label>
                                         </div>
                                     </div>
-                                    <div class="col m6">
+                                    <div class="col s12 m6 l6">
                                         <div class="input-field">
                                             <input id="expiration_date_year_p" name="expiration_date_year_p" min="4" max="4" maxlength="4" type="text" class="validate" value="" placeholder="YYYY (required)">
                                             <label for="expiration_date_year_p" class="grey-text text-darken-3">Exp. Date Year <span class="blue-text">*</span></label>
@@ -637,13 +634,13 @@
                                     </div>
                                 </div>
                                 <div class="row">
-                                    <div class="col m6">
+                                    <div class="col s12 m6 l6">
                                         <div class="input-field">
                                             <input id="card_verification_p" type="text" class="validate"  value="" placeholder="**** (required)">
                                             <label for="card_verification_p" class="grey-text text-darken-3">Validation code <span class="blue-text">*</span></label>
                                         </div>
                                     </div>
-                                    <div class="col m6 hide">
+                                    <div class="col s12 m6 l6 hide">
                                         <div class="input-field">
                                             <span>What is this?</span>Fappl
                                         </div>
@@ -651,7 +648,7 @@
                                 </div>
                                 <div class="row">
 
-                                    <div class="col m12">
+                                    <div class="col s12 m12 l12">
                                         <input type="hidden" name="ch_extras_total" id="ch_extras_total" value="{{$i1}}">
 
                                         <input type="hidden" name="titulo_p" id="titulo_p" value="{{$_POST['txt_country']}}">

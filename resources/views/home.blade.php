@@ -10,7 +10,7 @@
                 <img src="{{asset('img/bg/mapi-3.jpg')}}"> <!-- random image -->
                 <div class="caption center-align">
                     <h3 class="grey-text text-darken-2 text-50">A <b>BETTER</b> WAY TO TRAVEL TO PERU</h3>
-                    <h5 class="light grey-text text-darken-3 hide-on-small-only">$150 average saving | 24/7 local authentic assitance |
+                    <h5 class="light grey-text text-darken-3 hide-on-small-only">$150 average saving | 24/7 local authentic assistance |
                         100s of testimonials</h5>
 
                     <div class="row margin-top-40">
@@ -47,8 +47,8 @@
                                 </div>
 
                                 <div class="col s12 white-text">
-                                    <p class="no-margin text-22">ALL INCLUDED FROM MIAMI</p>
-                                    <p class="no-margin text-35"><b class="">5 DAYS</b> <span class="btn black-text">$1299</span></p>
+                                    <p class="no-margin text-22 text-15-ip text-20-ips">ALL INCLUDED FROM MIAMI</p>
+                                    <p class="no-margin text-35 text-20-ip text-30-ips"><b class="">5 DAYS</b> <span class="btn black-text">$1299</span></p>
                                 </div>
                             </a>
                         </div>
@@ -57,7 +57,6 @@
                     </div>
                 </div>
             </li>
-
         </ul>
     </div>
     <section class="spacer-10 hide-on-small-only">
@@ -110,7 +109,7 @@
                     <div class="col s12 m5 l4 position-relative right">
                         <div class="padding-10 bg-rgba-white-9 card-panel">
                             <h5 class="font-moserrat">EXPERIENCE</h5>
-                            <p>Established in 2009, qe are a company founded by a team of travel professionals with decades of experience operating tours in Peru</p>
+                            <p>Established in 2009, we are a company founded by a team of travel professionals with decades of experience operating tours in Peru</p>
                             <h5 class="font-moserrat">Local &amp; International</h5>
                             <p>Our headquarters are local in Cusco with operational offices at MachuPicchu, Lima, Arequipa and Puno. And satellite offices at Washington DC and Tampa, FL.</p>
 
@@ -127,7 +126,7 @@
             <div class="row center">
                 <h4 class="yellow-text text-darken-4"><b>VACATION PACKAGES</b> WHIT INTERNATIONAL FLIGHTS</h4>
                 <div class="col s12 m12 l12 include-services margin-bottom-10">
-                    <ul class="list-services no-margin">
+                    <ul class="list-services no-margin text-11-ip">
                         <li><img src="{{asset('img/icons//include/hotels.png')}}" alt="" class="responsive-img"><span>Hotels</span>
                         </li>
                         <li><img src="{{asset('img/icons//include/transfers.png')}}" alt=""
@@ -144,7 +143,6 @@
                                  class="responsive-img"><span>Assistances</span></li>
                         <li><img src="{{asset('img/icons//include/flight.png')}}" alt="" class="responsive-img"><span>Flights</span>
                         </li>
-
                     </ul>
                 </div>
             </div>
@@ -167,18 +165,18 @@
 
                 <div class="row">
 
-                    <div class="col s12 grey card lighten-4 card no-margin z-depth-1">
+                    <div class="row grey card lighten-4 card no-margin z-depth-1">
                         @foreach($paquetes2->where('duracion', $paquete2->duracion) as $paquetes)
-                            <div class="col s6 m3 l3">
+                            <div class="col s6 m4 l3">
 
-                                <div class="text-18 grey-text text-darken-4 margin-top-10"><b><span class="text-12 display-block grey-text text-darken-5">from</span> {{$paquetes->titulo}}</b></div>
+                                <div class="text-18 text-16-ip grey-text text-darken-4 margin-top-10"><b><span class="text-12 display-block grey-text text-darken-5">from</span> {{$paquetes->titulo}}</b></div>
 
                                 {{--<p class="no-margin">Small group</p>--}}
                                 {{--<p class="no-margin">Tourist to Superior</p>--}}
                                 <ul class="font-moserrat right-align">
                                     @foreach($paquetes->disponibilidad->take(3)->sortBy('fecha_disponibilidad')->where('estrellas', 3) as $disponibilidad)
 
-                                        <li class="text-12 margin-bottom-10">
+                                        <li class="text-15 text-15-ip margin-bottom-10">
                                             <form action="{{route('home_show_checkout_path', array('titulo'=>str_replace(' ','-', strtolower($paquetes->titulo)), 'dias'=>$paquetes->duracion.'-days-tours'))}}"
                                                   method="post">
                                                 {{csrf_field()}}
@@ -203,7 +201,7 @@
 
                     <div class="col s12 margin-bottom-30 card no-margin">
                         <a href="{{route('home_show_date_path', $paquetes->duracion)}}" class="font-moserrat valign-wrapper right margin-top-10 deep-orange-text text-accent-3">View All Dates <i class="material-icons">input</i></a>
-                        <div class="col s6">
+                        <div class="col s12 m6 l6">
                             {{--<div class="valign-wrapper">--}}
                             {{--<img src="{{asset('img/icons/all-included.png')}}" alt="" width="100" class="left">--}}
                             {{--</div>--}}
@@ -213,12 +211,12 @@
                                     <li><b>Day {{$itinerario->dia}}:</b> {{ucwords(strtolower($itinerario->titulo))}}</li>
                                 @endforeach
                                 <li>
-                                    <a href="{{route('home_show_date_path', $paquetes->duracion)}}" class="btn valign-wrapper waves-effect left margin-top-10 deep-orange accent-3">Detailed Program</a>
+                                    <a href="{{route('home_show_date_path', $paquetes->duracion)}}" class="btn valign-wrapper waves-effect left margin-top-10 margin-bottom-10 deep-orange accent-3">Detailed Program</a>
                                 </li>
                             </ul>
 
                         </div>
-                        <div class="col s6">
+                        <div class="col s12 m6 l6">
                             <img src="{{asset('img/maps/'.$paquetes->imagen.'')}}" alt="" class="responsive-img margin-top-15">
                         </div>
                     </div>
@@ -235,30 +233,23 @@
 
 
 
-
-    <div class="parallax-container parallax-container-2">
+    <div class="parallax-container parallax-container-2 hide-ipad-large">
         <div class="section">
             <div class="container">
-                <div class="row margin-bottom-20">
-
-                    <div class="col s12 center">
-                        <h3><i class="mdi-content-send brown-text"></i></h3>
-                        <h4>GROUND <b>PACKAGES</b></h4>
-                        {{--<p class="left-align light">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam scelerisque id nunc nec volutpat. Etiam pellentesque tristique arcu, non consequat magna fermentum ac. Cras ut ultricies eros. Maecenas eros justo, ullamcorper a sapien id, viverra ultrices eros. Morbi sem neque, posuere et pretium eget, bibendum sollicitudin lacus. Aliquam eleifend sollicitudin diam, eu mattis nisl maximus sed. Nulla imperdiet semper molestie. Morbi massa odio, condimentum sed ipsum ac, gravida ultrices erat. Nullam eget dignissim mauris, non tristique erat. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae;</p>--}}
-                    </div>
-
-                    <div class="col s12 m8 offset-m2 l9 offset-l2 include-services margin-bottom-10">
-                        <ul class="list-services">
-                            <li><img src="{{asset('img/icons//include/hotels.png')}}" alt=""
-                                     class="responsive-img"><span>Hotels</span></li>
+                <div class="row center">
+                    <h4 class="yellow-text text-darken-4"><b>GROUND</b> PACKAGES</h4>
+                    <div class="col s12 m12 l12 include-services margin-bottom-10">
+                        <ul class="list-services no-margin text-11-ip">
+                            <li><img src="{{asset('img/icons//include/hotels.png')}}" alt="" class="responsive-img"><span>Hotels</span>
+                            </li>
                             <li><img src="{{asset('img/icons//include/transfers.png')}}" alt=""
                                      class="responsive-img"><span>Transfers</span></li>
                             <li><img src="{{asset('img/icons//include/entrances.png')}}" alt=""
                                      class="responsive-img"><span>Entrances</span></li>
-                            <li><img src="{{asset('img/icons//include/trains.png')}}" alt=""
-                                     class="responsive-img"><span>Trains</span></li>
-                            <li><img src="{{asset('img/icons//include/tours.png')}}" alt=""
-                                     class="responsive-img"><span>Tours</span></li>
+                            <li><img src="{{asset('img/icons//include/trains.png')}}" alt="" class="responsive-img"><span>Trains</span>
+                            </li>
+                            <li><img src="{{asset('img/icons//include/tours.png')}}" alt="" class="responsive-img"><span>Tours</span>
+                            </li>
                             <li><img src="{{asset('img/icons//include/breakfast.png')}}" alt=""
                                      class="responsive-img"><span>Breakfast</span></li>
                             <li><img src="{{asset('img/icons//include/assistances.png')}}" alt=""
@@ -266,6 +257,8 @@
 
                         </ul>
                     </div>
+                </div>
+                <div class="row margin-bottom-20">
 
                     <div class="customNavigation center">
                         <a class="btn preva"><i class="material-icons left">arrow_back</i> Previous</a>
@@ -300,11 +293,11 @@
                                             <div class="margin-bottom-10">
                                                 @foreach($paquetes->precio_paquetes as $precio)
                                                     @if($precio->estrellas == 2)
-                                                        <h4 class="text-18 no-margin valign-wrapper"><b
+                                                        <h4 class="text-18 text-30-ip no-margin valign-wrapper"><b
                                                                     class="lime-text text-darken-4">{{$paquetes->duracion}}
                                                                 days</b> <i class="material-icons valign tiny">arrow_forward</i>
-                                                            <b class="grey-text spacer-m-5 text-12">from</b> <span
-                                                                    class="yellow-text text-darken-3 text-25"><b>${{$precio->precio_d}}</b></span>
+                                                            <b class="grey-text spacer-m-5 text-12 text-20-ip">from</b> <span
+                                                                    class="yellow-text text-darken-3 text-25 text-40-ip"><b>${{$precio->precio_d}}</b></span>
                                                         </h4>
                                                     @endif
                                                 @endforeach
@@ -312,9 +305,15 @@
                                             </div>
                                             <div class="row no-margin valign-wrapper">
                                                 <div class="col s2">
-                                                    <a href="" class="red-text tooltipped" data-position="top"
-                                                       data-delay="50" data-tooltip="Add my wishlist"><i
-                                                                class="material-icons valign small">favorite</i></a>
+                                                    @if($paquetes->estado == 1)
+
+                                                        <a href="" onclick="addwishlist()" id="w_send" class="red-text tooltipped" data-position="top" data-delay="50" data-tooltip="Add my wishlist"><i class="material-icons valign small grey-text">favorite_border</i></a>
+
+                                                    @elseif($paquetes->estado == 2)
+                                                        <a href="" class="red-text tooltipped" data-position="top"
+                                                           data-delay="50" data-tooltip="Add my wishlist"><i
+                                                                    class="material-icons valign small">favorite</i></a>
+                                                    @endif
                                                 </div>
                                                 <div class="col s10">
                                                     <a href="{{route('home_show_travel_path', array('titulo'=>str_replace(' ','-', strtolower($paquetes->titulo)), 'dias'=>$paquetes->duracion.'-days-tours'))}}" class="waves-effect waves-light btn yellow darken-3"><i
@@ -357,55 +356,49 @@
                 <p class="yellow-text text-darken-4 text-20">BY CATEGORY</p>
             </div>
             <div class="row">
-                <div class="col s3 valign-wrapper">
-                    <a href="{{route('home_show_category_path', 'adventure')}}" class="card hoverable waves-effect">
+                <div class="col s6 m3 l3">
+                    <a href="{{route('home_show_category_path', 'adventure')}}" class="card hoverable waves-effect grey lighten-4">
                         <div class="col s3">
-                            <img src="{{asset('img/icons/trekking.png')}}" alt="" class="circle responsive-img valign">
+                            <img src="{{asset('img/icons/trekking.png')}}" alt="" class="circle responsive-img margin-top-10">
                             <!-- notice the "circle" class -->
                         </div>
-                        <div class="col s9">
-                            <span class="black-text">
-                                ADVENTURE
-                            </span>
+                        <div class="col s9 black-text">
+                               <p>ADVENTURE</p>
                         </div>
                     </a>
                 </div>
-                <div class="col s3 valign-wrapper">
-                    <a href="{{route('home_show_category_path', 'family')}}" class="card hoverable waves-effect">
+                <div class="col s6 m3 l3">
+                    <a href="{{route('home_show_category_path', 'family')}}" class="card hoverable waves-effect grey lighten-4">
                         <div class="col s3">
-                            <img src="{{asset('img/icons/family.png')}}" alt="" class="circle responsive-img">
+                            <img src="{{asset('img/icons/family.png')}}" alt="" class="circle responsive-img margin-top-10">
                             <!-- notice the "circle" class -->
                         </div>
-                        <div class="col s9">
-                            <span class="black-text">
-                                FAMILY
-                            </span>
+
+                        <div class="col s9 black-text">
+                            <p>FAMILY</p>
+                        </div>
+
+                    </a>
+                </div>
+                <div class="col s6 m3 l3">
+                    <a href="{{route('home_show_category_path', 'classic')}}" class="card hoverable waves-effect grey lighten-4">
+                        <div class="col s3">
+                            <img src="{{asset('img/icons/classic.png')}}" alt="" class="circle responsive-img margin-top-10">
+                            <!-- notice the "circle" class -->
+                        </div>
+                        <div class="col s9 black-text">
+                            <p>CLASSIC</p>
                         </div>
                     </a>
                 </div>
-                <div class="col s3 valign-wrapper">
-                    <a href="{{route('home_show_category_path', 'classic')}}" class="card hoverable waves-effect">
+                <div class="col s6 m3 l3">
+                    <a href="{{route('home_show_category_path', 'luxury')}}" class="card hoverable waves-effect grey lighten-4">
                         <div class="col s3">
-                            <img src="{{asset('img/icons/classic.png')}}" alt="" class="circle responsive-img">
+                            <img src="{{asset('img/icons/human.png')}}" alt="" class="circle responsive-img margin-top-10">
                             <!-- notice the "circle" class -->
                         </div>
-                        <div class="col s9">
-                            <span class="black-text">
-                                CLASSIC
-                            </span>
-                        </div>
-                    </a>
-                </div>
-                <div class="col s3 valign-wrapper">
-                    <a href="{{route('home_show_category_path', 'luxury')}}" class="card hoverable waves-effect">
-                        <div class="col s3">
-                            <img src="{{asset('img/icons/human.png')}}" alt="" class="circle responsive-img">
-                            <!-- notice the "circle" class -->
-                        </div>
-                        <div class="col s9">
-                            <span class="black-text">
-                                LUXURY
-                            </span>
+                        <div class="col s9 black-text">
+                            <p>LUXURY</p>
                         </div>
                     </a>
                 </div>
@@ -424,7 +417,7 @@
                 <div class="col s12">
                     <ul class="pagination">
                     @foreach($duracion->sortBy('duracion') as $duraciones)
-                            <li class="waves-effect"><a href="{{route('home_show_days_path', $duraciones->duracion)}}">{{$duraciones->duracion}}</a></li>
+                            <li class="waves-effect hoverable grey lighten-4 card"><a href="{{route('home_show_days_path', $duraciones->duracion)}}">{{$duraciones->duracion}}</a></li>
                     @endforeach
                         {{--<li class="waves-effect active"><a href="#!">16+</a></li>--}}
                     </ul>

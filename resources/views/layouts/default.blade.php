@@ -16,7 +16,7 @@
 
 </head>
 <body>
-<header class="grey darken-4">
+<header class="grey darken-4 hide-on-small-only">
     <div class="container">
         <div class="row valign-wrapper">
             <div class="col m5 l5 hide-on-small-only hide-on-small-and-down hide-on-large-and-down">
@@ -38,7 +38,7 @@
                 <!-- Dropdown Structure -->
                 <ul id='dropdown1' class='dropdown-content header-nav-drop'>
                     <li><a href="{{route('client_auth_index_path')}}"><i class="material-icons right">input</i> Sign in</a></li>
-                    <li><a href="#!">New acoount</a></li>
+                    <li><a href="{{route('client_register_path')}}">New acoount</a></li>
                 </ul>
 
             </div>
@@ -52,21 +52,40 @@
         <ul class="right hide-on-med-and-down">
             <li><a href="{{route('home_show_packages_path')}}">Tours Packages</a></li>
             <li><a href="https://gotoperu.com/destinations/">Destinations</a></li>
-            <li><a href="https://gotoperu.com/getting-to-peru/">Getting to Peru</a></li>
+            <li class="hide-ipad-large"><a href="https://gotoperu.com/getting-to-peru/">Getting to Peru</a></li>
             <li><a href="https://gotoperu.com/about-us/">About Us</a></li>
             <li><a href="https://gotoperu.com/faq/">FAQ</a></li>
             <li><a href="#design" class="yellow-text text-darken-4 header-top-menu">DESIGN</a></li>
             <li></li>
         </ul>
+
         <ul class="side-nav" id="mobile-demo">
-            <li><a href="sass.html">All Included</a></li>
-            <li><a href="badges.html">Ground Package</a></li>
-            <li><a href="collapsible.html">Offers</a></li>
-            <li><a href="mobile.html">Design</a></li>
+            <li><div class="userView">
+                    <div class="background">
+                        <img src="{{asset('img/why/local-travel.jpg')}}" class="responsive-img">
+                    </div>
+                    <a href="#!user"><img class="circle" src="{{asset('img/logos/logo-ave-gotoperu.png')}}"></a>
+                    <a href="#!name"><span class="white-text name">Once in your lifetime!</span></a>
+                    <a href="#!email"><span class="white-text email">(813) 454-9707</span></a>
+                </div>
+            </li>
+            <li><a href="{{route('client_auth_index_path')}}" class="waves-effect"><i class="material-icons">input</i>Sign in</a></li>
+            <li><a href="#!" class="waves-effect"><i class="material-icons">account_circle</i> New acoount</a></li>
+            <li><div class="divider"></div></li>
+            <li><a href="#inquire" class="modal-trigger waves-effect yellow-text text-darken-4"><i class="material-icons yellow-text text-darken-4">message</i>Inquire now</a></li>
+            <li><a href="#design" class="waves-effect"><i class="material-icons">brush</i>Design my trip</a></li>
+            <li><div class="divider"></div></li>
+            {{--<li><a class="subheader">Subheader</a></li>--}}
+            <li><a href="{{route('home_show_packages_path')}}" class="waves-effect">Tours Packages</a></li>
+            <li><a href="https://gotoperu.com/destinations/" class="waves-effect">Destinations</a></li>
+            <li><a href="https://gotoperu.com/getting-to-peru/" class="waves-effect">Getting to Peru</a></li>
+            <li><a href="https://gotoperu.com/about-us/" class="waves-effect">About Us</a></li>
+            <li><a href="https://gotoperu.com/faq/" class="waves-effect">FAQ</a></li>
+
         </ul>
+
     </div>
 </nav>
-
 
 <!-- Modal Structure -->
 <div id="inquire" class="modal modal-inquire">
@@ -127,14 +146,14 @@
 
 @yield('content')
 
-<div class="row testimonials-box">
+<div class="row testimonials-box hide-on-small-only">
     <img src="{{asset('img/banners/banner_1.jpg')}}" alt="" class="responsive-img">
     <div class="col s5 testimonials-box-text margin-top-40">
         <i class="material-icons right white-text">format_quote</i>
-        <h5 class="white-text margin-top-80">Everything about this trip was wonderful and it was because of the
+        <h5 class="white-text margin-top-80 margin-top-ip-0">Everything about this trip was wonderful and it was because of the
             service and attention of the great staff at GOTOPERU</h5>
-        <p class="white-text right-align">ennifer Powers & Family New York - USA</p>
-        <a href="" class="btn waves-effect right">View all testimonials</a>
+        <p class="white-text right-align hide-on-med-only">ennifer Powers & Family New York - USA</p>
+        <a href="" class="btn waves-effect right hide-on-med-only">View all testimonials</a>
     </div>
 </div>
 
@@ -159,7 +178,7 @@
             </div>
 
             <div class="row">
-                <div class="col s3">
+                <div class="col s12 m3 l3">
                     <div class="card hoverable card-customize">
                         <div class="card-image">
                             <img src="{{asset('img/form/machupicchu-2.jpg')}}" id="img_filter_d_cusco">
@@ -176,7 +195,7 @@
                     </div>
                 </div>
 
-                <div class="col s3">
+                <div class="col s12 m3 l3">
                     <div class="card hoverable card-customize">
                         <div class="card-image">
                             <img src="{{asset('img/form/ballestas.jpg')}}" id="img_filter_d_ballestas">
@@ -191,7 +210,7 @@
 
                     </div>
                 </div>
-                <div class="col s3">
+                <div class="col s12 m3 l3">
                     <div class="card hoverable card-customize">
                         <div class="card-image">
                             <img src="{{asset('img/form/colca.jpg')}}" id="img_filter_d_arequipa">
@@ -206,7 +225,7 @@
 
                     </div>
                 </div>
-                <div class="col s3">
+                <div class="col s12 m3 l3">
                     <div class="card hoverable card-customize">
                         <div class="card-image">
                             <img src="{{asset('img/form/amazon.jpg')}}" id="img_filter_d_amazon">
@@ -222,7 +241,7 @@
                     </div>
                 </div>
 
-                <div class="col s3">
+                <div class="col s12 m3 l3">
                     <div class="card hoverable card-customize">
                         <div class="card-image">
                             <img src="{{asset('img/form/lima.jpg')}}" id="img_filter_d_lima">
@@ -238,7 +257,7 @@
                     </div>
                 </div>
 
-                <div class="col s3">
+                <div class="col s12 m3 l3">
                     <div class="card hoverable card-customize">
                         <div class="card-image">
                             <img src="{{asset('img/form/nazca.jpg')}}" id="img_filter_d_nazca">
@@ -254,7 +273,7 @@
                     </div>
                 </div>
 
-                <div class="col s3">
+                <div class="col s12 m3 l3">
                     <div class="card hoverable card-customize">
                         <div class="card-image">
                             <img src="{{asset('img/form/puno.jpg')}}" id="img_filter_d_puno">
@@ -270,7 +289,7 @@
                     </div>
                 </div>
 
-                <div class="col s3">
+                <div class="col s12 m3 l3">
                     <div class="card hoverable card-customize">
                         <div class="card-image">
                             <img src="{{asset('img/form/trujillo.jpg')}}" id="img_filter_d_trujillo">
@@ -295,7 +314,7 @@
             </div>
 
             <div class="row">
-                <div class="col s3">
+                <div class="col s12 m3 l3">
                     <div class="card hoverable card-customize">
                         <div class="card-image">
                             <img src="{{asset('img/form/galapagos.jpg')}}" id="img_filter_d_galapagos">
@@ -311,7 +330,7 @@
                     </div>
                 </div>
 
-                <div class="col s3">
+                <div class="col s12 m3 l3">
                     <div class="card hoverable card-customize">
                         <div class="card-image">
                             <img src="{{asset('img/form/rio.jpg')}}" id="img_filter_d_rio">
@@ -327,7 +346,7 @@
                     </div>
                 </div>
 
-                <div class="col s3">
+                <div class="col s12 m3 l3">
                     <div class="card hoverable card-customize">
                         <div class="card-image">
                             <img src="{{asset('img/form/patagonia.jpg')}}" id="img_filter_d_buenos">
@@ -343,7 +362,7 @@
                     </div>
                 </div>
 
-                <div class="col s3">
+                <div class="col s12 m3 l3">
                     <div class="card hoverable card-customize">
                         <div class="card-image">
                             <img src="{{asset('img/form/uyuni.jpg')}}" id="img_filter_d_uyuni">
@@ -369,19 +388,19 @@
             </div>
 
             <div class="row form-optional-check">
-                <div class="col s3">
+                <div class="col s6 m3 l3 margin-bottom-10">
                     <input type="checkbox" class="filled-in" id="d_budget" name="hotel[]" value="Budget 2 Stars"/>
                     <label for="d_budget" class="hoverable">Budget 2 Stars</label>
                 </div>
-                <div class="col s3">
+                <div class="col s6 m3 l3 margin-bottom-10">
                     <input type="checkbox" class="filled-in" id="d_best" name="hotel[]" value="Best Value 3 Stars"/>
                     <label for="d_best" class="hoverable">Best Value 3 Stars</label>
                 </div>
-                <div class="col s3">
+                <div class="col s6 m3 l3 margin-bottom-10">
                     <input type="checkbox" class="filled-in" id="d_superior" name="hotel[]" value="Superior 4 Stars"/>
                     <label for="d_superior" class="hoverable">Superior 4 Stars</label>
                 </div>
-                <div class="col s3">
+                <div class="col s6 m3 l3 margin-bottom-10">
                     <input type="checkbox" class="filled-in" id="d_luxury" name="hotel[]" value="Luxury 5 Stars"/>
                     <label for="d_luxury" class="hoverable">Luxury 5 Stars</label>
                 </div>
@@ -395,27 +414,27 @@
             </div>
 
             <div class="row form-optional-check">
-                <div class="col s2">
+                <div class="col s6 m2 l2 margin-bottom-10">
                     <input type="checkbox" class="filled-in" id="d_3d" name="trip[]" value="03 - 05 Dias"/>
                     <label for="d_3d" class="hoverable">03 - 05 <span>DAYS</span></label>
                 </div>
-                <div class="col s2">
+                <div class="col s6 m2 l2 margin-bottom-10">
                     <input type="checkbox" class="filled-in" id="d_6d" name="trip[]" value="06 - 08 Dias"/>
                     <label for="d_6d" class="hoverable">06 - 08 <span>DAYS</span></label>
                 </div>
-                <div class="col s2">
+                <div class="col s6 m2 l2 margin-bottom-10">
                     <input type="checkbox" class="filled-in" id="d_9d" name="trip[]" value="09 - 11 Dias"/>
                     <label for="d_9d" class="hoverable">09 - 11 <span>DAYS</span></label>
                 </div>
-                <div class="col s2">
+                <div class="col s6 m2 l2 margin-bottom-10">
                     <input type="checkbox" class="filled-in" id="d_12d" name="trip[]" value="12 - 15 Dias"/>
                     <label for="d_12d" class="hoverable">12 - 15 <span>DAYS</span></label>
                 </div>
-                <div class="col s2">
+                <div class="col s6 m2 l2 margin-bottom-10">
                     <input type="checkbox" class="filled-in" id="d_16d" name="trip[]" value="16+ Dias"/>
                     <label for="d_16d" class="hoverable">16+ <span>DAYS</span></label>
                 </div>
-                <div class="col s2">
+                <div class="col s6 m2 l2 margin-bottom-10">
                     <input type="checkbox" class="filled-in" id="d_unknow" name="trip[]" value="UNKNOW"/>
                     <label for="d_unknow" class="hoverable">UNKNOW</label>
                 </div>
@@ -430,27 +449,27 @@
             </div>
 
             <div class="row form-check-travelers">
-                <div class="col s2">
+                <div class="col s6 m2 l2 margin-bottom-10">
                     <input type="checkbox" class="filled-in" id="d_1p" name="travelers[]" value="1 Persona"/>
                     <label for="d_1p" class="hoverable">1 <span><i class="material-icons">person</i></span></label>
                 </div>
-                <div class="col s2">
+                <div class="col s6 m2 l2 margin-bottom-10">
                     <input type="checkbox" class="filled-in" id="d_2p" name="travelers[]" value="2 Personas"/>
                     <label for="d_2p" class="hoverable">2 <span><i class="material-icons">person</i></span></label>
                 </div>
-                <div class="col s2">
+                <div class="col s6 m2 l2 margin-bottom-10">
                     <input type="checkbox" class="filled-in" id="d_3p" name="travelers[]" value="3 Personas"/>
                     <label for="d_3p" class="hoverable">3 <span><i class="material-icons">person</i></span></label>
                 </div>
-                <div class="col s2">
+                <div class="col s6 m2 l2 margin-bottom-10">
                     <input type="checkbox" class="filled-in" id="d_4p" name="travelers[]" value="4 Personas"/>
                     <label for="d_4p" class="hoverable">4 <span><i class="material-icons">person</i></span></label>
                 </div>
-                <div class="col s2">
+                <div class="col s6 m2 l2 margin-bottom-10">
                     <input type="checkbox" class="filled-in" id="d_5p" name="travelers[]" value="5 Personas"/>
                     <label for="d_5p" class="hoverable">5+ <span><i class="material-icons">person</i></span></label>
                 </div>
-                <div class="col s2">
+                <div class="col s6 m2 l2 margin-bottom-10">
                     <input type="checkbox" class="filled-in" id="d_undecided" name="travelers[]" value="UNDECIDED"/>
                     <label for="d_undecided" class="hoverable text-14">UNDECIDED</label>
                 </div>
@@ -465,7 +484,7 @@
 
 
             <div class="row form-design">
-                <div class="col s6">
+                <div class="col s12 m6 l6">
                     <div class="input-field col s12">
                         <i class="material-icons prefix grey-text text-darken-1">account_circle</i>
                         <input id="d_name" type="text" class="validate">
@@ -493,7 +512,7 @@
                     </div>
                 </div>
 
-                <div class="col s6">
+                <div class="col s12 m6 l6 hide-on-small-only">
                     <div class="col s12 position-relative">
                         <img src="{{asset('img/why/team-travel.jpg')}}" alt="" class="responsive-img">
                         <img src="{{asset('img/icons/24-hours.png')}}" alt="" width="150" class="margin-top-20 img-absolute-top-left">
@@ -534,7 +553,7 @@
     {{--</div>--}}
 </div>
 
-<div class="row">
+<div class="row hide-on-small-only">
 
 
     <div id="sync1" class="owl-carousel">
@@ -545,11 +564,11 @@
 
     </div>
 
-    <div id="sync2" class="owl-carousel">
-        <div class="item"><img src="{{asset('img/banners/care2.jpg')}}" alt="" class="responsive-img"></div>
-        <div class="item"><img src="{{asset('img/banners/care1.jpg')}}" alt="" class="responsive-img"></div>
-        <div class="item"><img src="{{asset('img/banners/care3.jpg')}}" alt="" class="responsive-img"></div>
-        <div class="item"><img src="{{asset('img/banners/care4.jpg')}}" alt="" class="responsive-img"></div>
+    <div id="sync2" class="owl-carousel hide-ipad-large">
+        <div class="item item-2"><img src="{{asset('img/banners/care2.jpg')}}" alt="" class="responsive-img"></div>
+        <div class="item item-2"><img src="{{asset('img/banners/care1.jpg')}}" alt="" class="responsive-img"></div>
+        <div class="item item-2"><img src="{{asset('img/banners/care3.jpg')}}" alt="" class="responsive-img"></div>
+        <div class="item item-2"><img src="{{asset('img/banners/care4.jpg')}}" alt="" class="responsive-img"></div>
     </div>
 
 
@@ -562,7 +581,7 @@
             <p>Closer than you think: 8 hours from New York or Los Angeles!</p>
         </div>
         <div class="row">
-            <div class="col s5">
+            <div class="col s12 m5 s5">
                 <h5 class="margin-top-40">WE ARE ONE PERU´S LEADING GROUP TRAVEL PROVIDERS : GOTOPERU</h5>
                 <p>A local company with local knowledge, expertise and resources, specializing in the design of
                     unforgettable vacations. Our unique activities, Peru tours & excursions, Peru hotel deals,
@@ -571,7 +590,7 @@
                     accommodations, and entertainment and leisure activities. In addition offering different types
                     of travel products like "Online-Booking" and personal "Custom-made Trips"</p>
             </div>
-            <div class="col s7">
+            <div class="col s12 m7 s7">
                 <div class="content-video-1">
                     <img src="{{asset('img/prom-peru.jpg')}}" alt="video" class="responsive-img">
 
@@ -596,7 +615,7 @@
 <div class="container">
     <div class="section">
         <div class="row" id="demo2">
-            <div class="col s4">
+            <div class="col s12 m4 l4">
                 <div class="card">
                     <div class="card-image">
                         <img src="{{asset('img/why/service.jpg')}}" class="circle responsive-img">
@@ -611,7 +630,7 @@
                 </div>
             </div>
 
-            <div class="col s4">
+            <div class="col s12 m4 l4">
                 <div class="card">
                     <div class="card-image">
                         <img src="{{asset('img/why/local-travel.jpg')}}" class="circle responsive-img">
@@ -626,7 +645,7 @@
                 </div>
             </div>
 
-            <div class="col s4">
+            <div class="col s12 m4 l4">
                 <div class="card">
                     <div class="card-image">
                         <img src="{{asset('img/why/team-travel.jpg')}}" class="circle responsive-img">
@@ -641,7 +660,7 @@
                 </div>
             </div>
 
-            <div class="col s4">
+            <div class="col s12 m4 l4">
                 <div class="card">
                     <div class="card-image">
                         <img src="{{asset('img/why/testimonials.jpg')}}" class="circle responsive-img">
@@ -656,7 +675,7 @@
                 </div>
             </div>
 
-            <div class="col s4">
+            <div class="col s12 m4 l4">
                 <div class="card">
                     <div class="card-image">
                         <img src="{{asset('img/why/daily.jpg')}}" class="circle responsive-img">
@@ -671,7 +690,7 @@
                 </div>
             </div>
 
-            <div class="col s4">
+            <div class="col s12 m4 l4">
                 <div class="card">
                     <div class="card-image">
                         <img src="{{asset('img/why/convenient.jpg')}}" class="circle responsive-img">
@@ -698,15 +717,15 @@
     </div>
     <div class="container">
         <div class="row margin-bottom-20">
-            <div class="col s3">
+            <div class="col s6 m3 l3">
                 <img src="{{asset('img/logos/logo-gotoperu.png')}}" alt="">
             </div>
-            <div class="col s3">
+            <div class="col s6 m3 l3">
                 <img src="{{asset('img/logos/logo-latinamerica-2.png')}}" alt="">
             </div>
         </div>
         <div class="row">
-            <div class="col s2">
+            <div class="col s6 m2 l2">
                 <h5 class="yellow-text text-darken-3 text-18 font-moserrat">Peru</h5>
                 <ul class="white-text">
                     <li>Conca Canyon</li>
@@ -717,13 +736,13 @@
                     <li>Peruvian Amazon</li>
                 </ul>
             </div>
-            <div class="col s2">
+            <div class="col s6 m2 l2">
                 <h5 class="yellow-text text-darken-3 text-18 font-moserrat">Brasil</h5>
                 <ul class="white-text">
                     <li>Rio</li>
                 </ul>
             </div>
-            <div class="col s2">
+            <div class="col s6 m2 l2">
                 <h5 class="yellow-text text-darken-3 text-18 font-moserrat">Argentina</h5>
                 <ul class="white-text">
                     <li>Buenos Aires</li>
@@ -731,7 +750,7 @@
                     <li>Patagonia</li>
                 </ul>
             </div>
-            <div class="col s2">
+            <div class="col s6 m2 l2">
                 <h5 class="yellow-text text-darken-3 text-18 font-moserrat">Chile</h5>
                 <ul class="white-text">
                     <li>Atacama</li>
@@ -741,7 +760,7 @@
                     <li>Valparaiso</li>
                 </ul>
             </div>
-            <div class="col s2">
+            <div class="col s6 m2 l2">
                 <h5 class="yellow-text text-darken-3 text-18 font-moserrat">Ecuador</h5>
                 <ul class="white-text">
                     <li>Amazon Ecuador</li>
@@ -750,7 +769,7 @@
                     <li>Quito</li>
                 </ul>
             </div>
-            <div class="col s2">
+            <div class="col s6 m2 l2">
                 <h5 class="yellow-text text-darken-3 text-18 font-moserrat">Bolivia</h5>
                 <ul class="white-text">
                     <li>La Paz</li>
@@ -759,16 +778,16 @@
             </div>
         </div>
         <div class="row white-text">
-            <div class="col s3">
+            <div class="col s12 m3 l3">
                 <p><b>Peru:</b> (051) (84)-262-555</p>
             </div>
-            <div class="col s3">
+            <div class="col s12 m3 l3">
                 <p><b>USA:</b> (001) (813)-454-9707</p>
             </div>
-            <div class="col s3">
+            <div class="col s6 m3 l3">
                 <p><a href="">info@gotoperu.com</a></p>
             </div>
-            <div class="col s3">
+            <div class="col s6 m3 l3">
                 <p><a href="">www.gotoperu.com</a></p>
             </div>
         </div>
@@ -1235,8 +1254,77 @@
             $("#d_send").removeAttr("disabled");
         }
     }
+
+    //WISHLIST
+    function addwishlist(){
+
+
+        $("#w_send").attr("disabled", true);
+
+        $(".u_error-contact").remove();
+
+
+        if(sendMail == "true"){
+            var datos = {
+
+                "name_txt" : s_name,
+                "email_txt" : s_email,
+                "phone_txt" : s_telephone,
+                "comment_txt" : s_comment
+            };
+            $.ajax({
+                data:  datos,
+                url:   '{{route('home_inquire_path')}}',
+                type:  'get',
+
+                beforeSend: function () {
+                    $("#i_send").html('<div class="preloader-wrapper small active">'+
+                        '<div class="spinner-layer spinner-green-only">'+
+                        '<div class="circle-clipper left">'+
+                        '<div class="circle"></div>'+
+                        '</div><div class="gap-patch">'+
+                        '<div class="circle"></div>'+
+                        '</div><div class="circle-clipper right">'+
+                        '<div class="circle"></div>'+
+                        '</div>'+
+                        '</div>'+
+                        '</div>');;
+                },
+                success:  function (response) {
+                    $('#i_form')[0].reset();
+                    $("#i_send").html("Send");
+                    $("#i_congratulation p").html(response);
+                    $("#i_congratulation").fadeIn('slow');
+                    $("#i_send").removeAttr("disabled");
+                }
+            });
+        } else{
+            $("#i_send").removeAttr("disabled");
+        }
+    }
 </script>
 
+<script type="text/javascript">
+    adroll_adv_id = "4NTIYRSA65FPXG2PPH27B2";
+    adroll_pix_id = "DHIYUTVXPFAMHEH6G2GNLB";
+    /* OPTIONAL: provide email to improve user identification */
+    /* adroll_email = "username@example.com"; */
+    (function () {
+        var _onload = function(){
+            if (document.readyState && !/loaded|complete/.test(document.readyState)){setTimeout(_onload, 10);return}
+            if (!window.__adroll_loaded){__adroll_loaded=true;setTimeout(_onload, 50);return}
+            var scr = document.createElement("script");
+            var host = (("https:" == document.location.protocol) ? "https://s.adroll.com" : "http://a.adroll.com");
+            scr.setAttribute('async', 'true');
+            scr.type = "text/javascript";
+            scr.src = host + "/j/roundtrip.js";
+            ((document.getElementsByTagName('head') || [null])[0] ||
+            document.getElementsByTagName('script')[0].parentNode).appendChild(scr);
+        };
+        if (window.addEventListener) {window.addEventListener('load', _onload, false);}
+        else {window.attachEvent('onload', _onload)}
+    }());
+</script>
 
 </body>
 </html>

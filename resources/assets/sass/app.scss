@@ -13,6 +13,9 @@ $secondary-color: #f9a825;
 @import "node_modules/materialize-css/sass/materialize.scss";
 
 @import "variables";
+body{
+  background: #FFF;
+}
 .row{
   margin-bottom: 0 !important;
 }
@@ -239,7 +242,9 @@ nav ul li a{
   width: 100%;
   top:1%;
 }
-
+.pagination li a{
+  padding: 0 30px;
+}
 //.box-slider-banner{
 //  background: rgba(255,255,255,.5);
 //}
@@ -314,6 +319,15 @@ nav ul li a{
 }
 
 //formulario
+.checkout-form label{
+  left: 0;
+}
+.checkout-form [type="radio"]:not(:checked) + label, .checkout-form [type="radio"]:checked + label{
+  display: block;
+  height: 53px;
+  line-height: 63px;
+  padding: 0;
+}
 .card-customize .card-title{
   padding: 0 0 0 3px !important;
   width: 100%;
@@ -454,9 +468,9 @@ span.quotes-duration{
   display: block;
 }
 .btn-date{
-  height: 25px;
-  line-height: 25px;
-  padding: 0 11px;
+  height: 30px;
+  line-height: 30px;
+  padding: 0 15px;
 }
 .btn-checkout{
  width: 100%;

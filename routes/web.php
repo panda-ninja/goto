@@ -129,6 +129,12 @@ Route::get('cliente/logout', [
     'uses' => 'ClientAuthController@destroy',
     'as' => 'client_auth_destroy_path',
 ]);
+
+Route::get('client/resgister', [
+    'uses' => 'ClientAuthController@register',
+    'as' => 'client_register_path',
+]);
+
 Route::group(['middleware'=>'cliente'],function(){
     Route::get('notification/{id}', [
         'uses' => 'PagosController@send',
