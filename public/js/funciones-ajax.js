@@ -1,4 +1,4 @@
-var url3='http://gotoperu.mo';
+var url3='http://gotoperu.travel';
 
 $("#btnBuscar_pqt").click(function(){
     $.ajaxSetup({
@@ -383,4 +383,6 @@ function Buscar_iti(){
         });
     }
 }
+
+
 //# sourceMappingURL=funciones-ajax.js.map
