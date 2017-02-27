@@ -6,6 +6,7 @@ namespace GotoPeru\Http\Controllers;
 use GotoPeru\Cliente;
 use GotoPeru\Cotizacion;
 use GotoPeru\PaqueteCotizacion;
+use GotoPeru\PrecioPaquete;
 use Illuminate\Http\Request;
 //use Symfony\Component\HttpKernel\Client;
 
@@ -78,9 +79,79 @@ class CotizacionController extends Controller
         $paqueteCotizacion->duracion = $dias_plan;
         $paqueteCotizacion->preciocosto = $precio_plan;
         $paqueteCotizacion->descripcion = $descr;
-        $paqueteCotizacion->estado = '0';
+        $paqueteCotizacion->estado = '6';
         $paqueteCotizacion->cotizaciones_id=$idCotizacion;
         $paqueteCotizacion->save();
+
+        $room_t=$request->input('room_t');
+        $room_d=$request->input('room_d');
+        $room_m=$request->input('room_m');
+        $room_s=$request->input('room_s');
+
+        $precio_2_t=$request->input('precio_2_t');
+        $precio_2_d=$request->input('precio_2_d');
+        $precio_2_d_m=$request->input('precio_2_d_m');
+        $precio_2_s=$request->input('precio_2_s');
+
+        $precio_3_t=$request->input('precio_3_t');
+        $precio_3_d=$request->input('precio_3_d');
+        $precio_3_d_m=$request->input('precio_3_d_m');
+        $precio_3_s=$request->input('precio_3_s');
+
+        $precio_4_t=$request->input('precio_4_t');
+        $precio_4_d=$request->input('precio_4_d');
+        $precio_4_d_m=$request->input('precio_4_d_m');
+        $precio_4_s=$request->input('precio_4_s');
+
+        $precio_5_t=$request->input('precio_5_t');
+        $precio_5_d=$request->input('precio_5_d');
+        $precio_5_d_m=$request->input('precio_5_d_m');
+        $precio_5_s=$request->input('precio_5_s');
+
+        $precioPaquetes = new PrecioPaquete();
+        $precioPaquetes->estrellas=2;
+        $precioPaquetes->precio_s=$precio_2_s;
+        $precioPaquetes->personas_s=$room_s;
+        $precioPaquetes->precio_d=$precio_2_d;
+        $precioPaquetes->personas_d=$room_d*2;
+        $precioPaquetes->precio_m=$precio_2_d_m;
+        $precioPaquetes->personas_m=$room_m*2;
+        $precioPaquetes->precio_t=$precio_2_t;
+        $precioPaquetes->personas_t=$room_t*3;
+        $precioPaquetes->paquete_cotizaciones_id=$paqueteCotizacion->id;
+        $precioPaquetes->save();
+        $precioPaquetes->estrellas=3;
+        $precioPaquetes->precio_s=$precio_3_s;
+        $precioPaquetes->personas_s=$room_s;
+        $precioPaquetes->precio_d=$precio_3_d;
+        $precioPaquetes->personas_d=$room_d*2;
+        $precioPaquetes->precio_m=$precio_3_d_m;
+        $precioPaquetes->personas_m=$room_m*2;
+        $precioPaquetes->precio_t=$precio_3_t;
+        $precioPaquetes->personas_t=$room_t*3;
+        $precioPaquetes->save();
+        $precioPaquetes->estrellas=4;
+        $precioPaquetes->precio_s=$precio_4_s;
+        $precioPaquetes->personas_s=$room_s;
+        $precioPaquetes->precio_d=$precio_4_d;
+        $precioPaquetes->personas_d=$room_d*2;
+        $precioPaquetes->precio_m=$precio_4_d_m;
+        $precioPaquetes->personas_m=$room_m*2;
+        $precioPaquetes->precio_t=$precio_4_t;
+        $precioPaquetes->personas_t=$room_t*3;
+        $precioPaquetes->save();
+        $precioPaquetes->estrellas=5;
+        $precioPaquetes->precio_s=$precio_5_s;
+        $precioPaquetes->personas_s=$room_s;
+        $precioPaquetes->precio_d=$precio_5_d;
+        $precioPaquetes->personas_d=$room_d*2;
+        $precioPaquetes->precio_m=$precio_5_d_m;
+        $precioPaquetes->personas_m=$room_m*2;
+        $precioPaquetes->precio_t=$precio_5_t;
+        $precioPaquetes->personas_t=$room_t*3;
+        $precioPaquetes->save();
+
+
         $cotizacion = Cotizacion::findOrFail($idCotizacion);
         $lista_planes = PaqueteCotizacion::where('cotizaciones_id',$idCotizacion)->get();
         $respuesta='<table class="striped">

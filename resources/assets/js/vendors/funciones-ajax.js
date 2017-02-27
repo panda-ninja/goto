@@ -57,6 +57,10 @@ $("#btnBuscar_pqt").click(function(){
     }
 });
 
+var idCotizacion=0;
+var NroClic=0;
+var crear_plan=0;
+
 $("#nuevo_pqt").click(function(){
     $.ajaxSetup({
         headers: {
@@ -115,111 +119,217 @@ $("#nuevo_pqt").click(function(){
     }
 });
 
-var idCotizacion=0;
-var NroClic=0;
 
-var crear_plan=0;
 
 function generar_pqt(){
 
-    if($('#email_3').val()==""){
-        $('#email_3').focus();
-        swal(
-            'Oops...',
-            'Ingrese el email del cliente!',
-            'warning'
-        )
-    }
-        if(idCotizacion==0){
-            console.log('no hay coti');
-            var pemail=$('#email_3').val();
-            var pnropasajeros=$('#nropasajeros').val();
-            var pfecha=$('#fecha').val();
-            // alert(pemail+'-'+pnropasajeros+'-'+pfecha);
-            $.ajaxSetup({
-                headers: {
-                    'X-CSRF-TOKEN': $('[name="_token"]').val()
-                }
-            });
-            $.post(url3+'/guardar_pre_cotizacion', {email: pemail,nropasajeros:pnropasajeros,fecha:pfecha}, function(markup) {
-                if(markup!='0'){
-                     // console.log(markup);
-                    idCotizacion=markup;
-                    console.log('ya se guardo la nueva cotizacion: '+idCotizacion);
-                    var descr=$('#text_descripcion').val();
+    if(crear_plan==1){
+        swal({   title: "Mensaje del sistema",
+                text: "Esta seguro de agregar el plan a la cotizacion",
+                type: "warning",
+                showCancelButton: true,
+                confirmButtonColor: "#DD6B55",
+                confirmButtonText: "Si, Agregar ahora!",
+                cancelButtonText: "No, Cancelar por favor!",
+                closeOnConfirm: false,
+                closeOnCancel: false },
+            function(isConfirm){
+                if (isConfirm) {
+                    if($('#email_3').val()==""){
+                        $('#email_3').focus();
+                        swal(
+                            'Oops...',
+                            'Ingrese el email del cliente!',
+                            'warning'
+                        )
+                    }
+                    if(idCotizacion==0){
+                        console.log('no hay coti');
+                        var pemail=$('#email_3').val();
+                        var pnropasajeros=$('#nropasajeros').val();
+                        var pfecha=$('#fecha').val();
+                        // alert(pemail+'-'+pnropasajeros+'-'+pfecha);
+                        $.ajaxSetup({
+                            headers: {
+                                'X-CSRF-TOKEN': $('[name="_token"]').val()
+                            }
+                        });
+                        $.post(url3+'/guardar_pre_cotizacion', {email: pemail,nropasajeros:pnropasajeros,fecha:pfecha}, function(markup) {
+                            if(markup!='0'){
+                                // console.log(markup);
+                                idCotizacion=markup;
+                                console.log('ya se guardo la nueva cotizacion: '+idCotizacion);
+                                var descr=$('#text_descripcion').val();
+                                var precio_plan=0;
+                                if($('#total').html()!=''){
+                                    precio_plan=$('#total').html();
+                                }
+                                console.log('total:'+precio_plan);
+                                var destinos= '';
+                                jQuery("input[name='chb_destinos[]']:checked").each(function(){
+                                    destinos+= $(this).val() + '[]';
+                                });
+                                destinos=destinos.substring(0, destinos.length-2);
 
-                    var precio_plan=$('#total').html();
-                    console.log('total:'+precio_plan);
-                    var destinos= '';
-                    jQuery("input[name='chb_destinos[]']:checked").each(function(){
-                        destinos+= $(this).val() + '[]';
-                    });
-                    destinos=destinos.substring(0, destinos.length-2);
+                                var iti_titulo= '';
+                                jQuery("textarea.iti_titulo").each(function() {
+                                    iti_titulo+= $(this).val() + '[]';
+                                });
+                                iti_titulo=iti_titulo.substring(0, iti_titulo.length-2);
 
-                    var iti_titulo= '';
-                    jQuery("textarea.iti_titulo").each(function() {
-                        iti_titulo+= $(this).val() + '[]';
-                    });
-                    iti_titulo=iti_titulo.substring(0, iti_titulo.length-2);
+                                var iti_descricion= '';
+                                jQuery("textarea.iti_descripcion").each(function() {
+                                    iti_descricion+= $(this).val() + '[]';
+                                });
+                                iti_descricion=iti_descricion.substring(0, iti_descricion.length-2);
+                                var room_t=$('#room_t').val();
+                                var room_d=$('#room_d').val();
+                                var room_m=$('#room_m').val();
+                                var room_s=$('#room_s').val();
 
-                    var iti_descricion= '';
-                    jQuery("textarea.iti_descripcion").each(function() {
-                        iti_descricion+= $(this).val() + '[]';
-                    });
-                    iti_descricion=iti_descricion.substring(0, iti_descricion.length-2);
-                    // console.log(valor);
-                    $.ajax({
-                        type: 'POST',
-                        url: url3+'/guardar_plan_cotizacion',
-                        // data: $('#form_plan').serializeArray(),
-                        data: $('#form_plan').serialize()+'&&descr='+descr+'&&precio_plan='+precio_plan+'&&idCotizacion='+idCotizacion+'&&destinos='+destinos+'&&iti_titulo='+iti_titulo+'&&iti_descricion='+iti_descricion,
-                        // data:valor,
-                        // Mostramos un mensaje con la respuesta de PHP
-                        success: function(data){
-                            $('#list_planes').html('');
-                            $('#lista_plan_cotizacion').html(data);
+                                var precio_2_t=$('#precio_2_t').val();
+                                var precio_2_d=$('#precio_2_d').val();
+                                var precio_2_d_m=$('#precio_2_d_m').val();
+                                var precio_2_s=$('#precio_2_s').val();
+
+                                var precio_3_t=$('#precio_3_t').val();
+                                var precio_3_d=$('#precio_3_d').val();
+                                var precio_3_d_m=$('#precio_3_d_m').val();
+                                var precio_3_s=$('#precio_3_s').val();
+
+                                var precio_4_t=$('#precio_4_t').val();
+                                var precio_4_d=$('#precio_4_d').val();
+                                var precio_4_d_m=$('#precio_4_d_m').val();
+                                var precio_4_s=$('#precio_4_s').val();
+
+                                var precio_5_t=$('#precio_5_t').val();
+                                var precio_5_d=$('#precio_5_d').val();
+                                var precio_5_d_m=$('#precio_5_d_m').val();
+                                var precio_5_s=$('#precio_5_s').val();
+
+                                var precios='room_t='+room_t+'&&room_d='+room_d+'&&room_m='+room_m+'&&room_s='+room_s+
+                                            '&&precio_2_t='+precio_2_t+'&&precio_2_d='+precio_2_d+'&&precio_2_d_m='+precio_2_d_m+'&&precio_2_s='+precio_2_s+
+                                            '&&precio_3_t='+precio_3_t+'&&precio_3_d='+precio_3_d+'&&precio_3_d_m='+precio_3_d_m+'&&precio_3_s='+precio_3_s+
+                                            '&&precio_4_t='+precio_4_t+'&&precio_4_d='+precio_4_d+'&&precio_4_d_m='+precio_4_d_m+'&&precio_4_s='+precio_4_s+
+                                            '&&precio_5_t='+precio_5_t+'&&precio_5_d='+precio_5_d+'&&precio_5_d_m='+precio_5_d_m+'&&precio_5_s='+precio_5_s;
+                                    // console.log(valor);
+                                $.ajax({
+                                    type: 'POST',
+                                    url: url3+'/guardar_plan_cotizacion',
+                                    // data: $('#form_plan').serializeArray(),
+                                    data: $('#form_plan').serialize()+'&&'+precios+'&&descr='+descr+'&&precio_plan='+precio_plan+'&&idCotizacion='+idCotizacion+'&&destinos='+destinos+'&&iti_titulo='+iti_titulo+'&&iti_descricion='+iti_descricion,
+                                    // data:valor,
+                                    // Mostramos un mensaje con la respuesta de PHP
+                                    success: function(data){
+                                        $('#list_planes').html('');
+                                        $('#lista_plan_cotizacion').html(data);
+                                        crear_plan=0;
+                                    }
+                                });
+
+                                // NroClic=1;
+                            }
+                            else{
+                                // console.log('error de registro cerrarmos :'+markup);
+                                idCotizacion=markup;
+                                swal(
+                                    'Oops...',
+                                    'No se encontró al cliente '+pemail+'!',
+                                    'warning'
+                                );
+                                $( "#cerrar_modal" ).trigger( "click" );
+                            }
+                        }).fail(function (markup) {
+                            // console.log('Fail cerrarmos :'+markup);
+                            idCotizacion=0;
+                            swal(
+                                'Oops...',
+                                'currio una error vuelva a intentarlo por favor (cliente:'+pemail+', '+markup+')',
+                                'warning'
+                            );
+                            // $( "#cerrar_modal" ).trigger( "click" );
+                        });
+                    }
+                    else{
+                        console.log('ya se guardo la nueva cotizacion: '+idCotizacion);
+                        var descr=$('#text_descripcion').val();
+
+                        var precio_plan=0;
+                        if($('#total').html()!=''){
+                            precio_plan=$('#total').html();
                         }
-                    });
+                        console.log('total:'+precio_plan);
+                        var destinos= '';
+                        jQuery("input[name='chb_destinos[]']:checked").each(function(){
+                            destinos+= $(this).val() + '[]';
+                        });
+                        destinos=destinos.substring(0, destinos.length-2);
 
-                    // NroClic=1;
+                        var iti_titulo= '';
+                        jQuery("textarea.iti_titulo").each(function() {
+                            iti_titulo+= $(this).val() + '[]';
+                        });
+                        iti_titulo=iti_titulo.substring(0, iti_titulo.length-2);
+
+                        var iti_descricion= '';
+                        jQuery("textarea.iti_descripcion").each(function() {
+                            iti_descricion+= $(this).val() + '[]';
+                        });
+                        iti_descricion=iti_descricion.substring(0, iti_descricion.length-2);
+                        var room_t=$('#room_t').val();
+                        var room_d=$('#room_d').val();
+                        var room_m=$('#room_m').val();
+                        var room_s=$('#room_s').val();
+
+                        var precio_2_t=$('#precio_2_t').val();
+                        var precio_2_d=$('#precio_2_d').val();
+                        var precio_2_d_m=$('#precio_2_d_m').val();
+                        var precio_2_s=$('#precio_2_s').val();
+
+                        var precio_3_t=$('#precio_3_t').val();
+                        var precio_3_d=$('#precio_3_d').val();
+                        var precio_3_d_m=$('#precio_3_d_m').val();
+                        var precio_3_s=$('#precio_3_s').val();
+
+                        var precio_4_t=$('#precio_4_t').val();
+                        var precio_4_d=$('#precio_4_d').val();
+                        var precio_4_d_m=$('#precio_4_d_m').val();
+                        var precio_4_s=$('#precio_4_s').val();
+
+                        var precio_5_t=$('#precio_5_t').val();
+                        var precio_5_d=$('#precio_5_d').val();
+                        var precio_5_d_m=$('#precio_5_d_m').val();
+                        var precio_5_s=$('#precio_5_s').val();
+
+                        var precios='room_t='+room_t+'&&room_d='+room_d+'&&room_m='+room_m+'&&room_s='+room_s+
+                            '&&precio_2_t='+precio_2_t+'&&precio_2_d='+precio_2_d+'&&precio_2_d_m='+precio_2_d_m+'&&precio_2_s='+precio_2_s+
+                            '&&precio_3_t='+precio_3_t+'&&precio_3_d='+precio_3_d+'&&precio_3_d_m='+precio_3_d_m+'&&precio_3_s='+precio_3_s+
+                            '&&precio_4_t='+precio_4_t+'&&precio_4_d='+precio_4_d+'&&precio_4_d_m='+precio_4_d_m+'&&precio_4_s='+precio_4_s+
+                            '&&precio_5_t='+precio_5_t+'&&precio_5_d='+precio_5_d+'&&precio_5_d_m='+precio_5_d_m+'&&precio_5_s='+precio_5_s;
+                        // console.log(valor);
+                        $.ajax({
+                            type: 'POST',
+                            url: url3+'/guardar_plan_cotizacion',
+                            // data: $('#form_plan').serializeArray(),
+                            data: $('#form_plan').serialize()+'&&'+precios+'&&descr='+descr+'&&precio_plan='+precio_plan+'&&idCotizacion='+idCotizacion+'&&destinos='+destinos+'&&iti_titulo='+iti_titulo+'&&iti_descricion='+iti_descricion,
+                            // data:valor,
+                            // Mostramos un mensaje con la respuesta de PHP
+                            success: function(data){
+                                $('#list_planes').html('');
+                                $('#lista_plan_cotizacion').html(data);
+                                crear_plan=0;
+                            }
+                        });
+                    }
+                    swal("Agregado!", "Tu pla de cotizacion fue agregado :)", "success");
                 }
-                else{
-                      // console.log('error de registro cerrarmos :'+markup);
-                    idCotizacion=markup;
-                    swal(
-                        'Oops...',
-                        'No se encontró al cliente '+pemail+'!',
-                        'warning'
-                    );
-                    $( "#cerrar_modal" ).trigger( "click" );
+                else {
+                    swal("Cancelado", "Tu plan de cotizacion no fue agregado :(", "error");
                 }
-            }).fail(function (markup) {
-                  // console.log('Fail cerrarmos :'+markup);
-                idCotizacion=0;
-                swal(
-                    'Oops...',
-                    'currio una error vuelva a intentarlo por favor (cliente:'+pemail+', '+markup+')',
-                    'warning'
-                );
-                // $( "#cerrar_modal" ).trigger( "click" );
             });
-        }
-        else{
-            console.log('ya se tenia guardado la cotizacion: '+idCotizacion);
-            var descr=$('#text_descripcion').val();
-            console.log(descr);
-            $.ajax({
-                type: 'POST',
-                url: url3+'/guardar_plan_cotizacion',
-                data: $('#form_plan').serialize()+'&&descr='+descr,
-                // Mostramos un mensaje con la respuesta de PHP
-                success: function(data){
-                    $('#lista_plan_cotizacion').html(data);
-                }
-            });
-        }
+
     }
-
+}
 function Buscar_iti(){
     var valor=$('#buscar').val();
     if(valor.trim()!=""){
@@ -273,3 +383,4 @@ function Buscar_iti(){
         });
     }
 }
+
