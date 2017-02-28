@@ -255,6 +255,11 @@ Route::group(['middleware'=>'admin'],function(){
         'uses' => 'CotizacionController@cotizacion',
         'as' => 'cotizacion_path',
     ]);
+    Route::post('/enviar_plan', [
+        'uses' => 'CotizacionController@enviar_plan_cotizacion',
+        'as' => 'enviar_plan_path',
+    ]);
+
 });
 /*
 Route::get('login', [
