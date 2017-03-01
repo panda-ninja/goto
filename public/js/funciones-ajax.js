@@ -128,7 +128,7 @@ function generar_pqt(){
                 text: "Esta seguro de agregar el plan a la cotizacion",
                 type: "warning",
                 showCancelButton: true,
-                confirmButtonColor: "#DD6B55",
+                confirmButtonColor: "#388E3C",
                 confirmButtonText: "Si, Agregar ahora!",
                 cancelButtonText: "No, Cancelar por favor!",
                 closeOnConfirm: false,
@@ -213,8 +213,15 @@ function generar_pqt(){
                                             '&&precio_4_t='+precio_4_t+'&&precio_4_d='+precio_4_d+'&&precio_4_d_m='+precio_4_d_m+'&&precio_4_s='+precio_4_s+
                                             '&&precio_5_t='+precio_5_t+'&&precio_5_d='+precio_5_d+'&&precio_5_d_m='+precio_5_d_m+'&&precio_5_s='+precio_5_s;
                                     // console.log(valor);
+                                // var formData = new FormData();
+                                // var file=document.getElementById("foto").files[0];
+                                // formData.append('foto',file);
+                                console.log(file);
                                 $.ajax({
                                     type: 'POST',
+                                    contentType:false,
+                                    processData:false,
+                                    // cache:false,
                                     url: url3+'/guardar_plan_cotizacion',
                                     // data: $('#form_plan').serializeArray(),
                                     data: $('#form_plan').serialize()+'&&'+precios+'&&descr='+descr+'&&precio_plan='+precio_plan+'&&idCotizacion='+idCotizacion+'&&destinos='+destinos+'&&iti_titulo='+iti_titulo+'&&iti_descricion='+iti_descricion,
@@ -389,7 +396,7 @@ function enviarPlan(id){
             text: "Desea enviar el plan",
             type: "warning",
             showCancelButton: true,
-            confirmButtonColor: "#DD6B55",
+            confirmButtonColor: "#388E3C",
             confirmButtonText: "Si, enviar ahora!",
             cancelButtonText: "No, cancelar por favor!",
             closeOnConfirm: false,

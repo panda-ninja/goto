@@ -122,7 +122,7 @@
                                     </div>
 
                                 </div>
-                                <form mane="form_plan" id="form_plan" action="" method="post" >
+                                <form mane="form_plan" id="form_plan" enctype="multipart/form-data" action="" method="post" >
                                     <div id="list_planes"></div>
                                 </form>
                             </div>
@@ -140,53 +140,53 @@
                             </div>
                         </div>
                         <div id="lista_plan_cotizacion" class="card-action">
-                            <table class="striped">
-                                <thead>
-                                <tr>
-                                    <th data-field="id">Codigo</th>
-                                    <th data-field="name">Titulo</th>
-                                    <th data-field="number">Nro pasajeros</th>
-                                    <th data-field="date">Fecha</th>
-                                    <th data-field="name">Opciones</th>
-                                </tr>
-                                </thead>
-                                <tbody>
-                                <tr>
-                                    <td>GTP500</td>
-                                    <td>Titulo</td>
-                                    <td>5</td>
-                                    <td>2017-06-11</td>
-                                    <td class="">
-                                        <a href="#!"><i class="mdi-content-create small"></i></a>
-                                        <a href="#!" class="red-text text-darken-2"><i class="mdi-action-delete small"></i></a>
-                                        <a href="#!" class="green-text text-darken-2"><i class="mdi-content-send small"></i></a>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>GTP501</td>
-                                    <td>Titulo</td>
-                                    <td>5</td>
-                                    <td>2017-06-11</td>
-                                    <td class="">
-                                        <a href="#!"><i class="mdi-content-create small"></i></a>
-                                        <a href="#!" class="red-text text-darken-2"><i class="mdi-action-delete small"></i></a>
-                                        <a href="#!" class="grey-text text-darken-1"><i class="mdi-content-send small"></i></a>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>GTP502</td>
-                                    <td>Titulo</td>
-                                    <td>5</td>
-                                    <td>2017-06-11</td>
-                                    <td class="">
-                                        <a href="#!"><i class="mdi-content-create small"></i></a>
-                                        <a href="#!" class="red-text text-darken-2"><i class="mdi-action-delete small"></i></a>
-                                        <a href="#!" class="green-text text-darken-2"><i class="mdi-content-send small"></i></a>
-                                    </td>
-                                </tr>
-                                </tbody>
+                            {{--<table class="striped">--}}
+                                {{--<thead>--}}
+                                {{--<tr>--}}
+                                    {{--<th data-field="id">Codigo</th>--}}
+                                    {{--<th data-field="name">Titulo</th>--}}
+                                    {{--<th data-field="number">Nro pasajeros</th>--}}
+                                    {{--<th data-field="date">Fecha</th>--}}
+                                    {{--<th data-field="name">Opciones</th>--}}
+                                {{--</tr>--}}
+                                {{--</thead>--}}
+                                {{--<tbody>--}}
+                                {{--<tr>--}}
+                                    {{--<td>GTP500</td>--}}
+                                    {{--<td>Titulo</td>--}}
+                                    {{--<td>5</td>--}}
+                                    {{--<td>2017-06-11</td>--}}
+                                    {{--<td class="">--}}
+                                        {{--<a href="#!"><i class="mdi-content-create small"></i></a>--}}
+                                        {{--<a href="#!" class="red-text text-darken-2"><i class="mdi-action-delete small"></i></a>--}}
+                                        {{--<a href="#!" class="green-text text-darken-2"><i class="mdi-content-send small"></i></a>--}}
+                                    {{--</td>--}}
+                                {{--</tr>--}}
+                                {{--<tr>--}}
+                                    {{--<td>GTP501</td>--}}
+                                    {{--<td>Titulo</td>--}}
+                                    {{--<td>5</td>--}}
+                                    {{--<td>2017-06-11</td>--}}
+                                    {{--<td class="">--}}
+                                        {{--<a href="#!"><i class="mdi-content-create small"></i></a>--}}
+                                        {{--<a href="#!" class="red-text text-darken-2"><i class="mdi-action-delete small"></i></a>--}}
+                                        {{--<a href="#!" class="grey-text text-darken-1"><i class="mdi-content-send small"></i></a>--}}
+                                    {{--</td>--}}
+                                {{--</tr>--}}
+                                {{--<tr>--}}
+                                    {{--<td>GTP502</td>--}}
+                                    {{--<td>Titulo</td>--}}
+                                    {{--<td>5</td>--}}
+                                    {{--<td>2017-06-11</td>--}}
+                                    {{--<td class="">--}}
+                                        {{--<a href="#!"><i class="mdi-content-create small"></i></a>--}}
+                                        {{--<a href="#!" class="red-text text-darken-2"><i class="mdi-action-delete small"></i></a>--}}
+                                        {{--<a href="#!" class="green-text text-darken-2"><i class="mdi-content-send small"></i></a>--}}
+                                    {{--</td>--}}
+                                {{--</tr>--}}
+                                {{--</tbody>--}}
 
-                            </table>
+                            {{--</table>--}}
                         </div>
                     </div>
 

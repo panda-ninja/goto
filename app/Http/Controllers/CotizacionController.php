@@ -65,6 +65,17 @@ class CotizacionController extends Controller
     public function guardar_plan_cotizacion(Request $request)
     {
 
+        $destinationPath ='/img/tmp';
+        $upload_success = Input::file('foto')->move($destinationPath,"archivito");
+
+//        $fil=$request->input->file('foto');
+////        Input::file('foto')->move($destinationPath, $fileName);
+//        $nombre_archivo = $_FILES['foto']['name'];
+//        $tipo_archivo = $_FILES['foto']['type'];
+//        $tamano_archivo = $_FILES['foto']['size'];
+//        $tmp_archivo = $_FILES['foto']['tmp_name'];
+//        $archivador = $upload_folder . '/' . $nombre_archivo;
+//        move_uploaded_file($tmp_archivo, $archivador);
 
         $idCotizacion=$request->input('idCotizacion');
         $codigo_plan=$request->input('codigo_plan');
@@ -80,6 +91,7 @@ class CotizacionController extends Controller
         $paqueteCotizacion->preciocosto = $precio_plan;
         $paqueteCotizacion->descripcion = $descr;
         $paqueteCotizacion->estado = '6';
+        $paqueteCotizacion->imagen=$archivador;
         $paqueteCotizacion->cotizaciones_id=$idCotizacion;
         $paqueteCotizacion->save();
 

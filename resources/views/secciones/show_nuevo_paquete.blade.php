@@ -49,23 +49,37 @@ $Paquete='';
     </div>
     <hr>
     <div class="row">
-        <form class="col s12 m12 " action="" method="post" >
+        <form class="col s12 m12 " action="" method="post">
             <div class="row">
                 <div class="input-field col s12 m6 l6">
-                    <b>Descripcion</b>
-                    <textarea name="text_descripcion" id="text_descripcion"></textarea>
-                    <script>
-                        $(function(){
-                            $('#text_descripcion')
-                                    .on('froalaEditor.initialized', function (e, editor) {
-                                        $('#text_descripcion').parents('form').on('submit', function () {
+                    <div class="row">
+                        <div class="file-field input-field col m12">
+                            <div class="btn">
+                                <span>Foto</span>
+                                <input type="file" name="foto" id="foto">
+                            </div>
+                            <div class="file-path-wrapper">
+                                <input class="file-path validate" type="text">
+                            </div>
+                        </div>
+                        <div class="input-field col m12">
+                            <b>Descripcion</b>
+                            <textarea name="text_descripcion" id="text_descripcion"></textarea>
+                            <script>
+                                $(function(){
+                                    $('#text_descripcion')
+                                            .on('froalaEditor.initialized', function (e, editor) {
+                                                $('#text_descripcion').parents('form').on('submit', function () {
 //                                        console.log($('#text_descripcion').val());
 //                                        return false;
-                                        })
-                                    })
-                                    .froalaEditor({iframe:false,enter: $.FroalaEditor.ENTER_P, placeholderText: null})
-                        });
-                    </script>
+                                                })
+                                            })
+                                            .froalaEditor({iframe:false,enter: $.FroalaEditor.ENTER_P, placeholderText: null})
+                                });
+                            </script>
+                        </div>
+                    </div>
+
                 </div>
                 <div class="input-field col s12 m6 l6">
                     <table class="table table1 borde-tabla-habitacion centrar">
