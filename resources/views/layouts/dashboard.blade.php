@@ -3,7 +3,7 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no"/>
-    <title>Parallax Template - Materialize</title>
+    <title>{{auth()->guard('cliente')->user()->nombres.', '.auth()->guard('cliente')->user()->apellidos}}</title>
 
     <!-- CSS  -->
     <link href="{{asset('css/app.css')}}" type="text/css" rel="stylesheet" media="screen,projection"/>
@@ -87,6 +87,7 @@
 
 
                 </div>
+
 
                 <div class="collection">
                     <a href="{{route('quotes_path')}}" class="collection-item">Quotes<span class="badge">1</span></a>
