@@ -218,7 +218,7 @@ function generar_pqt(){
                                 // formData.append('foto',file);
                                 // console.log(file);
                                 var formData = new FormData();
-                                var foto=$('#foto').val();
+                                var foto=$('#foto');
                                 formData.append("foto", foto);
                                 $.ajax({
                                     type: 'POST',
@@ -226,8 +226,8 @@ function generar_pqt(){
                                     processData:false,
                                     // cache:false,
                                     url: url3+'/guardar_plan_cotizacion',
-                                    // data: $('#form_plan').serializeArray(),
-                                    data: $('#form_plan').serialize()+'&&'+formData+'&&'+precios+'&&descr='+descr+'&&precio_plan='+precio_plan+'&&idCotizacion='+idCotizacion+'&&destinos='+destinos+'&&iti_titulo='+iti_titulo+'&&iti_descricion='+iti_descricion,
+                                    data: formData,
+                                    // data: $('#form_plan').serialize()+'&&'+formData+'&&'+precios+'&&descr='+descr+'&&precio_plan='+precio_plan+'&&idCotizacion='+idCotizacion+'&&destinos='+destinos+'&&iti_titulo='+iti_titulo+'&&iti_descricion='+iti_descricion,
                                     // data:valor,
                                     // Mostramos un mensaje con la respuesta de PHP
                                     success: function(data){
