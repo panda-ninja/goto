@@ -66,7 +66,9 @@ class CotizacionController extends Controller
     {
 
         $destinationPath ='/img/tmp';
-        $upload_success = Input::file('foto')->move($destinationPath,"archivito");
+        $foto=$request->foto;
+        $path = $foto->path();
+//        $upload_success = $foto->move($destinationPath,"archivito");
 
 //        $fil=$request->input->file('foto');
 ////        Input::file('foto')->move($destinationPath, $fileName);
@@ -91,7 +93,7 @@ class CotizacionController extends Controller
         $paqueteCotizacion->preciocosto = $precio_plan;
         $paqueteCotizacion->descripcion = $descr;
         $paqueteCotizacion->estado = '6';
-        $paqueteCotizacion->imagen=$archivador;
+        $paqueteCotizacion->imagen=$path;
         $paqueteCotizacion->cotizaciones_id=$idCotizacion;
         $paqueteCotizacion->save();
 

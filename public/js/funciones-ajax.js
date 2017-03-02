@@ -216,7 +216,10 @@ function generar_pqt(){
                                 // var formData = new FormData();
                                 // var file=document.getElementById("foto").files[0];
                                 // formData.append('foto',file);
-                                console.log(file);
+                                // console.log(file);
+                                var formData = new FormData();
+                                var foto=$('#foto').val();
+                                formData.append("foto", foto);
                                 $.ajax({
                                     type: 'POST',
                                     contentType:false,
@@ -224,7 +227,7 @@ function generar_pqt(){
                                     // cache:false,
                                     url: url3+'/guardar_plan_cotizacion',
                                     // data: $('#form_plan').serializeArray(),
-                                    data: $('#form_plan').serialize()+'&&'+precios+'&&descr='+descr+'&&precio_plan='+precio_plan+'&&idCotizacion='+idCotizacion+'&&destinos='+destinos+'&&iti_titulo='+iti_titulo+'&&iti_descricion='+iti_descricion,
+                                    data: $('#form_plan').serialize()+'&&'+formData+'&&'+precios+'&&descr='+descr+'&&precio_plan='+precio_plan+'&&idCotizacion='+idCotizacion+'&&destinos='+destinos+'&&iti_titulo='+iti_titulo+'&&iti_descricion='+iti_descricion,
                                     // data:valor,
                                     // Mostramos un mensaje con la respuesta de PHP
                                     success: function(data){
@@ -233,8 +236,6 @@ function generar_pqt(){
                                         crear_plan=0;
                                     }
                                 });
-
-                                // NroClic=1;
                             }
                             else{
                                 // console.log('error de registro cerrarmos :'+markup);
