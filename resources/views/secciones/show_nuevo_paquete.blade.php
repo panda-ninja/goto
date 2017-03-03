@@ -49,7 +49,7 @@ $Paquete='';
     </div>
     <hr>
     <div class="row">
-        <form class="col s12 m12 " action="" method="post">
+        {{--<form class="col s12 m12 " action="" method="post">--}}
             <div class="row">
                 <div class="input-field col s12 m6 l6">
                     <div class="row">
@@ -300,6 +300,6 @@ $Paquete='';
                     <input type="hidden" name="nroItis" id="nroItis" value="{{$j}}">
                 </div>
             </div>
-        </form>
+        {{--</form>--}}
     </div>
 </div>

@@ -66,9 +66,9 @@ class CotizacionController extends Controller
     {
 
         $destinationPath ='/img/tmp';
-        $foto=$request->foto;
-        $path = $foto->path();
-
+        $foto=$request->file('foto');
+        $path = $foto->getClientOriginalName();
+        $ext = $foto->getClientOriginalExtension();
 //        $upload_success = $foto->move($destinationPath,"archivito");
 
 //        $fil=$request->input->file('foto');

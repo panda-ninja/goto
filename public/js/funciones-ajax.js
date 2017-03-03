@@ -217,14 +217,14 @@ function generar_pqt(){
                                 // var file=document.getElementById("foto").files[0];
                                 // formData.append('foto',file);
                                 // console.log(file);
-                                var formData = new FormData();
-                                var foto=$('#foto');
-                                formData.append("foto", foto);
+                                var formData = new FormData($('#form_plan')[0]);
+                                // var foto=document.getElementById("foto");
+                                // formData.append("foto", foto);
                                 $.ajax({
                                     type: 'POST',
                                     contentType:false,
                                     processData:false,
-                                    // cache:false,
+                                    cache:false,
                                     url: url3+'/guardar_plan_cotizacion',
                                     data: formData,
                                     // data: $('#form_plan').serialize()+'&&'+formData+'&&'+precios+'&&descr='+descr+'&&precio_plan='+precio_plan+'&&idCotizacion='+idCotizacion+'&&destinos='+destinos+'&&iti_titulo='+iti_titulo+'&&iti_descricion='+iti_descricion,
