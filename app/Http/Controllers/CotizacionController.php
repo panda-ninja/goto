@@ -65,6 +65,20 @@ class CotizacionController extends Controller
     public function guardar_plan_cotizacion(Request $request)
     {
 
+        $destinationPath ='/img/tmp';
+        $foto=$request->file('foto');
+        $path = $foto->getClientOriginalName();
+        $ext = $foto->getClientOriginalExtension();
+//        $upload_success = $foto->move($destinationPath,"archivito");
+
+//        $fil=$request->input->file('foto');
+////        Input::file('foto')->move($destinationPath, $fileName);
+//        $nombre_archivo = $_FILES['foto']['name'];
+//        $tipo_archivo = $_FILES['foto']['type'];
+//        $tamano_archivo = $_FILES['foto']['size'];
+//        $tmp_archivo = $_FILES['foto']['tmp_name'];
+//        $archivador = $upload_folder . '/' . $nombre_archivo;
+//        move_uploaded_file($tmp_archivo, $archivador);
 
         $idCotizacion=$request->input('idCotizacion');
         $codigo_plan=$request->input('codigo_plan');
@@ -80,6 +94,7 @@ class CotizacionController extends Controller
         $paqueteCotizacion->preciocosto = $precio_plan;
         $paqueteCotizacion->descripcion = $descr;
         $paqueteCotizacion->estado = '6';
+        $paqueteCotizacion->imagen=$path;
         $paqueteCotizacion->cotizaciones_id=$idCotizacion;
         $paqueteCotizacion->save();
 
@@ -120,6 +135,7 @@ class CotizacionController extends Controller
         $precioPaquetes->personas_t=$room_t*3;
         $precioPaquetes->paquete_cotizaciones_id=$paqueteCotizacion->id;
         $precioPaquetes->save();
+        $precioPaquetes = new PrecioPaquete();
         $precioPaquetes->estrellas=3;
         $precioPaquetes->precio_s=$precio_3_s;
         $precioPaquetes->personas_s=$room_s;
@@ -129,7 +145,9 @@ class CotizacionController extends Controller
         $precioPaquetes->personas_m=$room_m*2;
         $precioPaquetes->precio_t=$precio_3_t;
         $precioPaquetes->personas_t=$room_t*3;
+        $precioPaquetes->paquete_cotizaciones_id=$paqueteCotizacion->id;
         $precioPaquetes->save();
+        $precioPaquetes = new PrecioPaquete();
         $precioPaquetes->estrellas=4;
         $precioPaquetes->precio_s=$precio_4_s;
         $precioPaquetes->personas_s=$room_s;
@@ -139,7 +157,9 @@ class CotizacionController extends Controller
         $precioPaquetes->personas_m=$room_m*2;
         $precioPaquetes->precio_t=$precio_4_t;
         $precioPaquetes->personas_t=$room_t*3;
+        $precioPaquetes->paquete_cotizaciones_id=$paqueteCotizacion->id;
         $precioPaquetes->save();
+        $precioPaquetes = new PrecioPaquete();
         $precioPaquetes->estrellas=5;
         $precioPaquetes->precio_s=$precio_5_s;
         $precioPaquetes->personas_s=$room_s;
@@ -149,6 +169,7 @@ class CotizacionController extends Controller
         $precioPaquetes->personas_m=$room_m*2;
         $precioPaquetes->precio_t=$precio_5_t;
         $precioPaquetes->personas_t=$room_t*3;
+        $precioPaquetes->paquete_cotizaciones_id=$paqueteCotizacion->id;
         $precioPaquetes->save();
 
 
@@ -180,10 +201,10 @@ class CotizacionController extends Controller
                                 <a href="#!" class="red-text text-darken-2"><i class="mdi-action-delete small"></i></a>';
 
             if($planes->estado==1){
-                $respuesta.='<a href="#!" class="grey-text text-darken-1"><i class="mdi-content-send small"></i></a>';
+                $respuesta.='<a id="send'.$planes->id.'" href="#!" class="grey-text text-darken-1" onclick="enviarPlan('.$planes->id.')"><i class="mdi-content-send small"></i></a>';
             }
             else{
-            $respuesta.='<a href="#!" class="green-text text-darken-2"><i class="mdi-content-send small"></i></a>';
+            $respuesta.='<a id="send'.$planes->id.'" href="#!" class="green-text text-darken-2"  onclick="enviarPlan('.$planes->id.')"><i class="mdi-content-send small"></i></a>';
             }
             $respuesta.='</td>
                         </tr>
@@ -200,6 +221,15 @@ class CotizacionController extends Controller
 //        return $request->input('valor');
 
     }
+    public function enviar_plan_cotizacion(Request $request)
+    {
+        $id=$request->input('id');
+        $paqueteCotizacion = PaqueteCotizacion::findOrFail($id);
+        $paqueteCotizacion->estado=1;
+        $paqueteCotizacion->save();
+        return 1;
+    }
+
     public function create()
     {
         //

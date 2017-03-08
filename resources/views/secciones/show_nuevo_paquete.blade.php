@@ -49,30 +49,44 @@ $Paquete='';
     </div>
     <hr>
     <div class="row">
-        <form class="col s12 m12 " action="" method="post" >
+        {{--<form class="col s12 m12 " action="" method="post">--}}
             <div class="row">
                 <div class="input-field col s12 m6 l6">
-                    <b>Descripcion</b>
-                    <textarea name="text_descripcion" id="text_descripcion"></textarea>
-                    <script>
-                        $(function(){
-                            $('#text_descripcion')
-                                    .on('froalaEditor.initialized', function (e, editor) {
-                                        $('#text_descripcion').parents('form').on('submit', function () {
+                    <div class="row">
+                        <div class="file-field input-field col m12">
+                            <div class="btn">
+                                <span>Foto</span>
+                                <input type="file" name="foto" id="foto">
+                            </div>
+                            <div class="file-path-wrapper">
+                                <input class="file-path validate" type="text">
+                            </div>
+                        </div>
+                        <div class="input-field col m12">
+                            <b>Descripcion</b>
+                            <textarea name="text_descripcion" id="text_descripcion"></textarea>
+                            <script>
+                                $(function(){
+                                    $('#text_descripcion')
+                                            .on('froalaEditor.initialized', function (e, editor) {
+                                                $('#text_descripcion').parents('form').on('submit', function () {
 //                                        console.log($('#text_descripcion').val());
 //                                        return false;
-                                        })
-                                    })
-                                    .froalaEditor({iframe:false,enter: $.FroalaEditor.ENTER_P, placeholderText: null})
-                        });
-                    </script>
+                                                })
+                                            })
+                                            .froalaEditor({iframe:false,enter: $.FroalaEditor.ENTER_P, placeholderText: null})
+                                });
+                            </script>
+                        </div>
+                    </div>
+
                 </div>
                 <div class="input-field col s12 m6 l6">
                     <table class="table table1 borde-tabla-habitacion centrar">
                         <tr>
                             <td width="50px"><b class="text-small">Rooms</b></td>
                             <td width="130px"><b class="text-small">Price per person</b><br><span class="letra-peque">Based on hotel category</span></td>
-                            <td id="aco2" width="50px" onclick="foco_acomodacion(2)"><b id="titu_aco2" class="letra-roja centrar text-small">2 STARS</b></td>
+                            <td id="aco2" width="50px" onclick="foco_acomodacion(2)" class="color_oro"><b id="titu_aco2" class="letra-roja centrar text-small">2 STARS</b></td>
                             <td id="aco3" width="50px" onclick="foco_acomodacion(3)"><b id="titu_aco3" class="letra-roja centrar text-small">3 STARS</b></td>
                             <td id="aco4" width="50px" onclick="foco_acomodacion(4)"><b id="titu_aco4" class="letra-roja centrar text-small">4 STARS</b></td>
                             <td id="aco5" width="50px" onclick="foco_acomodacion(5)"><b id="titu_aco5" class="letra-roja centrar text-small">5 STARS</b></td>
@@ -103,7 +117,7 @@ $Paquete='';
                         <tr>
                             <td><input type="number" name="room_t" id="room_t" value="0" min="0" onchange="coti_romms('t')"></td>
                             <td class="centrar"><img src="{{asset('images')}}/single.png" alt="" width="30px" height="30px"><img src="{{asset('images')}}/single.png" alt="" width="30px" height="30px"><img src="{{asset('images')}}/single.png" alt="" width="30px" height="30px"></td>
-                            <td id="aco12"><input type="number" name="precio_2_t" id="precio_2_t" min="0" value="{{$precio_2_t}}"  onchange="coti_precio_acom('2','t')"></td>
+                            <td id="aco12" class="color_oro"><input type="number" name="precio_2_t" id="precio_2_t" min="0" value="{{$precio_2_t}}"  onchange="coti_precio_acom('2','t')"></td>
                             <td id="aco13"><input type="number" name="precio_3_t" id="precio_3_t" min="0" value="{{$precio_3_t}}" onchange="coti_precio_acom('3','t')"></td>
                             <td id="aco14"><input type="number" name="precio_4_t" id="precio_4_t" min="0" value="{{$precio_4_t}}" onchange="coti_precio_acom('4','t')"></td>
                             <td id="aco15"><input type="number" name="precio_5_t" id="precio_5_t" min="0" value="{{$precio_5_t}}" onchange="coti_precio_acom('5','t')"></td>
@@ -111,7 +125,7 @@ $Paquete='';
                         <tr>
                             <td><input type="number" name="room_d" id="room_d" value="0"  min="0" onchange="coti_romms('d')"></td>
                             <td class="centrar"><img src="{{asset('images')}}/single.png" alt="" width="30px" height="30px"><img src="{{asset('images')}}/single.png" alt="" width="30px" height="30px"></td>
-                            <td id="aco22"><input type="number" name="precio_2_d" id="precio_2_d" min="0" value="{{$precio_2_d}}"  onchange="coti_precio_acom('2','d')"></td>
+                            <td id="aco22" class="color_oro"><input type="number" name="precio_2_d" id="precio_2_d" min="0" value="{{$precio_2_d}}"  onchange="coti_precio_acom('2','d')"></td>
                             <td id="aco23"><input type="number" name="precio_3_d" id="precio_3_d" min="0" value="{{$precio_3_d}}" onchange="coti_precio_acom('3','d')"></td>
                             <td id="aco24"><input type="number" name="precio_4_d" id="precio_4_d" min="0" value="{{$precio_4_d}}" onchange="coti_precio_acom('4','d')"></td>
                             <td id="aco25"><input type="number" name="precio_5_d" id="precio_5_d" min="0" value="{{$precio_5_d}}" onchange="coti_precio_acom('5','d')"></td>
@@ -119,7 +133,7 @@ $Paquete='';
                         <tr>
                             <td><input type="number" name="room_m" id="room_m" value="0"  min="0" onchange="coti_romms('m')"></td>
                             <td class="centrar"><img src="{{asset('images')}}/matrimonial.png" alt="" width="50px" height="30px"></td>
-                            <td id="aco32"><input type="number" name="precio_2_d_m" id="precio_2_d_m" min="0" value="{{$precio_2_d}}" onchange="coti_precio_acom('2','m')"></td>
+                            <td id="aco32" class="color_oro"><input type="number" name="precio_2_d_m" id="precio_2_d_m" min="0" value="{{$precio_2_d}}" onchange="coti_precio_acom('2','m')"></td>
                             <td id="aco33"><input type="number" name="precio_3_d_m" id="precio_3_d_m" min="0" value="{{$precio_3_d}}" onchange="coti_precio_acom('3','m')"></td>
                             <td id="aco34"><input type="number" name="precio_4_d_m" id="precio_4_d_m" min="0" value="{{$precio_4_d}}" onchange="coti_precio_acom('4','m')"></td>
                             <td id="aco35"><input type="number" name="precio_5_d_m" id="precio_5_d_m" min="0" value="{{$precio_5_d}}" onchange="coti_precio_acom('5','m')"></td>
@@ -127,7 +141,7 @@ $Paquete='';
                         <tr>
                             <td><input type="number" name="room_s" id="room_s" value="0"  min="0" onchange="coti_romms('s')"></td>
                             <td class="centrar"><img src="{{asset('images')}}/single.png" alt="" width="30px" height="30px"></td>
-                            <td id="aco42"><input type="number" name="precio_2_s" id="precio_2_s" min="0" value="{{$precio_2_s}}" onchange="coti_precio_acom('2','s')"></td>
+                            <td id="aco42" class="color_oro"><input type="number" name="precio_2_s" id="precio_2_s" min="0" value="{{$precio_2_s}}" onchange="coti_precio_acom('2','s')"></td>
                             <td id="aco43"><input type="number" name="precio_3_s" id="precio_3_s" min="0" value="{{$precio_3_s}}" onchange="coti_precio_acom('3','s')"></td>
                             <td id="aco44"><input type="number" name="precio_4_s" id="precio_4_s" min="0" value="{{$precio_4_s}}" onchange="coti_precio_acom('4','s')"></td>
                             <td id="aco45"><input type="number" name="precio_5_s" id="precio_5_s" min="0" value="{{$precio_5_s}}" onchange="coti_precio_acom('5','s')"></td>
@@ -286,6 +300,6 @@ $Paquete='';
                     <input type="hidden" name="nroItis" id="nroItis" value="{{$j}}">
                 </div>
             </div>
-        </form>
+        {{--</form>--}}
     </div>
 </div>

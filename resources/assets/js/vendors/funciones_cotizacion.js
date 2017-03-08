@@ -172,7 +172,7 @@ function Mostrar_busqueda_jalar(){
     $('#buscar_iti').addClass('hide');
     $('#jalar_iti').removeClass('hide');
 }
-var atipo=0;
+var atipo=2;
 var atotal=0;
 function sumar_acomo_actual(){
     var fila_t=0;
@@ -188,6 +188,10 @@ function sumar_acomo_actual(){
     nro_pa_d=$('#room_d').val();
     nro_pa_m=$('#room_m').val();
     nro_pa_s=$('#room_s').val();
+    console.log(nro_pa_t);
+    console.log(nro_pa_d);
+    console.log(nro_pa_m);
+    console.log(nro_pa_s);
 
     fila_t=parseInt(nro_pa_t)*parseInt($('#precio_'+atipo+'_t').val())*3;
     fila_d=parseInt(nro_pa_d)*parseInt($('#precio_'+atipo+'_d').val())*2;
@@ -238,10 +242,10 @@ function foco_acomodacion(tipo){
     $('#aco4'+atipo).addClass('color_oro');
     $('#aco'+atipo).addClass('color_oro');
 
-    $('#titu_aco2').removeClass('letra-roja');
-    $('#titu_aco3').removeClass('letra-roja');
-    $('#titu_aco4').removeClass('letra-roja');
-    $('#titu_aco5').removeClass('letra-roja');
+    // $('#titu_aco2').removeClass('letra-roja');
+    // $('#titu_aco3').removeClass('letra-roja');
+    // $('#titu_aco4').removeClass('letra-roja');
+    // $('#titu_aco5').removeClass('letra-roja');
 
     $('#titu_aco2').removeClass('color_oro');
     $('#titu_aco3').removeClass('color_oro');

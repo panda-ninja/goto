@@ -128,7 +128,7 @@ function generar_pqt(){
                 text: "Esta seguro de agregar el plan a la cotizacion",
                 type: "warning",
                 showCancelButton: true,
-                confirmButtonColor: "#DD6B55",
+                confirmButtonColor: "#388E3C",
                 confirmButtonText: "Si, Agregar ahora!",
                 cancelButtonText: "No, Cancelar por favor!",
                 closeOnConfirm: false,
@@ -213,11 +213,21 @@ function generar_pqt(){
                                             '&&precio_4_t='+precio_4_t+'&&precio_4_d='+precio_4_d+'&&precio_4_d_m='+precio_4_d_m+'&&precio_4_s='+precio_4_s+
                                             '&&precio_5_t='+precio_5_t+'&&precio_5_d='+precio_5_d+'&&precio_5_d_m='+precio_5_d_m+'&&precio_5_s='+precio_5_s;
                                     // console.log(valor);
+                                // var formData = new FormData();
+                                // var file=document.getElementById("foto").files[0];
+                                // formData.append('foto',file);
+                                // console.log(file);
+                                var formData = new FormData($('#form_plan')[0]);
+                                // var foto=document.getElementById("foto");
+                                // formData.append("foto", foto);
                                 $.ajax({
                                     type: 'POST',
+                                    contentType:false,
+                                    processData:false,
+                                    cache:false,
                                     url: url3+'/guardar_plan_cotizacion',
-                                    // data: $('#form_plan').serializeArray(),
-                                    data: $('#form_plan').serialize()+'&&'+precios+'&&descr='+descr+'&&precio_plan='+precio_plan+'&&idCotizacion='+idCotizacion+'&&destinos='+destinos+'&&iti_titulo='+iti_titulo+'&&iti_descricion='+iti_descricion,
+                                    data: formData,
+                                    // data: $('#form_plan').serialize()+'&&'+formData+'&&'+precios+'&&descr='+descr+'&&precio_plan='+precio_plan+'&&idCotizacion='+idCotizacion+'&&destinos='+destinos+'&&iti_titulo='+iti_titulo+'&&iti_descricion='+iti_descricion,
                                     // data:valor,
                                     // Mostramos un mensaje con la respuesta de PHP
                                     success: function(data){
@@ -226,8 +236,6 @@ function generar_pqt(){
                                         crear_plan=0;
                                     }
                                 });
-
-                                // NroClic=1;
                             }
                             else{
                                 // console.log('error de registro cerrarmos :'+markup);
@@ -384,5 +392,40 @@ function Buscar_iti(){
     }
 }
 
+function enviarPlan(id){
+    swal({   title: "Mensaje del sistema",
+            text: "Desea enviar el plan",
+            type: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#388E3C",
+            confirmButtonText: "Si, enviar ahora!",
+            cancelButtonText: "No, cancelar por favor!",
+            closeOnConfirm: false,
+            closeOnCancel: false },
+        function(isConfirm){
+            if (isConfirm) {
+                $.ajaxSetup({
+                    headers: {
+                        'X-CSRF-TOKEN': $('[name="_token"]').val()
+                    }
+                });
+                $.post(url3+'/enviar_plan', {id: id}, function(markup) {
+                    if(markup=='1'){
+                        $('#send'+id).removeClass('green-text');
+                        $('#send'+id).addClass('grey-text');
+                        // $.getScript('https://code.jquery.com/ui/1.12.1/jquery-ui.js');
+                        // console.log(markup);
+                    }
+                    else if(markup=='0'){
+                         console.log('error de registro cerrarmos :'+markup);
+                    }
+                }).fail(function (markup) {
+                     console.log('Fail cerrarmos :'+markup);
+                });
+                swal("Enviado!", "Tu plan fue enviado :)", "success");   }
+            else {
+                swal("Cancelado", "no se puedo enviar tu plan :(", "error");   }
+        });
+}
 
 //# sourceMappingURL=funciones-ajax.js.map
