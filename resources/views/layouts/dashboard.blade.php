@@ -3,7 +3,7 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no"/>
-    <title>Parallax Template - Materialize</title>
+    <title>{{auth()->guard('cliente')->user()->nombres.', '.auth()->guard('cliente')->user()->apellidos}}</title>
 
     <!-- CSS  -->
     <link href="{{asset('css/app.css')}}" type="text/css" rel="stylesheet" media="screen,projection"/>
@@ -68,7 +68,7 @@
                     <p><b>PROFILE</b></p>
                     <p><b class="yellow-text text-darken-3">{{auth()->guard('cliente')->user()->nombres.', '.auth()->guard('cliente')->user()->apellidos}}</b></p>
 
-                    <a href="{{route('proposals_path')}}" class="grey-text">
+                    <a href="{{route('proposals_path')}}" class="grey-text hide">
                         <blockquote class="grey lighten-4 spacer-10">
                         @foreach($cotizaciones->take(1) as $cotizacion)
                             <p><i class="material-icons red-text">notifications</i></p>
@@ -88,13 +88,31 @@
 
                 </div>
 
+
                 <div class="collection">
-                    <a href="{{route('quotes_path')}}" class="collection-item">Quotes<span class="badge">1</span></a>
+                    @php $k = 0; @endphp
+                    @foreach($paquetes_num as $paquetes_n)
+
+                        @if($paquetes_n->cotizaciones AND $paquetes_n->estado == 1)
+
+                            @php $k++; @endphp
+
+                        @endif
+
+                    @endforeach
+
+                    @if($k > 0)
+                        @php $num = ''; @endphp
+                    @else
+                        @php $num = 'hide'; @endphp
+                    @endif
+
+                    <a href="{{route('quotes_path')}}" class="collection-item">Quotes <span class="new badge red {{$num}}">{{$k}}</span></a>
 
                     <a href="{{route('payments_path')}}" class="collection-item">Payments</a>
                     <a href="#!" class="collection-item">Reports</a>
-                    <a href="#!" class="collection-item">Wish list<span class="new badge">4</span></a>
-                    <a href="#!" class="collection-item">Profile<span class="badge">14</span></a>
+                    <a href="#!" class="collection-item">Wish list</a>
+                    <a href="#!" class="collection-item">Profile</a>
                 </div>
 
             </div>
@@ -151,5 +169,13 @@
 <script src="{{asset('js/app.js')}}"></script>
 <script src="{{asset('js/init.js')}}"></script>
 @yield('scripts')
+
+<script>
+    $('.collapsible').collapsible({
+        accordion: false, // A setting that changes the collapsible behavior to expandable instead of the default accordion style
+        onOpen: function(el) { alert('Open'); }, // Callback for Collapsible open
+        onClose: function(el) { alert('Closed'); } // Callback for Collapsible close
+    });
+</script>
 </body>
 </html>

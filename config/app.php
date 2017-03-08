@@ -179,7 +179,7 @@ return [
         GotoPeru\Providers\RouteServiceProvider::class,
         Barryvdh\DomPDF\ServiceProvider::class,
         Artesaos\SEOTools\Providers\SEOToolsServiceProvider::class,
-
+        Sineld\BladeSet\BladeSetServiceProvider::class,
 
     ],
 

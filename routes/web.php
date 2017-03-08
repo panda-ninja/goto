@@ -151,6 +151,16 @@ Route::group(['middleware'=>'cliente'],function(){
         'as' => 'quotes_path',
     ]);
 
+    Route::get('quotes/confirm', [
+        'uses' => 'QuotesController@confirm',
+        'as' => 'quotes_confirm_path',
+    ]);
+
+    Route::get('quotes/pending', [
+        'uses' => 'QuotesController@pending',
+        'as' => 'quotes_pending_path',
+    ]);
+
     Route::get('proposals', [
         'uses' => 'QuotesController@proposals',
         'as' => 'proposals_path',
