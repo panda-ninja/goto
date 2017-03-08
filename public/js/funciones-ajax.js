@@ -1,4 +1,4 @@
-var url3='http://gotoperu.mo';
+var url3='http://localhost/goto2/public';
 
 $("#btnBuscar_pqt").click(function(){
     $.ajaxSetup({
