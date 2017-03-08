@@ -26,8 +26,6 @@ $('.fixed-action-btn').openFAB();
 $('.fixed-action-btn').closeFAB();
 var nro_iti=0;
 $('#agregar_dia').click(function(){
-
-
     var total=0;
     $("input[name=chb_itinerario_n]").each(function (index) {
         if($(this).is(':checked')){
