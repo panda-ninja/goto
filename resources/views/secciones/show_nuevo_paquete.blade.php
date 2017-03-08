@@ -222,48 +222,7 @@ $Paquete='';
                         <li>
                             <div class="column lista_itinerario"  onmouseup="poner_valor()">
                                 <?php $j=0;?>
-                                @foreach($Paquete->itinerario as $itinerario)
-                                    <?php $j++;?>
-                                    <div id="Itine_{{$j}}"  class="portlet">
-                                        <div class="portlet-header"  onmousedown="Pasar_datos('{{$j}}','{{$j}}','{{$itinerario->titulo}}')"><span class="cursor-move">DAY <span class="pos_iti" name="posdia[]" id="pos_dia_{{$j}}">{{$itinerario->dia}}</span>: <i id="titulo_{{$j}}">{{$itinerario->titulo}}</i></span><a href="#!" class="red-text text-darken-2 right" onclick="borrar_itinerario({{$j}})"><i class="mdi-action-delete small"></i></a></div>
-                                        <div class="portlet-content" onmouseenter="estado_edicion(1)" onmouseleave="estado_edicion(0)">
-                                            <div class="row">
-                                                <div class="col s12">
-                                                <span class="grey-text text-darken-3">
-                                                    <input name="titulo_itinerario[]" id="titulo_itinerario_{{$j}}" type="text" placeholder="Ingrese el titulo" value="{{$itinerario->titulo}}">
-                                                </span>
-                                                </div>
-                                            </div>
-                                            <textarea class="descripcion1"  name="desc_itinerario" id="desc_itinerario_{{$j}}"  >
-                                        {{$itinerario->descripcion}}
-                                    </textarea>
-                                        </div>
-                                    </div>
-                                    <script>
-                                        $(function(){
-                                            $('#desc_itinerario_{{$j}}')
-                                                    .on('froalaEditor.initialized', function (e, editor) {
-                                                        $('#desc_itinerario_{{$j}}').parents('form').on('submit', function () {
-                                                            {{--console.log($('#desc_itinerario_{{$j}}').val());--}}
-                                                            //                                                    return false;
-                                                        })
-                                                    })
-                                                    .froalaEditor({iframe:false,enter: $.FroalaEditor.ENTER_P, placeholderText: null})
-                                        });
-                                        $('#titulo_itinerario_{{$j}}').keypress(function() {
-                                            var valor=$('#titulo_itinerario_{{$j}}').val();
-                                            $('#titulo_{{$j}}').html(valor);
-                                        });
-                                        $('#titulo_itinerario_{{$j}}').keydown(function() {
-                                            var valor=$('#titulo_itinerario_{{$j}}').val();
-                                            $('#titulo_{{$j}}').html(valor);
-                                        });
-                                        $('#titulo_itinerario_{{$j}}').keyup(function() {
-                                            var valor=$('#titulo_itinerario_{{$j}}').val();
-                                            $('#titulo_{{$j}}').html(valor);
-                                        });
-                                    </script>
-                                @endforeach
+
                             </div>
                         </li>
                         <li>
