@@ -13,6 +13,7 @@ use GotoPeru\TPrecioPaquete;
 use Illuminate\Http\Request;
 
 use GotoPeru\Http\Requests;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Session;
 
@@ -169,6 +170,9 @@ class QuotesController extends Controller
      */
     public function update(Request $request, $id)
     {
+        $idCliente=auth()->guard('cliente')->user();
+        $from = 'hidalgo@pandaninja.com.pe';
+
         $paquete = PaqueteCotizacion::findOrFail($id);
 
         $paquete_post = PaqueteCotizacion::with('cotizaciones')->get()
@@ -190,7 +194,37 @@ class QuotesController extends Controller
         $cotizacion->estado = '1';
         $cotizacion->save();
 
-        return redirect()->route('quotes_show_path', $paquete->id)->with('success','Paquete confirmado');
+
+        try {
+            Mail::send(['html' => 'confirm_notification'], ['name' => $idCliente->nombres, 'apellido' => $idCliente->apellidos, 'codigo' => $paquete->codigo, 'titulo' => $paquete->titulo], function ($messaje) use ($idCliente) {
+                $messaje->to($idCliente->email, $idCliente->nombres)
+                    ->subject('Inquire GotoPeru')
+                    /*->attach('ruta')*/
+                    ->from('info@gotoperu.com', 'GotoPeru');
+            });
+
+
+            Mail::send(['html' => 'confirm_notifications_admin'], ['name' => $idCliente->nombres, 'apellido' => $idCliente->apellidos, 'codigo' => $paquete->codigo, 'titulo' => $paquete->titulo], function ($messaje) use ($from) {
+                $messaje->to($from, 'GotoPeru')
+                    ->subject('Inquire GotoPeru.Travel')
+                    /*->attach('ruta')*/
+                    ->from('info@gotoperu.com', 'GotoPeru.Travel');
+            });
+
+
+//            Session::flash('message', $name.' hola');
+
+
+            return redirect()->route('quotes_show_path', $paquete->id)->with('success','Paquete confirmado');
+
+//            return redirect()->route('home_path');
+        }
+        catch (Exception $e){
+            return $e;
+        }
+
+
+
     }
 
     /**
