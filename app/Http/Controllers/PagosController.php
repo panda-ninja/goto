@@ -2,6 +2,7 @@
 
 namespace GotoPeru\Http\Controllers;
 
+use GotoPeru\PaqueteCotizacion;
 use Illuminate\Http\Request;
 use GotoPeru\Pago;
 use GotoPeru\Cotizacion;
@@ -35,9 +36,11 @@ class PagosController extends Controller
                 ->get();
                 //->sortByDesc('fecha');
 
+        $paquetes_num = PaqueteCotizacion::with(['cotizaciones'=>function($query) use ($idCliente) { $query->where('clientes_id', $idCliente);}])->get();
+
         //$pagos=Pago::findOrFail($idCotizacion);
         //dd($pagos);
-        return view('payments',['pagos'=>$pagos, 'cotizaciones'=>$cotizaciones]);
+        return view('payments',['pagos'=>$pagos, 'cotizaciones'=>$cotizaciones, 'paquetes_num'=>$paquetes_num]);
     }
 
     /**
@@ -122,8 +125,10 @@ class PagosController extends Controller
             ->where('clientes_id',$idCliente)
             ->sortByDesc('fecha');
 
+        $paquetes_num = PaqueteCotizacion::with(['cotizaciones'=>function($query) use ($idCliente) { $query->where('clientes_id', $idCliente);}])->get();
+
         //dd($pago);
-        return view('payments-show',['pago'=>$pago, 'cotizaciones'=>$cotizaciones]);
+        return view('payments-show',['pago'=>$pago, 'cotizaciones'=>$cotizaciones, 'paquetes_num'=>$paquetes_num]);
 
     }
 

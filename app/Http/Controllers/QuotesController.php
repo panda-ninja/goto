@@ -31,12 +31,35 @@ class QuotesController extends Controller
             ->where('clientes_id',$idCliente)
             ->sortByDesc('fecha');
 
-//        $destinos = Cotizacion::with('paquete_cotizaciones.paquetes_destinos.destinos')->get();
+        $paquetes_num = PaqueteCotizacion::with(['cotizaciones'=>function($query) use ($idCliente) { $query->where('clientes_id', $idCliente);}])->get();
 
-//        $destinos = TDestino::with('paquetes_destinos')->get();
-        //return $destinos;
-        //dd($cotizaciones);
-        return view('quotes', ['cotizaciones'=>$cotizaciones]);
+        return view('quotes', ['cotizaciones'=>$cotizaciones, 'paquetes_num'=>$paquetes_num]);
+    }
+
+    public function confirm()
+    {
+
+        $idCliente=auth()->guard('cliente')->user()->id;
+        $cotizaciones = Cotizacion::with('paquete_cotizaciones.precio_paquetes','paquete_cotizaciones.paquetes_destinos')->get()
+            ->where('clientes_id',$idCliente)
+            ->sortByDesc('fecha');
+
+        $paquetes_num = PaqueteCotizacion::with(['cotizaciones'=>function($query) use ($idCliente) { $query->where('clientes_id', $idCliente);}])->get();
+
+        return view('confirm', ['cotizaciones'=>$cotizaciones, 'paquetes_num'=>$paquetes_num]);
+    }
+
+    public function pending()
+    {
+
+        $idCliente=auth()->guard('cliente')->user()->id;
+        $cotizaciones = Cotizacion::with('paquete_cotizaciones.precio_paquetes','paquete_cotizaciones.paquetes_destinos')->get()
+            ->where('clientes_id',$idCliente)
+            ->sortByDesc('fecha');
+
+        $paquetes_num = PaqueteCotizacion::with(['cotizaciones'=>function($query) use ($idCliente) { $query->where('clientes_id', $idCliente);}])->get();
+
+        return view('pending', ['cotizaciones'=>$cotizaciones, 'paquetes_num'=>$paquetes_num]);
     }
 
     public function proposals()
@@ -79,15 +102,31 @@ class QuotesController extends Controller
      */
     public function show($id)
     {
+
+        $paquete_2 = PaqueteCotizacion::findOrFail($id);
+        if ($paquete_2->estado == '1'){
+            $paquete_2->estado = '2';
+            $paquete_2->save();
+        }
+
+
         $idCliente=auth()->guard('cliente')->user()->id;
         $cotizaciones = Cotizacion::with('paquete_cotizaciones.precio_paquetes','paquete_cotizaciones.paquetes_destinos')->get()
             ->where('clientes_id',$idCliente)
             ->sortByDesc('fecha');
 
-        $paquete = PaqueteCotizacion::with('precio_paquetes','paquetes_destinos','itinerario_cotizaciones.horas_cotizaciones', 'itinerario_cotizaciones.servicios_cotizaciones')->get()->where('id', $id);
+        $paquete = PaqueteCotizacion::with('precio_paquetes','paquetes_destinos','itinerario_cotizaciones.horas_cotizaciones', 'itinerario_cotizaciones.servicios_cotizaciones')
+            ->get()
+            ->where('id', $id);
+
+        $paquete_post = PaqueteCotizacion::with('cotizaciones')->get()
+            ->where('cotizaciones_id',$paquete_2->cotizaciones_id)->sortByDesc('fecha');
+
+        $paquetes_num = PaqueteCotizacion::with(['cotizaciones'=>function($query) use ($idCliente) { $query->where('clientes_id', $idCliente);}])->get();
+
 
         if ($paquete->count()>0){
-           return view('itinerary_quotes', ['paquetes'=>$paquete, 'cotizaciones'=>$cotizaciones]);
+           return view('itinerary_quotes', ['paquetes'=>$paquete, 'paquetes_num'=>$paquetes_num, 'paquete_post'=>$paquete_post, 'cotizaciones'=>$cotizaciones]);
 //            dd($paquete);
         }
         else{
@@ -131,11 +170,24 @@ class QuotesController extends Controller
     public function update(Request $request, $id)
     {
         $paquete = PaqueteCotizacion::findOrFail($id);
-        $paquete->estado = '1';
-        $paquete->save();
+
+        $paquete_post = PaqueteCotizacion::with('cotizaciones')->get()
+            ->where('cotizaciones_id',$paquete->cotizaciones_id);
+
+        foreach ($paquete_post as $paquete_pos){
+            if ($paquete_pos->id == $id){
+                $paquete1 = PaqueteCotizacion::findOrFail($paquete_pos->id);
+                $paquete1->estado = '3';
+                $paquete1->save();
+            }else{
+                $paquete1 = PaqueteCotizacion::findOrFail($paquete_pos->id);
+                $paquete1->estado = '4';
+                $paquete1->save();
+            }
+        }
 
         $cotizacion = Cotizacion::findOrFail($paquete->cotizaciones_id);
-        $cotizacion->estado = '3';
+        $cotizacion->estado = '1';
         $cotizacion->save();
 
         return redirect()->route('quotes_show_path', $paquete->id)->with('success','Paquete confirmado');

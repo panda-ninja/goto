@@ -77,6 +77,9 @@ body{
 .padding-left-25{
   padding-left: 25px;
 }
+.padding-right-5{
+  padding-right: 5px;
+}
 .padding-right-25{
   padding-right: 25px;
 }
@@ -191,6 +194,9 @@ body{
 }
 .text-50{
   font-size: 50px;
+}
+.bold-900{
+  font-weight: 900;
 }
 .right-absolute-card{
   float: right !important;
@@ -562,6 +568,17 @@ img.desaturada{
 .detail-maps .overview{
   height: 215px;
   overflow-y: scroll;
+}
+//
+.tab-qoutes{
+  background: rgba(243,243,243,.85);
+  border: 1px solid #d7d7d7;
+  border-left-width: 1px;
+}
+.tab-qoutes.active{
+  border-left-width: 1px;
+  background: rgba(255,255,255,.9)!important;
+  border-bottom-color: transparent;
 }
 //footer
 footer{
