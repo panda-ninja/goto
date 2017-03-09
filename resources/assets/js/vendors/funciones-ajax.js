@@ -1,4 +1,4 @@
-var url3='http://gotoperu.travel';
+var url3='gotoperu.travel';
 // var url3='http://localhost/goto2/public';
 
 
