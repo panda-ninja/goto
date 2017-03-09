@@ -224,6 +224,7 @@ function generar_pqt(){
                                 // var file=document.getElementById("foto").files[0];
                                 // formData.append('foto',file);
                                 // console.log(file);
+                                var loqincluye='text_incluye='+$('#text_incluye').val()+'&&'+'text_noincluye='+$('#text_noincluye').val()+'&&'+'text_opcional='+$('#text_opcional').val();
                                 var formData = new FormData($('#form_plan')[0]);
                                 // var foto=document.getElementById("foto");
                                 // formData.append("foto", foto);
@@ -234,7 +235,7 @@ function generar_pqt(){
                                     cache:false,
                                     url: url3+'/guardar_plan_cotizacion',
                                     // data: formData,
-                                    data: $('#form_plan').serialize()+'&&'+formData+'&&'+precios+'&&descr='+descr+'&&precio_plan='+precio_plan+'&&idCotizacion='+idCotizacion+'&&destinos='+destinos+'&&iti_titulo='+iti_titulo+'&&iti_descricion='+iti_descricion,
+                                    data: $('#form_plan').serialize()+'&&'+formData+'&&'+loqincluye+'&&'+precios+'&&descr='+descr+'&&precio_plan='+precio_plan+'&&idCotizacion='+idCotizacion+'&&destinos='+destinos+'&&iti_titulo='+iti_titulo+'&&iti_descricion='+iti_descricion,
                                     // data:valor,
                                     // Mostramos un mensaje con la respuesta de PHP
                                     success: function(data){
