@@ -8,10 +8,6 @@ use GotoPeru\TPaquete;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Input;
 
-
-
-
-
 class PaqueteController extends Controller
 {
     public function autocomplete(Request $request)
