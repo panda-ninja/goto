@@ -87,12 +87,12 @@ class CotizacionController extends Controller
         $descr=$request->input('descr');
         $precio_plan=$request->input('precio_plan');
 
-//        $incluye=$request->input('text_incluye');
-//        $noincluye=$request->input('text_noincluye');
-//        $opcional=$request->input('text_opcional');
-        $incluye='';
-        $noincluye='';
-        $opcional='';
+        $incluye=$request->input('text_incluye');
+        $noincluye=$request->input('text_noincluye');
+        $opcional=$request->input('text_opcional');
+//        $incluye='';
+//        $noincluye='';
+//        $opcional='';
 
 
         $paqueteCotizacion = new PaqueteCotizacion();
