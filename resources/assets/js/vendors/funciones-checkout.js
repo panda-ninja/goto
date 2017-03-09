@@ -784,7 +784,8 @@ function ch_extra(posi){
     }
     recalcular_total();
 }
-var url3='gotoperu.travel';
+// var url3='gotoperu.travel';
+var url3='';
 // var url3='http://localhost/goto2/public';
 $("#destino_travel").change(function(){
     // alert('hola');
