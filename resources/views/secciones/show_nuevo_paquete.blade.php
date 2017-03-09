@@ -10,14 +10,6 @@
 
 {{--<script>tinymce.init({ selector:'textarea-plan-itinerario' });</script>--}}
 {{--<script type="text/javascript">bkLib.onDomLoaded(nicEditors.allTextAreas);</script>--}}
-<?php
-$Paquete='';
-?>
-@foreach($paquete as $paquete)
-    <?php $Paquete=$paquete;?>
-@endforeach
-
-
 <div class="card-panel">
     <div class="row">
         <div class="col m6 l6">
@@ -159,25 +151,14 @@ $Paquete='';
                         </li>
                         <?php $i=0;?>
                         @foreach($destino as $destino1)
-                            <?php $esta=0;?>
-                            @foreach($Paquete->paquetes_destinos as $destino)
-                                <?php $i++;?>
-                                @if($destino1->id==$destino->iddestinos)
-                                    <?php $esta=1;?>
-                                    <li class="collection-item dismissable" style="touch-action: pan-y; -webkit-user-drag: none; -webkit-tap-highlight-color: rgba(0, 0, 0, 0);">
-                                        <input type="checkbox" id="task{{$i}}" name="chb_destinos[]" checked="checked">
-                                        <label for="task{{$i}}" style="text-decoration: none;">{{$destino1->nombre}}
-                                        </label>
-                                    </li>
-                                @endif
-                            @endforeach
-                            @if($esta==0)
+                                 <?php $i++;?>
+
                                 <li class="collection-item dismissable" style="touch-action: pan-y; -webkit-user-drag: none; -webkit-tap-highlight-color: rgba(0, 0, 0, 0);">
-                                    <input type="checkbox" id="task{{$i}}" name="chb_destinos[]">
+                                    <input type="checkbox" id="task{{$i}}" name="chb_destinos[]" value="{{$destino1->id}}">
                                     <label for="task{{$i}}" style="text-decoration: none;">{{$destino1->nombre}}
                                     </label>
                                 </li>
-                            @endif
+
                         @endforeach
                     </ul>
                 </div>
@@ -259,6 +240,79 @@ $Paquete='';
                     <input type="hidden" name="nroItis" id="nroItis" value="{{$j}}">
                 </div>
             </div>
+            <div class="row">
+            <div class="input-field col s12 m4 l6">
+                <ul id="task-card" class="collection with-header">
+                    <li class="collection-header cyan">
+                        <h4 class="task-card-title">Incluye:</h4>
+                    </li>
+
+                    <textarea name="text_incluye" id="text_incluye"></textarea>
+                    <script>
+                        $(function(){
+                            $('#text_incluye')
+                                    .on('froalaEditor.initialized', function (e, editor) {
+                                        $('#text_incluye').parents('form').on('submit', function () {
+//                                        console.log($('#text_descripcion').val());
+//                                        return false;
+                                        })
+                                    })
+                                    .froalaEditor({iframe:false,enter: $.FroalaEditor.ENTER_P, placeholderText: null})
+                        });
+                    </script>
+
+
+                </ul>
+            </div>
+            <div  class="input-field col s12 m8 l6">
+                <ul id="task-card" class="collection with-header">
+                    <li class="collection-header cyan">
+                        <h4 class="task-card-title">No incluye:</h4>
+                    </li>
+
+                    <textarea name="text_noincluye" id="text_noincluye"></textarea>
+                    <script>
+                        $(function(){
+                            $('#text_noincluye')
+                                    .on('froalaEditor.initialized', function (e, editor) {
+                                        $('#text_noincluye').parents('form').on('submit', function () {
+//                                        console.log($('#text_descripcion').val());
+//                                        return false;
+                                        })
+                                    })
+                                    .froalaEditor({iframe:false,enter: $.FroalaEditor.ENTER_P, placeholderText: null})
+                        });
+                    </script>
+
+
+                </ul>
+            </div>
+        </div>
+            <div class="row">
+            <div class="input-field col s12 m4 l6">
+                <ul id="task-card" class="collection with-header">
+                    <li class="collection-header cyan">
+                        <h4 class="task-card-title">Opcional:</h4>
+                    </li>
+
+                    <textarea name="text_opcional" id="text_opcional"></textarea>
+                    <script>
+                        $(function(){
+                            $('#text_opcional')
+                                    .on('froalaEditor.initialized', function (e, editor) {
+                                        $('#text_opcional').parents('form').on('submit', function () {
+//                                        console.log($('#text_descripcion').val());
+//                                        return false;
+                                        })
+                                    })
+                                    .froalaEditor({iframe:false,enter: $.FroalaEditor.ENTER_P, placeholderText: null})
+                        });
+                    </script>
+
+
+                </ul>
+            </div>
+        </div>
         {{--</form>--}}
     </div>
 </div>

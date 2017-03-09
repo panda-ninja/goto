@@ -11,6 +11,7 @@
     <link href="{{asset('css/stilos_froala.css')}}" type="text/css" rel="stylesheet" media="screen,projection"/>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.3.0/codemirror.min.css">
     <link href="{{asset('css/style-freddy.css')}}" type="text/css" rel="stylesheet" media="screen,projection"/>
+
     {{--<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>--}}
     {{--<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.3.0/codemirror.min.js"></script>--}}
     {{--<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.3.0/mode/xml/xml.min.js"></script>--}}
@@ -89,7 +90,7 @@
                                                         <div class="input-field col m6">
                                                             <i class="mdi-action-search prefix"></i>
                                                             {{csrf_field()}}
-                                                            <input id="codigopx" name="codigopx"  type="text" value="gtp412">
+                                                            <input id="codigopx" name="codigopx"  type="text" value="gtp412" placeholder="Ingrese el codigo">
                                                             <label for="codigopx" class="">Ingrese el codigo del paquete</label>
                                                         </div>
                                                         <div class="input-field col m4">
@@ -221,7 +222,9 @@
     {{--<script src="//cdn.tinymce.com/4/tinymce.min.js"></script>--}}
     <script type="text/javascript" src="{{URL::to('js/funciones-ajax.js')}}"></script>
     <link href="{{asset('css/notification.css')}}" type="text/css" rel="stylesheet" media="screen,projection"/>
-    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
     <link href="{{asset('css/acordeon-sorteable.css')}}" type="text/css" rel="stylesheet" media="screen,projection"/>
     {{--<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/at.js/1.4.0/css/jquery.atwho.min.css">--}}
+    {{--<script src="http://code.jquery.com/jquery-1.10.2.js"></script>--}}
 @endsection
+

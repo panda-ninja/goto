@@ -83,6 +83,8 @@ $('#agregar_dia').click(function(){
 
             });
             sumatotal();
+            $('#buscar').val('');
+            $('#jalar_iti').html('');
         }
     });
     });
