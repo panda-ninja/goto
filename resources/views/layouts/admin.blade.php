@@ -30,10 +30,22 @@
     <!-- CORE CSS-->
     <link href="{{asset('css/admin-theme.css')}}" type="text/css" rel="stylesheet" media="screen,projection"/>
     <!-- Custome CSS-->
+    <script src="{{asset('js/app.js')}}"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
     @yield('scripts_textarea')
     {{--<script src="//cdn.tinymce.com/4/tinymce.min.js"></script>--}}
     {{--<script>tinymce.init({ selector:'textarea' });</script>--}}
-
+    <script type="text/javascript">
+        var url3='http://localhost/goto2/public';
+        $('#codigopx').autocomplete({
+            source: '{!!URL::route('autocomplete')!!}',
+            minlenght:1,
+            autoFocus:true,
+            select:function(e,ui){
+                alert(ui);
+            }
+        });
+    </script>
 </head>
 
 <body>
@@ -604,7 +616,6 @@ Scripts
 ================================================ -->
 
 <!-- jQuery Library -->
-<script src="{{asset('js/app.js')}}"></script>
 
 <!-- google map api -->
 {{--<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAAZnaZBXLqNBRXjd-82km_NO7GUItyKek"></script>--}}

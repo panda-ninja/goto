@@ -1,4 +1,9 @@
-var url3='http://localhost/goto2/public';
+// var url3='gotoperu.travel';
+var url3='';
+// var url3='http://localhost/goto2/public';
+
+
+
 
 $("#btnBuscar_pqt").click(function(){
     $.ajaxSetup({
@@ -67,7 +72,9 @@ $("#nuevo_pqt").click(function(){
             'X-CSRF-TOKEN': $('[name="_token"]').val()
         }
     });
-    var codigopx=$("#codigopx").val();
+    // var codigopx=$("#codigopx").val();
+    var codigopx='hola';
+
     var token='drmLwc3gMXKsyrhxzMJrr4dlC8rrvtcj9Fuv9vfU';
     if(codigopx.length>0){
         var datastring="codigo="+codigopx;
@@ -217,6 +224,7 @@ function generar_pqt(){
                                 // var file=document.getElementById("foto").files[0];
                                 // formData.append('foto',file);
                                 // console.log(file);
+                                var loqincluye='text_incluye='+$('#text_incluye').val()+'&&'+'text_noincluye='+$('#text_noincluye').val()+'&&'+'text_opcional='+$('#text_opcional').val();
                                 var formData = new FormData($('#form_plan')[0]);
                                 // var foto=document.getElementById("foto");
                                 // formData.append("foto", foto);
@@ -226,8 +234,8 @@ function generar_pqt(){
                                     processData:false,
                                     cache:false,
                                     url: url3+'/guardar_plan_cotizacion',
-                                    data: formData,
-                                    // data: $('#form_plan').serialize()+'&&'+formData+'&&'+precios+'&&descr='+descr+'&&precio_plan='+precio_plan+'&&idCotizacion='+idCotizacion+'&&destinos='+destinos+'&&iti_titulo='+iti_titulo+'&&iti_descricion='+iti_descricion,
+                                    // data: formData,
+                                    data: $('#form_plan').serialize()+'&&'+formData+'&&'+loqincluye+'&&'+precios+'&&descr='+descr+'&&precio_plan='+precio_plan+'&&idCotizacion='+idCotizacion+'&&destinos='+destinos+'&&iti_titulo='+iti_titulo+'&&iti_descricion='+iti_descricion,
                                     // data:valor,
                                     // Mostramos un mensaje con la respuesta de PHP
                                     success: function(data){
@@ -315,11 +323,17 @@ function generar_pqt(){
                             '&&precio_4_t='+precio_4_t+'&&precio_4_d='+precio_4_d+'&&precio_4_d_m='+precio_4_d_m+'&&precio_4_s='+precio_4_s+
                             '&&precio_5_t='+precio_5_t+'&&precio_5_d='+precio_5_d+'&&precio_5_d_m='+precio_5_d_m+'&&precio_5_s='+precio_5_s;
                         // console.log(valor);
+                        var formData = new FormData($('#form_plan')[0]);
+                        // var foto=document.getElementById("foto");
+                        // formData.append("foto", foto);
                         $.ajax({
                             type: 'POST',
+                            contentType:false,
+                            processData:false,
+                            cache:false,
                             url: url3+'/guardar_plan_cotizacion',
-                            // data: $('#form_plan').serializeArray(),
-                            data: $('#form_plan').serialize()+'&&'+precios+'&&descr='+descr+'&&precio_plan='+precio_plan+'&&idCotizacion='+idCotizacion+'&&destinos='+destinos+'&&iti_titulo='+iti_titulo+'&&iti_descricion='+iti_descricion,
+                            // data: formData,
+                            data: $('#form_plan').serialize()+'&&'+formData+'&&'+precios+'&&descr='+descr+'&&precio_plan='+precio_plan+'&&idCotizacion='+idCotizacion+'&&destinos='+destinos+'&&iti_titulo='+iti_titulo+'&&iti_descricion='+iti_descricion,
                             // data:valor,
                             // Mostramos un mensaje con la respuesta de PHP
                             success: function(data){

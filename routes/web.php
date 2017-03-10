@@ -278,7 +278,10 @@ Route::group(['middleware'=>'admin'],function(){
         'uses' => 'CotizacionController@enviar_plan_cotizacion',
         'as' => 'enviar_plan_path',
     ]);
-
+    Route::get('/autocomplete', [
+        'uses' => 'PaqueteController@autocomplete',
+        'as' => 'autocomplete',
+    ]);
 });
 /*
 Route::get('login', [

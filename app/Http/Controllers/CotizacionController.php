@@ -65,12 +65,12 @@ class CotizacionController extends Controller
     public function guardar_plan_cotizacion(Request $request)
     {
 
-        $destinationPath ='/img/tmp';
-        $foto=$request->file('foto');
-        $path = $foto->getClientOriginalName();
-        $ext = $foto->getClientOriginalExtension();
+//        $destinationPath ='/img/tmp';
+//        $foto=$request->file('foto');
+//        $path = $foto->getClientOriginalName();
+//        $ext = $foto->getClientOriginalExtension();
 //        $upload_success = $foto->move($destinationPath,"archivito");
-
+        $path ='';
 //        $fil=$request->input->file('foto');
 ////        Input::file('foto')->move($destinationPath, $fileName);
 //        $nombre_archivo = $_FILES['foto']['name'];
@@ -87,13 +87,24 @@ class CotizacionController extends Controller
         $descr=$request->input('descr');
         $precio_plan=$request->input('precio_plan');
 
+        $incluye=$request->input('text_incluye');
+        $noincluye=$request->input('text_noincluye');
+        $opcional=$request->input('text_opcional');
+//        $incluye='';
+//        $noincluye='';
+//        $opcional='';
+
+
         $paqueteCotizacion = new PaqueteCotizacion();
         $paqueteCotizacion->codigo = $codigo_plan;
         $paqueteCotizacion->titulo = $titulo_plan;
         $paqueteCotizacion->duracion = $dias_plan;
         $paqueteCotizacion->preciocosto = $precio_plan;
         $paqueteCotizacion->descripcion = $descr;
-        $paqueteCotizacion->estado = '6';
+        $paqueteCotizacion->incluye= $incluye;
+        $paqueteCotizacion->noincluye= $noincluye;
+        $paqueteCotizacion->opcional= $opcional;
+        $paqueteCotizacion->estado = '0';
         $paqueteCotizacion->imagen=$path;
         $paqueteCotizacion->cotizaciones_id=$idCotizacion;
         $paqueteCotizacion->save();

@@ -26,24 +26,24 @@ $('.fixed-action-btn').openFAB();
 $('.fixed-action-btn').closeFAB();
 var nro_iti=0;
 $('#agregar_dia').click(function(){
-
-
     var total=0;
     $("input[name=chb_itinerario_n]").each(function (index) {
         if($(this).is(':checked')){
             var itine = $(this).val().split('[');
             // alert(itine[0]+'_'+itine[1]);
+            var nroPa=$('#nropasajeros').val();
             total=$('#nroItis').val();
             nro_iti=parseInt(total)+1;
             $('#nroItis').val(nro_iti);
             $('.lista_itinerario').append(''+
                 '<div id="Itine_'+nro_iti+'" class="portlet">'+
-                '<div id="pl_h_'+nro_iti+'" class="portlet-header"  onmousedown="Pasar_datos(\''+nro_iti+'\',\''+nro_iti+'\',\''+itine[0]+'\')"><span class="cursor-move">DAY <span class="pos_iti" name="posdia[]" id="pos_dia_'+nro_iti+'">'+nro_iti+'</span>: <i id="titulo_'+nro_iti+'">'+itine[0]+'</i></span><a href="#!" class="red-text text-darken-2 right" onclick="borrar_itinerario('+nro_iti+')"><i class="mdi-action-delete small"></i></a></div>'+
+                '<div id="pl_h_'+nro_iti+'" class="portlet-header"  onmousedown="Pasar_datos(\''+nro_iti+'\',\''+nro_iti+'\',\''+itine[0]+'\')"><span class="cursor-move">DAY <span class="pos_iti" name="posdia[]" id="pos_dia_'+nro_iti+'">'+nro_iti+'</span>: <i id="titulo_'+nro_iti+'">'+itine[0]+'($ '+itine[2]+' for person)</i></span><a href="#!" class="red-text text-darken-2 right" onclick="borrar_itinerario('+nro_iti+')"><i class="mdi-action-delete small"></i></a></div>'+
                 '<div class="portlet-content" onmouseenter="estado_edicion(1)" onmouseleave="estado_edicion(0)">'+
                 '<div class="row">'+
                 '<div class="col s12">'+
                 '<span class="grey-text text-darken-3">'+
-                '<input name="titulo_itinerario[]" id="titulo_itinerario_'+nro_iti+'" type="text" value="'+itine[0]+'" placeholder="Ingrese el titulo">'+
+                '<input name="titulo_itinerario" id="titulo_itinerario_'+nro_iti+'" type="text" value="'+itine[0]+'" placeholder="Ingrese el titulo">'+
+                '<input name="precio_itinerario" id="precio_itinerario_'+nro_iti+'" type="number" value="'+itine[2]+'" placeholder="Precio" onchange="cambiar_precio_iti('+nro_iti+')">'+
                 '</span>'+
                 '</div>'+
                 '</div>'+
@@ -82,6 +82,9 @@ $('#agregar_dia').click(function(){
                 icon.closest( ".portlet" ).find( ".portlet-content" ).toggle();
 
             });
+            sumatotal();
+            $('#buscar').val('');
+            $('#jalar_iti').html('');
         }
     });
     });
@@ -89,14 +92,39 @@ $('#agregar_dia').click(function(){
 var dia=0;
 var titulo=0;
 var id=0;
+var atotal_itinerartio=0;
+var atotal_total=0;
+
+function sumatotal() {
+    sumar_acomo_actual();
+    sumatitineraios();
+    console.log('total itinerarios:'+atotal_itinerartio);
+    atotal_total = atotal + atotal_itinerartio;
+    $('#total').html(atotal_total);
+}
+
+function sumatitineraios(){
+    var nroPa=$('#nropasajeros').val();
+    console.log('nro pasajeros:'+nroPa);
+    console.log('nro itinerarios:'+nro_iti);
+    atotal_itinerartio=0;
+
+    $("input[name=precio_itinerario]").each(function (index) {
+        atotal_itinerartio+=(nroPa*parseInt($(this).val()));
+    });
+    // for(var i=1;i<=nro_iti;i++){
+    //     atotal_itinerartio+=(nroPa*parseInt($('#precio_itinerario_'+i).val()));
+    // }
+    console.log('total:'+atotal_itinerartio);
+}
 function borrar_itinerario(id1){
-    alert('hola:'+id1);
+    // alert('hola:'+id1);
         if(id1>0){
             swal({   title: "Esta seguro?",
                     text: "Eliminar el registro 'DIA "+dia+" : "+titulo,
                     type: "warning",
                     showCancelButton: true,
-                    confirmButtonColor: "#DD6B55",
+                    confirmButtonColor: "#4CAF50",
                     confirmButtonText: "Si, Borrar ahora!",
                     cancelButtonText: "No, Cancelar por favor!",
                     closeOnConfirm: false,
@@ -104,6 +132,8 @@ function borrar_itinerario(id1){
                 function(isConfirm){
                     if (isConfirm) {
                         $('#Itine_'+id1).remove();
+                        nro_iti--;
+                        sumatotal();
                         swal("Borrado!", "Tu registro fue borrado :(", "success");   }
                     else {
                         swal("Cancelado", "Tu registro esta seguro :)", "error");   }
@@ -199,7 +229,9 @@ function sumar_acomo_actual(){
     fila_s=parseInt(nro_pa_s)*parseInt($('#precio_'+atipo+'_s').val());
 
     atotal=fila_t+fila_d+fila_m+fila_s;
-    $('#total').html(atotal);
+    // sumatitineraios();
+    // atotal_total=atotal+atotal_itinerartio;
+    // $('#total').html(atotal_total);
 
     // console.log('fila_t:'+$('#room_t').val()+'_'+$('#precio_'+atipo+'_t').val()+'\n');
     // console.log('fila_d:'+$('#room_d').val()+'_'+$('#precio_'+atipo+'_d').val()+'\n');
@@ -254,7 +286,7 @@ function foco_acomodacion(tipo){
 
 
     $('#titu_aco'+atipo).addClass('color_oro');
-    sumar_acomo_actual();
+    sumatotal();
 }
 
 
@@ -272,7 +304,7 @@ function coti_romms(acom){
     var nropasajeros=$('#nropasajeros').val();
     console.log(pre_nropasajeros+' '+nropasajeros);
         if(pre_nropasajeros<=nropasajeros) {
-            sumar_acomo_actual();
+            sumatotal();
         }else{
             swal({
                     title: "Mensaje del sistema",
@@ -281,12 +313,12 @@ function coti_romms(acom){
                     timer:5000
                 });
             $('#room_'+acom).val(0);
-            sumar_acomo_actual();
+            sumatotal();
             $('#room_'+acom).focus();
         }
 }
 function coti_precio_acom(acom1,tipo1){
-    sumar_acomo_actual();
+    sumatotal();
 }
 
 // function generar_pqt(){
