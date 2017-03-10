@@ -10,7 +10,8 @@
         "barryvdh/laravel-dompdf": "^0.7.0",
         "stripe/stripe-php": "3.*",
         "artesaos/seotools": "^0.10.0",
-        "sineld/bladeset": "^5.3"
+        "sineld/bladeset": "^5.3",
+        "thomaswelton/laravel-gravatar": "~1.0"
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4",

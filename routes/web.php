@@ -178,6 +178,15 @@ Route::group(['middleware'=>'cliente'],function(){
     ]);
 
 
+    Route::get('groups/{id}', [
+        'uses' => 'ClienteCotizacionesController@index',
+        'as' => 'group_path',
+    ]);
+    Route::post('groups/{id}', [
+        'uses' => 'ClienteCotizacionesController@store',
+        'as' => 'client_store_path',
+    ]);
+
 //    Route::post('quotes/{id}', [
 //        'uses' => 'QuotesController@show',
 //        'as' => 'quotes_show_path',

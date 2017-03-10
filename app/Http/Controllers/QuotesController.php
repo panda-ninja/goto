@@ -28,12 +28,14 @@ class QuotesController extends Controller
     {
 
         $idCliente=auth()->guard('cliente')->user()->id;
-        $cotizaciones = Cotizacion::with('paquete_cotizaciones.precio_paquetes','paquete_cotizaciones.paquetes_destinos')->get()
-            ->where('clientes_id',$idCliente)
+
+        $cotizaciones = Cotizacion::with(['cliente_cotizaciones'=>function($query) use ($idCliente) { $query->where('clientes_id', $idCliente);}])
+            ->get()
             ->sortByDesc('fecha');
 
-        $paquetes_num = PaqueteCotizacion::with(['cotizaciones'=>function($query) use ($idCliente) { $query->where('clientes_id', $idCliente);}])->get();
+        $paquetes_num = PaqueteCotizacion::with(['cotizaciones.cliente_cotizaciones'=>function($query) use ($idCliente) { $query->where('clientes_id', $idCliente);}])->get();
 
+//        dd($cotizaciones);
         return view('quotes', ['cotizaciones'=>$cotizaciones, 'paquetes_num'=>$paquetes_num]);
     }
 
@@ -41,11 +43,11 @@ class QuotesController extends Controller
     {
 
         $idCliente=auth()->guard('cliente')->user()->id;
-        $cotizaciones = Cotizacion::with('paquete_cotizaciones.precio_paquetes','paquete_cotizaciones.paquetes_destinos')->get()
-            ->where('clientes_id',$idCliente)
+        $cotizaciones = Cotizacion::with(['cliente_cotizaciones'=>function($query) use ($idCliente) { $query->where('clientes_id', $idCliente);}])
+            ->get()
             ->sortByDesc('fecha');
 
-        $paquetes_num = PaqueteCotizacion::with(['cotizaciones'=>function($query) use ($idCliente) { $query->where('clientes_id', $idCliente);}])->get();
+        $paquetes_num = PaqueteCotizacion::with(['cotizaciones.cliente_cotizaciones'=>function($query) use ($idCliente) { $query->where('clientes_id', $idCliente);}])->get();
 
         return view('confirm', ['cotizaciones'=>$cotizaciones, 'paquetes_num'=>$paquetes_num]);
     }
@@ -54,11 +56,11 @@ class QuotesController extends Controller
     {
 
         $idCliente=auth()->guard('cliente')->user()->id;
-        $cotizaciones = Cotizacion::with('paquete_cotizaciones.precio_paquetes','paquete_cotizaciones.paquetes_destinos')->get()
-            ->where('clientes_id',$idCliente)
+        $cotizaciones = Cotizacion::with(['cliente_cotizaciones'=>function($query) use ($idCliente) { $query->where('clientes_id', $idCliente);}])
+            ->get()
             ->sortByDesc('fecha');
 
-        $paquetes_num = PaqueteCotizacion::with(['cotizaciones'=>function($query) use ($idCliente) { $query->where('clientes_id', $idCliente);}])->get();
+        $paquetes_num = PaqueteCotizacion::with(['cotizaciones.cliente_cotizaciones'=>function($query) use ($idCliente) { $query->where('clientes_id', $idCliente);}])->get();
 
         return view('pending', ['cotizaciones'=>$cotizaciones, 'paquetes_num'=>$paquetes_num]);
     }
@@ -112,9 +114,11 @@ class QuotesController extends Controller
 
 
         $idCliente=auth()->guard('cliente')->user()->id;
-        $cotizaciones = Cotizacion::with('paquete_cotizaciones.precio_paquetes','paquete_cotizaciones.paquetes_destinos')->get()
-            ->where('clientes_id',$idCliente)
+
+        $cotizaciones = Cotizacion::with(['cliente_cotizaciones'=>function($query) use ($idCliente) { $query->where('clientes_id', $idCliente);}])
+            ->get()
             ->sortByDesc('fecha');
+
 
         $paquete = PaqueteCotizacion::with('precio_paquetes','paquetes_destinos','itinerario_cotizaciones.horas_cotizaciones', 'itinerario_cotizaciones.servicios_cotizaciones')
             ->get()
@@ -123,7 +127,7 @@ class QuotesController extends Controller
         $paquete_post = PaqueteCotizacion::with('cotizaciones')->get()
             ->where('cotizaciones_id',$paquete_2->cotizaciones_id)->sortByDesc('fecha');
 
-        $paquetes_num = PaqueteCotizacion::with(['cotizaciones'=>function($query) use ($idCliente) { $query->where('clientes_id', $idCliente);}])->get();
+        $paquetes_num = PaqueteCotizacion::with(['cotizaciones.cliente_cotizaciones'=>function($query) use ($idCliente) { $query->where('clientes_id', $idCliente);}])->get();
 
 
         if ($paquete->count()>0){

@@ -12,10 +12,10 @@ class Cotizacion extends Model
         'nropersonas','estado',
     ];
 
-    public function clientes()
-    {
-        return $this->belongsTo(Cliente::class, 'clientes_id');
-    }
+//    public function clientes()
+//    {
+//        return $this->belongsTo(Cliente::class, 'clientes_id');
+//    }
 
 //    public function paquete_personalizados()
 //    {
@@ -35,5 +35,10 @@ class Cotizacion extends Model
     public function paquete_cotizaciones()
     {
         return $this->hasMany(PaqueteCotizacion::class, 'cotizaciones_id');
+    }
+
+    public function cliente_cotizaciones()
+    {
+        return $this->hasMany(ClienteCotizacion::class, 'cotizaciones_id');
     }
 }
