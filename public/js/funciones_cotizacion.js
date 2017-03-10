@@ -25,6 +25,18 @@ function iniciacion(){
 $('.fixed-action-btn').openFAB();
 $('.fixed-action-btn').closeFAB();
 var nro_iti=0;
+$('.modal-trigger').leanModal({
+    dismissible: true, // Modal can be dismissed by clicking outside of the modal
+    opacity: .5, // Opacity of modal background
+    in_duration: 300, // Transition in duration
+    out_duration: 200, // Transition out duration
+    ready: function() {
+        //alert('Ready');
+    }, // Callback for Modal open
+    complete: function() {
+        //alert('Closed');
+    } // Callback for Modal close
+});
 $('#agregar_dia').click(function(){
     var total=0;
     $("input[name=chb_itinerario_n]").each(function (index) {
@@ -37,13 +49,14 @@ $('#agregar_dia').click(function(){
             $('#nroItis').val(nro_iti);
             $('.lista_itinerario').append(''+
                 '<div id="Itine_'+nro_iti+'" class="portlet">'+
-                '<div id="pl_h_'+nro_iti+'" class="portlet-header"  onmousedown="Pasar_datos(\''+nro_iti+'\',\''+nro_iti+'\',\''+itine[0]+'\')"><span class="cursor-move">DAY <span class="pos_iti" name="posdia[]" id="pos_dia_'+nro_iti+'">'+nro_iti+'</span>: <i id="titulo_'+nro_iti+'">'+itine[0]+'($ '+itine[2]+' for person)</i></span><a href="#!" class="red-text text-darken-2 right" onclick="borrar_itinerario('+nro_iti+')"><i class="mdi-action-delete small"></i></a></div>'+
+                '<div id="pl_h_'+nro_iti+'" class="portlet-header"  onmousedown="Pasar_datos(\''+nro_iti+'\',\''+nro_iti+'\',\''+itine[0]+'\')"><span class="cursor-move">DAY <span class="pos_iti" name="posdia[]" id="pos_dia_'+nro_iti+'">'+nro_iti+'</span>: <i id="titulo_'+nro_iti+'">'+itine[0]+'($ <b id="subtotal_itineraio_dia'+nro_iti+'">0.00</b> for person)</i></span><a class="waves-effect waves-light btn modal-trigger  light-blue" href="#modal2" onclick="mostrar_modal('+nro_iti+')">MMMM</a><a class="waves-effect waves-light btn modal-trigger  light-blue" href="#!" onclick="mostrar_modal('+nro_iti+')"><i class="mdi-action-settings small"></i></a><a href="#!" class="red-text text-darken-2 right" onclick="borrar_itinerario('+nro_iti+')"><i class="mdi-action-delete small"></i></a></div>'+
                 '<div class="portlet-content" onmouseenter="estado_edicion(1)" onmouseleave="estado_edicion(0)">'+
                 '<div class="row">'+
                 '<div class="col s12">'+
                 '<span class="grey-text text-darken-3">'+
                 '<input name="titulo_itinerario" id="titulo_itinerario_'+nro_iti+'" type="text" value="'+itine[0]+'" placeholder="Ingrese el titulo">'+
-                '<input name="precio_itinerario" id="precio_itinerario_'+nro_iti+'" type="number" value="'+itine[2]+'" placeholder="Precio" onchange="cambiar_precio_iti('+nro_iti+')">'+
+                '<span>$ <span id="iti_precio'+nro_iti+'" class="blue-text">0</span></span>'+
+                '<input  name="precio_itinerario" id="precio_itinerario_'+nro_iti+'" type="hidden" value="'+itine[2]+'" placeholder="Precio" onchange="cambiar_precio_iti('+nro_iti+')">'+
                 '</span>'+
                 '</div>'+
                 '</div>'+
@@ -70,6 +83,7 @@ $('#agregar_dia').click(function(){
                 '});'+
                 '});'+
                 '</script>');
+
             $('#Itine_'+nro_iti)
                 .addClass( "ui-widget ui-widget-content ui-helper-clearfix ui-corner-all" )
                 .find( ".portlet-header" )
@@ -85,9 +99,100 @@ $('#agregar_dia').click(function(){
             sumatotal();
             $('#buscar').val('');
             $('#jalar_iti').html('');
+            $('#modales').append('' +
+                '<div id="modal_'+nro_iti+'" class="modal modal-fixed-footer open" style="z-index: 1003; display: none;">'+
+                '<div class="modal-content">'+
+                '<form class="col s12">'+
+                    '<div class="row">'+
+                        '<div class="input-field col s6">'+
+                            '<select name="orden_nombre" id="modal_orden_'+nro_iti+'">' +
+                                '<option value="" disabled selected>Escoja un tipo de orden</option>'+
+                                '<option value="1">Option 1</option>'+
+                                '<option value="2">Option 2</option>'+
+                                '<option value="3">Option 3</option>'+
+                                '<option value="4">Option 4</option>'+
+                                '<option value="5">Option 5</option>'+
+                                '<option value="6">Option 6</option>'+
+                            '</select>'+
+                            '<label for="modal_orden_'+nro_iti+'" class="active">Orden</label>'+
+                        '</div>'+
+                        '<div class="input-field col s3">'+
+                            '<input name="orden_precio" id="modal_precio_'+nro_iti+'" type="number" min="0" class="validate">'+
+                            '<label for="modal_precio_'+nro_iti+'" class="">Precio</label>'+
+                        '</div>'+
+                        '<div class="input-field col s12">'+
+                            '<textarea name="orden_observaciones" id="modal_textarea_'+nro_iti+'" class="materialize-textarea"></textarea>'+
+                            '<label for="modal_textarea_'+nro_iti+'" class="">Observaciones</label>'+
+                        '</div>'+
+                    '</div>'+
+                    '<div class="row">'+
+                        '<div class="col m12">' +
+                            '<table class="striped">'+
+                                '<thead>'+
+                                    '<tr>'+
+                                        '<th data-field="id">Orden</th>'+
+                                        '<th data-field="name">Precio</th>'+
+                                        '<th data-field="price">Observaciones</th>'+
+                                    '</tr>'+
+                                '</thead>'+
+                                '<tbody id="Lista_ordenes_'+nro_iti+'">'+
+                                '</tbody>'+
+                            '</table>'+
+                            '<table class="striped">'+
+                                '<tbody>'+
+                                    '<tr>'+
+                                    '<td colspan="2">Total</td>'+
+                                    '<td id="subtotal_itineraio_dia1"></td>'+
+                                    '</tr>'+
+                                '</tbody>'+
+                            '</table>'+
+                        '</div>'+
+                    '</div>'+
+                '</form>'+
+              '</div>'+
+            '<div class="modal-footer">'+
+                '<a href="#" onclick="ocultar_modal('+nro_iti+')" class="waves-effect waves-red btn-flat modal-action modal-close">Cerrar</a>'+
+                '<a href="#" onclick="guardar_modal('+nro_iti+')" class="waves-effect waves-green btn-flat modal-action modal-close">Guardar</a>'+
+                '</div>'+
+                '</div>');
         }
     });
     });
+function mostrar_modal(modal){
+    var aa='#modal_'+modal;
+    $(aa).show();
+    // $(aa).css({'display':'block'});
+    // $('#modal_'+modal).modal();
+}
+function ocultar_modal(modal){
+    var aa='#modal_'+modal;
+    $(aa).hide();
+    // $(aa).css({'display':'block'});
+    // $('#modal_'+modal).modal();
+}
+function guardar_modal(modal){
+    $('#Lista_ordenes_'+modal).append(''+
+        '<tr>'+
+        '<td><input type="hidden" name="orden_nombre_'+modal+'" value="'+$('#modal_orden_text'+modal).val()+'">'+$('#modal_orden_text'+modal).val()+'</td>'+
+        '<td><input type="hidden" name="orden_precio_'+modal+'" value="'+$('#modal_precio_'+modal).val()+'">'+$('#modal_precio_'+modal).val()+'</td>'+
+        '<td><input type="hidden" name="orden_observacion_'+modal+'" value="'+$('#modal_textarea_'+modal).val()+'">'+$('#modal_textarea_'+modal).val()+'</td>'+
+        '</tr>');
+    var su=calcular_suma_iti_dia(modal);
+    $('#subtotal_itineraio_dia1'+modal).html(su);
+    $('#subtotal_itineraio_dia'+modal).html(su);
+    $('#precio_itinerario_'+modal).val(su);
+
+    // var aa='#modal_'+modal;
+    // $(aa).hide();
+}
+
+function calcular_suma_iti_dia(modal){
+    var sub_total_itinerario=0;
+    $("input[name=orden_precio_"+modal+"]").each(function (index) {
+        sub_total_itinerario+=parseInt($(this).val());
+    });
+    return sub_total_itinerario;
+}
 
 var dia=0;
 var titulo=0;

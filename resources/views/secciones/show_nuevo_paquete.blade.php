@@ -45,7 +45,7 @@
             <div class="row">
                 <div class="input-field col s12 m6 l6">
                     <div class="row">
-                        <div class="file-field input-field col m12">
+                        <div class="file-field input-field col m12 hide">
                             <div class="btn">
                                 <span>Foto</span>
                                 <input type="file" name="foto" id="foto">
@@ -55,7 +55,7 @@
                             </div>
                         </div>
                         <div class="input-field col m12">
-                            <b>Descripcion</b>
+                            <h5>Descripcion</h5>
                             <textarea name="text_descripcion" id="text_descripcion"></textarea>
                             <script>
                                 $(function(){
@@ -74,6 +74,7 @@
 
                 </div>
                 <div class="input-field col s12 m6 l6">
+                    <h5>Acomodacion</h5>
                     <table class="table table1 borde-tabla-habitacion centrar">
                         <tr>
                             <td width="50px"><b class="text-small">Rooms</b></td>
@@ -144,175 +145,226 @@
                 </div>
             </div>
             <div class="row">
-                <div class="input-field col s12 m4 l6">
-                    <ul id="task-card" class="collection with-header">
-                        <li class="collection-header cyan">
-                            <h4 class="task-card-title">Destinos:</h4>
-                        </li>
-                        <?php $i=0;?>
-                        @foreach($destino as $destino1)
-                                 <?php $i++;?>
+                <div class="col s12 m8">
+                    <div id="modales">
+                        <div id="modal-fixed-footer hide">
+                            <h4 class="header">Modal With Fixed Footer</h4>
+                            <div class="row">
+                                <div class="col s12 m4 l3">
+                                    <p>If you have content that is very long and you want the action buttons to be visible all the time, you can add the <code class=" language-markup">modal-fixed-footer</code> class to the modal. </p>
+                                </div>
+                                <div class="col s12 m8 l9">
+                                    <p></p>
+                                    <p><a class="waves-effect waves-light btn modal-trigger  light-blue" href="#modal2">MMMM</a>
+                                    </p>
+                                    <p><a class="waves-effect waves-light btn modal-trigger  green" href="#modal4">Modal With Fixed Footer & Color</a>
+                                    </p>
+                                    <div id="modal2" class="modal modal-fixed-footer">
+                                        <div class="modal-content">
+                                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis
+                                                aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum</p>
+                                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis
+                                                aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum</p>
+                                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis
+                                                aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum</p>
+                                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis
+                                                aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum</p>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <a href="#" class="waves-effect waves-red btn-flat modal-action modal-close">Disagree</a>
+                                            <a href="#" class="waves-effect waves-green btn-flat modal-action modal-close">Agree</a>
+                                        </div>
+                                    </div>
+                                    <div id="modal4" class="modal modal-fixed-footer green white-text">
+                                        <div class="modal-content">
+                                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis
+                                                aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum</p>
+                                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis
+                                                aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum</p>
+                                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis
+                                                aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum</p>
+                                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis
+                                                aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum</p>
+                                        </div>
+                                        <div class="modal-footer green lighten-4">
+                                            <a href="#" class="waves-effect waves-red btn-flat modal-action modal-close">Disagree</a>
+                                            <a href="#" class="waves-effect waves-green btn-flat modal-action modal-close">Agree</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div  class="input-field">
+                        {{--<div class="row">--}}
+                        {{--<div class="column">--}}
+                        {{--<div class="portlet">--}}
+                        {{--<div class="portlet-header"><span class="cursor-move">Feeds</span></div>--}}
+                        {{--<div class="portlet-content">Lorem ipsum dolor sit amet, consectetuer adipiscing elitp <p>jfdghdfshgdf</p><p>jfdghdfshgdf</p><p>jfdghdfshgdf</p> </div>--}}
+                        {{--</div>--}}
+                        {{----}}
+                        {{--</div>--}}
+                        {{--</div>--}}
+
+                        <ul  id="task-card" class=" collection with-header collapsible "  data-collapsible="accordion">
+                            <li class="collection-header cyan" data-id="40">
+                                <div class="row">
+                                    <h4 class="task-card-title">Itinerario:</h4>
+                                    {{--<div class="row">--}}
+                                    {{--<div class="col s12 right">--}}
+                                    {{--<div style="position: relative;">--}}
+                                    {{--<div class="fixed-action-btn horizontal" style="position: absolute; display: inline-block;right:5px;buttom:1px;top:-45px;">--}}
+                                    {{--<a class="btn-floating btn-large cyan  lighten-3">--}}
+                                    {{--<i class="mdi-navigation-menu"></i>--}}
+                                    {{--</a>--}}
+                                    {{--<ul>--}}
+                                    {{--<li><a class="btn-floating red" id="borrar_itinerario"><i class="large mdi-content-clear"></i></a>--}}
+                                    {{--</li>--}}
+                                    {{--<li><a class="btn-floating blue" id="guardar_itinerario"><i class="large mdi-content-save"></i></a>--}}
+                                    {{--</li>--}}
+                                    {{--<li><a class="btn-floating green" id="agregar_dia"><i class="large mdi-content-add"></i></a>--}}
+                                    {{--</li>--}}
+                                    {{--</ul>--}}
+                                    {{--</div>--}}
+                                    {{--</div>--}}
+                                    {{--</div>--}}
+                                    {{--</div>--}}
+
+                                </div>
+                            </li>
+
+                            <li>
+                                <div class="column lista_itinerario"  onmouseup="poner_valor()">
+                                    <?php $j=0;?>
+
+                                </div>
+                            </li>
+                            <li>
+                                <div class="row">
+                                    <hr>
+                                    <div class="input-field col s4">
+                                        <input placeholder="Escriba el itinerario" id="buscar" type="text" class="validate"  onkeyup="Buscar_iti()">
+                                        <label for="buscar">Buscar Itinerario</label>
+                                    </div>
+                                    <div class="input-field col s2">
+                                        <a id="agregar_dia" class="waves-effect waves-light  btn green"><i class="mdi-content-add-circle"></i></a>
+                                    </div>
+                                    <div class="input-field col s6 hide">
+                                        ó
+                                        <a class="waves-effect waves-light  btn"><i class="mdi-action-assignment left"></i>Ver todo</a>
+                                    </div>
+                                </div>
+                            </li>
+                            <li>
+                                <div id="jalar_iti" class="row">
+
+                                </div>
+                            </li>
+                        </ul>
+                        <div id="modal331" class="modal bottom-sheet">
+                            <div class="modal-content">
+                                <h4>Modal Header</h4>
+                                <p>A bunch of text</p>
+                            </div>
+                            <div class="modal-footer">
+                                <a href="#!" class=" modal-action modal-close waves-effect waves-green btn-flat">Agree</a>
+                            </div>
+                        </div>
+                        <input type="hidden" name="nroItis" id="nroItis" value="{{$j}}">
+                    </div>
+                    <div class="input-field">
+                        <ul id="task-card" class="collection with-header">
+                            <li class="collection-header cyan">
+                                <h4 class="task-card-title">Incluye:</h4>
+                            </li>
+
+                            <textarea name="text_incluye" id="text_incluye"></textarea>
+                            <script>
+                                $(function(){
+                                    $('#text_incluye')
+                                            .on('froalaEditor.initialized', function (e, editor) {
+                                                $('#text_incluye').parents('form').on('submit', function () {
+//                                        console.log($('#text_descripcion').val());
+//                                        return false;
+                                                })
+                                            })
+                                            .froalaEditor({iframe:false,enter: $.FroalaEditor.ENTER_P, placeholderText: null})
+                                });
+                            </script>
+
+
+                        </ul>
+                    </div>
+                    <div  class="input-field">
+                        <ul id="task-card" class="collection with-header">
+                            <li class="collection-header cyan">
+                                <h4 class="task-card-title">No incluye:</h4>
+                            </li>
+
+                            <textarea name="text_noincluye" id="text_noincluye"></textarea>
+                            <script>
+                                $(function(){
+                                    $('#text_noincluye')
+                                            .on('froalaEditor.initialized', function (e, editor) {
+                                                $('#text_noincluye').parents('form').on('submit', function () {
+//                                        console.log($('#text_descripcion').val());
+//                                        return false;
+                                                })
+                                            })
+                                            .froalaEditor({iframe:false,enter: $.FroalaEditor.ENTER_P, placeholderText: null})
+                                });
+                            </script>
+
+
+                        </ul>
+                    </div>
+                    <div class="input-field">
+                        <ul id="task-card" class="collection with-header">
+                            <li class="collection-header cyan">
+                                <h4 class="task-card-title">Opcional:</h4>
+                            </li>
+
+                            <textarea name="text_opcional" id="text_opcional"></textarea>
+                            <script>
+                                $(function(){
+                                    $('#text_opcional')
+                                            .on('froalaEditor.initialized', function (e, editor) {
+                                                $('#text_opcional').parents('form').on('submit', function () {
+//                                        console.log($('#text_descripcion').val());
+//                                        return false;
+                                                })
+                                            })
+                                            .froalaEditor({iframe:false,enter: $.FroalaEditor.ENTER_P, placeholderText: null})
+                                });
+                            </script>
+
+
+                        </ul>
+                    </div>
+                </div>
+                <div class="col s12 m4">
+                    <div class="input-field">
+                        <ul id="task-card" class="collection with-header">
+                            <li class="collection-header cyan">
+                                <h4 class="task-card-title">Destinos:</h4>
+                            </li>
+                            <?php $i=0;?>
+                            @foreach($destino as $destino1)
+                                <?php $i++;?>
 
                                 <li class="collection-item dismissable" style="touch-action: pan-y; -webkit-user-drag: none; -webkit-tap-highlight-color: rgba(0, 0, 0, 0);">
                                     <input type="checkbox" id="task{{$i}}" name="chb_destinos[]" value="{{$destino1->id}}">
-                                    <label for="task{{$i}}" style="text-decoration: none;">{{$destino1->nombre}}
+                                    <label for="task{{$i}}" style="text-decoration: none;">{{$destino1->destino}}
                                     </label>
                                 </li>
 
-                        @endforeach
-                    </ul>
-                </div>
-                <div  class="input-field col s12 m8 l6">
-                    {{--<div class="row">--}}
-                    {{--<div class="column">--}}
-                    {{--<div class="portlet">--}}
-                    {{--<div class="portlet-header"><span class="cursor-move">Feeds</span></div>--}}
-                    {{--<div class="portlet-content">Lorem ipsum dolor sit amet, consectetuer adipiscing elitp <p>jfdghdfshgdf</p><p>jfdghdfshgdf</p><p>jfdghdfshgdf</p> </div>--}}
-                    {{--</div>--}}
-                    {{----}}
-                    {{--</div>--}}
-                    {{--</div>--}}
-
-                    <ul  id="task-card" class=" collection with-header collapsible "  data-collapsible="accordion">
-                        <li class="collection-header cyan" data-id="40">
-                            <div class="row">
-                                <h4 class="task-card-title">Itinerario:</h4>
-                                {{--<div class="row">--}}
-                                {{--<div class="col s12 right">--}}
-                                {{--<div style="position: relative;">--}}
-                                {{--<div class="fixed-action-btn horizontal" style="position: absolute; display: inline-block;right:5px;buttom:1px;top:-45px;">--}}
-                                {{--<a class="btn-floating btn-large cyan  lighten-3">--}}
-                                {{--<i class="mdi-navigation-menu"></i>--}}
-                                {{--</a>--}}
-                                {{--<ul>--}}
-                                {{--<li><a class="btn-floating red" id="borrar_itinerario"><i class="large mdi-content-clear"></i></a>--}}
-                                {{--</li>--}}
-                                {{--<li><a class="btn-floating blue" id="guardar_itinerario"><i class="large mdi-content-save"></i></a>--}}
-                                {{--</li>--}}
-                                {{--<li><a class="btn-floating green" id="agregar_dia"><i class="large mdi-content-add"></i></a>--}}
-                                {{--</li>--}}
-                                {{--</ul>--}}
-                                {{--</div>--}}
-                                {{--</div>--}}
-                                {{--</div>--}}
-                                {{--</div>--}}
-
-                            </div>
-                        </li>
-
-                        <li>
-                            <div class="column lista_itinerario"  onmouseup="poner_valor()">
-                                <?php $j=0;?>
-
-                            </div>
-                        </li>
-                        <li>
-                            <div class="row">
-                                <hr>
-                                <div class="input-field col s4">
-                                    <input placeholder="Escriba el itinerario" id="buscar" type="text" class="validate"  onkeyup="Buscar_iti()">
-                                    <label for="buscar">Buscar Itinerario</label>
-                                </div>
-                                <div class="input-field col s2">
-                                    <a id="agregar_dia" class="waves-effect waves-light  btn green"><i class="mdi-content-add-circle"></i></a>
-                                </div>
-                                <div class="input-field col s6 hide">
-                                    ó
-                                    <a class="waves-effect waves-light  btn"><i class="mdi-action-assignment left"></i>Ver todo</a>
-                                </div>
-                            </div>
-                        </li>
-                        <li>
-                            <div id="jalar_iti" class="row">
-
-                            </div>
-                        </li>
-                    </ul>
-                    <div id="modal331" class="modal bottom-sheet">
-                        <div class="modal-content">
-                            <h4>Modal Header</h4>
-                            <p>A bunch of text</p>
-                        </div>
-                        <div class="modal-footer">
-                            <a href="#!" class=" modal-action modal-close waves-effect waves-green btn-flat">Agree</a>
-                        </div>
+                            @endforeach
+                        </ul>
                     </div>
-                    <input type="hidden" name="nroItis" id="nroItis" value="{{$j}}">
                 </div>
             </div>
-            <div class="row">
-            <div class="input-field col s12 m4 l6">
-                <ul id="task-card" class="collection with-header">
-                    <li class="collection-header cyan">
-                        <h4 class="task-card-title">Incluye:</h4>
-                    </li>
 
-                    <textarea name="text_incluye" id="text_incluye"></textarea>
-                    <script>
-                        $(function(){
-                            $('#text_incluye')
-                                    .on('froalaEditor.initialized', function (e, editor) {
-                                        $('#text_incluye').parents('form').on('submit', function () {
-//                                        console.log($('#text_descripcion').val());
-//                                        return false;
-                                        })
-                                    })
-                                    .froalaEditor({iframe:false,enter: $.FroalaEditor.ENTER_P, placeholderText: null})
-                        });
-                    </script>
-
-
-                </ul>
-            </div>
-            <div  class="input-field col s12 m8 l6">
-                <ul id="task-card" class="collection with-header">
-                    <li class="collection-header cyan">
-                        <h4 class="task-card-title">No incluye:</h4>
-                    </li>
-
-                    <textarea name="text_noincluye" id="text_noincluye"></textarea>
-                    <script>
-                        $(function(){
-                            $('#text_noincluye')
-                                    .on('froalaEditor.initialized', function (e, editor) {
-                                        $('#text_noincluye').parents('form').on('submit', function () {
-//                                        console.log($('#text_descripcion').val());
-//                                        return false;
-                                        })
-                                    })
-                                    .froalaEditor({iframe:false,enter: $.FroalaEditor.ENTER_P, placeholderText: null})
-                        });
-                    </script>
-
-
-                </ul>
-            </div>
-        </div>
-            <div class="row">
-            <div class="input-field col s12 m4 l6">
-                <ul id="task-card" class="collection with-header">
-                    <li class="collection-header cyan">
-                        <h4 class="task-card-title">Opcional:</h4>
-                    </li>
-
-                    <textarea name="text_opcional" id="text_opcional"></textarea>
-                    <script>
-                        $(function(){
-                            $('#text_opcional')
-                                    .on('froalaEditor.initialized', function (e, editor) {
-                                        $('#text_opcional').parents('form').on('submit', function () {
-//                                        console.log($('#text_descripcion').val());
-//                                        return false;
-                                        })
-                                    })
-                                    .froalaEditor({iframe:false,enter: $.FroalaEditor.ENTER_P, placeholderText: null})
-                        });
-                    </script>
-
-
-                </ul>
-            </div>
-        </div>
         {{--</form>--}}
     </div>
 </div>

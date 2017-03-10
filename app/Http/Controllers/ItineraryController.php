@@ -56,7 +56,7 @@ class ItineraryController extends Controller
     public function buscar_itinerario(Request $request)
     {
         $titulo=strtoupper($request->input('valor'));
-        $itinerario = TItinerario::where('titulo','like','%'.$titulo.'%')->get();
+        $itinerario = TItinerario::where('titulo','like','%'.$titulo.'%')->distinct()->get();
         return view('secciones.show_buscar_itinerario',['itinerario'=>$itinerario]);
     }
     /**

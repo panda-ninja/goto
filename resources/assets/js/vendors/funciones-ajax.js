@@ -1,6 +1,6 @@
 // var url3='gotoperu.travel';
-var url3='';
-// var url3='http://localhost/goto2/public';
+// var url3='';
+var url3='http://localhost/goto2/public';
 
 
 
@@ -112,7 +112,7 @@ $("#nuevo_pqt").click(function(){
             $('#idLoad').html('');
             $('#list_planes').html('<div id="card-alert" class="card red lighten-5">'+
                 '<div class="card-content red-text">'+
-                '<p>ERROR : No se encontró el paquete con codigo: '+codigopx+'</p>'+
+                '<p>ERROR : No se pueden mostrar datos</p>'+
                 '</div>'+
                 '<button type="button" class="close red-text" data-dismiss="alert" aria-label="Close">'+
                 '<span aria-hidden="true">×</span>'+
