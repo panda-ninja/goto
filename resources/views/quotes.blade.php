@@ -32,63 +32,87 @@
     <div id="todas" class="col s12 ">
         <ul class="collection">
         @foreach($cotizaciones as $cotizacion)
-                @php $bg_status = ''; @endphp
-                @foreach($cotizacion->paquete_cotizaciones as $paquete_cot)
-                    @if($paquete_cot->estado == 1)
-                        @php $bg_status = "white"; @endphp
-                    @else
-                        @php $bg_status = "grey lighten-4"; @endphp
-                    @endif
-                @endforeach
-            <li class="collection-item {{$bg_status}}">
-                <span class="title text-12"><i>Fecha de viaje: {{$cotizacion->fecha}} | Numero de pasajeros: {{$cotizacion->nropersonas}}</i></span>
-                <table class="table">
-                    @php $i = 1; @endphp
-                @foreach($cotizacion->paquete_cotizaciones as $paquete_cotizaciones)
+            @foreach($cotizacion->cliente_cotizaciones as $cot)
+                @if($cot)
+                        @php $bg_status = ''; @endphp
+                        @foreach($cotizacion->paquete_cotizaciones as $paquete_cot)
+                            @if($paquete_cot->estado == 1)
+                                @php $bg_status = "white"; @endphp
+                            @else
+                                @php $bg_status = "grey lighten-4"; @endphp
+                            @endif
+                        @endforeach
+                        <li class="collection-item {{$bg_status}}">
+                            <span class="title text-12"><i>Fecha de viaje: {{$cotizacion->fecha}} | Numero de pasajeros: {{$cotizacion->nropersonas}}</i></span>
+                            <table class="table">
+                                @php $i = 1; @endphp
+                                @foreach($cotizacion->paquete_cotizaciones as $paquete_cotizaciones)
 
-                    @php
-                        switch ($paquete_cotizaciones->estado) {
-                            case '1':
-                                $active = 'grey-text text-darken-3 bold-900';
-                                $estado = "<i class='material-icons grey-text text-darken-3'>mail</i>";
-                                break;
-                            case '2':
-                                $active = 'grey-text text-darken-3';
-                                $estado = '<i class="material-icons grey-text">mail_outline</i>';
-                                break;
-                            case '3':
-                                $active = 'grey-text text-darken-3';
-                                $estado = "<i class='material-icons green-text'>check_circle</i>";
-                                break;
-                            case '4':
-                                $active = 'grey-text text-lighten-1';
-                                $estado = "<i class='material-icons grey-text text-lighten-1'>close</i>";
-                                break;
-                            default:
-                                $estado = '';
-                                $active = '';
-                                break;
-                        }
-                    @endphp
+                                    @php
+                                        switch ($paquete_cotizaciones->estado) {
+                                            case '1':
+                                                $active = 'grey-text text-darken-3 bold-900';
+                                                $estado = "<i class='material-icons grey-text text-darken-3'>mail</i>";
+                                                break;
+                                            case '2':
+                                                $active = 'grey-text text-darken-3';
+                                                $estado = '<i class="material-icons grey-text">mail_outline</i>';
+                                                break;
+                                            case '3':
+                                                $active = 'grey-text text-darken-3';
+                                                $estado = '<i class="material-icons green-text">check_circle</i>';
+                                                break;
+                                            case '4':
+                                                $active = 'grey-text text-lighten-1';
+                                                $estado = "<i class='material-icons grey-text text-lighten-1'>close</i>";
+                                                break;
+                                            default:
+                                                $estado = '';
+                                                $active = '';
+                                                break;
+                                        }
+                                    @endphp
 
-                        <tr>
-                            <td class="no-padding">@php echo $estado; @endphp</td>
-                            <td class="no-padding"><a href="{{route('quotes_show_path',$paquete_cotizaciones->id)}}" class="{{$active}}">Propuesta {{$i++}}:</a></td>
-                            <td class="no-padding"><a href="{{route('quotes_show_path',$paquete_cotizaciones->id)}}" class="{{$active}}">{{$paquete_cotizaciones->titulo}}</a></td>
-                            <td class="no-padding right-align"><a href="{{route('quotes_show_path',$paquete_cotizaciones->id)}}" class="{{$active}} rigth">{{date_format($paquete_cotizaciones->updated_at, 'j F Y')}}</a></td>
-                        </tr>
 
-                @endforeach
-                </table>
+                                    <tr>
+                                        <td class="no-padding">
+                                            @if($paquete_cotizaciones->estado == 3)
+                                                <a href="{{route('group_path',$cotizacion->id)}}" class="tooltipped" data-position="top" data-delay="50" data-tooltip="Agregar datos personales y de grupo (si tiene grupo)."><i class="material-icons">supervisor_account</i></a>
+                                            @endif
+                                            @php
+                                                echo $estado;
+                                            @endphp
+                                        </td>
+                                        <td class="no-padding"><a href="{{route('quotes_show_path',$paquete_cotizaciones->id)}}" class="{{$active}}">Propuesta {{$i++}}:</a></td>
+                                        <td class="no-padding"><a href="{{route('quotes_show_path',$paquete_cotizaciones->id)}}" class="{{$active}}">{{$paquete_cotizaciones->titulo}}</a></td>
+                                        <td class="no-padding right-align"><a href="{{route('quotes_show_path',$paquete_cotizaciones->id)}}" class="{{$active}} rigth">{{date_format($paquete_cotizaciones->updated_at, 'j F Y')}}</a></td>
+                                    </tr>
 
-                    {{--<p><a href="">Propuesta 1: {{$paquete_cotizaciones->titulo}} | {{$cotizacion->nropersonas}} pasajeros<span class="right">18 june 2017</span></a></p>--}}
-                    {{--<p><a href="">Propuesta 1: {{$paquete_cotizaciones->titulo}} | {{$cotizacion->nropersonas}} pasajeros<span class="right">18 june 2017</span></a></p>--}}
-                    {{--<p><a href="">Propuesta 1: {{$paquete_cotizaciones->titulo}} | {{$cotizacion->nropersonas}} pasajeros<span class="right">18 june 2017</span></a></p>--}}
-                    {{--<a href="#!" class="secondary-content">18 june 2017</a>--}}
+                                @endforeach
+                            </table>
 
-            </li>
+                            {{--<p><a href="">Propuesta 1: {{$paquete_cotizaciones->titulo}} | {{$cotizacion->nropersonas}} pasajeros<span class="right">18 june 2017</span></a></p>--}}
+                            {{--<p><a href="">Propuesta 1: {{$paquete_cotizaciones->titulo}} | {{$cotizacion->nropersonas}} pasajeros<span class="right">18 june 2017</span></a></p>--}}
+                            {{--<p><a href="">Propuesta 1: {{$paquete_cotizaciones->titulo}} | {{$cotizacion->nropersonas}} pasajeros<span class="right">18 june 2017</span></a></p>--}}
+                            {{--<a href="#!" class="secondary-content">18 june 2017</a>--}}
+
+                        </li>
+                @endif
+            @endforeach
+
+
+
 
         @endforeach
+            <li>
+                <i class="text-12 valign-wrapper">
+                    <i class='material-icons grey-text text-darken-3 text-12'>mail</i> Nueva propuesta|
+                    <i class="material-icons grey-text text-12">mail_outline</i> Propuesta abierta|
+                    <i class="material-icons green-text text-12">check_circle</i> Propuesta confirmada|
+                    <i class='material-icons grey-text text-lighten-1 text-12'>close</i> Propuestas descartadas|
+                    <i class="material-icons text-12 blue-text">supervisor_account</i> Registrar grupo
+                </i>
+            </li>
         </ul>
     </div>
     <div id="confirmados" class="col s12 green hide">

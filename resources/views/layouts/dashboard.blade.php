@@ -92,13 +92,13 @@
                 <div class="collection">
                     @php $k = 0; @endphp
                     @foreach($paquetes_num as $paquetes_n)
+                        @foreach($paquetes_n->cotizaciones->cliente_cotizaciones as $paquetes_n2)
+                            @if($paquetes_n2 AND $paquetes_n->estado == 1)
 
-                        @if($paquetes_n->cotizaciones AND $paquetes_n->estado == 1)
+                                @php $k++; @endphp
 
-                            @php $k++; @endphp
-
-                        @endif
-
+                            @endif
+                        @endforeach
                     @endforeach
 
                     @if($k > 0)

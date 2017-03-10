@@ -91,34 +91,19 @@ $factory->define(GotoPeru\Cliente::class, function (Faker\Generator $faker) {
     ];
 });
 
-$factory->define(GotoPeru\SubCliente::class, function (Faker\Generator $faker) {
-    static $password;
-    return [
-        'nombres' => $faker->name(),
-        'apellidos' => $faker->firstName(),
-        'sexo' => $faker->boolean(),
-        'fechanacimiento' => $faker->date(),
-        'nacionalidad' => $faker->country(),
-        'residencia' => $faker->country(),
-        'restricciones' => $faker->sentence(),
-        'alergias' => $faker->sentence(),
-        'dieta' => $faker->sentence(),
-        'comentarios' => $faker->paragraph(),
-        'pasaporte' => $faker->randomNumber(8),
-        'telefono' => $faker->phoneNumber(),
-        'email' => $faker->unique()->safeEmail(),
-        'password' => $password ?: $password = bcrypt('secret'),
-        'estado' => $faker->boolean(),
-        'remember_token' => str_random(10),
-    ];
-});
-
 //Cotizaciones
 $factory->define(GotoPeru\Cotizacion::class, function (Faker\Generator $faker) {
     return [
         'nropersonas' => $faker->randomNumber(2),
         'precioventa' => $faker->randomFloat(2,500,5000),
         'fecha' => $faker->date(),
+        'estado' => $faker->boolean(),
+    ];
+});
+
+//cotizacion cliente
+$factory->define(GotoPeru\ClienteCotizacion::class, function (Faker\Generator $faker) {
+    return [
         'estado' => $faker->boolean(),
     ];
 });

@@ -17,13 +17,19 @@ class Cliente extends Authenticatable
         'password', 'remember_token',
     ];
 
-    public function sub_clientes()
+//    public function sub_clientes()
+//    {
+//        return $this->hasMany(SubCliente::class, 'clientes_id');
+//    }
+//
+//    public function cotizaciones()
+//    {
+//        return $this->hasMany(Cotizacion::class, 'clientes_id');
+//    }
+
+    public function cliente_cotizaciones()
     {
-        return $this->hasMany(SubCliente::class, 'clientes_id');
+        return $this->hasMany(ClienteCotizacion::class, 'clientes_id');
     }
 
-    public function cotizaciones()
-    {
-        return $this->hasMany(Cotizacion::class, 'clientes_id');
-    }
 }

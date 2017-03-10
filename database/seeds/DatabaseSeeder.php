@@ -18,7 +18,9 @@ class DatabaseSeeder extends Seeder
 //        $this->call(PagosTableSeeder::class);
 //        $this->call(PagosTableSeeder::class);
 //        $this->call(DestinoCotizacionesTableSeeder::class);
-        $this->call(IncluyePaquetesCotizacionesTableSeeder::class);
+//        $this->call(IncluyePaquetesCotizacionesTableSeeder::class);
+        $this->call(CotizacionesClientesTableSeeder::class);
+
         //$this->call(PaquetesCotizacionesTableSeeder::class);
 //        $this->call(ItinerariosCotizacionesTableSeeder::class);
     }

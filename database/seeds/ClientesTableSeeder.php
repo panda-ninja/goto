@@ -14,16 +14,16 @@ class ClientesTableSeeder extends Seeder
     public function run()
     {
         Cliente::truncate();
-        SubCliente::truncate();
+//        SubCliente::truncate();
 
 
         factory(GotoPeru\Cliente::class, 10)->create();
-        $faker = Faker\Factory::create();
-        $clientes_id = Cliente::pluck('id')->All();
+//        $faker = Faker\Factory::create();
+//        $clientes_id = Cliente::pluck('id')->All();
 
-        for($i=1; $i<=20; $i++){
-            factory(GotoPeru\SubCliente::class)->create(['clientes_id'=>$faker->randomElement($clientes_id)]);
-        }
+//        for($i=1; $i<=20; $i++){
+//            factory(GotoPeru\SubCliente::class)->create(['clientes_id'=>$faker->randomElement($clientes_id)]);
+//        }
 
     }
 }

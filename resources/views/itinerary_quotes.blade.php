@@ -3,13 +3,15 @@
 @section('content')
 
     @foreach($cotizaciones as $cotizacion)
-
-        @foreach($cotizacion->paquete_cotizaciones as $paquete2)
-            @php
-                $array[] = $paquete2->id
-            @endphp
+        @foreach($cotizacion->cliente_cotizaciones as $cot)
+            @if($cot)
+                @foreach($cotizacion->paquete_cotizaciones as $paquete2)
+                    @php
+                        $array[] = $paquete2->id
+                    @endphp
+                @endforeach
+            @endif
         @endforeach
-
     @endforeach
 
     @foreach($paquetes as $paquete)
