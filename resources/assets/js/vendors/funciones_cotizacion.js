@@ -18,6 +18,7 @@ function iniciacion(){
         icon.closest( ".portlet" ).find( ".portlet-content" ).toggle();
 
     });
+    $('select').material_select();
 }
  $( function() {
      iniciacion();
@@ -26,8 +27,8 @@ $('.fixed-action-btn').openFAB();
 $('.fixed-action-btn').closeFAB();
 var nro_iti=0;
 $('.modal-trigger').leanModal({
-    dismissible: true, // Modal can be dismissed by clicking outside of the modal
-    opacity: .5, // Opacity of modal background
+    dismissible: false, // Modal can be dismissed by clicking outside of the modal
+    opacity: 0.5, // Opacity of modal background
     in_duration: 300, // Transition in duration
     out_duration: 200, // Transition out duration
     ready: function() {
@@ -49,7 +50,7 @@ $('#agregar_dia').click(function(){
             $('#nroItis').val(nro_iti);
             $('.lista_itinerario').append(''+
                 '<div id="Itine_'+nro_iti+'" class="portlet">'+
-                '<div id="pl_h_'+nro_iti+'" class="portlet-header"  onmousedown="Pasar_datos(\''+nro_iti+'\',\''+nro_iti+'\',\''+itine[0]+'\')"><span class="cursor-move">DAY <span class="pos_iti" name="posdia[]" id="pos_dia_'+nro_iti+'">'+nro_iti+'</span>: <i id="titulo_'+nro_iti+'">'+itine[0]+'($ <b id="subtotal_itineraio_dia'+nro_iti+'">0.00</b> for person)</i></span><a class="waves-effect waves-light btn modal-trigger  light-blue" href="#!" onclick="mostrar_modal('+nro_iti+')">modal</a> <a href="#!" class="red-text text-darken-2 right" onclick="borrar_itinerario('+nro_iti+')"><i class="mdi-action-delete small"></i></a></div>'+
+                '<div id="pl_h_'+nro_iti+'" class="portlet-header"  onmousedown="Pasar_datos(\''+nro_iti+'\',\''+nro_iti+'\',\''+itine[0]+'\')"><span class="cursor-move">DAY <span class="pos_iti" name="posdia[]" id="pos_dia_'+nro_iti+'">'+nro_iti+'</span>: <i id="titulo_'+nro_iti+'">'+itine[0]+'($ <b id="subtotal_itineraio_dia'+nro_iti+'">0.00</b> for person)</i></span> <a class="modal-trigger blue-text right" href="#!" onclick="mostrar_modal('+nro_iti+')"><i class="mdi-action-settings small"></i></a> <a href="#!" class="red-text text-darken-2 right" onclick="borrar_itinerario('+nro_iti+')"><i class="mdi-action-delete small"></i></a></div>'+
                 '<div class="portlet-content" onmouseenter="estado_edicion(1)" onmouseleave="estado_edicion(0)">'+
                 '<div class="row">'+
                 '<div class="col s12">'+
@@ -100,9 +101,8 @@ $('#agregar_dia').click(function(){
             $('#buscar').val('');
             $('#jalar_iti').html('');
             $('#modales').append('' +
-                '<div id="modal_'+nro_iti+'" class="modal modal-fixed-footer open" style="z-index: 1003; display: none;">'+
+                '<div id="modal_'+nro_iti+'" class="modal modal-fixed-footer open" style="z-index: 1003; display: none; opacity: 1; transform: scaleX(1); top: 10%;">'+
                 '<div class="modal-content">'+
-                '<form class="col s12">'+
                     '<div class="row">'+
                         '<div class="input-field col s6">'+
                             '<select name="orden_nombre" id="modal_orden_'+nro_iti+'">' +
@@ -127,7 +127,7 @@ $('#agregar_dia').click(function(){
                     '</div>'+
                     '<div class="row">' +
                         '<div class="input-field col s6">'+
-                            '<button class="waves-effect waves-light  btn green" onclick="guardar_modal('+nro_iti+')">Agregar</button>'+
+                            '<a href="#!" class="waves-effect waves-light  btn green" onclick="guardar_modal('+nro_iti+')">Agregar</a>'+
                         '</div>'+
                     '</div>'+
                     '<div class="row">'+
@@ -153,7 +153,6 @@ $('#agregar_dia').click(function(){
                             '</table>'+
                         '</div>'+
                     '</div>'+
-                '</form>'+
               '</div>'+
             '<div class="modal-footer">'+
                 '<a href="#" onclick="ocultar_modal('+nro_iti+')" class="waves-effect waves-red btn-flat modal-action modal-close">Cerrar</a>'+
@@ -164,10 +163,10 @@ $('#agregar_dia').click(function(){
     });
     });
 function mostrar_modal(modal){
+    // alert('se hizo click para mostarr el modal');
     var aa='#modal_'+modal;
-    $(aa).show();
-    // $(aa).css({'display':'block'});
-    // $('#modal_'+modal).modal();
+    $('#modal_'+modal).show();
+    $('#modal_'+modal).css({'display':'block'});
 }
 function ocultar_modal(modal){
     var aa='#modal_'+modal;

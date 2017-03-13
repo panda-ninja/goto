@@ -147,7 +147,7 @@
             <div class="row">
                 <div class="col s12 m8">
                     <div id="modales">
-                        <div id="modal-fixed-footer hide">
+                        <div id=" ">
                             <h4 class="header">Modal With Fixed Footer</h4>
                             <div class="row">
                                 <div class="col s12 m4 l3">
@@ -155,8 +155,7 @@
                                 </div>
                                 <div class="col s12 m8 l9">
                                     <p></p>
-                                    <p><a class="waves-effect waves-light btn modal-trigger  light-blue" href="#modal2">modalcito</a>
-                                    </p>
+                                    <p><a class="waves-effect waves-light btn modal-trigger  light-blue" href="#modal2">modalcito</a></p>
                                     <p><a class="waves-effect waves-light btn modal-trigger  green" href="#modal4">Modal With Fixed Footer & Color</a>
                                     </p>
                                     <div id="modal2" class="modal modal-fixed-footer">
