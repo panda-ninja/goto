@@ -155,7 +155,7 @@
                                 </div>
                                 <div class="col s12 m8 l9">
                                     <p></p>
-                                    <p><a class="waves-effect waves-light btn modal-trigger  light-blue" href="#modal2">MMMM</a>
+                                    <p><a class="waves-effect waves-light btn modal-trigger  light-blue" href="#modal2">modalcito</a>
                                     </p>
                                     <p><a class="waves-effect waves-light btn modal-trigger  green" href="#modal4">Modal With Fixed Footer & Color</a>
                                     </p>

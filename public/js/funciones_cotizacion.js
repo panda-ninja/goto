@@ -49,7 +49,7 @@ $('#agregar_dia').click(function(){
             $('#nroItis').val(nro_iti);
             $('.lista_itinerario').append(''+
                 '<div id="Itine_'+nro_iti+'" class="portlet">'+
-                '<div id="pl_h_'+nro_iti+'" class="portlet-header"  onmousedown="Pasar_datos(\''+nro_iti+'\',\''+nro_iti+'\',\''+itine[0]+'\')"><span class="cursor-move">DAY <span class="pos_iti" name="posdia[]" id="pos_dia_'+nro_iti+'">'+nro_iti+'</span>: <i id="titulo_'+nro_iti+'">'+itine[0]+'($ <b id="subtotal_itineraio_dia'+nro_iti+'">0.00</b> for person)</i></span><a class="waves-effect waves-light btn modal-trigger  light-blue" href="#modal2" onclick="mostrar_modal('+nro_iti+')">MMMM</a><a class="waves-effect waves-light btn modal-trigger  light-blue" href="#!" onclick="mostrar_modal('+nro_iti+')"><i class="mdi-action-settings small"></i></a><a href="#!" class="red-text text-darken-2 right" onclick="borrar_itinerario('+nro_iti+')"><i class="mdi-action-delete small"></i></a></div>'+
+                '<div id="pl_h_'+nro_iti+'" class="portlet-header"  onmousedown="Pasar_datos(\''+nro_iti+'\',\''+nro_iti+'\',\''+itine[0]+'\')"><span class="cursor-move">DAY <span class="pos_iti" name="posdia[]" id="pos_dia_'+nro_iti+'">'+nro_iti+'</span>: <i id="titulo_'+nro_iti+'">'+itine[0]+'($ <b id="subtotal_itineraio_dia'+nro_iti+'">0.00</b> for person)</i></span><a class="waves-effect waves-light btn modal-trigger  light-blue" href="#!" onclick="mostrar_modal('+nro_iti+')">modal</a> <a href="#!" class="red-text text-darken-2 right" onclick="borrar_itinerario('+nro_iti+')"><i class="mdi-action-delete small"></i></a></div>'+
                 '<div class="portlet-content" onmouseenter="estado_edicion(1)" onmouseleave="estado_edicion(0)">'+
                 '<div class="row">'+
                 '<div class="col s12">'+
@@ -125,6 +125,11 @@ $('#agregar_dia').click(function(){
                             '<label for="modal_textarea_'+nro_iti+'" class="">Observaciones</label>'+
                         '</div>'+
                     '</div>'+
+                    '<div class="row">' +
+                        '<div class="input-field col s6">'+
+                            '<button class="waves-effect waves-light  btn green" onclick="guardar_modal('+nro_iti+')">Agregar</button>'+
+                        '</div>'+
+                    '</div>'+
                     '<div class="row">'+
                         '<div class="col m12">' +
                             '<table class="striped">'+
@@ -152,7 +157,7 @@ $('#agregar_dia').click(function(){
               '</div>'+
             '<div class="modal-footer">'+
                 '<a href="#" onclick="ocultar_modal('+nro_iti+')" class="waves-effect waves-red btn-flat modal-action modal-close">Cerrar</a>'+
-                '<a href="#" onclick="guardar_modal('+nro_iti+')" class="waves-effect waves-green btn-flat modal-action modal-close">Guardar</a>'+
+                '<a href="#" onclick="ocultar_modal('+nro_iti+')" class="waves-effect waves-green btn-flat modal-action modal-close">Guardar</a>'+
                 '</div>'+
                 '</div>');
         }
@@ -173,7 +178,7 @@ function ocultar_modal(modal){
 function guardar_modal(modal){
     $('#Lista_ordenes_'+modal).append(''+
         '<tr>'+
-        '<td><input type="hidden" name="orden_nombre_'+modal+'" value="'+$('#modal_orden_text'+modal).val()+'">'+$('#modal_orden_text'+modal).val()+'</td>'+
+        '<td><input type="hidden" name="orden_nombre_'+modal+'" value="'+$('#modal_orden_'+modal).val()+'">'+$('#modal_orden_'+modal).val()+'</td>'+
         '<td><input type="hidden" name="orden_precio_'+modal+'" value="'+$('#modal_precio_'+modal).val()+'">'+$('#modal_precio_'+modal).val()+'</td>'+
         '<td><input type="hidden" name="orden_observacion_'+modal+'" value="'+$('#modal_textarea_'+modal).val()+'">'+$('#modal_textarea_'+modal).val()+'</td>'+
         '</tr>');
