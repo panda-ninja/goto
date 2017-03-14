@@ -276,11 +276,11 @@ function generar_pqt(){
                         }
                         console.log('total:'+precio_plan);
                         var destinos= '';
-                        jQuery("input[name='chb_destinos[]']:checked").each(function(){
+                        jQuery("input[name='chb_destinos']:checked").each(function(){
                             destinos+= $(this).val() + '[]';
                         });
-                        destinos=destinos.substring(0, destinos.length-2);
-
+                        // destinos=destinos.substring(0, destinos.length-2);
+                        console.log('destinos:'+destinos);
                         var iti_titulo= '';
                         jQuery("textarea.iti_titulo").each(function() {
                             iti_titulo+= $(this).val() + '[]';

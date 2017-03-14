@@ -5,6 +5,7 @@ namespace GotoPeru\Http\Controllers;
 
 use GotoPeru\Cliente;
 use GotoPeru\Cotizacion;
+use GotoPeru\DestinoPaqueteCotizacion;
 use GotoPeru\PaqueteCotizacion;
 use GotoPeru\PrecioPaquete;
 use Illuminate\Http\Request;
@@ -90,10 +91,8 @@ class CotizacionController extends Controller
         $incluye=$request->input('text_incluye');
         $noincluye=$request->input('text_noincluye');
         $opcional=$request->input('text_opcional');
-//        $incluye='';
-//        $noincluye='';
-//        $opcional='';
-
+        $destinos=explode('[]',$request->input('destinos'));
+        dd($destinos);
 
         $paqueteCotizacion = new PaqueteCotizacion();
         $paqueteCotizacion->codigo = $codigo_plan;
@@ -108,6 +107,13 @@ class CotizacionController extends Controller
         $paqueteCotizacion->imagen=$path;
         $paqueteCotizacion->cotizaciones_id=$idCotizacion;
         $paqueteCotizacion->save();
+
+        foreach ( $destinos as $item) {
+            $destino = new DestinoPaqueteCotizacion();
+            $destino->paquete_cotizaciones_id=$paqueteCotizacion->id;
+            $destino->destino_cotizaciones_id=$item;
+            $destino->save();
+        }
 
         $room_t=$request->input('room_t');
         $room_d=$request->input('room_d');

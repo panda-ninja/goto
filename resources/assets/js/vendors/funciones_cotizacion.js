@@ -18,7 +18,7 @@ function iniciacion(){
         icon.closest( ".portlet" ).find( ".portlet-content" ).toggle();
 
     });
-    $('select').material_select();
+
 }
  $( function() {
      iniciacion();
@@ -50,14 +50,15 @@ $('#agregar_dia').click(function(){
             $('#nroItis').val(nro_iti);
             $('.lista_itinerario').append(''+
                 '<div id="Itine_'+nro_iti+'" class="portlet">'+
-                '<div id="pl_h_'+nro_iti+'" class="portlet-header"  onmousedown="Pasar_datos(\''+nro_iti+'\',\''+nro_iti+'\',\''+itine[0]+'\')"><span class="cursor-move">DAY <span class="pos_iti" name="posdia[]" id="pos_dia_'+nro_iti+'">'+nro_iti+'</span>: <i id="titulo_'+nro_iti+'">'+itine[0]+'($ <b id="subtotal_itineraio_dia'+nro_iti+'">0.00</b> for person)</i></span> <a class="modal-trigger blue-text right" href="#!" onclick="mostrar_modal('+nro_iti+')"><i class="mdi-action-settings small"></i></a> <a href="#!" class="red-text text-darken-2 right" onclick="borrar_itinerario('+nro_iti+')"><i class="mdi-action-delete small"></i></a></div>'+
+                '<div class="col m9"><div id="pl_h_'+nro_iti+'" class="portlet-header"  onmousedown="Pasar_datos(\''+nro_iti+'\',\''+nro_iti+'\',\''+itine[0]+'\')"><span class="cursor-move">DAY <span class="pos_iti" name="posdia[]" id="pos_dia_'+nro_iti+'">'+nro_iti+'</span>: <i id="titulo_'+nro_iti+'">'+itine[0]+'</i>($ <b class="green-text" id="subtotal_itineraio_dia'+nro_iti+'">0.00</b> for person)</span> </div></div>'+
+                '<div class="col m3"><a class="modal-trigger blue-text right" href="#!" onclick="mostrar_modal('+nro_iti+')"><i class="mdi-action-settings small"></i></a> <a href="#!" class="red-text text-darken-2 right" onclick="borrar_itinerario('+nro_iti+')"><i class="mdi-action-delete small"></i></a></div>'+
                 '<div class="portlet-content" onmouseenter="estado_edicion(1)" onmouseleave="estado_edicion(0)">'+
                 '<div class="row">'+
                 '<div class="col s12">'+
                 '<span class="grey-text text-darken-3">'+
                 '<input name="titulo_itinerario" id="titulo_itinerario_'+nro_iti+'" type="text" value="'+itine[0]+'" placeholder="Ingrese el titulo">'+
-                '<span>$ <span id="iti_precio'+nro_iti+'" class="blue-text">0</span></span>'+
-                '<input  name="precio_itinerario" id="precio_itinerario_'+nro_iti+'" type="hidden" value="'+itine[2]+'" placeholder="Precio" onchange="cambiar_precio_iti('+nro_iti+')">'+
+                // '<span>$ <span id="iti_precio'+nro_iti+'" class="blue-text">0</span></span>'+
+                '<input name="precio_itinerario" id="precio_itinerario_'+nro_iti+'" type="text" value="0" placeholder="Precio" onchange="cambiar_precio_iti('+nro_iti+')">'+
                 '</span>'+
                 '</div>'+
                 '</div>'+
@@ -104,9 +105,9 @@ $('#agregar_dia').click(function(){
                 '<div id="modal_'+nro_iti+'" class="modal modal-fixed-footer open" style="z-index: 1003; display: none; opacity: 1; transform: scaleX(1); top: 10%;">'+
                 '<div class="modal-content">'+
                     '<div class="row">'+
-                        '<div class="input-field col s6">'+
+                          '<div class="input-field col s3">'+
                             '<select name="orden_nombre" id="modal_orden_'+nro_iti+'">' +
-                                '<option value="" disabled selected>Escoja un tipo de orden</option>'+
+                                '<option value="0" disabled selected>Escoja un tipo de orden</option>'+
                                 '<option value="1">Option 1</option>'+
                                 '<option value="2">Option 2</option>'+
                                 '<option value="3">Option 3</option>'+
@@ -116,11 +117,11 @@ $('#agregar_dia').click(function(){
                             '</select>'+
                             '<label for="modal_orden_'+nro_iti+'" class="active">Orden</label>'+
                         '</div>'+
-                        '<div class="input-field col s3">'+
+                        '<div class="input-field col s2">'+
                             '<input name="orden_precio" id="modal_precio_'+nro_iti+'" type="number" min="0" class="validate">'+
                             '<label for="modal_precio_'+nro_iti+'" class="">Precio</label>'+
                         '</div>'+
-                        '<div class="input-field col s12">'+
+                        '<div class="input-field col s7">'+
                             '<textarea name="orden_observaciones" id="modal_textarea_'+nro_iti+'" class="materialize-textarea"></textarea>'+
                             '<label for="modal_textarea_'+nro_iti+'" class="">Observaciones</label>'+
                         '</div>'+
@@ -130,8 +131,10 @@ $('#agregar_dia').click(function(){
                             '<a href="#!" class="waves-effect waves-light  btn green" onclick="guardar_modal('+nro_iti+')">Agregar</a>'+
                         '</div>'+
                     '</div>'+
+                    '<hr>'+
                     '<div class="row">'+
                         '<div class="col m12">' +
+                        '<h4>Lista de ordenes</h4>'+
                             '<table class="striped">'+
                                 '<thead>'+
                                     '<tr>'+
@@ -146,8 +149,9 @@ $('#agregar_dia').click(function(){
                             '<table class="striped">'+
                                 '<tbody>'+
                                     '<tr>'+
-                                    '<td colspan="2">Total</td>'+
-                                    '<td id="subtotal_itineraio_dia1"></td>'+
+                                    '<td><b>Total</b></td>'+
+                                    '<td><b id="subtotal_itineraio_dia_pre_'+nro_iti+'"></b></td>'+
+                                    '<td></td>'+
                                     '</tr>'+
                                 '</tbody>'+
                             '</table>'+
@@ -156,7 +160,7 @@ $('#agregar_dia').click(function(){
               '</div>'+
             '<div class="modal-footer">'+
                 '<a href="#" onclick="ocultar_modal('+nro_iti+')" class="waves-effect waves-red btn-flat modal-action modal-close">Cerrar</a>'+
-                '<a href="#" onclick="ocultar_modal('+nro_iti+')" class="waves-effect waves-green btn-flat modal-action modal-close">Guardar</a>'+
+                '<a href="#" onclick="ocultar_modal1('+nro_iti+')" class="waves-effect waves-green btn-flat modal-action modal-close">Guardar</a>'+
                 '</div>'+
                 '</div>');
         }
@@ -166,7 +170,18 @@ function mostrar_modal(modal){
     // alert('se hizo click para mostarr el modal');
     var aa='#modal_'+modal;
     $('#modal_'+modal).show();
-    $('#modal_'+modal).css({'display':'block'});
+    // $('#modal_'+modal).css({'display':'block'});
+    $('#modal_orden_'+modal).material_select();
+}
+function ocultar_modal1(modal){
+    var su=calcular_suma_iti_dia(modal);
+    $('#subtotal_itineraio_dia'+modal).html(su);
+    $('#precio_itinerario_'+modal).val(su);
+    sumatotal();
+    var aa='#modal_'+modal;
+    $(aa).hide();
+    // $(aa).css({'display':'block'});
+    // $('#modal_'+modal).modal();
 }
 function ocultar_modal(modal){
     var aa='#modal_'+modal;
@@ -181,13 +196,12 @@ function guardar_modal(modal){
         '<td><input type="hidden" name="orden_precio_'+modal+'" value="'+$('#modal_precio_'+modal).val()+'">'+$('#modal_precio_'+modal).val()+'</td>'+
         '<td><input type="hidden" name="orden_observacion_'+modal+'" value="'+$('#modal_textarea_'+modal).val()+'">'+$('#modal_textarea_'+modal).val()+'</td>'+
         '</tr>');
+    $("#modal_orden_"+modal+" option[value=0]").attr("selected",true);
+    $('#modal_precio_'+modal).val('0');
+    $('#modal_textarea_'+modal).val('');
     var su=calcular_suma_iti_dia(modal);
-    $('#subtotal_itineraio_dia1'+modal).html(su);
-    $('#subtotal_itineraio_dia'+modal).html(su);
-    $('#precio_itinerario_'+modal).val(su);
-
-    // var aa='#modal_'+modal;
-    // $(aa).hide();
+    console.log('suma:'+su);
+    $('#subtotal_itineraio_dia_pre_'+modal).html(su);
 }
 
 function calcular_suma_iti_dia(modal){
