@@ -173,22 +173,27 @@ function generar_pqt(){
                                 }
                                 console.log('total:'+precio_plan);
                                 var destinos= '';
-                                jQuery("input[name='chb_destinos[]']:checked").each(function(){
-                                    destinos+= $(this).val() + '[]';
+                                $("input[name=chb_destinos]").each(function (index) {
+                                    if($(this).is(':checked')){
+                                        destinos+= $(this).val() + '[]';
+                                    }
                                 });
                                 destinos=destinos.substring(0, destinos.length-2);
-
-                                var iti_titulo= '';
-                                jQuery("textarea.iti_titulo").each(function() {
+                                console.log('Destinos:'+destinos);
+                                var titulo_itinerario= '';
+                                jQuery("text.titulo_itinerario").each(function() {
                                     iti_titulo+= $(this).val() + '[]';
                                 });
-                                iti_titulo=iti_titulo.substring(0, iti_titulo.length-2);
+                                titulo_itinerario=titulo_itinerario.substring(0, iti_titulo.length-2);
 
                                 var iti_descricion= '';
-                                jQuery("textarea.iti_descripcion").each(function() {
+                                jQuery("textarea.desc_itinerario").each(function() {
                                     iti_descricion+= $(this).val() + '[]';
                                 });
                                 iti_descricion=iti_descricion.substring(0, iti_descricion.length-2);
+
+                                var pfechapa=$('#fecha').val();
+
                                 var room_t=$('#room_t').val();
                                 var room_d=$('#room_d').val();
                                 var room_m=$('#room_m').val();
@@ -219,7 +224,7 @@ function generar_pqt(){
                                             '&&precio_3_t='+precio_3_t+'&&precio_3_d='+precio_3_d+'&&precio_3_d_m='+precio_3_d_m+'&&precio_3_s='+precio_3_s+
                                             '&&precio_4_t='+precio_4_t+'&&precio_4_d='+precio_4_d+'&&precio_4_d_m='+precio_4_d_m+'&&precio_4_s='+precio_4_s+
                                             '&&precio_5_t='+precio_5_t+'&&precio_5_d='+precio_5_d+'&&precio_5_d_m='+precio_5_d_m+'&&precio_5_s='+precio_5_s;
-                                    // console.log(valor);
+                                    console.log(precios);
                                 // var formData = new FormData();
                                 // var file=document.getElementById("foto").files[0];
                                 // formData.append('foto',file);
@@ -230,12 +235,10 @@ function generar_pqt(){
                                 // formData.append("foto", foto);
                                 $.ajax({
                                     type: 'POST',
-                                    contentType:false,
-                                    processData:false,
-                                    cache:false,
                                     url: url3+'/guardar_plan_cotizacion',
                                     // data: formData,
-                                    data: $('#form_plan').serialize()+'&&'+formData+'&&'+loqincluye+'&&'+precios+'&&descr='+descr+'&&precio_plan='+precio_plan+'&&idCotizacion='+idCotizacion+'&&destinos='+destinos+'&&iti_titulo='+iti_titulo+'&&iti_descricion='+iti_descricion,
+                                    // data: $('#form_plan').serialize()+'&&'+formData+'&&'+loqincluye+'&&'+precios+'&&descr='+descr+'&&precio_plan='+precio_plan+'&&idCotizacion='+idCotizacion+'&&destinos='+destinos+'&&iti_titulo='+iti_titulo+'&&iti_descricion='+iti_descricion,
+                                    data: $('#form_plan').serialize()+'&&'+loqincluye+'&&'+precios+'&&descr='+descr+'&&precio_plan='+precio_plan+'&&idCotizacion='+idCotizacion+'&&destinos='+destinos+'&&titulo_itinerario='+titulo_itinerario+'&&iti_descricion='+iti_descricion+'$$fecha_paquete='+pfechapa,
                                     // data:valor,
                                     // Mostramos un mensaje con la respuesta de PHP
                                     success: function(data){
@@ -267,7 +270,7 @@ function generar_pqt(){
                         });
                     }
                     else{
-                        console.log('ya se guardo la nueva cotizacion: '+idCotizacion);
+                        console.log('ya se tiene guardado la cotizacion: '+idCotizacion);
                         var descr=$('#text_descripcion').val();
 
                         var precio_plan=0;
@@ -276,10 +279,13 @@ function generar_pqt(){
                         }
                         console.log('total:'+precio_plan);
                         var destinos= '';
-                        jQuery("input[name='chb_destinos']:checked").each(function(){
-                            destinos+= $(this).val() + '[]';
+                        $("input[name=chb_destinos]").each(function (index) {
+                            if($(this).is(':checked')){
+                                destinos+= $(this).val() + '[]';
+                            }
                         });
-                        // destinos=destinos.substring(0, destinos.length-2);
+                        destinos=destinos.substring(0, destinos.length-2);
+
                         console.log('destinos:'+destinos);
                         var iti_titulo= '';
                         jQuery("textarea.iti_titulo").each(function() {

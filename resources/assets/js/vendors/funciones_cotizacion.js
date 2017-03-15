@@ -262,6 +262,7 @@ function borrar_itinerario(id1){
                         swal("Cancelado", "Tu registro esta seguro :)", "error");   }
                 });
         }
+        sumatotal();
     }
 
 
@@ -443,7 +444,9 @@ function coti_romms(acom){
 function coti_precio_acom(acom1,tipo1){
     sumatotal();
 }
-
+function aumentar_clientes(){
+    sumatotal();
+}
 // function generar_pqt(){
 //     var titulo=$('#titulo_plan').val();
 //     var dia=$('#dias_plan').val();

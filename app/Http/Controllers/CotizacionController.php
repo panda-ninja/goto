@@ -3,9 +3,11 @@
 namespace GotoPeru\Http\Controllers;
 
 
+use Faker\Provider\DateTime;
 use GotoPeru\Cliente;
 use GotoPeru\Cotizacion;
 use GotoPeru\DestinoPaqueteCotizacion;
+use GotoPeru\ItinerarioCotizacion;
 use GotoPeru\PaqueteCotizacion;
 use GotoPeru\PrecioPaquete;
 use Illuminate\Http\Request;
@@ -91,8 +93,18 @@ class CotizacionController extends Controller
         $incluye=$request->input('text_incluye');
         $noincluye=$request->input('text_noincluye');
         $opcional=$request->input('text_opcional');
-        $destinos=explode('[]',$request->input('destinos'));
-        dd($destinos);
+        $destinos=explode('[]',$request->input('destinos')) ;
+        $titulo_itinerario=explode('[]',$request->input('titulo_itinerario'));
+        $iti_descricion=explode('[]',$request->input('iti_descricion'));
+        $fecha_paquete=$request->input('fecha_paquete');
+//      strftime("%B, %d", strtotime(str_replace('-','/', $disponibilidad->fecha_disponibilidad)))
+        $fecha = date($fecha_paquete);
+
+
+
+
+//        echo $destinos;
+//        dd($destinos);
 
         $paqueteCotizacion = new PaqueteCotizacion();
         $paqueteCotizacion->codigo = $codigo_plan;
@@ -108,12 +120,33 @@ class CotizacionController extends Controller
         $paqueteCotizacion->cotizaciones_id=$idCotizacion;
         $paqueteCotizacion->save();
 
-        foreach ( $destinos as $item) {
-            $destino = new DestinoPaqueteCotizacion();
-            $destino->paquete_cotizaciones_id=$paqueteCotizacion->id;
-            $destino->destino_cotizaciones_id=$item;
-            $destino->save();
+        if(count($destinos)>0){
+            foreach ( $destinos as $item) {
+                $destino = new DestinoPaqueteCotizacion();
+                $destino->paquete_cotizaciones_id=$paqueteCotizacion->id;
+                $destino->destino_cotizaciones_id=$item;
+                $destino->save();
+            }
         }
+        if(count($titulo_itinerario)>0){
+            $i=0;
+            $dia=1;
+            foreach ( $titulo_itinerario as $item) {
+
+                $itinerario = new ItinerarioCotizacion();
+                $itinerario->titulo=$item;
+                $itinerario->descripcion=iti_descricion[$i];
+                $itinerario->dia=$dia;
+                $itinerario->fecha=strtotime ( '+'.$dia.' day' , strtotime ( $fecha ) ) ;;
+                $itinerario->imagen='nono';
+                $itinerario->estado=1;
+                $itinerario->paquete_cotizaciones_id=$paqueteCotizacion->id;
+                $itinerario->save();
+                $dia++;
+                $i++;
+            }
+        }
+
 
         $room_t=$request->input('room_t');
         $room_d=$request->input('room_d');

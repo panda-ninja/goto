@@ -304,13 +304,11 @@
                             <?php $i=0;?>
                             @foreach($destino as $destino1)
                                 <?php $i++;?>
-
                                 <li class="collection-item dismissable" style="touch-action: pan-y; -webkit-user-drag: none; -webkit-tap-highlight-color: rgba(0, 0, 0, 0);">
                                     <input type="checkbox" id="task{{$i}}" name="chb_destinos" value="{{$destino1->id}}">
                                     <label for="task{{$i}}" style="text-decoration: none;">{{$destino1->destino}}
                                     </label>
                                 </li>
-
                             @endforeach
                         </ul>
                     </div>

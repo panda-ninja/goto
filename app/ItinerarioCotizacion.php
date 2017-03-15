@@ -22,5 +22,9 @@ class ItinerarioCotizacion extends Model
     {
         return $this->hasMany(ServicioCotizacion::class, 'itinerario_cotizaciones_id');
     }
+    public function orden_cotizaciones()
+    {
+        return $this->hasMany(ItinerarioOrden::class, 'itinerario_cotizaciones_id');
+    }
 
 }
