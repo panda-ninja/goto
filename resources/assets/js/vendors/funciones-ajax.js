@@ -172,6 +172,8 @@ function generar_pqt(){
                                     precio_plan=$('#total').html();
                                 }
                                 console.log('total:'+precio_plan);
+                                // var dias_plan=$('#dias_plan').val();
+                                // console.log('Duracion:'+dias_plan);
                                 var destinos= '';
                                 $("input[name=chb_destinos]").each(function (index) {
                                     if($(this).is(':checked')){
@@ -180,18 +182,50 @@ function generar_pqt(){
                                 });
                                 destinos=destinos.substring(0, destinos.length-2);
                                 console.log('Destinos:'+destinos);
-                                var titulo_itinerario= '';
-                                jQuery("text.titulo_itinerario").each(function() {
-                                    iti_titulo+= $(this).val() + '[]';
-                                });
-                                titulo_itinerario=titulo_itinerario.substring(0, iti_titulo.length-2);
 
+                                var titulo_itinerario= '';
+                                $("input[name=titulo_itinerario]").each(function (index) {
+
+                                    titulo_itinerario+= $(this).val() + '[]';
+
+                                });
+                                titulo_itinerario=titulo_itinerario.substring(0, titulo_itinerario.length-2);
+                                console.log('Itinerarios:'+titulo_itinerario);
                                 var iti_descricion= '';
-                                jQuery("textarea.desc_itinerario").each(function() {
+                                // $("input[name=desc_itinerario]").each(function (index) {
+                                //
+                                //     iti_descricion+= $(this).val() + '[]';
+                                //
+                                // });
+                                $(".iti_descripcion").each(function (index)
+                                {
                                     iti_descricion+= $(this).val() + '[]';
                                 });
                                 iti_descricion=iti_descricion.substring(0, iti_descricion.length-2);
+                                console.log('Descripcion:'+iti_descricion);
+                                var precio_itinerario='';
+                                $("input[name=precio_itinerario]").each(function (index) {
 
+                                    precio_itinerario+= $(this).val() + '[]';
+
+                                });
+                                precio_itinerario=precio_itinerario.substring(0, precio_itinerario.length-2);
+                                console.log('precio itinerario:'+precio_itinerario);
+                                /*-- recorremos los itineraios*/
+                                var ordenes='';
+                                $("input[name=pos_itinerario]").each(function (index) {
+                                    var $pos= $(this).val();
+                                    var it=0;
+                                    $("input[name=orden_nombre_"+$pos+"]").each(function (index) {
+
+                                        ordenes+= $(this).val()+'/'+$("input[name=orden_precio_"+$pos+"]")[it].val()+'/'+$("input[name=orden_observacion_"+$pos+"]")[it].val()+'_';
+                                        it++;
+                                    });
+                                    ordenes=ordenes.substring(0, ordenes.length-1);
+                                    ordenes+=ordenes+'*';
+                                });
+                                ordenes=ordenes.substring(0, ordenes.length-1);
+                                console.log(ordenes);
                                 var pfechapa=$('#fecha').val();
 
                                 var room_t=$('#room_t').val();
@@ -224,7 +258,7 @@ function generar_pqt(){
                                             '&&precio_3_t='+precio_3_t+'&&precio_3_d='+precio_3_d+'&&precio_3_d_m='+precio_3_d_m+'&&precio_3_s='+precio_3_s+
                                             '&&precio_4_t='+precio_4_t+'&&precio_4_d='+precio_4_d+'&&precio_4_d_m='+precio_4_d_m+'&&precio_4_s='+precio_4_s+
                                             '&&precio_5_t='+precio_5_t+'&&precio_5_d='+precio_5_d+'&&precio_5_d_m='+precio_5_d_m+'&&precio_5_s='+precio_5_s;
-                                    console.log(precios);
+                                    // console.log(precios);
                                 // var formData = new FormData();
                                 // var file=document.getElementById("foto").files[0];
                                 // formData.append('foto',file);
@@ -238,7 +272,7 @@ function generar_pqt(){
                                     url: url3+'/guardar_plan_cotizacion',
                                     // data: formData,
                                     // data: $('#form_plan').serialize()+'&&'+formData+'&&'+loqincluye+'&&'+precios+'&&descr='+descr+'&&precio_plan='+precio_plan+'&&idCotizacion='+idCotizacion+'&&destinos='+destinos+'&&iti_titulo='+iti_titulo+'&&iti_descricion='+iti_descricion,
-                                    data: $('#form_plan').serialize()+'&&'+loqincluye+'&&'+precios+'&&descr='+descr+'&&precio_plan='+precio_plan+'&&idCotizacion='+idCotizacion+'&&destinos='+destinos+'&&titulo_itinerario='+titulo_itinerario+'&&iti_descricion='+iti_descricion+'$$fecha_paquete='+pfechapa,
+                                    data: $('#form_plan').serializeArray()+'&&'+loqincluye+'&&'+precios+'&&descr='+descr+'&&precio_plan='+precio_plan+'&&idCotizacion='+idCotizacion+'&&destinos='+destinos+'&&titulo_itinerario='+titulo_itinerario+'&&iti_descripcion='+iti_descricion+'&&fecha_paquete='+pfechapa+'&&precio_itinerario='+precio_itinerario,
                                     // data:valor,
                                     // Mostramos un mensaje con la respuesta de PHP
                                     success: function(data){

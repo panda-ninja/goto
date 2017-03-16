@@ -57,12 +57,13 @@ $('#agregar_dia').click(function(){
                 '<div class="col s12">'+
                 '<span class="grey-text text-darken-3">'+
                 '<input name="titulo_itinerario" id="titulo_itinerario_'+nro_iti+'" type="text" value="'+itine[0]+'" placeholder="Ingrese el titulo">'+
+                '<input name="pos_itinerario" id="pos_itinerario_'+nro_iti+'" type="hidden" value="'+nro_iti+'">'+
                 // '<span>$ <span id="iti_precio'+nro_iti+'" class="blue-text">0</span></span>'+
                 '<input name="precio_itinerario" id="precio_itinerario_'+nro_iti+'" type="text" value="0" placeholder="Precio" onchange="cambiar_precio_iti('+nro_iti+')">'+
                 '</span>'+
                 '</div>'+
                 '</div>'+
-                '<textarea  name="desc_itinerario[]" id="desc_itinerario_'+nro_iti+'">'+itine[1]+
+                '<textarea class="iti_descripcion"  name="desc_itinerario" id="desc_itinerario_'+nro_iti+'">'+itine[1]+
                 '</textarea>'+
                 '</div>'+
                 '</div>'+
