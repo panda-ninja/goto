@@ -196,7 +196,7 @@
                                         @foreach($itinerario->servicios_cotizaciones as $servicios)
                                             <tr>
                                                 <td>{{$servicios->tiposervicio}}</td>
-                                                <td>{{$servicios->observaciones}}</td>
+                                                <td>@php echo $servicios->observaciones; @endphp</td>
                                                 {{--<td>${{$servicios->precio}}</td>--}}
                                             </tr>
                                         @endforeach
