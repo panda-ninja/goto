@@ -5,6 +5,7 @@ namespace GotoPeru\Http\Controllers;
 
 use Faker\Provider\DateTime;
 use GotoPeru\Cliente;
+use GotoPeru\ClienteCotizacion;
 use GotoPeru\Cotizacion;
 use GotoPeru\DestinoPaqueteCotizacion;
 use GotoPeru\ItinerarioCotizacion;
@@ -51,9 +52,14 @@ class CotizacionController extends Controller
                 $cotizacion->nropersonas=$nropasa;
                 $cotizacion->fecha=$fecha;
                 $cotizacion->estado="6";/*-- 6=pre cotizacion*/
-                $cotizacion->clientes_id=$cliente[0]->id;
+//                $cotizacion->clientes_id=$cliente[0]->id;
                 $cotizacion->users_id=auth()->guard('admin')->user()->id;
                 $cotizacion->save();
+                $clienteCotizacion=new ClienteCotizacion();
+                $clienteCotizacion->cotizaciones_id=$cotizacion->id;
+                $clienteCotizacion->clientes_id=$cliente[0]->id;
+                $clienteCotizacion->estado='1';
+                $clienteCotizacion->save();
                 return $cotizacion->id;
             }
             else{
