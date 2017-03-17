@@ -51,7 +51,7 @@
                                 </div>
                                 <div class="input-field col s3">
                                     <i class="mdi-social-people prefix"></i>
-                                    <input id="nropasajeros" type="number" min="1" value="1">
+                                    <input id="nropasajeros" type="number" min="1" value="1" onchange="aumentar_clientes()">
                                     <label for="nropasajeros" class="">Nro pasajeros</label>
                                 </div>
 
@@ -221,6 +221,8 @@
     <link href="{{asset('css/sweetalert.css')}}" type="text/css" rel="stylesheet" media="screen,projection"/>
     {{--<script src="//cdn.tinymce.com/4/tinymce.min.js"></script>--}}
     <script type="text/javascript" src="{{URL::to('js/funciones-ajax.js')}}"></script>
+    <script type="text/javascript" src="{{URL::to('js/funciones_cotizacion.js')}}"></script>
+
     <link href="{{asset('css/notification.css')}}" type="text/css" rel="stylesheet" media="screen,projection"/>
 
     <link href="{{asset('css/acordeon-sorteable.css')}}" type="text/css" rel="stylesheet" media="screen,projection"/>

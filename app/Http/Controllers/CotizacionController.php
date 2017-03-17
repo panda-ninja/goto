@@ -3,8 +3,12 @@
 namespace GotoPeru\Http\Controllers;
 
 
+use Faker\Provider\DateTime;
 use GotoPeru\Cliente;
 use GotoPeru\Cotizacion;
+use GotoPeru\DestinoPaqueteCotizacion;
+use GotoPeru\ItinerarioCotizacion;
+use GotoPeru\ItinerarioOrden;
 use GotoPeru\PaqueteCotizacion;
 use GotoPeru\PrecioPaquete;
 use Illuminate\Http\Request;
@@ -90,10 +94,24 @@ class CotizacionController extends Controller
         $incluye=$request->input('text_incluye');
         $noincluye=$request->input('text_noincluye');
         $opcional=$request->input('text_opcional');
-//        $incluye='';
-//        $noincluye='';
-//        $opcional='';
+        $destinos='';
+        if(strlen($request->input('destinos'))>0)
+            $destinos=explode('[]',$request->input('destinos')) ;
 
+        $titulo_itinerario=explode('[]',$request->input('titulo_itinerario'));
+        $iti_descripcion=explode('[]',$request->input('iti_descripcion'));
+        $precio_itinerario=explode('[]',$request->input('precio_itinerario'));
+        $pos_itinerario=$request->input('pos_itinerario');
+
+        $fecha_paquete=$request->input('fecha_paquete');
+//      strftime("%B, %d", strtotime(str_replace('-','/', $disponibilidad->fecha_disponibilidad)))
+//        $fecha = date($fecha_paquete);
+
+
+
+
+//        echo $destinos;
+//        dd($destinos);
 
         $paqueteCotizacion = new PaqueteCotizacion();
         $paqueteCotizacion->codigo = $codigo_plan;
@@ -108,6 +126,53 @@ class CotizacionController extends Controller
         $paqueteCotizacion->imagen=$path;
         $paqueteCotizacion->cotizaciones_id=$idCotizacion;
         $paqueteCotizacion->save();
+
+        if(count($destinos)>0){
+            foreach ( $destinos as $item) {
+                $destino = new DestinoPaqueteCotizacion();
+                $destino->paquete_cotizaciones_id=$paqueteCotizacion->id;
+                $destino->destino_cotizaciones_id=$item;
+                $destino->save();
+            }
+        }
+        if(count($iti_descripcion)>0){
+            $i=0;
+            $dia=1;
+            foreach ($iti_descripcion as $item) {
+
+                $itinerario = new ItinerarioCotizacion();
+                $itinerario->titulo=$titulo_itinerario[$i];
+                $itinerario->descripcion=$item;
+                $itinerario->dias=$dia;
+//                $date = date($fecha_paquete);
+//                $mod_date = strtotime($date."+ ".$dia." days");
+//                $itinerario->fecha=date("Y-m-d",$mod_date);
+                $itinerario->fecha=date("Y-m-d");
+                $itinerario->precio=$precio_itinerario[$i];
+                $itinerario->imagen='nono';
+                $itinerario->estado=1;
+                $itinerario->paquete_cotizaciones_id=$paqueteCotizacion->id;
+                $itinerario->save();
+                $variable='orden_nombre_'.$pos_itinerario[$i];
+                $orden_nombres=$request->input($variable);
+                dd($orden_nombres);
+//                $orden_precio=$request->input('orden_precio_'.$variable);
+//                $orden_observacion=$request->input('orden_observacion_'.$variable);
+                $j=0;
+                foreach ($orden_nombres as $orden_nombre){
+                    $orden=new ItinerarioOrden();
+                    $orden->itinerario_cotizaciones_id=$itinerario->id;
+                    $orden->nombre=$orden_nombre;
+                    $orden->observacion='';//$orden_observacion[$j];
+                    $orden->precio='';//$orden_precio[$j];
+                    $orden->save();
+                    $j++;
+                }
+                $dia++;
+                $i++;
+            }
+        }
+
 
         $room_t=$request->input('room_t');
         $room_d=$request->input('room_d');

@@ -1,6 +1,6 @@
 // var url3='gotoperu.travel';
-var url3='';
-// var url3='http://localhost/goto2/public';
+// var url3='';
+var url3='http://localhost/goto2/public';
 
 
 
@@ -112,7 +112,7 @@ $("#nuevo_pqt").click(function(){
             $('#idLoad').html('');
             $('#list_planes').html('<div id="card-alert" class="card red lighten-5">'+
                 '<div class="card-content red-text">'+
-                '<p>ERROR : No se encontró el paquete con codigo: '+codigopx+'</p>'+
+                '<p>ERROR : No se pueden mostrar datos</p>'+
                 '</div>'+
                 '<button type="button" class="close red-text" data-dismiss="alert" aria-label="Close">'+
                 '<span aria-hidden="true">×</span>'+
@@ -172,23 +172,62 @@ function generar_pqt(){
                                     precio_plan=$('#total').html();
                                 }
                                 console.log('total:'+precio_plan);
+                                // var dias_plan=$('#dias_plan').val();
+                                // console.log('Duracion:'+dias_plan);
                                 var destinos= '';
-                                jQuery("input[name='chb_destinos[]']:checked").each(function(){
-                                    destinos+= $(this).val() + '[]';
+                                $("input[name=chb_destinos]").each(function (index) {
+                                    if($(this).is(':checked')){
+                                        destinos+= $(this).val() + '[]';
+                                    }
                                 });
                                 destinos=destinos.substring(0, destinos.length-2);
+                                console.log('Destinos:'+destinos);
 
-                                var iti_titulo= '';
-                                jQuery("textarea.iti_titulo").each(function() {
-                                    iti_titulo+= $(this).val() + '[]';
+                                var titulo_itinerario= '';
+                                $("input[name=titulo_itinerario]").each(function (index) {
+
+                                    titulo_itinerario+= $(this).val() + '[]';
+
                                 });
-                                iti_titulo=iti_titulo.substring(0, iti_titulo.length-2);
-
+                                titulo_itinerario=titulo_itinerario.substring(0, titulo_itinerario.length-2);
+                                console.log('Itinerarios:'+titulo_itinerario);
                                 var iti_descricion= '';
-                                jQuery("textarea.iti_descripcion").each(function() {
+                                // $("input[name=desc_itinerario]").each(function (index) {
+                                //
+                                //     iti_descricion+= $(this).val() + '[]';
+                                //
+                                // });
+                                $(".iti_descripcion").each(function (index)
+                                {
                                     iti_descricion+= $(this).val() + '[]';
                                 });
                                 iti_descricion=iti_descricion.substring(0, iti_descricion.length-2);
+                                console.log('Descripcion:'+iti_descricion);
+                                var precio_itinerario='';
+                                $("input[name=precio_itinerario]").each(function (index) {
+
+                                    precio_itinerario+= $(this).val() + '[]';
+
+                                });
+                                precio_itinerario=precio_itinerario.substring(0, precio_itinerario.length-2);
+                                console.log('precio itinerario:'+precio_itinerario);
+                                /*-- recorremos los itineraios*/
+                                var ordenes='';
+                                $("input[name=pos_itinerario]").each(function (index) {
+                                    var $pos= $(this).val();
+                                    var it=0;
+                                    $("input[name=orden_nombre_"+$pos+"]").each(function (index) {
+
+                                        ordenes+= $(this).val()+'/'+$("input[name=orden_precio_"+$pos+"]")[it].val()+'/'+$("input[name=orden_observacion_"+$pos+"]")[it].val()+'_';
+                                        it++;
+                                    });
+                                    ordenes=ordenes.substring(0, ordenes.length-1);
+                                    ordenes+=ordenes+'*';
+                                });
+                                ordenes=ordenes.substring(0, ordenes.length-1);
+                                console.log(ordenes);
+                                var pfechapa=$('#fecha').val();
+
                                 var room_t=$('#room_t').val();
                                 var room_d=$('#room_d').val();
                                 var room_m=$('#room_m').val();
@@ -219,7 +258,7 @@ function generar_pqt(){
                                             '&&precio_3_t='+precio_3_t+'&&precio_3_d='+precio_3_d+'&&precio_3_d_m='+precio_3_d_m+'&&precio_3_s='+precio_3_s+
                                             '&&precio_4_t='+precio_4_t+'&&precio_4_d='+precio_4_d+'&&precio_4_d_m='+precio_4_d_m+'&&precio_4_s='+precio_4_s+
                                             '&&precio_5_t='+precio_5_t+'&&precio_5_d='+precio_5_d+'&&precio_5_d_m='+precio_5_d_m+'&&precio_5_s='+precio_5_s;
-                                    // console.log(valor);
+                                    // console.log(precios);
                                 // var formData = new FormData();
                                 // var file=document.getElementById("foto").files[0];
                                 // formData.append('foto',file);
@@ -230,12 +269,10 @@ function generar_pqt(){
                                 // formData.append("foto", foto);
                                 $.ajax({
                                     type: 'POST',
-                                    contentType:false,
-                                    processData:false,
-                                    cache:false,
                                     url: url3+'/guardar_plan_cotizacion',
                                     // data: formData,
-                                    data: $('#form_plan').serialize()+'&&'+formData+'&&'+loqincluye+'&&'+precios+'&&descr='+descr+'&&precio_plan='+precio_plan+'&&idCotizacion='+idCotizacion+'&&destinos='+destinos+'&&iti_titulo='+iti_titulo+'&&iti_descricion='+iti_descricion,
+                                    // data: $('#form_plan').serialize()+'&&'+formData+'&&'+loqincluye+'&&'+precios+'&&descr='+descr+'&&precio_plan='+precio_plan+'&&idCotizacion='+idCotizacion+'&&destinos='+destinos+'&&iti_titulo='+iti_titulo+'&&iti_descricion='+iti_descricion,
+                                    data: $('#form_plan').serializeArray()+'&&'+loqincluye+'&&'+precios+'&&descr='+descr+'&&precio_plan='+precio_plan+'&&idCotizacion='+idCotizacion+'&&destinos='+destinos+'&&titulo_itinerario='+titulo_itinerario+'&&iti_descripcion='+iti_descricion+'&&fecha_paquete='+pfechapa+'&&precio_itinerario='+precio_itinerario,
                                     // data:valor,
                                     // Mostramos un mensaje con la respuesta de PHP
                                     success: function(data){
@@ -267,7 +304,7 @@ function generar_pqt(){
                         });
                     }
                     else{
-                        console.log('ya se guardo la nueva cotizacion: '+idCotizacion);
+                        console.log('ya se tiene guardado la cotizacion: '+idCotizacion);
                         var descr=$('#text_descripcion').val();
 
                         var precio_plan=0;
@@ -276,11 +313,14 @@ function generar_pqt(){
                         }
                         console.log('total:'+precio_plan);
                         var destinos= '';
-                        jQuery("input[name='chb_destinos[]']:checked").each(function(){
-                            destinos+= $(this).val() + '[]';
+                        $("input[name=chb_destinos]").each(function (index) {
+                            if($(this).is(':checked')){
+                                destinos+= $(this).val() + '[]';
+                            }
                         });
                         destinos=destinos.substring(0, destinos.length-2);
 
+                        console.log('destinos:'+destinos);
                         var iti_titulo= '';
                         jQuery("textarea.iti_titulo").each(function() {
                             iti_titulo+= $(this).val() + '[]';

@@ -18,6 +18,7 @@ function iniciacion(){
         icon.closest( ".portlet" ).find( ".portlet-content" ).toggle();
 
     });
+
 }
  $( function() {
      iniciacion();
@@ -25,6 +26,18 @@ function iniciacion(){
 $('.fixed-action-btn').openFAB();
 $('.fixed-action-btn').closeFAB();
 var nro_iti=0;
+$('.modal-trigger').leanModal({
+    dismissible: false, // Modal can be dismissed by clicking outside of the modal
+    opacity: 0.5, // Opacity of modal background
+    in_duration: 300, // Transition in duration
+    out_duration: 200, // Transition out duration
+    ready: function() {
+        //alert('Ready');
+    }, // Callback for Modal open
+    complete: function() {
+        //alert('Closed');
+    } // Callback for Modal close
+});
 $('#agregar_dia').click(function(){
     var total=0;
     $("input[name=chb_itinerario_n]").each(function (index) {
@@ -37,17 +50,20 @@ $('#agregar_dia').click(function(){
             $('#nroItis').val(nro_iti);
             $('.lista_itinerario').append(''+
                 '<div id="Itine_'+nro_iti+'" class="portlet">'+
-                '<div id="pl_h_'+nro_iti+'" class="portlet-header"  onmousedown="Pasar_datos(\''+nro_iti+'\',\''+nro_iti+'\',\''+itine[0]+'\')"><span class="cursor-move">DAY <span class="pos_iti" name="posdia[]" id="pos_dia_'+nro_iti+'">'+nro_iti+'</span>: <i id="titulo_'+nro_iti+'">'+itine[0]+'($ '+itine[2]+' for person)</i></span><a href="#!" class="red-text text-darken-2 right" onclick="borrar_itinerario('+nro_iti+')"><i class="mdi-action-delete small"></i></a></div>'+
+                '<div class="col m9"><div id="pl_h_'+nro_iti+'" class="portlet-header"  onmousedown="Pasar_datos(\''+nro_iti+'\',\''+nro_iti+'\',\''+itine[0]+'\')"><span class="cursor-move">DAY <span class="pos_iti" name="posdia[]" id="pos_dia_'+nro_iti+'">'+nro_iti+'</span>: <i id="titulo_'+nro_iti+'">'+itine[0]+'</i>($ <b class="green-text" id="subtotal_itineraio_dia'+nro_iti+'">0.00</b> for person)</span> </div></div>'+
+                '<div class="col m3"><a class="modal-trigger blue-text right" href="#!" onclick="mostrar_modal('+nro_iti+')"><i class="mdi-action-settings small"></i></a> <a href="#!" class="red-text text-darken-2 right" onclick="borrar_itinerario('+nro_iti+')"><i class="mdi-action-delete small"></i></a></div>'+
                 '<div class="portlet-content" onmouseenter="estado_edicion(1)" onmouseleave="estado_edicion(0)">'+
                 '<div class="row">'+
                 '<div class="col s12">'+
                 '<span class="grey-text text-darken-3">'+
                 '<input name="titulo_itinerario" id="titulo_itinerario_'+nro_iti+'" type="text" value="'+itine[0]+'" placeholder="Ingrese el titulo">'+
-                '<input name="precio_itinerario" id="precio_itinerario_'+nro_iti+'" type="number" value="'+itine[2]+'" placeholder="Precio" onchange="cambiar_precio_iti('+nro_iti+')">'+
+                '<input name="pos_itinerario" id="pos_itinerario_'+nro_iti+'" type="hidden" value="'+nro_iti+'">'+
+                // '<span>$ <span id="iti_precio'+nro_iti+'" class="blue-text">0</span></span>'+
+                '<input name="precio_itinerario" id="precio_itinerario_'+nro_iti+'" type="text" value="0" placeholder="Precio" onchange="cambiar_precio_iti('+nro_iti+')">'+
                 '</span>'+
                 '</div>'+
                 '</div>'+
-                '<textarea  name="desc_itinerario[]" id="desc_itinerario_'+nro_iti+'">'+itine[1]+
+                '<textarea class="iti_descripcion"  name="desc_itinerario" id="desc_itinerario_'+nro_iti+'">'+itine[1]+
                 '</textarea>'+
                 '</div>'+
                 '</div>'+
@@ -70,6 +86,7 @@ $('#agregar_dia').click(function(){
                 '});'+
                 '});'+
                 '</script>');
+
             $('#Itine_'+nro_iti)
                 .addClass( "ui-widget ui-widget-content ui-helper-clearfix ui-corner-all" )
                 .find( ".portlet-header" )
@@ -85,9 +102,116 @@ $('#agregar_dia').click(function(){
             sumatotal();
             $('#buscar').val('');
             $('#jalar_iti').html('');
+            $('#modales').append('' +
+                '<div id="modal_'+nro_iti+'" class="modal modal-fixed-footer open" style="z-index: 1003; display: none; opacity: 1; transform: scaleX(1); top: 10%;">'+
+                '<div class="modal-content">'+
+                    '<div class="row">'+
+                          '<div class="input-field col s3">'+
+                            '<select name="orden_nombre" id="modal_orden_'+nro_iti+'">' +
+                                '<option value="0" disabled selected>Escoja un tipo de orden</option>'+
+                                '<option value="1">Option 1</option>'+
+                                '<option value="2">Option 2</option>'+
+                                '<option value="3">Option 3</option>'+
+                                '<option value="4">Option 4</option>'+
+                                '<option value="5">Option 5</option>'+
+                                '<option value="6">Option 6</option>'+
+                            '</select>'+
+                            '<label for="modal_orden_'+nro_iti+'" class="active">Orden</label>'+
+                        '</div>'+
+                        '<div class="input-field col s2">'+
+                            '<input name="orden_precio" id="modal_precio_'+nro_iti+'" type="number" min="0" class="validate">'+
+                            '<label for="modal_precio_'+nro_iti+'" class="">Precio</label>'+
+                        '</div>'+
+                        '<div class="input-field col s7">'+
+                            '<textarea name="orden_observaciones" id="modal_textarea_'+nro_iti+'" class="materialize-textarea"></textarea>'+
+                            '<label for="modal_textarea_'+nro_iti+'" class="">Observaciones</label>'+
+                        '</div>'+
+                    '</div>'+
+                    '<div class="row">' +
+                        '<div class="input-field col s6">'+
+                            '<a href="#!" class="waves-effect waves-light  btn green" onclick="guardar_modal('+nro_iti+')">Agregar</a>'+
+                        '</div>'+
+                    '</div>'+
+                    '<hr>'+
+                    '<div class="row">'+
+                        '<div class="col m12">' +
+                        '<h4>Lista de ordenes</h4>'+
+                            '<table class="striped">'+
+                                '<thead>'+
+                                    '<tr>'+
+                                        '<th data-field="id">Orden</th>'+
+                                        '<th data-field="name">Precio</th>'+
+                                        '<th data-field="price">Observaciones</th>'+
+                                    '</tr>'+
+                                '</thead>'+
+                                '<tbody id="Lista_ordenes_'+nro_iti+'">'+
+                                '</tbody>'+
+                            '</table>'+
+                            '<table class="striped">'+
+                                '<tbody>'+
+                                    '<tr>'+
+                                    '<td><b>Total</b></td>'+
+                                    '<td><b id="subtotal_itineraio_dia_pre_'+nro_iti+'"></b></td>'+
+                                    '<td></td>'+
+                                    '</tr>'+
+                                '</tbody>'+
+                            '</table>'+
+                        '</div>'+
+                    '</div>'+
+              '</div>'+
+            '<div class="modal-footer">'+
+                '<a href="#" onclick="ocultar_modal('+nro_iti+')" class="waves-effect waves-red btn-flat modal-action modal-close">Cerrar</a>'+
+                '<a href="#" onclick="ocultar_modal1('+nro_iti+')" class="waves-effect waves-green btn-flat modal-action modal-close">Guardar</a>'+
+                '</div>'+
+                '</div>');
         }
     });
     });
+function mostrar_modal(modal){
+    // alert('se hizo click para mostarr el modal');
+    var aa='#modal_'+modal;
+    $('#modal_'+modal).show();
+    // $('#modal_'+modal).css({'display':'block'});
+    $('#modal_orden_'+modal).material_select();
+}
+function ocultar_modal1(modal){
+    var su=calcular_suma_iti_dia(modal);
+    $('#subtotal_itineraio_dia'+modal).html(su);
+    $('#precio_itinerario_'+modal).val(su);
+    sumatotal();
+    var aa='#modal_'+modal;
+    $(aa).hide();
+    // $(aa).css({'display':'block'});
+    // $('#modal_'+modal).modal();
+}
+function ocultar_modal(modal){
+    var aa='#modal_'+modal;
+    $(aa).hide();
+    // $(aa).css({'display':'block'});
+    // $('#modal_'+modal).modal();
+}
+function guardar_modal(modal){
+    $('#Lista_ordenes_'+modal).append(''+
+        '<tr>'+
+        '<td><input type="hidden" name="orden_nombre_'+modal+'" value="'+$('#modal_orden_'+modal).val()+'">'+$('#modal_orden_'+modal).val()+'</td>'+
+        '<td><input type="hidden" name="orden_precio_'+modal+'" value="'+$('#modal_precio_'+modal).val()+'">'+$('#modal_precio_'+modal).val()+'</td>'+
+        '<td><input type="hidden" name="orden_observacion_'+modal+'" value="'+$('#modal_textarea_'+modal).val()+'">'+$('#modal_textarea_'+modal).val()+'</td>'+
+        '</tr>');
+    $("#modal_orden_"+modal+" option[value=0]").attr("selected",true);
+    $('#modal_precio_'+modal).val('0');
+    $('#modal_textarea_'+modal).val('');
+    var su=calcular_suma_iti_dia(modal);
+    console.log('suma:'+su);
+    $('#subtotal_itineraio_dia_pre_'+modal).html(su);
+}
+
+function calcular_suma_iti_dia(modal){
+    var sub_total_itinerario=0;
+    $("input[name=orden_precio_"+modal+"]").each(function (index) {
+        sub_total_itinerario+=parseInt($(this).val());
+    });
+    return sub_total_itinerario;
+}
 
 var dia=0;
 var titulo=0;
@@ -139,6 +263,7 @@ function borrar_itinerario(id1){
                         swal("Cancelado", "Tu registro esta seguro :)", "error");   }
                 });
         }
+        sumatotal();
     }
 
 
@@ -320,7 +445,9 @@ function coti_romms(acom){
 function coti_precio_acom(acom1,tipo1){
     sumatotal();
 }
-
+function aumentar_clientes(){
+    sumatotal();
+}
 // function generar_pqt(){
 //     var titulo=$('#titulo_plan').val();
 //     var dia=$('#dias_plan').val();

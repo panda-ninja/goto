@@ -1,6 +1,7 @@
 <?php
 
 namespace GotoPeru\Http\Controllers;
+use GotoPeru\DestinoCotizacion;
 use GotoPeru\PaquetePersonalizado;
 use GotoPeru\TDestino;
 use GotoPeru\TItinerario;
@@ -63,7 +64,7 @@ class PaqueteController extends Controller
 //        $paquete=Paquete::with('itinerario_personalizados.servicios','itinerario_personalizados.itinerario_x_horas')->get()->where('codigo',$codigo);
 //['paquete'=>$paquete]
         //return dd($paquete);
-        $destino=TDestino::all();
+        $destino=DestinoCotizacion::all();
         //dd($paquete);
         $itinerios=TItinerario::distinct()->select('titulo')->get();
 //        dd($itinerios);

@@ -1,6 +1,6 @@
 <?php $j=0;?>
 <ul>
-@foreach($itinerario->take(30) as $itinerario)
+@foreach($itinerario as $itinerario)
     <?php $j++;?>
     <li class="collection-item dismissable">
         <p>
