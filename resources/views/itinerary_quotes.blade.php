@@ -89,6 +89,7 @@
                                 <th data-field="name">Hotel Category </th>
                                 <th data-field="price">Simple</th>
                                 <th data-field="price">Double</th>
+                                <th data-field="price">Matrimonial</th>
                                 <th data-field="price">Triple</th>
                                 <th></th>
                             </tr>
@@ -105,6 +106,7 @@
                                     <td class="{{$active}}"><b>{{$precio->estrellas}} stars</b></td>
                                     <td class="{{$active}}">${{$precio->precio_s}} <br> <span>{{$precio->personas_s}} Travellers</span></td>
                                     <td class="{{$active}}">${{$precio->precio_d}} <br> <span>{{$precio->personas_d}} Travellers</span></td>
+                                    <td class="{{$active}}">${{$precio->precio_m}} <br> <span>{{$precio->personas_m}} Travellers</span></td>
                                     <td class="{{$active}}">${{$precio->precio_t}} <br> <span>{{$precio->personas_t}} Travellers</span></td>
                                     <td class="{{$active}}"><i class="material-icons green-text">{{$icon}}</i></td>
 
