@@ -100,23 +100,16 @@ $('#agregar_dia').click(function(){
 
             });
             sumatotal();
+
             $('#buscar').val('');
             $('#jalar_iti').html('');
             $('#modales').append('' +
                 '<div id="modal_'+nro_iti+'" class="modal modal-fixed-footer open" style="z-index: 1003; display: none; opacity: 1; transform: scaleX(1); top: 10%;">'+
                 '<div class="modal-content">'+
                     '<div class="row">'+
-                          '<div class="input-field col s3">'+
-                            '<select name="orden_nombre" id="modal_orden_'+nro_iti+'">' +
-                                '<option value="0" disabled selected>Escoja un tipo de orden</option>'+
-                                '<option value="Option 1">Option 1</option>'+
-                                '<option value="Option 2">Option 2</option>'+
-                                '<option value="Option 1">Option 3</option>'+
-                                '<option value="Option 4">Option 4</option>'+
-                                '<option value="Option 5">Option 5</option>'+
-                                '<option value="Option 6">Option 6</option>'+
-                            '</select>'+
-                            '<label for="modal_orden_'+nro_iti+'" class="active">Orden</label>'+
+                        '<div class="input-field col s3">'+
+                            '<input type="text" name="orden_nombre" id="modal_orden_'+nro_iti+'" class="validate">'+
+                            '<label for="modal_orden_'+nro_iti+'" class="">Orden</label>'+
                         '</div>'+
                         '<div class="input-field col s2">'+
                             '<input name="orden_precio" id="modal_precio_'+nro_iti+'" type="number" min="0" class="validate">'+
@@ -172,7 +165,7 @@ function mostrar_modal(modal){
     var aa='#modal_'+modal;
     $('#modal_'+modal).show();
     // $('#modal_'+modal).css({'display':'block'});
-    $('#modal_orden_'+modal).material_select();
+    // $('#modal_orden_'+modal).material_select();
 }
 function ocultar_modal1(modal){
     var su=calcular_suma_iti_dia(modal);
@@ -200,8 +193,8 @@ function guardar_modal(modal){
         '<td><a href="#!" class="red-text text-darken-2" onclick="EliminarOrden('+ordenpos+','+modal+')"><i class="mdi-action-delete small"></i></a></td>'+
         '</tr>');
     ordenpos++;
-    $("#modal_orden_"+modal+" option[value=0]").attr("selected",true);
-    $('#modal_precio_'+modal).val('0');
+    $('#modal_orden_'+modal).val('');
+    $('#modal_precio_'+modal).val('');
     $('#modal_textarea_'+modal).val('');
     var su=calcular_suma_iti_dia(modal);
     // console.log('suma:'+su);

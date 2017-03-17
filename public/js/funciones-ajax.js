@@ -1,6 +1,6 @@
-var url3='gotoperu.travel';
+// var url3='gotoperu.travel';
 // var url3='';
-// var url3='http://localhost/goto2/public';
+var url3='http://localhost/goto2/public';
 
 
 
