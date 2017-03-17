@@ -151,7 +151,7 @@ function generar_pqt(){
                         )
                     }
                     if(idCotizacion==0){
-                        console.log('no hay coti');
+                        // console.log('no hay coti');
                         var pemail=$('#email_3').val();
                         var pnropasajeros=$('#nropasajeros').val();
                         var pfecha=$('#fecha').val();
@@ -165,13 +165,13 @@ function generar_pqt(){
                             if(markup!='0'){
                                 // console.log(markup);
                                 idCotizacion=markup;
-                                console.log('ya se guardo la nueva cotizacion: '+idCotizacion);
+                                // console.log('ya se guardo la nueva cotizacion: '+idCotizacion);
                                 var descr=$('#text_descripcion').val();
                                 var precio_plan=0;
                                 if($('#total').html()!=''){
                                     precio_plan=$('#total').html();
                                 }
-                                console.log('total:'+precio_plan);
+                                // console.log('total:'+precio_plan);
                                 // var dias_plan=$('#dias_plan').val();
                                 // console.log('Duracion:'+dias_plan);
                                 var destinos= '';
@@ -181,7 +181,7 @@ function generar_pqt(){
                                     }
                                 });
                                 destinos=destinos.substring(0, destinos.length-2);
-                                console.log('Destinos:'+destinos);
+                                // console.log('Destinos:'+destinos);
 
                                 var titulo_itinerario= '';
                                 $("input[name=titulo_itinerario]").each(function (index) {
@@ -190,7 +190,7 @@ function generar_pqt(){
 
                                 });
                                 titulo_itinerario=titulo_itinerario.substring(0, titulo_itinerario.length-2);
-                                console.log('Itinerarios:'+titulo_itinerario);
+                                // console.log('Itinerarios:'+titulo_itinerario);
                                 var iti_descricion= '';
                                 // $("input[name=desc_itinerario]").each(function (index) {
                                 //
@@ -202,7 +202,7 @@ function generar_pqt(){
                                     iti_descricion+= $(this).val() + '[]';
                                 });
                                 iti_descricion=iti_descricion.substring(0, iti_descricion.length-2);
-                                console.log('Descripcion:'+iti_descricion);
+                                // console.log('Descripcion:'+iti_descricion);
                                 var precio_itinerario='';
                                 $("input[name=precio_itinerario]").each(function (index) {
 
@@ -210,22 +210,27 @@ function generar_pqt(){
 
                                 });
                                 precio_itinerario=precio_itinerario.substring(0, precio_itinerario.length-2);
-                                console.log('precio itinerario:'+precio_itinerario);
+                                // console.log('precio itinerario:'+precio_itinerario);
                                 /*-- recorremos los itineraios*/
                                 var ordenes='';
                                 $("input[name=pos_itinerario]").each(function (index) {
                                     var $pos= $(this).val();
-                                    var it=0;
-                                    $("input[name=orden_nombre_"+$pos+"]").each(function (index) {
-
-                                        ordenes+= $(this).val()+'/'+$("input[name=orden_precio_"+$pos+"]")[it].val()+'/'+$("input[name=orden_observacion_"+$pos+"]")[it].val()+'_';
-                                        it++;
+                                    var ts=0;
+                                    var texto="name=orden_nombre_"+$pos;
+                                    $("input["+texto+"]").each(function (index){
+                                        var precio = document.getElementsByName("orden_precio_"+$pos);
+                                        var observacion = document.getElementsByName("orden_observacion_"+$pos);
+                                        ordenes+= $(this).val()+'/'+ precio[ts].value+'/'+observacion[ts].value+'_';
+                                        ts++;
                                     });
                                     ordenes=ordenes.substring(0, ordenes.length-1);
-                                    ordenes+=ordenes+'*';
+                                    ordenes=ordenes+'*';
                                 });
                                 ordenes=ordenes.substring(0, ordenes.length-1);
-                                console.log(ordenes);
+                                // console.log(ordenes);
+                                var codigo_plan=$('#codigo_plan').val();
+                                var titulo_plan=$('#titulo_plan').val();
+                                var dias_plan=$('#dias_plan').val();
                                 var pfechapa=$('#fecha').val();
 
                                 var room_t=$('#room_t').val();
@@ -272,7 +277,7 @@ function generar_pqt(){
                                     url: url3+'/guardar_plan_cotizacion',
                                     // data: formData,
                                     // data: $('#form_plan').serialize()+'&&'+formData+'&&'+loqincluye+'&&'+precios+'&&descr='+descr+'&&precio_plan='+precio_plan+'&&idCotizacion='+idCotizacion+'&&destinos='+destinos+'&&iti_titulo='+iti_titulo+'&&iti_descricion='+iti_descricion,
-                                    data: $('#form_plan').serializeArray()+'&&'+loqincluye+'&&'+precios+'&&descr='+descr+'&&precio_plan='+precio_plan+'&&idCotizacion='+idCotizacion+'&&destinos='+destinos+'&&titulo_itinerario='+titulo_itinerario+'&&iti_descripcion='+iti_descricion+'&&fecha_paquete='+pfechapa+'&&precio_itinerario='+precio_itinerario,
+                                    data: $('#form_plan').serializeArray()+'&&'+'&&codigo_plan='+codigo_plan+'&&titulo_plan='+titulo_plan+'&&dias_plan='+dias_plan+'&&'+loqincluye+'&&'+precios+'&&descr='+descr+'&&precio_plan='+precio_plan+'&&idCotizacion='+idCotizacion+'&&destinos='+destinos+'&&titulo_itinerario='+titulo_itinerario+'&&iti_descripcion='+iti_descricion+'&&fecha_paquete='+pfechapa+'&&precio_itinerario='+precio_itinerario+'&&ordenes='+ordenes,
                                     // data:valor,
                                     // Mostramos un mensaje con la respuesta de PHP
                                     success: function(data){
@@ -304,14 +309,15 @@ function generar_pqt(){
                         });
                     }
                     else{
-                        console.log('ya se tiene guardado la cotizacion: '+idCotizacion);
+                        // console.log('ya se tiene guardado la cotizacion: '+idCotizacion);
                         var descr=$('#text_descripcion').val();
-
                         var precio_plan=0;
                         if($('#total').html()!=''){
                             precio_plan=$('#total').html();
                         }
-                        console.log('total:'+precio_plan);
+                        // console.log('total:'+precio_plan);
+                        // var dias_plan=$('#dias_plan').val();
+                        // console.log('Duracion:'+dias_plan);
                         var destinos= '';
                         $("input[name=chb_destinos]").each(function (index) {
                             if($(this).is(':checked')){
@@ -319,19 +325,58 @@ function generar_pqt(){
                             }
                         });
                         destinos=destinos.substring(0, destinos.length-2);
+                        // console.log('Destinos:'+destinos);
 
-                        console.log('destinos:'+destinos);
-                        var iti_titulo= '';
-                        jQuery("textarea.iti_titulo").each(function() {
-                            iti_titulo+= $(this).val() + '[]';
+                        var titulo_itinerario= '';
+                        $("input[name=titulo_itinerario]").each(function (index) {
+
+                            titulo_itinerario+= $(this).val() + '[]';
+
                         });
-                        iti_titulo=iti_titulo.substring(0, iti_titulo.length-2);
-
+                        titulo_itinerario=titulo_itinerario.substring(0, titulo_itinerario.length-2);
+                        // console.log('Itinerarios:'+titulo_itinerario);
                         var iti_descricion= '';
-                        jQuery("textarea.iti_descripcion").each(function() {
+                        // $("input[name=desc_itinerario]").each(function (index) {
+                        //
+                        //     iti_descricion+= $(this).val() + '[]';
+                        //
+                        // });
+                        $(".iti_descripcion").each(function (index)
+                        {
                             iti_descricion+= $(this).val() + '[]';
                         });
                         iti_descricion=iti_descricion.substring(0, iti_descricion.length-2);
+                        // console.log('Descripcion:'+iti_descricion);
+                        var precio_itinerario='';
+                        $("input[name=precio_itinerario]").each(function (index) {
+
+                            precio_itinerario+= $(this).val() + '[]';
+
+                        });
+                        precio_itinerario=precio_itinerario.substring(0, precio_itinerario.length-2);
+                        // console.log('precio itinerario:'+precio_itinerario);
+                        /*-- recorremos los itineraios*/
+                        var ordenes='';
+                        $("input[name=pos_itinerario]").each(function (index) {
+                            var $pos= $(this).val();
+                            var ts=0;
+                            var texto="name=orden_nombre_"+$pos;
+                            $("input["+texto+"]").each(function (index){
+                                var precio = document.getElementsByName("orden_precio_"+$pos);
+                                var observacion = document.getElementsByName("orden_observacion_"+$pos);
+                                ordenes+= $(this).val()+'/'+ precio[ts].value+'/'+observacion[ts].value+'_';
+                                ts++;
+                            });
+                            ordenes=ordenes.substring(0, ordenes.length-1);
+                            ordenes=ordenes+'*';
+                        });
+                        ordenes=ordenes.substring(0, ordenes.length-1);
+                        // console.log(ordenes);
+                        var codigo_plan=$('#codigo_plan').val();
+                        var titulo_plan=$('#titulo_plan').val();
+                        var dias_plan=$('#dias_plan').val();
+                        var pfechapa=$('#fecha').val();
+
                         var room_t=$('#room_t').val();
                         var room_d=$('#room_d').val();
                         var room_m=$('#room_m').val();
@@ -362,18 +407,21 @@ function generar_pqt(){
                             '&&precio_3_t='+precio_3_t+'&&precio_3_d='+precio_3_d+'&&precio_3_d_m='+precio_3_d_m+'&&precio_3_s='+precio_3_s+
                             '&&precio_4_t='+precio_4_t+'&&precio_4_d='+precio_4_d+'&&precio_4_d_m='+precio_4_d_m+'&&precio_4_s='+precio_4_s+
                             '&&precio_5_t='+precio_5_t+'&&precio_5_d='+precio_5_d+'&&precio_5_d_m='+precio_5_d_m+'&&precio_5_s='+precio_5_s;
-                        // console.log(valor);
+                        // console.log(precios);
+                        // var formData = new FormData();
+                        // var file=document.getElementById("foto").files[0];
+                        // formData.append('foto',file);
+                        // console.log(file);
+                        var loqincluye='text_incluye='+$('#text_incluye').val()+'&&'+'text_noincluye='+$('#text_noincluye').val()+'&&'+'text_opcional='+$('#text_opcional').val();
                         var formData = new FormData($('#form_plan')[0]);
                         // var foto=document.getElementById("foto");
                         // formData.append("foto", foto);
                         $.ajax({
                             type: 'POST',
-                            contentType:false,
-                            processData:false,
-                            cache:false,
                             url: url3+'/guardar_plan_cotizacion',
                             // data: formData,
-                            data: $('#form_plan').serialize()+'&&'+formData+'&&'+precios+'&&descr='+descr+'&&precio_plan='+precio_plan+'&&idCotizacion='+idCotizacion+'&&destinos='+destinos+'&&iti_titulo='+iti_titulo+'&&iti_descricion='+iti_descricion,
+                            // data: $('#form_plan').serialize()+'&&'+formData+'&&'+loqincluye+'&&'+precios+'&&descr='+descr+'&&precio_plan='+precio_plan+'&&idCotizacion='+idCotizacion+'&&destinos='+destinos+'&&iti_titulo='+iti_titulo+'&&iti_descricion='+iti_descricion,
+                            data: $('#form_plan').serializeArray()+'&&'+'&&codigo_plan='+codigo_plan+'&&titulo_plan='+titulo_plan+'&&dias_plan='+dias_plan+'&&'+loqincluye+'&&'+precios+'&&descr='+descr+'&&precio_plan='+precio_plan+'&&idCotizacion='+idCotizacion+'&&destinos='+destinos+'&&titulo_itinerario='+titulo_itinerario+'&&iti_descripcion='+iti_descricion+'&&fecha_paquete='+pfechapa+'&&precio_itinerario='+precio_itinerario+'&&ordenes='+ordenes,
                             // data:valor,
                             // Mostramos un mensaje con la respuesta de PHP
                             success: function(data){
@@ -424,7 +472,7 @@ function Buscar_iti(){
 
 function Buscar_iti(){
     var valor=$('#buscar').val();
-    console.log(valor);
+    // console.log(valor);
     if(valor!=""){
         $.ajaxSetup({
             headers: {
@@ -435,13 +483,13 @@ function Buscar_iti(){
             if(markup!='0'){
                 $('#jalar_iti').html(markup);
                 // $.getScript('https://code.jquery.com/ui/1.12.1/jquery-ui.js');
-                console.log(markup);
+                // console.log(markup);
             }
             else{
-                console.log('error de registro cerrarmos :'+markup);
+                // console.log('error de registro cerrarmos :'+markup);
             }
         }).fail(function (markup) {
-            console.log('Fail cerrarmos :'+markup);
+            // console.log('Fail cerrarmos :'+markup);
         });
     }
 }
@@ -471,10 +519,10 @@ function enviarPlan(id){
                         // console.log(markup);
                     }
                     else if(markup=='0'){
-                         console.log('error de registro cerrarmos :'+markup);
+                         // console.log('error de registro cerrarmos :'+markup);
                     }
                 }).fail(function (markup) {
-                     console.log('Fail cerrarmos :'+markup);
+                     // console.log('Fail cerrarmos :'+markup);
                 });
                 swal("Enviado!", "Tu plan fue enviado :)", "success");   }
             else {
