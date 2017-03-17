@@ -1,6 +1,6 @@
-var url3='http://gotoperu.travel';
+// var url3='http://gotoperu.travel';
 
-// var url3='http://localhost/goto2/public';
+var url3='http://localhost/goto2/public';
 
 
 
@@ -417,6 +417,7 @@ function generar_pqt(){
                         var formData = new FormData($('#form_plan')[0]);
                         // var foto=document.getElementById("foto");
                         // formData.append("foto", foto);
+                        console.log('Estrellas:'+atipo);
                         $.ajax({
                             type: 'POST',
                             url: url3+'/guardar_plan_cotizacion',

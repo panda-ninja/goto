@@ -1,6 +1,6 @@
-var url3='http://gotoperu.travel';
+// var url3='http://gotoperu.travel';
 
-// var url3='http://localhost/goto2/public';
+var url3='http://localhost/goto2/public';
 
 
 
@@ -268,6 +268,7 @@ function generar_pqt(){
                                 // var file=document.getElementById("foto").files[0];
                                 // formData.append('foto',file);
                                 // console.log(file);
+
                                 var loqincluye='text_incluye='+$('#text_incluye').val()+'&&'+'text_noincluye='+$('#text_noincluye').val()+'&&'+'text_opcional='+$('#text_opcional').val();
                                 var formData = new FormData($('#form_plan')[0]);
                                 // var foto=document.getElementById("foto");
@@ -277,7 +278,7 @@ function generar_pqt(){
                                     url: url3+'/guardar_plan_cotizacion',
                                     // data: formData,
                                     // data: $('#form_plan').serialize()+'&&'+formData+'&&'+loqincluye+'&&'+precios+'&&descr='+descr+'&&precio_plan='+precio_plan+'&&idCotizacion='+idCotizacion+'&&destinos='+destinos+'&&iti_titulo='+iti_titulo+'&&iti_descricion='+iti_descricion,
-                                    data: $('#form_plan').serializeArray()+'&&'+'&&codigo_plan='+codigo_plan+'&&titulo_plan='+titulo_plan+'&&dias_plan='+dias_plan+'&&'+loqincluye+'&&'+precios+'&&descr='+descr+'&&precio_plan='+precio_plan+'&&idCotizacion='+idCotizacion+'&&destinos='+destinos+'&&titulo_itinerario='+titulo_itinerario+'&&iti_descripcion='+iti_descricion+'&&fecha_paquete='+pfechapa+'&&precio_itinerario='+precio_itinerario+'&&ordenes='+ordenes,
+                                    data: $('#form_plan').serializeArray()+'&&estrellas='+atipo+'&&'+'&&codigo_plan='+codigo_plan+'&&titulo_plan='+titulo_plan+'&&dias_plan='+dias_plan+'&&'+loqincluye+'&&'+precios+'&&descr='+descr+'&&precio_plan='+precio_plan+'&&idCotizacion='+idCotizacion+'&&destinos='+destinos+'&&titulo_itinerario='+titulo_itinerario+'&&iti_descripcion='+iti_descricion+'&&fecha_paquete='+pfechapa+'&&precio_itinerario='+precio_itinerario+'&&ordenes='+ordenes,
                                     // data:valor,
                                     // Mostramos un mensaje con la respuesta de PHP
                                     success: function(data){
@@ -416,12 +417,13 @@ function generar_pqt(){
                         var formData = new FormData($('#form_plan')[0]);
                         // var foto=document.getElementById("foto");
                         // formData.append("foto", foto);
+                        console.log('Estrellas:'+atipo);
                         $.ajax({
                             type: 'POST',
                             url: url3+'/guardar_plan_cotizacion',
                             // data: formData,
                             // data: $('#form_plan').serialize()+'&&'+formData+'&&'+loqincluye+'&&'+precios+'&&descr='+descr+'&&precio_plan='+precio_plan+'&&idCotizacion='+idCotizacion+'&&destinos='+destinos+'&&iti_titulo='+iti_titulo+'&&iti_descricion='+iti_descricion,
-                            data: $('#form_plan').serializeArray()+'&&'+'&&codigo_plan='+codigo_plan+'&&titulo_plan='+titulo_plan+'&&dias_plan='+dias_plan+'&&'+loqincluye+'&&'+precios+'&&descr='+descr+'&&precio_plan='+precio_plan+'&&idCotizacion='+idCotizacion+'&&destinos='+destinos+'&&titulo_itinerario='+titulo_itinerario+'&&iti_descripcion='+iti_descricion+'&&fecha_paquete='+pfechapa+'&&precio_itinerario='+precio_itinerario+'&&ordenes='+ordenes,
+                            data: $('#form_plan').serializeArray()+'&&estrellas='+atipo+'&&'+'&&codigo_plan='+codigo_plan+'&&titulo_plan='+titulo_plan+'&&dias_plan='+dias_plan+'&&'+loqincluye+'&&'+precios+'&&descr='+descr+'&&precio_plan='+precio_plan+'&&idCotizacion='+idCotizacion+'&&destinos='+destinos+'&&titulo_itinerario='+titulo_itinerario+'&&iti_descripcion='+iti_descricion+'&&fecha_paquete='+pfechapa+'&&precio_itinerario='+precio_itinerario+'&&ordenes='+ordenes,
                             // data:valor,
                             // Mostramos un mensaje con la respuesta de PHP
                             success: function(data){
