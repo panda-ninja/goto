@@ -185,7 +185,7 @@ class CotizacionController extends Controller
             }
         }
 
-
+        $estrellas=$request->input('estrellas');
         $room_t=$request->input('room_t');
         $room_d=$request->input('room_d');
         $room_m=$request->input('room_m');
@@ -222,6 +222,10 @@ class CotizacionController extends Controller
         $precioPaquetes->precio_t=$precio_2_t;
         $precioPaquetes->personas_t=$room_t*3;
         $precioPaquetes->paquete_cotizaciones_id=$paqueteCotizacion->id;
+        if($estrellas=='2')
+            $precioPaquetes->estado=1;
+        else
+            $precioPaquetes->estado=0;
         $precioPaquetes->save();
         $precioPaquetes = new PrecioPaquete();
         $precioPaquetes->estrellas=3;
@@ -234,6 +238,10 @@ class CotizacionController extends Controller
         $precioPaquetes->precio_t=$precio_3_t;
         $precioPaquetes->personas_t=$room_t*3;
         $precioPaquetes->paquete_cotizaciones_id=$paqueteCotizacion->id;
+        if($estrellas=='3')
+            $precioPaquetes->estado=1;
+        else
+            $precioPaquetes->estado=0;
         $precioPaquetes->save();
         $precioPaquetes = new PrecioPaquete();
         $precioPaquetes->estrellas=4;
@@ -246,6 +254,10 @@ class CotizacionController extends Controller
         $precioPaquetes->precio_t=$precio_4_t;
         $precioPaquetes->personas_t=$room_t*3;
         $precioPaquetes->paquete_cotizaciones_id=$paqueteCotizacion->id;
+        if($estrellas=='4')
+            $precioPaquetes->estado=1;
+        else
+            $precioPaquetes->estado=0;
         $precioPaquetes->save();
         $precioPaquetes = new PrecioPaquete();
         $precioPaquetes->estrellas=5;
@@ -258,6 +270,10 @@ class CotizacionController extends Controller
         $precioPaquetes->precio_t=$precio_5_t;
         $precioPaquetes->personas_t=$room_t*3;
         $precioPaquetes->paquete_cotizaciones_id=$paqueteCotizacion->id;
+        if($estrellas=='5')
+            $precioPaquetes->estado=1;
+        else
+            $precioPaquetes->estado=0;
         $precioPaquetes->save();
 
 
