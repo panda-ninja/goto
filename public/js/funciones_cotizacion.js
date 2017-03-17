@@ -63,18 +63,18 @@ $('#agregar_dia').click(function(){
                 '</span>'+
                 '</div>'+
                 '</div>'+
-                '<textarea class="iti_descripcion"  name="desc_itinerario" id="desc_itinerario_'+nro_iti+'">'+itine[1]+
+                '<textarea class="iti_descripcion"  name="desc_itinerario" id="desc_itinerario_'+nro_iti+'" rows="15">'+itine[1]+
                 '</textarea>'+
                 '</div>'+
                 '</div>'+
                 '<script>'+
                 '$(function(){'+
-                '$(\'#desc_itinerario_'+nro_iti+'\')'+
+                /*'$(\'#desc_itinerario_'+nro_iti+'\')'+
                 '.on(\'froalaEditor.initialized\', function (e, editor) {'+
                 '$(\'#desc_itinerario_'+nro_iti+'\').parents(\'form\').on(\'submit\', function () {'+
                 '  })'+
                 '})'+
-                '.froalaEditor({iframe:false,enter: $.FroalaEditor.ENTER_P, placeholderText: null});'+
+                '.froalaEditor({iframe:false,enter: $.FroalaEditor.ENTER_P, placeholderText: null});'+*/
                 '$(\'#titulo_itinerario_'+nro_iti+'\').keypress(function() {'+
                 '$(\'#titulo_'+nro_iti+'\').html($(\'#titulo_itinerario_'+nro_iti+'\').val());'+
                 '});'+
@@ -100,23 +100,16 @@ $('#agregar_dia').click(function(){
 
             });
             sumatotal();
+
             $('#buscar').val('');
             $('#jalar_iti').html('');
             $('#modales').append('' +
                 '<div id="modal_'+nro_iti+'" class="modal modal-fixed-footer open" style="z-index: 1003; display: none; opacity: 1; transform: scaleX(1); top: 10%;">'+
                 '<div class="modal-content">'+
                     '<div class="row">'+
-                          '<div class="input-field col s3">'+
-                            '<select name="orden_nombre" id="modal_orden_'+nro_iti+'">' +
-                                '<option value="0" disabled selected>Escoja un tipo de orden</option>'+
-                                '<option value="1">Option 1</option>'+
-                                '<option value="2">Option 2</option>'+
-                                '<option value="3">Option 3</option>'+
-                                '<option value="4">Option 4</option>'+
-                                '<option value="5">Option 5</option>'+
-                                '<option value="6">Option 6</option>'+
-                            '</select>'+
-                            '<label for="modal_orden_'+nro_iti+'" class="active">Orden</label>'+
+                        '<div class="input-field col s3">'+
+                            '<input type="text" name="orden_nombre" id="modal_orden_'+nro_iti+'" class="validate">'+
+                            '<label for="modal_orden_'+nro_iti+'" class="">Orden</label>'+
                         '</div>'+
                         '<div class="input-field col s2">'+
                             '<input name="orden_precio" id="modal_precio_'+nro_iti+'" type="number" min="0" class="validate">'+
@@ -172,7 +165,7 @@ function mostrar_modal(modal){
     var aa='#modal_'+modal;
     $('#modal_'+modal).show();
     // $('#modal_'+modal).css({'display':'block'});
-    $('#modal_orden_'+modal).material_select();
+    // $('#modal_orden_'+modal).material_select();
 }
 function ocultar_modal1(modal){
     var su=calcular_suma_iti_dia(modal);
@@ -190,21 +183,31 @@ function ocultar_modal(modal){
     // $(aa).css({'display':'block'});
     // $('#modal_'+modal).modal();
 }
+var ordenpos=0;
 function guardar_modal(modal){
     $('#Lista_ordenes_'+modal).append(''+
-        '<tr>'+
+        '<tr id="orden_'+ordenpos+'">'+
         '<td><input type="hidden" name="orden_nombre_'+modal+'" value="'+$('#modal_orden_'+modal).val()+'">'+$('#modal_orden_'+modal).val()+'</td>'+
         '<td><input type="hidden" name="orden_precio_'+modal+'" value="'+$('#modal_precio_'+modal).val()+'">'+$('#modal_precio_'+modal).val()+'</td>'+
         '<td><input type="hidden" name="orden_observacion_'+modal+'" value="'+$('#modal_textarea_'+modal).val()+'">'+$('#modal_textarea_'+modal).val()+'</td>'+
+        '<td><a href="#!" class="red-text text-darken-2" onclick="EliminarOrden('+ordenpos+','+modal+')"><i class="mdi-action-delete small"></i></a></td>'+
         '</tr>');
-    $("#modal_orden_"+modal+" option[value=0]").attr("selected",true);
-    $('#modal_precio_'+modal).val('0');
+    ordenpos++;
+    $('#modal_orden_'+modal).val('');
+    $('#modal_precio_'+modal).val('');
     $('#modal_textarea_'+modal).val('');
     var su=calcular_suma_iti_dia(modal);
-    console.log('suma:'+su);
+    // console.log('suma:'+su);
     $('#subtotal_itineraio_dia_pre_'+modal).html(su);
 }
-
+function EliminarOrden(orden,modal){
+    $('#orden_'+orden).remove();
+    ordenpos--;
+    var su=calcular_suma_iti_dia(modal);
+    // console.log('suma:'+su);
+    $('#subtotal_itineraio_dia_pre_'+modal).html(su);
+    sumatotal();
+}
 function calcular_suma_iti_dia(modal){
     var sub_total_itinerario=0;
     $("input[name=orden_precio_"+modal+"]").each(function (index) {
@@ -222,15 +225,15 @@ var atotal_total=0;
 function sumatotal() {
     sumar_acomo_actual();
     sumatitineraios();
-    console.log('total itinerarios:'+atotal_itinerartio);
+    // console.log('total itinerarios:'+atotal_itinerartio);
     atotal_total = atotal + atotal_itinerartio;
     $('#total').html(atotal_total);
 }
 
 function sumatitineraios(){
     var nroPa=$('#nropasajeros').val();
-    console.log('nro pasajeros:'+nroPa);
-    console.log('nro itinerarios:'+nro_iti);
+    // console.log('nro pasajeros:'+nroPa);
+    // console.log('nro itinerarios:'+nro_iti);
     atotal_itinerartio=0;
 
     $("input[name=precio_itinerario]").each(function (index) {
@@ -239,7 +242,7 @@ function sumatitineraios(){
     // for(var i=1;i<=nro_iti;i++){
     //     atotal_itinerartio+=(nroPa*parseInt($('#precio_itinerario_'+i).val()));
     // }
-    console.log('total:'+atotal_itinerartio);
+    // console.log('total:'+atotal_itinerartio);
 }
 function borrar_itinerario(id1){
     // alert('hola:'+id1);
@@ -281,7 +284,7 @@ function Pasar_datos(pid,pdia,ptitulo) {
         valor_html=doc.html();
 
     }, 1 );
-    console.log('paso el mouse encima:'+id);
+    // console.log('paso el mouse encima:'+id);
     // console.log('click html: '+valor_html);
 }
 var esta_en_edicion=0;
@@ -343,10 +346,10 @@ function sumar_acomo_actual(){
     nro_pa_d=$('#room_d').val();
     nro_pa_m=$('#room_m').val();
     nro_pa_s=$('#room_s').val();
-    console.log(nro_pa_t);
-    console.log(nro_pa_d);
-    console.log(nro_pa_m);
-    console.log(nro_pa_s);
+    // console.log(nro_pa_t);
+    // console.log(nro_pa_d);
+    // console.log(nro_pa_m);
+    // console.log(nro_pa_s);
 
     fila_t=parseInt(nro_pa_t)*parseInt($('#precio_'+atipo+'_t').val())*3;
     fila_d=parseInt(nro_pa_d)*parseInt($('#precio_'+atipo+'_d').val())*2;
@@ -427,7 +430,7 @@ function coti_romms(acom){
     nro_pa_s=parseInt($('#room_s').val());
     var pre_nropasajeros=nro_pa_t+nro_pa_d+nro_pa_m+nro_pa_s;
     var nropasajeros=$('#nropasajeros').val();
-    console.log(pre_nropasajeros+' '+nropasajeros);
+    // console.log(pre_nropasajeros+' '+nropasajeros);
         if(pre_nropasajeros<=nropasajeros) {
             sumatotal();
         }else{

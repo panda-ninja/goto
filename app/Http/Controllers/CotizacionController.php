@@ -5,6 +5,7 @@ namespace GotoPeru\Http\Controllers;
 
 use Faker\Provider\DateTime;
 use GotoPeru\Cliente;
+use GotoPeru\ClienteCotizacion;
 use GotoPeru\Cotizacion;
 use GotoPeru\DestinoPaqueteCotizacion;
 use GotoPeru\ItinerarioCotizacion;
@@ -51,9 +52,14 @@ class CotizacionController extends Controller
                 $cotizacion->nropersonas=$nropasa;
                 $cotizacion->fecha=$fecha;
                 $cotizacion->estado="6";/*-- 6=pre cotizacion*/
-                $cotizacion->clientes_id=$cliente[0]->id;
+//                $cotizacion->clientes_id=$cliente[0]->id;
                 $cotizacion->users_id=auth()->guard('admin')->user()->id;
                 $cotizacion->save();
+                $clienteCotizacion=new ClienteCotizacion();
+                $clienteCotizacion->cotizaciones_id=$cotizacion->id;
+                $clienteCotizacion->clientes_id=$cliente[0]->id;
+                $clienteCotizacion->estado='1';
+                $clienteCotizacion->save();
                 return $cotizacion->id;
             }
             else{
@@ -102,6 +108,7 @@ class CotizacionController extends Controller
         $iti_descripcion=explode('[]',$request->input('iti_descripcion'));
         $precio_itinerario=explode('[]',$request->input('precio_itinerario'));
         $pos_itinerario=$request->input('pos_itinerario');
+        $ordenes=explode('*',$request->input('ordenes'));
 
         $fecha_paquete=$request->input('fecha_paquete');
 //      strftime("%B, %d", strtotime(str_replace('-','/', $disponibilidad->fecha_disponibilidad)))
@@ -135,14 +142,14 @@ class CotizacionController extends Controller
                 $destino->save();
             }
         }
-        if(count($iti_descripcion)>0){
+        if(count($titulo_itinerario)>0){
             $i=0;
             $dia=1;
-            foreach ($iti_descripcion as $item) {
+            foreach ($titulo_itinerario  as $item) {
 
                 $itinerario = new ItinerarioCotizacion();
-                $itinerario->titulo=$titulo_itinerario[$i];
-                $itinerario->descripcion=$item;
+                $itinerario->titulo=$item;
+                $itinerario->descripcion=$iti_descripcion[$i];
                 $itinerario->dias=$dia;
 //                $date = date($fecha_paquete);
 //                $mod_date = strtotime($date."+ ".$dia." days");
@@ -155,19 +162,24 @@ class CotizacionController extends Controller
                 $itinerario->save();
                 $variable='orden_nombre_'.$pos_itinerario[$i];
                 $orden_nombres=$request->input($variable);
-                dd($orden_nombres);
-//                $orden_precio=$request->input('orden_precio_'.$variable);
+//                dd($orden_nombres);
+                $orden_precio=$request->input('orden_precio_'.$variable);
 //                $orden_observacion=$request->input('orden_observacion_'.$variable);
-                $j=0;
-                foreach ($orden_nombres as $orden_nombre){
-                    $orden=new ItinerarioOrden();
-                    $orden->itinerario_cotizaciones_id=$itinerario->id;
-                    $orden->nombre=$orden_nombre;
-                    $orden->observacion='';//$orden_observacion[$j];
-                    $orden->precio='';//$orden_precio[$j];
-                    $orden->save();
-                    $j++;
-                }
+//                $j=0;
+//                foreach ($ordenes[$i] as $orden) {
+                    $ordenarray = explode('_', $ordenes[$i]);
+                    foreach ($ordenarray as $item1) {
+                        $itemarray = explode('/', $item1);
+                        $orden = new ItinerarioOrden();
+                        $orden->itinerario_cotizaciones_id = $itinerario->id;
+                        $orden->nombre =$itemarray[0];
+                        $orden->precio = $itemarray[1];
+                        $orden->observacion  = $itemarray[2];
+                        $orden->save();
+                    }
+
+//                }
+//                $j++;
                 $dia++;
                 $i++;
             }

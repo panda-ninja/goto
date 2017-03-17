@@ -307,6 +307,10 @@ Route::group(['middleware'=>'admin'],function(){
         'uses' => 'PaqueteController@autocomplete',
         'as' => 'autocomplete',
     ]);
+    Route::post('/mostrar_ordenes', [
+        'uses' => 'OrdenController@show',
+        'as' => 'mostrar_ordennes',
+    ]);
 });
 /*
 Route::get('login', [
