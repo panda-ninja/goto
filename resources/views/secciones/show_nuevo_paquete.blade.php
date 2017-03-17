@@ -85,28 +85,21 @@
                             <td id="aco5" width="50px" onclick="foco_acomodacion(5)"><b id="titu_aco5" class="letra-roja centrar text-small">5 STARS</b></td>
                         </tr>
 
-                        {{--@foreach($Paquete->precio_paquetes as $precio)--}}
-                        {{--@if($precio->estrellas=="2")--}}
                         <?php $precio_2_s=0;?>
                         <?php $precio_2_d=0;?>
                         <?php $precio_2_t=0;?>
-                        {{--@endif--}}
-                        {{--@if($precio->estrellas=="3")--}}
+
                         <?php $precio_3_s=0;?>
                         <?php $precio_3_d=0;?>
                         <?php $precio_3_t=0;?>
-                        {{--@endif--}}
-                        {{--@if($precio->estrellas=="4")--}}
+
                         <?php $precio_4_s=0;?>
                         <?php $precio_4_d=0;?>
                         <?php $precio_4_t=0;?>
-                        {{--@endif--}}
-                        {{--@if($precio->estrellas=="5")--}}
+
                         <?php $precio_5_s=0;?>
                         <?php $precio_5_d=0;?>
                         <?php $precio_5_t=0;?>
-                        {{--@endif--}}
-                        {{--@endforeach--}}
                         <tr>
                             <td><input type="number" name="room_t" id="room_t" value="0" min="0" onchange="coti_romms('t')"></td>
                             <td class="centrar"><img src="{{asset('images')}}/single.png" alt="" width="30px" height="30px"><img src="{{asset('images')}}/single.png" alt="" width="30px" height="30px"><img src="{{asset('images')}}/single.png" alt="" width="30px" height="30px"></td>
@@ -188,8 +181,6 @@
 
                             <li>
                                 <div class="column lista_itinerario"  onmouseup="poner_valor()">
-                                    <?php $j=0;?>
-
                                 </div>
                             </li>
                             <li>
@@ -223,7 +214,7 @@
                                 <a href="#!" class=" modal-action modal-close waves-effect waves-green btn-flat">Agree</a>
                             </div>
                         </div>
-                        <input type="hidden" name="nroItis" id="nroItis" value="{{$j}}">
+                        <input type="hidden" name="nroItis" id="nroItis" value="0">
                     </div>
                     <div class="input-field">
                         <ul id="task-card" class="collection with-header">

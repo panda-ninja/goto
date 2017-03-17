@@ -64,12 +64,12 @@ class PaqueteController extends Controller
 //        $paquete=Paquete::with('itinerario_personalizados.servicios','itinerario_personalizados.itinerario_x_horas')->get()->where('codigo',$codigo);
 //['paquete'=>$paquete]
         //return dd($paquete);
-        $destino=DestinoCotizacion::all();
+        $destino=DestinoCotizacion::get();
         //dd($paquete);
-        $itinerios=TItinerario::distinct()->select('titulo')->get();
+//        $itinerios=TItinerario::distinct()->select('titulo')->get();
 //        dd($itinerios);
 //        return view('secciones.show_nuevo_paquete',['paquete'=>$paquete,'destino'=>$destino,'itinerarios1'=>$itinerios]);
-        return view('secciones.show_nuevo_paquete',['destino'=>$destino,'itinerarios1'=>$itinerios]);
+        return view('secciones.show_nuevo_paquete',['destino'=>$destino]);
 
     }
 }
