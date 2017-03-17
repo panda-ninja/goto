@@ -6,9 +6,9 @@
     {{--<h4 class="center margin-bottom-40">Quote history</h4>--}}
 
     {{--<ul id="tabs-swipe-demo" class="tabs">--}}
-        {{--<li class="tab col s3"><a class="active" href="#todas">Todas las cotizaciones</a></li>--}}
-        {{--<li class="tab col s3"><a href="#confirmados">Confirmados</a></li>--}}
-        {{--<li class="tab col s3"><a href="#pendientes">Pendientes</a></li>--}}
+    {{--<li class="tab col s3"><a class="active" href="#todas">Todas las cotizaciones</a></li>--}}
+    {{--<li class="tab col s3"><a href="#confirmados">Confirmados</a></li>--}}
+    {{--<li class="tab col s3"><a href="#pendientes">Pendientes</a></li>--}}
     {{--</ul>--}}
 
     <div class="col s12">
@@ -29,11 +29,13 @@
             </div>
         </div>
     </div>
+    {{--{{$cotizaciones_estado}}--}}
     <div id="todas" class="col s12 ">
         <ul class="collection">
-        @foreach($cotizaciones as $cotizacion)
-            @foreach($cotizacion->cliente_cotizaciones as $cot)
-                @if($cot)
+            @foreach($cotizaciones as $cotizacion)
+                @foreach($cotizacion->cliente_cotizaciones as $cot)
+                    @if($cot)
+
                         @php $bg_status = ''; @endphp
                         @foreach($cotizacion->paquete_cotizaciones as $paquete_cot)
                             @if($paquete_cot->estado == 1)
@@ -48,45 +50,94 @@
                                 @php $i = 1; @endphp
                                 @foreach($cotizacion->paquete_cotizaciones as $paquete_cotizaciones)
 
-                                    @php
-                                        switch ($paquete_cotizaciones->estado) {
-                                            case '1':
-                                                $active = 'grey-text text-darken-3 bold-900';
-                                                $estado = "<i class='material-icons grey-text text-darken-3'>mail</i>";
-                                                break;
-                                            case '2':
-                                                $active = 'grey-text text-darken-3';
-                                                $estado = '<i class="material-icons grey-text">mail_outline</i>';
-                                                break;
-                                            case '3':
-                                                $active = 'grey-text text-darken-3';
-                                                $estado = '<i class="material-icons green-text">check_circle</i>';
-                                                break;
-                                            case '4':
-                                                $active = 'grey-text text-lighten-1';
-                                                $estado = "<i class='material-icons grey-text text-lighten-1'>close</i>";
-                                                break;
-                                            default:
-                                                $estado = '';
-                                                $active = '';
-                                                break;
-                                        }
-                                    @endphp
+                                    @if($cot->estado == 0 and $paquete_cotizaciones->estado==3)
+
+                                        @php
+                                            switch ($paquete_cotizaciones->estado) {
+                                                case '1':
+                                                    $active = 'grey-text text-darken-3 bold-900';
+                                                    $estado = "<i class='material-icons grey-text text-darken-3'>mail</i>";
+                                                    break;
+                                                case '2':
+                                                    $active = 'grey-text text-darken-3';
+                                                    $estado = '<i class="material-icons grey-text">mail_outline</i>';
+                                                    break;
+                                                case '3':
+                                                    $active = 'green-text text-darken-3';
+                                                    $estado = '<i class="material-icons green-text">check_circle</i>';
+                                                    break;
+                                                case '4':
+                                                    $active = 'grey-text text-lighten-1';
+                                                    $estado = "<i class='material-icons grey-text text-lighten-1'>close</i>";
+                                                    break;
+                                                default:
+                                                    $estado = '';
+                                                    $active = '';
+                                                    break;
+                                            }
+
+                                        @endphp
 
 
-                                    <tr>
-                                        <td class="no-padding">
-                                            @if($paquete_cotizaciones->estado == 3)
-                                                <a href="{{route('group_path',$cotizacion->id)}}" class="tooltipped" data-position="top" data-delay="50" data-tooltip="Agregar datos personales y de grupo (si tiene grupo)."><i class="material-icons">supervisor_account</i></a>
-                                            @endif
-                                            @php
-                                                echo $estado;
-                                            @endphp
-                                        </td>
-                                        <td class="no-padding"><a href="{{route('quotes_show_path',$paquete_cotizaciones->id)}}" class="{{$active}}">Propuesta {{$i++}}:</a></td>
-                                        <td class="no-padding"><a href="{{route('quotes_show_path',$paquete_cotizaciones->id)}}" class="{{$active}}">{{$paquete_cotizaciones->titulo}}</a></td>
-                                        <td class="no-padding right-align"><a href="{{route('quotes_show_path',$paquete_cotizaciones->id)}}" class="{{$active}} rigth">{{date_format($paquete_cotizaciones->updated_at, 'j F Y')}}</a></td>
-                                    </tr>
+                                        <tr>
+                                            <td class="no-padding">
+                                                @if($paquete_cotizaciones->estado == 3)
+                                                    <a href="{{route('group_path',$cotizacion->id)}}" class="tooltipped red-text" data-position="top" data-delay="50" data-tooltip="Agregar datos personales."><i class="material-icons">supervisor_account</i></a>
+                                                @endif
+                                                @php
+                                                    echo $estado;
+                                                @endphp
+
+                                            </td>
+                                            <td class="no-padding"><a href="{{route('quotes_show_path',$paquete_cotizaciones->id)}}" class="{{$active}}"><span class="red-text">Invitado</span>:</a></td>
+                                            <td class="no-padding"><a href="{{route('quotes_show_path',$paquete_cotizaciones->id)}}" class="{{$active}}">{{$paquete_cotizaciones->titulo}}</a></td>
+                                            <td class="no-padding right-align"><a href="{{route('quotes_show_path',$paquete_cotizaciones->id)}}" class="{{$active}} rigth">{{date_format($paquete_cotizaciones->updated_at, 'j F Y')}}</a></td>
+                                        </tr>
+                                    @elseif($cot->estado == 1)
+                                        @php
+                                            switch ($paquete_cotizaciones->estado) {
+                                                case '1':
+                                                    $active = 'grey-text text-darken-3 bold-900';
+                                                    $estado = "<i class='material-icons grey-text text-darken-3'>mail</i>";
+                                                    break;
+                                                case '2':
+                                                    $active = 'grey-text text-darken-3';
+                                                    $estado = '<i class="material-icons grey-text">mail_outline</i>';
+                                                    break;
+                                                case '3':
+                                                    $active = 'grey-text text-darken-3';
+                                                    $estado = '<i class="material-icons green-text">check_circle</i>';
+                                                    break;
+                                                case '4':
+                                                    $active = 'grey-text text-lighten-1';
+                                                    $estado = "<i class='material-icons grey-text text-lighten-1'>close</i>";
+                                                    break;
+                                                default:
+                                                    $estado = '';
+                                                    $active = '';
+                                                    break;
+                                            }
+
+                                        @endphp
+
+
+                                        <tr>
+                                            <td class="no-padding">
+                                                @if($paquete_cotizaciones->estado == 3)
+                                                    <a href="{{route('group_path',$cotizacion->id)}}" class="tooltipped" data-position="top" data-delay="50" data-tooltip="Agregar datos personales y de grupo (si tiene grupo)."><i class="material-icons">supervisor_account</i></a>
+                                                    <a href="{{route('payments_create_path',$cotizacion->id)}}" class="pink-text text-accent-4"><i class="material-icons">payment</i></a>
+                                                @endif
+                                                @php
+                                                    echo $estado;
+                                                @endphp
+                                            </td>
+                                            <td class="no-padding"><a href="{{route('quotes_show_path',$paquete_cotizaciones->id)}}" class="{{$active}}">Propuesta {{$i++}}:</a></td>
+                                            <td class="no-padding"><a href="{{route('quotes_show_path',$paquete_cotizaciones->id)}}" class="{{$active}}">{{$paquete_cotizaciones->titulo}}</a></td>
+                                            <td class="no-padding right-align"><a href="{{route('quotes_show_path',$paquete_cotizaciones->id)}}" class="{{$active}} rigth">{{date_format($paquete_cotizaciones->updated_at, 'j F Y')}}</a></td>
+                                        </tr>
+                                    @endif
+
+
 
                                 @endforeach
                             </table>
@@ -97,13 +148,13 @@
                             {{--<a href="#!" class="secondary-content">18 june 2017</a>--}}
 
                         </li>
-                @endif
+                    @endif
+                @endforeach
+
+
+
+
             @endforeach
-
-
-
-
-        @endforeach
             <li>
                 <i class="text-12 valign-wrapper">
                     <i class='material-icons grey-text text-darken-3 text-12'>mail</i> Nueva propuesta|
@@ -362,4 +413,4 @@
         </div>
     </div>
 
-    @stop
+@stop

@@ -1,6 +1,8 @@
 @extends('layouts.dashboard')
 
 @section('content')
+    {{--{{$cliente_estado}}--}}
+@if($cliente_estado)
 
     <div class="row">
 
@@ -10,35 +12,83 @@
             </blockquote>
         </div>
         <div class="col s12">
+            @if(Session::get('success'))
+                <div class="card-panel green darken-1 center-align">
+                    <p class="white-text"><i class="material-icons">check_circle</i> {{Session::get('success')}}</p>
+                </div>
+            @endif
+        </div>
+        <div class="col s12">
+            @if(Session::get('error'))
+                <div class="card-panel orange darken-1 center-align">
+                    <p class="white-text valign-wrapper"><i class="material-icons">warning</i> {{Session::get('error')}}</p>
+                </div>
+            @endif
+        </div>
+
+        <div class="col s12">
             <ul class="collection">
                 @foreach($clienteCotizacion as $clienteCotizaciones)
-                    @if($clienteCotizaciones->estado == 1)
+
+                    @php $campos_vacios=0; @endphp
+                    @if(strlen($clienteCotizaciones->cliente->nombres)==0)
+                        @php $campos_vacios++; @endphp
+                    @endif
+                    @if(strlen($clienteCotizaciones->cliente->apellidos)==0)
+                        @php $campos_vacios++; @endphp
+                    @endif
+                    @if(strlen($clienteCotizaciones->cliente->sexo)==0)
+                        @php $campos_vacios++; @endphp
+                    @endif
+                    @if(strlen($clienteCotizaciones->cliente->fechanacimiento)==0)
+                        @php $campos_vacios++; @endphp
+                    @endif
+                    @if(strlen($clienteCotizaciones->cliente->nacionalidad)==0)
+                        @php $campos_vacios++; @endphp
+                    @endif
+                    @if(strlen($clienteCotizaciones->cliente->residencia)==0)
+                        @php $campos_vacios++; @endphp
+                    @endif
+                    @if(strlen($clienteCotizaciones->cliente->restricciones)==0)
+                        @php $campos_vacios++; @endphp
+                    @endif
+                    @if(strlen($clienteCotizaciones->cliente->alergias)==0)
+                        @php $campos_vacios++; @endphp
+                    @endif
+                    @if(strlen($clienteCotizaciones->cliente->dieta)==0)
+                        @php $campos_vacios++; @endphp
+                    @endif
+                    @if(strlen($clienteCotizaciones->cliente->pasaporte)==0)
+                        @php $campos_vacios++; @endphp
+                    @endif
+                    @if(strlen($clienteCotizaciones->cliente->telefono)==0)
+                        @php $campos_vacios++; @endphp
+                    @endif
+                    @if(strlen($clienteCotizaciones->cliente->email)==0)
+                        @php $campos_vacios++; @endphp
+                    @endif
+                    @if(strlen($clienteCotizaciones->cliente->password)==0)
+                        @php $campos_vacios++; @endphp
+                    @endif
+
+                    @php $porcentaje = ((13-$campos_vacios) * 100)/13; @endphp
+
+
                         <li class="collection-item avatar grey lighten-4">
                             <img src="{{ Gravatar::src($clienteCotizaciones->cliente->nombres, 200) }}" class="circle">
                             <span class="title"><b>{{$clienteCotizaciones->cliente->nombres}} {{$clienteCotizaciones->cliente->apellidos}}</b></span>
                             <p>{{$clienteCotizaciones->cliente->email}}</p>
-                            <i class="right">Informacion al 70%</i>
+                            <i class="right">Informacion al {{round($porcentaje)}}%</i>
                             <div class="progress">
-                                <div class="determinate" style="width: 70%"></div>
+                                <div class="determinate" style="width: {{round($porcentaje)}}%"></div>
                             </div>
-                            <a href="#!" class="secondary-content"><i class="material-icons">create</i></a>
+                            <a href="{{route('client_edit_path', $clienteCotizaciones->cliente->id)}}" class="secondary-content"><i class="material-icons">create</i></a>
                         </li>
-                    @else
 
-                        {{--<li class="collection-item avatar lighten-4">--}}
-                            {{--<img src="{{ Gravatar::src($clienteCotizaciones->cliente->nombres, 200) }}" class="circle">--}}
-                            {{--<span class="title"><b>{{$clienteCotizaciones->cliente->nombres}} {{$clienteCotizaciones->cliente->apellidos}}</b></span>--}}
-                            {{--<p>{{$clienteCotizaciones->cliente->email}}</p>--}}
-                            {{--<i class="right">Informacion al 70%</i>--}}
-                            {{--<div class="progress">--}}
-                                {{--<div class="determinate" style="width: 70%"></div>--}}
-                            {{--</div>--}}
-                            {{--<a href="#!" class="secondary-content"><i class="material-icons">create</i></a>--}}
-                        {{--</li>--}}
-                    @endif
                 @endforeach
+                {{--@php @endphp--}}
 
-                @for($i = 1; $i < $clienteCotizaciones->cotizaciones->nropersonas; $i++)
+                @for($i = 0; $i < ($clienteCotizaciones->cotizaciones->nropersonas - $clienteCotizacion_num); $i++)
                         <li class="collection-item avatar">
                             <i class="material-icons circle">person</i>
                             <p></p>
@@ -61,11 +111,6 @@
                                         <button class="btn waves-effect waves-light" type="submit" name="action">Pedir datos
                                             <i class="material-icons right">send</i>
                                         </button>
-                                        @if(Session::get('success'))
-                                            <div class="card-panel light-blue darken-1 center-align">
-                                                <h5 class="white-text">hola peru.</h5>
-                                            </div>
-                                        @endif
                                     </div>
 
                                 </div>
@@ -74,7 +119,7 @@
                             <div class="progress">
                                 <div class="determinate" style="width: 0%"></div>
                             </div>
-                            <a href="#!" class="secondary-content blue-text"><i class="material-icons right no-margin">open_in_new</i> Registrar todos los datos de pasajero</a>
+                            {{--<a href="{{route('client_edit_path', $clienteCotizaciones->cliente->id)}}" class="secondary-content blue-text"><i class="material-icons right no-margin">open_in_new</i> Registrar todos los datos de pasajero</a>--}}
                         </li>
                 @endfor
 
@@ -98,5 +143,113 @@
             </ul>
         </div>
     </div>
+@else
+    <div class="row">
 
+        <div class="col s12">
+            <blockquote>
+                <p>Llene todo sus datos, recuerde que tener sus datos actualizados ayudara a que le brindemos un servicio personalizado. <i class="material-icons grey-text">create</i></p>
+            </blockquote>
+        </div>
+        <div class="col s12">
+            @if(Session::get('success'))
+                <div class="card-panel green darken-1 center-align">
+                    <p class="white-text"><i class="material-icons">check_circle</i> {{Session::get('success')}}</p>
+                </div>
+            @endif
+        </div>
+        <div class="col s12">
+            @if(Session::get('error'))
+                <div class="card-panel orange darken-1 center-align">
+                    <p class="white-text valign-wrapper"><i class="material-icons">warning</i> {{Session::get('error')}}</p>
+                </div>
+            @endif
+        </div>
+
+        <div class="col s12">
+            <ul class="collection">
+                @foreach($clienteCotizacion as $clienteCotizaciones)
+                    @if($clienteCotizaciones->clientes_id == $idCliente)
+
+                    @php $campos_vacios=0; @endphp
+                    @if(strlen($clienteCotizaciones->cliente->nombres)==0)
+                        @php $campos_vacios++; @endphp
+                    @endif
+                    @if(strlen($clienteCotizaciones->cliente->apellidos)==0)
+                        @php $campos_vacios++; @endphp
+                    @endif
+                    @if(strlen($clienteCotizaciones->cliente->sexo)==0)
+                        @php $campos_vacios++; @endphp
+                    @endif
+                    @if(strlen($clienteCotizaciones->cliente->fechanacimiento)==0)
+                        @php $campos_vacios++; @endphp
+                    @endif
+                    @if(strlen($clienteCotizaciones->cliente->nacionalidad)==0)
+                        @php $campos_vacios++; @endphp
+                    @endif
+                    @if(strlen($clienteCotizaciones->cliente->residencia)==0)
+                        @php $campos_vacios++; @endphp
+                    @endif
+                    @if(strlen($clienteCotizaciones->cliente->restricciones)==0)
+                        @php $campos_vacios++; @endphp
+                    @endif
+                    @if(strlen($clienteCotizaciones->cliente->alergias)==0)
+                        @php $campos_vacios++; @endphp
+                    @endif
+                    @if(strlen($clienteCotizaciones->cliente->dieta)==0)
+                        @php $campos_vacios++; @endphp
+                    @endif
+                    @if(strlen($clienteCotizaciones->cliente->pasaporte)==0)
+                        @php $campos_vacios++; @endphp
+                    @endif
+                    @if(strlen($clienteCotizaciones->cliente->telefono)==0)
+                        @php $campos_vacios++; @endphp
+                    @endif
+                    @if(strlen($clienteCotizaciones->cliente->email)==0)
+                        @php $campos_vacios++; @endphp
+                    @endif
+                    @if(strlen($clienteCotizaciones->cliente->password)==0)
+                        @php $campos_vacios++; @endphp
+                    @endif
+
+                    @php $porcentaje = ((13-$campos_vacios) * 100)/13; @endphp
+
+
+                    <li class="collection-item avatar grey lighten-4">
+                        <img src="{{ Gravatar::src($clienteCotizaciones->cliente->nombres, 200) }}" class="circle">
+                        <span class="title"><b>{{$clienteCotizaciones->cliente->nombres}} {{$clienteCotizaciones->cliente->apellidos}}</b></span>
+                        <p>{{$clienteCotizaciones->cliente->email}}</p>
+                        <i class="right">Informacion al {{round($porcentaje)}}%</i>
+                        <div class="progress">
+                            <div class="determinate" style="width: {{round($porcentaje)}}%"></div>
+                        </div>
+                        <a href="{{route('client_edit_path', $clienteCotizaciones->cliente->id)}}" class="secondary-content"><i class="material-icons">create</i></a>
+                    </li>
+                    @endif
+                @endforeach
+                {{--@php @endphp--}}
+
+
+
+
+                {{--<li class="collection-item avatar">--}}
+                {{--<i class="material-icons circle green">insert_chart</i>--}}
+                {{--<span class="title">Title</span>--}}
+                {{--<p>First Line <br>--}}
+                {{--Second Line--}}
+                {{--</p>--}}
+                {{--<a href="#!" class="secondary-content"><i class="material-icons">grade</i></a>--}}
+                {{--</li>--}}
+                {{--<li class="collection-item avatar">--}}
+                {{--<i class="material-icons circle red">play_arrow</i>--}}
+                {{--<span class="title">Title</span>--}}
+                {{--<p>First Line <br>--}}
+                {{--Second Line--}}
+                {{--</p>--}}
+                {{--<a href="#!" class="secondary-content"><i class="material-icons">grade</i></a>--}}
+                {{--</li>--}}
+            </ul>
+        </div>
+    </div>
+@endif
 @stop

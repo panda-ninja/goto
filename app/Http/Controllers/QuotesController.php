@@ -35,21 +35,31 @@ class QuotesController extends Controller
 
         $paquetes_num = PaqueteCotizacion::with(['cotizaciones.cliente_cotizaciones'=>function($query) use ($idCliente) { $query->where('clientes_id', $idCliente);}])->get();
 
+        $cotizaciones_estado = Cotizacion::with(['cliente_cotizaciones'=>function($query) use ($idCliente) { $query->where('clientes_id', $idCliente)->where('estado', 0);}])
+            ->get()
+            ->sortByDesc('fecha');
+
 //        dd($cotizaciones);
-        return view('quotes', ['cotizaciones'=>$cotizaciones, 'paquetes_num'=>$paquetes_num]);
+        return view('quotes', ['cotizaciones'=>$cotizaciones, 'paquetes_num'=>$paquetes_num, 'cotizaciones_estado'=>$cotizaciones_estado]);
     }
 
     public function confirm()
     {
 
         $idCliente=auth()->guard('cliente')->user()->id;
+
         $cotizaciones = Cotizacion::with(['cliente_cotizaciones'=>function($query) use ($idCliente) { $query->where('clientes_id', $idCliente);}])
             ->get()
             ->sortByDesc('fecha');
 
         $paquetes_num = PaqueteCotizacion::with(['cotizaciones.cliente_cotizaciones'=>function($query) use ($idCliente) { $query->where('clientes_id', $idCliente);}])->get();
 
-        return view('confirm', ['cotizaciones'=>$cotizaciones, 'paquetes_num'=>$paquetes_num]);
+        $cotizaciones_estado = Cotizacion::with(['cliente_cotizaciones'=>function($query) use ($idCliente) { $query->where('clientes_id', $idCliente)->where('estado', 0);}])
+            ->get()
+            ->sortByDesc('fecha');
+
+//        dd($cotizaciones);
+        return view('confirm', ['cotizaciones'=>$cotizaciones, 'paquetes_num'=>$paquetes_num, 'cotizaciones_estado'=>$cotizaciones_estado]);
     }
 
     public function pending()
@@ -219,7 +229,7 @@ class QuotesController extends Controller
 //            Session::flash('message', $name.' hola');
 
 
-            return redirect()->route('quotes_show_path', $paquete->id)->with('success','Paquete confirmado');
+            return redirect()->route('payments_create_path',$paquete->cotizaciones_id)->with('success','El paquete se confirmo satisfactoriamente. Proceda a realizar sus primer pago, el pago puede ser total o por partes. Para cualquier consulta no dude en contactarse con nosotros.');
 
 //            return redirect()->route('home_path');
         }
