@@ -89,6 +89,7 @@
                                 <th data-field="name">Hotel Category </th>
                                 <th data-field="price">Simple</th>
                                 <th data-field="price">Double</th>
+                                <th data-field="price">Matrimonial</th>
                                 <th data-field="price">Triple</th>
                                 <th></th>
                             </tr>
@@ -105,6 +106,7 @@
                                     <td class="{{$active}}"><b>{{$precio->estrellas}} stars</b></td>
                                     <td class="{{$active}}">${{$precio->precio_s}} <br> <span>{{$precio->personas_s}} Travellers</span></td>
                                     <td class="{{$active}}">${{$precio->precio_d}} <br> <span>{{$precio->personas_d}} Travellers</span></td>
+                                    <td class="{{$active}}">${{$precio->precio_m}} <br> <span>{{$precio->personas_m}} Travellers</span></td>
                                     <td class="{{$active}}">${{$precio->precio_t}} <br> <span>{{$precio->personas_t}} Travellers</span></td>
                                     <td class="{{$active}}"><i class="material-icons green-text">{{$icon}}</i></td>
 
@@ -133,11 +135,11 @@
                     <div class="col s12">
 
                         <p class="yellow-text text-darken-3"><b>Incluye</b></p>
-                        <p>{{$paquete->incluye}}</p>
+                        @php echo $paquete->incluye; @endphp
                         <p class="yellow-text text-darken-3"><b>No Incluye</b></p>
-                        <p>{{$paquete->noincluye}}</p>
+                        @php echo $paquete->noincluye; @endphp
                         <p class="yellow-text text-darken-3"><b>Opcional</b></p>
-                        <p>{{$paquete->opcional}}</p>
+                        @php echo $paquete->opcional; @endphp
 
                     </div>
                 </div>
@@ -152,7 +154,7 @@
                     <div id="days" class="col s12">
                         @foreach($paquete->itinerario_cotizaciones->sortBy('dias') as $itinerario)
                             <h6><b>Day {{$itinerario->dias}} - {{$itinerario->titulo}} ({{$itinerario->fecha}})</b></h6>
-                            <p>{{$itinerario->descripcion}}</p>
+                            @php echo $paquete->descripcion; @endphp
                         @endforeach
                     </div>
                     <div id="hours" class="col s12">
@@ -165,7 +167,7 @@
                                 </div>
                                 <div class="col s8">
                                     @foreach($itinerario->horas_cotizaciones->sortBy('hora') as $horas)
-                                        <p><b>{{$horas->hora}}</b> - {{$horas->descripcion}})</p>
+                                        <p><b>{{$horas->hora}}</b> - @php echo $horas->descripcion; @endphp</p>
                                     @endforeach
                                 </div>
                             </div>
@@ -194,7 +196,7 @@
                                         @foreach($itinerario->servicios_cotizaciones as $servicios)
                                             <tr>
                                                 <td>{{$servicios->tiposervicio}}</td>
-                                                <td>{{$servicios->observaciones}}</td>
+                                                <td>@php echo $servicios->observaciones; @endphp</td>
                                                 {{--<td>${{$servicios->precio}}</td>--}}
                                             </tr>
                                         @endforeach
