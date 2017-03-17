@@ -131,8 +131,12 @@ Route::get('cliente/logout', [
 ]);
 
 Route::get('client/resgister', [
-    'uses' => 'ClientAuthController@register',
+    'uses' => 'ClientController@index',
     'as' => 'client_register_path',
+]);
+Route::post('client/resgister', [
+    'uses' => 'ClientController@store',
+    'as' => 'new_client_store_path',
 ]);
 
 Route::group(['middleware'=>'cliente'],function(){
@@ -186,6 +190,16 @@ Route::group(['middleware'=>'cliente'],function(){
         'uses' => 'ClienteCotizacionesController@store',
         'as' => 'client_store_path',
     ]);
+    Route::get('groups/client/{id}/edit', [
+        'uses' => 'ClienteCotizacionesController@edit',
+        'as' => 'client_edit_path',
+    ]);
+
+    Route::post('groups/client/{id}/edit', [
+        'uses' => 'ClienteCotizacionesController@update',
+        'as' => 'client_patch_path',
+    ])->where('id', '[0-9]+');
+
 
 //    Route::post('quotes/{id}', [
 //        'uses' => 'QuotesController@show',
@@ -203,20 +217,31 @@ Route::group(['middleware'=>'cliente'],function(){
     ]);
 
     /*-- payments*/
-    Route::get('payments', [
-        'uses' => 'PagosController@index',
-        'as' => 'payments_path',
+//    Route::get('payments', [
+//        'uses' => 'PagosController@index',
+//        'as' => 'payments_path',
+//    ]);
+//
+//    Route::get('payments/{id}', [
+//        'uses' => 'PagosController@show',
+//        'as' => 'payments_show_path',
+//    ]);
+//    Route::post('payments/{id}', [
+//        'uses' => 'PagosController@store',
+//        'as' => 'payments_store_path',
+//    ]);
+    Route::get('billing-history', [
+        'uses' => 'PaymentController@index',
+        'as' => 'history_path',
     ]);
-
+//    Route::get('payments', [
+//        'uses' => 'PaymentController@index',
+//        'as' => 'payments_path',
+//    ]);
     Route::get('payments/{id}', [
-        'uses' => 'PagosController@show',
-        'as' => 'payments_show_path',
+        'uses' => 'PaymentController@create',
+        'as' => 'payments_create_path',
     ]);
-    Route::post('payments/{id}', [
-        'uses' => 'PagosController@store',
-        'as' => 'payments_store_path',
-    ]);
-
 
 
 });

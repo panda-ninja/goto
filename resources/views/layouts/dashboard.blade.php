@@ -7,6 +7,7 @@
 
     <!-- CSS  -->
     <link href="{{asset('css/app.css')}}" type="text/css" rel="stylesheet" media="screen,projection"/>
+    <link href='https://fonts.googleapis.com/css?family=Montserrat|Oleo+Script' rel='stylesheet' type='text/css'>
 </head>
 <body>
 <header class="grey darken-4">
@@ -64,7 +65,9 @@
                   12-columns-wide on small screens  -->
                 <div class="center box-client-right">
                     {{--<i class="material-icons grey-text">person</i>--}}
-                    <img src="{{asset('img/icons/user2.png')}}" alt="" class="responsive-img">
+                    {{--<img src="{{asset('img/icons/user2.png')}}" alt="" class="responsive-img">--}}
+                    {{--<img src="{{ Gravatar::src($clienteCotizaciones->cliente->nombres, 200) }}" alt="">--}}
+                    <img src="{{ Gravatar::src(auth()->guard('cliente')->user()->email, 100) }}" class="circle">
                     <p><b>PROFILE</b></p>
                     <p><b class="yellow-text text-darken-3">{{auth()->guard('cliente')->user()->nombres.', '.auth()->guard('cliente')->user()->apellidos}}</b></p>
 
@@ -109,10 +112,10 @@
 
                     <a href="{{route('quotes_path')}}" class="collection-item">Quotes <span class="new badge red {{$num}}">{{$k}}</span></a>
 
-                    <a href="{{route('payments_path')}}" class="collection-item">Payments</a>
-                    <a href="#!" class="collection-item">Reports</a>
-                    <a href="#!" class="collection-item">Wish list</a>
-                    <a href="#!" class="collection-item">Profile</a>
+                    <a href="{{route('history_path')}}" class="collection-item">Billing history</a>
+                    {{--<a href="#!" class="collection-item">Reports</a>--}}
+                    {{--<a href="#!" class="collection-item">Wish list</a>--}}
+                    <a href="{{route('client_edit_path', auth()->guard('cliente')->user()->id)}}" class="collection-item">Profile</a>
                 </div>
 
             </div>
@@ -168,6 +171,8 @@
 <!--  Scripts-->
 <script src="{{asset('js/app.js')}}"></script>
 <script src="{{asset('js/init.js')}}"></script>
+<script src="{{asset('js/jquery.printPage.js')}}"></script>
+
 @yield('scripts')
 
 <script>
@@ -176,6 +181,11 @@
         onOpen: function(el) { alert('Open'); }, // Callback for Collapsible open
         onClose: function(el) { alert('Closed'); } // Callback for Collapsible close
     });
+</script>
+<script>
+    $(document).ready(function () {
+        $(".btnPrint").printPage();
+    })
 </script>
 </body>
 </html>

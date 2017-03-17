@@ -40,17 +40,17 @@
                     </div>
                     <div class="col s12 center">
                         <div class="divider margin-top-10"></div>
-                        @if(Session::get('success'))
-                            <div class="card-panel light-blue darken-1 center-align">
-                                <h5 class="white-text">El paquete se confirmo satisfactoriamente.</h5>
-                            </div>
-                        @endif
+                        {{--@if(Session::get('success'))--}}
+                            {{--<div class="card-panel light-blue darken-1 center-align">--}}
+                                {{--<h5 class="white-text">El paquete se confirmo satisfactoriamente.</h5>--}}
+                            {{--</div>--}}
+                        {{--@endif--}}
 
-                        @if($paquete->estado == 3)
-                            <div class="">
-                                <a href="#" class="waves-effect waves-light btn green accent-4 accent-4 modal-trigger">Proceder a Pagar Ahora</a>
-                            </div>
-                        @elseif($paquete->estado == 1 OR $paquete->estado == 2)
+                        {{--@if($paquete->estado == 3)--}}
+                            {{--<div class="">--}}
+                                {{--<a href="#" class="waves-effect waves-light btn green accent-4 accent-4 modal-trigger">Proceder a Pagar Ahora</a>--}}
+                            {{--</div>--}}
+                        @if($paquete->estado == 1 OR $paquete->estado == 2)
                             <p class=" margin-top-20">
                                 {{--<a class="waves-effect waves-light btn modal-trigger" href="#modal1">Modal</a>--}}
                                 <a href="#confirm" class="waves-effect waves-light btn red modal-trigger">Confirmar Ahora</a>

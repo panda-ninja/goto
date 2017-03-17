@@ -2,12 +2,21 @@
 
 @section('content')
 
-
     <div class="container">
         <div class="section">
             <div class="row">
                 <div class="col l12">
-                    @include('partial.errors')
+                    {{--@include('partial.errors')--}}
+                    @if(Session::get('success'))
+                        <div class="card-panel light-blue darken-1 center-align">
+                            <h5 class="white-text">{{Session::get('success')}}</h5>
+                        </div>
+                    @endif
+                    @if(Session::get('error'))
+                        <div class="card-panel red darken-1 center-align">
+                            <h5 class="white-text">{{Session::get('error')}}</h5>
+                        </div>
+                    @endif
                 </div>
             </div>
             <div class="row">
@@ -16,7 +25,7 @@
                         <h6><b>Account Registration</b></h6>
                     </div>
 
-                    <form action="" method="post">
+                    <form action="{{route("new_client_store_path")}}" method="post">
                         {{csrf_field()}}
                         <div class="row font-moserrat">
                             <div class="input-field col s12">
@@ -34,12 +43,6 @@
                             <div class="input-field col s12">
                                 <input id="email" name="email" type="email" class="validate">
                                 <label for="email">Email</label>
-                            </div>
-                        </div>
-                        <div class="row font-moserrat">
-                            <div class="input-field col s12">
-                                <input id="password" name="password" type="password" class="validate">
-                                <label for="password">Password</label>
                             </div>
                         </div>
                         <div class="row font-moserrat">
