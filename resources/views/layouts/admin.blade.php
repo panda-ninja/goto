@@ -31,7 +31,7 @@
     <link href="{{asset('css/admin-theme.css')}}" type="text/css" rel="stylesheet" media="screen,projection"/>
     <!-- Custome CSS-->
     <script src="{{asset('js/app.js')}}"></script>
-    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    {{--<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>--}}
     @yield('scripts_textarea')
     {{--<script src="//cdn.tinymce.com/4/tinymce.min.js"></script>--}}
     {{--<script>tinymce.init({ selector:'textarea' });</script>--}}
@@ -50,11 +50,11 @@
 
 <body>
 <!-- Start Page Loading -->
-<div id="loader-wrapper">
-    <div id="loader"></div>
-    <div class="loader-section section-left"></div>
-    <div class="loader-section section-right"></div>
-</div>
+{{--<div id="loader-wrapper">--}}
+    {{--<div id="loader"></div>--}}
+    {{--<div class="loader-section section-left"></div>--}}
+    {{--<div class="loader-section section-right"></div>--}}
+{{--</div>--}}
 <!-- End Page Loading -->
 
 <!-- //////////////////////////////////////////////////////////////////////////// -->
@@ -66,14 +66,14 @@
         <nav class="navbar-color">
             <div class="nav-wrapper">
                 <ul class="left">
-                    <li><h1 class="logo-wrapper"><a href="index.html" class="brand-logo darken-1"><img src="images/materialize-logo.png" alt="materialize logo"></a> <span class="logo-text">Materialize</span></h1></li>
+                    <li><h1 class="logo-wrapper"><a href="index.html" class="brand-logo darken-1"><img src="{{asset("images/materialize-logo.png")}}" alt="materialize logo"></a> <span class="logo-text">Materialize</span></h1></li>
                 </ul>
                 <div class="header-search-wrapper hide-on-med-and-down">
                     <i class="mdi-action-search"></i>
                     <input type="text" name="Search" class="header-search-input z-depth-2" placeholder="Explore Materialize"/>
                 </div>
                 <ul class="right hide-on-med-and-down">
-                    <li><a href="javascript:void(0);" class="waves-effect waves-block waves-light translation-button"  data-activates="translation-dropdown"><img src="images/flag-icons/United-States.png" alt="USA" /></a>
+                    <li><a href="javascript:void(0);" class="waves-effect waves-block waves-light translation-button"  data-activates="translation-dropdown"><img src="{{asset("images/flag-icons/United-States.png")}}" alt="USA" /></a>
                     </li>
                     <li><a href="javascript:void(0);" class="waves-effect waves-block waves-light toggle-fullscreen"><i class="mdi-action-settings-overscan"></i></a>
                     </li>
@@ -87,16 +87,16 @@
                 <!-- translation-button -->
                 <ul id="translation-dropdown" class="dropdown-content">
                     <li>
-                        <a href="#!"><img src="images/flag-icons/United-States.png" alt="English" />  <span class="language-select">English</span></a>
+                        <a href="#!"><img src="{{asset("images/flag-icons/United-States.png")}}" alt="English" />  <span class="language-select">English</span></a>
                     </li>
                     <li>
-                        <a href="#!"><img src="images/flag-icons/France.png" alt="French" />  <span class="language-select">French</span></a>
+                        <a href="#!"><img src="{{asset("images/flag-icons/France.png")}}" alt="French" />  <span class="language-select">French</span></a>
                     </li>
                     <li>
-                        <a href="#!"><img src="images/flag-icons/China.png" alt="Chinese" />  <span class="language-select">Chinese</span></a>
+                        <a href="#!"><img src="{{asset("images/flag-icons/China.png")}}" alt="Chinese" />  <span class="language-select">Chinese</span></a>
                     </li>
                     <li>
-                        <a href="#!"><img src="images/flag-icons/Germany.png" alt="German" />  <span class="language-select">German</span></a>
+                        <a href="#!"><img src="{{asset("images/flag-icons/Germany.png")}}" alt="German" />  <span class="language-select">German</span></a>
                     </li>
 
                 </ul>
@@ -147,7 +147,7 @@
                 <li class="user-details cyan darken-2">
                     <div class="row">
                         <div class="col col s4 m4 l4">
-                            <img src="images/avatar.jpg" alt="" class="circle responsive-img valign profile-image">
+                            <img src="{{asset("images/avatar.jpg")}}" alt="" class="circle responsive-img valign profile-image">
                         </div>
                         <div class="col col s8 m8 l8">
                             <ul id="profile-dropdown" class="dropdown-content">
@@ -172,12 +172,12 @@
                 </li>
                 <li class="no-padding">
                     <ul class="collapsible collapsible-accordion">
-                        <li class="bold"><a class="collapsible-header waves-effect waves-cyan"><i class="mdi-action-view-carousel"></i> Layouts</a>
+                        <li class="bold"><a class="collapsible-header waves-effect waves-cyan"><i class="mdi-action-view-carousel"></i> Quotes</a>
                             <div class="collapsible-body">
                                 <ul>
-                                    <li><a href="layout-fullscreen.html">Full Screen</a>
+                                    <li><a href="{{route("admin_client_path")}}">New</a>
                                     </li>
-                                    <li><a href="layout-horizontal-menu.html">Horizontal Menu</a>
+                                    <li><a href="#">Current</a>
                                     </li>
                                 </ul>
                             </div>
@@ -526,7 +526,7 @@
                             <div class="collapsible-header red white-text"><i class="mdi-action-stars"></i>Favorite Associates</div>
                             <div class="collapsible-body favorite-associates">
                                 <div class="favorite-associate-list chat-out-list row">
-                                    <div class="col s4"><img src="images/avatar.jpg" alt="" class="circle responsive-img online-user valign profile-image">
+                                    <div class="col s4"><img src="{{asset("images/avatar.jpg")}}" alt="" class="circle responsive-img online-user valign profile-image">
                                     </div>
                                     <div class="col s8">
                                         <p>Eileen Sideways</p>
@@ -534,7 +534,7 @@
                                     </div>
                                 </div>
                                 <div class="favorite-associate-list chat-out-list row">
-                                    <div class="col s4"><img src="images/avatar.jpg" alt="" class="circle responsive-img online-user valign profile-image">
+                                    <div class="col s4"><img src="{{asset("images/avatar.jpg")}}" alt="" class="circle responsive-img online-user valign profile-image">
                                     </div>
                                     <div class="col s8">
                                         <p>Zaham Sindil</p>
@@ -542,7 +542,7 @@
                                     </div>
                                 </div>
                                 <div class="favorite-associate-list chat-out-list row">
-                                    <div class="col s4"><img src="images/avatar.jpg" alt="" class="circle responsive-img offline-user valign profile-image">
+                                    <div class="col s4"><img src="{{asset("images/avatar.jpg")}}" alt="" class="circle responsive-img offline-user valign profile-image">
                                     </div>
                                     <div class="col s8">
                                         <p>Renov Leongal</p>
@@ -550,7 +550,7 @@
                                     </div>
                                 </div>
                                 <div class="favorite-associate-list chat-out-list row">
-                                    <div class="col s4"><img src="images/avatar.jpg" alt="" class="circle responsive-img online-user valign profile-image">
+                                    <div class="col s4"><img src="{{asset("images/avatar.jpg")}}" alt="" class="circle responsive-img online-user valign profile-image">
                                     </div>
                                     <div class="col s8">
                                         <p>Weno Carasbong</p>
@@ -558,7 +558,7 @@
                                     </div>
                                 </div>
                                 <div class="favorite-associate-list chat-out-list row">
-                                    <div class="col s4"><img src="images/avatar.jpg" alt="" class="circle responsive-img offline-user valign profile-image">
+                                    <div class="col s4"><img src="{{asset("images/avatar.jpg")}}" alt="" class="circle responsive-img offline-user valign profile-image">
                                     </div>
                                     <div class="col s8">
                                         <p>Nusja Nawancali</p>
@@ -585,28 +585,28 @@
 
 <!-- START FOOTER -->
 <footer class="page-footer">
-    <div class="container">
-        <div class="row section">
-            <div class="col l6 s12">
-                <h5 class="white-text">World Market</h5>
-                <p class="grey-text text-lighten-4">World map, world regions, countries and cities.</p>
-                <div id="world-map-markers"></div>
-            </div>
-            <div class="col l4 offset-l2 s12">
-                <h5 class="white-text">Sales by Country</h5>
-                <p class="grey-text text-lighten-4">A sample polar chart to show sales by country.</p>
-                <div id="polar-chart-holder">
-                    <canvas id="polar-chart-country" width="200"></canvas>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="footer-copyright">
-        <div class="container">
-            Copyright © 2015 <a class="grey-text text-lighten-4" href="http://themeforest.net/user/geekslabs/portfolio?ref=geekslabs" target="_blank">GeeksLabs</a> All rights reserved.
-            <span class="right"> Design and Developed by <a class="grey-text text-lighten-4" href="http://geekslabs.com/">GeeksLabs</a></span>
-        </div>
-    </div>
+    {{--<div class="container">--}}
+        {{--<div class="row section">--}}
+            {{--<div class="col l6 s12">--}}
+                {{--<h5 class="white-text">World Market</h5>--}}
+                {{--<p class="grey-text text-lighten-4">World map, world regions, countries and cities.</p>--}}
+                {{--<div id="world-map-markers"></div>--}}
+            {{--</div>--}}
+            {{--<div class="col l4 offset-l2 s12">--}}
+                {{--<h5 class="white-text">Sales by Country</h5>--}}
+                {{--<p class="grey-text text-lighten-4">A sample polar chart to show sales by country.</p>--}}
+                {{--<div id="polar-chart-holder">--}}
+                    {{--<canvas id="polar-chart-country" width="200"></canvas>--}}
+                {{--</div>--}}
+            {{--</div>--}}
+        {{--</div>--}}
+    {{--</div>--}}
+    {{--<div class="footer-copyright">--}}
+        {{--<div class="container">--}}
+            {{--Copyright © 2015 <a class="grey-text text-lighten-4" href="http://themeforest.net/user/geekslabs/portfolio?ref=geekslabs" target="_blank">GeeksLabs</a> All rights reserved.--}}
+            {{--<span class="right"> Design and Developed by <a class="grey-text text-lighten-4" href="http://geekslabs.com/">GeeksLabs</a></span>--}}
+        {{--</div>--}}
+    {{--</div>--}}
 </footer>
 <!-- END FOOTER -->
 
@@ -620,26 +620,64 @@ Scripts
 <!-- google map api -->
 {{--<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAAZnaZBXLqNBRXjd-82km_NO7GUItyKek"></script>--}}
 <script src="{{asset('js/admin-app.js')}}"></script>
-
 <!--plugins.js - Some Specific JS codes for Plugin Settings-->
-<script type="text/javascript" src="js/plugins.js"></script>
+<script type="text/javascript" src="{{asset("js/plugins.js")}}"></script>
 
 <!-- Toast Notification -->
+{{--<script type="text/javascript">--}}
+    {{--// Toast Notification--}}
+    {{--$(window).load(function() {--}}
+        {{--setTimeout(function() {--}}
+            {{--Materialize.toast('<span>Hiya! I am a toast.</span>', 1500);--}}
+        {{--}, 1500);--}}
+        {{--setTimeout(function() {--}}
+            {{--Materialize.toast('<span>You can swipe me too!</span>', 3000);--}}
+        {{--}, 5000);--}}
+        {{--setTimeout(function() {--}}
+            {{--Materialize.toast('<span>You have new order.</span><a class="btn-flat yellow-text" href="#">Read<a>', 3000);--}}
+        {{--}, 15000);--}}
+    {{--});--}}
+{{--</script>--}}
+@yield('scripts')
+
 <script type="text/javascript">
-    // Toast Notification
-    $(window).load(function() {
-        setTimeout(function() {
-            Materialize.toast('<span>Hiya! I am a toast.</span>', 1500);
-        }, 1500);
-        setTimeout(function() {
-            Materialize.toast('<span>You can swipe me too!</span>', 3000);
-        }, 5000);
-        setTimeout(function() {
-            Materialize.toast('<span>You have new order.</span><a class="btn-flat yellow-text" href="#">Read<a>', 3000);
-        }, 15000);
+    $("#formValidate").validate({
+        rules: {
+            email: {
+                required: true,
+                email:true
+            },
+
+            number: {
+                required: true,
+                minlength: 2
+            },
+
+            date: {
+                required: true,
+            }
+
+        },
+        //For custom messages
+        messages: {
+            email: "Ingrese el email del pasajero",
+            number:{
+                required: "Ingrese el numero de pasajeros",
+                minlength: "El numero de pasajeros debe ser menor o igual a 99"
+            },
+            date: "Ingrese fecha de viaje"
+        },
+        errorElement : 'div',
+        errorPlacement: function(error, element) {
+            var placement = $(element).data('error');
+            if (placement) {
+                $(placement).append(error)
+            } else {
+                error.insertAfter(element);
+            }
+        }
     });
 </script>
-@yield('scripts')
 </body>
 
 </html>

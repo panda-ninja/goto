@@ -138,4 +138,9 @@ class ClientController extends Controller
     {
         //
     }
+
+    public function client()
+    {
+        return view('admin.client');
+    }
 }

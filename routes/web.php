@@ -311,6 +311,12 @@ Route::group(['middleware'=>'admin'],function(){
         'uses' => 'OrdenController@show',
         'as' => 'mostrar_ordennes',
     ]);
+
+//    LOBO - ADMIN
+    Route::get('admin/client', [
+        'uses' => 'ClientController@client',
+        'as' => 'admin_client_path',
+    ]);
 });
 /*
 Route::get('login', [

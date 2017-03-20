@@ -41,6 +41,7 @@ elixir(function(mix) {
         'vendors/jquery-jvectormap.css',
         'vendors/chartist.min.css',
         'vendors/jquery.dataTables.min.css',
+        'vendors/customize.css'
 
         // 'vendors/nestable.css'
     ], 'public/css/admin-theme.css');
@@ -51,12 +52,18 @@ elixir(function(mix) {
 
     mix.copy([
         'node_modules/materialize-css/dist/js/materialize.js',
+        'node_modules/materialize-css/js/plugins/materialize2.js',
         'node_modules/materialize-css/node_modules/jquery/dist/jquery.min.js',
+        'node_modules/materialize-css/js/plugins/jquery-1.11.2.min.js',
 
         <!--scrollbar-->
         'node_modules/materialize-css/js/plugins/perfect-scrollbar/perfect-scrollbar.min.js',
         <!-- chartjs -->
         'node_modules/materialize-css/js/plugins/chartist-js/chartist.min.js',
+        'node_modules/materialize-css/js/plugins/formatter/jquery.formatter.min.js',
+        <!-- chartjs -->
+        'node_modules/materialize-css/js/plugins/jquery-validation/jquery.validate.min.js',
+        'node_modules/materialize-css/js/plugins/jquery-validation/additional-methods.min.js',
         <!-- chartjs -->
         'node_modules/materialize-css/js/plugins/chartjs/chart.min.js',
         'node_modules/materialize-css/js/plugins/chartjs/chart-script.js',
@@ -79,7 +86,7 @@ elixir(function(mix) {
 
     mix.scripts([
         'vendors/jquery.min.js',
-        'vendors/materialize.js',
+        'vendors/materialize2.js',
         'vendors/owl.carousel.js',
         'vendors/video.js',
         'vendors/jquery.sticky-kit.min.js',
@@ -93,9 +100,15 @@ elixir(function(mix) {
         'vendors/perfect-scrollbar.min.js',
         <!-- chartjs -->
         // 'vendors/chartist.min.js',
+        // 'vendors/jquery.formatter.min.js',
         // <!-- chartjs -->
+
         // 'vendors/chart.min.js',
         // 'vendors/chart-script.js',
+
+        'vendors/jquery.validate.min.js',
+        'vendors/additional-methods.min.js',
+
         // <!-- sparkline -->
         'vendors/jquery.sparkline.min.js',
         'vendors/sparkline-script.js',
