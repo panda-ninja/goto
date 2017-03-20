@@ -324,7 +324,7 @@ Route::group(['middleware'=>'admin'],function(){
     Route::post('/cotizacion-crear-itinerario', [
         'uses' => 'CotizacionController@guardar_cotizacion_paso2',
         'as' => 'cotizacion_guardar_plan_path',
-
+    ]);
 
 //    LOBO - ADMIN
     Route::get('admin/client', [
