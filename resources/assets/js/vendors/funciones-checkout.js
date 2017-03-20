@@ -1,6 +1,6 @@
-var url3='http://gotoperu.travel';
-// var url3='http://localhost/goto2/public';
-
+// var url3='http://gotoperu.travel';
+var url3='http://localhost/goto2/public';
+//
 var max_T;
 var max_D;
 var max_S;

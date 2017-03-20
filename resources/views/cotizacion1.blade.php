@@ -30,28 +30,6 @@
                         </div>
                     </div>
                 </nav>
-
-                <nav>
-                    <div class="nav-wrapper blue-grey">
-                        <a href="#" class="brand-logo">Logo</a>
-                        <ul id="nav-mobile" class="hide-on-med-and-down">
-                            <li class="active"><a href="sass.html">Paso #1</a></li>
-                            <li><a href="badges.html">Paso #2</a></li>
-                            <li><a href="collapsible.html">Paso #3</a></li>
-                        </ul>
-                    </div>
-                </nav>
-                <div class="row">
-                    <div class="col-lg-12">
-                        @if($estadoMensaje==1)
-                            {{$mensaje}}
-                        @elseif($estadoMensaje==0)
-                            {{$mensaje}}
-                        @elseif($estadoMensaje==-1)
-                            {{$mensaje}}
-                        @endif
-                    </div>
-                </div>
                 <div class="card-panel ">
                     <div class="card grey lighten-4">
                         <div class="card-content white-text">
@@ -59,41 +37,30 @@
                                 <div class="col m6">
                                     <h5 class="cyan-text text-accent-4">Datos del cliente</h5>
                                 </div>
-                                {{--<div class="col m6">--}}
-                                    {{--<h5 class="pink-text text-lighten-1 right">Paso 1 de 3</h5>--}}
-                                {{--</div>--}}
+                                <div class="col m6">
+                                    <h5 class="pink-text text-lighten-1 right">Paso 1 de 3</h5>
+                                </div>
                             </div>
                         </div>
                         <div class="card-action">
-                            <form action="{{route('cotizacion_guardar_pre_path')}}" method="post" enctype="multipart/form-data">
-                                <div class="row">
-                                    <div class="input-field col s6">
-                                        <i class="mdi-communication-email prefix"></i>
-                                        <input id="email_3" name="email_3" type="email" value="madyson.ward@example.net">
-                                        <label for="email_3" class="">Email</label>
-                                    </div>
-                                    <div class="input-field col s3">
-                                        <i class="mdi-social-people prefix"></i>
-                                        <input id="nropasajeros" name="nropasajeros" type="number" min="1" value="1" onchange="aumentar_clientes()">
-                                        <label for="nropasajeros" class="">Nro pasajeros</label>
-                                    </div>
+                            <div class="row">
+                                <div class="input-field col s6">
+                                    <i class="mdi-communication-email prefix"></i>
+                                    <input id="email_3" type="email" value="madyson.ward@example.net">
+                                    <label for="email_3" class="">Email</label>
+                                </div>
+                                <div class="input-field col s3">
+                                    <i class="mdi-social-people prefix"></i>
+                                    <input id="nropasajeros" type="number" min="1" value="1" onchange="aumentar_clientes()">
+                                    <label for="nropasajeros" class="">Nro pasajeros</label>
+                                </div>
 
-                                    <div class="input-field col s3">
-                                        <i class="mdi-editor-insert-invitation prefix"></i>
-                                        <input id="fecha" name="fecha" type="date" value="{{date("Y-m-d")}}">
-                                        <label for="fecha" class="active">Fecha de viaje</label>
-                                    </div>
+                                <div class="input-field col s3">
+                                    <i class="mdi-editor-insert-invitation prefix"></i>
+                                    <input id="fecha" type="date" value="{{date("Y-m-d")}}">
+                                    <label for="fecha" class="active">Fecha de viaje</label>
                                 </div>
-                                <div class="row right">
-                                    <div class="col m12 ">
-                                        <div class="input-field">
-                                            {{csrf_field()}}
-                                            <button type="submit" class="waves-effect waves-light  btn"><i class="mdi-content-send right"></i>Siguiente</button>
-                                            {{--<a id="nuevo_pqt" class="btn  blue darken-4 waves-effect waves-light">Crear nuevo plan <i class="material-icons right">cloud</i></a>--}}
-                                        </div>
-                                    </div>
-                                </div>
-                            </form>
+                            </div>
                         </div>
                     </div>
                     <div class="card grey lighten-4">
@@ -175,50 +142,50 @@
                         </div>
                         <div id="lista_plan_cotizacion" class="card-action">
                             {{--<table class="striped">--}}
-                                {{--<thead>--}}
-                                {{--<tr>--}}
-                                    {{--<th data-field="id">Codigo</th>--}}
-                                    {{--<th data-field="name">Titulo</th>--}}
-                                    {{--<th data-field="number">Nro pasajeros</th>--}}
-                                    {{--<th data-field="date">Fecha</th>--}}
-                                    {{--<th data-field="name">Opciones</th>--}}
-                                {{--</tr>--}}
-                                {{--</thead>--}}
-                                {{--<tbody>--}}
-                                {{--<tr>--}}
-                                    {{--<td>GTP500</td>--}}
-                                    {{--<td>Titulo</td>--}}
-                                    {{--<td>5</td>--}}
-                                    {{--<td>2017-06-11</td>--}}
-                                    {{--<td class="">--}}
-                                        {{--<a href="#!"><i class="mdi-content-create small"></i></a>--}}
-                                        {{--<a href="#!" class="red-text text-darken-2"><i class="mdi-action-delete small"></i></a>--}}
-                                        {{--<a href="#!" class="green-text text-darken-2"><i class="mdi-content-send small"></i></a>--}}
-                                    {{--</td>--}}
-                                {{--</tr>--}}
-                                {{--<tr>--}}
-                                    {{--<td>GTP501</td>--}}
-                                    {{--<td>Titulo</td>--}}
-                                    {{--<td>5</td>--}}
-                                    {{--<td>2017-06-11</td>--}}
-                                    {{--<td class="">--}}
-                                        {{--<a href="#!"><i class="mdi-content-create small"></i></a>--}}
-                                        {{--<a href="#!" class="red-text text-darken-2"><i class="mdi-action-delete small"></i></a>--}}
-                                        {{--<a href="#!" class="grey-text text-darken-1"><i class="mdi-content-send small"></i></a>--}}
-                                    {{--</td>--}}
-                                {{--</tr>--}}
-                                {{--<tr>--}}
-                                    {{--<td>GTP502</td>--}}
-                                    {{--<td>Titulo</td>--}}
-                                    {{--<td>5</td>--}}
-                                    {{--<td>2017-06-11</td>--}}
-                                    {{--<td class="">--}}
-                                        {{--<a href="#!"><i class="mdi-content-create small"></i></a>--}}
-                                        {{--<a href="#!" class="red-text text-darken-2"><i class="mdi-action-delete small"></i></a>--}}
-                                        {{--<a href="#!" class="green-text text-darken-2"><i class="mdi-content-send small"></i></a>--}}
-                                    {{--</td>--}}
-                                {{--</tr>--}}
-                                {{--</tbody>--}}
+                            {{--<thead>--}}
+                            {{--<tr>--}}
+                            {{--<th data-field="id">Codigo</th>--}}
+                            {{--<th data-field="name">Titulo</th>--}}
+                            {{--<th data-field="number">Nro pasajeros</th>--}}
+                            {{--<th data-field="date">Fecha</th>--}}
+                            {{--<th data-field="name">Opciones</th>--}}
+                            {{--</tr>--}}
+                            {{--</thead>--}}
+                            {{--<tbody>--}}
+                            {{--<tr>--}}
+                            {{--<td>GTP500</td>--}}
+                            {{--<td>Titulo</td>--}}
+                            {{--<td>5</td>--}}
+                            {{--<td>2017-06-11</td>--}}
+                            {{--<td class="">--}}
+                            {{--<a href="#!"><i class="mdi-content-create small"></i></a>--}}
+                            {{--<a href="#!" class="red-text text-darken-2"><i class="mdi-action-delete small"></i></a>--}}
+                            {{--<a href="#!" class="green-text text-darken-2"><i class="mdi-content-send small"></i></a>--}}
+                            {{--</td>--}}
+                            {{--</tr>--}}
+                            {{--<tr>--}}
+                            {{--<td>GTP501</td>--}}
+                            {{--<td>Titulo</td>--}}
+                            {{--<td>5</td>--}}
+                            {{--<td>2017-06-11</td>--}}
+                            {{--<td class="">--}}
+                            {{--<a href="#!"><i class="mdi-content-create small"></i></a>--}}
+                            {{--<a href="#!" class="red-text text-darken-2"><i class="mdi-action-delete small"></i></a>--}}
+                            {{--<a href="#!" class="grey-text text-darken-1"><i class="mdi-content-send small"></i></a>--}}
+                            {{--</td>--}}
+                            {{--</tr>--}}
+                            {{--<tr>--}}
+                            {{--<td>GTP502</td>--}}
+                            {{--<td>Titulo</td>--}}
+                            {{--<td>5</td>--}}
+                            {{--<td>2017-06-11</td>--}}
+                            {{--<td class="">--}}
+                            {{--<a href="#!"><i class="mdi-content-create small"></i></a>--}}
+                            {{--<a href="#!" class="red-text text-darken-2"><i class="mdi-action-delete small"></i></a>--}}
+                            {{--<a href="#!" class="green-text text-darken-2"><i class="mdi-content-send small"></i></a>--}}
+                            {{--</td>--}}
+                            {{--</tr>--}}
+                            {{--</tbody>--}}
 
                             {{--</table>--}}
                         </div>
@@ -231,10 +198,10 @@
                                     <i class="large mdi-content-save"></i>
                                 </a>
                                 {{--<ul>--}}
-                                    {{--<li><a class="btn-floating red" id="borrar_itinerario"><i class="large mdi-content-clear"></i></a>--}}
-                                    {{--</li>--}}
-                                    {{--<li><a class="btn-floating blue" id="guardar_cotizacion"><i class="large mdi-content-save"></i></a>--}}
-                                    {{--</li>--}}
+                                {{--<li><a class="btn-floating red" id="borrar_itinerario"><i class="large mdi-content-clear"></i></a>--}}
+                                {{--</li>--}}
+                                {{--<li><a class="btn-floating blue" id="guardar_cotizacion"><i class="large mdi-content-save"></i></a>--}}
+                                {{--</li>--}}
                                 {{--</ul>--}}
                             </div>
                         </div>

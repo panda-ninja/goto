@@ -311,6 +311,19 @@ Route::group(['middleware'=>'admin'],function(){
         'uses' => 'OrdenController@show',
         'as' => 'mostrar_ordennes',
     ]);
+    Route::get('buscar-cliente', [
+        'uses' => 'ClienteController@autocompletedni',
+        'as' => 'buscar_cliente_path',
+    ]);
+
+    Route::post('cotizacion-crear-plan', [
+        'uses' => 'CotizacionController@guardar_cotizacion_paso1',
+        'as' => 'cotizacion_guardar_pre_path',
+    ]);
+    Route::post('/cotizacion-crear-itinerario', [
+        'uses' => 'CotizacionController@guardar_cotizacion_paso2',
+        'as' => 'cotizacion_guardar_plan_path',
+    ]);
 });
 /*
 Route::get('login', [

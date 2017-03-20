@@ -45,6 +45,13 @@
                 alert(ui);
             }
         });
+        $('#email_3').autocomplete({
+            source: "{{route('buscar_cliente_path')}}",
+            minLength: 2,
+            select:function(event,ui){
+                $('#email_3').val(ui.item.value);
+            }
+        });
     </script>
 </head>
 
@@ -640,6 +647,7 @@ Scripts
     });
 </script>
 @yield('scripts')
+
 </body>
 
 </html>

@@ -27,7 +27,10 @@ class CotizacionController extends Controller
     }
     public function cotizacion()
     {
-        return view('cotizacion');
+        $estadoMensaje=1;
+        $mensaje='';
+        return view('cotizacion',['cotizacion_id'=>'0','cliente'=>'','estadoMensaje'=>$estadoMensaje,'mensaje'=>$mensaje]);
+
     }
 
     /**
@@ -72,6 +75,44 @@ class CotizacionController extends Controller
             return $e;
         }
     }
+    public function guardar_cotizacion_paso1(Request $request)
+    {
+        $email=$request->input('email3');
+        $nropasa=$request->input('nropasajeros');
+        $fecha=$request->input('fecha');
+
+        try{
+            $cliente = Cliente::where('email',$email)->get();
+            //dd($cliente);
+            if(count($cliente)>0){
+                $cotizacion=new Cotizacion();
+                $cotizacion->nropersonas=$nropasa;
+                $cotizacion->fecha=$fecha;
+                $cotizacion->estado="6";
+                $cotizacion->users_id=auth()->guard('admin')->user()->id;
+                $cotizacion->save();
+                $clienteCotizacion=new ClienteCotizacion();
+                $clienteCotizacion->cotizaciones_id=$cotizacion->id;
+                $clienteCotizacion->clientes_id=$cliente[0]->id;
+                $clienteCotizacion->estado='1';
+                $clienteCotizacion->save();
+                $estadoMensaje=1;
+                $mensaje='';
+                return view('cotizacion-paso2',['cotizacion_id'=>$cotizacion->id,'cliente'=>$cliente,'estadoMensaje'=>$estadoMensaje,'mensaje'=>$mensaje]);
+            }
+            else{
+                $estadoMensaje=0;
+                $mensaje='No existe el pasajero';
+                return view('cotizacion',['estadoMensaje'=>$estadoMensaje,'mensaje'=>$mensaje]);
+            }
+        }
+        catch(Exception $e){
+            $estadoMensaje=-1;
+            $mensaje=$e;
+            return view('cotizacion',['estadoMensaje'=>$estadoMensaje,'mensaje'=>$mensaje]);
+        }
+    }
+
     public function guardar_plan_cotizacion(Request $request)
     {
 
