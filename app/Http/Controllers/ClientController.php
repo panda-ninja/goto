@@ -139,9 +139,26 @@ class ClientController extends Controller
         //
     }
 
+    public function autocompletedni(Request $request)
+    {
+        if ($request->ajax()) {
+            $dni = $request->get('email3');
+            $results = [];
+            $cliente = Cliente::where('email', 'like', '%' . $dni . '%')
+//                ->orWhere('nombres','like','%'.$dni.'%')
+//                ->orWhere('apellidos','like','%'.$dni.'%')
+                ->get();
+            foreach ($cliente as $query) {
+                $results[] = ['id' => $query->id, 'value' => $query->email];
+            }
+            return response()->json($results);
+        }
+
+    }
     public function client()
     {
         return view('admin.client');
+
     }
     public function package()
     {

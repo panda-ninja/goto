@@ -45,6 +45,13 @@
                 alert(ui);
             }
         });
+        $('#email_3').autocomplete({
+            source: "{{route('buscar_cliente_path')}}",
+            minLength: 2,
+            select:function(event,ui){
+                $('#email_3').val(ui.item.value);
+            }
+        });
     </script>
 </head>
 
@@ -654,21 +661,6 @@ Scripts
             date: {
                 required: true
             },
-//            packages
-            codigo_txt: {
-                required: true,
-                maxlength: 8
-            },
-            duracion_txt: {
-                required: true,
-                maxlength: 2
-            },
-            titulo_txt: {
-                required: true
-            },
-            descipcion_txt: {
-                required: true
-            }
 
         },
         //For custom messages
