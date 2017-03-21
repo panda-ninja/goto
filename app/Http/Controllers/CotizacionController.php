@@ -40,7 +40,7 @@ class CotizacionController extends Controller
      */
     public function guardar_pre_cotizacion(Request $request)
     {
-        $email=$request->input('email');
+        $email=$request->input('email3');
         $nropasa=$request->input('nropasajeros');
         $fecha=$request->input('fecha');
 //     return $email.'/'.$nropasa.'/'.$fecha;
@@ -79,8 +79,11 @@ class CotizacionController extends Controller
     {
         $email=$request->input('email3');
         $nropasa=$request->input('nropasajeros');
-        $fecha=$request->input('fecha');
-
+//        $fecha=date_create($request->input('fecha'));
+//        $fecha=date_format($fecha,'Y-m-d');
+        $fecha= new \DateTime($request->input('fecha'));
+        $fecha_nombre= $request->input('fecha');
+        $fecha=$fecha->format('Y-m-d');
         try{
             $cliente = Cliente::where('email',$email)->get();
             //dd($cliente);
@@ -98,7 +101,7 @@ class CotizacionController extends Controller
                 $clienteCotizacion->save();
                 $estadoMensaje=1;
                 $mensaje='';
-                return view('cotizacion-paso2',['cotizacion_id'=>$cotizacion->id,'cliente'=>$cliente,'estadoMensaje'=>$estadoMensaje,'mensaje'=>$mensaje]);
+                return view('configurar_paquete',['cotizacion_id'=>$cotizacion->id,'nropasajeros'=>$nropasa,'fecha'=>$fecha,'fecha_nombre'=>$fecha_nombre,'cliente'=>$cliente,'estadoMensaje'=>$estadoMensaje,'mensaje'=>$mensaje]);
             }
             else{
                 $estadoMensaje=0;

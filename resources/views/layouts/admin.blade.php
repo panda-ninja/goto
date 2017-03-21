@@ -24,35 +24,13 @@
     <!-- For iPhone -->
     <meta name="msapplication-TileColor" content="#00bcd4">
     <meta name="msapplication-TileImage" content="images/favicon/mstile-144x144.png">
-    <!-- For Windows Phone -->
-
 
     <!-- CORE CSS-->
     <link href="{{asset('css/admin-theme.css')}}" type="text/css" rel="stylesheet" media="screen,projection"/>
-    <!-- Custome CSS-->
-    <script src="{{asset('js/app.js')}}"></script>
-    {{--<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>--}}
-    @yield('scripts_textarea')
-    {{--<script src="//cdn.tinymce.com/4/tinymce.min.js"></script>--}}
-    {{--<script>tinymce.init({ selector:'textarea' });</script>--}}
-    <script type="text/javascript">
-        var url3='http://localhost/goto2/public';
-        $('#codigopx').autocomplete({
-            source: '{!!URL::route('autocomplete')!!}',
-            minlenght:1,
-            autoFocus:true,
-            select:function(e,ui){
-                alert(ui);
-            }
-        });
-        $('#email_3').autocomplete({
-            source: "{{route('buscar_cliente_path')}}",
-            minLength: 2,
-            select:function(event,ui){
-                $('#email_3').val(ui.item.value);
-            }
-        });
-    </script>
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+
+
+
 </head>
 
 <body>
@@ -623,10 +601,11 @@ Scripts
 ================================================ -->
 
 <!-- jQuery Library -->
-
+<script src="{{asset('js/admin-app.js')}}"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 <!-- google map api -->
 {{--<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAAZnaZBXLqNBRXjd-82km_NO7GUItyKek"></script>--}}
-<script src="{{asset('js/admin-app.js')}}"></script>
+
 <!--plugins.js - Some Specific JS codes for Plugin Settings-->
 <script type="text/javascript" src="{{asset("js/plugins.js")}}"></script>
 
@@ -737,7 +716,24 @@ Scripts
         });
     });
 </script>
-
+<script>
+    $(function () {
+       $('#email3').autocomplete({
+            source: '{{route('buscar_cliente_path')}}',
+            minLength: 3,
+            select:function(event,ui){
+                $('#email3').val(ui.item.value);
+            }
+        });
+        $('#codigo').autocomplete({
+            source: '{{route('buscar_paquete_path')}}',
+            minLength: 4,
+            select:function(event,ui){
+                $('#codigo').val(ui.item.value);
+            }
+        });
+    });
+</script>
 </body>
 
 </html>
