@@ -270,3 +270,10 @@ body{
 .right-alert textarea.materialize-textarea + label:after{
     right:70px;
 }
+/*imagen*/
+.dropify-wrapper{
+    border: 1px solid #9e9e9e
+}
+.dropify-wrapper p{
+    text-align: center !important;
+}

@@ -647,14 +647,27 @@ Scripts
                 required: true,
                 email:true
             },
-
             number: {
                 required: true,
-                minlength: 2
+                maxlength: 2
             },
-
             date: {
+                required: true
+            },
+//            packages
+            codigo_txt: {
                 required: true,
+                maxlength: 8
+            },
+            duracion_txt: {
+                required: true,
+                maxlength: 2
+            },
+            titulo_txt: {
+                required: true
+            },
+            descipcion_txt: {
+                required: true
             }
 
         },
@@ -677,7 +690,62 @@ Scripts
             }
         }
     });
+
+    $("#formPackage").validate({
+        rules: {
+            codigo_txt: {
+                required: true,
+                maxlength: 8
+            },
+            duracion_txt: {
+                required: true,
+                maxlength: 2
+            },
+            titulo_txt: {
+                required: true
+            },
+            descipcion_txt: {
+                required: true
+            }
+
+        },
+        //For custom messages
+        messages: {
+            codigo_txt: "Ingrese codigo de paquete",
+            duracion_txt:{
+                required: "Ingrese la duracion del paquete",
+                minlength: "La duracion debe ser menor o igual a 99"
+            },
+            titulo_txt: "Ingrese titulo del paquete",
+            descipcion_txt: "Ingrese descripcion del paquete"
+        },
+        errorElement : 'div',
+        errorPlacement: function(error, element) {
+            var placement = $(element).data('error');
+            if (placement) {
+                $(placement).append(error)
+            } else {
+                error.insertAfter(element);
+            }
+        }
+    });
+
 </script>
+
+<script type="text/javascript">
+    $(document).ready(function(){
+        // Basic
+        $('.dropify').dropify({
+            messages: {
+                'default': 'Arraste y suelte o cargue una imagen para el paquete',
+                'replace': 'Arrastre y suelte o haga clic para reemplazar',
+                'remove':  'Quitar imagen',
+                'error':   'Lo sentimos, este archivo es demasiado grande'
+            }
+        });
+    });
+</script>
+
 </body>
 
 </html>

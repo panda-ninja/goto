@@ -143,4 +143,8 @@ class ClientController extends Controller
     {
         return view('admin.client');
     }
+    public function package()
+    {
+        return view('admin.package');
+    }
 }

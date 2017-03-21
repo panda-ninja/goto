@@ -29,7 +29,7 @@
     </div>
     <div class="row margin-top-20">
         <div class="col s6">
-            <form class="formValidate" id="formValidate" method="get" action="">
+            <form class="formValidate" id="formValidate" method="get" action="{{route("admin_package_path")}}">
                 <div class="row">
 
                     <div class="input-field col s12">

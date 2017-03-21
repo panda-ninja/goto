@@ -26,6 +26,7 @@ elixir(function(mix) {
         'node_modules/materialize-css/js/plugins/jvectormap/jquery-jvectormap.css',
         'node_modules/materialize-css/js/plugins/chartist-js/chartist.min.css',
         'node_modules/materialize-css/js/plugins/data-tables/css/jquery.dataTables.min.css',
+        'node_modules/materialize-css/js/plugins/dropify/css/dropify.min.css'
 
     ], 'resources/assets/css/vendors');
 
@@ -41,6 +42,7 @@ elixir(function(mix) {
         'vendors/jquery-jvectormap.css',
         'vendors/chartist.min.css',
         'vendors/jquery.dataTables.min.css',
+        'vendors/dropify.min.css',
         'vendors/customize.css'
 
         // 'vendors/nestable.css'
@@ -67,6 +69,8 @@ elixir(function(mix) {
         <!-- chartjs -->
         'node_modules/materialize-css/js/plugins/chartjs/chart.min.js',
         'node_modules/materialize-css/js/plugins/chartjs/chart-script.js',
+        <!-- dropify -->
+        'node_modules/materialize-css/js/plugins/dropify/js/dropify.min.js',
         <!-- sparkline -->
         'node_modules/materialize-css/js/plugins/sparkline/jquery.sparkline.min.js',
         'node_modules/materialize-css/js/plugins/sparkline/sparkline-script.js',
@@ -105,7 +109,7 @@ elixir(function(mix) {
 
         // 'vendors/chart.min.js',
         // 'vendors/chart-script.js',
-
+        'vendors/dropify.min.js',
         'vendors/jquery.validate.min.js',
         'vendors/additional-methods.min.js',
 
