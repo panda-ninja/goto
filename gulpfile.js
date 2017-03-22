@@ -90,7 +90,7 @@ elixir(function(mix) {
 
     mix.scripts([
         'vendors/jquery.min.js',
-        'vendors/materialize2.js',
+        'vendors/materialize.js',
         'vendors/owl.carousel.js',
         'vendors/video.js',
         'vendors/jquery.sticky-kit.min.js',
@@ -100,6 +100,9 @@ elixir(function(mix) {
     ], 'public/js/app.js');
 
     mix.scripts([
+        'vendors/jquery.min.js',
+        'vendors/jquery-ui.js',
+        'vendors/materialize2.js',
         <!--scrollbar-->
         'vendors/perfect-scrollbar.min.js',
         <!-- chartjs -->
