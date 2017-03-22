@@ -1,7 +1,11 @@
 <?php
 
 namespace GotoPeru\Http\Controllers;
+use GotoPeru\Cliente;
+use GotoPeru\Cotizacion;
 use GotoPeru\DestinoCotizacion;
+use GotoPeru\DestinoPaqueteCotizacion;
+use GotoPeru\ItinerarioModelo;
 use GotoPeru\PaquetePersonalizado;
 use GotoPeru\TDestino;
 use GotoPeru\TItinerario;
@@ -11,16 +15,40 @@ use Illuminate\Support\Facades\Input;
 
 class PaqueteController extends Controller
 {
-    public function autocomplete(Request $request)
-    {
-        $codigo=strtoupper($request->term);
-        $paquete = TPaquete::where('codigo','like','%'.$codigo.'%')->get();
-        $result=array();
-        foreach ($paquete as $pqt){
-            $result[]=['id'=>$pqt->id,'value'=>$pqt->codigo];
-        }
-        return response()->json($result);
+    public function buscar_plan(Request $request){
+        $cotizacion_id=$request->input('cotizacion_id');
+        $cliente_id=$request->input('cliente_id');
+        $cliente_=Cliente::FindOrFail($cliente_id);
+        $cotizacion_=Cotizacion::FindOrFail($cotizacion_id);
+
+
+        $codigo=explode(' ',strtoupper($request->input('codigo')));
+        $paquete = TPaquete::with('paquetes_destinos.destinos', 'precio_paquetes','itinerario')->get()->where('codigo',$codigo[0]);
+//        dd($paquete);
+        $destino=TDestino::all();
+        $id=TPaquete::where('codigo',$codigo[0])->get();
+//        dd($id[0]->id);
+        $destino_paquete=DestinoPaqueteCotizacion::with('destinos')->where('paquete_cotizaciones_id',$id[0]->id)->get();
+//        dd($destino_paquete);
+//        $itinerarios=ItinerarioModelo::with('itinerarios')->get();
+        return view('configurar_paquete_plan',['destino_paquete'=>$destino_paquete,'cotizacion'=>$cotizacion_,'cotizacion_id'=>$cotizacion_id,'cliente'=>$cliente_,'paquete'=>$paquete,'destino'=>$destino/*,'itinerarios'=>$itinerarios*/]);
     }
+    public function autocompletecodigo(Request $request)
+    {
+        if ($request->ajax()) {
+            $results = [];
+            $codigo=strtoupper($request->input('codigo'));
+            $paquete = TPaquete::where('codigo', 'like', '%'.$codigo.'%')
+                ->orWhere('titulo','like','%'.$codigo.'%')
+                ->get();
+            foreach ($paquete as $query){
+                $results[] = ['id' => $query->id, 'value' => $query->codigo.' '.$query->titulo];
+            }
+            return response()->json($results);
+        }
+
+    }
+
     //
     public function buscar(Request $request)
     {
