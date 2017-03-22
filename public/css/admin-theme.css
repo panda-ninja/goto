@@ -14302,4 +14302,15 @@ body{
     height: 50px;
 }
 
+.packages_modal{
+    top: 2% !important;
+    max-height: 96%;
+}
+.packages_modal .modal-content{
+    padding: 10px;
+}
+.table-services td{
+    padding: 5px !important;
+}
+
 /*# sourceMappingURL=admin-theme.css.map */

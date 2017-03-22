@@ -24,21 +24,11 @@
     <!-- For iPhone -->
     <meta name="msapplication-TileColor" content="#00bcd4">
     <meta name="msapplication-TileImage" content="images/favicon/mstile-144x144.png">
-<<<<<<< HEAD
-    <!-- For Windows Phone -->
-    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
-
-    <!-- CORE CSS-->
-    <link href="{{asset('css/admin-theme.css')}}" type="text/css" rel="stylesheet" media="screen,projection"/>
-    <!-- Custome CSS-->
-=======
 
     <!-- CORE CSS-->
     <link href="{{asset('css/admin-theme.css')}}" type="text/css" rel="stylesheet" media="screen,projection"/>
     <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
-
-
->>>>>>> origin/master
+    <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
 
 </head>
 
@@ -611,10 +601,7 @@ Scripts
 
 <!-- jQuery Library -->
 <script src="{{asset('js/admin-app.js')}}"></script>
-<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 <!-- google map api -->
-{{--<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAAZnaZBXLqNBRXjd-82km_NO7GUItyKek"></script>--}}
-<script src="{{asset('js/admin-app.js')}}"></script>
 <script>
     $(document).ready(function(){
         $('.tooltipped').tooltip({delay: 50});
