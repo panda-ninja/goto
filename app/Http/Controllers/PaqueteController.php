@@ -4,6 +4,7 @@ namespace GotoPeru\Http\Controllers;
 use GotoPeru\Cliente;
 use GotoPeru\Cotizacion;
 use GotoPeru\DestinoCotizacion;
+use GotoPeru\DestinoPaqueteCotizacion;
 use GotoPeru\ItinerarioModelo;
 use GotoPeru\PaquetePersonalizado;
 use GotoPeru\TDestino;
@@ -23,9 +24,14 @@ class PaqueteController extends Controller
 
         $codigo=explode(' ',strtoupper($request->input('codigo')));
         $paquete = TPaquete::with('paquetes_destinos.destinos', 'precio_paquetes','itinerario')->get()->where('codigo',$codigo[0]);
+//        dd($paquete);
         $destino=TDestino::all();
+        $id=TPaquete::where('codigo',$codigo[0])->get();
+//        dd($id[0]->id);
+        $destino_paquete=DestinoPaqueteCotizacion::with('destinos')->where('paquete_cotizaciones_id',$id[0]->id)->get();
+//        dd($destino_paquete);
 //        $itinerarios=ItinerarioModelo::with('itinerarios')->get();
-        return view('configurar_paquete_plan',['cotizacion'=>$cotizacion_,'cliente'=>$cliente_,'paquete'=>$paquete,'destino'=>$destino/*,'itinerarios'=>$itinerarios*/]);
+        return view('configurar_paquete_plan',['destino_paquete'=>$destino_paquete,'cotizacion'=>$cotizacion_,'cotizacion_id'=>$cotizacion_id,'cliente'=>$cliente_,'paquete'=>$paquete,'destino'=>$destino/*,'itinerarios'=>$itinerarios*/]);
     }
     public function autocompletecodigo(Request $request)
     {

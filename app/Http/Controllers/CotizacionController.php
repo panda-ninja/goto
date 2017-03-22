@@ -116,24 +116,51 @@ class CotizacionController extends Controller
         }
     }
 
+    public function guardar_cotizacion_paso2(Request $request){
+        $file = $request->file('imagen');
+        $path = $file->getClientOriginalName();
+        $idCotizacion=$request->input('cotizacion_id1');
+        $codigo_plan=$request->input('codigo_txt');
+        $titulo_plan=$request->input('titulo_txt');
+        $dias_plan=$request->input('duracion_txt');
+        $descr=$request->input('descipcion_txt');
+        $precio_plan='0.00';
+
+        $incluye=$request->input('incluye_txt');
+        $noincluye=$request->input('noincluye_txt');
+        $opcional=$request->input('opcional_txt');
+        $destino=$request->input('destino');
+
+        $paqueteCotizacion = new PaqueteCotizacion();
+        $paqueteCotizacion->codigo = $codigo_plan;
+        $paqueteCotizacion->titulo = $titulo_plan;
+        $paqueteCotizacion->duracion = $dias_plan;
+        $paqueteCotizacion->preciocosto = $precio_plan;
+        $paqueteCotizacion->descripcion = $descr;
+        $paqueteCotizacion->incluye= $incluye;
+        $paqueteCotizacion->noincluye= $noincluye;
+        $paqueteCotizacion->opcional= $opcional;
+        $paqueteCotizacion->estado = '0';
+        $paqueteCotizacion->imagen=$path;
+        $paqueteCotizacion->cotizaciones_id=$idCotizacion;
+        $paqueteCotizacion->save();
+
+        if(count($destino)>0){
+            foreach ( $destino as $item) {
+                $destino = new DestinoPaqueteCotizacion();
+                $destino->paquete_cotizaciones_id=$paqueteCotizacion->id;
+                $destino->destino_cotizaciones_id=$item;
+                $destino->save();
+            }
+        }
+        return view();
+    }
     public function guardar_plan_cotizacion(Request $request)
     {
 
-//        $destinationPath ='/img/tmp';
-//        $foto=$request->file('foto');
-//        $path = $foto->getClientOriginalName();
-//        $ext = $foto->getClientOriginalExtension();
-//        $upload_success = $foto->move($destinationPath,"archivito");
-        $path ='';
-//        $fil=$request->input->file('foto');
-////        Input::file('foto')->move($destinationPath, $fileName);
-//        $nombre_archivo = $_FILES['foto']['name'];
-//        $tipo_archivo = $_FILES['foto']['type'];
-//        $tamano_archivo = $_FILES['foto']['size'];
-//        $tmp_archivo = $_FILES['foto']['tmp_name'];
-//        $archivador = $upload_folder . '/' . $nombre_archivo;
-//        move_uploaded_file($tmp_archivo, $archivador);
-
+//      $fil=$request->input->file('foto');
+//      Input::file('foto')->move($destinationPath, $fileName);
+        $path='';
         $idCotizacion=$request->input('idCotizacion');
         $codigo_plan=$request->input('codigo_plan');
         $titulo_plan=$request->input('titulo_plan');

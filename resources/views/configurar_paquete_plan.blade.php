@@ -70,17 +70,17 @@
     {{--<i class="large mdi-content-save"></i>--}}
     {{--</a>--}}
     {{--</div>--}}
-    <div class="row">
-        <div class="col s9">
-            <div class="row">
-                <div class="col s12">
-                    <h5 class="grey-text text-darken-1">Personalizar paquete</h5>
-                    <div class="divider"></div>
-                    <p class="text-12">El codigo el paquete tiene que ser unico te ayudaremos a filtrar los codigos disponibles.</p>
+    <form action="{{route('cotizacion_guardar_plan_path')}}" method="post">
+        <div class="row">
+            <div class="col s9">
+                <div class="row">
+                    <div class="col s12">
+                        <h5 class="grey-text text-darken-1">Personalizar paquete</h5>
+                        <div class="divider"></div>
+                        <p class="text-12">El codigo el paquete tiene que ser unico te ayudaremos a filtrar los codigos disponibles.</p>
+                    </div>
                 </div>
-            </div>
-            <div class="row">
-                <form id="formPackage">
+                <div class="row">
                     @foreach($paquete as $paquete_)
                         <div class="row">
                             <div class="input-field col s3">
@@ -108,63 +108,70 @@
                         </div>
                         <div class="row">
                             <div class="input-field col s6">
-                                <textarea id="icon_prefix2" class="materialize-textarea">{{$paquete_->incluye}}</textarea>
+                                <textarea id="icon_prefix2" name="incluye_txt" class="materialize-textarea">{{$paquete_->incluye}}</textarea>
                                 <label for="icon_prefix2" class="">Incluye</label>
                             </div>
                             <div class="input-field col s6">
-                                <textarea id="incluye_txt" name="opcional_txt" class="materialize-textarea">{{$paquete_->noincluye}}</textarea>
+                                <textarea id="incluye_txt" name="noincluye_txt" class="materialize-textarea">{{$paquete_->noincluye}}</textarea>
                                 <label for="incluye_txt" class="">No incluye</label>
                             </div>
                         </div>
-                        <div class="row">
-                            <div class="col s12 input-field">
 
-                            </div>
-                        </div>
                         <div class="row">
                             <div class="col s12 input-field">
                                 <p class="grey-text">Agregue una imagen</p>
-                                <input type="file" id="imagen" name="imagen" class="dropify" data-default-file=""/>
+                                <input type="file" id="imagen" name="imagen" class="dropify" data-default-file="{{asset('/img/maps/'.$paquete_->imagen)}}"/>
                             </div>
                         </div>
                         <div class="row margin-top-20 right">
                         <div class="col s12">
                             {{csrf_field()}}
+                            <input type="hidden" name="cotizacion_id1" id="cotizacion_id1" value="{{$cotizacion_id}}">
                             <button class="btn waves-effect waves-light" type="submit" name="action">Continuar
                                 <i class="mdi-content-send right"></i>
                             </button>
                         </div>
                     </div>
                     @endforeach
-                </form>
-            </div>
-
-        </div>
-        <div class="col s3">
-            <div class="row">
-                <div class="col s12">
-                    <h5 class="grey-text text-darken-1">Destinos paquete</h5>
-                    <div class="divider"></div>
-                    <p class="text-12">Seleccione los destinos para este paquete.</p>
                 </div>
             </div>
-            <div class="row">
-                <?php $i=0;?>
-                @foreach($destino as $destin)
-                    <?php $i++;?>
+            <div class="col s3">
+                <div class="row">
                     <div class="col s12">
-                        <input type="checkbox" name="destino" class="filled-in" id="destino_{{$i}}" value="{{$destin->id}}"/>
-                        <label for="destino_{{$i}}">{{$destin->nombre}}</label>
+                        <h5 class="grey-text text-darken-1">Destinos paquete</h5>
+                        <div class="divider"></div>
+                        <p class="text-12">Seleccione los destinos para este paquete.</p>
                     </div>
-                @endforeach
-                <div class="col s12 margin-top-10">
-                    <button class="btn waves-effect waves-light" type="submit" name="action">Agregar Destinos
-                        <i class="mdi-content-send right"></i>
-                    </button>
+                </div>
+                <div class="row">
+                    <?php $i=0;?>
+                    @foreach($destino as $destin)
+                        <?php $i++; $si=0;?>
+                        @foreach($destino_paquete as $destinoCoti)
+                            @if($destin->nombre==$destinoCoti->destinos->destino)
+                                <div class="col s12">
+                                    <input type="checkbox" name="destino" class="filled-in" id="destino_{{$i}}" value="{{$destin->id}}" checked="checked"/>
+                                    <label for="destino_{{$i}}">{{$destin->nombre}}</label>
+                                </div>
+                                <?php $si=1;?>
+                            @endif
+                        @endforeach
+                        @if($si==0)
+                            <div class="col s12">
+                                <input type="checkbox" name="destino" class="filled-in" id="destino_{{$i}}" value="{{$destin->id}}"/>
+                                <label for="destino_{{$i}}">{{$destin->nombre}}</label>
+                            </div>
+                        @endif
+                    @endforeach
+                    <div class="col s12 margin-top-10">
+
+                        <button class="btn waves-effect waves-light" type="submit" name="action">Agregar Destinos
+                            <i class="mdi-content-send right"></i>
+                        </button>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
-
+    </form>
 
 @stop
