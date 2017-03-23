@@ -119,6 +119,8 @@ elixir(function(mix) {
         // <!-- sparkline -->
         'vendors/jquery.sparkline.min.js',
         'vendors/sparkline-script.js',
+        'vendors/data-tables-script.js',
+        'vendors/jquery.dataTables.min.js',
         <!--jvectormap-->
         // 'vendors/jquery-jvectormap-1.2.2.min.js',
         // 'vendors/jquery-jvectormap-world-mill-en.js',
