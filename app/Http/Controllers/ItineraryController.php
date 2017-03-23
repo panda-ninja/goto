@@ -3,6 +3,7 @@
 namespace GotoPeru\Http\Controllers;
 
 use GotoPeru\ItinerarioPersonalizado;
+use GotoPeru\PaqueteCotizacion;
 use GotoPeru\TItinerario;
 use Illuminate\Http\Request;
 
@@ -41,12 +42,7 @@ class ItineraryController extends Controller
         //
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+
     public function show($id)
     {
         $itineario = ItinerarioPersonalizado::findOrFail($id);

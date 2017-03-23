@@ -31,7 +31,6 @@
         <div class="col s12 center">
             <h4>Configuracion del paquete</h4>
                 <p><b><i class="mdi-communication-email cyan-text text-darken-2"></i></b> {{$cliente->email}} <b>|</b> <b><i class="mdi-social-person cyan-text text-darken-2"></i></b> {{$cliente->nombres}}, {{$cliente->apellidos}} <b>|</b> <b><i class="mdi-social-group-add cyan-text text-darken-2"></i></b> {{$cotizaciones->nropersonas}} <b>|</b> <b><i class="mdi-editor-insert-invitation cyan-text text-darken-2"></i></b> {{$cotizaciones->fecha}}</p>
-
         </div>
     </div>
     <div class="row">
@@ -124,7 +123,9 @@
                         <div class="row margin-top-20 right">
                         <div class="col s12">
                             {{csrf_field()}}
-                            <input type="hidden" name="cotizacion_id1" id="cotizacion_id1" value="{{$paquete_->cotizaciones_id}}">
+                            <input type="hidden" name="paquete_id" id="paquete_id" value="{{$paquete_->id}}">
+                            <input type="hidden" name="cotizacion_id" id="cotizacion_id" value="{{$cotizaciones->id}}">
+                            <input type="hidden" name="cliente_id" id="cliente_id" value="{{$cliente->id}}">
                             <button class="btn waves-effect waves-light" type="submit" name="action">Continuar
                                 <i class="mdi-content-send right"></i>
                             </button>
@@ -148,7 +149,7 @@
                         @foreach($paquete_->destinos as $destinoCoti)
                             @if($destin->destino==$destinoCoti->destino)
                                 <div class="col s12">
-                                    <input type="checkbox" name="destino" class="filled-in" id="destino_{{$i}}" value="{{$destin->id}}" checked="checked"/>
+                                    <input type="checkbox" name="destino[]" class="filled-in" id="destino_{{$i}}" value="{{$destin->id}}" checked="checked"/>
                                     <label for="destino_{{$i}}">{{$destin->destino}}</label>
                                 </div>
                                 <?php $si=1;?>
@@ -156,7 +157,7 @@
                         @endforeach
                         @if($si==0)
                             <div class="col s12">
-                                <input type="checkbox" name="destino" class="filled-in" id="destino_{{$i}}" value="{{$destin->id}}"/>
+                                <input type="checkbox" name="destino[]" class="filled-in" id="destino_{{$i}}" value="{{$destin->id}}"/>
                                 <label for="destino_{{$i}}">{{$destin->destino}}</label>
                             </div>
                         @endif

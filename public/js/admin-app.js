@@ -23601,4 +23601,31 @@ _fnDrawHead:ea,_fnDraw:M,_fnReDraw:N,_fnAddOptionsHtml:mb,_fnDetectHeader:da,_fn
 _fnScrollDraw:Y,_fnApplyToChildren:G,_fnCalculateColumnWidths:Ga,_fnThrottle:ua,_fnConvertToWidth:Db,_fnScrollingWidthAdjust:Fb,_fnGetWidestNode:Eb,_fnGetMaxLenString:Gb,_fnStringToCss:s,_fnScrollBarWidth:Hb,_fnSortFlatten:T,_fnSort:lb,_fnSortAria:Jb,_fnSortListener:Ua,_fnSortAttachListener:Oa,_fnSortingClasses:xa,_fnSortData:Ib,_fnSaveState:ya,_fnLoadState:Kb,_fnSettingsFromNode:za,_fnLog:R,_fnMap:E,_fnBindAction:Va,_fnCallbackReg:z,_fnCallbackFire:w,_fnLengthOverflow:Sa,_fnRenderer:Pa,_fnDataSource:B,
 _fnRowAttributes:Ma,_fnCalculateEnd:function(){}});h.fn.dataTable=m;h.fn.dataTableSettings=m.settings;h.fn.dataTableExt=m.ext;h.fn.DataTable=function(a){return h(this).dataTable(a).api()};h.each(m,function(a,b){h.fn.DataTable[a]=b});return h.fn.dataTable};"function"===typeof define&&define.amd?define("datatables",["jquery"],O):"object"===typeof exports?module.exports=O(require("jquery")):jQuery&&!jQuery.fn.dataTable&&O(jQuery)})(window,document);
 
+function editar_paquete(){
+    $.ajaxSetup({
+        headers: {
+            'X-CSRF-TOKEN': $('[name="_token"]').val()
+        }
+    });
+
+    $.ajax({
+        url: "/editar_paquete_cotizacion",
+        type: "POST",
+        data: new FormData('form_editar_pqt'),
+        contentType: false,
+        cache: false,
+        processData:false,
+        success: function(data) {
+            var rpt=dada.split('_');
+            if(rpt[0]==1) {
+                $("#response").html(data[1]);
+                $("#action").html('Datos enviados<i class="mdi-content-send right"></i>');
+            }
+            else{
+                $("#response").html(data[1]);
+            }
+        }
+    });
+
+};
 //# sourceMappingURL=admin-app.js.map

@@ -7,11 +7,14 @@ use Faker\Provider\DateTime;
 use GotoPeru\Cliente;
 use GotoPeru\ClienteCotizacion;
 use GotoPeru\Cotizacion;
+use GotoPeru\DestinoCotizacion;
 use GotoPeru\DestinoPaqueteCotizacion;
 use GotoPeru\ItinerarioCotizacion;
 use GotoPeru\ItinerarioOrden;
 use GotoPeru\PaqueteCotizacion;
+use GotoPeru\PDestino;
 use GotoPeru\PrecioPaquete;
+use GotoPeru\DestinoModelo;
 use Illuminate\Http\Request;
 //use Symfony\Component\HttpKernel\Client;
 
@@ -121,7 +124,7 @@ class CotizacionController extends Controller
 //        dd($file);
 //        $path = $file->getClientOriginalName();
         $path ='';
-        $idCotizacion=$request->input('cotizacion_id1');
+        $paquete_id=$request->input('paquete_id');
         $codigo_plan=$request->input('codigo_txt');
         $titulo_plan=$request->input('titulo_txt');
         $dias_plan=$request->input('duracion_txt');
@@ -133,7 +136,8 @@ class CotizacionController extends Controller
         $opcional=$request->input('opcional_txt');
         $destino=$request->input('destino');
 
-        $paqueteCotizacion = new PaqueteCotizacion();
+//        dd($destino);
+        $paqueteCotizacion = PaqueteCotizacion::FindOrFail($paquete_id);
         $paqueteCotizacion->codigo = $codigo_plan;
         $paqueteCotizacion->titulo = $titulo_plan;
         $paqueteCotizacion->duracion = $dias_plan;
@@ -144,18 +148,33 @@ class CotizacionController extends Controller
         $paqueteCotizacion->opcional= $opcional;
         $paqueteCotizacion->estado = '0';
         $paqueteCotizacion->imagen=$path;
-        $paqueteCotizacion->cotizaciones_id=$idCotizacion;
         $paqueteCotizacion->save();
 
         if(count($destino)>0){
+            $antiguos_destinos=DestinoCotizacion::where('paquete_cotizaciones_id',$paquete_id)->delete();
             foreach ( $destino as $item) {
-                $destino = new DestinoPaqueteCotizacion();
-                $destino->paquete_cotizaciones_id=$paqueteCotizacion->id;
-                $destino->destino_cotizaciones_id=$item;
-                $destino->save();
+                $buscar_destinos=PDestino::FindOrFail($item);
+                $new_destino=new DestinoCotizacion();
+                $new_destino->codigo=$buscar_destinos->codigo;
+                $new_destino->destino=$buscar_destinos->destino;
+                $new_destino->region=$buscar_destinos->region;
+                $new_destino->pais=$buscar_destinos->pais;
+                $new_destino->descripcion=$buscar_destinos->descripcion;
+                $new_destino->imagen=$buscar_destinos->imagen;
+                $new_destino->estado=$buscar_destinos->estado;
+                $new_destino->paquete_cotizaciones_id=$paquete_id;
+                $new_destino->save();
             }
         }
-        return view('configurar-itinerario');
+        $cotizacion_id = $request->input('cotizacion_id');
+        $cliente_id = $request->input('cliente_id');
+        $cliente_ = Cliente::FindOrFail($cliente_id);
+        $cotizacion_ = Cotizacion::FindOrFail($cotizacion_id);
+
+        $paquete = PaqueteCotizacion::with('precio_paquetes','destinos','itinerario_cotizaciones.ordenes')->get()->where('id',$paquete_id);
+        $destinos=DestinoModelo::get();
+//        dd($paquete);
+        return view('configurar-itinerario',['cotizaciones'=>$cotizacion_,'cliente'=>$cliente_,'destinos'=>$destinos,'paquete'=>$paquete]);
     }
     public function guardar_plan_cotizacion(Request $request)
     {

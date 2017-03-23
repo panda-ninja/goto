@@ -85,7 +85,6 @@ elixir(function(mix) {
         <!--google map-->
         'node_modules/materialize-css/js/plugins/google-map/google-map-script.js',
 
-
     ], 'resources/assets/js/vendors');
 
     mix.scripts([
@@ -128,6 +127,7 @@ elixir(function(mix) {
         <!--google map-->
         // 'vendors/google-map-script.js',
         // 'resources/assets/js/vendors/jquery.nestable.js',
+       'vendors/funciones.js',
     ], 'public/js/admin-app.js');
 
     mix.styles([

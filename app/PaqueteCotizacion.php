@@ -7,7 +7,11 @@ use Illuminate\Database\Eloquent\Model;
 class PaqueteCotizacion extends Model
 {
     protected $table = "paquete_cotizaciones";
+    protected $fillable = [
+        'id','codigo','titulo', 'duracion', 'preciocosto', 'descripcion', 'incluye', 'noincluye', 'opcional', 'imagen', 'posibilidad', 'estado','cotizaciones_id',
+    ];
 
+    protected $hidden = [ ];
     public function cotizaciones()
     {
         return $this->belongsTo(Cotizacion::class, 'cotizaciones_id');

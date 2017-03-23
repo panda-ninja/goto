@@ -352,6 +352,11 @@ Route::group(['middleware'=>'admin'],function(){
         'as' => 'admin_proposals_path',
     ]);
 
+    Route::post('/editar_paquete_cotizacion', [
+        'uses' => 'PaqueteController@editar_pqt',
+        'as' => 'editar_paquete_cotizacion_path',
+    ]);
+
 });
 /*
 Route::get('login', [

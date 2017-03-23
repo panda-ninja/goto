@@ -69,7 +69,7 @@ class PaqueteController extends Controller
                 $new_precio->precio_t=$precio->precio_t;
                 $new_precio->personas_t=$precio->personas_t;
                 $new_precio->estado=$precio->estado;
-                $new_precio->ppaquete_id=$new_paquete->id;
+                $new_precio->paquete_cotizaciones_id=$new_paquete->id;
                 $new_precio->save();
             }
             foreach ($paquete->destinos as $destino){
@@ -81,7 +81,7 @@ class PaqueteController extends Controller
                 $new_destino->descripcion=$destino->descripcion;
                 $new_destino->imagen=$destino->imagen;
                 $new_destino->estado=$destino->estado;
-                $new_destino->ppaquete_id=$new_paquete->id;
+                $new_destino->paquete_cotizaciones_id=$new_paquete->id;
                 $new_destino->save();
             }
             foreach ($paquete->itinerarios as $itinerario){
@@ -93,7 +93,7 @@ class PaqueteController extends Controller
                 $new_itinerario->precio=$itinerario->precio;
                 $new_itinerario->imagen=$itinerario->imagen;
                 $new_itinerario->estado=$itinerario->estado;
-                $new_itinerario->ppaquete_id=$new_paquete->id;
+                $new_itinerario->paquete_cotizaciones_id=$new_paquete->id;
                 $new_itinerario->save();
 
                 foreach ($itinerario->ordenes as $orden){
@@ -101,7 +101,7 @@ class PaqueteController extends Controller
                     $new_orden->nombre=$orden->nombre;
                     $new_orden->observacion=$orden->observacion;
                     $new_orden->precio=$orden->precio;
-                    $new_orden->pitinerario_id=$new_itinerario->id;
+                    $new_orden->itinerario_cotizaciones_id=$new_itinerario->id;
                     $new_orden->save();
                 }
             }
@@ -177,4 +177,34 @@ class PaqueteController extends Controller
         return view('secciones.show_nuevo_paquete',['destino'=>$destino]);
 
     }
+
+    public function editar_pqt(Request $request)
+    {
+        //
+        $codigo_txt=strtoupper($request->input('codigo_txt'));
+        $duracion_txt=strtoupper($request->input('duracion_txt'));
+        $titulo_txt=strtoupper($request->input('titulo_txt'));
+        $descipcion_txt=strtoupper($request->input('descipcion_txt'));
+        $opcional_txt=strtoupper($request->input('opcional_txt'));
+        $incluye_txt=strtoupper($request->input('incluye_txt'));
+        $noincluye_txt=strtoupper($request->input('noincluye_txt'));
+        $imagen=strtoupper($request->input('imagen'));
+        $path='';
+        $paquete_id=strtoupper($request->input('paquete_id'));
+
+        $newPaquete=PaqueteCotizacion::FindOrFail($paquete_id);
+        $newPaquete->codigo=$codigo_txt;
+        $newPaquete->titulo=$titulo_txt;
+        $newPaquete->duracion=$duracion_txt;
+        $newPaquete->descripcion=$descipcion_txt;
+        $newPaquete->incluye=$incluye_txt;
+        $newPaquete->noincluye=$noincluye_txt;
+        $newPaquete->opcional=$opcional_txt;
+        $newPaquete->imagen=$path;
+        if($newPaquete->save())
+            return '1_Bien hecho! Paquete editado creectamente';
+        else
+            return '0_Ups! Error a editar el papuete, vuelva a intentarlo';
+    }
+
 }
