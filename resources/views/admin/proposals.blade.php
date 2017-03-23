@@ -2,6 +2,7 @@
 
 @section('content')
 
+    
     <div id="profile-page" class="row">
         <div class="col s12">
             <div id="profile-page-header" class="card">
