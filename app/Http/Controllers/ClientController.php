@@ -164,4 +164,8 @@ class ClientController extends Controller
     {
         return view('admin.package');
     }
+    public function itinerary()
+    {
+        return view('admin.itinerary');
+    }
 }

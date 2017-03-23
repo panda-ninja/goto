@@ -73,7 +73,7 @@
                 </div>
             </div>
             <div class="row">
-                <form id="formPackage">
+                <form id="formPackage" action="{{route("admin_itinerary_path")}}" method="get">
                     <div class="row">
                         <div class="input-field col s3">
                             <input placeholder="Ingrese el codigo del paquete" id="codigo_txt" name="codigo_txt" type="text" class="validate">

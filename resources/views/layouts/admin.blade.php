@@ -28,8 +28,7 @@
     <!-- CORE CSS-->
     <link href="{{asset('css/admin-theme.css')}}" type="text/css" rel="stylesheet" media="screen,projection"/>
     <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
-
-
+    <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
 
 </head>
 
@@ -602,12 +601,16 @@ Scripts
 
 <!-- jQuery Library -->
 <script src="{{asset('js/admin-app.js')}}"></script>
-<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 <!-- google map api -->
-{{--<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAAZnaZBXLqNBRXjd-82km_NO7GUItyKek"></script>--}}
+<script>
+    $(document).ready(function(){
+        $('.tooltipped').tooltip({delay: 50});
+    });
+</script>
 
 <!--plugins.js - Some Specific JS codes for Plugin Settings-->
 <script type="text/javascript" src="{{asset("js/plugins.js")}}"></script>
+
 
 <!-- Toast Notification -->
 {{--<script type="text/javascript">--}}
@@ -717,6 +720,28 @@ Scripts
     });
 </script>
 <script>
+    $( function() {
+        $( ".column" ).sortable({
+            connectWith: ".column",
+            handle: ".portlet-header",
+            cancel: ".portlet-toggle",
+            placeholder: "portlet-placeholder ui-corner-all"
+        });
+
+        $( ".portlet" )
+            .addClass( "ui-widget ui-widget-content ui-helper-clearfix ui-corner-all" )
+            .find( ".portlet-header" )
+            .addClass( "ui-widget-header ui-corner-all" )
+            .prepend( "<span class='ui-icon ui-icon-minusthick portlet-toggle'></span>");
+
+        $( ".portlet-toggle" ).on( "click", function() {
+            var icon = $( this );
+            icon.toggleClass( "ui-icon-minusthick ui-icon-plusthick" );
+            icon.closest( ".portlet" ).find( ".portlet-content" ).toggle();
+        });
+
+    } );
+
     $(function () {
        $('#email3').autocomplete({
             source: '{{route('buscar_cliente_path')}}',
@@ -733,6 +758,7 @@ Scripts
             }
         });
     });
+
 </script>
 </body>
 
