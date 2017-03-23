@@ -23,7 +23,7 @@ class CotizacionController extends Controller
     }
     public function nuevacotizacion()
     {
-        return view('nuevacotizacion');
+        return view('cotizacion');
     }
     public function cotizacion()
     {
@@ -117,8 +117,10 @@ class CotizacionController extends Controller
     }
 
     public function guardar_cotizacion_paso2(Request $request){
-        $file = $request->file('imagen');
-        $path = $file->getClientOriginalName();
+//        $file = $request->file('imagen');
+//        dd($file);
+//        $path = $file->getClientOriginalName();
+        $path ='';
         $idCotizacion=$request->input('cotizacion_id1');
         $codigo_plan=$request->input('codigo_txt');
         $titulo_plan=$request->input('titulo_txt');
@@ -153,7 +155,7 @@ class CotizacionController extends Controller
                 $destino->save();
             }
         }
-        return view();
+        return view('configurar-itinerario');
     }
     public function guardar_plan_cotizacion(Request $request)
     {

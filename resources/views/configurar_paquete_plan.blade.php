@@ -30,7 +30,7 @@
     <div class="row spacer-10">
         <div class="col s12 center">
             <h4>Configuracion del paquete</h4>
-                <p><b><i class="mdi-communication-email cyan-text text-darken-2"></i></b> {{$cliente->email}} <b>|</b> <b><i class="mdi-social-person cyan-text text-darken-2"></i></b> {{$cliente->nombres}}, {{$cliente->apellidos}} <b>|</b> <b><i class="mdi-social-group-add cyan-text text-darken-2"></i></b> {{$cotizacion->nropersonas}} <b>|</b> <b><i class="mdi-editor-insert-invitation cyan-text text-darken-2"></i></b> {{$cotizacion->fecha}}</p>
+                <p><b><i class="mdi-communication-email cyan-text text-darken-2"></i></b> {{$cliente->email}} <b>|</b> <b><i class="mdi-social-person cyan-text text-darken-2"></i></b> {{$cliente->nombres}}, {{$cliente->apellidos}} <b>|</b> <b><i class="mdi-social-group-add cyan-text text-darken-2"></i></b> {{$cotizaciones->nropersonas}} <b>|</b> <b><i class="mdi-editor-insert-invitation cyan-text text-darken-2"></i></b> {{$cotizaciones->fecha}}</p>
 
         </div>
     </div>
@@ -54,10 +54,7 @@
                 {{--<a class="waves-effect waves-light  btn"><i class="left mdi-action-search"></i> Buscar</a>--}}
                 {{--</div>--}}
                 <div class="col s6">
-                        <input type="hidden" name="cotizacion_id" id="cotizacion_id" value="{{$cotizacion->id}}">
-                        <input type="hidden" name="cliente_id" id="cliente_id" value="{{$cliente->id}}">
-                    {{csrf_field()}}
-                    <button type="submit" class="waves-effect waves-light  btn"><i class="left mdi-action-search"></i> Buscar</button>
+                    <button type="submit" class="waves-effect waves-light  btn disabled"><i class="left mdi-action-search"></i> Buscar</button>
                     {{--<a class="waves-effect waves-light  btn"><i class="left mdi-editor-insert-chart"></i> </a>--}}
                 </div>
             </div>
@@ -70,6 +67,7 @@
     {{--<i class="large mdi-content-save"></i>--}}
     {{--</a>--}}
     {{--</div>--}}
+    @foreach($paquete as $paquete_)
     <form action="{{route('cotizacion_guardar_plan_path')}}" method="post">
         <div class="row">
             <div class="col s9">
@@ -81,7 +79,7 @@
                     </div>
                 </div>
                 <div class="row">
-                    @foreach($paquete as $paquete_)
+
                         <div class="row">
                             <div class="input-field col s3">
                                 <input placeholder="Ingrese el codigo del paquete" id="codigo_txt" name="codigo_txt" type="text" class="validate" value="{{$paquete_->codigo}}">
@@ -126,13 +124,13 @@
                         <div class="row margin-top-20 right">
                         <div class="col s12">
                             {{csrf_field()}}
-                            <input type="hidden" name="cotizacion_id1" id="cotizacion_id1" value="{{$cotizacion_id}}">
+                            <input type="hidden" name="cotizacion_id1" id="cotizacion_id1" value="{{$paquete_->cotizaciones_id}}">
                             <button class="btn waves-effect waves-light" type="submit" name="action">Continuar
                                 <i class="mdi-content-send right"></i>
                             </button>
                         </div>
                     </div>
-                    @endforeach
+
                 </div>
             </div>
             <div class="col s3">
@@ -145,13 +143,13 @@
                 </div>
                 <div class="row">
                     <?php $i=0;?>
-                    @foreach($destino as $destin)
+                    @foreach($destinos as $destin)
                         <?php $i++; $si=0;?>
-                        @foreach($destino_paquete as $destinoCoti)
-                            @if($destin->nombre==$destinoCoti->destinos->destino)
+                        @foreach($paquete_->destinos as $destinoCoti)
+                            @if($destin->destino==$destinoCoti->destino)
                                 <div class="col s12">
                                     <input type="checkbox" name="destino" class="filled-in" id="destino_{{$i}}" value="{{$destin->id}}" checked="checked"/>
-                                    <label for="destino_{{$i}}">{{$destin->nombre}}</label>
+                                    <label for="destino_{{$i}}">{{$destin->destino}}</label>
                                 </div>
                                 <?php $si=1;?>
                             @endif
@@ -159,19 +157,19 @@
                         @if($si==0)
                             <div class="col s12">
                                 <input type="checkbox" name="destino" class="filled-in" id="destino_{{$i}}" value="{{$destin->id}}"/>
-                                <label for="destino_{{$i}}">{{$destin->nombre}}</label>
+                                <label for="destino_{{$i}}">{{$destin->destino}}</label>
                             </div>
                         @endif
                     @endforeach
-                    <div class="col s12 margin-top-10">
+                    {{--<div class="col s12 margin-top-10">--}}
 
-                        <button class="btn waves-effect waves-light" type="submit" name="action">Agregar Destinos
-                            <i class="mdi-content-send right"></i>
-                        </button>
-                    </div>
+                        {{--<button class="btn waves-effect waves-light" type="submit" name="action">Agregar Destinos--}}
+                            {{--<i class="mdi-content-send right"></i>--}}
+                        {{--</button>--}}
+                    {{--</div>--}}
                 </div>
             </div>
         </div>
     </form>
-
+    @endforeach
 @stop
