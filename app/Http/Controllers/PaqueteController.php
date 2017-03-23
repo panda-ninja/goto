@@ -6,13 +6,16 @@ use GotoPeru\Cotizacion;
 use GotoPeru\DestinoCotizacion;
 use GotoPeru\DestinoModelo;
 use GotoPeru\DestinoPaqueteCotizacion;
+use GotoPeru\ItinerarioCotizacion;
 use GotoPeru\ItinerarioModelo;
+use GotoPeru\ItinerarioOrden;
 use GotoPeru\PaqueteCotizacion;
 use GotoPeru\PaquetePersonalizado;
 use GotoPeru\PDestino;
 use GotoPeru\PItinerario;
 use GotoPeru\PItinerarioOrden;
 use GotoPeru\PPrecio;
+use GotoPeru\PrecioPaquete;
 use GotoPeru\TDestino;
 use GotoPeru\TPaqueteDestino;
 use GotoPeru\TItinerario;
@@ -55,7 +58,7 @@ class PaqueteController extends Controller
             $new_paquete->cotizaciones_id = $cotizacion_id;
             $new_paquete->save();
             foreach ($paquete->precios as $precio){
-                $new_precio=new PPrecio();
+                $new_precio=new PrecioPaquete();
                 $new_precio->estrellas=$precio->estrellas;
                 $new_precio->precio_s=$precio->precio_s;
                 $new_precio->personas_s=$precio->personas_s;
@@ -70,7 +73,7 @@ class PaqueteController extends Controller
                 $new_precio->save();
             }
             foreach ($paquete->destinos as $destino){
-                $new_destino=new PDestino();
+                $new_destino=new DestinoCotizacion();
                 $new_destino->codigo=$destino->codigo;
                 $new_destino->destino=$destino->destino;
                 $new_destino->region=$destino->region;
@@ -82,7 +85,7 @@ class PaqueteController extends Controller
                 $new_destino->save();
             }
             foreach ($paquete->itinerarios as $itinerario){
-                $new_itinerario=new PItinerario();
+                $new_itinerario=new ItinerarioCotizacion();
                 $new_itinerario->titulo=$itinerario->titulo;
                 $new_itinerario->descripcion=$itinerario->descripcion;
                 $new_itinerario->dias=$itinerario->dias;
@@ -94,7 +97,7 @@ class PaqueteController extends Controller
                 $new_itinerario->save();
 
                 foreach ($itinerario->ordenes as $orden){
-                    $new_orden = new PItinerarioOrden();
+                    $new_orden = new ItinerarioOrden();
                     $new_orden->nombre=$orden->nombre;
                     $new_orden->observacion=$orden->observacion;
                     $new_orden->precio=$orden->precio;
@@ -105,6 +108,7 @@ class PaqueteController extends Controller
         }
         $paquete = PaqueteCotizacion::with('precio_paquetes','destinos','itinerario_cotizaciones')->get()->where('id',$new_paquete->id);
         $destinos=DestinoModelo::get();
+//        dd($destinos);
         return view('configurar_paquete_plan',['cotizaciones'=>$cotizacion_,'cliente'=>$cliente_,'destinos'=>$destinos,'paquete'=>$paquete]);
     }
     public function autocompletecodigo(Request $request)

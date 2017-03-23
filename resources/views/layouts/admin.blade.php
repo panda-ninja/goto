@@ -745,14 +745,14 @@ Scripts
     $(function () {
        $('#email3').autocomplete({
             source: '{{route('buscar_cliente_path')}}',
-            minLength: 3,
+            minLength: 1,
             select:function(event,ui){
                 $('#email3').val(ui.item.value);
             }
         });
         $('#codigo').autocomplete({
             source: '{{route('buscar_paquete_path')}}',
-            minLength: 4,
+            minLength: 1,
             select:function(event,ui){
                 $('#codigo').val(ui.item.value);
             }
