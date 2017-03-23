@@ -347,6 +347,11 @@ Route::group(['middleware'=>'admin'],function(){
         'uses' => 'ClientController@itinerary',
         'as' => 'admin_itinerary_path',
     ]);
+    Route::get('admin/proposals', [
+        'uses' => 'ClientController@proposals',
+        'as' => 'admin_proposals_path',
+    ]);
+
 });
 /*
 Route::get('login', [
