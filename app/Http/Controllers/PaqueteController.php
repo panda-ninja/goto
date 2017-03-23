@@ -4,14 +4,20 @@ namespace GotoPeru\Http\Controllers;
 use GotoPeru\Cliente;
 use GotoPeru\Cotizacion;
 use GotoPeru\DestinoCotizacion;
+use GotoPeru\DestinoModelo;
 use GotoPeru\DestinoPaqueteCotizacion;
 use GotoPeru\ItinerarioModelo;
 use GotoPeru\PaqueteCotizacion;
 use GotoPeru\PaquetePersonalizado;
+use GotoPeru\PDestino;
+use GotoPeru\PItinerario;
+use GotoPeru\PItinerarioOrden;
+use GotoPeru\PPrecio;
 use GotoPeru\TDestino;
 use GotoPeru\TPaqueteDestino;
 use GotoPeru\TItinerario;
 use GotoPeru\TPaquete;
+use GotoPeru\PPaquete;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Input;
 
@@ -26,70 +32,87 @@ class PaqueteController extends Controller
 
 
         $codigo = explode(' ', strtoupper($request->input('codigo')));
-        $paquete = TPaquete::with('paquetes_destinos.destinos', 'precio_paquetes', 'itinerario')->get()->where('codigo', $codigo[0]);
+        $ppaquete = PPaquete::with('precios','destinos','itinerarios')->get()->where('codigo', $codigo[0]);
 //        dd($paquete);
-        $destino = TDestino::all();
-        $id = TPaquete::where('codigo', $codigo[0])->get();
+        $destino = DestinoModelo::all();
+        //$id = TPaquete::where('codigo', $codigo[0])->get();
 //        dd($id[0]->id);
-        $destino_paquete = TPaqueteDestino::with('destinos')->where('idpaquetes', $id[0]->id)->get();
+        //$destino_paquete = TPaqueteDestino::with('destinos')->where('idpaquetes', $id[0]->id)->get();
 //        dd($destino_paquete);
 //        $itinerarios=ItinerarioModelo::with('itinerarios')->get();
         /*-- guardamos el plan + los destinos*/
-        foreach ($paquete as $pqt1) {
-            $pqt = new PaqueteCotizacion();
-            $pqt->codigo = $codigo[0];
-            $pqt->titulo = $pqt1->titulo;
-            $pqt->duracion = $pqt1->duracion;
-            $pqt->preciocosto = $pqt1->preciocosto;
-            $pqt->descripcion = $pqt1->descripcion;
-            $pqt->incluye = $pqt1->incluye;
-            $pqt->noincluye = $pqt1->noincluye;
-            $pqt->opcional = $pqt1->opcional;
-            $pqt->imagen = $pqt1->imagen;
-            $pqt->estado = $pqt1->estado;
-            $pqt->cotizaciones_id = $cotizacion_id;
-            $pqt->save();
-        }
-        /*-- guardamos los destinos*/
-        dd($destino_paquete);
-        foreach ($destino_paquete as $destino1) {
-        foreach ($destino1 as $destino) {
-
-            $destino_coti = new DestinoCotizacion();
-            $destino_coti->codigo = $destino->codigo;
-            $destino_coti->nombre = $destino->nombre;
-            $destino_coti->region = $destino->region;
-            $destino_coti->pais = $destino->pais;
-            $destino_coti->descripcion = $destino->descripcion;
-            $destino_coti->imagen = $destino->imagen1;
-            $destino_coti->estado = '1';
-            $destino_coti->paquete_cotizaciones_id = $pqt->id;
-            $destino_coti->save();
-            $destino_modelo = DestinoModelo::where('nombre', $destino->nombre)->get();
-            if (count($destino_modelo) == 0) {
-                $destino_modelo1 = new DestinoModelo();
-                $destino_modelo1->codigo = $destino->codigo;
-                $destino_modelo1->nombre = $destino->nombre;
-                $destino_modelo1->region = $destino->region;
-                $destino_modelo1->pais = $destino->pais;
-                $destino_modelo1->descripcion = $destino->descripcion;
-                $destino_modelo1->imagen = $destino->imagen1;
-                $destino_modelo1->estado = '1';
-                $destino_modelo1->save();
+        foreach ($ppaquete as $paquete) {
+            $new_paquete = new PaqueteCotizacion();
+            $new_paquete->codigo = $codigo[0];
+            $new_paquete->titulo = $paquete->titulo;
+            $new_paquete->duracion = $paquete->duracion;
+            $new_paquete->preciocosto = $paquete->preciocosto;
+            $new_paquete->descripcion = $paquete->descripcion;
+            $new_paquete->incluye = $paquete->incluye;
+            $new_paquete->noincluye = $paquete->noincluye;
+            $new_paquete->opcional = $paquete->opcional;
+            $new_paquete->imagen = $paquete->imagen;
+            $new_paquete->cotizaciones_id = $cotizacion_id;
+            $new_paquete->save();
+            foreach ($paquete->precios as $precio){
+                $new_precio=new PPrecio();
+                $new_precio->estrellas=$precio->estrellas;
+                $new_precio->precio_s=$precio->precio_s;
+                $new_precio->personas_s=$precio->personas_s;
+                $new_precio->precio_d=$precio->precio_d;
+                $new_precio->personas_d=$precio->personas_d;
+                $new_precio->precio_m=$precio->precio_m;
+                $new_precio->personas_m=$precio->personas_m;
+                $new_precio->precio_t=$precio->precio_t;
+                $new_precio->personas_t=$precio->personas_t;
+                $new_precio->estado=$precio->estado;
+                $new_precio->ppaquete_id=$new_paquete->id;
+                $new_precio->save();
             }
+            foreach ($paquete->destinos as $destino){
+                $new_destino=new PDestino();
+                $new_destino->codigo=$destino->codigo;
+                $new_destino->destino=$destino->destino;
+                $new_destino->region=$destino->region;
+                $new_destino->pais=$destino->pais;
+                $new_destino->descripcion=$destino->descripcion;
+                $new_destino->imagen=$destino->imagen;
+                $new_destino->estado=$destino->estado;
+                $new_destino->ppaquete_id=$new_paquete->id;
+                $new_destino->save();
+            }
+            foreach ($paquete->itinerarios as $itinerario){
+                $new_itinerario=new PItinerario();
+                $new_itinerario->titulo=$itinerario->titulo;
+                $new_itinerario->descripcion=$itinerario->descripcion;
+                $new_itinerario->dias=$itinerario->dias;
+                $new_itinerario->fecha=$itinerario->fecha;
+                $new_itinerario->precio=$itinerario->precio;
+                $new_itinerario->imagen=$itinerario->imagen;
+                $new_itinerario->estado=$itinerario->estado;
+                $new_itinerario->ppaquete_id=$new_paquete->id;
+                $new_itinerario->save();
 
+                foreach ($itinerario->ordenes as $orden){
+                    $new_orden = new PItinerarioOrden();
+                    $new_orden->nombre=$orden->nombre;
+                    $new_orden->observacion=$orden->observacion;
+                    $new_orden->precio=$orden->precio;
+                    $new_orden->pitinerario_id=$new_itinerario->id;
+                    $new_orden->save();
+                }
+            }
         }
-    }
-        $destino_modelo=DestinoModelo::get();
-        $destino_cotizacion=DestinoCotizacion::where('paquete_cotizaciones_id',$pqt->id)->get();
-        return view('configurar_paquete_plan',['destino_cotizacion'=>$destino_cotizacion,'cotizacion'=>$cotizacion_,'cotizacion_id'=>$cotizacion_id,'cliente'=>$cliente_,'paquete'=>$pqt,'destino_modelo'=>$destino_modelo/*,'itinerarios'=>$itinerarios*/]);
+        $paquete = PaqueteCotizacion::with('precio_paquetes','destinos','itinerario_cotizaciones')->get()->where('id',$new_paquete->id);
+        $destinos=DestinoModelo::get();
+        return view('configurar_paquete_plan',['cotizaciones'=>$cotizacion_,'cliente'=>$cliente_,'destinos'=>$destinos,'paquete'=>$paquete]);
     }
     public function autocompletecodigo(Request $request)
     {
         if ($request->ajax()) {
             $results = [];
             $codigo=strtoupper($request->input('codigo'));
-            $paquete = TPaquete::where('codigo', 'like', '%'.$codigo.'%')
+            $paquete = PPaquete::where('codigo', 'like', '%'.$codigo.'%')
                 ->orWhere('titulo','like','%'.$codigo.'%')
                 ->get();
             foreach ($paquete as $query){
@@ -97,7 +120,6 @@ class PaqueteController extends Controller
             }
             return response()->json($results);
         }
-
     }
 
     //
