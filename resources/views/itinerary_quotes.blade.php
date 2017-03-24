@@ -215,7 +215,6 @@
                 <form action="{{route('quotes_patch_path', $paquete->id)}}" method="post">
                     {{csrf_field()}}
                     <input type="hidden" name="_method" value="patch">
-
                     <div class="modal-content">
                         <h5>Estas seguro de confirmar?</h5>
                         <p class="margin-top-40">El paquete personalizado se confirmara para su viaje de ensueño</p>

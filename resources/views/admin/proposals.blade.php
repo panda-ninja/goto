@@ -2,7 +2,6 @@
 
 @section('content')
 
-    
     <div id="profile-page" class="row">
         <div class="col s12">
             <div id="profile-page-header" class="card">
@@ -15,7 +14,7 @@
                 <div class="card-content">
                     <div class="row">
                         <div class="col s3 offset-s2">
-                            <h4 class="card-title grey-text text-darken-4">Roger Waters</h4>
+                            <h4 class="card-title grey-text text-darken-4">{{$cliente->nombres}}</h4>
                             <p class="medium-small grey-text">Cliente</p>
                         </div>
                         <div class="col s2 center-align">
@@ -72,92 +71,330 @@
                 </thead>
 
                 <tbody>
-                <tr class="red lighten-5">
-                    <td>1</td>
-                    <td class="center">2</td>
-                    <td class="center">24 Mar, 2017</td>
-                    <td>
-                        <table class="bordered">
-                            <thead>
-                                <tr>
-                                    <th>Propuestas</th>
-                                    <th class="right-align">Costo ($)</th>
-                                    <th class="right-align">Venta ($)</th>
-                                </tr>
-                            </thead>
-                            <tr>
-                                <td><b>Propuesta A:</b> Classic Cusco</td>
-                                <td class="right-align">1000.00</td>
-                                <td class="right-align">1200.00</td>
-                                <td class="right-align">
-                                    <a href="" class="text-22 red-text"><i class="mdi-action-delete"></i></a>
-                                    <a href="" class="text-22"><i class="mdi-content-send"></i></a>
+                @foreach($cotizaciones as $cotizacion)
+                    @foreach($cotizacion->cliente_cotizaciones as $cliente_cotizacion)
+                        @if($cliente_cotizacion)
+                            {{--@if($cliente_cotizacion->posibilidad <= 25)--}}
+                                {{--@php $bg_color =  "red lighten-5"; @endphp--}}
+                            {{--@endif--}}
+                            {{--@if($cliente_cotizacion->posibilidad > 25 and )--}}
+                                {{--@php $bg_color =  "red lighten-5"; @endphp--}}
+                            {{--@endif--}}
+
+                            <tr class="red lighten-5">
+                                <td>1</td>
+                                <td class="center">{{$cotizacion->nropersonas}}</td>
+                                <td class="center">{{$cotizacion->fecha}}</td>
+                                <td>
+                                    <table class="bordered">
+                                        <thead>
+                                        <tr>
+                                            <th>Propuestas</th>
+                                            {{--<th class="right-align">Costo ($)</th>--}}
+                                            {{--<th class="right-align">Venta ($)</th>--}}
+                                            <th></th>
+                                        </tr>
+                                        </thead>
+                                        @foreach($cotizacion->paquete_cotizaciones as $paquete_cotizacion)
+                                            <tr>
+                                                <td><b>Propuesta A:</b> <a href="#paquete_resumen_{{$paquete_cotizacion->id}}" class="modal-trigger blue-text">{{$paquete_cotizacion->titulo}}</a></td>
+
+                                                <!-- Modal Structure itinerario-->
+                                                <div id="paquete_resumen_{{$paquete_cotizacion->id}}" class="modal">
+                                                    <div class="modal-content">
+                                                        <div class="row">
+                                                            <div class="col s12">
+                                                                <h5 class="center"><b>{{$paquete_cotizacion->codigo}}: {{$paquete_cotizacion->titulo}}</b></h5>
+                                                                <h5 class="center grey-text">{{$paquete_cotizacion->duracion}} DIAS</h5>
+                                                                <div class="divider margin-bottom-20"></div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="row">
+                                                            <div class="col s12">
+                                                                <h5 class="text-18"><b>Descripcion</b></h5>
+                                                                <div class="divider margin-bottom-10"></div>
+                                                                <p>{{$paquete_cotizacion->descripcion}}</p>
+                                                            </div>
+                                                            <div class="col s12">
+                                                                <h5 class="text-18"><b>Incluye</b></h5>
+                                                                <div class="divider margin-bottom-10"></div>
+                                                                <p>{{$paquete_cotizacion->incluye}}</p>
+                                                            </div>
+                                                            <div class="col s12">
+                                                                <h5 class="text-18"><b>No Incluye</b></h5>
+                                                                <div class="divider margin-bottom-10"></div>
+                                                                <p>{{$paquete_cotizacion->noincluye}}</p>
+                                                            </div>
+                                                            <div class="col s12">
+                                                                <h5 class="text-18"><b>Opcional</b></h5>
+                                                                <div class="divider margin-bottom-10"></div>
+                                                                <p>{{$paquete_cotizacion->opcional}}</p>
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="row">
+                                                            <div class="col s12">
+                                                                <h5 class="center"><b>ITINERARIO</b></h5>
+                                                                <div class="divider margin-bottom-20"></div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="row">
+                                                            @foreach($paquete_cotizacion->itinerario_cotizaciones as $paquete_itinerario)
+                                                                <div class="col s12 margin-bottom-20">
+                                                                    <h5 class="text-18"><b>Dia {{$paquete_itinerario->dias}}: {{$paquete_itinerario->titulo}} </b></h5>
+                                                                    <div class="divider margin-bottom-10"></div>
+                                                                    <p>{{$paquete_itinerario->descripcion}}</p>
+                                                                    <div class="col s12 grey darken-3">
+                                                                        <h6 class="white-text"><b>SERVICIOS</b></h6>
+                                                                    </div>
+                                                                    @foreach($paquete_itinerario->orden_cotizaciones as $orden_cotizaciones)
+                                                                        <div class="row services-box">
+                                                                            <div class="col s5">
+                                                                                {{$orden_cotizaciones->nombre}}
+                                                                            </div>
+                                                                            <div class="col s5">
+                                                                                {{$orden_cotizaciones->observacion}}
+                                                                            </div>
+                                                                            <div class="col s2 right-align">
+                                                                                {{$orden_cotizaciones->precio}}$
+                                                                            </div>
+                                                                        </div>
+                                                                    @endforeach
+                                                                </div>
+                                                            @endforeach
+                                                        </div>
+                                                        <div class="row">
+                                                            <div class="col s12">
+                                                                <h5 class="center"><b>CATEGORIA Y ACOMODACION</b></h5>
+                                                                <div class="divider margin-bottom-20"></div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="row">
+                                                            <div class="col s12">
+                                                                <div class="row grey darken-3 white-text right-align">
+                                                                    <div class="col s4 left-align">Categoria</div>
+                                                                    <div class="col s2">Simple</div>
+                                                                    <div class="col s2">Doble</div>
+                                                                    <div class="col s2">Matrimonial</div>
+                                                                    <div class="col s2">Triple</div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col s12">
+                                                                @foreach($paquete_cotizacion->precio_paquetes as $precio_paquete)
+                                                                    @if($precio_paquete->estado == 1)
+                                                                        <div class="row services-box right-align">
+                                                                            <div class="col s4 left-align">{{$precio_paquete->estrellas}} estellas</div>
+                                                                            <div class="col s2">@php if ($precio_paquete->personas_s == 0) { echo "---";} else {echo $precio_paquete->precio_s."$";} @endphp</div>
+                                                                            <div class="col s2">@php if ($precio_paquete->personas_d == 0) { echo "---";} else {echo $precio_paquete->precio_d."$";} @endphp</div>
+                                                                            <div class="col s2">@php if ($precio_paquete->personas_m == 0) { echo "---";} else {echo $precio_paquete->precio_m."$";} @endphp</div>
+                                                                            <div class="col s2">@php if ($precio_paquete->personas_t == 0) { echo "---";} else {echo $precio_paquete->precio_t."$";} @endphp</div>
+                                                                        </div>
+                                                                    @endif
+                                                                @endforeach
+                                                            </div>
+                                                        </div>
+                                                        <div class="row">
+                                                            <div class="col s12">
+                                                                <h5 class="center"><b>DESTINOS</b></h5>
+                                                                <div class="divider margin-bottom-20"></div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="row">
+                                                            <div class="col s12">
+                                                                @foreach($paquete_cotizacion->destinos as $paquete_destinos)
+                                                                    <div class="col s4"><i class="mdi-navigation-check"></i> {{$paquete_destinos->destino}}</div>
+                                                                @endforeach
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="row">
+                                                            <div class="col s12">
+                                                                <h5 class="center"><b>PRECIOS</b></h5>
+                                                                <div class="divider margin-bottom-20"></div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="row">
+                                                            @php $servicio = 0; @endphp
+                                                            @foreach($paquete_cotizacion->itinerario_cotizaciones as $paquete_itinerario)
+                                                                @foreach($paquete_itinerario->orden_cotizaciones as $orden_cotizaciones)
+                                                                    @php
+                                                                        $total = $orden_cotizaciones->precio + $servicio;
+                                                                        $servicio = $total;
+                                                                    @endphp
+                                                                @endforeach
+                                                            @endforeach
+
+                                                            @foreach($paquete_cotizacion->precio_paquetes as $precio_paquete2)
+                                                                @if($precio_paquete2->estado == 1)
+
+                                                                    <div class="col s12 margin-bottom-20">
+                                                                        <div class="row">
+                                                                            <div class="col s12">
+                                                                                <h5 class="text-18"><b>CATEGORIA: {{$precio_paquete2->estrellas}} ESTRELLAS</b></h5>
+                                                                                <div class="divider margin-bottom-20"></div>
+                                                                            </div>
+                                                                        </div>
+                                                                        @if($precio_paquete2->personas_s > 0)
+                                                                            <div class="row">
+                                                                                <div class="col s9">
+                                                                                    <b>Precio costo <i class="text-12">(acomodacion simple):</i></b>
+                                                                                </div>
+                                                                                <div class="col s3 right-align">
+                                                                                    @php
+                                                                                        $precio_s = $precio_paquete2->precio_s;
+                                                                                    @endphp
+                                                                                    {{$precio_s}}$
+                                                                                </div>
+                                                                            </div>
+                                                                        @else
+                                                                            @php
+                                                                                $precio_s = 0;
+                                                                            @endphp
+                                                                        @endif
+                                                                        @if($precio_paquete2->personas_d > 0)
+                                                                            <div class="row">
+                                                                                <div class="col s9">
+                                                                                    <b>Precio costo <i class="text-12">(acomodacion doble):</i></b>
+                                                                                </div>
+                                                                                <div class="col s3 right-align">
+                                                                                    @php
+                                                                                        $precio_d = $precio_paquete2->precio_d;
+                                                                                    @endphp
+                                                                                    {{$precio_d}}$
+                                                                                </div>
+                                                                            </div>
+                                                                        @else
+                                                                            @php
+                                                                                $precio_d = 0;
+                                                                            @endphp
+                                                                        @endif
+                                                                        @if($precio_paquete2->personas_m > 0)
+                                                                            <div class="row">
+                                                                                <div class="col s9">
+                                                                                    <b>Precio costo <i class="text-12">(acomodacion matrimonial):</i></b>
+                                                                                </div>
+                                                                                <div class="col s3 right-align">
+                                                                                    @php
+                                                                                        $precio_m = $precio_paquete2->precio_m;
+                                                                                    @endphp
+                                                                                    {{$precio_m}}$
+                                                                                </div>
+                                                                            </div>
+                                                                        @else
+                                                                            @php
+                                                                                $precio_m = 0;
+                                                                            @endphp
+                                                                        @endif
+                                                                        @if($precio_paquete2->personas_t > 0)
+                                                                            <div class="row">
+                                                                                <div class="col s9">
+                                                                                    <b>Precio costo <i class="text-12">(acomodacion triple):</i></b>
+                                                                                </div>
+                                                                                <div class="col s3 right-align">
+                                                                                    @php
+                                                                                        $precio_t = $precio_paquete2->precio_t;
+                                                                                    @endphp
+                                                                                    {{$precio_t}}$
+                                                                                </div>
+                                                                            </div>
+                                                                        @else
+                                                                            @php
+                                                                                $precio_t = 0;
+                                                                            @endphp
+                                                                        @endif
+
+
+                                                                        <div class="row">
+                                                                            <div class="col s9">
+                                                                                <b>Precio costo <i class="text-12">(servicios)</i>:</b>
+                                                                            </div>
+                                                                            <div class="col s3 right-align">
+                                                                                {{number_format($total, 2, '.', '')}}$
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="row">
+                                                                            <div class="col s9">
+                                                                                <b class="text-18">Precio Costo Total:</b>
+                                                                            </div>
+                                                                            <div class="col s3 right-align">
+                                                                                <div class="divider"></div>
+                                                                                <b class="text-18">
+                                                                                    @php
+                                                                                        $total_costo = $precio_s + $precio_d + $precio_m + $precio_t + $total;
+                                                                                    @endphp
+                                                                                    {{number_format($total_costo, 2, '.', '')}}$
+                                                                                </b>
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="row green lighten-4">
+                                                                            <div class="col s9">
+                                                                                <b class="text-18">Precio Venta ({{$precio_paquete2->utilidad}}%):</b>
+                                                                            </div>
+                                                                            <div class="col s3 right-align">
+                                                                                <div class="divider"></div>
+                                                                                <b class="text-18">
+                                                                                    @php
+                                                                                        $total_utilidad = $total_costo + ($total_costo * (($precio_paquete2->utilidad)/100));
+                                                                                    @endphp
+                                                                                    {{number_format($total_utilidad, 2, '.', '')}}$
+                                                                                </b>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                @endif
+                                                            @endforeach
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                {{--<td class="right-align">{{$paquete_cotizacion->preciocosto}}</td>--}}
+                                                {{--<td class="right-align">{{$paquete_cotizacion->precio_venta}}</td>--}}
+                                                <td class="right-align">
+                                                    <a href="" class="text-22 red-text"><i class="mdi-action-delete"></i></a>
+                                                    <a href="" class="text-22"><i class="mdi-content-send"></i></a>
+                                                </td>
+                                            </tr>
+                                        @endforeach
+                                    </table>
                                 </td>
+                                <td class="center"><a href="#posibilidad" class="modal-trigger text-30 red-text"><b><u>{{$cotizacion->posibilidad}}%</u></b></a></td>
+
+                                <!-- Modal Structure posibilidad-->
+                                <div id="posibilidad" class="modal">
+                                    <div class="modal-content">
+                                        <form action="{{route("admin_posibilidad_path", $cotizacion->id)}}" method="post">
+                                            {{csrf_field()}}
+                                            <input type="hidden" name="_method" value="patch">
+                                            <div class="row">
+                                                <div class="col s12">
+                                                    <h5 class="center">Agregarsdsdsd porcentaje de posibilidad de cierre</h5>
+                                                    <div class="divider margin-bottom-20"></div>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="input-field col s12">
+                                                    <input placeholder="ejem: 10" id="posibilidad_txt" name="posibilidad_txt" type="number" min="0" max="100" step="1" class="validate" value="{{$cotizacion->posibilidad}}">
+                                                    <input placeholder="ejem: 10" id="idcliente_txt" name="idcliente_txt" type="hidden" value="{{$cliente->id}}">
+                                                    <label for="idcliente_txt" class="active">Posibilidad de cierre (%)</label>
+                                                </div>
+                                            </div>
+                                            <div class="row spacer-20 right">
+                                                <div class="col s12">
+                                                    <button class="btn waves-effect waves-light" type="submit" name="action">definir
+                                                        <i class="mdi-content-send right"></i>
+                                                    </button>
+                                                </div>
+                                            </div>
+                                        </form>
+                                    </div>
+
+                                </div>
                             </tr>
-                            <tr>
-                                <td><b>Propuesta B:</b> Classic Cusco</td>
-                                <td class="right-align">1000.00</td>
-                                <td class="right-align">1200.00</td>
-                                <td class="right-align">
-                                    <a href="" class="text-22 red-text"><i class="mdi-action-delete"></i></a>
-                                    <a href="" class="text-22"><i class="mdi-content-send"></i></a>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td><b>Propuesta C:</b> Classic Cusco</td>
-                                <td class="right-align">1000.00</td>
-                                <td class="right-align">1200.00</td>
-                                <td class="right-align">
-                                    <a href="" class="text-22 red-text"><i class="mdi-action-delete"></i></a>
-                                    <a href="" class="text-22"><i class="mdi-content-send"></i></a>
-                                </td>
-                            </tr>
-                        </table>
-                    </td>
-                    <td class="center"><a href="" class="text-30 red-text"><b><u>10%</u></b></a></td>
-                </tr>
-                <tr class="green lighten-5">
-                    <td>2</td>
-                    <td class="center">2</td>
-                    <td class="center">24 Mar, 2017</td>
-                    <td>
-                        <table class="bordered">
-                            <thead>
-                                <tr>
-                                    <th>Propuestas</th>
-                                    <th class="right-align">Costo ($)</th>
-                                    <th class="right-align">Venta ($)</th>
-                                </tr>
-                            </thead>
-                            <tr class="orange lighten-4">
-                                <td><b>Propuesta A:</b> Classic Cusco 2</td>
-                                <td class="right-align">1000.00</td>
-                                <td class="right-align">$1200.00</td>
-                                <td class="right-align">
-                                    <a href="" class="red-text"><i>Pago Pendiente(10%)</i></a>
-                                </td>
-                            </tr>
-                            <tr class="green lighten-4">
-                                <td><b>Propuesta B:</b> Classic Cusco 3</td>
-                                <td class="right-align">1000.00</td>
-                                <td class="right-align">$1200.00</td>
-                                <td class="right-align">
-                                    <a href="" class="blue-text"><i>Pago Completo(100%)</i></a>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td><b>Propuesta C:</b> Classic Cusco 4</td>
-                                <td class="right-align">1000.00</td>
-                                <td class="right-align">$1200.00</td>
-                                <td class="right-align">
-                                    <a href="" class="text-22 red-text"><i class="mdi-action-delete"></i></a>
-                                    <a href="" class="text-22"><i class="mdi-content-send"></i></a>
-                                </td>
-                            </tr>
-                        </table>
-                    </td>
-                    <td class="center"><a href="" class="text-30 green-text"><b><u>100%</u></b></a></td>
-                </tr>
+                        @endif
+                    @endforeach
+                @endforeach
+
+
                 </tbody>
             </table>
         </div>

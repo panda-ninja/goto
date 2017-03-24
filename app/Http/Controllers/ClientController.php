@@ -168,8 +168,5 @@ class ClientController extends Controller
     {
         return view('admin.itinerary');
     }
-    public function proposals()
-    {
-        return view('admin.proposals');
-    }
+
 }

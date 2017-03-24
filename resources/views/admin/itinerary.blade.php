@@ -62,7 +62,7 @@
 
     <div class="row">
         <div class="col s9">
-            <form action="{{route("admin_proposals_path")}}" method="get">
+            <form action="{{route("admin_proposals_path",1)}}" method="get">
                 <div class="col s12">
 
                         <h5 class="grey-text text-darken-1">Itinerario
