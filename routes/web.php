@@ -347,10 +347,12 @@ Route::group(['middleware'=>'admin'],function(){
         'uses' => 'ClientController@itinerary',
         'as' => 'admin_itinerary_path',
     ]);
-    Route::get('admin/proposals', [
-        'uses' => 'ClientController@proposals',
+
+    Route::get('admin/proposals/{id}', [
+        'uses' => 'CotizacionController@proposals',
         'as' => 'admin_proposals_path',
     ]);
+
     Route::post('editar_paquete_cotizacion', [
         'uses' => 'PaqueteController@editar_pqt',
         'as' => 'editar_paquete_cotizacion_path',
@@ -363,6 +365,12 @@ Route::group(['middleware'=>'admin'],function(){
         'uses' => 'PaqueteController@editar_itinerario',
         'as' => 'editar_paquete_itinerario_path',
     ]);
+
+    Route::patch('admin/proposals/{id}/posibilidad', [
+        'uses' => 'CotizacionController@posibilidad',
+        'as' => 'admin_posibilidad_path',
+    ]);
+
 });
 /*
 Route::get('login', [

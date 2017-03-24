@@ -487,4 +487,33 @@ class CotizacionController extends Controller
     {
         //
     }
+
+    // list cot
+    public function proposals($id)
+    {
+        $cliente = Cliente::findOrFail($id);
+        $idCliente=$cliente->id;
+        $cotizaciones = Cotizacion::with(['paquete_cotizaciones','cliente_cotizaciones'=>function($query) use ($idCliente) { $query->where('clientes_id', $idCliente);}])
+            ->get()
+            ->sortByDesc('fecha');
+
+
+        $clienteCotizacion = ClienteCotizacion::with('cliente')->get()
+            ->where('cotizaciones_id', $id)
+            ->sortByDesc('estado');
+
+        return view('admin.proposals', ['cotizaciones'=>$cotizaciones, 'cliente'=>$cliente]);
+    }
+
+    public function posibilidad(Request $request, $id)
+    {
+        $idcliente = $request->get('idcliente_txt');
+
+        $cotizacion = Cotizacion::findOrFail($id);
+
+        $cotizacion->posibilidad = $request->get('posibilidad_txt');
+        $cotizacion->save();
+
+        return redirect()->route('admin_proposals_path', $idcliente)->with('success','actualizado');
+    }
 }

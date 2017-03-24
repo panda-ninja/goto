@@ -323,3 +323,11 @@ body{
 .table-services td{
     padding: 5px !important;
 }
+
+.services-box:nth-child(even){
+    background-color: #eee;
+}
+
+.services-box:nth-child(odd){
+    background-color: #fff;
+}
