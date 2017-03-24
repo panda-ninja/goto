@@ -57,7 +57,6 @@
 
     <div class="row">
         <div class="col s9">
-            <form action="{{route("admin_proposals_path")}}" method="get">
                 <div class="col s12">
 
                     <h5 class="grey-text text-darken-1">Itinerario
@@ -69,14 +68,20 @@
 
                 </div>
                 <div class="col s12">
-                    <div class="column">
-                        <?php $pos=0;?>
+                    <div class="column lista_itinerario" onmouseup="poner_valor()">
+                        <?php
+                            $pos=0;
+                            $totalItinerario=0;
+                        ?>
                         @foreach($paquete_->itinerario_cotizaciones as $itinerario)
-                            <?php $pos++;?>
-                            <div class="portlet">
-                                <div class="portlet-header">Dia {{$pos}}: {{$itinerario->titulo}}
+                            <?php
+                                $pos++;
+                                $totalItinerario+=$itinerario->precio;
+                            ?>
+                            <div id="Itine_{{$pos}}" class="portlet">
+                                <div class="portlet-header">Dia <span class="pos_iti" name="posdia[]" id="pos_dia_{{$pos}}">{{$pos}}</span>: {{$itinerario->titulo}}
                                     <span class="right">$ {{$itinerario->precio}}</span>
-                                    <a href="#modal_edit" class="modal-trigger blue-text"><i class="mdi-editor-mode-edit"></i></a>
+                                    <a href="#modal_edit_{{$itinerario->id}}" class="modal-trigger blue-text"><i class="mdi-editor-mode-edit"></i></a>
                                     <a href="" class="red-text"><i class="mdi-action-delete"></i></a>
                                 </div>
                                 <div class="portlet-content col s12 " style="display: none">
@@ -161,31 +166,36 @@
                         </div>
 
                         <!-- Modal Structure itinerario edit-->
-                        <div id="modal_edit" class="modal">
+                        <div id="modal_edit_{{$itinerario->id}}" class="modal">
                             <div class="modal-content">
-                                <div class="row">
-                                    <div class="col s12">
-                                        <h5 class="center">Modificar itinerario</h5>
-                                        <div class="divider margin-bottom-20"></div>
+                                <form id="form_editar_itinerario_{{$itinerario->id}}" name=form_editar_itinerario_{{$itinerario->id}}" class="col s12"  method="post" enctype="multipart/form-data">
+                                    <div class="row">
+                                        <div class="col s12">
+                                            <h5 class="center">Modificar itinerario</h5>
+                                            <div class="divider margin-bottom-20"></div>
+                                        </div>
                                     </div>
-                                </div>
-                                <div class="row">
-                                    <div class="input-field col s12">
-                                        <input placeholder="Ingrese el titulo del itinerario" id="titulo_txt" name="titulo_txt" type="text" class="validate" value="City Tours">
-                                        <label for="titulo_txt">{{$itinerario->titulo}}</label>
+                                    <div class="row">
+                                        <div class="input-field col s12">
+                                            <input placeholder="Ingrese el titulo del itinerario" id="titulo_txt" name="titulo_txt" type="text" class="validate" value="{{$itinerario->titulo}}">
+                                            <label for="titulo_txt">Titulo</label>
+                                        </div>
+                                        <div class="input-field col s12">
+                                            <textarea id="descipcion_txt" name="descipcion_txt" class="materialize-textarea">{{$itinerario->descripcion}}</textarea>
+                                            <label for="descipcion_txt" class="">Descripcion</label>
+                                        </div>
                                     </div>
-                                    <div class="input-field col s12">
-                                        <textarea id="descipcion_txt" name="descipcion_txt" class="materialize-textarea">{{$itinerario->descripcion}}</textarea>
-                                        <label for="descipcion_txt" class="">Descripcion</label>
+                                    <div class="row spacer-20 right">
+                                        <div class="col s12" id="response_tinerario"></div>
+                                        <div class="col s12">
+                                            {{csrf_field()}}
+                                            <input type="text" name="itinerario_id" id="itinerario_id" value="{{$itinerario->id}}">
+                                            <button class="btn waves-effect waves-light" type="submit" onclick="submit({{$itinerario->id}})" name="action_itinerario" id="action_itinerario_{{$itinerario->id}}">Agregar
+                                                <i class="mdi-content-send right"></i>
+                                            </button>
+                                        </div>
                                     </div>
-                                </div>
-                                <div class="row spacer-20 right">
-                                    <div class="col s12">
-                                        <button class="btn waves-effect waves-light" type="submit" name="action">Agregar
-                                            <i class="mdi-content-send right"></i>
-                                        </button>
-                                    </div>
-                                </div>
+                                </form>
                             </div>
 
                         </div>
@@ -386,11 +396,11 @@
                 </div>
 
                 <div class="col s12 right-align">
+                    <input type="text" name="totalItinerario" id="totalItinerario" value="{{$totalItinerario}}">
                     <button class="btn waves-effect waves-light green" type="submit" name="action">Terminar
                         <i class="mdi-content-save right"></i>
                     </button>
                 </div>
-            </form>
         </div>
         <div class="col s3">
             <div class="col s12">
@@ -457,7 +467,7 @@
                 </div>
             </div>
             <div class="row">
-                <form id="form_editar_pqt" name="form_editar_pqt" class="col s12" action="" method="post" enctype="multipart/form-data">
+                <form id="form_editar_pqt" name="form_editar_pqt" class="col s12" action="{{route('editar_paquete_cotizacion_path')}}" method="post" enctype="multipart/form-data">
                     <div class="row">
                         <div class="input-field col s3">
                             <input placeholder="Ingrese el codigo del paquete" id="codigo_txt" name="codigo_txt" type="text" class="validate" value="{{$paquete_->codigo}}">
@@ -499,11 +509,13 @@
                         </div>
                     </div>
                     <div class="row margin-top-20 right">
+                        <div class="col s12" id="response"></div>
                         <div class="col s12">
+                            {{csrf_field()}}
                             <input type="text" name="paquete_id" id="paquete_id" value="{{$paquete_->id}}">
-                            <a class="btn waves-effect waves-light" onclick="editar_paquete()" name="action" id="action">Modificar
+                            <button class="btn waves-effect waves-light" type="submit" name="action" id="action">Modificar
                                 <i class="mdi-content-send right"></i>
-                            </a>
+                            </button>
                         </div>
                     </div>
                 </form>
@@ -521,7 +533,7 @@
                 </div>
             </div>
             <div class="row">
-                <form id="formPackage" class="col s12" action="{{route("admin_itinerary_path")}}" method="get">
+                <form id="formDestinos" name="formDestinos" class="col s12" action="{{route('editar_destinos_cotizacion_path')}}" method="post" enctype="multipart/form-data">
                     <div class="row">
 
                         <?php $i=0;?>
@@ -529,13 +541,13 @@
                             <?php $i++; $si=0;?>
                             @foreach($paquete_->destinos as $destinoCoti)
                                 @if($destin->destino==$destinoCoti->destino)
-                                        <input type="checkbox" name="destino[]" class="filled-in" id="destino_{{$i}}" checked="checked" />
+                                        <input type="checkbox" name="destino[]" class="filled-in" id="destino_{{$i}}" checked="checked" value="{{$destin->destino}}"/>
                                         <label for="destino_{{$i}}" class="padding-left-5">{{$destin->destino}}</label>
                                     <?php $si=1;?>
                                 @endif
                             @endforeach
                             @if($si==0)
-                                    <input type="checkbox" name="destino[]" class="filled-in" id="destino_{{$i}}"/>
+                                    <input type="checkbox" name="destino[]" class="filled-in" id="destino_{{$i}}" value="{{$destin->destino}}"/>
                                     <label for="destino_{{$i}}" class="padding-left-5">{{$destin->destino}}</label>
                             @endif
                         @endforeach
@@ -543,8 +555,11 @@
                     </div>
 
                     <div class="row margin-top-20 right">
+                        <div class="col s12" id="response"></div>
                         <div class="col s12">
-                            <button class="btn waves-effect waves-light" type="submit" name="action">Modificar
+                            {{csrf_field()}}
+                            <input type="text" name="paquete_id" id="paquete_id" value="{{$paquete_->id}}">
+                            <button class="btn waves-effect waves-light" type="submit" name="actionDestino" id="actionDestino">Modificar
                                 <i class="mdi-content-send right"></i>
                             </button>
                         </div>

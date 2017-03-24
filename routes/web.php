@@ -351,12 +351,18 @@ Route::group(['middleware'=>'admin'],function(){
         'uses' => 'ClientController@proposals',
         'as' => 'admin_proposals_path',
     ]);
-
-    Route::post('/editar_paquete_cotizacion', [
+    Route::post('editar_paquete_cotizacion', [
         'uses' => 'PaqueteController@editar_pqt',
         'as' => 'editar_paquete_cotizacion_path',
     ]);
-
+    Route::post('editar_destinos_cotizacion', [
+        'uses' => 'PaqueteController@editar_destinos',
+        'as' => 'editar_destinos_cotizacion_path',
+    ]);
+    Route::post('editar_paquete_itinerario', [
+        'uses' => 'PaqueteController@editar_itinerario',
+        'as' => 'editar_paquete_itinerario_path',
+    ]);
 });
 /*
 Route::get('login', [

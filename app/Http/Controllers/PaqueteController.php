@@ -33,7 +33,6 @@ class PaqueteController extends Controller
         $cliente_ = Cliente::FindOrFail($cliente_id);
         $cotizacion_ = Cotizacion::FindOrFail($cotizacion_id);
 
-
         $codigo = explode(' ', strtoupper($request->input('codigo')));
         $ppaquete = PPaquete::with('precios','destinos','itinerarios')->get()->where('codigo', $codigo[0]);
 //        dd($paquete);
@@ -191,7 +190,7 @@ class PaqueteController extends Controller
         $imagen=strtoupper($request->input('imagen'));
         $path='';
         $paquete_id=strtoupper($request->input('paquete_id'));
-
+//        return ($paquete_id);
         $newPaquete=PaqueteCotizacion::FindOrFail($paquete_id);
         $newPaquete->codigo=$codigo_txt;
         $newPaquete->titulo=$titulo_txt;
@@ -201,10 +200,64 @@ class PaqueteController extends Controller
         $newPaquete->noincluye=$noincluye_txt;
         $newPaquete->opcional=$opcional_txt;
         $newPaquete->imagen=$path;
+//        dd($newPaquete);
         if($newPaquete->save())
             return '1_Bien hecho! Paquete editado creectamente';
         else
             return '0_Ups! Error a editar el papuete, vuelva a intentarlo';
     }
+    public function editar_destinos(Request $request)
+    {
+        try {
+            $destinos = $request->input('destino');
+//            return dd($destinos);
+            $paquete_id = $request->input('paquete_id');
+//            return dd($paquete_id);
+            $antiguos_destinos = DestinoCotizacion::where('paquete_cotizaciones_id', $paquete_id)->delete();
+            $valor='';
+            foreach ($destinos as $destino) {
+//                $valor.=$destino.'_';
+                $modelo = DestinoModelo::where('destino', $destino)->get();
+                foreach ($modelo as $modelo_){
+                    $newModelo = new DestinoCotizacion();
+                    $newModelo->codigo = $modelo_->codigo;
+                    $newModelo->destino = $modelo_->destino;
+                    $newModelo->region = $modelo_->region;
+                    $newModelo->pais = $modelo_->pais;
+                    $newModelo->descripcion = $modelo_->descripcion;
+                    $newModelo->imagen = $modelo_->imagen;
+                    $newModelo->estado = $modelo_->estado;
+                    $newModelo->paquete_cotizaciones_id = $paquete_id;
+                    $newModelo->save();
+                }
+//
+            }
+//            return $valor;
+            return '1_Bien hecho! Destinos editado creectamente';
+        }
+        catch (\Exception $e) {
+            return '0_Ups! Error a editar los destinos, vuelva a intentarlo';
+        }
+    }
+    public function editar_itinerario(Request $request)
+    {
+        try {
+            $titulo = $request->input('titulo_txt');
+            $descipcion = $request->input('descipcion_txt');
+            $itinerario_id = $request->input('itinerario_id');
+
+            $itinerario=ItinerarioCotizacion::FindOrFail($itinerario_id);
+            $itinerario->titulo=$titulo;
+            $itinerario->descripcion=$descipcion;
+            $itinerario->save();
+
+            return $itinerario_id.'_1_Bien hecho! Itinerario editado creectamente';
+        }
+        catch (\Exception $e) {
+            return $itinerario_id.'_0_Ups! Error a editar el itinerario, vuelva a intentarlo';
+        }
+    }
+
+
 
 }
