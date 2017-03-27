@@ -8,9 +8,13 @@ class ItinerarioCotizacion extends Model
 {
     protected $table = "itinerario_cotizaciones";
 
+//    public function paquetes_cotizaciones()
+//    {
+//        return $this->belongsTo(PaqueteCotizacion::class, 'cotizaciones_id');
+//    }
     public function paquetes_cotizaciones()
     {
-        return $this->belongsTo(PaqueteCotizacion::class, 'cotizaciones_id');
+        return $this->belongsTo(ItinerarioCotizacion::class, 'paquete_cotizaciones_id');
     }
 
     public function horas_cotizaciones()

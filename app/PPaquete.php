@@ -23,4 +23,5 @@ class PPaquete extends Model
     {
         return $this->hasMany(PItinerario::class, 'ppaquete_id');
     }
+
 }

@@ -348,7 +348,7 @@ Route::group(['middleware'=>'admin'],function(){
         'as' => 'admin_itinerary_path',
     ]);
 
-    Route::get('admin/proposals/{id}', [
+    Route::any('admin/proposals/{id}', [
         'uses' => 'CotizacionController@proposals',
         'as' => 'admin_proposals_path',
     ]);
@@ -361,9 +361,18 @@ Route::group(['middleware'=>'admin'],function(){
         'uses' => 'PaqueteController@editar_destinos',
         'as' => 'editar_destinos_cotizacion_path',
     ]);
-    Route::post('editar_paquete_itinerario', [
+    Route::post('/editar_paquete_itinerario', [
         'uses' => 'PaqueteController@editar_itinerario',
         'as' => 'editar_paquete_itinerario_path',
+    ]);
+
+    Route::post('/borrar_paquete_itinerario', [
+        'uses' => 'ItineraryController@borrar_itinerario',
+        'as' => 'borrar_paquete_itinerario_path',
+    ]);
+    Route::post('/proposals', [
+        'uses' => 'PaqueteController@guardar_precios_proposal',
+        'as' => 'paquete_proposals_path',
     ]);
 
     Route::patch('admin/proposals/{id}/posibilidad', [

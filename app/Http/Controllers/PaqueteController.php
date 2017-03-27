@@ -258,6 +258,136 @@ class PaqueteController extends Controller
         }
     }
 
+    public function guardar_precios_proposal(Request $request){
+        try {
+            $cliente_id=$request->input('cliente_id');
+            $acom_t = $request->input('acom_t');
+            $acom_d = $request->input('acom_d');
+            $acom_m = $request->input('acom_m');
+            $acom_s = $request->input('acom_s');
 
+            $star_2 = $request->input('vstar_2');
+            $star_3 = $request->input('vstar_3');
+            $star_4 = $request->input('vstar_4');
+            $star_5 = $request->input('vstar_5');
+
+
+
+            $t_2 = $request->input('t_2');
+            $t_3 = $request->input('t_3');
+            $t_4 = $request->input('t_4');
+            $t_5 = $request->input('t_5');
+
+            $d_2 = $request->input('d_2');
+            $d_3 = $request->input('d_3');
+            $d_4 = $request->input('d_4');
+            $d_5 = $request->input('d_5');
+
+            $m_2 = $request->input('m_2');
+            $m_3 = $request->input('m_3');
+            $m_4 = $request->input('m_4');
+            $m_5 = $request->input('m_5');
+
+            $s_2 = $request->input('s_2');
+            $s_3 = $request->input('s_3');
+            $s_4 = $request->input('s_4');
+            $s_5 = $request->input('s_5');
+
+            $costo_2 = $request->input('nptotal_2');
+            $costo_3 = $request->input('nptotal_3');
+            $costo_4 = $request->input('nptotal_4');
+            $costo_5 = $request->input('nptotal_5');
+
+            $utilidad_2 = $request->input('utilidad_2');
+            $utilidad_3 = $request->input('utilidad_3');
+            $utilidad_4 = $request->input('utilidad_4');
+            $utilidad_5 = $request->input('utilidad_5');
+
+            $pventa2 = $request->input('pventa_2');
+            $pventa3 = $request->input('pventa_3');
+            $pventa4 = $request->input('pventa_4');
+            $pventa5 = $request->input('pventa_5');
+
+            $precio_id_2 = $request->input('precio_id_2');
+            $precio_id_3 = $request->input('precio_id_3');
+            $precio_id_4 = $request->input('precio_id_4');
+            $precio_id_5 = $request->input('precio_id_5');
+
+            if ($star_2=='1') {
+                $PrecioPaquete2 = PrecioPaquete::FindOrFail($precio_id_2);
+                $PrecioPaquete2->estrellas = 2;
+                $PrecioPaquete2->precio_s = $s_2;
+                $PrecioPaquete2->personas_s = $acom_s;
+                $PrecioPaquete2->precio_m = $m_2;
+                $PrecioPaquete2->personas_m = $acom_m;
+                $PrecioPaquete2->precio_d = $d_2;
+                $PrecioPaquete2->personas_d = $acom_d;
+                $PrecioPaquete2->precio_t = $t_2;
+                $PrecioPaquete2->personas_t = $acom_t;
+                $PrecioPaquete2->precio_costo=$costo_2;
+                $PrecioPaquete2->utilidad=$utilidad_2;
+                $PrecioPaquete2->precio_venta=$pventa2;
+                $PrecioPaquete2->estado=1;
+                $PrecioPaquete2->save();
+//                dd('utilidad:'.$utilidad_2.'precio costo:'.$costo_2.'_'.$star_2.'_'.$precio_id_2.'_precios:'.$s_2.'_personass:'.$acom_s.'_preciom:'.$m_2.'_personasm:'.$acom_m.'_preciod:'.$d_2.'_personasd:'.$acom_d.'_preciot:'.$t_2.'_personast:'.$acom_t);
+            }
+
+            if ($star_3=='1') {
+                $PrecioPaquete3 = PrecioPaquete::FindOrFail($precio_id_3);
+                $PrecioPaquete3->estrellas = 3;
+                $PrecioPaquete3->precio_s = $s_3;
+                $PrecioPaquete3->personas_s = $acom_s;
+                $PrecioPaquete3->precio_m = $m_3;
+                $PrecioPaquete3->personas_m = $acom_m;
+                $PrecioPaquete3->precio_d = $d_3;
+                $PrecioPaquete3->personas_d = $acom_d;
+                $PrecioPaquete3->precio_t = $t_3;
+                $PrecioPaquete3->personas_t = $acom_t;
+                $PrecioPaquete3->precio_costo=$costo_3;
+                $PrecioPaquete3->utilidad=$utilidad_3;
+                $PrecioPaquete3->precio_venta=$pventa3;
+                $PrecioPaquete3->estado=1;
+                $PrecioPaquete3->save();
+            }
+            if ($star_4=='1') {
+                $PrecioPaquete4 = PrecioPaquete::FindOrFail($precio_id_4);
+                $PrecioPaquete4->estrellas = 4;
+                $PrecioPaquete4->precio_s = $s_4;
+                $PrecioPaquete4->personas_s = $acom_s;
+                $PrecioPaquete4->precio_m = $m_4;
+                $PrecioPaquete4->personas_m = $acom_m;
+                $PrecioPaquete4->precio_d = $d_4;
+                $PrecioPaquete4->personas_d = $acom_d;
+                $PrecioPaquete4->precio_t = $t_4;
+                $PrecioPaquete4->personas_t = $acom_t;
+                $PrecioPaquete4->precio_costo=$costo_4;
+                $PrecioPaquete4->utilidad=$utilidad_4;
+                $PrecioPaquete4->precio_venta=$pventa4;
+                $PrecioPaquete4->estado=1;
+                $PrecioPaquete4->save();
+            }
+            if ($star_5=='1') {
+                $PrecioPaquete5 = PrecioPaquete::FindOrFail($precio_id_5);
+                $PrecioPaquete5->estrellas = 5;
+                $PrecioPaquete5->precio_s = $s_5;
+                $PrecioPaquete5->personas_s = $acom_s;
+                $PrecioPaquete5->precio_m = $m_5;
+                $PrecioPaquete5->personas_m = $acom_m;
+                $PrecioPaquete5->precio_d = $d_5;
+                $PrecioPaquete5->personas_d = $acom_d;
+                $PrecioPaquete5->precio_t = $t_5;
+                $PrecioPaquete5->personas_t = $acom_t;
+                $PrecioPaquete5->precio_costo=$costo_5;
+                $PrecioPaquete5->utilidad=$utilidad_5;
+                $PrecioPaquete5->precio_venta=$pventa5;
+                $PrecioPaquete5->estado=1;
+                $PrecioPaquete5->save();
+            }
+            return redirect(route('admin_proposals_path',$cliente_id));
+        }
+        catch (\Exception $e) {
+            return redirect('admin_proposals_path','1');
+        }
+    }
 
 }

@@ -2,6 +2,7 @@
 
 namespace GotoPeru\Http\Controllers;
 
+use GotoPeru\ItinerarioCotizacion;
 use GotoPeru\ItinerarioPersonalizado;
 use GotoPeru\PaqueteCotizacion;
 use GotoPeru\TItinerario;
@@ -61,31 +62,15 @@ class ItineraryController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function borrar_itinerario(Request $request)
     {
         //
+        $itinerario_id=$request->input('id');
+        $itinerario = ItinerarioCotizacion::FindOrFail($itinerario_id);
+        if($itinerario->delete())
+            return 1;
+        else
+            return 0;
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        //
-    }
 }
