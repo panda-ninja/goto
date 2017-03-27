@@ -261,7 +261,7 @@
                                                                                 </div>
                                                                                 <div class="col s3 right-align">
                                                                                     @php
-                                                                                        $precio_s = (($precio_paquete2->precio_s * $precio_paquete2->personas_s)* 1) * ($paquete_cotizacion->duracion - 1);
+                                                                                        $precio_s = (($precio_paquete2->precio_s)* 1) * ($paquete_cotizacion->duracion - 1);
                                                                                     @endphp
                                                                                     {{number_format($precio_s, 2, '.', '')}}$
                                                                                 </div>
@@ -322,7 +322,7 @@
                                                                                 </div>
                                                                                 <div class="col s3 right-align">
                                                                                     @php
-                                                                                        $precio_d = (($precio_paquete2->precio_d * $precio_paquete2->personas_d)* 2) * ($paquete_cotizacion->duracion - 1);
+                                                                                        $precio_d = (($precio_paquete2->precio_d)* 1) * ($paquete_cotizacion->duracion - 1);
                                                                                     @endphp
                                                                                     {{number_format($precio_d, 2, '.', '')}}$
                                                                                 </div>
@@ -383,7 +383,7 @@
                                                                                 </div>
                                                                                 <div class="col s3 right-align">
                                                                                     @php
-                                                                                        $precio_m = (($precio_paquete2->precio_m * $precio_paquete2->personas_m)* 2) * ($paquete_cotizacion->duracion - 1);
+                                                                                        $precio_m = (($precio_paquete2->precio_m)* 1) * ($paquete_cotizacion->duracion - 1);
                                                                                     @endphp
                                                                                     {{number_format($precio_m, 2, '.', '')}}$
                                                                                 </div>
@@ -443,7 +443,7 @@
                                                                                 </div>
                                                                                 <div class="col s3 right-align">
                                                                                     @php
-                                                                                        $precio_t = (($precio_paquete2->precio_t * $precio_paquete2->personas_t)* 3) * ($paquete_cotizacion->duracion - 1);
+                                                                                        $precio_t = (($precio_paquete2->precio_t)* 1) * ($paquete_cotizacion->duracion - 1);
                                                                                     @endphp
                                                                                     {{number_format($precio_t, 2, '.', '')}}$
                                                                                 </div>
