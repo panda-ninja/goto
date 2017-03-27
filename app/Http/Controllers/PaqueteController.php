@@ -242,19 +242,36 @@ class PaqueteController extends Controller
     public function editar_itinerario(Request $request)
     {
         try {
-            $titulo = $request->input('titulo_txt');
+
             $descipcion = $request->input('descipcion_txt');
             $itinerario_id = $request->input('itinerario_id');
 
+//            return dd($titulo.'_'.$descipcion.'_'.$itinerario_id);
             $itinerario=ItinerarioCotizacion::FindOrFail($itinerario_id);
-            $itinerario->titulo=$titulo;
-            $itinerario->descripcion=$descipcion;
+            $itinerario->observaciones=$descipcion;
             $itinerario->save();
 
-            return $itinerario_id.'_1_Bien hecho! Itinerario editado creectamente';
+            return $itinerario_id.'_1_Bien hecho! observaciones editado creectamente_'.$descipcion;
         }
         catch (\Exception $e) {
-            return $itinerario_id.'_0_Ups! Error a editar el itinerario, vuelva a intentarlo';
+            return '0_0_Ups! Error a editar el observaciones, vuelva a intentarlo_'.$descipcion;
+        }
+    }
+    public function editar_paquete_itinerario_obs(Request $request)
+    {
+        try {
+            $obs = $request->input('obs_txt');
+            $itinerario_id = $request->input('itinerario_id');
+
+//            return dd($titulo.'_'.$descipcion.'_'.$itinerario_id);
+            $itinerario=ItinerarioCotizacion::FindOrFail($itinerario_id);
+            $itinerario->observaciones=$obs;
+            $itinerario->save();
+
+            return $itinerario_id.'_1_Bien hecho! Itinerario editado creectamente_'.$obs;
+        }
+        catch (\Exception $e) {
+            return '0_0_Ups! Error a editar el itinerario, vuelva a intentarlo_'.$obs;
         }
     }
 

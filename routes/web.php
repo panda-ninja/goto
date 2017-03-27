@@ -371,6 +371,13 @@ Route::group(['middleware'=>'admin'],function(){
         'uses' => 'PaqueteController@editar_itinerario',
         'as' => 'editar_paquete_itinerario_path',
     ]);
+    Route::post('/editar_paquete_itinerario_obs', [
+        'uses' => 'PaqueteController@editar_paquete_itinerario_obs',
+        'as' => 'editar_paquete_itinerario_obs_path',
+    ]);
+
+
+
 
     Route::post('/borrar_paquete_itinerario', [
         'uses' => 'ItineraryController@borrar_itinerario',

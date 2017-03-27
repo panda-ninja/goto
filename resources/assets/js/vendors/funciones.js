@@ -83,39 +83,75 @@ $(document).ready(function(){
     //     });
     // });
 });
-function submit(pos){
+function enviar(pos){
+
+    $("#action_itinerario_"+pos).html('Enviando<i class="mdi-action-autorenew right"></i>');
+    $("#action_itinerario_"+pos).addClass('green');
+    var nombre='form_editar_itinerario_'+pos;
     $.ajaxSetup({
         headers: {
             'X-CSRF-TOKEN': $('[name="_token"]').val()
         }
     });
-    $.ajax({
-        url: '/editar_paquete_itinerario',//action del formulario, ej:
-        //http://localhost/mi_proyecto/mi_controlador/mi_funcion
-        type: 'post',//el método post o get del formulario
-        data: $('#form_editar_itinerario_'+pos).serialize(),//obtenemos todos los datos del formulario
-        error: function(data){
-            console.log('eroorr: '+data);
-        },
-        success:function(data){
-            //hacemos algo cuando finalice
-            var rpt=data.split('_');
-            console.log('resultados: '+data);
-            if(rpt[1]==1) {
-                console.log('correcto: '+data);
-                // $("#response").html(data[1]);
-                // $("#action_itinerario_"+pos).html('Datos enviados<i class="mdi-content-send right"></i>');
-                // $("#action_itinerario_"+pos).addClass('green');
-            }
-            else{
-                console.log('error: '+data);
-                // $("#response_tinerario").html(data);
-            }
+    $.post('/editar_paquete_itinerario', $('#'+nombre).serialize(), function(data) {
+        var rpt=data.split('_');
+        console.log('resultados: '+data);
+        if(rpt[1]==1) {
+            console.log('correcto: '+data);
+            // $("#response_tinerario").html('aaaa'+rpt[2]);
+            $("#titulo_iti_"+pos).html(rpt[3]);
+            $("#descrp_"+pos).html(rpt[4]);
+            $("#action_itinerario_"+pos).html('Agregar<i class="mdi-content-send right"></i>');
+            $("#action_itinerario_"+pos).removeClass('green');
+            $("#action_itinerario_"+pos).addClass('pink accent-2');
 
         }
+        else{
+            $("#response_tinerario").html(rpt[2]);
+            console.log('error: '+data);
+            // $("#response_tinerario").html(data);
+        }
+    }).fail(function (data) {
+        console.log('eroorr: '+data);
+    });
+}
+function enviar_obs(pos){
+
+    $("#action_itinerario_obs_"+pos).html('Enviando<i class="mdi-action-autorenew right"></i>');
+    $("#action_itinerario_obs_"+pos).addClass('green');
+    var nombre='form_editar_itinerario_obs_'+pos;
+    $.ajaxSetup({
+        headers: {
+            'X-CSRF-TOKEN': $('[name="_token"]').val()
+        }
+    });
+    $.post('/editar_paquete_itinerario_obs', $('#'+nombre).serialize(), function(data) {
+        var rpt=data.split('_');
+        // console.log('resultados: '+data);
+        if(rpt[1]==1) {
+            console.log('correcto: '+data);
+            // $("#response_tinerario").html('aaaa'+rpt[2]);
+            // $("#titulo_iti_"+pos).html(rpt[3]);
+            $("#observaciones_iti_"+pos).html(rpt[3]);
+            $("#action_itinerario_obs_"+pos).html('Agregar<i class="mdi-content-send right"></i>');
+            $("#action_itinerario_obs_"+pos).removeClass('green');
+            $("#action_itinerario_obs_"+pos).addClass('pink accent-2');
+
+        }
+        else{
+            // $("#response_tinerario").html(rpt[2]);
+            // console.log('error: '+data);
+            // $("#response_tinerario").html(data);
+        }
+    }).fail(function (data) {
+        console.log('eroorr: '+data);
     });
 }
 
+var idItinerario=0;
+function  agarrar(id) {
+    idItinerario=id;
+}
 function poner_valor(){
     // if(esta_en_edicion==0) {
     //     var $frame = $('#desc_itinerario_' + id);
@@ -168,28 +204,30 @@ function borrarItinerario(pos,id){
 }
 
 function acomodacion(){
+    var totalIti=parseInt($('#totalItinerario').val());
+
     var $st_2=  ($('#acom_t').val()*$('#t_2').val())+
                 ($('#acom_d').val()*$('#d_2').val())+
                 ($('#acom_m').val()*$('#m_2').val())+
-                ($('#acom_s').val()*$('#s_2').val());
+                ($('#acom_s').val()*$('#s_2').val())+totalIti;
 
     $('#total2').val($st_2);
     var $st_3=  ($('#acom_t').val()*$('#t_3').val())+
         ($('#acom_d').val()*$('#d_3').val())+
         ($('#acom_m').val()*$('#m_3').val())+
-        ($('#acom_s').val()*$('#s_3').val());
+        ($('#acom_s').val()*$('#s_3').val())+totalIti;
     $('#total3').val($st_3);
 
     var $st_4=  ($('#acom_t').val()*$('#t_4').val())+
         ($('#acom_d').val()*$('#d_4').val())+
         ($('#acom_m').val()*$('#m_4').val())+
-        ($('#acom_s').val()*$('#s_4').val());
+        ($('#acom_s').val()*$('#s_4').val())+totalIti;
     $('#total4').val($st_4);
 
     var $st_5=  ($('#acom_t').val()*$('#t_5').val())+
         ($('#acom_d').val()*$('#d_5').val())+
         ($('#acom_m').val()*$('#m_5').val())+
-        ($('#acom_s').val()*$('#s_5').val());
+        ($('#acom_s').val()*$('#s_5').val())+totalIti;
     $('#total5').val($st_5);
 
     pasartotal(2);

@@ -80,13 +80,13 @@
                                 $totalItinerario+=$itinerario->precio;
                             ?>
                             <div id="Itine_{{$pos}}" class="portlet">
-                                <div class="portlet-header">Dia <span class="pos_iti" name="posdia[]" id="pos_dia_{{$pos}}">{{$pos}}</span>: {{$itinerario->titulo}}
+                                <div class="portlet-header">Dia <span class="pos_iti" name="posdia[]" id="pos_dia_{{$pos}}">{{$pos}}</span>: <span id="titulo_iti_{{$itinerario->id}}">{{$itinerario->titulo}}</span>
                                     <input class="precio_itinerario" type="hidden" name="precio_itinerario[]" id="precio_itinerario_{{$pos}}" value="{{$itinerario->precio}}"><span class="right">$ {{$itinerario->precio}}</span>
                                     <a href="#modal_edit_{{$itinerario->id}}" class="modal-trigger blue-text"><i class="mdi-editor-mode-edit"></i></a>
                                     <a href="#!" class="red-text" onclick="borrarItinerario({{$pos}},{{$itinerario->id}})"><i class="mdi-action-delete"></i></a>
                                 </div>
                                 <div class="portlet-content col s12 " style="display: none">
-                                    <p class="no-margin">{{$itinerario->descripcion}}</p>
+                                    <p class="no-margin" id="descrp_{{$itinerario->id}}">{{$itinerario->descripcion}}</p>
                                     <div class="row spacer-20">
                                         <div class="col s6">
                                             <p class="no-margin orange-text text-darken-1"><b>Servicios</b></p>
@@ -121,12 +121,12 @@
                                         <div class="col s6 ">
                                             <p class="no-margin orange-text text-darken-1">
                                                 <b>Comentarios u observaciones</b>
-                                                <a href="#modal_add_com" class="modal-trigger green-text "><i class="mdi-content-add-box"></i></a>
-                                                <a href="#modal_edit_com" class="modal-trigger blue-text "><i class="mdi-editor-mode-edit"></i></a>
+                                                {{--<a href="#modal_add_com" class="modal-trigger green-text "><i class="mdi-content-add-box"></i></a>--}}
+                                                <a href="#modal_edit_com_{{$itinerario->id}}" class="modal-trigger blue-text "><i class="mdi-editor-mode-edit"></i></a>
                                                 <a href="" class="red-text"><i class="mdi-action-delete"></i></a>
                                             </p>
                                             <div class="divider margin-bottom-20"></div>
-                                            <p class="no-margin">{{$itinerario->observaciones}}</p>
+                                            <p class="no-margin" id="observaciones_iti_{{$itinerario->id}}">{{$itinerario->observaciones}}</p>
                                             {{--<div class="input-field">--}}
                                             {{--<textarea id="textarea1" class="materialize-textarea"></textarea>--}}
                                             {{--<label for="textarea1">Textarea</label>--}}
@@ -165,40 +165,86 @@
                             </div>
 
                         </div>
-
+                        <div id="modal_edit_0" class="modal">
+                            <div class="modal-content">
+                                <div class="row">
+                                    <div class="col s12">
+                                        <form id="form_editar_itinerario_0" name=form_editar_itinerario_0" class="col s12"  method="post" enctype="multipart/form-data">
+                                            <div class="row">
+                                                <div class="col s12">
+                                                    <h5 class="center">Modificar itinerario</h5>
+                                                    <div class="divider margin-bottom-20"></div>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="input-field col s12">
+                                                    <input placeholder="Ingrese el titulo del itinerario" id="titulo_txt" name="titulo_txt" type="text" class="validate" value="">
+                                                    <label for="titulo_txt">Titulo</label>
+                                                </div>
+                                                <div class="input-field col s12">
+                                                    <textarea id="descipcion_txt" name="descipcion_txt" class="materialize-textarea"></textarea>
+                                                    <label for="descipcion_txt" class="">Descripcion</label>
+                                                </div>
+                                            </div>
+                                            <div class="row spacer-20 right">
+                                                <div class="col s12" id="response_tinerario"></div>
+                                                <div class="col s12">
+                                                    {{csrf_field()}}
+                                                    <input type="text" name="itinerario_id" id="itinerario_id" value="">
+                                                    <a class="btn waves-effect waves-light" name="action_itinerario" id="action_itinerario_">Agregar
+                                                        <i class="mdi-content-send right"></i>
+                                                    </a>
+                                                </div>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                         <!-- Modal Structure itinerario edit-->
                         <div id="modal_edit_{{$itinerario->id}}" class="modal">
                             <div class="modal-content">
-                                <form id="form_editar_itinerario_{{$itinerario->id}}" name=form_editar_itinerario_{{$itinerario->id}}" class="col s12"  method="post" enctype="multipart/form-data">
-                                    <div class="row">
-                                        <div class="col s12">
-                                            <h5 class="center">Modificar itinerario</h5>
-                                            <div class="divider margin-bottom-20"></div>
-                                        </div>
+                                <div class="row">
+                                    <div class="col s12">
+                                        <form id="form_editar_itinerario_{{$itinerario->id}}" name=form_editar_itinerario_{{$itinerario->id}}" class="col s12"  method="post" enctype="multipart/form-data">
+                                            <div class="row">
+                                                <div class="col s12">
+                                                    <h5 class="center">Modificar itinerario</h5>
+                                                    <div class="divider margin-bottom-20"></div>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="input-field col s12">
+                                                    <input placeholder="Ingrese el titulo del itinerario" id="titulo_txt" name="titulo_txt" type="text" class="validate" value="{{$itinerario->titulo}}">
+                                                    <label for="titulo_txt">Titulo</label>
+                                                </div>
+                                                <div class="input-field col s12">
+                                                    <textarea id="descipcion_txt" name="descipcion_txt" class="materialize-textarea">{{$itinerario->descripcion}}</textarea>
+                                                    <label for="descipcion_txt" class="">Descripcion</label>
+                                                </div>
+                                            </div>
+                                            <div class="row spacer-20 ">
+                                                <div class="col s4">
+                                                    <div class="row">
+                                                        <div class="col s12" id="response_tinerario"></div>
+                                                    </div>
+                                                </div>
+                                                <div class="col s8 right">
+                                                    <div class="row right">
+                                                        <div class="col s12">
+                                                            {{csrf_field()}}
+                                                            <input type="hidden" name="itinerario_id" id="itinerario_id" value="{{$itinerario->id}}">
+                                                            <a class="btn waves-effect waves-light"  onclick="enviar({{$itinerario->id}})" name="action_itinerario" id="action_itinerario_{{$itinerario->id}}">Agregar
+                                                                <i class="mdi-content-send right"></i>
+                                                            </a>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </form>
                                     </div>
-                                    <div class="row">
-                                        <div class="input-field col s12">
-                                            <input placeholder="Ingrese el titulo del itinerario" id="titulo_txt" name="titulo_txt" type="text" class="validate" value="{{$itinerario->titulo}}">
-                                            <label for="titulo_txt">Titulo</label>
-                                        </div>
-                                        <div class="input-field col s12">
-                                            <textarea id="descipcion_txt" name="descipcion_txt" class="materialize-textarea">{{$itinerario->descripcion}}</textarea>
-                                            <label for="descipcion_txt" class="">Descripcion</label>
-                                        </div>
-                                    </div>
-                                    <div class="row spacer-20 right">
-                                        <div class="col s12" id="response_tinerario"></div>
-                                        <div class="col s12">
-                                            {{csrf_field()}}
-                                            <input type="text" name="itinerario_id" id="itinerario_id" value="{{$itinerario->id}}">
-                                            <button class="btn waves-effect waves-light" type="submit" onclick="submit({{$itinerario->id}})" name="action_itinerario" id="action_itinerario_{{$itinerario->id}}">Agregar
-                                                <i class="mdi-content-send right"></i>
-                                            </button>
-                                        </div>
-                                    </div>
-                                </form>
+                                </div>
                             </div>
-
                         </div>
 
                         <!-- Modal Structure comentario-->
@@ -229,28 +275,32 @@
                         </div>
 
                         <!-- Modal Structure comentario-->
-                        <div id="modal_edit_com" class="modal">
+                        <div id="modal_edit_com_{{$itinerario->id}}" class="modal">
                             <div class="modal-content">
-                                <div class="row">
-                                    <div class="col s12">
-                                        <h5 class="center">Editar Comentario u observacion</h5>
-                                        <div class="divider margin-bottom-20"></div>
+                                <form id="form_editar_itinerario_obs_{{$itinerario->id}}" name=form_editar_itinerario_obs_{{$itinerario->id}}" class="col s12"  method="post" enctype="multipart/form-data">
+                                    <div class="row">
+                                        <div class="col s12">
+                                            <h5 class="center">Editar Comentario u observacion</h5>
+                                            <div class="divider margin-bottom-20"></div>
+                                        </div>
                                     </div>
-                                </div>
-                                <div class="row">
+                                    <div class="row">
 
-                                    <div class="input-field col s12">
-                                        <textarea id="descipcion_txt" name="descipcion_txt" class="materialize-textarea">{{$itinerario->observacion}}</textarea>
-                                        <label for="descipcion_txt" class="">Comentario</label>
+                                        <div class="input-field col s12">
+                                            <textarea id="obs_txt" name="obs_txt" class="materialize-textarea">{{$itinerario->observaciones}}</textarea>
+                                            <label for="obs_txt" class="">Comentario</label>
+                                        </div>
                                     </div>
-                                </div>
-                                <div class="row spacer-20 right">
-                                    <div class="col s12">
-                                        <button class="btn waves-effect waves-light" type="submit" name="action">Agregar
-                                            <i class="mdi-content-send right"></i>
-                                        </button>
+                                    <div class="row spacer-20 right">
+                                        <div class="col s12">
+                                            {{csrf_field()}}
+                                            <input type="hidden" name="itinerario_id" id="itinerario_id" value="{{$itinerario->id}}">
+                                            <a class="btn waves-effect waves-light" onclick="enviar_obs({{$itinerario->id}})" name="action" id="action_itinerario_obs_{{$itinerario->id}}">Agregar
+                                                <i class="mdi-content-send right"></i>
+                                            </a>
+                                        </div>
                                     </div>
-                                </div>
+                                </form>
                             </div>
 
                         </div>
@@ -463,28 +513,28 @@
                                 <th>ACOMODACION</th>
                                 <th>
                                     <div class="col s12">
-                                        <input type="text" name="vstar_2" id="vstar_2" value="0">
+                                        <input type="hidden" name="vstar_2" id="vstar_2" value="0">
                                         <input type="checkbox" name="star[]" class="filled-in" id="star2" value="2" onclick="pasartotal(2)">
                                         <label for="star2">2 STARS</label>
                                     </div>
                                 </th>
                                 <th>
                                     <div class="col s12">
-                                        <input type="text" name="vstar_3" id="vstar_3" value="0">
+                                        <input type="hidden" name="vstar_3" id="vstar_3" value="0">
                                         <input type="checkbox" name="star[]" class="filled-in" id="star3" value="3" onclick="pasartotal(3)">
                                         <label for="star3">3 STARS</label>
                                     </div>
                                 </th>
                                 <th>
                                     <div class="col s12">
-                                        <input type="text" name="vstar_4" id="vstar_4" value="0">
+                                        <input type="hidden" name="vstar_4" id="vstar_4" value="0">
                                         <input type="checkbox" name="star[]" class="filled-in" id="star4" value="4" onclick="pasartotal(4)">
                                         <label for="star4">4 STARS</label>
                                     </div>
                                 </th>
                                 <th >
                                     <div class="col s12">
-                                        <input type="text" name="vstar_5" id="vstar_5" value="0">
+                                        <input type="hidden" name="vstar_5" id="vstar_5" value="0">
                                         <input type="checkbox" name="star[]" class="filled-in" id="star5" value="5" onclick="pasartotal(5)">
                                         <label for="star5">5 STARS</label>
                                     </div>
@@ -568,18 +618,18 @@
                     </table>
                 </div>
                 <div class="col s12 right-align">
-                    <input type="text" name="total2" id="total2" value="0">
-                    <input type="text" name="total3" id="total3" value="0">
-                    <input type="text" name="total4" id="total4" value="0">
-                    <input type="text" name="total5" id="total5" value="0">
+                    <input type="hidden" name="total2" id="total2" value="0">
+                    <input type="hidden" name="total3" id="total3" value="0">
+                    <input type="hidden" name="total4" id="total4" value="0">
+                    <input type="hidden" name="total5" id="total5" value="0">
 
-                    <input type="text" name="precio_id_2" id="precio_id_2" value="{{$precio_id2}}">
-                    <input type="text" name="precio_id_3" id="precio_id_3" value="{{$precio_id3}}">
-                    <input type="text" name="precio_id_4" id="precio_id_4" value="{{$precio_id4}}">
-                    <input type="text" name="precio_id_5" id="precio_id_5" value="{{$precio_id5}}">
+                    <input type="hidden" name="precio_id_2" id="precio_id_2" value="{{$precio_id2}}">
+                    <input type="hidden" name="precio_id_3" id="precio_id_3" value="{{$precio_id3}}">
+                    <input type="hidden" name="precio_id_4" id="precio_id_4" value="{{$precio_id4}}">
+                    <input type="hidden" name="precio_id_5" id="precio_id_5" value="{{$precio_id5}}">
 
                     <input type="text" name="totalItinerario" id="totalItinerario" value="{{$totalItinerario}}">
-                    <input type="text" name="cliente_id" id="cliente_id" value="{{$cliente->id}}">
+                    <input type="hidden" name="cliente_id" id="cliente_id" value="{{$cliente->id}}">
 
                     <button class="btn waves-effect waves-light green" type="submit" name="action">Terminar
                         <i class="mdi-content-save right"></i>
@@ -596,7 +646,7 @@
                     <table>
                         <thead>
                         <tr>
-                            <th class="no-padding"><b>Costo:</b></th>
+                            <th class="no-padding"><b>Categoria:</b></th>
                             <th class="no-padding right-align">2 STARS</th>
                             <th class="no-padding right-align">3 STARS</th>
                             <th class="no-padding right-align">4 STARS</th>
@@ -606,17 +656,17 @@
                         <tbody>
                         <tr>
                             <td class="no-padding"><b>Costo:</b></td>
-                            <td class="no-padding right-align">$ <span id="ptotal2">0</span><input type="text" id="nptotal_2" name="nptotal_2" value="0"></td>
-                            <td class="no-padding right-align">$ <span id="ptotal3">0</span><input type="text" id="nptotal_3" name="nptotal_3" value="0"></td>
-                            <td class="no-padding right-align">$ <span id="ptotal4">0</span><input type="text" id="nptotal_4" name="nptotal_4" value="0"></td>
-                            <td class="no-padding right-align">$ <span id="ptotal5">0</span><input type="text" id="nptotal_5" name="nptotal_5" value="0"></td>
+                            <td class="no-padding right-align">$ <span id="ptotal2">0</span><input type="hidden" id="nptotal_2" name="nptotal_2" value="0"></td>
+                            <td class="no-padding right-align">$ <span id="ptotal3">0</span><input type="hidden" id="nptotal_3" name="nptotal_3" value="0"></td>
+                            <td class="no-padding right-align">$ <span id="ptotal4">0</span><input type="hidden" id="nptotal_4" name="nptotal_4" value="0"></td>
+                            <td class="no-padding right-align">$ <span id="ptotal5">0</span><input type="hidden" id="nptotal_5" name="nptotal_5" value="0"></td>
                         </tr>
                         <tr>
-                            <td class="no-padding"><b>Utilidad:</b></td>
-                            <td class="right-align"><input type="number" name="utilidad_2" id="utilidad_2" min="0" max="40" value="0" onchange="utilidad(2)"> %</td>
-                            <td class="right-align"><input type="number" name="utilidad_3" id="utilidad_3" min="0" max="40" value="0" onchange="utilidad(3)"> %</td>
-                            <td class="right-align"><input type="number" name="utilidad_4" id="utilidad_4" min="0" max="40" value="0" onchange="utilidad(4)"> %</td>
-                            <td class="right-align"><input type="number" name="utilidad_5" id="utilidad_5" min="0" max="40" value="0" onchange="utilidad(5)"> %</td>
+                            <td class="no-padding"><b>Utilidad %:</b></td>
+                            <td class="right-align"><input type="number" name="utilidad_2" id="utilidad_2" min="0" max="40" value="0" onchange="utilidad(2)"></td>
+                            <td class="right-align"><input type="number" name="utilidad_3" id="utilidad_3" min="0" max="40" value="0" onchange="utilidad(3)"></td>
+                            <td class="right-align"><input type="number" name="utilidad_4" id="utilidad_4" min="0" max="40" value="0" onchange="utilidad(4)"></td>
+                            <td class="right-align"><input type="number" name="utilidad_5" id="utilidad_5" min="0" max="40" value="0" onchange="utilidad(5)"></td>
                         </tr>
                         <tr>
                             <td class="no-padding"><b>Venta:</b></td>
