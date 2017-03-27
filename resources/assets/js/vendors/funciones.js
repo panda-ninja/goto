@@ -1,5 +1,5 @@
-// var $url='';
-var $url='http://localhost/goto2/public';
+var $url='';
+// var $url='http://localhost/goto2/public';
 
 $(document).ready(function(){
 //cuando hagamos submit al formulario con id id_del_formulario
