@@ -16,6 +16,7 @@ use GotoPeru\PItinerario;
 use GotoPeru\PItinerarioOrden;
 use GotoPeru\PPrecio;
 use GotoPeru\PrecioPaquete;
+use GotoPeru\ServicioCotizacion;
 use GotoPeru\TDestino;
 use GotoPeru\TPaqueteDestino;
 use GotoPeru\TItinerario;
@@ -67,6 +68,7 @@ class PaqueteController extends Controller
                 $new_precio->personas_m=$precio->personas_m;
                 $new_precio->precio_t=$precio->precio_t;
                 $new_precio->personas_t=$precio->personas_t;
+                $new_precio->utilidad=40;
                 $new_precio->estado=$precio->estado;
                 $new_precio->paquete_cotizaciones_id=$new_paquete->id;
                 $new_precio->save();
@@ -274,7 +276,23 @@ class PaqueteController extends Controller
             return '0_0_Ups! Error a editar el itinerario, vuelva a intentarlo_'.$obs;
         }
     }
+    public function editar_paquete_itinerario_serv(Request $request)
+    {
+        try {
+            $precio = $request->input('precio_txt');
+            $orden_id = $request->input('orden_id');
 
+//            return dd($titulo.'_'.$descipcion.'_'.$itinerario_id);
+            $servicio= ItinerarioOrden::FindOrFail($orden_id);
+            $servicio->precio=$precio;
+            $servicio->save();
+
+            return $servicio->id.'_1_Bien hecho! Itinerario editado creectamente_'.$precio;
+        }
+        catch (\Exception $e) {
+            return '0_0_Ups! Error a editar el itinerario, vuelva a intentarlo_'.$precio;
+        }
+    }
     public function guardar_precios_proposal(Request $request){
         try {
             $cliente_id=$request->input('cliente_id');
@@ -310,20 +328,20 @@ class PaqueteController extends Controller
             $s_4 = $request->input('s_4');
             $s_5 = $request->input('s_5');
 
-            $costo_2 = $request->input('nptotal_2');
-            $costo_3 = $request->input('nptotal_3');
-            $costo_4 = $request->input('nptotal_4');
-            $costo_5 = $request->input('nptotal_5');
+//            $costo_2 = $request->input('nptotal_2');
+//            $costo_3 = $request->input('nptotal_3');
+//            $costo_4 = $request->input('nptotal_4');
+//            $costo_5 = $request->input('nptotal_5');
 
             $utilidad_2 = $request->input('utilidad_2');
             $utilidad_3 = $request->input('utilidad_3');
             $utilidad_4 = $request->input('utilidad_4');
             $utilidad_5 = $request->input('utilidad_5');
 
-            $pventa2 = $request->input('pventa_2');
-            $pventa3 = $request->input('pventa_3');
-            $pventa4 = $request->input('pventa_4');
-            $pventa5 = $request->input('pventa_5');
+//            $pventa2 = $request->input('pventa_2');
+//            $pventa3 = $request->input('pventa_3');
+//            $pventa4 = $request->input('pventa_4');
+//            $pventa5 = $request->input('pventa_5');
 
             $precio_id_2 = $request->input('precio_id_2');
             $precio_id_3 = $request->input('precio_id_3');
@@ -341,9 +359,7 @@ class PaqueteController extends Controller
                 $PrecioPaquete2->personas_d = $acom_d;
                 $PrecioPaquete2->precio_t = $t_2;
                 $PrecioPaquete2->personas_t = $acom_t;
-                $PrecioPaquete2->precio_costo=$costo_2;
                 $PrecioPaquete2->utilidad=$utilidad_2;
-                $PrecioPaquete2->precio_venta=$pventa2;
                 $PrecioPaquete2->estado=1;
                 $PrecioPaquete2->save();
 //                dd('utilidad:'.$utilidad_2.'precio costo:'.$costo_2.'_'.$star_2.'_'.$precio_id_2.'_precios:'.$s_2.'_personass:'.$acom_s.'_preciom:'.$m_2.'_personasm:'.$acom_m.'_preciod:'.$d_2.'_personasd:'.$acom_d.'_preciot:'.$t_2.'_personast:'.$acom_t);
@@ -360,9 +376,7 @@ class PaqueteController extends Controller
                 $PrecioPaquete3->personas_d = $acom_d;
                 $PrecioPaquete3->precio_t = $t_3;
                 $PrecioPaquete3->personas_t = $acom_t;
-                $PrecioPaquete3->precio_costo=$costo_3;
                 $PrecioPaquete3->utilidad=$utilidad_3;
-                $PrecioPaquete3->precio_venta=$pventa3;
                 $PrecioPaquete3->estado=1;
                 $PrecioPaquete3->save();
             }
@@ -377,9 +391,7 @@ class PaqueteController extends Controller
                 $PrecioPaquete4->personas_d = $acom_d;
                 $PrecioPaquete4->precio_t = $t_4;
                 $PrecioPaquete4->personas_t = $acom_t;
-                $PrecioPaquete4->precio_costo=$costo_4;
                 $PrecioPaquete4->utilidad=$utilidad_4;
-                $PrecioPaquete4->precio_venta=$pventa4;
                 $PrecioPaquete4->estado=1;
                 $PrecioPaquete4->save();
             }
@@ -394,9 +406,7 @@ class PaqueteController extends Controller
                 $PrecioPaquete5->personas_d = $acom_d;
                 $PrecioPaquete5->precio_t = $t_5;
                 $PrecioPaquete5->personas_t = $acom_t;
-                $PrecioPaquete5->precio_costo=$costo_5;
                 $PrecioPaquete5->utilidad=$utilidad_5;
-                $PrecioPaquete5->precio_venta=$pventa5;
                 $PrecioPaquete5->estado=1;
                 $PrecioPaquete5->save();
             }

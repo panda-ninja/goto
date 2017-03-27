@@ -375,13 +375,23 @@ Route::group(['middleware'=>'admin'],function(){
         'uses' => 'PaqueteController@editar_paquete_itinerario_obs',
         'as' => 'editar_paquete_itinerario_obs_path',
     ]);
-
-
+    Route::post('/editar_paquete_itinerario_serv', [
+        'uses' => 'PaqueteController@editar_paquete_itinerario_serv',
+        'as' => 'editar_paquete_itinerario_serv_path',
+    ]);
+    Route::post('/guardar_itinerario_servicio', [
+        'uses' => 'ItineraryController@guardar_itinerario_servicio',
+        'as' => 'guardar_itinerario_servicio_path',
+    ]);
 
 
     Route::post('/borrar_paquete_itinerario', [
         'uses' => 'ItineraryController@borrar_itinerario',
         'as' => 'borrar_paquete_itinerario_path',
+    ]);
+    Route::post('/borrar_orden_itinerario', [
+        'uses' => 'ItineraryController@borrar_itinerario_orden',
+        'as' => 'borrar_orden_itinerario_path',
     ]);
     Route::post('/proposals', [
         'uses' => 'PaqueteController@guardar_precios_proposal',

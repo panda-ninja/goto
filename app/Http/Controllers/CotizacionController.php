@@ -11,6 +11,7 @@ use GotoPeru\DestinoCotizacion;
 use GotoPeru\DestinoPaqueteCotizacion;
 use GotoPeru\ItinerarioCotizacion;
 use GotoPeru\ItinerarioOrden;
+use GotoPeru\OrdenModelo;
 use GotoPeru\PaqueteCotizacion;
 use GotoPeru\PDestino;
 use GotoPeru\PrecioPaquete;
@@ -173,8 +174,11 @@ class CotizacionController extends Controller
 
         $paquete = PaqueteCotizacion::with('precio_paquetes','destinos','itinerario_cotizaciones.ordenes')->get()->where('id',$paquete_id);
         $destinos=DestinoModelo::get();
-//        dd($paquete);
-        return view('configurar-itinerario',['cotizaciones'=>$cotizacion_,'cliente'=>$cliente_,'destinos'=>$destinos,'paquete'=>$paquete]);
+
+        $ordenes1=OrdenModelo::get();
+
+//        dd($ordenes);
+        return view('configurar-itinerario',['cotizaciones'=>$cotizacion_,'cliente'=>$cliente_,'destinos'=>$destinos,'paquete'=>$paquete,'ordenes1'=>$ordenes1]);
     }
     public function guardar_plan_cotizacion(Request $request)
     {
