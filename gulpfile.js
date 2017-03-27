@@ -26,8 +26,8 @@ elixir(function(mix) {
         'node_modules/materialize-css/js/plugins/jvectormap/jquery-jvectormap.css',
         'node_modules/materialize-css/js/plugins/chartist-js/chartist.min.css',
         'node_modules/materialize-css/js/plugins/data-tables/css/jquery.dataTables.min.css',
-        'node_modules/materialize-css/js/plugins/dropify/css/dropify.min.css'
-
+        'node_modules/materialize-css/js/plugins/dropify/css/dropify.min.css',
+        'node_modules/sweetalert/dist/sweetalert.css'
     ], 'resources/assets/css/vendors');
 
     mix.styles([
@@ -43,8 +43,8 @@ elixir(function(mix) {
         'vendors/chartist.min.css',
         'vendors/jquery.dataTables.min.css',
         'vendors/dropify.min.css',
-        'vendors/customize.css'
-
+        'vendors/customize.css',
+        'vendors/sweetalert.css'
         // 'vendors/nestable.css'
     ], 'public/css/admin-theme.css');
 
@@ -84,7 +84,7 @@ elixir(function(mix) {
 
         <!--google map-->
         'node_modules/materialize-css/js/plugins/google-map/google-map-script.js',
-
+        'node_modules/sweetalert/dist/sweetalert.min.js',
     ], 'resources/assets/js/vendors');
 
     mix.scripts([
@@ -95,7 +95,8 @@ elixir(function(mix) {
         'vendors/jquery.sticky-kit.min.js',
         'vendors/masonry.pkgd.js',
         'vendors/data-tables-script.js',
-        'vendors/jquery.dataTables.min.js'
+        'vendors/jquery.dataTables.min.js',
+
     ], 'public/js/app.js');
 
     mix.scripts([
@@ -128,6 +129,7 @@ elixir(function(mix) {
         // 'vendors/google-map-script.js',
         // 'resources/assets/js/vendors/jquery.nestable.js',
        'vendors/funciones.js',
+        'vendors/sweetalert.min.js',
     ], 'public/js/admin-app.js');
 
     mix.styles([

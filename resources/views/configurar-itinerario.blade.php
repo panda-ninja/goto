@@ -105,9 +105,39 @@
                                                         <td>{{$ordenes->nombre}}</td>
                                                         <td>{{$ordenes->precio}}</td>
                                                         <td class="right-align">
-                                                            <a href="" class="blue-text"><i class="mdi-editor-mode-edit"></i></a>
+                                                            <a href="#modal_edit_serv_{{$itinerario->id}}" class="modal-trigger blue-text "><i class="mdi-editor-mode-edit"></i></a>
                                                             <a href="" class="red-text" onclick="eliminar_servicio({{$ordenes->id}})"><i class="mdi-action-delete"></i></a>
                                                         </td>
+                                                        <!-- Modal Structure comentario-->
+                                                        <div id="modal_edit_serv_{{$itinerario->id}}" class="modal">
+                                                            <div class="modal-content">
+                                                                <form id="form_editar_itinerario_obs_{{$itinerario->id}}" name=form_editar_itinerario_obs_{{$itinerario->id}}" class="col s12"  method="post" enctype="multipart/form-data">
+                                                                    <div class="row">
+                                                                        <div class="col s12">
+                                                                            <h5 class="center">Editar Servicio</h5>
+                                                                            <div class="divider margin-bottom-20"></div>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="row">
+
+                                                                        <div class="input-field col s12">
+                                                                            <input type="number" id="precio_txt" name="precio_txt" class="" value="{{$ordenes->precio}}">
+                                                                            <label for="precio_txt" class="">Precio</label>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="row spacer-20 right">
+                                                                        <div class="col s12">
+                                                                            {{csrf_field()}}
+                                                                            <input type="hidden" name="ordene_id" id="ordene_id" value="{{$ordenes->id}}">
+                                                                            <a class="btn waves-effect waves-light" onclick="enviar_serv({{$ordenes->id}})" name="action_itinerario_serv" id="action_itinerario_serv_{{$ordenes->id}}">Agregar
+                                                                                <i class="mdi-content-send right"></i>
+                                                                            </a>
+                                                                        </div>
+                                                                    </div>
+                                                                </form>
+                                                            </div>
+
+                                                        </div>
                                                     </tr>
                                                 @endforeach
                                                 <tr>
@@ -116,6 +146,7 @@
                                                 </tr>
                                                 </tbody>
                                             </table>
+
                                         </div>
 
                                         <div class="col s6 ">
@@ -123,7 +154,7 @@
                                                 <b>Comentarios u observaciones</b>
                                                 {{--<a href="#modal_add_com" class="modal-trigger green-text "><i class="mdi-content-add-box"></i></a>--}}
                                                 <a href="#modal_edit_com_{{$itinerario->id}}" class="modal-trigger blue-text "><i class="mdi-editor-mode-edit"></i></a>
-                                                <a href="" class="red-text"><i class="mdi-action-delete"></i></a>
+                                                <a class="hide" href="" class="red-text"><i class="mdi-action-delete"></i></a>
                                             </p>
                                             <div class="divider margin-bottom-20"></div>
                                             <p class="no-margin" id="observaciones_iti_{{$itinerario->id}}">{{$itinerario->observaciones}}</p>
