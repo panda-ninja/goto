@@ -498,10 +498,6 @@ class CotizacionController extends Controller
             ->sortByDesc('fecha');
 
 
-        $clienteCotizacion = ClienteCotizacion::with('cliente')->get()
-            ->where('cotizaciones_id', $id)
-            ->sortByDesc('estado');
-
         return view('admin.proposals', ['cotizaciones'=>$cotizaciones, 'cliente'=>$cliente]);
     }
 
@@ -515,5 +511,13 @@ class CotizacionController extends Controller
         $cotizacion->save();
 
         return redirect()->route('admin_proposals_path', $idcliente)->with('success','actualizado');
+    }
+
+    public function pdf_proposal($id)
+    {
+//        return view("pdf-proposal");
+        $paquete = PaqueteCotizacion::with('precio_paquetes')->get()->where('id', $id);
+        $pdf = \PDF::loadView('pdf-proposal', ['paquete'=>$paquete])->setPaper('a4')->setWarnings(true);
+        return $pdf->download('proposals_'.$id.'.pdf');
     }
 }

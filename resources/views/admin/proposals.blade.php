@@ -9,7 +9,7 @@
                     <img class="activator" src="{{asset("images/user-profile-bg.jpg")}}" alt="user background">
                 </div>
                 <figure class="card-profile-image">
-                    <img src="{{asset("images/avatar.jpg")}}" alt="profile image" class="circle z-depth-2 responsive-img activator">
+                    <img src="{{ Gravatar::src($cliente->email), 100}}" alt="{{$cliente->nombres}} {{$cliente->apellidos}}" class="circle z-depth-2 responsive-img activator">
                 </figure>
                 <div class="card-content">
                     <div class="row">
@@ -38,16 +38,16 @@
                 </div>
                 <div class="card-reveal">
                     <p>
-                        <span class="card-title grey-text text-darken-4">Roger Waters <i class="mdi-navigation-close right"></i></span>
-                        <span><i class="mdi-action-perm-identity cyan-text text-darken-2"></i> Project Manager</span>
+                        <span class="card-title grey-text text-darken-4">{{$cliente->nombres}} <i class="mdi-navigation-close right"></i></span>
+                        <span><i class="mdi-action-perm-identity cyan-text text-darken-2"></i> Cliente</span>
                     </p>
 
-                    <p>I am a very simple card. I am good at containing small bits of information. I am convenient because I require little markup to use effectively.</p>
+                    {{--<p>I am a very simple card. I am good at containing small bits of information. I am convenient because I require little markup to use effectively.</p>--}}
 
-                    <p><i class="mdi-action-perm-phone-msg cyan-text text-darken-2"></i> +1 (612) 222 8989</p>
-                    <p><i class="mdi-communication-email cyan-text text-darken-2"></i> mail@domain.com</p>
-                    <p><i class="mdi-social-cake cyan-text text-darken-2"></i> 18th June 1990</p>
-                    <p><i class="mdi-device-airplanemode-on cyan-text text-darken-2"></i> BAR - AUS</p>
+                    <p><i class="mdi-action-perm-phone-msg cyan-text text-darken-2"></i> {{$cliente->telefono}}</p>
+                    <p><i class="mdi-communication-email cyan-text text-darken-2"></i> {{$cliente->email}}</p>
+                    <p><i class="mdi-social-cake cyan-text text-darken-2"></i> {{$cliente->fechanacimiento}}</p>
+                    <p><i class="mdi-device-airplanemode-on cyan-text text-darken-2"></i> {{$cliente->nacionalidad}}</p>
                 </div>
             </div>
         </div>
@@ -72,6 +72,7 @@
 
                 <tbody>
                 @foreach($cotizaciones as $cotizacion)
+                    @php $i = 1; @endphp
                     @foreach($cotizacion->cliente_cotizaciones as $cliente_cotizacion)
                         @if($cliente_cotizacion)
                             {{--@if($cliente_cotizacion->posibilidad <= 25)--}}
@@ -80,9 +81,26 @@
                             {{--@if($cliente_cotizacion->posibilidad > 25 and )--}}
                                 {{--@php $bg_color =  "red lighten-5"; @endphp--}}
                             {{--@endif--}}
-
-                            <tr class="red lighten-5">
-                                <td>1</td>
+                            @php
+                                if($cotizacion->posibilidad <= 25){
+                                    $bgcolor = "red lighten-5";
+                                    $color_txt = "red-text";
+                                }
+                                if($cotizacion->posibilidad > 25 and $cotizacion->posibilidad <= 50){
+                                    $bgcolor = "orange lighten-5";
+                                    $color_txt = "orange-text";
+                                }
+                                if($cotizacion->posibilidad > 50 and $cotizacion->posibilidad <= 75){
+                                    $bgcolor = "blue lighten-5";
+                                    $color_txt = "blue-text";
+                                }
+                                if($cotizacion->posibilidad > 75 and $cotizacion->posibilidad <= 100){
+                                    $bgcolor = "green lighten-5";
+                                    $color_txt = "green-text";
+                                }
+                            @endphp
+                            <tr class="{{$bgcolor}}">
+                                <td>{{$i++}}</td>
                                 <td class="center">{{$cotizacion->nropersonas}}</td>
                                 <td class="center">{{$cotizacion->fecha}}</td>
                                 <td>
@@ -95,9 +113,11 @@
                                             <th></th>
                                         </tr>
                                         </thead>
+                                        @php $s = "A"; @endphp
                                         @foreach($cotizacion->paquete_cotizaciones as $paquete_cotizacion)
                                             <tr>
-                                                <td><b>Propuesta A:</b> <a href="#paquete_resumen_{{$paquete_cotizacion->id}}" class="modal-trigger blue-text">{{$paquete_cotizacion->titulo}}</a></td>
+                                                <td><b>Propuesta {{$s++ . PHP_EOL}}:</b> <a href="#paquete_resumen_{{$paquete_cotizacion->id}}" class="modal-trigger blue-text">{{ucwords(strtolower($paquete_cotizacion->titulo))}}</a></td>
+                                                <td class="right-align"><a href="{{route('view_proposal_pdf_path', $paquete_cotizacion->id)}}"><i>pdf</i></a></td>
 
                                                 <!-- Modal Structure itinerario-->
                                                 <div id="paquete_resumen_{{$paquete_cotizacion->id}}" class="modal">
@@ -241,11 +261,55 @@
                                                                                 </div>
                                                                                 <div class="col s3 right-align">
                                                                                     @php
-                                                                                        $precio_s = $precio_paquete2->precio_s;
+                                                                                        $precio_s = (($precio_paquete2->precio_s * $precio_paquete2->personas_s)* 1) * ($paquete_cotizacion->duracion - 1);
                                                                                     @endphp
-                                                                                    {{$precio_s}}$
+                                                                                    {{number_format($precio_s, 2, '.', '')}}$
                                                                                 </div>
                                                                             </div>
+                                                                            <div class="row">
+                                                                                <div class="col s9">
+                                                                                    <b>Precio costo <i class="text-12">(servicios)</i>:</b>
+                                                                                </div>
+                                                                                <div class="col s3 right-align">
+                                                                                    {{number_format($total, 2, '.', '')}}$
+                                                                                </div>
+                                                                            </div>
+                                                                            <div class="row">
+                                                                                <div class="col s9">
+                                                                                    <b>Precio Costo Total:</b>
+                                                                                </div>
+                                                                                <div class="col s3 right-align">
+                                                                                    <div class="divider"></div>
+                                                                                    <b>
+                                                                                        @php
+                                                                                            $total_costo = $precio_s + $total;
+                                                                                        @endphp
+                                                                                        {{number_format($total_costo, 2, '.', '')}}$
+                                                                                    </b>
+                                                                                </div>
+                                                                            </div>
+                                                                            <div class="row green lighten-4">
+                                                                                <div class="col s9">
+                                                                                    <b>Precio Venta ({{$precio_paquete2->utilidad}}%):</b>
+                                                                                </div>
+                                                                                <div class="col s3 right-align">
+                                                                                    <div class="divider"></div>
+                                                                                    <b>
+                                                                                        @php
+                                                                                            $total_utilidad = $total_costo + ($total_costo * (($precio_paquete2->utilidad)/100));
+                                                                                        @endphp
+                                                                                        {{number_format($total_utilidad, 2, '.', '')}}$
+                                                                                    </b>
+                                                                                </div>
+                                                                            </div>
+                                                                            <div class="row grey lighten-4">
+                                                                                <div class="col s12">
+                                                                                    <p class="text-11 no-margin"><i>{{$precio_paquete2->personas_s}} habitaciones con acomodacion simple, total de pasajeros {{$precio_paquete2->personas_s * 1}}, precio por persona ${{$precio_paquete2->precio_s}}, numero de dias en hotel {{$paquete_cotizacion->duracion - 1}}</i></p>
+                                                                                </div>
+                                                                            </div>
+
+                                                                            <div class="divider margin-bottom-20"></div>
+
                                                                         @else
                                                                             @php
                                                                                 $precio_s = 0;
@@ -258,11 +322,55 @@
                                                                                 </div>
                                                                                 <div class="col s3 right-align">
                                                                                     @php
-                                                                                        $precio_d = $precio_paquete2->precio_d;
+                                                                                        $precio_d = (($precio_paquete2->precio_d * $precio_paquete2->personas_d)* 2) * ($paquete_cotizacion->duracion - 1);
                                                                                     @endphp
-                                                                                    {{$precio_d}}$
+                                                                                    {{number_format($precio_d, 2, '.', '')}}$
                                                                                 </div>
                                                                             </div>
+                                                                            <div class="row">
+                                                                                <div class="col s9">
+                                                                                    <b>Precio costo <i class="text-12">(servicios)</i>:</b>
+                                                                                </div>
+                                                                                <div class="col s3 right-align">
+                                                                                    {{number_format($total, 2, '.', '')}}$
+                                                                                </div>
+                                                                            </div>
+                                                                            <div class="row">
+                                                                                <div class="col s9">
+                                                                                    <b>Precio Costo Total:</b>
+                                                                                </div>
+                                                                                <div class="col s3 right-align">
+                                                                                    <div class="divider"></div>
+                                                                                    <b>
+                                                                                        @php
+                                                                                            $total_costo = $precio_d + $total;
+                                                                                        @endphp
+                                                                                        {{number_format($total_costo, 2, '.', '')}}$
+                                                                                    </b>
+                                                                                </div>
+                                                                            </div>
+                                                                            <div class="row green lighten-4">
+                                                                                <div class="col s9">
+                                                                                    <b>Precio Venta ({{$precio_paquete2->utilidad}}%):</b>
+                                                                                </div>
+                                                                                <div class="col s3 right-align">
+                                                                                    <div class="divider"></div>
+                                                                                    <b>
+                                                                                        @php
+                                                                                            $total_utilidad = $total_costo + ($total_costo * (($precio_paquete2->utilidad)/100));
+                                                                                        @endphp
+                                                                                        {{number_format($total_utilidad, 2, '.', '')}}$
+                                                                                    </b>
+                                                                                </div>
+                                                                            </div>
+
+                                                                            <div class="row grey lighten-4">
+                                                                                <div class="col s12">
+                                                                                    <p class="text-11 no-margin"><i>{{$precio_paquete2->personas_d}} habitaciones con acomodacion doble, total de pasajeros {{$precio_paquete2->personas_d * 2}}, precio por persona ${{$precio_paquete2->precio_d}}, numero de dias en hotel {{$paquete_cotizacion->duracion - 1}}</i></p>
+                                                                                </div>
+                                                                            </div>
+
+                                                                            <div class="divider margin-bottom-20"></div>
                                                                         @else
                                                                             @php
                                                                                 $precio_d = 0;
@@ -275,11 +383,54 @@
                                                                                 </div>
                                                                                 <div class="col s3 right-align">
                                                                                     @php
-                                                                                        $precio_m = $precio_paquete2->precio_m;
+                                                                                        $precio_m = (($precio_paquete2->precio_m * $precio_paquete2->personas_m)* 2) * ($paquete_cotizacion->duracion - 1);
                                                                                     @endphp
-                                                                                    {{$precio_m}}$
+                                                                                    {{number_format($precio_m, 2, '.', '')}}$
                                                                                 </div>
                                                                             </div>
+                                                                            <div class="row">
+                                                                                <div class="col s9">
+                                                                                    <b>Precio costo <i class="text-12">(servicios)</i>:</b>
+                                                                                </div>
+                                                                                <div class="col s3 right-align">
+                                                                                    {{number_format($total, 2, '.', '')}}$
+                                                                                </div>
+                                                                            </div>
+                                                                            <div class="row">
+                                                                                <div class="col s9">
+                                                                                    <b>Precio Costo Total:</b>
+                                                                                </div>
+                                                                                <div class="col s3 right-align">
+                                                                                    <div class="divider"></div>
+                                                                                    <b>
+                                                                                        @php
+                                                                                            $total_costo = $precio_m + $total;
+                                                                                        @endphp
+                                                                                        {{number_format($total_costo, 2, '.', '')}}$
+                                                                                    </b>
+                                                                                </div>
+                                                                            </div>
+                                                                            <div class="row green lighten-4 margin-bottom-20">
+                                                                                <div class="col s9">
+                                                                                    <b>Precio Venta ({{$precio_paquete2->utilidad}}%):</b>
+                                                                                </div>
+                                                                                <div class="col s3 right-align">
+                                                                                    <div class="divider"></div>
+                                                                                    <b>
+                                                                                        @php
+                                                                                            $total_utilidad = $total_costo + ($total_costo * (($precio_paquete2->utilidad)/100));
+                                                                                        @endphp
+                                                                                        {{number_format($total_utilidad, 2, '.', '')}}$
+                                                                                    </b>
+                                                                                </div>
+                                                                            </div>
+                                                                            <div class="row grey lighten-4">
+                                                                                <div class="col s12">
+                                                                                    <p class="text-11 no-margin"><i>{{$precio_paquete2->personas_m}} habitaciones con acomodacion matrimonial, total de pasajeros {{$precio_paquete2->personas_m * 2}}, precio por persona ${{$precio_paquete2->precio_m}}, numero de dias en hotel {{$paquete_cotizacion->duracion - 1}}</i></p>
+                                                                                </div>
+                                                                            </div>
+
+                                                                            <div class="divider margin-bottom-20"></div>
                                                                         @else
                                                                             @php
                                                                                 $precio_m = 0;
@@ -292,9 +443,50 @@
                                                                                 </div>
                                                                                 <div class="col s3 right-align">
                                                                                     @php
-                                                                                        $precio_t = $precio_paquete2->precio_t;
+                                                                                        $precio_t = (($precio_paquete2->precio_t * $precio_paquete2->personas_t)* 3) * ($paquete_cotizacion->duracion - 1);
                                                                                     @endphp
-                                                                                    {{$precio_t}}$
+                                                                                    {{number_format($precio_t, 2, '.', '')}}$
+                                                                                </div>
+                                                                            </div>
+                                                                            <div class="row">
+                                                                                <div class="col s9">
+                                                                                    <b>Precio costo <i class="text-12">(servicios)</i>:</b>
+                                                                                </div>
+                                                                                <div class="col s3 right-align">
+                                                                                    {{number_format($total, 2, '.', '')}}$
+                                                                                </div>
+                                                                            </div>
+                                                                            <div class="row">
+                                                                                <div class="col s9">
+                                                                                    <b>Precio Costo Total:</b>
+                                                                                </div>
+                                                                                <div class="col s3 right-align">
+                                                                                    <div class="divider"></div>
+                                                                                    <b>
+                                                                                        @php
+                                                                                            $total_costo = $precio_t + $total;
+                                                                                        @endphp
+                                                                                        {{number_format($total_costo, 2, '.', '')}}$
+                                                                                    </b>
+                                                                                </div>
+                                                                            </div>
+                                                                            <div class="row green lighten-4">
+                                                                                <div class="col s9">
+                                                                                    <b>Precio Venta ({{$precio_paquete2->utilidad}}%):</b>
+                                                                                </div>
+                                                                                <div class="col s3 right-align">
+                                                                                    <div class="divider"></div>
+                                                                                    <b>
+                                                                                        @php
+                                                                                            $total_utilidad = $total_costo + ($total_costo * (($precio_paquete2->utilidad)/100));
+                                                                                        @endphp
+                                                                                        {{number_format($total_utilidad, 2, '.', '')}}$
+                                                                                    </b>
+                                                                                </div>
+                                                                            </div>
+                                                                            <div class="row grey lighten-4">
+                                                                                <div class="col s12">
+                                                                                    <p class="text-11 no-margin"><i>{{$precio_paquete2->personas_t}} habitaciones con acomodacion triple, total de pasajeros {{$precio_paquete2->personas_t * 3}}, precio por persona ${{$precio_paquete2->precio_t}}, numero de dias en hotel {{$paquete_cotizacion->duracion - 1}}</i></p>
                                                                                 </div>
                                                                             </div>
                                                                         @else
@@ -304,42 +496,8 @@
                                                                         @endif
 
 
-                                                                        <div class="row">
-                                                                            <div class="col s9">
-                                                                                <b>Precio costo <i class="text-12">(servicios)</i>:</b>
-                                                                            </div>
-                                                                            <div class="col s3 right-align">
-                                                                                {{number_format($total, 2, '.', '')}}$
-                                                                            </div>
-                                                                        </div>
-                                                                        <div class="row">
-                                                                            <div class="col s9">
-                                                                                <b class="text-18">Precio Costo Total:</b>
-                                                                            </div>
-                                                                            <div class="col s3 right-align">
-                                                                                <div class="divider"></div>
-                                                                                <b class="text-18">
-                                                                                    @php
-                                                                                        $total_costo = $precio_s + $precio_d + $precio_m + $precio_t + $total;
-                                                                                    @endphp
-                                                                                    {{number_format($total_costo, 2, '.', '')}}$
-                                                                                </b>
-                                                                            </div>
-                                                                        </div>
-                                                                        <div class="row green lighten-4">
-                                                                            <div class="col s9">
-                                                                                <b class="text-18">Precio Venta ({{$precio_paquete2->utilidad}}%):</b>
-                                                                            </div>
-                                                                            <div class="col s3 right-align">
-                                                                                <div class="divider"></div>
-                                                                                <b class="text-18">
-                                                                                    @php
-                                                                                        $total_utilidad = $total_costo + ($total_costo * (($precio_paquete2->utilidad)/100));
-                                                                                    @endphp
-                                                                                    {{number_format($total_utilidad, 2, '.', '')}}$
-                                                                                </b>
-                                                                            </div>
-                                                                        </div>
+
+
                                                                     </div>
                                                                 @endif
                                                             @endforeach
@@ -357,7 +515,7 @@
                                         @endforeach
                                     </table>
                                 </td>
-                                <td class="center"><a href="#posibilidad" class="modal-trigger text-30 red-text"><b><u>{{$cotizacion->posibilidad}}%</u></b></a></td>
+                                <td class="center"><a href="#posibilidad" class="modal-trigger text-30 {{$color_txt}}"><b><u>{{$cotizacion->posibilidad}}%</u></b></a></td>
 
                                 <!-- Modal Structure posibilidad-->
                                 <div id="posibilidad" class="modal">
@@ -367,7 +525,7 @@
                                             <input type="hidden" name="_method" value="patch">
                                             <div class="row">
                                                 <div class="col s12">
-                                                    <h5 class="center">Agregarsdsdsd porcentaje de posibilidad de cierre</h5>
+                                                    <h5 class="center">Agregar porcentaje de posibilidad de cierre</h5>
                                                     <div class="divider margin-bottom-20"></div>
                                                 </div>
                                             </div>
