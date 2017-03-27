@@ -353,6 +353,12 @@ Route::group(['middleware'=>'admin'],function(){
         'as' => 'admin_proposals_path',
     ]);
 
+
+    Route::get('admin/pdf-proposal/{id}', [
+        'uses' => 'CotizacionController@pdf_proposal',
+        'as' => 'view_proposal_pdf_path',
+    ]);
+
     Route::post('editar_paquete_cotizacion', [
         'uses' => 'PaqueteController@editar_pqt',
         'as' => 'editar_paquete_cotizacion_path',
