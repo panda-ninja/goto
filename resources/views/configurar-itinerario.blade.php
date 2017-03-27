@@ -26,7 +26,8 @@
     <div class="row margin-top-10">
         <div class="col s12 center">
             <div class="col s12">
-                <h4 class="center">GTP500: CUSCO CITY TOUR PRIVATE
+                <h4 class="center">{{$paquete_->codigo}}: {{$paquete_->titulo}}
+                    <input type="hidden" id="duracion_m" value="{{$paquete_->duracion-1}}">
                     <a href="#packages_modal" class="modal-trigger tooltipped right text-12" data-position="bottom" data-delay="50" data-tooltip="Editar datos basicos del paquete"><i class="mdi-editor-mode-edit valign text-18 left"></i></a>
                 </h4>
 

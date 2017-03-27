@@ -335,37 +335,37 @@ function pasartotal(acom){
         // utilidad(acom);
     }
 
-    var $t2=(parseInt($('#t_2').val())+$itinerario)*parseInt($('#acom_t').val());
-    var $d2=(parseInt($('#d_2').val())+$itinerario)*parseInt($('#acom_d').val());
-    var $m2=(parseInt($('#m_2').val())+$itinerario)*parseInt($('#acom_m').val());
-    var $s2=(parseInt($('#s_2').val())+$itinerario)*parseInt($('#acom_s').val());
+    var $t2=((parseInt($('#duracion_m').val())*parseInt($('#t_2').val()))+$itinerario);
+    var $d2=((parseInt($('#duracion_m').val())*parseInt($('#d_2').val()))+$itinerario);
+    var $m2=((parseInt($('#duracion_m').val())*parseInt($('#m_2').val()))+$itinerario);
+    var $s2=((parseInt($('#duracion_m').val())*parseInt($('#s_2').val()))+$itinerario);
     var $tu2=($t2+($t2*(parseInt($('#utilidad_2').val())*0.01)));
     var $mu2=($m2+($m2*(parseInt($('#utilidad_2').val())*0.01)));
     var $du2=($d2+($d2*(parseInt($('#utilidad_2').val())*0.01)));
     var $su2=($s2+($s2*(parseInt($('#utilidad_2').val())*0.01)));
 
-    var $t3=(parseInt($('#t_3').val())+$itinerario)*parseInt($('#acom_t').val());
-    var $d3=(parseInt($('#d_3').val())+$itinerario)*parseInt($('#acom_d').val());
-    var $m3=(parseInt($('#m_3').val())+$itinerario)*parseInt($('#acom_m').val());
-    var $s3=(parseInt($('#s_3').val())+$itinerario)*parseInt($('#acom_s').val());
+    var $t3=((parseInt($('#duracion_m').val())*parseInt($('#t_3').val()))+$itinerario);
+    var $d3=((parseInt($('#duracion_m').val())*parseInt($('#d_3').val()))+$itinerario);
+    var $m3=((parseInt($('#duracion_m').val())*parseInt($('#m_3').val()))+$itinerario);
+    var $s3=((parseInt($('#duracion_m').val())*parseInt($('#s_3').val()))+$itinerario);
     var $tu3=($t3+($t3*(parseInt($('#utilidad_3').val())*0.01)));
     var $mu3=($m3+($m3*(parseInt($('#utilidad_3').val())*0.01)));
     var $du3=($d3+($d3*(parseInt($('#utilidad_3').val())*0.01)));
     var $su3=($s3+($s3*(parseInt($('#utilidad_3').val())*0.01)));
     //
-    var $t4=(parseInt($('#t_4').val())+$itinerario)*parseInt($('#acom_t').val());
-    var $d4=(parseInt($('#d_4').val())+$itinerario)*parseInt($('#acom_d').val());
-    var $m4=(parseInt($('#m_4').val())+$itinerario)*parseInt($('#acom_m').val());
-    var $s4=(parseInt($('#s_4').val())+$itinerario)*parseInt($('#acom_s').val());
+    var $t4=((parseInt($('#duracion_m').val())*parseInt($('#t_4').val()))+$itinerario);
+    var $d4=((parseInt($('#duracion_m').val())*parseInt($('#d_4').val()))+$itinerario);
+    var $m4=((parseInt($('#duracion_m').val())*parseInt($('#m_4').val()))+$itinerario);
+    var $s4=((parseInt($('#duracion_m').val())*parseInt($('#s_4').val()))+$itinerario);
     var $tu4=($t4+($t4*(parseInt($('#utilidad_4').val())*0.01)));
     var $mu4=($m4+($m4*(parseInt($('#utilidad_4').val())*0.01)));
     var $du4=($d4+($d4*(parseInt($('#utilidad_4').val())*0.01)));
     var $su4=($s4+($s4*(parseInt($('#utilidad_4').val())*0.01)));
     //
-    var $t5=(parseInt($('#t_5').val())+$itinerario)*parseInt($('#acom_t').val());
-    var $d5=(parseInt($('#d_5').val())+$itinerario)*parseInt($('#acom_d').val());
-    var $m5=(parseInt($('#m_5').val())+$itinerario)*parseInt($('#acom_m').val());
-    var $s5=(parseInt($('#s_5').val())+$itinerario)*parseInt($('#acom_s').val());
+    var $t5=((parseInt($('#duracion_m').val())*parseInt($('#t_5').val()))+$itinerario);
+    var $d5=((parseInt($('#duracion_m').val())*parseInt($('#d_5').val()))+$itinerario);
+    var $m5=((parseInt($('#duracion_m').val())*parseInt($('#m_5').val()))+$itinerario);
+    var $s5=((parseInt($('#duracion_m').val())*parseInt($('#s_5').val()))+$itinerario);
     var $tu5=($t5+($t5*(parseInt($('#utilidad_5').val())*0.01)));
     var $mu5=($m5+($m5*(parseInt($('#utilidad_5').val())*0.01)));
     var $du5=($d5+($d5*(parseInt($('#utilidad_5').val())*0.01)));
