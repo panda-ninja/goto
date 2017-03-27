@@ -331,3 +331,6 @@ body{
 .services-box:nth-child(odd){
     background-color: #fff;
 }
+.color-grey{
+    color: red;
+}

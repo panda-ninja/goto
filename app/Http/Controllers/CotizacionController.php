@@ -520,8 +520,12 @@ class CotizacionController extends Controller
     public function pdf_proposal($id)
     {
 //        return view("pdf-proposal");
-        $paquete = PaqueteCotizacion::with('precio_paquetes')->get()->where('id', $id);
-        $pdf = \PDF::loadView('pdf-proposal', ['paquete'=>$paquete])->setPaper('a4')->setWarnings(true);
-        return $pdf->download('proposals_'.$id.'.pdf');
+        $paquetes = PaqueteCotizacion::with('precio_paquetes')->get()->where('id', $id);
+        foreach ($paquetes as $paquetes2){
+            $paquete = PaqueteCotizacion::with('precio_paquetes')->get()->where('id', $id);
+            $cotizacion = Cotizacion::where('id',$paquetes2->cotizaciones_id)->get();
+            $pdf = \PDF::loadView('pdf-proposal', ['paquete'=>$paquete, 'cotizacion'=>$cotizacion])->setPaper('a4')->setWarnings(true);
+            return $pdf->download('proposals_'.$id.'.pdf');
+        }
     }
 }

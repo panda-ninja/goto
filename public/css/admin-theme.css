@@ -14320,6 +14320,9 @@ body{
 .services-box:nth-child(odd){
     background-color: #fff;
 }
+.color-grey{
+    color: red;
+}
 
 body.stop-scrolling {
   height: 100%;
