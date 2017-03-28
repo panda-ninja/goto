@@ -24003,7 +24003,7 @@ function pasartotal(acom){
     $('#preciov_5_m').html(parseInt($mu5));
     $('#preciov_5_s').html(parseInt($su5));
 }
-function enviarPlan(id){
+function enviarPlan(id,cliente_id){
     swal({   title: "Mensaje del sistema",
             text: "Desea enviar el plan",
             type: "warning",
@@ -24020,7 +24020,7 @@ function enviarPlan(id){
                         'X-CSRF-TOKEN': $('[name="_token"]').val()
                     }
                 });
-                $.post($url+'/enviar_plan', {id: id}, function(markup) {
+                $.post($url+'/enviar_plan', {id: id,cliente_id:cliente_id}, function(markup) {
                     if(markup=='1'){
                         $('#send'+id).removeClass('green-text');
                         $('#send'+id).addClass('grey-text');

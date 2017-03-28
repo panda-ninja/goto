@@ -397,6 +397,10 @@ Route::group(['middleware'=>'admin'],function(){
         'uses' => 'PaqueteController@guardar_precios_proposal',
         'as' => 'paquete_proposals_path',
     ]);
+    Route::post('agregar-itinerario', [
+        'uses' => 'ItineraryController@agregar_itineraios',
+        'as' => 'guardar_itinerario_path',
+    ]);
 
     Route::patch('admin/proposals/{id}/posibilidad', [
         'uses' => 'CotizacionController@posibilidad',

@@ -383,70 +383,46 @@
                         <!-- Modal Structure itinerario lista-->
                         <div id="modal_add_itinerary" class="modal">
                             <div class="modal-content">
-                                <div class="row">
-                                    <div class="col s12">
-                                        <h5 class="center">Agregar itinerario</h5>
-                                        <div class="divider margin-bottom-20"></div>
+                                <form id="action_agregar_itis_{{$itinerario->id}}" action="{{route('guardar_itinerario_path')}}" name="action_agregar_itis_{{$itinerario->id}}" method="post" enctype="multipart/form-data">
+                                    <div class="row">
+                                        <div class="col s12">
+                                            <h5 class="center">Agregar itinerario</h5>
+                                            <div class="divider margin-bottom-20"></div>
+                                        </div>
                                     </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col s6">
-                                        <table class="table-services">
-                                            <tr>
-                                                <td>
-                                                    <input type="checkbox" class="filled-in" id="filled-in-2" />
-                                                    <label for="filled-in-2">Cusco arrival and city tour </label>
-                                                </td>
-                                                <td>(200.00)</td>
-                                                <td>
-                                                    <a href="" class="tooltipped" data-position="top" data-delay="50" data-tooltip="transfer($50.00), tours($20.00), ticket($30.00)"><i class="mdi-action-visibility"></i></a>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>
-                                                    <input type="checkbox" class="filled-in" id="filled-in-2" />
-                                                    <label for="filled-in-2">Checkout time </label>
-                                                </td>
-                                                <td>(200.00)</td>
-                                                <td>
-                                                    <a href="" class="tooltipped" data-position="top" data-delay="50" data-tooltip="transfer($50.00), tours($20.00), ticket($30.00)"><i class="mdi-action-visibility"></i></a>
-                                                </td>
-                                            </tr>
-                                        </table>
+                                    <div class="row">
+                                        @foreach($itinerarios as $itinerario)
+                                            <?php
+                                            $st=0;
+                                            $ordentxt='';
+                                            ?>
+                                            @foreach($itinerario->orden_cotizaciones as $orden)
+                                                <?php
+                                                $st+=$orden->precio;
+                                                $ordentxt.=$orden->nombre.'($'.$orden->precio.'), ';
+                                                ?>
+                                            @endforeach
+                                            <?php
+                                                $ordentxt=substr($ordentxt,0,strlen($ordentxt)-2);
+                                            ?>
+                                            <div class="col s6">
+                                                <input type="checkbox" name="itinerario[]" id="itinerario_{{$itinerario->id}}" value="{{$itinerario->id}}" class="filled-in"/>
+                                                <label for="itinerario_{{$itinerario->id}}">{{$itinerario->titulo}} ({{$st}}.00) <a href="" class="tooltipped" data-position="top" data-delay="50" data-tooltip="{{$ordentxt}}"><i class="mdi-action-visibility"></i></a></label>
+                                            </div>
+                                        @endforeach
                                     </div>
-                                    <div class="col s6">
-                                        <table class="table-services">
-                                            <tr>
-                                                <td>
-                                                    <input type="checkbox" class="filled-in" id="filled-in-2" />
-                                                    <label for="filled-in-2">Machu picchu tour </label>
-                                                </td>
-                                                <td>(200.00)</td>
-                                                <td>
-                                                    <a href="" class="tooltipped" data-position="top" data-delay="50" data-tooltip="transfer($50.00), tours($20.00), ticket($30.00), entrances($100)"><i class="mdi-action-visibility"></i></a>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>
-                                                    <input type="checkbox" class="filled-in" id="filled-in-2" />
-                                                    <label for="filled-in-2">River rafting </label>
-                                                </td>
-                                                <td>(200.00)</td>
-                                                <td>
-                                                    <a href="" class="tooltipped" data-position="top" data-delay="50" data-tooltip="transfer($50.00), tours($50.00), ticket($100.00)"><i class="mdi-action-visibility"></i></a>
-                                                </td>
-                                            </tr>
-                                        </table>
-                                    </div>
+                                    <div class="row spacer-20 right">
+                                        <div class="col s12">
+                                            <input type="text" name="cotizacion_id" id="cotizacion_id" value="{{$cotizaciones->id}}">
+                                            <input type="text" name="cliente_id" id="cliente_id" value="{{$cliente->id}}">
+                                            <input type="text" name="paquete_id" id="paquete_id" value="{{$paquete_->id}}">
 
-                                </div>
-                                <div class="row spacer-20 right">
-                                    <div class="col s12">
-                                        <button class="btn waves-effect waves-light" type="submit" name="action">Agregar servicios
-                                            <i class="mdi-content-send right"></i>
-                                        </button>
+                                            <button class="btn waves-effect waves-light" type="submit" name="action">Agregar itinerario
+                                                <i class="mdi-content-send right"></i>
+                                            </button>
+                                        </div>
                                     </div>
-                                </div>
+                                </form>
                             </div>
 
                         </div>
