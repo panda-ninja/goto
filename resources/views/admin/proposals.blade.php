@@ -107,22 +107,17 @@
                                     <table class="bordered">
                                         <thead>
                                         <tr>
-                                            <th>Propuestas</th>
+                                            <th colspan="2">Propuestas</th>
                                             {{--<th class="right-align">Costo ($)</th>--}}
                                             {{--<th class="right-align">Venta ($)</th>--}}
-                                            <th>
+                                            <th class="right-align">
                                                 <form class="formValidate" id="formValidate" method="post" action="{{route('cotizacion_crear_plann_path')}}">
-                                                    <div class="row">
-                                                        <div class="input-field col s12">
-                                                            {{csrf_field()}}
-                                                            <input type="hidden"  name="nropasajeros" id="nropasajeros_{{$cotizacion->id}}" value="{{$cotizacion->nropersonas}}">
-                                                            <input id="email3_{{$cotizacion->id}}" type="hidden" name="email3" value="{{$cliente->email}}">
-                                                            <input name="fecha" id="fecha_{{$cotizacion->id}}" type="hidden" value="{{$cotizacion->fecha}}">
-                                                            <input name="cotizacion_id" id="cotizacion_{{$cotizacion->id}}" type="hidden" value="{{$cotizacion->id}}">
-                                                            <button type="submit" class="waves-effect waves-light  btn"><i class="left mdi-av-queue"></i> propuestas</button>
-
-                                                        </div>
-                                                    </div>
+                                                    {{csrf_field()}}
+                                                    <input type="hidden"  name="nropasajeros" id="nropasajeros_{{$cotizacion->id}}" value="{{$cotizacion->nropersonas}}">
+                                                    <input id="email3_{{$cotizacion->id}}" type="hidden" name="email3" value="{{$cliente->email}}">
+                                                    <input name="fecha" id="fecha_{{$cotizacion->id}}" type="hidden" value="{{$cotizacion->fecha}}">
+                                                    <input name="cotizacion_id" id="cotizacion_{{$cotizacion->id}}" type="hidden" value="{{$cotizacion->id}}">
+                                                    <button type="submit" class="waves-effect waves-light btn"><i class="left mdi-av-queue"></i> propuestas</button>
                                                 </form>
 
                                             </th>

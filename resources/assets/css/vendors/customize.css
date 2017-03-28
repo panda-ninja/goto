@@ -129,8 +129,14 @@ body{
     background: rgba(255,255,255,.9);
 }
 /*//font size*/
-  .text-10{
-      font-size: 10px;
+.text-8{
+    font-size: 8px !important;
+}
+.text-9{
+    font-size: 9px !important;
+}
+.text-10{
+      font-size: 10px !important;
   }
 .text-11{
     font-size: 11px;
@@ -333,4 +339,7 @@ body{
 }
 .color-grey{
     color: red;
+}
+.table-services-config td{
+    padding: 0 5px !important;
 }
