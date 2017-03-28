@@ -509,7 +509,7 @@
                                                 {{--<td class="right-align">{{$paquete_cotizacion->precio_venta}}</td>--}}
                                                 <td class="right-align">
                                                     <a href="" class="text-22 red-text"><i class="mdi-action-delete"></i></a>
-                                                    <a id="send{{$paquete_cotizacion->id}}" href="#!" class="text-22" onclick="enviarPlan({{$paquete_cotizacion->id}})"><i class="mdi-content-send"></i></a>
+                                                    <a id="send{{$paquete_cotizacion->id}}" href="#!" class="text-22" onclick="enviarPlan({{$paquete_cotizacion->id}},{{$cliente->id}})"><i class="mdi-content-send"></i></a>
                                                 </td>
                                             </tr>
                                         @endforeach

@@ -3,6 +3,7 @@
 namespace GotoPeru\Http\Controllers;
 
 use GotoPeru\ItinerarioCotizacion;
+use GotoPeru\ItinerarioModelo;
 use GotoPeru\ItinerarioOrden;
 use GotoPeru\ItinerarioPersonalizado;
 use GotoPeru\PaqueteCotizacion;
@@ -107,7 +108,47 @@ class ItineraryController extends Controller
             return '0_0';
         }
     }
+    public function agregar_itineraios(Request $request){
+        try {
+            $itinerarios = $request->input('itinerario');
+            $paquete_id = $request->input('paquete_id');
 
+            foreach ($itinerarios as $itinerario) {
+                $iti = ItinerarioModelo::with('ordenes')->where('id', $itinerario)->get();
+                foreach ($iti as $item) {
+                    $new_iti = ItinerarioCotizacion();
+                    $new_iti->titulo = $item->titulo;
+                    $new_iti->descripcion = $item->descripcion;
+                    $new_iti->dias = $item->dias;
+                    $new_iti->fecha = $item->fecha;
+                    $new_iti->imagen = $item->imagen;
+                    $new_iti->estado = $item->estado;
+                    $new_iti->paquete_cotizaciones_id = $paquete_id;
+                    $new_iti->save();
+                    foreach ($item->ordenes as $orden) {
+                        $new_orden = new ItinerarioOrden();
+                        $new_orden->nombre = $orden->nombre;
+                        $new_orden->observacion = $orden->observacion;
+                        $new_orden->precio = $orden->precio;
+                        $new_orden->itineraio_cotizaciones_id = $new_iti->id;
+                    }
+                }
+            }
+            $cotizacion_id = $request->input('cotizacion_id');
+            $cliente_id = $request->input('cliente_id');
+            $cliente_ = Cliente::FindOrFail($cliente_id);
+            $cotizacion_ = Cotizacion::FindOrFail($cotizacion_id);
 
+            $paquete = PaqueteCotizacion::with('precio_paquetes','destinos','itinerario_cotizaciones.ordenes')->get()->where('id',$paquete_id);
+            $destinos=DestinoModelo::get();
 
+            $ordenes1=OrdenModelo::get();
+
+            $itinerarios=ItinerarioModelo::with('ordenes')->get();
+            return view('configurar-itinerario',['cotizaciones'=>$cotizacion_,'cliente'=>$cliente_,'destinos'=>$destinos,'paquete'=>$paquete,'ordenes1'=>$ordenes1,'itinerarios'=>$itinerarios]);
+        }
+        catch (\Exception $e) {
+            return '0_0';
+        }
+    }
 }

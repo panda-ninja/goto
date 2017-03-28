@@ -10,6 +10,7 @@ use GotoPeru\Cotizacion;
 use GotoPeru\DestinoCotizacion;
 use GotoPeru\DestinoPaqueteCotizacion;
 use GotoPeru\ItinerarioCotizacion;
+use GotoPeru\ItinerarioModelo;
 use GotoPeru\ItinerarioOrden;
 use GotoPeru\OrdenModelo;
 use GotoPeru\PaqueteCotizacion;
@@ -177,8 +178,11 @@ class CotizacionController extends Controller
 
         $ordenes1=OrdenModelo::get();
 
+        $itinerarios=ItinerarioModelo::with('ordenes')->get();
+
+
 //        dd($ordenes);
-        return view('configurar-itinerario',['cotizaciones'=>$cotizacion_,'cliente'=>$cliente_,'destinos'=>$destinos,'paquete'=>$paquete,'ordenes1'=>$ordenes1]);
+        return view('configurar-itinerario',['cotizaciones'=>$cotizacion_,'cliente'=>$cliente_,'destinos'=>$destinos,'paquete'=>$paquete,'ordenes1'=>$ordenes1,'itinerarios'=>$itinerarios]);
     }
     public function guardar_plan_cotizacion(Request $request)
     {
@@ -424,9 +428,34 @@ class CotizacionController extends Controller
     public function enviar_plan_cotizacion(Request $request)
     {
         $id=$request->input('id');
+        $cliente_id=$request->input('cliente_id');
+        $cliente=Cliente::findOrFail($cliente_id);
         $paqueteCotizacion = PaqueteCotizacion::findOrFail($id);
         $paqueteCotizacion->estado=1;
         $paqueteCotizacion->save();
+
+        $paquetes = PaqueteCotizacion::with('precio_paquetes')->get()->where('id', $id);
+        foreach ($paquetes as $paquetes2){
+            $paquete = PaqueteCotizacion::with('precio_paquetes')->get()->where('id', $id);
+            $cotizacion = Cotizacion::where('id',$paquetes2->cotizaciones_id)->get();
+            $pdf = \PDF::loadView('pdf-proposal', ['paquete'=>$paquete, 'cotizacion'=>$cotizacion])->setPaper('a4')->setWarnings(true)->save('pdf/proposal_'.$id.'.pdf');
+//            return $pdf->download('proposals_'.$id.'.pdf');
+        }
+        Mail::send(['html' => 'proposal_notification'], ['name' => $cliente->nombres, 'apellido' => $cliente->apellidos], function ($messaje) use ($cliente,$id) {
+            $messaje->to($cliente->email, $cliente->nombres)
+                ->subject('Inquire GotoPeru')
+                ->attach('pdf/proposal_'.$id.'.pdf')
+                ->from('info@gotoperu.com', 'GotoPeru');
+        });
+            \FILE::delete('pdf/proposal_'.$id.'.pdf');
+
+//        Mail::send(['html' => 'confirm_notifications_admin'], ['name' => $idCliente->nombres, 'apellido' => $idCliente->apellidos, 'codigo' => $paquete->codigo, 'titulo' => $paquete->titulo], function ($messaje) use ($from) {
+//            $messaje->to($from, 'GotoPeru')
+//                ->subject('Inquire GotoPeru.Travel')
+//                /*->attach('ruta')*/
+//                ->from('info@gotoperu.com', 'GotoPeru.Travel');
+//        });
+
         return 1;
     }
 
