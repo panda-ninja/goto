@@ -581,4 +581,13 @@ class CotizacionController extends Controller
 //            \File::delete('pdf/proposals_'.$id.'.pdf');
         }
     }
+
+    public function current_packages()
+    {
+        $cotizaciones = Cotizacion::with(['paquete_cotizaciones','cliente_cotizaciones.cliente'])
+            ->get()
+            ->sortByDesc('fecha');
+//       return dd($cotizaciones);
+        return view('admin.current-package', ['cotizaciones'=>$cotizaciones]);
+    }
 }

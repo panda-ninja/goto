@@ -357,6 +357,11 @@ Route::group(['middleware'=>'admin'],function(){
         'as' => 'admin_proposals_path',
     ]);
 
+    Route::get('admin/current-packages', [
+        'uses' => 'CotizacionController@current_packages',
+        'as' => 'admin_current_packages_path',
+    ]);
+
 
     Route::get('admin/pdf-proposal/{id}', [
         'uses' => 'CotizacionController@pdf_proposal',

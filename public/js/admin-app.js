@@ -23601,8 +23601,8 @@ _fnDrawHead:ea,_fnDraw:M,_fnReDraw:N,_fnAddOptionsHtml:mb,_fnDetectHeader:da,_fn
 _fnScrollDraw:Y,_fnApplyToChildren:G,_fnCalculateColumnWidths:Ga,_fnThrottle:ua,_fnConvertToWidth:Db,_fnScrollingWidthAdjust:Fb,_fnGetWidestNode:Eb,_fnGetMaxLenString:Gb,_fnStringToCss:s,_fnScrollBarWidth:Hb,_fnSortFlatten:T,_fnSort:lb,_fnSortAria:Jb,_fnSortListener:Ua,_fnSortAttachListener:Oa,_fnSortingClasses:xa,_fnSortData:Ib,_fnSaveState:ya,_fnLoadState:Kb,_fnSettingsFromNode:za,_fnLog:R,_fnMap:E,_fnBindAction:Va,_fnCallbackReg:z,_fnCallbackFire:w,_fnLengthOverflow:Sa,_fnRenderer:Pa,_fnDataSource:B,
 _fnRowAttributes:Ma,_fnCalculateEnd:function(){}});h.fn.dataTable=m;h.fn.dataTableSettings=m.settings;h.fn.dataTableExt=m.ext;h.fn.DataTable=function(a){return h(this).dataTable(a).api()};h.each(m,function(a,b){h.fn.DataTable[a]=b});return h.fn.dataTable};"function"===typeof define&&define.amd?define("datatables",["jquery"],O):"object"===typeof exports?module.exports=O(require("jquery")):jQuery&&!jQuery.fn.dataTable&&O(jQuery)})(window,document);
 
-var $url='';
-// var $url='http://localhost/goto2/public';
+// var $url='';
+var $url='http://localhost/goto2/public';
 
 $(document).ready(function(){
 //cuando hagamos submit al formulario con id id_del_formulario
@@ -23822,23 +23822,40 @@ function ordenar_lista_dias(){
     $('#totalItinerario').val($total_itineartio);
 }
 function borrarItinerario(pos,id){
-    $.ajaxSetup({
-        headers: {
-            'X-CSRF-TOKEN': $('[name="_token"]').val()
-        }
-    });
-    $.post($url+'/borrar_paquete_itinerario', {id: id}, function(data) {
-        if(data==1){
-            $('#Itine_'+pos).remove();
-            console.log('correcto: '+data);
-            poner_valor();
-        }
-        else{
+    swal({   title: "Mensaje del sistema",
+            text: "Desea borrar este itinerario",
+            type: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#388E3C",
+            confirmButtonText: "Si, borrar ahora!",
+            cancelButtonText: "No, cancelar por favor!",
+            closeOnConfirm: false,
+            closeOnCancel: false },
+        function(isConfirm){
+            if (isConfirm) {
+                $.ajaxSetup({
+                    headers: {
+                        'X-CSRF-TOKEN': $('[name="_token"]').val()
+                    }
+                });
+                $.post($url+'/borrar_paquete_itinerario', {id: id}, function(data) {
+                    if(data==1){
+                        $('#Itine_'+pos).remove();
+                        console.log('correcto: '+data);
+                        poner_valor();
+                        pasartotal(0);
+                    }
+                    else{
 
-        }
-    }).fail(function (data) {
+                    }
+                }).fail(function (data) {
 
-    });
+                });
+                swal("Borrado!", "El servicio fue borrado:)", "success");   }
+            else {
+                swal("Cancelado", "no se pudo borrar el servicio :(", "error");   }
+        });
+
 }
 
 function acomodacion(){
@@ -24112,6 +24129,22 @@ function agregar_servicio(pos){
             // console.log('error: '+data);
             // $("#response_tinerario").html(data);
         }
+    }).fail(function (data) {
+        console.log('eroorr: '+data);
+    });
+}
+
+function nuevoPlan(id){
+    var nropasajeros=$('#nropasajeros_'+id).val();
+    var email3=$('#email3_'+id).val();
+    var fecha=$('#fecha_'+id).val();
+    $.ajaxSetup({
+        headers: {
+            'X-CSRF-TOKEN': $('[name="_token"]').val()
+        }
+    });
+    $.post($url+'/guardar_itinerario_servicio',{nropasajeros:nropasajeros,email3:email3,fecha:fecha}, function(data) {
+
     }).fail(function (data) {
         console.log('eroorr: '+data);
     });

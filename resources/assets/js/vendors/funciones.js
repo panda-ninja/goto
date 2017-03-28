@@ -1,5 +1,5 @@
-var $url='';
-// var $url='http://localhost/goto2/public';
+// var $url='';
+var $url='http://localhost/goto2/public';
 
 $(document).ready(function(){
 //cuando hagamos submit al formulario con id id_del_formulario
@@ -219,23 +219,40 @@ function ordenar_lista_dias(){
     $('#totalItinerario').val($total_itineartio);
 }
 function borrarItinerario(pos,id){
-    $.ajaxSetup({
-        headers: {
-            'X-CSRF-TOKEN': $('[name="_token"]').val()
-        }
-    });
-    $.post($url+'/borrar_paquete_itinerario', {id: id}, function(data) {
-        if(data==1){
-            $('#Itine_'+pos).remove();
-            console.log('correcto: '+data);
-            poner_valor();
-        }
-        else{
+    swal({   title: "Mensaje del sistema",
+            text: "Desea borrar este itinerario",
+            type: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#388E3C",
+            confirmButtonText: "Si, borrar ahora!",
+            cancelButtonText: "No, cancelar por favor!",
+            closeOnConfirm: false,
+            closeOnCancel: false },
+        function(isConfirm){
+            if (isConfirm) {
+                $.ajaxSetup({
+                    headers: {
+                        'X-CSRF-TOKEN': $('[name="_token"]').val()
+                    }
+                });
+                $.post($url+'/borrar_paquete_itinerario', {id: id}, function(data) {
+                    if(data==1){
+                        $('#Itine_'+pos).remove();
+                        console.log('correcto: '+data);
+                        poner_valor();
+                        pasartotal(0);
+                    }
+                    else{
 
-        }
-    }).fail(function (data) {
+                    }
+                }).fail(function (data) {
 
-    });
+                });
+                swal("Borrado!", "El servicio fue borrado:)", "success");   }
+            else {
+                swal("Cancelado", "no se pudo borrar el servicio :(", "error");   }
+        });
+
 }
 
 function acomodacion(){

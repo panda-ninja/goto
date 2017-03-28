@@ -161,7 +161,7 @@
                                 <ul>
                                     <li><a href="{{route("admin_client_path")}}">New</a>
                                     </li>
-                                    <li><a href="#">Current</a>
+                                    <li><a href="{{route('admin_current_packages_path')}}">Current</a>
                                     </li>
                                 </ul>
                             </div>

@@ -135,7 +135,7 @@
                                                                 <div class="row">
 
                                                                     <div class="input-field col s12">
-                                                                        <input type="number" id="precio_txt_" name="precio_txt" class="" value="{{$ordenes->precio}}">
+                                                                        <input type="number" id="precio_txt_" name="precio_txt" class="" value="">
                                                                         <label for="precio_txt" class="">Precio</label>
                                                                     </div>
                                                                 </div>
