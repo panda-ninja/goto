@@ -17,6 +17,8 @@ use GotoPeru\PDestino;
 use GotoPeru\PrecioPaquete;
 use GotoPeru\DestinoModelo;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\App;
+
 //use Symfony\Component\HttpKernel\Client;
 
 class CotizacionController extends Controller
@@ -519,6 +521,9 @@ class CotizacionController extends Controller
 
     public function pdf_proposal($id)
     {
+//        $pdf = App::make('dompdf.wrapper');
+//        $pdf->loadHTML('<h1>Test</h1>')->save('pdf/myfile.pdf');
+//        return $pdf->stream();
 //        return view("pdf-proposal");
         $paquetes = PaqueteCotizacion::with('precio_paquetes')->get()->where('id', $id);
         foreach ($paquetes as $paquetes2){
@@ -526,6 +531,7 @@ class CotizacionController extends Controller
             $cotizacion = Cotizacion::where('id',$paquetes2->cotizaciones_id)->get();
             $pdf = \PDF::loadView('pdf-proposal', ['paquete'=>$paquete, 'cotizacion'=>$cotizacion])->setPaper('a4')->setWarnings(true);
             return $pdf->download('proposals_'.$id.'.pdf');
+//            \File::delete('pdf/proposals_'.$id.'.pdf');
         }
     }
 }
