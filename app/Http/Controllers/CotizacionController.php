@@ -19,6 +19,7 @@ use GotoPeru\PrecioPaquete;
 use GotoPeru\DestinoModelo;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\App;
+use Illuminate\Support\Facades\Mail;
 
 //use Symfony\Component\HttpKernel\Client;
 
@@ -443,13 +444,15 @@ class CotizacionController extends Controller
             $pdf = \PDF::loadView('pdf-proposal', ['paquete'=>$paquete, 'cotizacion'=>$cotizacion])->setPaper('a4')->setWarnings(true)->save('pdf/proposal_'.$id.'.pdf');
 //            return $pdf->download('proposals_'.$id.'.pdf');
         }
-        Mail::send(['html' => 'proposal_notification'], ['name' => $cliente->nombres, 'apellido' => $cliente->apellidos], function ($messaje) use ($cliente,$id) {
+        Mail::send(['html' => 'proposal-notification'], ['name' => $cliente->nombres, 'apellido' => $cliente->apellidos], function ($messaje) use ($cliente,$id) {
             $messaje->to($cliente->email, $cliente->nombres)
                 ->subject('Inquire GotoPeru')
                 ->attach('pdf/proposal_'.$id.'.pdf')
                 ->from('info@gotoperu.com', 'GotoPeru');
         });
-            \FILE::delete('pdf/proposal_'.$id.'.pdf');
+
+            \File::delete('pdf/proposal_'.$id.'.pdf');
+
 
 //        Mail::send(['html' => 'confirm_notifications_admin'], ['name' => $idCliente->nombres, 'apellido' => $idCliente->apellidos, 'codigo' => $paquete->codigo, 'titulo' => $paquete->titulo], function ($messaje) use ($from) {
 //            $messaje->to($from, 'GotoPeru')

@@ -24015,6 +24015,9 @@ function enviarPlan(id,cliente_id){
             closeOnCancel: false },
         function(isConfirm){
             if (isConfirm) {
+                $('#send'+id).html('<div class="progress">'+
+                    '<div class="indeterminate"></div>'+
+                    '</div>');
                 $.ajaxSetup({
                     headers: {
                         'X-CSRF-TOKEN': $('[name="_token"]').val()
@@ -24022,6 +24025,7 @@ function enviarPlan(id,cliente_id){
                 });
                 $.post($url+'/enviar_plan', {id: id,cliente_id:cliente_id}, function(markup) {
                     if(markup=='1'){
+                        $('#send'+id).html('<i class="mdi-content-send"></i>');
                         $('#send'+id).removeClass('green-text');
                         $('#send'+id).addClass('grey-text');
                         // $.getScript('https://code.jquery.com/ui/1.12.1/jquery-ui.js');
