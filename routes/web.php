@@ -325,6 +325,10 @@ Route::group(['middleware'=>'admin'],function(){
         'uses' => 'CotizacionController@guardar_cotizacion_paso1',
         'as' => 'cotizacion_crear_plan_path',
     ]);
+    Route::post('cotizacion-crear-plann', [
+        'uses' => 'CotizacionController@guardar_cotizacion_pason',
+        'as' => 'cotizacion_crear_plann_path',
+    ]);
     Route::post('/cotizacion-crear-itinerario', [
         'uses' => 'CotizacionController@guardar_cotizacion_paso2',
         'as' => 'cotizacion_guardar_plan_path',

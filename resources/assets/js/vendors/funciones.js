@@ -509,3 +509,19 @@ function agregar_servicio(pos){
         console.log('eroorr: '+data);
     });
 }
+
+function nuevoPlan(id){
+    var nropasajeros=$('#nropasajeros_'+id).val();
+    var email3=$('#email3_'+id).val();
+    var fecha=$('#fecha_'+id).val();
+    $.ajaxSetup({
+        headers: {
+            'X-CSRF-TOKEN': $('[name="_token"]').val()
+        }
+    });
+    $.post($url+'/guardar_itinerario_servicio',{nropasajeros:nropasajeros,email3:email3,fecha:fecha}, function(data) {
+
+    }).fail(function (data) {
+        console.log('eroorr: '+data);
+    });
+}

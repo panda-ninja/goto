@@ -110,7 +110,24 @@
                                             <th>Propuestas</th>
                                             {{--<th class="right-align">Costo ($)</th>--}}
                                             {{--<th class="right-align">Venta ($)</th>--}}
-                                            <th></th>
+                                            <th>
+                                                <form class="formValidate" id="formValidate" method="post" action="{{route('cotizacion_crear_plann_path')}}">
+                                                    <div class="row">
+                                                        <div class="input-field col s12">
+                                                            {{csrf_field()}}
+                                                            <input type="hidden"  name="nropasajeros" id="nropasajeros_{{$cotizacion->id}}" value="{{$cotizacion->nropersonas}}">
+                                                            <input id="email3_{{$cotizacion->id}}" type="hidden" name="email3" value="{{$cliente->email}}">
+                                                            <input name="fecha" id="fecha_{{$cotizacion->id}}" type="hidden" value="{{$cotizacion->fecha}}">
+                                                            <input name="cotizacion_id" id="cotizacion_{{$cotizacion->id}}" type="hidden" value="{{$cotizacion->id}}">
+                                                            <button class="btn waves-effect waves-light right submit" type="submit" name="action">Agregar
+                                                                <i class="mdi-device-now-widgetsright"></i>
+                                                            </button>
+
+                                                        </div>
+                                                    </div>
+                                                </form>
+
+                                            </th>
                                         </tr>
                                         </thead>
                                         @php $s = "A"; @endphp

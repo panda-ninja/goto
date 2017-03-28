@@ -26,15 +26,17 @@ class CotizacionController extends Controller
     {
         return view('profile');
     }
+
     public function nuevacotizacion()
     {
         return view('cotizacion');
     }
+
     public function cotizacion()
     {
-        $estadoMensaje=1;
-        $mensaje='';
-        return view('cotizacion',['cotizacion_id'=>'0','cliente'=>'','estadoMensaje'=>$estadoMensaje,'mensaje'=>$mensaje]);
+        $estadoMensaje = 1;
+        $mensaje = '';
+        return view('cotizacion', ['cotizacion_id' => '0', 'cliente' => '', 'estadoMensaje' => $estadoMensaje, 'mensaje' => $mensaje]);
 
     }
 
@@ -45,41 +47,53 @@ class CotizacionController extends Controller
      */
     public function guardar_pre_cotizacion(Request $request)
     {
-        $email=$request->input('email3');
-        $nropasa=$request->input('nropasajeros');
-        $fecha=$request->input('fecha');
+        $email = $request->input('email3');
+        $nropasa = $request->input('nropasajeros');
+        $fecha = $request->input('fecha');
 //     return $email.'/'.$nropasa.'/'.$fecha;
 //        dd($request);
-        try{
-            $cliente = Cliente::where('email',$email)->get();
+        try {
+            $cliente = Cliente::where('email', $email)->get();
             //dd($cliente);
-            if(count($cliente)>0){
+            if (count($cliente) > 0) {
 
 //                return $cliente[0]->nombres;
-                $cotizacion=new Cotizacion();
-                $cotizacion->nropersonas=$nropasa;
-                $cotizacion->fecha=$fecha;
-                $cotizacion->estado="6";/*-- 6=pre cotizacion*/
+                $cotizacion = new Cotizacion();
+                $cotizacion->nropersonas = $nropasa;
+                $cotizacion->fecha = $fecha;
+                $cotizacion->estado = "6";/*-- 6=pre cotizacion*/
 //                $cotizacion->clientes_id=$cliente[0]->id;
-                $cotizacion->users_id=auth()->guard('admin')->user()->id;
+                $cotizacion->users_id = auth()->guard('admin')->user()->id;
                 $cotizacion->save();
-                $clienteCotizacion=new ClienteCotizacion();
-                $clienteCotizacion->cotizaciones_id=$cotizacion->id;
-                $clienteCotizacion->clientes_id=$cliente[0]->id;
-                $clienteCotizacion->estado='1';
+                $clienteCotizacion = new ClienteCotizacion();
+                $clienteCotizacion->cotizaciones_id = $cotizacion->id;
+                $clienteCotizacion->clientes_id = $cliente[0]->id;
+                $clienteCotizacion->estado = '1';
                 $clienteCotizacion->save();
                 return $cotizacion->id;
-            }
-            else{
+            } else {
                 return '0';
             }
 //           return  $cliente->id;
 //            return count($cliente);
-        }
-        catch(Exception $e){
+        } catch (Exception $e) {
             return $e;
         }
     }
+    public function guardar_cotizacion_pason(Request $request)
+    {
+        $email=$request->input('email3');
+        $nropasa=$request->input('nropasajeros');
+        $fecha= $request->input('fecha');
+        $fecha_nombre= $request->input('fecha');
+        $cotizacion_id=$request->input('cotizacion_id');
+        $cliente = Cliente::where('email',$email)->get();
+        $estadoMensaje=1;
+        $mensaje='';
+        return view('configurar_paquete',['cotizacion_id'=>$cotizacion_id,'nropasajeros'=>$nropasa,'fecha'=>$fecha,'fecha_nombre'=>$fecha_nombre,'cliente'=>$cliente,'estadoMensaje'=>$estadoMensaje,'mensaje'=>$mensaje]);
+
+    }
+
     public function guardar_cotizacion_paso1(Request $request)
     {
         $email=$request->input('email3');
@@ -178,9 +192,8 @@ class CotizacionController extends Controller
 
         $ordenes1=OrdenModelo::get();
 
-        $itinerarios=ItinerarioModelo::with('ordenes')->get();
-
-
+        $itinerarios=ItinerarioModelo::with('ordenes.orden_modelo')->get();
+//        return dd($itinerarios);
 //        dd($ordenes);
         return view('configurar-itinerario',['cotizaciones'=>$cotizacion_,'cliente'=>$cliente_,'destinos'=>$destinos,'paquete'=>$paquete,'ordenes1'=>$ordenes1,'itinerarios'=>$itinerarios]);
     }

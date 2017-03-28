@@ -2,10 +2,14 @@
 
 namespace GotoPeru\Http\Controllers;
 
+use GotoPeru\Cliente;
+use GotoPeru\Cotizacion;
+use GotoPeru\DestinoModelo;
 use GotoPeru\ItinerarioCotizacion;
 use GotoPeru\ItinerarioModelo;
 use GotoPeru\ItinerarioOrden;
 use GotoPeru\ItinerarioPersonalizado;
+use GotoPeru\OrdenModelo;
 use GotoPeru\PaqueteCotizacion;
 use GotoPeru\TItinerario;
 use Illuminate\Http\Request;
@@ -116,20 +120,19 @@ class ItineraryController extends Controller
             foreach ($itinerarios as $itinerario) {
                 $iti = ItinerarioModelo::with('ordenes')->where('id', $itinerario)->get();
                 foreach ($iti as $item) {
-                    $new_iti = ItinerarioCotizacion();
+                    $new_iti =new ItinerarioCotizacion();
                     $new_iti->titulo = $item->titulo;
                     $new_iti->descripcion = $item->descripcion;
-                    $new_iti->dias = $item->dias;
-                    $new_iti->fecha = $item->fecha;
+                    $new_iti->dias = $item->dia;
                     $new_iti->imagen = $item->imagen;
                     $new_iti->estado = $item->estado;
                     $new_iti->paquete_cotizaciones_id = $paquete_id;
                     $new_iti->save();
                     foreach ($item->ordenes as $orden) {
                         $new_orden = new ItinerarioOrden();
-                        $new_orden->nombre = $orden->nombre;
-                        $new_orden->observacion = $orden->observacion;
-                        $new_orden->precio = $orden->precio;
+                        $new_orden->nombre = $orden->orden_modelo->nombre;
+                        $new_orden->observacion = $orden->orden_modelo->observacion;
+                        $new_orden->precio = $orden->orden_modelo->precio;
                         $new_orden->itineraio_cotizaciones_id = $new_iti->id;
                     }
                 }

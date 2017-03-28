@@ -396,10 +396,10 @@
                                             $st=0;
                                             $ordentxt='';
                                             ?>
-                                            @foreach($itinerario->orden_cotizaciones as $orden)
+                                            @foreach($itinerario->ordenes as $orden)
                                                 <?php
-                                                $st+=$orden->precio;
-                                                $ordentxt.=$orden->nombre.'($'.$orden->precio.'), ';
+                                                $st+=$orden->orden_modelo->precio;
+                                                $ordentxt.=$orden->orden_modelo->nombre.'($'.$orden->orden_modelo->precio.'), ';
                                                 ?>
                                             @endforeach
                                             <?php
@@ -413,10 +413,10 @@
                                     </div>
                                     <div class="row spacer-20 right">
                                         <div class="col s12">
-                                            <input type="text" name="cotizacion_id" id="cotizacion_id" value="{{$cotizaciones->id}}">
-                                            <input type="text" name="cliente_id" id="cliente_id" value="{{$cliente->id}}">
-                                            <input type="text" name="paquete_id" id="paquete_id" value="{{$paquete_->id}}">
-
+                                            <input type="hidden" name="cotizacion_id" id="cotizacion_id" value="{{$cotizaciones->id}}">
+                                            <input type="hidden" name="cliente_id" id="cliente_id" value="{{$cliente->id}}">
+                                            <input type="hidden" name="paquete_id" id="paquete_id" value="{{$paquete_->id}}">
+                                            {{csrf_field()}}
                                             <button class="btn waves-effect waves-light" type="submit" name="action">Agregar itinerario
                                                 <i class="mdi-content-send right"></i>
                                             </button>
@@ -591,7 +591,7 @@
                         <tbody>
                         <tr>
                             <td>
-                                <input type="number" name="acom_t" id="acom_t" min="0" max="1" value="0" onchange="pasartotal(0)">
+                                <input type="number" name="acom_t" id="acom_t" min="0"  value="0" onchange="pasartotal(0)">
                             </td>
                             <th><i class="mdi-maps-local-hotel text-30"></i><i class="mdi-maps-local-hotel text-30"></i><i class="mdi-maps-local-hotel text-30"></i></th>
                             <td>
@@ -609,7 +609,7 @@
                         </tr>
                         <tr>
                             <td>
-                                <input type="number" name="acom_d" id="acom_d" min="0" max="1" value="0" onchange="pasartotal(0)">
+                                <input type="number" name="acom_d" id="acom_d" min="0"  value="0" onchange="pasartotal(0)">
                             </td>
                             <th><i class="mdi-maps-local-hotel text-30"></i><i class="mdi-maps-local-hotel text-30"></i></th>
                             <td>
@@ -627,7 +627,7 @@
                         </tr>
                         <tr>
                             <td>
-                                <input type="number" name="acom_m" id="acom_m" min="0" max="1" value="0" onchange="pasartotal(0)">
+                                <input type="number" name="acom_m" id="acom_m" min="0"  value="0" onchange="pasartotal(0)">
                             </td>
                             <th><i class="mdi-maps-local-hotel text-30"></i><i class="mdi-maps-local-hotel text-30"></i></th>
                             <td>
@@ -645,7 +645,7 @@
                         </tr>
                         <tr>
                             <td>
-                                <input type="number" name="acom_s" id="acom_s" min="0" max="1" value="0" onchange="pasartotal(0)">
+                                <input type="number" name="acom_s" id="acom_s" min="0"  value="0" onchange="pasartotal(0)">
                             </td>
                             <th><i class="mdi-maps-local-hotel text-30"></i></th>
                             <td>
