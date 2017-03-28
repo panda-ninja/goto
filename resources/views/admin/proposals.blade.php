@@ -119,9 +119,7 @@
                                                             <input id="email3_{{$cotizacion->id}}" type="hidden" name="email3" value="{{$cliente->email}}">
                                                             <input name="fecha" id="fecha_{{$cotizacion->id}}" type="hidden" value="{{$cotizacion->fecha}}">
                                                             <input name="cotizacion_id" id="cotizacion_{{$cotizacion->id}}" type="hidden" value="{{$cotizacion->id}}">
-                                                            <button class="btn waves-effect waves-light right submit" type="submit" name="action">Agregar
-                                                                <i class="mdi-device-now-widgetsright"></i>
-                                                            </button>
+                                                            <button type="submit" class="waves-effect waves-light  btn"><i class="left mdi-av-queue"></i> propuestas</button>
 
                                                         </div>
                                                     </div>

@@ -45,13 +45,10 @@
                 </h5>
                 <div class="divider"></div>
                 <p class="text-12">Destinos actuales del paquete</p>
-
                 @foreach($paquete_->destinos as $destino)
                     <input type="checkbox" class="filled-in" id="{{$destino->id}}" checked="checked" />
                     <label for="{{$destino->id}}" class="padding-left-5">{{$destino->destino}}</label>
                 @endforeach
-
-
             </div>
         </div>
     </div>

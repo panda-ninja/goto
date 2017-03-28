@@ -172,17 +172,19 @@ class CotizacionController extends Controller
         if(count($destino)>0){
             $antiguos_destinos=DestinoCotizacion::where('paquete_cotizaciones_id',$paquete_id)->delete();
             foreach ( $destino as $item) {
-                $buscar_destinos=PDestino::FindOrFail($item);
-                $new_destino=new DestinoCotizacion();
-                $new_destino->codigo=$buscar_destinos->codigo;
-                $new_destino->destino=$buscar_destinos->destino;
-                $new_destino->region=$buscar_destinos->region;
-                $new_destino->pais=$buscar_destinos->pais;
-                $new_destino->descripcion=$buscar_destinos->descripcion;
-                $new_destino->imagen=$buscar_destinos->imagen;
-                $new_destino->estado=$buscar_destinos->estado;
-                $new_destino->paquete_cotizaciones_id=$paquete_id;
-                $new_destino->save();
+                $buscar_destinos1=DestinoModelo::where('destino',$item)->get();
+                foreach ($buscar_destinos1 as $buscar_destinos){
+                    $new_destino=new DestinoCotizacion();
+                    $new_destino->codigo=$buscar_destinos->codigo;
+                    $new_destino->destino=$buscar_destinos->destino;
+                    $new_destino->region=$buscar_destinos->region;
+                    $new_destino->pais=$buscar_destinos->pais;
+                    $new_destino->descripcion=$buscar_destinos->descripcion;
+                    $new_destino->imagen=$buscar_destinos->imagen;
+                    $new_destino->estado=$buscar_destinos->estado;
+                    $new_destino->paquete_cotizaciones_id=$paquete_id;
+                    $new_destino->save();
+                }
             }
         }
         $cotizacion_id = $request->input('cotizacion_id');
