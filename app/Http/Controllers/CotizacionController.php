@@ -18,6 +18,9 @@ use GotoPeru\PDestino;
 use GotoPeru\PrecioPaquete;
 use GotoPeru\DestinoModelo;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\App;
+use Illuminate\Support\Facades\Mail;
+
 //use Symfony\Component\HttpKernel\Client;
 
 class CotizacionController extends Controller
@@ -454,13 +457,15 @@ class CotizacionController extends Controller
             $pdf = \PDF::loadView('pdf-proposal', ['paquete'=>$paquete, 'cotizacion'=>$cotizacion])->setPaper('a4')->setWarnings(true)->save('pdf/proposal_'.$id.'.pdf');
 //            return $pdf->download('proposals_'.$id.'.pdf');
         }
-        Mail::send(['html' => 'proposal_notification'], ['name' => $cliente->nombres, 'apellido' => $cliente->apellidos], function ($messaje) use ($cliente,$id) {
+        Mail::send(['html' => 'proposal-notification'], ['name' => $cliente->nombres, 'apellido' => $cliente->apellidos], function ($messaje) use ($cliente,$id) {
             $messaje->to($cliente->email, $cliente->nombres)
                 ->subject('Inquire GotoPeru')
                 ->attach('pdf/proposal_'.$id.'.pdf')
                 ->from('info@gotoperu.com', 'GotoPeru');
         });
-            \FILE::delete('pdf/proposal_'.$id.'.pdf');
+
+            \File::delete('pdf/proposal_'.$id.'.pdf');
+
 
 //        Mail::send(['html' => 'confirm_notifications_admin'], ['name' => $idCliente->nombres, 'apellido' => $idCliente->apellidos, 'codigo' => $paquete->codigo, 'titulo' => $paquete->titulo], function ($messaje) use ($from) {
 //            $messaje->to($from, 'GotoPeru')
@@ -561,6 +566,9 @@ class CotizacionController extends Controller
 
     public function pdf_proposal($id)
     {
+//        $pdf = App::make('dompdf.wrapper');
+//        $pdf->loadHTML('<h1>Test</h1>')->save('pdf/myfile.pdf');
+//        return $pdf->stream();
 //        return view("pdf-proposal");
         $paquetes = PaqueteCotizacion::with('precio_paquetes')->get()->where('id', $id);
         foreach ($paquetes as $paquetes2){
@@ -568,6 +576,7 @@ class CotizacionController extends Controller
             $cotizacion = Cotizacion::where('id',$paquetes2->cotizaciones_id)->get();
             $pdf = \PDF::loadView('pdf-proposal', ['paquete'=>$paquete, 'cotizacion'=>$cotizacion])->setPaper('a4')->setWarnings(true);
             return $pdf->download('proposals_'.$id.'.pdf');
+//            \File::delete('pdf/proposals_'.$id.'.pdf');
         }
     }
 }
