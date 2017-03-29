@@ -72,8 +72,8 @@
                 </thead>
 
                 <tbody>
+                @php $i = 1; @endphp
                 @foreach($cotizaciones as $cotizacion)
-                    @php $i = 1; @endphp
                     @foreach($cotizacion->cliente_cotizaciones as $cliente_cotizacion)
                         @if($cliente_cotizacion)
                             {{--@if($cliente_cotizacion->posibilidad <= 25)--}}
