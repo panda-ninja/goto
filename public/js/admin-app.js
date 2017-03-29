@@ -23769,11 +23769,12 @@ function enviar_serv(pos){
             console.log('correcto: '+data);
             // $("#response_tinerario").html('aaaa'+rpt[2]);
             // $("#titulo_iti_"+pos).html(rpt[3]);
-            $("#iti_precio_serv_"+pos).html(rpt[3]+'.00');
+            $("#iti_precio_serv_"+pos).html(rpt[3]);
             $("#action_itinerario_serv_"+pos).html('Agregar<i class="mdi-content-send right"></i>');
             $("#action_itinerario_serv_"+pos).removeClass('green');
             $("#action_itinerario_serv_"+pos).addClass('pink accent-2');
-
+            poner_valor();
+            pasartotal(0);
         }
         else{
             // $("#response_tinerario").html(rpt[2]);
@@ -24085,6 +24086,7 @@ function eliminar_servicio(id){
                         console.log('correcto: '+data);
                         recalcular_ordenes();
                         poner_valor();
+                        pasartotal(0);
                     }
                     else{
 
@@ -24101,7 +24103,7 @@ function agregar_servicio(pos){
 
     $("#action_agregar_servicio_"+pos).html('Enviando<i class="mdi-action-autorenew right"></i>');
     $("#action_agregar_servicio_"+pos).addClass('green');
-    var nombre='form_editar_itinerario_obs_'+pos;
+    var nombre='frm_agregar_servicio_'+pos;
     $.ajaxSetup({
         headers: {
             'X-CSRF-TOKEN': $('[name="_token"]').val()

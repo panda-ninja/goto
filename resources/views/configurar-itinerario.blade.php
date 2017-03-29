@@ -427,7 +427,7 @@
                         <!-- Modal Structure servicios lista-->
                         <div id="modal_add_services" class="modal">
                             <div class="modal-content">
-                                <form id="action_agregar_servicio_{{$itinerario->id}}" name="action_agregar_servicio_{{$itinerario->id}}" class="col s12" method="post" enctype="multipart/form-data">
+                                <form id="frm_agregar_servicio_{{$itinerario->id}}" name="action_agregar_servicio_{{$itinerario->id}}" class="col s12" method="post" enctype="multipart/form-data">
                                 <div class="row">
                                     <div class="col s12">
                                         <h5 class="center">Agregar servicios</h5>

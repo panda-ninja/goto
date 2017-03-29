@@ -92,13 +92,13 @@ class ItineraryController extends Controller
     {
         try {
             $nservicio = $request->input('nservicio');
-            $iti_orden_id = $request->input('iti_orden');
+//            $iti_orden_id = $request->input('iti_orden');
 
 //            return dd($titulo.'_'.$descipcion.'_'.$itinerario_id);
             foreach ($nservicio as $orden){
                 $ordenVal=explode('_',$orden);
 
-                $objeto= ItinerarioOrden();
+                $objeto=new ItinerarioOrden();
                 $objeto->nombre=$ordenVal[2];
                 $objeto->precio=$ordenVal[3];
                 $objeto->itinerario_cotizaciones_id=$ordenVal[0];
