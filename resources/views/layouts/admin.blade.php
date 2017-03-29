@@ -176,8 +176,8 @@
                                 <ul>
                                     <li><a href="{{route('cotizacion_path')}}">New</a>
                                     </li>
-                                    {{--<li><a href="{{route('cotizaciones_path')}}">Current</a>--}}
-                                    {{--</li>--}}
+                                    <li><a href="{{route('cotizaciones_path')}}">Current</a>
+                                    </li>
                                 </ul>
                             </div>
                         </li>
