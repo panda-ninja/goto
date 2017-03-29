@@ -1,12 +1,11 @@
 @extends('layouts.admin')
 
 @section('content')
-
     <div class="row margin-top-20">
         <div class="col s12">
             <div class="col s4 no-padding">
                 <div class="tab-qoutes center padding-10">
-                    <a href="{{route('quotes_path')}}" class="valign-wrapper text-darken-1">1. Dsatos basicos</a>
+                    <a href="{{route('quotes_path')}}" class="valign-wrapper text-darken-1">1. Datos basicos</a>
                 </div>
             </div>
             <div class="col s4 no-padding">
@@ -156,7 +155,7 @@
                                                         </form>
                                                     </div>
                                                 </div>
-                                                
+
                                             @foreach($itinerario->ordenes as $ordenes)
                                                 <!-- Modal Structure comentario-->
                                                     <div id="modal_edit_serv_{{$ordenes->id}}" class="modal">
