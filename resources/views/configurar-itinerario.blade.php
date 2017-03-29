@@ -105,6 +105,7 @@
                                                         <th class="border-radius-0"></th>
                                                     </tr>
                                                     </thead>
+                                                    <tbody>
                                                     @foreach($itinerario->ordenes as $ordenes)
                                                         <tr id="servicio_{{$ordenes->id}}">
                                                             <td>{{$ordenes->nombre}}</td>
@@ -135,9 +136,8 @@
                                                                         </div>
                                                                     </div>
                                                                     <div class="row">
-
                                                                         <div class="input-field col s12">
-                                                                            <input type="number" id="precio_txt_" name="precio_txt" class="" value="{{$ordenes->precio}}">
+                                                                            <input type="number" id="precio_txt_" name="precio_txt" class="" value="0">
                                                                             <label for="precio_txt" class="">Precio</label>
                                                                         </div>
                                                                     </div>
@@ -192,7 +192,6 @@
                                                     </div>
                                                 @endforeach
                                             </div>
-
                                             <div class="col s6 ">
                                                 <p class="no-margin orange-text text-darken-1">
                                                     <b>Comentarios u observaciones</b>
