@@ -105,6 +105,7 @@ elixir(function(mix) {
         'vendors/materialize2.js',
         <!--scrollbar-->
         'vendors/perfect-scrollbar.min.js',
+        'vendors/jquery.sticky-kit.min.js',
         <!-- chartjs -->
         // 'vendors/chartist.min.js',
         // 'vendors/jquery.formatter.min.js',
