@@ -68,12 +68,40 @@
 
                     </div>
                     <div class="col s12">
+                        <div id="modal_add_services" class="modal">
+                            <div class="modal-content">
+                                <form id="frm_agregar_servicio_" name="frm_agregar_servicio_" class="col s12" method="post" enctype="multipart/form-data">
+                                    <div class="row">
+                                        <div class="col s12">
+                                            <h5 class="center">Agregar servicios</h5>
+                                            <div class="divider margin-bottom-20"></div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col s12">
+                                            <div id="lista_servicios_" class="row">
+
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row spacer-20 right">
+                                        <div class="col s12">
+                                            <input type="text" name="iti_orden" id="iti_orden_" value="">
+                                            <a class="btn waves-effect waves-light" onclick="agregar_servicio()" id="action_agregar_servicio_" name="action_agregar_servicio">Agregar servicios
+                                                <i class="mdi-content-send right"></i>
+                                            </a>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
                         <div class="column lista_itinerario" onmouseup="poner_valor()">
                             <?php
                             $pos=0;
                             $totalItinerario=0;
                             ?>
-                            @foreach($paquete_->itinerario_cotizaciones as $itinerario)
+                            @foreach($paquete_->itinerario_cotizaciones->sortBy('dias') as $itinerario)
                                 <?php $precio_iti2=0?>
                                 @foreach($itinerario->ordenes as $ordenes2)
                                     <?php $precio_iti2+=$ordenes2->precio?>
@@ -84,7 +112,7 @@
                                 ?>
 
                                 <div id="Itine_{{$pos}}" class="portlet">
-                                    <div class="portlet-header">Dia <span class="pos_iti" name="posdia[]" id="pos_dia_{{$pos}}">{{$pos}}</span>: <span id="titulo_iti_{{$itinerario->id}}">{{$itinerario->titulo}}</span>
+                                    <div class="portlet-header">Dia <span class="pos_iti" name="posdia[]" id="pos_dia_{{$itinerario->dias}}">{{$itinerario->dias}}</span>: <span id="titulo_iti_{{$itinerario->id}}">{{$itinerario->titulo}}</span>
                                         <a href="#modal_edit_{{$itinerario->id}}" class="modal-trigger blue-text right"><i class="mdi-editor-mode-edit"></i></a>
                                         <a href="#!" class="red-text right" onclick="borrarItinerario({{$pos}},{{$itinerario->id}})"><i class="mdi-action-delete"></i></a>
                                         <input class="precio_itinerario" type="hidden" name="precio_itinerario[]" id="precio_itinerario_{{$pos}}" value="{{$precio_iti2}}"><span class="right grey-text">(${{$precio_iti2}})</span>
@@ -119,7 +147,7 @@
                                                     @endforeach
                                                     <tr>
                                                         <td colspan="2"></td>
-                                                        <td class="no-padding right-align"><a href="#modal_add_services" class="modal-trigger text-12 blue-text"><i>Agregar nuevo servicio +</i></a></td>
+                                                        <td class="no-padding right-align"><a href="#modal_add_services_{{$itinerario->id}}" class="modal-trigger text-12 blue-text"><i>Agregar nuevo servicio +</i></a></td>
                                                     </tr>
                                                     </tbody>
                                                 </table>
@@ -136,6 +164,7 @@
                                                                         </div>
                                                                     </div>
                                                                     <div class="row">
+
                                                                         <div class="input-field col s12">
                                                                             <input type="number" id="precio_txt_" name="precio_txt" class="" value="0">
                                                                             <label for="precio_txt" class="">Precio</label>
@@ -156,7 +185,7 @@
                                                     </div>
                                                 </div>
 
-                                            @foreach($itinerario->ordenes as $ordenes)
+                                                @foreach($itinerario->ordenes as $ordenes)
                                                 <!-- Modal Structure comentario-->
                                                     <div id="modal_edit_serv_{{$ordenes->id}}" class="modal">
                                                         <div class="modal-content">
@@ -423,57 +452,64 @@
                                             </div>
                                         </form>
                                     </div>
-
                                 </div>
 
-                                <!-- Modal Structure servicios lista-->
-                                <div id="modal_add_services" class="modal">
-                                    <div class="modal-content">
-                                        <form id="action_agregar_servicio_{{$itinerario->id}}" name="action_agregar_servicio_{{$itinerario->id}}" class="col s12" method="post" enctype="multipart/form-data">
-                                            <div class="row">
-                                                <div class="col s12">
-                                                    <h5 class="center">Agregar servicios</h5>
-                                                    <div class="divider margin-bottom-20"></div>
-                                                </div>
-                                            </div>
-                                            <div class="row">
-                                                <div class="col s12">
-                                                    <div id="lista_servicios_{{$itinerario->id}}" class="row">
-                                                        @foreach($ordenes1  as $orden1)
-                                                            <?php $estaw=0;?>
-                                                            @foreach($itinerario->ordenes as $ordenes)
-                                                                @if($orden1->nombre==$ordenes->nombre)
-                                                                    <?php $estaw=1;?>
-                                                                    <div class="col s4">
-                                                                        <input type="checkbox" name="nservicio[]" class="filled-in nservicios" id="nservicio_{{$ordenes->id}}" value="{{$itinerario->id}}_{{$orden1->id}}_{{$orden1->nombre}}_{{$orden1->precio}}" checked="checked"/>
-                                                                        <label for="nservicio_{{$ordenes->id}}">{{$ordenes->nombre}} ($ {{$ordenes->precio}})</label>
-                                                                    </div>
-                                                                @endif
-                                                            @endforeach
-                                                            @if($estaw==0)
-                                                                <div class="col s4">
-                                                                    <input type="checkbox" name="nservicio[]" class="filled-in nservicios" id="nservicio_{{$orden1->id}}" value="{{$itinerario->id}}_{{$orden1->id}}_{{$orden1->nombre}}_{{$orden1->precio}}"/>
-                                                                    <label for="nservicio_{{$orden1->id}}">{{$orden1->nombre}} ($ {{$orden1->precio}})</label>
-                                                                </div>
-                                                            @endif
-                                                        @endforeach
 
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="row spacer-20 right">
-                                                <div class="col s12">
-                                                    <input type="text" name="iti_orden" id="iti_orden_{{$itinerario->id}}" value="{{$itinerario->id}}">
-                                                    <a class="btn waves-effect waves-light" onclick="agregar_servicio({{$itinerario->id}})" id="action_agregar_servicio_{{$itinerario->id}}" name="action_agregar_servicio">Agregar servicios
-                                                        <i class="mdi-content-send right"></i>
-                                                    </a>
-                                                </div>
-                                            </div>
-                                        </form>
-                                    </div>
-                                </div>
                             @endforeach
                         </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col s12">
+                        @foreach($paquete_->itinerario_cotizaciones->sortBy('dias') as $itinerario)
+                        <!-- Modal Structure servicios lista-->
+                        <div id="modal_add_services_{{$itinerario->id}}" class="modal">
+                            <div class="modal-content">
+                                <form id="frm_agregar_servicio_{{$itinerario->id}}" name="frm_agregar_servicio_{{$itinerario->id}}" class="col s12" method="post" enctype="multipart/form-data">
+                                    <div class="row">
+                                        <div class="col s12">
+                                            <h5 class="center">Agregar servicios</h5>
+                                            <div class="divider margin-bottom-20"></div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col s12">
+                                            <div id="lista_servicios_{{$itinerario->id}}" class="row">
+                                                @foreach($ordenes1  as $orden1)
+                                                    <?php $estaw=0;?>
+                                                    @foreach($itinerario->ordenes as $ordenes)
+                                                        @if($orden1->nombre==$ordenes->nombre)
+                                                            <?php $estaw=1;?>
+                                                            <div class="col s4">
+                                                                <input type="checkbox" name="nservicio[]" class="filled-in nservicios" id="nservicio_{{$ordenes->id}}" value="{{$itinerario->id}}_{{$orden1->id}}_{{$orden1->nombre}}_{{$orden1->precio}}" checked="checked"/>
+                                                                <label for="nservicio_{{$ordenes->id}}">{{$ordenes->nombre}} ($ {{$ordenes->precio}})</label>
+                                                            </div>
+                                                        @endif
+                                                    @endforeach
+                                                    @if($estaw==0)
+                                                        <div class="col s4">
+                                                            <input type="checkbox" name="nservicio[]" class="filled-in nservicios" id="nservicio_{{$orden1->id}}" value="{{$itinerario->id}}_{{$orden1->id}}_{{$orden1->nombre}}_{{$orden1->precio}}"/>
+                                                            <label for="nservicio_{{$orden1->id}}">{{$orden1->nombre}} ($ {{$orden1->precio}})</label>
+                                                        </div>
+                                                    @endif
+                                                @endforeach
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row spacer-20 right">
+                                        <div class="col s12">
+                                            <input type="text" name="iti_orden" id="iti_orden_{{$itinerario->id}}" value="{{$itinerario->id}}">
+                                            <a class="btn waves-effect waves-light" onclick="agregar_servicio({{$itinerario->id}})" id="action_agregar_servicio_{{$itinerario->id}}" name="action_agregar_servicio">Agregar servicios
+                                                <i class="mdi-content-send right"></i>
+                                            </a>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                        @endforeach
+                    </div>
                     </div>
 
                     <div class="col s12">
