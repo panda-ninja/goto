@@ -153,7 +153,7 @@
                         </div>
                     </div>
                 </li>
-                <li class="bold active"><a href="index.html" class="waves-effect waves-cyan"><i class="mdi-action-dashboard"></i> Dashboard</a>
+                <li class="bold active"><a href="http://gotoperu.travel/dashboard" class="waves-effect waves-cyan"><i class="mdi-action-dashboard"></i> Dashboard</a>
                 </li>
                 {{--<li class="no-padding">--}}
                     {{--<ul class="collapsible collapsible-accordion">--}}
