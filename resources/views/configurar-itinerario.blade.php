@@ -156,6 +156,7 @@
                                                         </form>
                                                     </div>
                                                 </div>
+                                                
                                             @foreach($itinerario->ordenes as $ordenes)
                                                 <!-- Modal Structure comentario-->
                                                     <div id="modal_edit_serv_{{$ordenes->id}}" class="modal">
