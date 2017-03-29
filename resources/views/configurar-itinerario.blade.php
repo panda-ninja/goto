@@ -1,7 +1,6 @@
 @extends('layouts.admin')
 
 @section('content')
-
     <div class="row margin-top-20">
         <div class="col s12">
             <div class="col s4 no-padding">
@@ -46,17 +45,19 @@
                     <div class="divider"></div>
                     <p class="text-12">Destinos actuales del paquete</p>
                     @foreach($paquete_->destinos as $destino)
-                        <input type="checkbox" class="filled-in" id="{{$destino->id}}" checked="checked" />
-                        <label for="{{$destino->id}}" class="padding-left-5">{{$destino->destino}}</label>
+                        <div class="col s3">
+                            <input type="checkbox" class="filled-in" id="{{$destino->id}}" checked="checked" />
+                            <label for="{{$destino->id}}" class="padding-left-5">{{$destino->destino}}</label>
+                        </div>
                     @endforeach
                 </div>
             </div>
         </div>
         <form action="{{route('paquete_proposals_path')}}" method="post">
-            <div class="row">
+            <div class="row main-wrapper">
 
                 <div class="col s7">
-                    <div class="col s12">
+                    <div class="col s12 margin-bottom-20">
 
                         <h5 class="grey-text text-darken-1">Itinerario
                             <a href="#modal_add" class="modal-trigger tooltipped right text-12 green-text" data-position="bottom" data-delay="50" data-tooltip="Agregar nuevo itinerario"><i class="mdi-av-my-library-add text-18 left"></i></a>
@@ -84,9 +85,10 @@
 
                                 <div id="Itine_{{$pos}}" class="portlet">
                                     <div class="portlet-header">Dia <span class="pos_iti" name="posdia[]" id="pos_dia_{{$pos}}">{{$pos}}</span>: <span id="titulo_iti_{{$itinerario->id}}">{{$itinerario->titulo}}</span>
-                                        <input class="precio_itinerario" type="hidden" name="precio_itinerario[]" id="precio_itinerario_{{$pos}}" value="{{$precio_iti2}}"><span class="right">$ {{$precio_iti2}}</span>
-                                        <a href="#modal_edit_{{$itinerario->id}}" class="modal-trigger blue-text"><i class="mdi-editor-mode-edit"></i></a>
-                                        <a href="#!" class="red-text" onclick="borrarItinerario({{$pos}},{{$itinerario->id}})"><i class="mdi-action-delete"></i></a>
+                                        <a href="#modal_edit_{{$itinerario->id}}" class="modal-trigger blue-text right"><i class="mdi-editor-mode-edit"></i></a>
+                                        <a href="#!" class="red-text right" onclick="borrarItinerario({{$pos}},{{$itinerario->id}})"><i class="mdi-action-delete"></i></a>
+                                        <input class="precio_itinerario" type="hidden" name="precio_itinerario[]" id="precio_itinerario_{{$pos}}" value="{{$precio_iti2}}"><span class="right grey-text">(${{$precio_iti2}})</span>
+
                                     </div>
                                     <div class="portlet-content col s12 " style="display: none">
                                         <p class="no-margin" id="descrp_{{$itinerario->id}}">{{$itinerario->descripcion}}</p>
@@ -94,7 +96,7 @@
                                             <div class="col s6">
                                                 <p class="no-margin orange-text text-darken-1"><b>Servicios</b></p>
                                                 <div class="divider margin-bottom-20"></div>
-                                                <table class="table bordered striped">
+                                                <table class="table bordered striped table-services-config">
 
                                                     <thead class="grey darken-2 white-text">
                                                     <tr>
@@ -135,7 +137,7 @@
                                                                     <div class="row">
 
                                                                         <div class="input-field col s12">
-                                                                            <input type="number" id="precio_txt_" name="precio_txt" class="" value="">
+                                                                            <input type="number" id="precio_txt_" name="precio_txt" class="" value="{{$ordenes->precio}}">
                                                                             <label for="precio_txt" class="">Precio</label>
                                                                         </div>
                                                                     </div>
@@ -153,6 +155,7 @@
                                                         </form>
                                                     </div>
                                                 </div>
+
                                             @foreach($itinerario->ordenes as $ordenes)
                                                 <!-- Modal Structure comentario-->
                                                     <div id="modal_edit_serv_{{$ordenes->id}}" class="modal">
@@ -427,7 +430,7 @@
                                 <!-- Modal Structure servicios lista-->
                                 <div id="modal_add_services" class="modal">
                                     <div class="modal-content">
-                                        <form id="frm_agregar_servicio_{{$itinerario->id}}" name="action_agregar_servicio_{{$itinerario->id}}" class="col s12" method="post" enctype="multipart/form-data">
+                                        <form id="action_agregar_servicio_{{$itinerario->id}}" name="action_agregar_servicio_{{$itinerario->id}}" class="col s12" method="post" enctype="multipart/form-data">
                                             <div class="row">
                                                 <div class="col s12">
                                                     <h5 class="center">Agregar servicios</h5>
@@ -478,7 +481,7 @@
 
                         <h5 class="grey-text text-darken-1">Categoria y acomodacion</h5>
                         <div class="divider"></div>
-                        <p class="text-12">Usted puede buscar y cargar datos de un paquete almacenado en nuestra base de datos y poder modificarlos segun sus necesidades o crear un paquete totalmente nuevo</p>
+                        <p class="text-12">Seleccione el numero de habitaciones segun el numero de pasajeros y categoria de hotel segun se requiera.</p>
 
                     </div>
                     <?php
@@ -549,38 +552,38 @@
                             ?>
                         @endif
                     @endforeach
-                    <div class="col s12">
-                        <table class="table stripe">
+                    <div class="col s12 margin-top-20">
+                        <table class="table striped">
                             <thead>
-                            <tr>
-                                <th>ROOMS</th>
-                                <th>ACOMODACION</th>
+                            <tr class="grey darken-3">
+                                <th class="text-11 white-text">ROOMS</th>
+                                <th class="text-11 white-text">ACOMODACION</th>
                                 <th>
                                     <div class="col s12">
                                         <input type="hidden" name="vstar_2" id="vstar_2" value="0">
                                         <input type="checkbox" name="star[]" class="filled-in" id="star2" value="2" onclick="pasartotal(2)">
-                                        <label for="star2">2 STARS</label>
+                                        <label for="star2" class="text-8 orange-textn">2 STARS</label>
                                     </div>
                                 </th>
                                 <th>
                                     <div class="col s12">
                                         <input type="hidden" name="vstar_3" id="vstar_3" value="0">
                                         <input type="checkbox" name="star[]" class="filled-in" id="star3" value="3" onclick="pasartotal(3)">
-                                        <label for="star3">3 STARS</label>
+                                        <label for="star3" class="text-8 orange-textn">3 STARS</label>
                                     </div>
                                 </th>
                                 <th>
                                     <div class="col s12">
                                         <input type="hidden" name="vstar_4" id="vstar_4" value="0">
                                         <input type="checkbox" name="star[]" class="filled-in" id="star4" value="4" onclick="pasartotal(4)">
-                                        <label for="star4">4 STARS</label>
+                                        <label for="star4" class="text-8 orange-textn">4 STARS</label>
                                     </div>
                                 </th>
                                 <th >
                                     <div class="col s12">
                                         <input type="hidden" name="vstar_5" id="vstar_5" value="0">
                                         <input type="checkbox" name="star[]" class="filled-in" id="star5" value="5" onclick="pasartotal(5)">
-                                        <label for="star5">5 STARS</label>
+                                        <label for="star5" class="text-8 orange-textn">5 STARS</label>
                                     </div>
                                 </th>
                             </tr>
@@ -588,74 +591,74 @@
                             <tbody>
                             <tr>
                                 <td>
-                                    <input type="number" name="acom_t" id="acom_t" min="0"  value="0" onchange="pasartotal(0)">
+                                    <input class="right-align" type="number" name="acom_t" id="acom_t" min="0"  value="0" onchange="pasartotal(0)">
                                 </td>
-                                <th><i class="mdi-maps-local-hotel text-30"></i><i class="mdi-maps-local-hotel text-30"></i><i class="mdi-maps-local-hotel text-30"></i></th>
+                                <th><i class="mdi-maps-local-hotel text-25"></i><i class="mdi-maps-local-hotel text-25"></i><i class="mdi-maps-local-hotel text-25"></i></th>
                                 <td>
-                                    <input type="number" name="t_2" id="t_2" min="0" value="{{$precio_t_2}}"  onchange="pasartotal(0)">
-                                </td>
-                                <td>
-                                    <input type="number" name="t_3" id="t_3" min="0" value="{{$precio_t_3}}" onchange="pasartotal(0)">
+                                    <input class="right-align" type="number" name="t_2" id="t_2" min="0" value="{{$precio_t_2}}"  onchange="pasartotal(0)">
                                 </td>
                                 <td>
-                                    <input type="number" name="t_4" id="t_4" min="0" value="{{$precio_t_4}}" onchange="pasartotal(0)">
+                                    <input class="right-align" type="number" name="t_3" id="t_3" min="0" value="{{$precio_t_3}}" onchange="pasartotal(0)">
                                 </td>
                                 <td>
-                                    <input type="number" name="t_5" id="t_5" min="0" value="{{$precio_t_5}}" onchange="pasartotal(0)">
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <input type="number" name="acom_d" id="acom_d" min="0"  value="0" onchange="pasartotal(0)">
-                                </td>
-                                <th><i class="mdi-maps-local-hotel text-30"></i><i class="mdi-maps-local-hotel text-30"></i></th>
-                                <td>
-                                    <input type="number" name="d_2" id="d_2" min="0" value="{{$precio_d_2}}" onchange="pasartotal(0)">
+                                    <input class="right-align" type="number" name="t_4" id="t_4" min="0" value="{{$precio_t_4}}" onchange="pasartotal(0)">
                                 </td>
                                 <td>
-                                    <input type="number" name="d_3" id="d_3" min="0" value="{{$precio_d_3}}" onchange="pasartotal(0)">
-                                </td>
-                                <td>
-                                    <input type="number" name="d_4" id="d_4" min="0" value="{{$precio_d_4}}" onchange="pasartotal(0)">
-                                </td>
-                                <td>
-                                    <input type="number" name="d_5" id="d_5" min="0" value="{{$precio_d_5}}" onchange="pasartotal(0)">
+                                    <input class="right-align" type="number" name="t_5" id="t_5" min="0" value="{{$precio_t_5}}" onchange="pasartotal(0)">
                                 </td>
                             </tr>
                             <tr>
                                 <td>
-                                    <input type="number" name="acom_m" id="acom_m" min="0"  value="0" onchange="pasartotal(0)">
+                                    <input class="right-align" type="number" name="acom_d" id="acom_d" min="0"  value="0" onchange="pasartotal(0)">
                                 </td>
-                                <th><i class="mdi-maps-local-hotel text-30"></i><i class="mdi-maps-local-hotel text-30"></i></th>
+                                <th><i class="mdi-maps-local-hotel text-25"></i><i class="mdi-maps-local-hotel text-25"></i></th>
                                 <td>
-                                    <input type="number" name="m_2" id="m_2" min="0" value="{{$precio_m_2}}" onchange="pasartotal(0)">
-                                </td>
-                                <td>
-                                    <input type="number" name="m_3" id="m_3" min="0" value="{{$precio_m_3}}" onchange="pasartotal(0)">
+                                    <input class="right-align" type="number" name="d_2" id="d_2" min="0" value="{{$precio_d_2}}" onchange="pasartotal(0)">
                                 </td>
                                 <td>
-                                    <input type="number" name="m_4" id="m_4" min="0" value="{{$precio_m_4}}" onchange="pasartotal(0)">
+                                    <input class="right-align" type="number" name="d_3" id="d_3" min="0" value="{{$precio_d_3}}" onchange="pasartotal(0)">
                                 </td>
                                 <td>
-                                    <input type="number" name="m_5" id="m_5" min="0" value="{{$precio_m_5}}" onchange="pasartotal(0)">
+                                    <input class="right-align" type="number" name="d_4" id="d_4" min="0" value="{{$precio_d_4}}" onchange="pasartotal(0)">
+                                </td>
+                                <td>
+                                    <input class="right-align" type="number" name="d_5" id="d_5" min="0" value="{{$precio_d_5}}" onchange="pasartotal(0)">
                                 </td>
                             </tr>
                             <tr>
                                 <td>
-                                    <input type="number" name="acom_s" id="acom_s" min="0"  value="0" onchange="pasartotal(0)">
+                                    <input class="right-align" type="number" name="acom_m" id="acom_m" min="0"  value="0" onchange="pasartotal(0)">
                                 </td>
-                                <th><i class="mdi-maps-local-hotel text-30"></i></th>
+                                <th><i class="mdi-maps-local-hotel text-25"></i><i class="mdi-maps-local-hotel text-25"></i>(m)</th>
                                 <td>
-                                    <input type="number" name="s_2" id="s_2" min="0" value="{{$precio_s_2}}" onchange="pasartotal(0)">
-                                </td>
-                                <td>
-                                    <input type="number" name="s_3" id="s_3" min="0" value="{{$precio_s_3}}" onchange="pasartotal(0)">
+                                    <input class="right-align" type="number" name="m_2" id="m_2" min="0" value="{{$precio_m_2}}" onchange="pasartotal(0)">
                                 </td>
                                 <td>
-                                    <input type="number" name="s_4" id="s_4" min="0" value="{{$precio_s_4}}" onchange="pasartotal(0)">
+                                    <input class="right-align" type="number" name="m_3" id="m_3" min="0" value="{{$precio_m_3}}" onchange="pasartotal(0)">
                                 </td>
                                 <td>
-                                    <input type="number" name="s_5" id="s_5" min="0" value="{{$precio_s_5}}" onchange="pasartotal(0)">
+                                    <input class="right-align" type="number" name="m_4" id="m_4" min="0" value="{{$precio_m_4}}" onchange="pasartotal(0)">
+                                </td>
+                                <td>
+                                    <input class="right-align" type="number" name="m_5" id="m_5" min="0" value="{{$precio_m_5}}" onchange="pasartotal(0)">
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <input class="right-align" type="number" name="acom_s" id="acom_s" min="0"  value="0" onchange="pasartotal(0)">
+                                </td>
+                                <th><i class="mdi-maps-local-hotel text-25"></i></th>
+                                <td>
+                                    <input class="right-align" type="number" name="s_2" id="s_2" min="0" value="{{$precio_s_2}}" onchange="pasartotal(0)">
+                                </td>
+                                <td>
+                                    <input class="right-align" type="number" name="s_3" id="s_3" min="0" value="{{$precio_s_3}}" onchange="pasartotal(0)">
+                                </td>
+                                <td>
+                                    <input class="right-align" type="number" name="s_4" id="s_4" min="0" value="{{$precio_s_4}}" onchange="pasartotal(0)">
+                                </td>
+                                <td>
+                                    <input class="right-align" type="number" name="s_5" id="s_5" min="0" value="{{$precio_s_5}}" onchange="pasartotal(0)">
                                 </td>
                             </tr>
                             </tbody>
@@ -672,7 +675,7 @@
                         <input type="hidden" name="precio_id_4" id="precio_id_4" value="{{$precio_id4}}">
                         <input type="hidden" name="precio_id_5" id="precio_id_5" value="{{$precio_id5}}">
 
-                        <input type="text" name="totalItinerario" id="totalItinerario" value="{{$totalItinerario}}">
+                        <input type="text" class="hide" name="totalItinerario" id="totalItinerario" value="{{$totalItinerario}}">
                         <input type="hidden" name="cliente_id" id="cliente_id" value="{{$cliente->id}}">
 
                         <button class="btn waves-effect waves-light green" type="submit" name="action">Terminar
@@ -681,36 +684,36 @@
                     </div>
                 </div>
                 <div class="col s5">
-                    <div class="col s12">
+                    <div class="col s12" id="pinned">
                         <h5 class="grey-text text-darken-1">Precios
                             <a href="#modal_add_uti" class="modal-trigger tooltipped right text-12 blue-text" data-position="bottom" data-delay="50" data-tooltip="Definir porcentaje de utilidad"><i class="mdi-action-trending-up text-18 left"></i></a>
                         </h5>
                         <div class="divider margin-bottom-20"></div>
                         <div class="card-panel grey lighten-5 z-depth-1">
-                            <table>
+                            <table class="striped">
                                 <thead>
                                 <tr>
-                                    <th class="no-padding"><b>Categoria:</b></th>
-                                    <th class="no-padding right-align">2 STARS</th>
-                                    <th class="no-padding right-align">3 STARS</th>
-                                    <th class="no-padding right-align">4 STARS</th>
-                                    <th class="no-padding right-align">5 STARS</th>
+                                    <th><b class="orange-text">Categoria:</b></th>
+                                    <th class="right-align text-14 orange-text">2 Stars</th>
+                                    <th class="right-align text-14 orange-text">3 Stars</th>
+                                    <th class="right-align text-14 orange-text">4 Stars</th>
+                                    <th class="right-align text-14 orange-text">5 Stars</th>
                                 </tr>
                                 </thead>
                                 <tbody>
                                 <tr>
-                                    <td class="no-padding"><b>Costo<br>Itinerario:</b></td>
-                                    <td class="no-padding right-align">$ <span id="ptotal2">0</span><input type="hidden" id="nptotal_2" name="nptotal_2" value="0"></td>
-                                    <td class="no-padding right-align">$ <span id="ptotal3">0</span><input type="hidden" id="nptotal_3" name="nptotal_3" value="0"></td>
-                                    <td class="no-padding right-align">$ <span id="ptotal4">0</span><input type="hidden" id="nptotal_4" name="nptotal_4" value="0"></td>
-                                    <td class="no-padding right-align">$ <span id="ptotal5">0</span><input type="hidden" id="nptotal_5" name="nptotal_5" value="0"></td>
+                                    <td class=""><b>Costo Total:</b></td>
+                                    <td class="right-align">$ <span id="ptotal2">0</span><input type="hidden" id="nptotal_2" name="nptotal_2" value="0"></td>
+                                    <td class="right-align">$ <span id="ptotal3">0</span><input type="hidden" id="nptotal_3" name="nptotal_3" value="0"></td>
+                                    <td class="right-align">$ <span id="ptotal4">0</span><input type="hidden" id="nptotal_4" name="nptotal_4" value="0"></td>
+                                    <td class="right-align">$ <span id="ptotal5">0</span><input type="hidden" id="nptotal_5" name="nptotal_5" value="0"></td>
                                 </tr>
                                 <tr>
-                                    <td class="no-padding"><b>Utilidad:</b></td>
-                                    <td class="right-align"><input type="number" name="utilidad_2" id="utilidad_2" min="0" max="40" value="{{$ulitidad_2}}" onchange="pasartotal(0)"></td>
-                                    <td class="right-align"><input type="number" name="utilidad_3" id="utilidad_3" min="0" max="40" value="{{$ulitidad_3}}" onchange="pasartotal(0)"></td>
-                                    <td class="right-align"><input type="number" name="utilidad_4" id="utilidad_4" min="0" max="40" value="{{$ulitidad_4}}" onchange="pasartotal(0)"></td>
-                                    <td class="right-align"><input type="number" name="utilidad_5" id="utilidad_5" min="0" max="40" value="{{$ulitidad_5}}" onchange="pasartotal(0)"></td>
+                                    <td class="no-padding"><b>Utilidad(%):</b></td>
+                                    <td><input class="right-align" type="number" name="utilidad_2" id="utilidad_2" min="0" max="40" value="{{$ulitidad_2}}" onchange="pasartotal(0)"></td>
+                                    <td><input class="right-align" type="number" name="utilidad_3" id="utilidad_3" min="0" max="40" value="{{$ulitidad_3}}" onchange="pasartotal(0)"></td>
+                                    <td><input class="right-align" type="number" name="utilidad_4" id="utilidad_4" min="0" max="40" value="{{$ulitidad_4}}" onchange="pasartotal(0)"></td>
+                                    <td><input class="right-align" type="number" name="utilidad_5" id="utilidad_5" min="0" max="40" value="{{$ulitidad_5}}" onchange="pasartotal(0)"></td>
                                 </tr>
                                 <tr>
                                     <td class="no-padding"><b>Triple:</b></td>
@@ -868,18 +871,22 @@
                         <div class="row">
 
                             <?php $i=0;?>
-                            @foreach($destinos as $destin)
+                            @foreach($destinos->sortBy("destino") as $destin)
                                 <?php $i++; $si=0;?>
                                 @foreach($paquete_->destinos as $destinoCoti)
                                     @if($destin->destino==$destinoCoti->destino)
-                                        <input type="checkbox" name="destino[]" class="filled-in" id="destino_{{$i}}" checked="checked" value="{{$destin->destino}}"/>
-                                        <label for="destino_{{$i}}" class="padding-left-5">{{$destin->destino}}</label>
-                                        <?php $si=1;?>
+                                        <div class="col s6">
+                                            <input type="checkbox" name="destino[]" class="filled-in" id="destino_{{$i}}" checked="checked" value="{{$destin->destino}}"/>
+                                            <label for="destino_{{$i}}" class="padding-left-5">{{$destin->destino}}</label>
+                                            <?php $si=1;?>
+                                        </div>
                                     @endif
                                 @endforeach
                                 @if($si==0)
-                                    <input type="checkbox" name="destino[]" class="filled-in" id="destino_{{$i}}" value="{{$destin->destino}}"/>
-                                    <label for="destino_{{$i}}" class="padding-left-5">{{$destin->destino}}</label>
+                                    <div class="col s6">
+                                        <input type="checkbox" name="destino[]" class="filled-in" id="destino_{{$i}}" value="{{$destin->destino}}"/>
+                                        <label for="destino_{{$i}}" class="padding-left-5">{{$destin->destino}}</label>
+                                    </div>
                                 @endif
                             @endforeach
 
