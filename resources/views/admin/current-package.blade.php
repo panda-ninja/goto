@@ -532,7 +532,7 @@
                                                             $color = "grey-text";
                                                         }
                                                     @endphp
-                                                    {{--<a id="send{{$paquete_cotizacion->id}}" href="#!" class="text-22 {{$color}}" onclick="enviarPlan({{$paquete_cotizacion->id}}, {{$cliente->id}})"><i class="mdi-content-send"></i></a>--}}
+                                                    <a id="send{{$paquete_cotizacion->id}}" href="#!" class="text-22 {{$color}}" onclick="enviarPlan({{$paquete_cotizacion->id}}, {{$cliente_cotizacion->cliente->id}})"><i class="mdi-content-send"></i></a>
                                                 </td>
                                             </tr>
                                         @endforeach
