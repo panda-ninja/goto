@@ -91,25 +91,26 @@ class ItineraryController extends Controller
     public function guardar_itinerario_servicio(Request $request)
     {
         try {
-            $nservicio = $request->input('nservicio');
-//            $iti_orden_id = $request->input('iti_orden');
+            $iti_orden_id = $request->input('iti_orden');
+            $nombre='nservicio_'.$iti_orden_id;
+            $nservicio = $request->input($nombre);
+            $results = [];
 
-//            return dd($titulo.'_'.$descipcion.'_'.$itinerario_id);
             foreach ($nservicio as $orden){
                 $ordenVal=explode('_',$orden);
-
                 $objeto=new ItinerarioOrden();
                 $objeto->nombre=$ordenVal[2];
                 $objeto->precio=$ordenVal[3];
                 $objeto->itinerario_cotizaciones_id=$ordenVal[0];
                 $objeto->save();
+                $results[] = ['id' => $objeto->id, 'value' => $objeto->id.'_'.$objeto->nombre.'_'.$objeto->precio];
             }
 
-
-            return '1_1';
+            return response()->json($results);
+//            return '1_1';
         }
         catch (\Exception $e) {
-            return '0_0';
+            return '0';
         }
     }
     public function agregar_itineraios(Request $request){

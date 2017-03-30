@@ -24110,7 +24110,6 @@ function eliminar_servicio(id){
         });
 }
 function agregar_servicio(pos){
-
     $("#action_agregar_servicio_"+pos).html('Enviando<i class="mdi-action-autorenew right"></i>');
     $("#action_agregar_servicio_"+pos).addClass('green');
     var nombre='frm_agregar_servicio_'+pos;
@@ -24120,21 +24119,34 @@ function agregar_servicio(pos){
         }
     });
     $.post($url+'/guardar_itinerario_servicio', $('#'+nombre).serialize(), function(data) {
-        var rpt=data.split('_');
-        if(rpt[1]==1) {
+        // var rpt=data.split('_');
+        if(data!='0') {
             $("#action_agregar_servicio_"+pos).html('Agregar<i class="mdi-content-send right"></i>');
             $("#action_agregar_servicio_"+pos).removeClass('green');
             $("#action_agregar_servicio_"+pos).addClass('pink accent-2');
-            $(".nservicios").each(function (index)
-            {
-                var $dato=$(this).val().splt('_');
-                $("#lista_servicios_"+pos).prepend(
-                    '<div id="iti_servicio_'+$dato[1]+'" class="col s4">'+
-                    '<input type="checkbox" name="nservicio[]" class="filled-in nservicios" id="nservicio_'+$dato[1]+'" checked="checked" value="'+$dato[0]+'_'+$dato[1]+'_'+$dato[2]+'_'+$dato[3]+'"/>'+
-                    '<label for="nservicio_'+$dato[1]+'">'+$dato[2]+' ($ '+$dato[3]+')</label>'+
-                    '</div>');
 
-            });
+            // for (var ele in data) {
+            //     //1era iteración: ele === 1
+            //     //2da iteración: ele === 2
+            //     //demas iteraciones: metodos y propiedades del array.
+            // }
+            for (var ele in data) {
+                var $dato=ele.split('_');
+                $("#itineraio_orden_"+pos).prepend(
+                    '<tr id="servicio_'+$dato[0]+'">'+
+                    '<td>'+$dato[1]+'</td>'+
+                    '<td id="iti_precio_serv_'+$dato[0]+'">'+$dato[2]+'</td>'+
+                    '<td class="right-align">'+
+                    '<a href="#modal_edit_serv_'+$dato[0]+'" class="modal-trigger blue-text "><i class="mdi-editor-mode-edit"></i></a>'+
+                    '<a href="#!" class="red-text" onclick="eliminar_servicio('+$dato[0]+')"><i class="mdi-action-delete"></i></a>'+
+                    '</td>'+
+                    '</tr>'
+                );
+            }
+            recalcular_ordenes();
+            poner_valor();
+            pasartotal(0);
+
         }
         else{
             // $("#response_tinerario").html(rpt[2]);

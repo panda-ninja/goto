@@ -133,9 +133,9 @@
                                                         <th class="border-radius-0"></th>
                                                     </tr>
                                                     </thead>
-                                                    <tbody>
+                                                    <tbody id="itineraio_orden_{{$itinerario->id}}">
                                                     @foreach($itinerario->ordenes as $ordenes)
-                                                        <tr id="servicio_{{$ordenes->id}}">
+                                                        <tr id="servicio_{{$itinerario->id}}_{{$ordenes->id}}">
                                                             <td>{{$ordenes->nombre}}</td>
                                                             <td id="iti_precio_serv_{{$ordenes->id}}">{{$ordenes->precio}}</td>
                                                             <td class="right-align">
@@ -481,15 +481,16 @@
                                                         @if($orden1->nombre==$ordenes->nombre)
                                                             <?php $estaw=1;?>
                                                             <div class="col s4">
-                                                                <input type="checkbox" name="nservicio[]" class="filled-in nservicios" id="nservicio_{{$ordenes->id}}" value="{{$itinerario->id}}_{{$orden1->id}}_{{$orden1->nombre}}_{{$orden1->precio}}" checked="checked"/>
-                                                                <label for="nservicio_{{$ordenes->id}}">{{$ordenes->nombre}} ($ {{$ordenes->precio}})</label>
+                                                                <input type="checkbox" name="nservicio_{{$itinerario->id}}[]" class="filled-in nservicios" id="nservicio_{{$itinerario->id}}_{{$ordenes->id}}" value="{{$itinerario->id}}_{{$orden1->id}}_{{$orden1->nombre}}_{{$orden1->precio}}" checked="checked"/>
+                                                                <label for="nservicio_{{$itinerario->id}}_{{$ordenes->id}}">{{$ordenes->nombre}} ($ {{$ordenes->precio}})</label>
                                                             </div>
                                                         @endif
                                                     @endforeach
                                                     @if($estaw==0)
                                                         <div class="col s4">
-                                                            <input type="checkbox" name="nservicio[]" class="filled-in nservicios" id="nservicio_{{$orden1->id}}" value="{{$itinerario->id}}_{{$orden1->id}}_{{$orden1->nombre}}_{{$orden1->precio}}"/>
-                                                            <label for="nservicio_{{$orden1->id}}">{{$orden1->nombre}} ($ {{$orden1->precio}})</label>
+
+                                                            <input type="checkbox" name="nservicio_{{$itinerario->id}}[]" class="filled-in nservicios" id="nservicio_{{$itinerario->id}}_{{$orden1->id}}" value="{{$itinerario->id}}_{{$orden1->id}}_{{$orden1->nombre}}_{{$orden1->precio}}"/>
+                                                            <label for="nservicio_{{$itinerario->id}}_{{$orden1->id}}">{{$orden1->nombre}} ($ {{$orden1->precio}})</label>
                                                         </div>
                                                     @endif
                                                 @endforeach
@@ -499,6 +500,7 @@
                                     </div>
                                     <div class="row spacer-20 right">
                                         <div class="col s12">
+                                            {{csrf_field()}}
                                             <input type="text" name="iti_orden" id="iti_orden_{{$itinerario->id}}" value="{{$itinerario->id}}">
                                             <a class="btn waves-effect waves-light" onclick="agregar_servicio({{$itinerario->id}})" id="action_agregar_servicio_{{$itinerario->id}}" name="action_agregar_servicio">Agregar servicios
                                                 <i class="mdi-content-send right"></i>

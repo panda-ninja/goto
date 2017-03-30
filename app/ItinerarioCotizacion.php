@@ -14,7 +14,7 @@ class ItinerarioCotizacion extends Model
 //    }
     public function paquetes_cotizaciones()
     {
-        return $this->belongsTo(ItinerarioCotizacion::class, 'paquete_cotizaciones_id');
+        return $this->belongsTo(PaqueteCotizacion::class, 'paquete_cotizaciones_id');
     }
 
     public function horas_cotizaciones()
