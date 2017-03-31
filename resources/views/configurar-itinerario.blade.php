@@ -548,46 +548,76 @@
                     $ulitidad_3=0;
                     $ulitidad_4=0;
                     $ulitidad_5=0;
+                    $estrella_2=0;
+                    $estrella_3=0;
+                    $estrella_4=0;
+                    $estrella_5=0;
+
+                    $nrop_s=0;
+                    $nrop_d=0;
+                    $nrop_m=0;
+                    $nrop_t=0;
+
                     ?>
                     @foreach($paquete_->precio_paquetes as $precio)
                         @if($precio->estrellas==2)
                             <?php
+                            $estrella_2==1;
                             $precio_t_2=$precio->precio_t;
                             $precio_d_2=$precio->precio_m;
                             $precio_m_2=$precio->precio_d;
                             $precio_s_2=$precio->precio_s;
                             $ulitidad_2=$precio->utilidad;
                             $precio_id2=$precio->id;
+                            $nrop_s=$precio->personas_s;
+                            $nrop_d=$precio->personas_d;
+                            $nrop_m=$precio->personas_m;
+                            $nrop_t=$precio->personas_t;
                             ?>
                         @endif
                         @if($precio->estrellas==3)
                             <?php
+                            $estrella_3==1;
                             $precio_t_3=$precio->precio_t;
                             $precio_d_3=$precio->precio_m;
                             $precio_m_3=$precio->precio_d;
                             $precio_s_3=$precio->precio_s;
                             $ulitidad_3=$precio->utilidad;
                             $precio_id3=$precio->id;
+                            $nrop_s=$precio->personas_s;
+                            $nrop_d=$precio->personas_d;
+                            $nrop_m=$precio->personas_m;
+                            $nrop_t=$precio->personas_t;
                             ?>
                         @endif
                         @if($precio->estrellas==4)
                             <?php
+                            $estrella_4==1;
                             $precio_t_4=$precio->precio_t;
                             $precio_d_4=$precio->precio_m;
                             $precio_m_4=$precio->precio_d;
                             $precio_s_4=$precio->precio_s;
                             $ulitidad_4=$precio->utilidad;
                             $precio_id4=$precio->id;
+                            $nrop_s=$precio->personas_s;
+                            $nrop_d=$precio->personas_d;
+                            $nrop_m=$precio->personas_m;
+                            $nrop_t=$precio->personas_t;
                             ?>
                         @endif
                         @if($precio->estrellas==5)
                             <?php
+                            $estrella_5==1;
                             $precio_t_5=$precio->precio_t;
                             $precio_d_5=$precio->precio_m;
                             $precio_m_5=$precio->precio_d;
                             $precio_s_5=$precio->precio_s;
                             $ulitidad_5=$precio->utilidad;
                             $precio_id5=$precio->id;
+                            $nrop_s=$precio->personas_s;
+                            $nrop_d=$precio->personas_d;
+                            $nrop_m=$precio->personas_m;
+                            $nrop_t=$precio->personas_t;
                             ?>
                         @endif
                     @endforeach
@@ -600,28 +630,28 @@
                                 <th>
                                     <div class="col s12">
                                         <input type="hidden" name="vstar_2" id="vstar_2" value="0">
-                                        <input type="checkbox" name="star[]" class="filled-in" id="star2" value="2" onclick="pasartotal(2)">
+                                        <input type="checkbox" name="star[]" class="filled-in" id="star2" value="2" onclick="pasartotal(2)" <?php if($estrella_2==1) echo 'checked="checked"';?>>
                                         <label for="star2" class="text-8 orange-textn">2 STARS</label>
                                     </div>
                                 </th>
                                 <th>
                                     <div class="col s12">
                                         <input type="hidden" name="vstar_3" id="vstar_3" value="0">
-                                        <input type="checkbox" name="star[]" class="filled-in" id="star3" value="3" onclick="pasartotal(3)">
+                                        <input type="checkbox" name="star[]" class="filled-in" id="star3" value="3" onclick="pasartotal(3)" <?php if($estrella_3==1) echo 'checked="checked"';?>>
                                         <label for="star3" class="text-8 orange-textn">3 STARS</label>
                                     </div>
                                 </th>
                                 <th>
                                     <div class="col s12">
                                         <input type="hidden" name="vstar_4" id="vstar_4" value="0">
-                                        <input type="checkbox" name="star[]" class="filled-in" id="star4" value="4" onclick="pasartotal(4)">
+                                        <input type="checkbox" name="star[]" class="filled-in" id="star4" value="4" onclick="pasartotal(4)" <?php if($estrella_4==1) echo 'checked="checked"';?>>
                                         <label for="star4" class="text-8 orange-textn">4 STARS</label>
                                     </div>
                                 </th>
                                 <th >
                                     <div class="col s12">
                                         <input type="hidden" name="vstar_5" id="vstar_5" value="0">
-                                        <input type="checkbox" name="star[]" class="filled-in" id="star5" value="5" onclick="pasartotal(5)">
+                                        <input type="checkbox" name="star[]" class="filled-in" id="star5" value="5" onclick="pasartotal(5)" <?php if($estrella_5==1) echo 'checked="checked"';?>>
                                         <label for="star5" class="text-8 orange-textn">5 STARS</label>
                                     </div>
                                 </th>
@@ -630,7 +660,7 @@
                             <tbody>
                             <tr>
                                 <td>
-                                    <input class="right-align" type="number" name="acom_t" id="acom_t" min="0"  value="0" onchange="pasartotal(0)">
+                                    <input class="right-align" type="number" name="acom_t" id="acom_t" min="0"  value="{{$nrop_t}}" onchange="pasartotal(0)">
                                 </td>
                                 <th><i class="mdi-maps-local-hotel text-25"></i><i class="mdi-maps-local-hotel text-25"></i><i class="mdi-maps-local-hotel text-25"></i></th>
                                 <td>
@@ -648,7 +678,7 @@
                             </tr>
                             <tr>
                                 <td>
-                                    <input class="right-align" type="number" name="acom_d" id="acom_d" min="0"  value="0" onchange="pasartotal(0)">
+                                    <input class="right-align" type="number" name="acom_d" id="acom_d" min="0"  value="{{$nrop_d}}" onchange="pasartotal(0)">
                                 </td>
                                 <th><i class="mdi-maps-local-hotel text-25"></i><i class="mdi-maps-local-hotel text-25"></i></th>
                                 <td>
@@ -666,7 +696,7 @@
                             </tr>
                             <tr>
                                 <td>
-                                    <input class="right-align" type="number" name="acom_m" id="acom_m" min="0"  value="0" onchange="pasartotal(0)">
+                                    <input class="right-align" type="number" name="acom_m" id="acom_m" min="0"  value="{{$nrop_m}}" onchange="pasartotal(0)">
                                 </td>
                                 <th><i class="mdi-maps-local-hotel text-25"></i><i class="mdi-maps-local-hotel text-25"></i>(m)</th>
                                 <td>
@@ -684,7 +714,7 @@
                             </tr>
                             <tr>
                                 <td>
-                                    <input class="right-align" type="number" name="acom_s" id="acom_s" min="0"  value="0" onchange="pasartotal(0)">
+                                    <input class="right-align" type="number" name="acom_s" id="acom_s" min="0"  value="{{$nrop_s}}" onchange="pasartotal(0)">
                                 </td>
                                 <th><i class="mdi-maps-local-hotel text-25"></i></th>
                                 <td>
