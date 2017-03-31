@@ -237,7 +237,7 @@
                                                         </div>
                                                         <div class="row">
                                                             <div class="col s12">
-                                                                @foreach($paquete_cotizacion->destinos as $paquete_destinos)
+                                                                @foreach($paquete_cotizacion->paquetes_destinos as $paquete_destinos)
                                                                     <div class="col s4"><i class="mdi-navigation-check"></i> {{$paquete_destinos->destino}}</div>
                                                                 @endforeach
                                                             </div>

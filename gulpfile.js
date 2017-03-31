@@ -95,7 +95,7 @@ elixir(function(mix) {
         'vendors/jquery.sticky-kit.min.js',
         'vendors/masonry.pkgd.js',
         'vendors/data-tables-script.js',
-        'vendors/jquery.dataTables.min.js',
+        'vendors/jquery.dataTables.min.js'
 
     ], 'public/js/app.js');
 

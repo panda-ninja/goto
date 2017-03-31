@@ -2651,8 +2651,7 @@ input[type=range] + .thumb {
 
 .row {
   margin-left: auto;
-  margin-right: auto;
-  margin-bottom: 20px; }
+  margin-right: auto; }
   .row:after {
     content: "";
     display: table;
@@ -7129,6 +7128,26 @@ img.desaturada {
   border-left-width: 1px;
   background: rgba(255, 255, 255, 0.9) !important;
   border-bottom-color: transparent; }
+
+.table-price-accommodation {
+  border-collapse: collapse;
+  text-align: center;
+  border: 1px solid #949494;
+  width: 100%; }
+
+.table-price-accommodation td {
+  border-left: 1px solid #333; }
+
+.table-price-accommodation th {
+  background-color: #333;
+  color: #FFFFFF; }
+
+.table-price-accommodation th, .table-price-accommodation td {
+  border: 1px solid #949494;
+  padding: 3px 10px; }
+
+.table-price-accommodation .hour-text {
+  color: #b71c1c; }
 
 footer {
   background: #303030; }

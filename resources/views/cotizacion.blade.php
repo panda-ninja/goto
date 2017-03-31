@@ -66,9 +66,43 @@
                         <button class="btn waves-effect waves-light right submit" type="submit" name="action">Continuar
                             <i class="mdi-content-send right"></i>
                         </button>
+                        <a href="#client_add" class="modal-trigger">+ Agregar nuevo usuario </a>
                     </div>
                 </div>
             </form>
+        </div>
+        <!-- Modal Structure itinerario-->
+        <div id="client_add" class="modal">
+            <div class="modal-content">
+                <div class="row">
+                    <div class="col s12">
+                        <h5 class="center">Nuevo Cliente</h5>
+                        <div class="divider margin-bottom-20"></div>
+                    </div>
+                </div>
+                <form action="" method="post">
+                    {{csrf_field()}}
+                    <div class="row">
+                        <div class="input-field col s12">
+                            <i class="mdi-action-account-circle prefix"></i>
+                            <input id="name_txt" name="name_txt" type="text" class="validate" required>
+                            <label for="name_txt">Full Name</label>
+                        </div>
+                        <div class="input-field col s12">
+                            <i class="mdi-communication-email prefix"></i>
+                            <input id="email" type="email" name="email" class="validate" required>
+                            <label for="email" data-error="wrong" data-success="right">Email</label>
+                        </div>
+                        <div class="input-field col s12">
+                            <button class="btn waves-effect waves-light right-align" type="submit" name="action">Agregar Cliente
+                                <i class="mdi-content-send"></i>
+                            </button>
+                        </div>
+
+                    </div>
+                </form>
+            </div>
+
         </div>
         <div class="col s6 center">
             <img src="{{asset('images/ingresar-datos-basicos.png')}}" class="img-responsive" alt="">

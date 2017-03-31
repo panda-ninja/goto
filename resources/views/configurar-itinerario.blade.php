@@ -73,7 +73,7 @@
                             $pos=0;
                             $totalItinerario=0;
                             ?>
-                            @foreach($paquete_->itinerario_cotizaciones as $itinerario)
+                            @foreach($paquete_->itinerario_cotizaciones->sortBy("dias") as $itinerario)
                                 <?php $precio_iti2=0?>
                                 @foreach($itinerario->ordenes as $ordenes2)
                                     <?php $precio_iti2+=$ordenes2->precio?>

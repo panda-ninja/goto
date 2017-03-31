@@ -33,9 +33,9 @@
         <ul class="collection">
             @foreach($cotizaciones as $cotizacion)
 
-                    @foreach($cotizacion->cliente_cotizaciones as $cot)
-                        @if($cot)
-                            @if($cotizacion->estado == '0')
+                @foreach($cotizacion->cliente_cotizaciones as $cot)
+                    @if($cot)
+                        @if($cotizacion->estado == '0')
                             @php $bg_status = ''; @endphp
                             @foreach($cotizacion->paquete_cotizaciones as $paquete_cot)
                                 @if($paquete_cot->estado == 1)
@@ -43,10 +43,24 @@
                                 @else
                                     @php $bg_status = "grey lighten-4"; @endphp
                                 @endif
+
+                                @if($paquete_cot->estado == 0)
+                                    @php $bg_hidden = "hide"; @endphp
+                                @else
+                                    @php $bg_hidden = ""; @endphp
+                                @endif
+
                             @endforeach
-                            <li class="collection-item {{$bg_status}}">
+                            <li class="collection-item {{$bg_status}} {{$bg_hidden}}">
                                 <span class="title text-12"><i>Fecha de viaje: {{$cotizacion->fecha}} | Numero de pasajeros: {{$cotizacion->nropersonas}}</i></span>
                                 <table class="table">
+                                    <thead>
+                                    <tr>
+                                        <th class="no-padding">Action</th>
+                                        <th class="no-padding">Proposals</th>
+                                        <th class="no-padding"></th>
+                                    </tr>
+                                    </thead>
                                     @php $i = 1; @endphp
                                     @foreach($cotizacion->paquete_cotizaciones as $paquete_cotizaciones)
 
@@ -82,14 +96,19 @@
                                             <tr>
                                                 <td class="no-padding">
                                                     @if($paquete_cotizaciones->estado == 3)
-                                                        <a href="{{route('group_path',$cotizacion->id)}}" class="tooltipped red-text" data-position="top" data-delay="50" data-tooltip="Agregar datos personales."><i class="material-icons">supervisor_account</i></a>
+                                                        <a href="{{route('group_path',$cotizacion->id)}}" class="tooltipped" data-position="top" data-delay="50" data-tooltip="Agregar datos personales y de grupo (si tiene grupo)."><i class="material-icons">supervisor_account</i></a>
+                                                        <a href="{{route('payments_create_path',$cotizacion->id)}}" class="pink-text text-accent-4"><i class="material-icons">payment</i></a>
                                                     @endif
-                                                    @php
-                                                        echo $estado;
-                                                    @endphp
                                                 </td>
-                                                <td class="no-padding"><a href="{{route('quotes_show_path',$paquete_cotizaciones->id)}}" class="{{$active}}"><span class="red-text">Invitado</span>:</a></td>
-                                                <td class="no-padding"><a href="{{route('quotes_show_path',$paquete_cotizaciones->id)}}" class="{{$active}}">{{$paquete_cotizaciones->titulo}}</a></td>
+                                                <td class="no-padding">
+                                                    <a href="{{route('quotes_show_path',$paquete_cotizaciones->id)}}" class="{{$active}} valign-wrapper">
+                                                        @php
+                                                            echo $estado;
+                                                        @endphp
+                                                        Propuesta {{$i++ . PHP_EOL}}: {{ucwords(strtolower($paquete_cotizaciones->titulo))}}
+                                                    </a>
+                                                </td>
+                                                {{--<td class="no-padding"><a href="{{route('quotes_show_path',$paquete_cotizaciones->id)}}" class="{{$active}}">{{$paquete_cotizaciones->titulo}}</a></td>--}}
                                                 <td class="no-padding right-align"><a href="{{route('quotes_show_path',$paquete_cotizaciones->id)}}" class="{{$active}} rigth">{{date_format($paquete_cotizaciones->updated_at, 'j F Y')}}</a></td>
                                             </tr>
                                         @elseif($cot->estado == 1)
@@ -124,6 +143,7 @@
                                                 <td class="no-padding">
                                                     @if($paquete_cotizaciones->estado == 3)
                                                         <a href="{{route('group_path',$cotizacion->id)}}" class="tooltipped" data-position="top" data-delay="50" data-tooltip="Agregar datos personales y de grupo (si tiene grupo)."><i class="material-icons">supervisor_account</i></a>
+                                                        <a href="{{route('payments_create_path',$cotizacion->id)}}" class="pink-text text-accent-4"><i class="material-icons">payment</i></a>
                                                     @endif
                                                     @php
                                                         echo $estado;
@@ -146,10 +166,9 @@
                                 {{--<a href="#!" class="secondary-content">18 june 2017</a>--}}
 
                             </li>
-                            @endif
                         @endif
-                    @endforeach
-
+                    @endif
+                @endforeach
             @endforeach
         </ul>
     </div>
