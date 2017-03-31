@@ -24130,6 +24130,8 @@ function agregar_servicio(pos){
             //     //2da iteración: ele === 2
             //     //demas iteraciones: metodos y propiedades del array.
             // }
+            console.log('respuesta');
+            console.log('datos: '+data);
             for (var ele in data) {
                 var $dato=ele.split('_');
                 $("#itineraio_orden_"+pos).prepend(

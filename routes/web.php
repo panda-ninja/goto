@@ -333,6 +333,11 @@ Route::group(['middleware'=>'admin'],function(){
         'uses' => 'CotizacionController@guardar_cotizacion_paso2',
         'as' => 'cotizacion_guardar_plan_path',
     ]);
+    Route::post('/editar-cotizacion', [
+        'uses' => 'CotizacionController@guardar_cotizacion_paso2_edit',
+        'as' => 'cotizacion_editar_plan_path',
+    ]);
+
     Route::post('/cotizacion-crear-plan1', [
         'uses' => 'PaqueteController@buscar_plan',
         'as' => 'cotizacion_buscar_plan_path',

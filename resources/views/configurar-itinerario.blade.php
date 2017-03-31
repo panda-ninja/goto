@@ -714,7 +714,7 @@
 
                         <input type="text" class="hide" name="totalItinerario" id="totalItinerario" value="{{$totalItinerario}}">
                         <input type="hidden" name="cliente_id" id="cliente_id" value="{{$cliente->id}}">
-
+                        {{csrf_field()}}
                         <button class="btn waves-effect waves-light green" type="submit" name="action">Terminar
                             <i class="mdi-content-save right"></i>
                         </button>

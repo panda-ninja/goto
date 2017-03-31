@@ -506,7 +506,7 @@ function agregar_servicio(pos){
         }
     });
     $.post($url+'/guardar_itinerario_servicio', $('#'+nombre).serialize(), function(data) {
-        // var rpt=data.split('_');
+        console.log('datos: '+data);
         if(data!='0') {
             $("#action_agregar_servicio_"+pos).html('Agregar<i class="mdi-content-send right"></i>');
             $("#action_agregar_servicio_"+pos).removeClass('green');
@@ -517,6 +517,8 @@ function agregar_servicio(pos){
             //     //2da iteración: ele === 2
             //     //demas iteraciones: metodos y propiedades del array.
             // }
+            console.log('respuesta');
+            console.log('datos: '+data);
             for (var ele in data) {
                 var $dato=ele.split('_');
                 $("#itineraio_orden_"+pos).prepend(

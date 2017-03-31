@@ -534,7 +534,14 @@
                                                             $color = "grey-text";
                                                         }
                                                     @endphp
-                                                    {{--<a id="send{{$paquete_cotizacion->id}}" href="#!" class="text-22 {{$color}}" onclick="enviarPlan({{$paquete_cotizacion->id}}, {{$cliente->id}})"><i class="mdi-content-send"></i></a>--}}
+                                                    <a id="send{{$paquete_cotizacion->id}}" href="#!" class="text-22 {{$color}}" onclick="enviarPlan({{$paquete_cotizacion->id}}, {{$cliente_cotizacion->cliente->id}})"><i class="mdi-content-send"></i></a>
+                                                    <form action="{{route('cotizacion_editar_plan_path')}}" method="post" enctype="multipart/form-data">
+                                                        {{csrf_field()}}
+                                                        <input type="hidden" name="paquete_id" value="{{$paquete_cotizacion->id}}">
+                                                        <input type="hidden" name="cotizacion_id" value="{{$cotizacion->id}}">
+                                                        <input type="hidden" name="cliente_id" value="{{$cliente_cotizacion->cliente->id}}">
+                                                        <button type="submit" class="text-22 orange-text"><i class="mdi-content-create"></i></button>
+                                                    </form>
                                                 </td>
                                             </tr>
                                         @endforeach
