@@ -110,10 +110,8 @@
                                     <table class="bordered">
                                         <thead>
                                         <tr>
-                                            <th colspan="2">Propuestas</th>
-                                            {{--<th class="right-align">Costo ($)</th>--}}
-                                            {{--<th class="right-align">Venta ($)</th>--}}
-                                            <th class="right-align text-10">
+
+                                            <td colspan="3" class="no-padding">
                                                 <form class="formValidate" id="formValidate" method="post" action="{{route('cotizacion_crear_plann_path')}}">
 
                                                             {{csrf_field()}}
@@ -121,12 +119,12 @@
                                                             <input id="email3_{{$cotizacion->id}}" type="hidden" name="email3" value="{{$cliente_cotizacion->cliente->email}}">
                                                             <input name="fecha" id="fecha_{{$cotizacion->id}}" type="hidden" value="{{$cotizacion->fecha}}">
                                                             <input name="cotizacion_id" id="cotizacion_{{$cotizacion->id}}" type="hidden" value="{{$cotizacion->id}}">
-                                                            <button type="submit" class="waves-effect waves-light  btn text-10">+propuestas</button>
+                                                            <a  href="javascript:;" onclick="parentNode.submit();" class="text-12 green-text padding-right-25">+propuestas</a>
 
 
                                                 </form>
 
-                                            </th>
+                                            </td>
                                         </tr>
                                         </thead>
                                         @php $s = "A"; @endphp
@@ -524,7 +522,6 @@
                                                 {{--<td class="right-align">{{$paquete_cotizacion->preciocosto}}</td>--}}
                                                 {{--<td class="right-align">{{$paquete_cotizacion->precio_venta}}</td>--}}
                                                 <td class="right-align">
-                                                    <a href="" class="text-22 red-text"><i class="mdi-action-delete"></i></a>
                                                     @php
                                                         if($paquete_cotizacion->estado == 0){
                                                             $color = "";
@@ -532,15 +529,15 @@
                                                             $color = "grey-text";
                                                         }
                                                     @endphp
-                                                    <a id="send{{$paquete_cotizacion->id}}" href="#!" class="text-22 {{$color}}" onclick="enviarPlan({{$paquete_cotizacion->id}}, {{$cliente_cotizacion->cliente->id}})"><i class="mdi-content-send"></i></a>
                                                     <form action="{{route('cotizacion_editar_plan_path')}}" method="post" enctype="multipart/form-data">
                                                         {{csrf_field()}}
                                                         <input type="hidden" name="paquete_id" value="{{$paquete_cotizacion->id}}">
                                                         <input type="hidden" name="cotizacion_id" value="{{$cotizacion->id}}">
                                                         <input type="hidden" name="cliente_id" value="{{$cliente_cotizacion->cliente->id}}">
-                                                        <button type="submit" class="text-22 orange-text"><i class="mdi-content-create"></i></button>
+                                                        <a href="" class="text-22 red-text"><i class="mdi-action-delete"></i></a>
+                                                        <a href="javascript:;" onclick="parentNode.submit();" class="text-22 orange-text"><i class="mdi-content-create"></i></a>
+                                                        <a id="send{{$paquete_cotizacion->id}}" href="#!" class="text-22 {{$color}}" onclick="enviarPlan({{$paquete_cotizacion->id}}, {{$cliente_cotizacion->cliente->id}})"><i class="mdi-content-send"></i></a>
                                                     </form>
-
                                                 </td>
                                             </tr>
                                         @endforeach

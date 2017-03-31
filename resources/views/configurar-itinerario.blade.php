@@ -44,7 +44,7 @@
                     </h5>
                     <div class="divider"></div>
                     <p class="text-12">Destinos actuales del paquete</p>
-                    @foreach($paquete_->destinos as $destino)
+                    @foreach($paquete_->paquetes_destinos as $destino)
                         <div class="col s3">
                             <input type="checkbox" class="filled-in" id="{{$destino->id}}" checked="checked" />
                             <label for="{{$destino->id}}" class="padding-left-5">{{$destino->destino}}</label>
@@ -912,7 +912,7 @@
                             <?php $i=0;?>
                             @foreach($destinos->sortBy("destino") as $destin)
                                 <?php $i++; $si=0;?>
-                                @foreach($paquete_->destinos as $destinoCoti)
+                                @foreach($paquete_->paquetes_destinos as $destinoCoti)
                                     @if($destin->destino==$destinoCoti->destino)
                                         <div class="col s6">
                                             <input type="checkbox" name="destino[]" class="filled-in" id="destino_{{$i}}" checked="checked" value="{{$destin->destino}}"/>

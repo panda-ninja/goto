@@ -146,7 +146,7 @@
                     <?php $i=0;?>
                     @foreach($destinos as $destin)
                         <?php $i++; $si=0;?>
-                        @foreach($paquete_->destinos as $destinoCoti)
+                        @foreach($paquete_->paquetes_destinos as $destinoCoti)
                             @if($destin->destino==$destinoCoti->destino)
                                 <div class="col s12">
                                     <input type="checkbox" name="destino[]" class="filled-in" id="destino_{{$i}}" value="{{$destin->destino}}" checked="checked"/>

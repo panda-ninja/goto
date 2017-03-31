@@ -113,7 +113,7 @@
                                                     <input id="email3_{{$cotizacion->id}}" type="hidden" name="email3" value="{{$cliente->email}}">
                                                     <input name="fecha" id="fecha_{{$cotizacion->id}}" type="hidden" value="{{$cotizacion->fecha}}">
                                                     <input name="cotizacion_id" id="cotizacion_{{$cotizacion->id}}" type="hidden" value="{{$cotizacion->id}}">
-                                                    <a href="javascript:;" onclick="parentNode.submit();" class="text-12 blue-text padding-right-25"><i>+ propuestas</i></a>
+                                                    <a href="javascript:;" onclick="parentNode.submit();" class="text-12 green-text padding-right-25"><i>+ propuestas</i></a>
                                                 </form>
                                             </td>
                                         </tr>
@@ -230,7 +230,7 @@
                                                         </div>
                                                         <div class="row">
                                                             <div class="col s12">
-                                                                @foreach($paquete_cotizacion->destinos as $paquete_destinos)
+                                                                @foreach($paquete_cotizacion->paquetes_destinos as $paquete_destinos)
                                                                     <div class="col s4"><i class="mdi-navigation-check"></i> {{$paquete_destinos->destino}}</div>
                                                                 @endforeach
                                                             </div>

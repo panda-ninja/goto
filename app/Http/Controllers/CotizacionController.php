@@ -195,7 +195,7 @@ class CotizacionController extends Controller
         $cliente_ = Cliente::FindOrFail($cliente_id);
         $cotizacion_ = Cotizacion::FindOrFail($cotizacion_id);
 
-        $paquete = PaqueteCotizacion::with('precio_paquetes', 'destinos', 'itinerario_cotizaciones.ordenes')->get()->where('id', $paquete_id);
+        $paquete = PaqueteCotizacion::with('precio_paquetes','itinerario_cotizaciones.ordenes')->get()->where('id', $paquete_id);
         $destinos = DestinoModelo::get();
 
         $ordenes1 = OrdenModelo::get();
@@ -604,7 +604,7 @@ class CotizacionController extends Controller
         $cotizacion_ = Cotizacion::FindOrFail($cotizacion_id);
         $paquete_id =  $request->input('paquete_id');
 
-        $paquete = PaqueteCotizacion::with('precio_paquetes', 'destinos', 'itinerario_cotizaciones.ordenes')->get()->where('id', $paquete_id);
+        $paquete = PaqueteCotizacion::with('precio_paquetes', 'itinerario_cotizaciones.ordenes')->get()->where('id', $paquete_id);
         $destinos = DestinoModelo::get();
 
         $ordenes1 = OrdenModelo::get();

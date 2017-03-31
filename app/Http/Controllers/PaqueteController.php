@@ -35,7 +35,7 @@ class PaqueteController extends Controller
         $cotizacion_ = Cotizacion::FindOrFail($cotizacion_id);
 
         $codigo = explode(' ', strtoupper($request->input('codigo')));
-        $ppaquete = PPaquete::with('precios','destinos','itinerarios')->get()->where('codigo', $codigo[0]);
+        $ppaquete = PPaquete::with('precios','itinerarios')->get()->where('codigo', $codigo[0]);
 //        dd($paquete);
         $destino = DestinoModelo::all();
         //$id = TPaquete::where('codigo', $codigo[0])->get();
@@ -107,7 +107,7 @@ class PaqueteController extends Controller
                 }
             }
         }
-        $paquete = PaqueteCotizacion::with('precio_paquetes','destinos','itinerario_cotizaciones')->get()->where('id',$new_paquete->id);
+        $paquete = PaqueteCotizacion::with('precio_paquetes','itinerario_cotizaciones')->get()->where('id',$new_paquete->id);
         $destinos=DestinoModelo::get();
 //        dd($destinos);
         return view('configurar_paquete_plan',['cotizaciones'=>$cotizacion_,'cliente'=>$cliente_,'destinos'=>$destinos,'paquete'=>$paquete]);
