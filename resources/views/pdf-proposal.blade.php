@@ -41,7 +41,7 @@
         <div>
             <h3 class="no-margin">Itinerary for days</h3>
             @foreach($paquete->itinerario_cotizaciones->sortBy('dias') as $itinerario)
-                <h4>Day {{$itinerario->dias}} - {{$itinerario->titulo}} ({{$itinerario->fecha}})</h4>
+                <h4>Day {{$itinerario->dias}} - {{$itinerario->titulo}}</h4>
                 <p>{{$itinerario->descripcion}}</p>
                 <img src="{{asset('img/itinerary/'.str_replace(' ','-',$itinerario->titulo).'')}}.jpg" class="responsive-img" alt="">
                 {{--<h4>Servicios:</h4>--}}
@@ -68,7 +68,7 @@
 
         <div>
             <h3><b>Destinos incluidos:</b></h3>
-            @foreach($paquete->destinos as $destino)
+            @foreach($paquete->paquetes_destinos as $destino)
                 <img src="{{asset('img/destinations/'.$destino->imagen.'')}}" class="margin-bottom-3" width="347" alt="">
                 <b class="text-destinations">{{ucwords(strtolower($destino->destino))}}</b>
             @endforeach

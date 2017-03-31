@@ -64,7 +64,7 @@
                             <a href="#modal_add_itinerary" class="modal-trigger tooltipped right text-12 blue-text" data-position="bottom" data-delay="50" data-tooltip="Agregar itinerario de nuestra base de datos"><i class="mdi-av-my-library-books text-18 left"></i></a>
                         </h5>
                         <div class="divider"></div>
-                        <p class="text-12">Usted puede buscar y cargar datos de un paquete almacenado en nuestra base de datos y poder modificarlos segun sus necesidades o crear un paquete totalmente nuevo</p>
+                        <p class="text-12">Se puede agregar mas itinerarios y poder desplazarlos a la ubicacion que requiera.</p>
 
                     </div>
                     <div class="col s12">
@@ -102,6 +102,7 @@
                             $totalItinerario=0;
                             ?>
                             @foreach($paquete_->itinerario_cotizaciones->sortBy('dias') as $itinerario)
+
                                 <?php $precio_iti2=0?>
                                 @foreach($itinerario->ordenes as $ordenes2)
                                     <?php $precio_iti2+=$ordenes2->precio?>
@@ -112,7 +113,8 @@
                                 ?>
 
                                 <div id="Itine_{{$pos}}" class="portlet">
-                                    <div class="portlet-header">Dia <span class="pos_iti" name="posdia[]" id="pos_dia_{{$itinerario->dias}}">{{$itinerario->dias}}</span>: <span id="titulo_iti_{{$itinerario->id}}">{{$itinerario->titulo}}</span>
+
+                                    <div class="portlet-header">Dia <span class="pos_iti" name="posdia[]" id="pos_dia_{{$pos}}">{{$pos}}</span>: <span id="titulo_iti_{{$itinerario->id}}" class="grey-text text-darken-1">{{ucwords(strtolower($itinerario->titulo))}}</span>
                                         <a href="#modal_edit_{{$itinerario->id}}" class="modal-trigger blue-text right"><i class="mdi-editor-mode-edit"></i></a>
                                         <a href="#!" class="red-text right" onclick="borrarItinerario({{$pos}},{{$itinerario->id}})"><i class="mdi-action-delete"></i></a>
                                         <input class="precio_itinerario" type="hidden" name="precio_itinerario[]" id="precio_itinerario_{{$pos}}" value="{{$precio_iti2}}"><span class="right grey-text">(${{$precio_iti2}})</span>

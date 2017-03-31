@@ -7,6 +7,7 @@
 
     <!-- CSS  -->
     <link href="{{asset('css/app.css')}}" type="text/css" rel="stylesheet" media="screen,projection"/>
+    {{--<link href="{{elixir('css/carousel.css')}}" type="text/css" rel="stylesheet" media="screen,projection"/>--}}
     <link href='https://fonts.googleapis.com/css?family=Montserrat|Oleo+Script' rel='stylesheet' type='text/css'>
 </head>
 <body>
@@ -171,7 +172,6 @@
 <!--  Scripts-->
 <script src="{{asset('js/app.js')}}"></script>
 <script src="{{asset('js/init.js')}}"></script>
-<script src="{{asset('js/jquery.printPage.js')}}"></script>
 
 @yield('scripts')
 
@@ -182,10 +182,6 @@
         onClose: function(el) { alert('Closed'); } // Callback for Collapsible close
     });
 </script>
-<script>
-    $(document).ready(function () {
-        $(".btnPrint").printPage();
-    })
-</script>
+
 </body>
 </html>

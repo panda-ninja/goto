@@ -72,8 +72,8 @@
                 </thead>
 
                 <tbody>
+                @php $i = 1; @endphp
                 @foreach($cotizaciones as $cotizacion)
-                    @php $i = 1; @endphp
                     @foreach($cotizacion->cliente_cotizaciones as $cliente_cotizacion)
                         @if($cliente_cotizacion)
                             {{--@if($cliente_cotizacion->posibilidad <= 25)--}}
@@ -110,22 +110,20 @@
                                     <table class="bordered">
                                         <thead>
                                         <tr>
-                                            <th>Propuestas</th>
+                                            <th colspan="2">Propuestas</th>
                                             {{--<th class="right-align">Costo ($)</th>--}}
                                             {{--<th class="right-align">Venta ($)</th>--}}
-                                            <th>
+                                            <th class="right-align text-10">
                                                 <form class="formValidate" id="formValidate" method="post" action="{{route('cotizacion_crear_plann_path')}}">
-                                                    <div class="row">
-                                                        <div class="input-field col s12">
+
                                                             {{csrf_field()}}
                                                             <input type="hidden"  name="nropasajeros" id="nropasajeros_{{$cotizacion->id}}" value="{{$cotizacion->nropersonas}}">
                                                             <input id="email3_{{$cotizacion->id}}" type="hidden" name="email3" value="{{$cliente_cotizacion->cliente->email}}">
                                                             <input name="fecha" id="fecha_{{$cotizacion->id}}" type="hidden" value="{{$cotizacion->fecha}}">
                                                             <input name="cotizacion_id" id="cotizacion_{{$cotizacion->id}}" type="hidden" value="{{$cotizacion->id}}">
-                                                            <button type="submit" class="waves-effect waves-light  btn"><i class="left mdi-av-queue"></i> propuestas</button>
+                                                            <button type="submit" class="waves-effect waves-light  btn text-10">+propuestas</button>
 
-                                                        </div>
-                                                    </div>
+
                                                 </form>
 
                                             </th>
@@ -239,7 +237,7 @@
                                                         </div>
                                                         <div class="row">
                                                             <div class="col s12">
-                                                                @foreach($paquete_cotizacion->destinos as $paquete_destinos)
+                                                                @foreach($paquete_cotizacion->paquetes_destinos as $paquete_destinos)
                                                                     <div class="col s4"><i class="mdi-navigation-check"></i> {{$paquete_destinos->destino}}</div>
                                                                 @endforeach
                                                             </div>
@@ -542,6 +540,7 @@
                                                         <input type="hidden" name="cliente_id" value="{{$cliente_cotizacion->cliente->id}}">
                                                         <button type="submit" class="text-22 orange-text"><i class="mdi-content-create"></i></button>
                                                     </form>
+
                                                 </td>
                                             </tr>
                                         @endforeach

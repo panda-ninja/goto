@@ -586,6 +586,26 @@ img.desaturada{
   background: rgba(255,255,255,.9)!important;
   border-bottom-color: transparent;
 }
+.table-price-accommodation{
+  border-collapse: collapse;
+  text-align: center;
+  border: 1px solid #949494;
+  width: 100%;
+}
+.table-price-accommodation td{
+  border-left: 1px solid #333;
+}
+.table-price-accommodation th{
+  background-color: #333;
+  color: #FFFFFF;
+}
+.table-price-accommodation th, .table-price-accommodation td{
+  border: 1px solid #949494;
+  padding: 3px 10px;
+}
+.table-price-accommodation .hour-text{
+  color: #b71c1c ;
+}
 //footer
 footer{
   background: #303030;

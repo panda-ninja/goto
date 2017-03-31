@@ -158,9 +158,14 @@ class QuotesController extends Controller
     public function pdf($id)
     {
 
-        $paquete = PaqueteCotizacion::with('precio_paquetes','paquetes_destinos','itinerario_cotizaciones.horas_cotizaciones', 'itinerario_cotizaciones.servicios_cotizaciones')->get()->where('id', $id);
-        $pdf = \PDF::loadView('quotes_pdf', ['paquete'=>$paquete])->setPaper('a4')->setWarnings(true);
-        return $pdf->download('itinerary_'.$id.'.pdf');
+        $paquetes = PaqueteCotizacion::with('precio_paquetes')->get()->where('id', $id);
+        foreach ($paquetes as $paquetes2){
+            $paquete = PaqueteCotizacion::with('precio_paquetes')->get()->where('id', $id);
+            $cotizacion = Cotizacion::where('id',$paquetes2->cotizaciones_id)->get();
+            $pdf = \PDF::loadView('pdf-proposal', ['paquete'=>$paquete, 'cotizacion'=>$cotizacion])->setPaper('a4')->setWarnings(true);
+            return $pdf->download('proposals_'.$id.'.pdf');
+//            \File::delete('pdf/proposals_'.$id.'.pdf');
+        }
 
     }
 

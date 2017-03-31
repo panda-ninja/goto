@@ -75,60 +75,11 @@
                 </div>
                 <div class="row">
                     <div class="col s12">
-                        <div class="divider margin-top-10"></div>
-                        <table class="bordered highlight centered responsive-table price-quotes-table">
-                            <thead>
-                            <tr>
-                                <th></th>
-
-                                <th colspan="3">Accommodation</th>
-                                <th></th>
-                            </tr>
-                            <tr>
-
-                                <th data-field="name">Hotel Category </th>
-                                <th data-field="price">Simple</th>
-                                <th data-field="price">Double</th>
-                                <th data-field="price">Matrimonial</th>
-                                <th data-field="price">Triple</th>
-                                <th></th>
-                            </tr>
-                            </thead>
-
-                            <tbody>
-                            @foreach($paquete->precio_paquetes as $precio)
-                                @if($precio->estado == 1)
-                                    <?php $active = 'green lighten-5 active'; $icon = 'check_circle'; ?>
-                                @else
-                                    <?php $active = 'disabled'; $icon = ''; ?>
-                                @endif
-                                <tr>
-                                    <td class="{{$active}}"><b>{{$precio->estrellas}} stars</b></td>
-                                    <td class="{{$active}}">${{$precio->precio_s}} <br> <span>{{$precio->personas_s}} Travellers</span></td>
-                                    <td class="{{$active}}">${{$precio->precio_d}} <br> <span>{{$precio->personas_d}} Travellers</span></td>
-                                    <td class="{{$active}}">${{$precio->precio_m}} <br> <span>{{$precio->personas_m}} Travellers</span></td>
-                                    <td class="{{$active}}">${{$precio->precio_t}} <br> <span>{{$precio->personas_t}} Travellers</span></td>
-                                    <td class="{{$active}}"><i class="material-icons green-text">{{$icon}}</i></td>
-
-                                </tr>
-                            @endforeach
-
-                            </tbody>
-                        </table>
-
-
-                        <p class="yellow-text text-darken-3"><b>Destinos incluidos:</b></p>
-
-                        @foreach($paquete->paquetes_destinos as $destino)
-                            <div class="col s3"><i class="material-icons left">location_on</i> {{ucwords(strtolower($destino->destinos->destino))}}</div>
-
-
+                        <p class="yellow-text text-darken-3"><b>Outline</b></p>
+                        @foreach($paquete->itinerario_cotizaciones->sortBy('dias') as $itinerario)
+                            <p><b class="grey-text text-darken-2">Day {{$itinerario->dias}} - {{ucwords(strtolower($itinerario->titulo))}}</b></p>
+                            {{--<p>@php echo $itinerario->descripcion; @endphp</p>--}}
                         @endforeach
-
-
-
-
-
                     </div>
                 </div>
                 <div class="row">
@@ -138,76 +89,230 @@
                         @php echo $paquete->incluye; @endphp
                         <p class="yellow-text text-darken-3"><b>No Incluye</b></p>
                         @php echo $paquete->noincluye; @endphp
-                        <p class="yellow-text text-darken-3"><b>Opcional</b></p>
-                        @php echo $paquete->opcional; @endphp
+                        {{--<p class="yellow-text text-darken-3"><b>Opcional</b></p>--}}
+                        {{--@php echo $paquete->opcional; @endphp--}}
 
                     </div>
                 </div>
                 <div class="row">
-                    <div class="col s12 tabs-detail margin-bottom-20">
-                        <ul class="tabs">
-                            <li class="tab col s3"><a href="#days" class="active">Itinerary for days</a></li>
-                            <li class="tab col s3"><a href="#hours">Itinerary for hours</a></li>
-                            <li class="tab col s3"><a href="#services">Services</a></li>
-                        </ul>
-                    </div>
-                    <div id="days" class="col s12">
+                    <div class="col s12">
+                        <p class="yellow-text text-darken-3"><b>Itinerary</b></p>
                         @foreach($paquete->itinerario_cotizaciones->sortBy('dias') as $itinerario)
-                            <h6><b>Day {{$itinerario->dias}} - {{$itinerario->titulo}} ({{$itinerario->fecha}})</b></h6>
-                            @php echo $paquete->descripcion; @endphp
+                            <p><b class="grey-text text-darken-2">Day {{$itinerario->dias}} - {{ucwords(strtolower($itinerario->titulo))}}</b></p>
+                            <p>@php echo $itinerario->descripcion; @endphp</p>
+                            <img src="{{asset('img/itinerary/'.str_replace(' ','-',$itinerario->titulo).'')}}.jpg" class="responsive-img materialboxed" alt="">
                         @endforeach
-                    </div>
-                    <div id="hours" class="col s12">
-                        @foreach($paquete->itinerario_cotizaciones->sortBy('dias') as $itinerario)
-
-                            <div class="row">
-                                <div class="col s4">
-                                    <p><b>Day {{$itinerario->dias}} - {{$itinerario->titulo}}</b></p>
-                                    <p>({{$itinerario->fecha}})</p>
-                                </div>
-                                <div class="col s8">
-                                    @foreach($itinerario->horas_cotizaciones->sortBy('hora') as $horas)
-                                        <p><b>{{$horas->hora}}</b> - @php echo $horas->descripcion; @endphp</p>
-                                    @endforeach
-                                </div>
-                            </div>
-
-                        @endforeach
-                    </div>
-                    <div id="services" class="col s12">
-                        @foreach($paquete->itinerario_cotizaciones->sortBy('dias') as $itinerario)
-                            <div class="row">
-                                <div class="col s12">
-                                    <h6><b>Day {{$itinerario->dias}} - {{$itinerario->titulo}} ({{$itinerario->fecha}})</b></h6>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col s12 m9 offset-m1">
-                                    <table class="bordered striped highlight responsive-table">
-                                        <thead>
-                                        <tr>
-                                            <th data-field="id">Concepto</th>
-                                            <th data-field="name">Observaciones</th>
-                                            {{--<th data-field="price">Precio</th>--}}
-                                        </tr>
-                                        </thead>
-
-                                        <tbody>
-                                        @foreach($itinerario->servicios_cotizaciones as $servicios)
-                                            <tr>
-                                                <td>{{$servicios->tiposervicio}}</td>
-                                                <td>@php echo $servicios->observaciones; @endphp</td>
-                                                {{--<td>${{$servicios->precio}}</td>--}}
-                                            </tr>
-                                        @endforeach
-                                        </tbody>
-                                    </table>
-                                </div>
-                            </div>
-                        @endforeach
-
                     </div>
                 </div>
+                <div class="row">
+                    <div class="col s12">
+                        <p class="yellow-text text-darken-3"><b>Destinos incluidos:</b></p>
+
+                        @foreach($paquete->paquetes_destinos as $destino)
+                                <div class="col s4 margin-bottom-20">
+                                    <img src="{{asset('img/destinations/'.$destino->imagen.'')}}" alt="" class="responsive-img materialboxed">
+                                    {{--<p class="center">{{$destino->destino}}</p>--}}
+                                </div>
+                        @endforeach
+                        {{--<div id="sync2" class="owl-carousel hide-ipad-large">--}}
+                            {{--<div class="item item-2"><img src="{{asset('img/destinations/'.$destino->imagen.'')}}" alt="" class="responsive-img"></div>--}}
+                        {{--</div>--}}
+                    </div>
+
+                    {{--<div class="owl-carousel">--}}
+                        {{--<div class="item">--}}
+                            {{--<a class="popup-youtube" href="https://www.youtube.com/watch?v=5SJml0MBhW4?autoplay=1&rel=0&controls=0&showinfo=0&wmode=transparent"><img src="http://res.cloudinary.com/milairagny/image/upload/v1487938016/pexels-photo-4_tfmpvk.jpg"></a>--}}
+                        {{--</div>--}}
+
+                    {{--</div>--}}
+
+                {{--<div class="row">--}}
+                    {{--<div class="col s12 tabs-detail margin-bottom-20">--}}
+                        {{--<ul class="tabs">--}}
+                            {{--<li class="tab col s3"><a href="#days" class="active">Itinerary for days</a></li>--}}
+                            {{--<li class="tab col s3"><a href="#hours">Itinerary for hours</a></li>--}}
+                            {{--<li class="tab col s3"><a href="#services">Services</a></li>--}}
+                        {{--</ul>--}}
+                    {{--</div>--}}
+                    {{--<div id="days" class="col s12">--}}
+                        {{--@foreach($paquete->itinerario_cotizaciones->sortBy('dias') as $itinerario)--}}
+                            {{--<h6><b>Day {{$itinerario->dias}} - {{$itinerario->titulo}} ({{$itinerario->fecha}})</b></h6>--}}
+                            {{--@php echo $itinerario->descripcion; @endphp--}}
+                        {{--@endforeach--}}
+                    {{--</div>--}}
+                    {{--<div id="hours" class="col s12">--}}
+                        {{--@foreach($paquete->itinerario_cotizaciones->sortBy('dias') as $itinerario)--}}
+
+                            {{--<div class="row">--}}
+                                {{--<div class="col s4">--}}
+                                    {{--<p><b>Day {{$itinerario->dias}} - {{$itinerario->titulo}}</b></p>--}}
+                                    {{--<p>({{$itinerario->fecha}})</p>--}}
+                                {{--</div>--}}
+                                {{--<div class="col s8">--}}
+                                    {{--@foreach($itinerario->horas_cotizaciones->sortBy('hora') as $horas)--}}
+                                        {{--<p><b>{{$horas->hora}}</b> - @php echo $horas->descripcion; @endphp</p>--}}
+                                    {{--@endforeach--}}
+                                {{--</div>--}}
+                            {{--</div>--}}
+
+                        {{--@endforeach--}}
+                    {{--</div>--}}
+                    {{--<div id="services" class="col s12">--}}
+                        {{--@foreach($paquete->itinerario_cotizaciones->sortBy('dias') as $itinerario)--}}
+                            {{--<div class="row">--}}
+                                {{--<div class="col s12">--}}
+                                    {{--<h6><b>Day {{$itinerario->dias}} - {{$itinerario->titulo}} ({{$itinerario->fecha}})</b></h6>--}}
+                                {{--</div>--}}
+                            {{--</div>--}}
+                            {{--<div class="row">--}}
+                                {{--<div class="col s12 m9 offset-m1">--}}
+                                    {{--<table class="bordered striped highlight responsive-table">--}}
+                                        {{--<thead>--}}
+                                        {{--<tr>--}}
+                                            {{--<th data-field="id">Concepto</th>--}}
+                                            {{--<th data-field="name">Observaciones</th>--}}
+                                            {{--<th data-field="price">Precio</th>--}}
+                                        {{--</tr>--}}
+                                        {{--</thead>--}}
+
+                                        {{--<tbody>--}}
+                                        {{--@foreach($itinerario->servicios_cotizaciones as $servicios)--}}
+                                            {{--<tr>--}}
+                                                {{--<td>{{$servicios->tiposervicio}}</td>--}}
+                                                {{--<td>@php echo $servicios->observaciones; @endphp</td>--}}
+                                                {{--<td>${{$servicios->precio}}</td>--}}
+                                            {{--</tr>--}}
+                                        {{--@endforeach--}}
+                                        {{--</tbody>--}}
+                                    {{--</table>--}}
+                                {{--</div>--}}
+                            {{--</div>--}}
+                        {{--@endforeach--}}
+
+                    {{--</div>--}}
+                {{--</div>--}}
+                    </div>
+                <div class="row">
+                    <div class="col s12">
+                        <p class="yellow-text text-darken-3"><b>Price</b></p>
+                        @php $servicio = 0; @endphp
+                        @foreach($paquete->itinerario_cotizaciones as $paquete_itinerario)
+                            @foreach($paquete_itinerario->orden_cotizaciones as $orden_cotizaciones)
+                                @php
+                                    $total = $orden_cotizaciones->precio + $servicio;
+                                    $servicio = $total;
+                                @endphp
+                            @endforeach
+                        @endforeach
+
+
+                        @foreach($paquete->precio_paquetes as $precio_paquete2)
+                            @if($precio_paquete2->estado == 1)
+
+                                <div>
+                                    <p class="no-margin"><b>Categoria: {{$precio_paquete2->estrellas}} estrellas</b></p>
+                                    <table class="table-price-accommodation margin-bottom-20">
+                                        <thead>
+                                        <tr>
+                                            <th>Acomodacion</th>
+                                            <th class="text-right">Total ($)</th>
+                                        </tr>
+                                        @if($precio_paquete2->personas_s > 0)
+                                            <tr>
+                                                <td class="text-left"><b>Simple</b></td>
+                                                <td class="text-right">
+                                                    @php
+                                                        $precio_s = (($precio_paquete2->precio_s)* 1) * ($paquete->duracion - 1);
+                                                        $total_costo = $precio_s + $total;
+                                                        $total_utilidad = $total_costo + ($total_costo * (($precio_paquete2->utilidad)/100));
+                                                    @endphp
+                                                    {{number_format($total_utilidad, 2, '.', '')}}
+                                                </td>
+                                            </tr>
+                                            {{--<tr>--}}
+                                            {{--<td colspan="2">--}}
+                                            {{--<i class="text-11">- {{$precio_paquete2->personas_s}} habitaciones con acomodacion simple, total de pasajeros {{$precio_paquete2->personas_s * 1}}, precio por persona ${{$total_utilidad / ($precio_paquete2->personas_s * 1)}}, numero de dias en hotel {{$paquete->duracion - 1}}</i>--}}
+                                            {{--</td>--}}
+                                            {{--</tr>--}}
+                                        @else
+                                            @php
+                                                $precio_s = 0;
+                                            @endphp
+                                        @endif
+                                        @if($precio_paquete2->personas_d > 0)
+                                            <tr>
+                                                <td class="text-left"><b>Doble</b></td>
+                                                <td class="text-right">
+                                                    @php
+                                                        $precio_d = (($precio_paquete2->precio_d)* 1) * ($paquete->duracion - 1);
+                                                        $total_costo = $precio_d + $total;
+                                                        $total_utilidad = $total_costo + ($total_costo * (($precio_paquete2->utilidad)/100));
+                                                    @endphp
+                                                    {{number_format($total_utilidad, 2, '.', '')}}
+                                                </td>
+                                            </tr>
+                                            {{--<tr>--}}
+                                            {{--<td colspan="2">--}}
+                                            {{--<i class="text-11">- {{$precio_paquete2->personas_d}} habitaciones con acomodacion doble, total de pasajeros {{$precio_paquete2->personas_d * 2}}, precio por persona ${{$total_utilidad / ($precio_paquete2->personas_d * 2)}}, numero de dias en hotel {{$paquete->duracion - 1}}</i>--}}
+                                            {{--</td>--}}
+                                            {{--</tr>--}}
+                                        @else
+                                            @php
+                                                $precio_d = 0;
+                                            @endphp
+                                        @endif
+                                        @if($precio_paquete2->personas_m > 0)
+                                            <tr>
+                                                <td class="text-left"><b>Matrimonial</b></td>
+                                                <td class="text-right">
+                                                    @php
+                                                        $precio_m = (($precio_paquete2->precio_m)* 1) * ($paquete->duracion - 1);
+                                                        $total_costo = $precio_m + $total;
+                                                        $total_utilidad = $total_costo + ($total_costo * (($precio_paquete2->utilidad)/100));
+                                                    @endphp
+                                                    {{number_format($total_utilidad, 2, '.', '')}}
+                                                </td>
+                                            </tr>
+                                            {{--<tr>--}}
+                                            {{--<td colspan="2">--}}
+                                            {{--<i class="text-11">- {{$precio_paquete2->personas_m}} habitaciones con acomodacion matrimonial, total de pasajeros {{$precio_paquete2->personas_m * 2}}, precio por persona ${{$total_utilidad / ($precio_paquete2->personas_m * 2)}}, numero de dias en hotel {{$paquete->duracion - 1}}</i>--}}
+                                            {{--</td>--}}
+                                            {{--</tr>--}}
+                                        @else
+                                            @php
+                                                $precio_m = 0;
+                                            @endphp
+                                        @endif
+                                        @if($precio_paquete2->personas_t > 0)
+                                            <tr>
+                                                <td class="text-left"><b>Triple</b></td>
+                                                <td class="text-right">
+                                                    @php
+                                                        $precio_t = (($precio_paquete2->precio_t)* 1) * ($paquete->duracion - 1);
+                                                        $total_costo = $precio_t + $total;
+                                                        $total_utilidad = $total_costo + ($total_costo * (($precio_paquete2->utilidad)/100));
+                                                    @endphp
+                                                    {{number_format($total_utilidad, 2, '.', '')}}
+                                                </td>
+                                            </tr>
+                                            {{--<tr>--}}
+                                            {{--<td colspan="2">--}}
+                                            {{--<i class="text-11">- {{$precio_paquete2->personas_t}} habitaciones con acomodacion matrimonial, total de pasajeros {{$precio_paquete2->personas_t * 3}}, precio por persona ${{$total_utilidad / ($precio_paquete2->personas_t * 3)}}, numero de dias en hotel {{$paquete->duracion - 1}}</i>--}}
+                                            {{--</td>--}}
+                                            {{--</tr>--}}
+                                        @else
+                                            @php
+                                                $precio_t = 0;
+                                            @endphp
+                                        @endif
+                                        </thead>
+                                    </table>
+                                </div>
+                            @endif
+                        @endforeach
+                    </div>
+                </div>
+
             </div>
 
             <!-- Modal Structure -->
