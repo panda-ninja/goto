@@ -23614,6 +23614,7 @@ _fnRowAttributes:Ma,_fnCalculateEnd:function(){}});h.fn.dataTable=m;h.fn.dataTab
 var $url='';
 //hidalgo
 $(document).ready(function(){
+    Materialize.updateTextFields();
 //cuando hagamos submit al formulario con id id_del_formulario
 //se procesara este script javascript
     $("#form_editar_pqt").submit(function(e){
@@ -23696,6 +23697,30 @@ $(document).ready(function(){
     //         }
     //     });
     // });
+
+    $("#form_registrar_cliente").submit(function(e){
+        e.preventDefault();
+        $.ajax({
+            url: $(this).attr("action"),//action del formulario, ej:
+            //http://localhost/mi_proyecto/mi_controlador/mi_funcion
+            type: $(this).attr("method"),//el método post o get del formulario
+            data: $(this).serialize(),//obtenemos todos los datos del formulario
+            error: function(){
+                //si hay un error mostramos un mensaje
+            },
+            success:function(data){
+                if(data==1) {
+                    // $("#response").html(data[1]);
+                    $("#action_R").html('Datos enviados<i class="mdi-content-send right"></i>');
+                    $("#action_R").addClass('green');
+                }
+                else if(data==0){
+                    // $("#email3").val($("#email").val());
+                }
+
+            }
+        });
+    });
 });
 function enviar(pos){
 
@@ -24118,12 +24143,11 @@ function agregar_servicio(pos){
         }
     });
     $.post($url+'/guardar_itinerario_servicio', $('#'+nombre).serialize(), function(data) {
-        // var rpt=data.split('_');
+        console.log('datos: '+data);
         if(data!='0') {
             $("#action_agregar_servicio_"+pos).html('Agregar<i class="mdi-content-send right"></i>');
             $("#action_agregar_servicio_"+pos).removeClass('green');
             $("#action_agregar_servicio_"+pos).addClass('pink accent-2');
-
 
             // for (var ele in data) {
             //     //1era iteración: ele === 1
@@ -24148,20 +24172,6 @@ function agregar_servicio(pos){
             recalcular_ordenes();
             poner_valor();
             pasartotal(0);
-
-            $(".nservicios").each(function (index)
-            {
-                var $dato=$(this).val().splt('_');
-                $("#lista_servicios_"+pos).prepend(
-                    '<div id="iti_servicio_'+$dato[1]+'" class="col s4">'+
-                    '<input type="checkbox" name="nservicio[]" class="filled-in nservicios" id="nservicio_'+$dato[1]+'" checked="checked" value="'+$dato[0]+'_'+$dato[1]+'_'+$dato[2]+'_'+$dato[3]+'"/>'+
-                    '<label for="nservicio_'+$dato[1]+'">'+$dato[2]+' ($ '+$dato[3]+')</label>'+
-                    '</div>');
-                recalcular_ordenes();
-                poner_valor();
-                pasartotal(0);
-            });
-
 
         }
         else{

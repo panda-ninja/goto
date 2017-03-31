@@ -1,6 +1,7 @@
 var $url='';
 //hidalgo
 $(document).ready(function(){
+    Materialize.updateTextFields();
 //cuando hagamos submit al formulario con id id_del_formulario
 //se procesara este script javascript
     $("#form_editar_pqt").submit(function(e){
@@ -83,6 +84,30 @@ $(document).ready(function(){
     //         }
     //     });
     // });
+
+    $("#form_registrar_cliente").submit(function(e){
+        e.preventDefault();
+        $.ajax({
+            url: $(this).attr("action"),//action del formulario, ej:
+            //http://localhost/mi_proyecto/mi_controlador/mi_funcion
+            type: $(this).attr("method"),//el método post o get del formulario
+            data: $(this).serialize(),//obtenemos todos los datos del formulario
+            error: function(){
+                //si hay un error mostramos un mensaje
+            },
+            success:function(data){
+                if(data==1) {
+                    // $("#response").html(data[1]);
+                    $("#action_R").html('Datos enviados<i class="mdi-content-send right"></i>');
+                    $("#action_R").addClass('green');
+                }
+                else if(data==0){
+                    // $("#email3").val($("#email").val());
+                }
+
+            }
+        });
+    });
 });
 function enviar(pos){
 

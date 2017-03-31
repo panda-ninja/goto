@@ -215,4 +215,59 @@ class ClienteCotizacionesController extends Controller
     {
         //
     }
+    public function registrar_fast(Request $request)
+    {
+        $cliente_e = Cliente::get()->where('email', $request->get('email'));
+
+        if ($cliente_e->count() > 0){
+            $estadoMensaje = 1;
+            $mensaje = '';
+            $email='duplicado';
+//                return '1';
+            return redirect(route('cotizacion_path'))
+            ->with('success',$email);
+//            return view('cotizacion')->with('success',$email);
+        }else{
+            $password = str_random(8);
+            $hashed_password = Hash::make($password);
+
+            $cliente = new Cliente();
+            $cliente->remember_token = $request->get('_token');
+            $cliente->nombres = $request->get('name_txt');
+            $cliente->email = $request->get('email');
+            $cliente->password = $hashed_password;
+            $cliente->estado = 1;
+            $cliente->save();
+
+            $email = $request->get('email');
+            $name = $request->get('name_txt');
+
+            try {
+                Mail::send(['html' => 'notifications.notification-register'], ['name' => $name, 'email' => $request->get('email'), 'password' => $password], function ($messaje) use ($email, $name) {
+                    $messaje->to($email, $name)
+                        ->subject('Registro Satisfactorio')
+                        /*->attach('ruta')*/
+                        ->from('info@gotoperu.com', 'GotoPeru');
+                });
+
+                $estadoMensaje = 1;
+                $mensaje = '';
+//                return '1';
+                return redirect(route('cotizacion_path'))
+                    ->with('success',$email);
+//                return view('cotizacion')->with('success',$email);
+            }
+            catch (Exception $e){
+                return $e;
+//                $estadoMensaje = 1;
+//                $mensaje = '';
+//                $email='error';
+//               return redirect(route('cotizacion_path'))
+//                ->with('success',$email);
+//                return view('cotizacion')->with('success',$email);
+            }
+
+        }
+    }
+
 }

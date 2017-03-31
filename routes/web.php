@@ -420,6 +420,11 @@ Route::group(['middleware'=>'admin'],function(){
         'uses' => 'CotizacionController@posibilidad',
         'as' => 'admin_posibilidad_path',
     ]);
+    Route::post('registar-cliente', [
+        'uses' => 'ClienteCotizacionesController@registrar_fast',
+        'as' => 'registrar_cliente_fast_path',
+    ]);
+
 
 });
 /*

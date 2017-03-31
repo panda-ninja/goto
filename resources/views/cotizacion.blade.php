@@ -26,25 +26,14 @@
             <h4>Ingrese datos del basicos del pasajero</h4>
         </div>
     </div>
-    <div class="row">
-        <div class="col-lg-12">
-            @if($estadoMensaje==1)
-                {{$mensaje}}
-            @elseif($estadoMensaje==0)
-                {{$mensaje}}
-            @elseif($estadoMensaje==-1)
-                {{$mensaje}}
-            @endif
-        </div>
-    </div>
+
     <div class="row margin-top-20">
         <div class="col s6">
             <form class="formValidate" id="formValidate" method="post" action="{{route('cotizacion_crear_plan_path')}}">
                 <div class="row">
-
                     <div class="input-field col s12">
                         <label for="email3">E-Mail *</label>
-                        <input id="email3" type="email" name="email3"  placeholder="Email del cliente">
+                        <input id="email3" type="email" name="email3" value="{{Session::get('success')}}"  placeholder="Email del cliente">
                     </div>
 
                     <div class="row">
@@ -80,8 +69,7 @@
                         <div class="divider margin-bottom-20"></div>
                     </div>
                 </div>
-                <form action="" method="post">
-                    {{csrf_field()}}
+                <form name="form_registrar_cliente" action="{{route('registrar_cliente_fast_path')}}" method="post">
                     <div class="row">
                         <div class="input-field col s12">
                             <i class="mdi-action-account-circle prefix"></i>
@@ -94,7 +82,8 @@
                             <label for="email" data-error="wrong" data-success="right">Email</label>
                         </div>
                         <div class="input-field col s12">
-                            <button class="btn waves-effect waves-light right-align" type="submit" name="action">Agregar Cliente
+                            {{csrf_field()}}
+                            <button  class="btn waves-effect waves-light right-align" type="submit" name="action_R" id="action_R">Agregar Cliente
                                 <i class="mdi-content-send"></i>
                             </button>
                         </div>

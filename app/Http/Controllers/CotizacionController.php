@@ -32,6 +32,7 @@ class CotizacionController extends Controller
 
     public function nuevacotizacion()
     {
+        $email='';
         return view('cotizacion');
     }
 
@@ -39,8 +40,10 @@ class CotizacionController extends Controller
     {
         $estadoMensaje = 1;
         $mensaje = '';
-        return view('cotizacion', ['cotizacion_id' => '0', 'cliente' => '', 'estadoMensaje' => $estadoMensaje, 'mensaje' => $mensaje]);
-
+        $email='';
+//        return view('cotizacion', ['cotizacion_id' => '0', 'cliente' => '', 'estadoMensaje' => $estadoMensaje, 'mensaje' => $mensaje,'email1'=>$email]);
+        return view('cotizacion');
+//        return view('cotizacion')->with('success',$email);
     }
 
     /**
