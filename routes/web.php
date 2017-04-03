@@ -424,7 +424,18 @@ Route::group(['middleware'=>'admin'],function(){
         'uses' => 'ClienteCotizacionesController@registrar_fast',
         'as' => 'registrar_cliente_fast_path',
     ]);
-
+    Route::get('nuevo-paquete', [
+        'uses' => 'PaqueteController@nuevo_paquete',
+        'as' => 'nuevo_paquete_path',
+    ]);
+    Route::post('nuevo-paquete', [
+        'uses' => 'CotizacionController@guardar_nuevo_paquete',
+        'as' => 'guardar_nuevo_paquete_path',
+    ]);
+    Route::post('paquete-agregar-itinerario', [
+        'uses' => 'ItineraryController@paquete_agregar_itineraios',
+        'as' => 'paquete_guardar_itinerario_path',
+    ]);
 
 });
 /*

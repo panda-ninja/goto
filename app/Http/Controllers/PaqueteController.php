@@ -27,6 +27,12 @@ use Illuminate\Support\Facades\Input;
 
 class PaqueteController extends Controller
 {
+    public function nuevo_paquete(){
+        $destinos=DestinoModelo::get();
+        return view('nuevo-paquete',['destinos'=>$destinos]);
+
+    }
+
     public function buscar_plan(Request $request)
     {
         $cotizacion_id = $request->input('cotizacion_id');

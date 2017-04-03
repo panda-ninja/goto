@@ -15,6 +15,7 @@ use GotoPeru\ItinerarioOrden;
 use GotoPeru\OrdenModelo;
 use GotoPeru\PaqueteCotizacion;
 use GotoPeru\PDestino;
+use GotoPeru\PPaquete;
 use GotoPeru\PrecioPaquete;
 use GotoPeru\DestinoModelo;
 use Illuminate\Http\Request;
@@ -138,6 +139,62 @@ class CotizacionController extends Controller
             $mensaje = $e;
             return view('cotizacion', ['estadoMensaje' => $estadoMensaje, 'mensaje' => $mensaje]);
         }
+    }
+
+
+    public function guardar_nuevo_paquete(Request $request)
+    {
+        $path = '';
+        $codigo_plan = $request->input('codigo_txt');
+        $titulo_plan = $request->input('titulo_txt');
+        $dias_plan = $request->input('duracion_txt');
+        $descr = $request->input('descipcion_txt');
+        $precio_plan = '0.00';
+
+        $incluye = $request->input('incluye_txt');
+        $noincluye = $request->input('noincluye_txt');
+        $opcional = $request->input('opcional_txt');
+        $destino = $request->input('destino');
+
+        $paquete =new PPaquete();
+        $paquete->codigo = $codigo_plan;
+        $paquete->titulo = $titulo_plan;
+        $paquete->duracion = $dias_plan;
+        $paquete->preciocosto = $precio_plan;
+        $paquete->descripcion = $descr;
+        $paquete->incluye = $incluye;
+        $paquete->noincluye = $noincluye;
+        $paquete->opcional = $opcional;
+        $paquete->estado = '1';
+        $paquete->imagen = $path;
+        $paquete->save();
+
+
+        if (count($destino) > 0) {
+            foreach ($destino as $item) {
+                $buscar_destinos1 = DestinoModelo::where('destino', $item)->get();
+                foreach ($buscar_destinos1 as $buscar_destinos) {
+                    $new_destino = new PDestino();
+                    $new_destino->codigo = $buscar_destinos->codigo;
+                    $new_destino->destino = $buscar_destinos->destino;
+                    $new_destino->region = $buscar_destinos->region;
+                    $new_destino->pais = $buscar_destinos->pais;
+                    $new_destino->descripcion = $buscar_destinos->descripcion;
+                    $new_destino->imagen = $buscar_destinos->imagen;
+                    $new_destino->estado = $buscar_destinos->estado;
+                    $new_destino->ppaquete_id =$paquete->id;
+                    $new_destino->save();
+                }
+            }
+        }
+//        $paquete1=PPaquete::with('destinos')->where('id',$paquete->id)->get();
+        $paquete1 = PPaquete::with('precios', 'destinos', 'itinerarios.ordenes')->get()->where('id', $paquete->id);
+        $destinos = DestinoModelo::get();
+        $ordenes1 = OrdenModelo::get();
+        $itinerarios = ItinerarioModelo::with('ordenes')->get();
+//        return dd($itinerarios);
+//        dd($paquete1);
+        return view('configurar-itinerario-p', ['destinos' => $destinos, 'paquete' => $paquete1, 'ordenes1' => $ordenes1, 'itinerarios' => $itinerarios]);
     }
 
     public function guardar_cotizacion_paso2(Request $request)
