@@ -124,7 +124,7 @@
     <div class="container">
         <div class="section scrollspy" id="vacations">
             <div class="row center">
-                <h4 class="yellow-text text-darken-4"><b>VACATION PACKAGES</b> WHIT INTERNATIONAL FLIGHTS</h4>
+                <h4 class="yellow-text text-darken-4"><b>VACATION PACKAGES</b> WITH INTERNATIONAL FLIGHTS</h4>
                 <div class="col s12 m12 l12 include-services margin-bottom-10">
                     <ul class="list-services no-margin text-11-ip">
                         <li><img src="{{asset('img/icons//include/hotels.png')}}" alt="" class="responsive-img"><span>Hotels</span>

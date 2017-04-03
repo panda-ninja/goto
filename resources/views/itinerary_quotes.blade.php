@@ -63,16 +63,16 @@
                         <p><b>Package Code:</b> {{$paquete->codigo}} | <b>Package Duration:</b> {{$paquete->duracion}} | <a href="{{route('quotes_pdf_path', $paquete->id)}}" class="waves-effect waves-light red-text"> view version PDF</a></p>
                     </div>
                 </div>
-                <div class="row">
-                    <div class="col s12 m12 l12 include-services margin-bottom-10 center">
-                        <ul class="list-services no-margin text-11-ip">
-                            @foreach($paquete->incluye_paquete_cotizaciones as $incluye)
-                                <li><img src="{{asset('img/icons/include/'.$incluye->incluye->imagen)}}" alt="" class="responsive-img"><span>{{ucwords(strtolower($incluye->incluye->titulo))}}</span>
-                                </li>
-                            @endforeach
-                        </ul>
-                    </div>
-                </div>
+                {{--<div class="row">--}}
+                    {{--<div class="col s12 m12 l12 include-services margin-bottom-10 center">--}}
+                        {{--<ul class="list-services no-margin text-11-ip">--}}
+                            {{--@foreach($paquete->incluye_paquete_cotizaciones as $incluye)--}}
+                                {{--<li><img src="{{asset('img/icons/include/'.$incluye->incluye->imagen)}}" alt="" class="responsive-img"><span>{{ucwords(strtolower($incluye->incluye->titulo))}}</span>--}}
+                                {{--</li>--}}
+                            {{--@endforeach--}}
+                        {{--</ul>--}}
+                    {{--</div>--}}
+                {{--</div>--}}
                 <div class="row">
                     <div class="col s12">
                         <p class="yellow-text text-darken-3"><b>Outline</b></p>
