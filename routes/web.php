@@ -381,6 +381,7 @@ Route::group(['middleware'=>'admin'],function(){
         'uses' => 'PaqueteController@editar_destinos',
         'as' => 'editar_destinos_cotizacion_path',
     ]);
+
     Route::post('/editar_paquete_itinerario', [
         'uses' => 'PaqueteController@editar_itinerario',
         'as' => 'editar_paquete_itinerario_path',
@@ -436,7 +437,30 @@ Route::group(['middleware'=>'admin'],function(){
         'uses' => 'ItineraryController@paquete_agregar_itineraios',
         'as' => 'paquete_guardar_itinerario_path',
     ]);
-
+    Route::post('editar_paquete', [
+        'uses' => 'PaqueteController@editar_pqt_nuevo',
+        'as' => 'editar_paquete_path',
+    ]);
+    Route::post('editar_destinos_paquete', [
+        'uses' => 'PaqueteController@editar_destinos_paquete',
+        'as' => 'editar_destinos_paquete_path',
+    ]);
+    Route::post('/editar_paquete_nuevo_itinerario', [
+        'uses' => 'PaqueteController@editar_nuevo_itinerario',
+        'as' => 'editar_paquete_nuevo_itinerario_path',
+    ]);
+    Route::post('/borrar_paquete_nuevo_itinerario', [
+        'uses' => 'ItineraryController@borrar_pitinerario',
+        'as' => 'borrar_paquete_nuevo_itinerario_path',
+    ]);
+    Route::post('/editar_nuevo_paquete_itinerario_obs', [
+        'uses' => 'PaqueteController@editar_nuevo_paquete_itinerario_obs',
+        'as' => 'editar_nuevo_paquete_itinerario_obs_path',
+    ]);
+    Route::post('/guardar_itinerario_servicio_nuevo', [
+        'uses' => 'ItineraryController@guardar_itinerario_servicio_nuevo',
+        'as' => 'guardar_itinerario_servicio_nuevo_path',
+    ]);
 });
 /*
 Route::get('login', [

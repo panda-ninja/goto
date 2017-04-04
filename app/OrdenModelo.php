@@ -15,7 +15,7 @@ class OrdenModelo extends Model
     protected $hidden = [
         '',
     ];
-    public function ordenes()
+    public function orden_asociado()
     {
         return $this->hasMany(ItinerarioOrdenModelo::class, 'orden_modelo_id');
     }

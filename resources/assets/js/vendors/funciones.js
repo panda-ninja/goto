@@ -1,4 +1,4 @@
-var $url='';
+var $url='http://localhost/goto2/public';
 //hidalgo
 $(document).ready(function(){
     Materialize.updateTextFields();
@@ -30,6 +30,32 @@ $(document).ready(function(){
             }
         });
     });
+    $("#form_editar_pqt_nuevo").submit(function(e){
+        e.preventDefault();
+        $.ajax({
+            url: $(this).attr("action"),//action del formulario, ej:
+            //http://localhost/mi_proyecto/mi_controlador/mi_funcion
+            type: $(this).attr("method"),//el método post o get del formulario
+            data: $(this).serialize(),//obtenemos todos los datos del formulario
+            error: function(){
+                //si hay un error mostramos un mensaje
+            },
+            success:function(data){
+                //hacemos algo cuando finalice
+                var rpt=data.split('_');
+                console.log(data);
+                if(rpt[0]==1) {
+                    // $("#response").html(data[1]);
+                    $("#action").html('Datos enviados<i class="mdi-content-send right"></i>');
+                    $("#action").addClass('green');
+                }
+                else{
+                    // $("#response").html(data);
+                }
+
+            }
+        });
+    });
     $("#formDestinos").submit(function(e){
         e.preventDefault();
         $.ajax({
@@ -56,6 +82,33 @@ $(document).ready(function(){
             }
         });
     });
+    $("#formDestinos_pqt").submit(function(e){
+        e.preventDefault();
+        $.ajax({
+            url: $(this).attr("action"),//action del formulario, ej:
+            //http://localhost/mi_proyecto/mi_controlador/mi_funcion
+            type: $(this).attr("method"),//el método post o get del formulario
+            data: $(this).serialize(),//obtenemos todos los datos del formulario
+            error: function(){
+                //si hay un error mostramos un mensaje
+            },
+            success:function(data){
+                //hacemos algo cuando finalice
+                var rpt=data.split('_');
+
+                if(rpt[0]==1) {
+                    // $("#response").html(data[1]);
+                    $("#actionDestino").html('Datos enviados<i class="mdi-content-send right"></i>');
+                    $("#actionDestino").addClass('green');
+                }
+                else{
+                    $("#response").html(data);
+                }
+
+            }
+        });
+    });
+
     // $("#form_editar_itinerario").submit(function(e){
     //     e.preventDefault();
     //     $.ajax({
@@ -582,6 +635,209 @@ function nuevoPlan(id){
     });
     $.post($url+'/guardar_itinerario_servicio',{nropasajeros:nropasajeros,email3:email3,fecha:fecha}, function(data) {
 
+    }).fail(function (data) {
+        console.log('eroorr: '+data);
+    });
+}
+
+function enviar_pqt(pos){
+
+    $("#action_itinerario_"+pos).html('Enviando<i class="mdi-action-autorenew right"></i>');
+    $("#action_itinerario_"+pos).addClass('green');
+    var nombre='form_editar_itinerario_'+pos;
+    $.ajaxSetup({
+        headers: {
+            'X-CSRF-TOKEN': $('[name="_token"]').val()
+        }
+    });
+    $.post($url+'/editar_paquete_nuevo_itinerario', $('#'+nombre).serialize(), function(data) {
+        var rpt=data.split('_');
+        console.log('resultados: '+data);
+        if(rpt[1]==1) {
+            console.log('correcto: '+data);
+            // $("#response_tinerario").html('aaaa'+rpt[2]);
+            $("#titulo_iti_"+pos).html(rpt[3]);
+            $("#descrp_"+pos).html(rpt[4]);
+            $("#action_itinerario_"+pos).html('Agregar<i class="mdi-content-send right"></i>');
+            $("#action_itinerario_"+pos).removeClass('green');
+            $("#action_itinerario_"+pos).addClass('pink accent-2');
+
+        }
+        else{
+            $("#response_tinerario_"+pos).html(rpt[2]);
+            console.log('error: '+data);
+            // $("#response_tinerario").html(data);
+        }
+    }).fail(function (data) {
+        console.log('eroorr: '+data);
+    });
+}
+function borrarItinerario_pqt(pos,id){
+    swal({   title: "Mensaje del sistema",
+            text: "Desea borrar este itinerario",
+            type: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#388E3C",
+            confirmButtonText: "Si, borrar ahora!",
+            cancelButtonText: "No, cancelar por favor!",
+            closeOnConfirm: false,
+            closeOnCancel: false },
+        function(isConfirm){
+            if (isConfirm) {
+                $.ajaxSetup({
+                    headers: {
+                        'X-CSRF-TOKEN': $('[name="_token"]').val()
+                    }
+                });
+                $.post($url+'/borrar_paquete_nuevo_itinerario', {id: id}, function(data) {
+                    if(data==1){
+                        $('#Itine_'+pos).remove();
+                        console.log('correcto: '+data);
+                        poner_valor();
+                        pasartotal(0);
+                    }
+                    else{
+
+                    }
+                }).fail(function (data) {
+                    console.log(data);
+                });
+                // swal("Borrado!", "El servicio fue borrado:)", "success");
+                swal.close();
+            }
+            else {
+                swal("Cancelado", "no se pudo borrar el servicio :(", "error");   }
+        });
+
+}
+
+function enviar_obs_nuevo(pos){
+
+    $("#action_itinerario_obs_"+pos).html('Enviando<i class="mdi-action-autorenew right"></i>');
+    $("#action_itinerario_obs_"+pos).addClass('green');
+    var nombre='form_editar_itinerario_obs_'+pos;
+    $.ajaxSetup({
+        headers: {
+            'X-CSRF-TOKEN': $('[name="_token"]').val()
+        }
+    });
+    $.post($url+'/editar_nuevo_paquete_itinerario_obs', $('#'+nombre).serialize(), function(data) {
+        var rpt=data.split('_');
+        console.log('resultados: '+data);
+        if(rpt[1]==1) {
+            console.log('correcto: '+data);
+            // $("#response_tinerario").html('aaaa'+rpt[2]);
+            // $("#titulo_iti_"+pos).html(rpt[3]);
+            $("#observaciones_iti_"+pos).html(rpt[3]);
+            $("#action_itinerario_obs_"+pos).html('Agregar<i class="mdi-content-send right"></i>');
+            $("#action_itinerario_obs_"+pos).removeClass('green');
+            $("#action_itinerario_obs_"+pos).addClass('pink accent-2');
+
+        }
+        else{
+            // $("#response_tinerario").html(rpt[2]);
+            // console.log('error: '+data);
+            // $("#response_tinerario").html(data);
+        }
+    }).fail(function (data) {
+        console.log('eroorr: '+data);
+    });
+}
+
+function agregar_servicio_pqt(pos){
+    $("#action_agregar_servicio_"+pos).html('Enviando<i class="mdi-action-autorenew right"></i>');
+    $("#action_agregar_servicio_"+pos).addClass('green');
+    var nombre='frm_agregar_servicio_'+pos;
+    $.ajaxSetup({
+        headers: {
+            'X-CSRF-TOKEN': $('[name="_token"]').val()
+        }
+    });
+    $.post($url+'/guardar_itinerario_servicio_nuevo', $('#'+nombre).serialize(), function(data) {
+        console.log('datos: '+data);
+        if(data!='0') {
+            $("#action_agregar_servicio_"+pos).html('Agregar<i class="mdi-content-send right"></i>');
+            $("#action_agregar_servicio_"+pos).removeClass('green');
+            $("#action_agregar_servicio_"+pos).addClass('pink accent-2');
+
+            // for (var ele in data) {
+            //     //1era iteración: ele === 1
+            //     //2da iteración: ele === 2
+            //     //demas iteraciones: metodos y propiedades del array.
+            // }
+            // var $data=data.split(',');
+            $.each(data, function(i, item){
+                console.log(item);
+                var $dato=item.split('_');
+                $("#itineraio_orden_"+pos).prepend(
+                    // +'/'+$dato[1]+'/'+$dato[2]
+                    '<tr id="servicio_'+$dato[0]+'">'+
+                    '<td>'+$dato[1]+'</td>'+
+                    '<td id="iti_precio_serv_'+$dato[0]+'">'+$dato[2]+'</td>'+
+                    '<td class="right-align">'+
+                    '<a href="#modal_edit_serv_'+$dato[0]+'" class="modal-trigger blue-text "><i class="mdi-editor-mode-edit"></i></a>'+
+                    '<a href="#!" class="red-text" onclick="eliminar_servicio_pqt('+$dato[0]+')"><i class="mdi-action-delete"></i></a>'+
+                    '</td>'+
+                    '</tr>'
+                );
+            });
+            // for (var ele in data) {
+            //     console.log('orden: '+data[ele]);
+            //     var $dato=ele.split('_');
+            //     $("#itineraio_orden_"+pos).prepend(
+            //         '<tr id="servicio_'+$dato[0]+'">'+
+            //         '<td>'+$dato[1]+'</td>'+
+            //         '<td id="iti_precio_serv_'+$dato[0]+'">'+$dato[2]+'</td>'+
+            //         '<td class="right-align">'+
+            //         '<a href="#modal_edit_serv_'+$dato[0]+'" class="modal-trigger blue-text "><i class="mdi-editor-mode-edit"></i></a>'+
+            //         '<a href="#!" class="red-text" onclick="eliminar_servicio_pqt('+$dato[0]+')"><i class="mdi-action-delete"></i></a>'+
+            //         '</td>'+
+            //         '</tr>'
+            //     );
+            // }
+            recalcular_ordenes();
+            poner_valor();
+            pasartotal(0);
+
+        }
+        else{
+            // $("#response_tinerario").html(rpt[2]);
+            // console.log('error: '+data);
+            // $("#response_tinerario").html(data);
+        }
+    }).fail(function (data) {
+        console.log('eroorr: '+data);
+    });
+}
+function enviar_serv_pqt(pos){
+
+    $("#action_itinerario_serv_"+pos).html('Enviando<i class="mdi-action-autorenew right"></i>');
+    $("#action_itinerario_serv_"+pos).addClass('green');
+    var nombre='form_editar_itinerario_serv_'+pos;
+    $.ajaxSetup({
+        headers: {
+            'X-CSRF-TOKEN': $('[name="_token"]').val()
+        }
+    });
+    $.post($url+'/editar_paquete_itinerario_serv_pqt', $('#'+nombre).serialize(), function(data) {
+        var rpt=data.split('_');
+        // console.log('resultados: '+data);
+        if(rpt[1]==1) {
+            console.log('correcto: '+data);
+            // $("#response_tinerario").html('aaaa'+rpt[2]);
+            // $("#titulo_iti_"+pos).html(rpt[3]);
+            $("#iti_precio_serv_"+pos).html(rpt[3]);
+            $("#action_itinerario_serv_"+pos).html('Agregar<i class="mdi-content-send right"></i>');
+            $("#action_itinerario_serv_"+pos).removeClass('green');
+            $("#action_itinerario_serv_"+pos).addClass('pink accent-2');
+            poner_valor();
+            pasartotal(0);
+        }
+        else{
+            // $("#response_tinerario").html(rpt[2]);
+            // console.log('error: '+data);
+            // $("#response_tinerario").html(data);
+        }
     }).fail(function (data) {
         console.log('eroorr: '+data);
     });

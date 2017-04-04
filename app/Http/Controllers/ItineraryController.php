@@ -180,15 +180,11 @@ class ItineraryController extends Controller
                     $new_iti->ppaquete_id = $paquete_id;
                     $new_iti->save();
                     foreach ($item->ordenes as $orden1) {
-//                        return dd($orden1->orden_modelo->nombre);
-//                        foreach ($orden1->orden_modelo as $orden) {
-//                            return dd($orden);
-                            $new_orden = new PItinerarioOrden();
-                            $new_orden->nombre = $orden1->orden_modelo->nombre;
-//                            $new_orden->observacion = $orden->observacion;
-                            $new_orden->precio = $orden1->orden_modelo->precio;
-                            $new_orden->pitinerario_id = $new_iti->id;
-//                        }
+                        $new_orden = new PItinerarioOrden();
+                        $new_orden->nombre = $orden1->orden_modelo->nombre;
+                        $new_orden->precio = $orden1->orden_modelo->precio;
+                        $new_orden->pitinerario_id = $new_iti->id;
+                        $new_orden->save();
                     }
                 }
             }
@@ -198,6 +194,40 @@ class ItineraryController extends Controller
 
             $itinerarios = ItinerarioModelo::with('ordenes')->get();
             return view('configurar-itinerario-p', ['destinos' => $destinos, 'paquete' => $paquete, 'ordenes1' => $ordenes1, 'itinerarios' => $itinerarios]);
+        } catch (\Exception $e) {
+            return $e;
+        }
+    }
+    public function borrar_pitinerario(Request $request)
+    {
+        //
+        $itinerario_id = $request->input('id');
+        $itinerario = PItinerario::FindOrFail($itinerario_id);
+        if ($itinerario->delete())
+            return 1;
+        else
+            return 0;
+    }
+    public function guardar_itinerario_servicio_nuevo(Request $request)
+    {
+        try {
+            $iti_orden_id = $request->input('iti_orden');
+            $nombre = 'nservicio_' . $iti_orden_id;
+            $nservicio = $request->input($nombre);
+            $results = [];
+//            return dd($nservicio);
+            foreach ($nservicio as $orden) {
+                $ordenVal = explode('_', $orden);
+                $objeto = new PItinerarioOrden();
+                $objeto->nombre = $ordenVal[2];
+                $objeto->precio = $ordenVal[3];
+                $objeto->pitinerario_id = $ordenVal[0];
+                $objeto->save();
+                $results[] = $objeto->id . '_' . $objeto->nombre . '_' . $objeto->precio;
+            }
+            return $results;
+//            return response()->json($results);
+//            return '1_1';
         } catch (\Exception $e) {
             return $e;
         }
