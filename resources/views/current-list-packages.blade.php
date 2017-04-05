@@ -12,10 +12,10 @@
         <div class="container">
             <div class="row">
                 <div class="col s12 m12 l12">
-                    <h5 class="breadcrumbs-title">Itinerary</h5>
+                    <h5 class="breadcrumbs-title">Packages</h5>
                     <ol class="breadcrumbs">
                         <li><a href="#">Dashboard</a></li>
-                        <li class="active">Itinerary</li>
+                        <li class="active">Current Packages</li>
                     </ol>
                 </div>
             </div>
@@ -43,9 +43,10 @@
                         <thead>
                         <tr>
                             <th>N°</th>
+                            <th>Codigo</th>
                             <th>Title</th>
-                            <th>Description</th>
-                            <th>Imagen</th>
+                            <th>Duration</th>
+                            {{--<th>Imagen</th>--}}
                             <th></th>
                         </tr>
                         </thead>
@@ -55,32 +56,32 @@
                             <th>N°</th>
                             <th>Title</th>
                             <th>Description</th>
-                            <th>Imagen</th>
+                            {{--<th>Imagen</th>--}}
                             <th></th>
                         </tr>
                         </tfoot>
 
                         <tbody>
-                        @foreach($itinerario->sortBy("titulo") as $itinerarios)
+                        @foreach($packages->sortBy("titulo") as $package)
                             <tr>
                                 <td>1</td>
-                                <td>{{ucwords(strtolower($itinerarios->titulo))}}</td>
-                                <td>{{$itinerarios->descripcion}}</td>
-                                <td>
-                                    @if (Storage::disk('itinerary')->has($itinerarios->imagen))
-                                        <section class="row new-post">
-                                            <div class="col-md-6 col-md-offset-3">
-                                                <img src="{{ route('admin_itinerary_image_path', ['filename' => $itinerarios->imagen]) }}" alt="" width="100">
-                                            </div>
-                                        </section>
-                                    @endif
-                                </td>
+                                <td>{{$package->codigo}}</td>
+                                <td>{{ucwords(strtolower($package->titulo))}}</td>
+                                <td>{{$package->duracion}}</td>
+                                {{--<td>--}}
+                                    {{--@if (Storage::disk('itinerary')->has($itinerarios->imagen))--}}
+                                        {{--<section class="row new-post">--}}
+                                            {{--<div class="col-md-6 col-md-offset-3">--}}
+                                                {{--<img src="{{ route('admin_itinerary_image_path', ['filename' => $itinerarios->imagen]) }}" alt="" width="100">--}}
+                                            {{--</div>--}}
+                                        {{--</section>--}}
+                                    {{--@endif--}}
+                                {{--</td>--}}
                                 <td class="right-align">
-                                    {{--<a href="" class="red-text text-20"><i class="mdi-action-delete"></i></a>--}}
-                                    <form action="{{route('admin_itinerary_delete_path', $itinerarios->id)}}" method="post">
+                                    <form action="" method="post">
                                         {{csrf_field()}}
                                         <input type="hidden" name="_method" value="delete">
-                                        <a href="{{route("admin_itinerary_edit_path", $itinerarios->id)}}" class="orange-text text-20"><i class="mdi-editor-mode-edit"></i></a>
+                                        <a href="" class="orange-text text-20"><i class="mdi-editor-mode-edit"></i></a>
                                         {{--<input type="submit" class="btn btn-danger" value="Eliminar Post" onclick="">--}}
                                         <a href="javascript:;" onclick="parentNode.submit();return confirm('Estas seguro de eliminar?')" class="red-text text-20"><i class="mdi-action-delete"></i></a>
                                     </form>
@@ -95,7 +96,7 @@
     </div>
 
     <div class="fixed-action-btn">
-        <a href="{{route("admin_itinerary_create_path")}}" class="btn-floating btn-large red modal-trigger">
+        <a href="" class="btn-floating btn-large red modal-trigger">
             <i class="large mdi-content-add"></i>
         </a>
     </div>

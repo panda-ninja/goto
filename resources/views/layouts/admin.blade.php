@@ -176,7 +176,7 @@
                                 <ul>
                                     <li><a href="{{route("nuevo_paquete_path")}}">New</a>
                                     </li>
-                                    <li><a href="">Current</a>
+                                    <li><a href="{{route("current_list_path")}}">Current</a>
                                     </li>
                                 </ul>
                             </div>

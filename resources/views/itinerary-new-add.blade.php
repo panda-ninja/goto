@@ -14,7 +14,7 @@
                     <h5 class="breadcrumbs-title">Itinerary</h5>
                     <ol class="breadcrumbs">
                         <li><a href="#">Dashboard</a></li>
-                        <li class="active">Basic Tables</li>
+                        <li class="active">Create new itinerary</li>
                     </ol>
                 </div>
             </div>
@@ -29,7 +29,7 @@
                         <input type="hidden" name="_method" value="patch">
                         <div class="row">
                             <div class="col s12">
-                                <h5 class="text-20">Itinerarysdsdsd</h5>
+                                <h5 class="text-20">Itinerary</h5>
                                 <div class="divider margin-bottom-20"></div>
                             </div>
                         </div>

@@ -8,6 +8,7 @@ use GotoPeru\OrdenModelo;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Storage;
 
 class ItineraryNewController extends Controller
@@ -122,6 +123,11 @@ class ItineraryNewController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $itinerario = ItinerarioModelo::findOrFail($id);
+        $itinerario->delete();
+
+        Session::flash('message', $itinerario->titulo.': Fue eliminado satisfactoriamente');
+
+        return redirect()->route('admin_itinerary_new_path');
     }
 }

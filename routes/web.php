@@ -383,6 +383,11 @@ Route::group(['middleware'=>'admin'],function(){
         'as' => 'admin_itinerary_update_path',
     ])->where('id', '[0-9]+');
 
+    Route::delete('admin/itinerary/edit/{id}', [
+        'uses' => 'ItineraryNewController@destroy',
+        'as' => 'admin_itinerary_delete_path',
+    ])->where('id', '[0-9]+');
+
     Route::any('admin/proposals/{id}', [
         'uses' => 'CotizacionController@proposals',
         'as' => 'admin_proposals_path',
@@ -450,6 +455,10 @@ Route::group(['middleware'=>'admin'],function(){
     Route::post('registar-cliente', [
         'uses' => 'ClienteCotizacionesController@registrar_fast',
         'as' => 'registrar_cliente_fast_path',
+    ]);
+    Route::get('packages-current-list/', [
+        'uses' => 'PaqueteController@index',
+        'as' => 'current_list_path',
     ]);
     Route::get('nuevo-paquete', [
         'uses' => 'PaqueteController@nuevo_paquete',

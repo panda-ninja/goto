@@ -28,6 +28,12 @@ use Illuminate\Support\Facades\Input;
 
 class PaqueteController extends Controller
 {
+
+    public function index(){
+        $packages = PPaquete::get();
+        return view('current-list-packages', ['packages'=>$packages]);
+    }
+
     public function nuevo_paquete(){
         $destinos=DestinoModelo::get();
         return view('nuevo-paquete',['destinos'=>$destinos]);
