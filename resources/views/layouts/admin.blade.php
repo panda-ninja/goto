@@ -171,6 +171,20 @@
                 {{--</li>--}}
                 <li class="no-padding">
                     <ul class="collapsible collapsible-accordion">
+                        <li class="bold"><a class="collapsible-header waves-effect waves-cyan"><i class="mdi-action-view-carousel"></i> Packages</a>
+                            <div class="collapsible-body">
+                                <ul>
+                                    <li><a href="{{route("nuevo_paquete_path")}}">New</a>
+                                    </li>
+                                    <li><a href="">Current</a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </li>
+                    </ul>
+                </li>
+                <li class="no-padding">
+                    <ul class="collapsible collapsible-accordion">
                         <li class="bold"><a class="collapsible-header waves-effect waves-cyan"><i class="mdi-action-view-carousel"></i> Quotes</a>
                             <div class="collapsible-body">
                                 <ul>

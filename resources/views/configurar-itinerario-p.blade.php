@@ -5,18 +5,13 @@
         <div class="col s12">
             <div class="col s4 no-padding">
                 <div class="tab-qoutes center padding-10">
-                    <a href="{{route('quotes_path')}}" class="valign-wrapper text-darken-1">1. Datos basicos</a>
-                </div>
-            </div>
-            <div class="col s4 no-padding">
-                <div class="tab-qoutes center padding-10">
-                    <a href="{{route('quotes_confirm_path')}}" class="valign-wrapper text-darken-1">2. Configurar Paquete</a>
+                    <a href="{{route('quotes_confirm_path')}}" class="valign-wrapper text-darken-1">1. Configurar Paquete</a>
                 </div>
 
             </div>
             <div class="col s4 no-padding">
                 <div class="tab-qoutes center padding-10 active">
-                    <a href="{{route('quotes_pending_path')}}" class="valign-wrapper text-darken-1 not-active">3. Itinerario y servicios</a>
+                    <a href="{{route('quotes_pending_path')}}" class="valign-wrapper text-darken-1 not-active">2. Itinerario y servicios</a>
                 </div>
             </div>
         </div>
@@ -30,37 +25,37 @@
                         <a href="#packages_modal" class="modal-trigger tooltipped right text-12" data-position="bottom" data-delay="50" data-tooltip="Editar datos basicos del paquete"><i class="mdi-editor-mode-edit valign text-18 left"></i></a>
                     </h4>
 
-                    <p><b><i class="mdi-communication-email cyan-text text-darken-2"></i></b> {{$cliente->email}} <b>|</b> <b><i class="mdi-social-person cyan-text text-darken-2"></i></b> {{$cliente->nombres}}, {{$cliente->apellidos}} <b>|</b> <b><i class="mdi-social-group-add cyan-text text-darken-2"></i></b> {{$cotizaciones->nropersonas}} <b>|</b> <b><i class="mdi-editor-insert-invitation cyan-text text-darken-2"></i></b> {{$cotizaciones->fecha}}</p>
+                    {{--<p><b><i class="mdi-communication-email cyan-text text-darken-2"></i></b> {{$cliente->email}} <b>|</b> <b><i class="mdi-social-person cyan-text text-darken-2"></i></b> {{$cliente->nombres}}, {{$cliente->apellidos}} <b>|</b> <b><i class="mdi-social-group-add cyan-text text-darken-2"></i></b> {{$cotizaciones->nropersonas}} <b>|</b> <b><i class="mdi-editor-insert-invitation cyan-text text-darken-2"></i></b> {{$cotizaciones->fecha}}</p>--}}
                     <p class="left-align">{{$paquete_->descripcion}}</p>
                 </div>
             </div>
         </div>
 
-        {{--<div class="row">--}}
-            {{--<div class="col s12">--}}
-                {{--<div class="col s12">--}}
-                    {{--<h5 class="grey-text text-darken-1">Destinos--}}
-                        {{--<a href="#destinations_modal" class="modal-trigger tooltipped right text-12" data-position="bottom" data-delay="50" data-tooltip="Editar destinos para este paquete"><i class="mdi-editor-mode-edit valign text-18 left"></i></a>--}}
-                    {{--</h5>--}}
-                    {{--<div class="divider"></div>--}}
-                    {{--<p class="text-12">Destinos actuales del paquete</p>--}}
-                    {{--@foreach($paquete_->paquetes_destinos as $destino)--}}
-                        {{--<div class="col s3">--}}
-                            {{--<input type="checkbox" class="filled-in" id="{{$destino->id}}" checked="checked" />--}}
-                            {{--<label for="{{$destino->id}}" class="padding-left-5">{{$destino->destino}}</label>--}}
-                        {{--</div>--}}
-                    {{--@endforeach--}}
-                {{--</div>--}}
-            {{--</div>--}}
-        {{--</div>--}}
+        <div class="row">
+            <div class="col s12">
+                <div class="col s12">
+                    <h5 class="grey-text text-darken-1">Destinos
+                        <a href="#destinations_modal" class="modal-trigger tooltipped right text-12" data-position="bottom" data-delay="50" data-tooltip="Editar destinos para este paquete"><i class="mdi-editor-mode-edit valign text-18 left"></i></a>
+                    </h5>
+                    <div class="divider"></div>
+                    <p class="text-12">Destinos actuales del paquete</p>
+                    @foreach($paquete_->destinos as $destino)
+                        <div class="col s3">
+                            <input type="checkbox" class="filled-in" id="{{$destino->id}}" checked="checked" />
+                            <label for="{{$destino->id}}" class="padding-left-5">{{$destino->destino}}</label>
+                        </div>
+                    @endforeach
+                </div>
+            </div>
+        </div>
         <form action="{{route('paquete_proposals_path')}}" method="post">
             <div class="row main-wrapper">
 
-                <div class="col s9">
+                <div class="col s7">
                     <div class="col s12 margin-bottom-20">
 
                         <h5 class="grey-text text-darken-1">Itinerario
-                            <a href="#modal_add" class="modal-trigger tooltipped right text-12 green-text" data-position="bottom" data-delay="50" data-tooltip="Agregar nuevo itinerario"><i class="mdi-av-my-library-add text-18 left"></i></a>
+                            {{--<a href="#modal_add" class="modal-trigger tooltipped right text-12 green-text" data-position="bottom" data-delay="50" data-tooltip="Agregar nuevo itinerario"><i class="mdi-av-my-library-add text-18 left"></i></a>--}}
                             <a href="#modal_add_itinerary" class="modal-trigger tooltipped right text-12 blue-text" data-position="bottom" data-delay="50" data-tooltip="Agregar itinerario de nuestra base de datos"><i class="mdi-av-my-library-books text-18 left"></i></a>
                         </h5>
                         <div class="divider"></div>
@@ -101,7 +96,7 @@
                             $pos=0;
                             $totalItinerario=0;
                             ?>
-                            @foreach($paquete_->itinerario_cotizaciones->sortBy('dias') as $itinerario)
+                            @foreach($paquete_->itinerarios->sortBy('dias') as $itinerario)
 
                                 <?php $precio_iti2=0?>
                                 @foreach($itinerario->ordenes as $ordenes2)
@@ -116,7 +111,7 @@
 
                                     <div class="portlet-header">Dia <span class="pos_iti" name="posdia[]" id="pos_dia_{{$pos}}">{{$pos}}</span>: <span id="titulo_iti_{{$itinerario->id}}" class="grey-text text-darken-1">{{ucwords(strtolower($itinerario->titulo))}}</span>
                                         <a href="#modal_edit_{{$itinerario->id}}" class="modal-trigger blue-text right"><i class="mdi-editor-mode-edit"></i></a>
-                                        <a href="#!" class="red-text right" onclick="borrarItinerario({{$pos}},{{$itinerario->id}})"><i class="mdi-action-delete"></i></a>
+                                        <a href="#!" class="red-text right" onclick="borrarItinerario_pqt({{$pos}},{{$itinerario->id}})"><i class="mdi-action-delete"></i></a>
                                         <input class="precio_itinerario" type="hidden" name="precio_itinerario[]" id="precio_itinerario_{{$pos}}" value="{{$precio_iti2}}"><span class="right grey-text">(${{$precio_iti2}})</span>
 
                                     </div>
@@ -187,7 +182,7 @@
                                                     </div>
                                                 </div>
 
-                                                @foreach($itinerario->ordenes as $ordenes)
+                                            @foreach($itinerario->ordenes as $ordenes)
                                                 <!-- Modal Structure comentario-->
                                                     <div id="modal_edit_serv_{{$ordenes->id}}" class="modal">
                                                         <div class="modal-content">
@@ -211,7 +206,7 @@
                                                                             <div class="col s12">
                                                                                 {{csrf_field()}}
                                                                                 <input type="hidden" name="orden_id" id="orden_id" value="{{$ordenes->id}}">
-                                                                                <a class="btn waves-effect waves-light" onclick="enviar_serv({{$ordenes->id}})" name="action_itinerario_serv" id="action_itinerario_serv_{{$ordenes->id}}">Agregar
+                                                                                <a class="btn waves-effect waves-light" onclick="enviar_serv_pqt({{$ordenes->id}})" name="action_itinerario_serv" id="action_itinerario_serv_{{$ordenes->id}}">Agregar
                                                                                     <i class="mdi-content-send right"></i>
                                                                                 </a>
                                                                             </div>
@@ -227,7 +222,7 @@
                                                 <p class="no-margin orange-text text-darken-1">
                                                     <b>Comentarios u observaciones</b>
                                                     {{--<a href="#modal_add_com" class="modal-trigger green-text "><i class="mdi-content-add-box"></i></a>--}}
-                                                    <a href="#modal_edit_com_{{$itinerario->id}}" class="modal-trigger blue-text "><i class="mdi-editor-mode-edit"></i></a>
+                                                    <a href="#modal_edit_com_{{$itinerario->id}}" class="hide modal-trigger blue-text "><i class="mdi-editor-mode-edit"></i></a>
                                                     <a class="hide" href="" class="red-text"><i class="mdi-action-delete"></i></a>
                                                 </p>
                                                 <div class="divider margin-bottom-20"></div>
@@ -311,7 +306,7 @@
                                     <div class="modal-content">
                                         <div class="row">
                                             <div class="col s12">
-                                                <form id="form_editar_itinerario_{{$itinerario->id}}" name=form_editar_itinerario_{{$itinerario->id}}" class="col s12"  method="post" enctype="multipart/form-data">
+                                                <form id="form_editar_itinerario_{{$itinerario->id}}" action="{{route('editar_paquete_nuevo_itinerario_path')}}" name=form_editar_itinerario_{{$itinerario->id}}" class="col s12">
                                                     <div class="row">
                                                         <div class="col s12">
                                                             <h5 class="center">Modificar itinerario</h5>
@@ -331,7 +326,7 @@
                                                     <div class="row spacer-20 ">
                                                         <div class="col s4">
                                                             <div class="row">
-                                                                <div class="col s12" id="response_tinerario"></div>
+                                                                <div class="col s12" id="response_tinerario_{{$itinerario->id}}"></div>
                                                             </div>
                                                         </div>
                                                         <div class="col s8 right">
@@ -339,7 +334,7 @@
                                                                 <div class="col s12">
                                                                     {{csrf_field()}}
                                                                     <input type="hidden" name="itinerario_id" id="itinerario_id" value="{{$itinerario->id}}">
-                                                                    <a class="btn waves-effect waves-light"  onclick="enviar({{$itinerario->id}})" name="action_itinerario" id="action_itinerario_{{$itinerario->id}}">Agregar
+                                                                    <a class="btn waves-effect waves-light"  onclick="enviar_pqt({{$itinerario->id}})" name="action_itinerario" id="action_itinerario_{{$itinerario->id}}">Agregar
                                                                         <i class="mdi-content-send right"></i>
                                                                     </a>
                                                                 </div>
@@ -380,373 +375,151 @@
                                 </div>
 
                                 <!-- Modal Structure comentario-->
-                                <div id="modal_edit_com_{{$itinerario->id}}" class="modal">
+                                {{--<div id="modal_edit_com_{{$itinerario->id}}" class="modal">--}}
+                                    {{--<div class="modal-content">--}}
+                                        {{--<form id="form_editar_itinerario_obs_{{$itinerario->id}}" name=form_editar_itinerario_obs_{{$itinerario->id}}" class="col s12"  method="post" enctype="multipart/form-data">--}}
+                                            {{--<div class="row">--}}
+                                                {{--<div class="col s12">--}}
+                                                    {{--<h5 class="center">Editar Comentario u observacion</h5>--}}
+                                                    {{--<div class="divider margin-bottom-20"></div>--}}
+                                                {{--</div>--}}
+                                            {{--</div>--}}
+                                            {{--<div class="row">--}}
+
+                                                {{--<div class="input-field col s12">--}}
+                                                    {{--<textarea id="obs_txt" name="obs_txt" class="materialize-textarea">{{$itinerario->observaciones}}</textarea>--}}
+                                                    {{--<label for="obs_txt" class="">Comentario</label>--}}
+                                                {{--</div>--}}
+                                            {{--</div>--}}
+                                            {{--<div class="row spacer-20 right">--}}
+                                                {{--<div class="col s12">--}}
+                                                    {{--{{csrf_field()}}--}}
+                                                    {{--<input type="hidden" name="itinerario_id" id="itinerario_id" value="{{$itinerario->id}}">--}}
+                                                    {{--<a class="btn waves-effect waves-light" onclick="enviar_obs_nuevo({{$itinerario->id}})" name="action" id="action_itinerario_obs_{{$itinerario->id}}">Agregar--}}
+                                                        {{--<i class="mdi-content-send right"></i>--}}
+                                                    {{--</a>--}}
+                                                {{--</div>--}}
+                                            {{--</div>--}}
+                                        {{--</form>--}}
+                                    {{--</div>--}}
+
+                                {{--</div>--}}
+
+
+
+
+                            @endforeach
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col s12">
+                            <!-- Modal Structure itinerario lista-->
+                            <div id="modal_add_itinerary" class="modal">
+                                <div class="modal-content">
+                                    <form id="action_agregar_itis_" action="{{route('paquete_guardar_itinerario_path')}}" name="action_agregar_itis_" method="post" enctype="multipart/form-data">
+                                        <div class="row">
+                                            <div class="col s12">
+                                                <h5 class="center">Agregar itinerario</h5>
+                                                <div class="divider margin-bottom-20"></div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            @foreach($itinerarios as $itinerario)
+                                            <?php
+                                            $st=0;
+                                            $ordentxt='';
+                                            ?>
+                                            @foreach($itinerario->ordenes as $orden)
+                                            <?php
+                                            $st+=$orden->orden_modelo->precio;
+                                            $ordentxt.=$orden->orden_modelo->nombre.'($'.$orden->orden_modelo->precio.'), ';
+                                            ?>
+                                            @endforeach
+                                            <?php
+                                            $ordentxt=substr($ordentxt,0,strlen($ordentxt)-2);
+                                            ?>
+                                            <div class="col s6">
+                                            <input type="checkbox" name="itinerario[]" id="itinerario_{{$itinerario->id}}" value="{{$itinerario->id}}" class="filled-in"/>
+                                            <label for="itinerario_{{$itinerario->id}}">{{$itinerario->titulo}} ({{$st}}.00) <a href="" class="tooltipped" data-position="top" data-delay="50" data-tooltip="{{$ordentxt}}"><i class="mdi-action-visibility"></i></a></label>
+                                            </div>
+                                            @endforeach
+                                        </div>
+                                        <div class="row spacer-20 right">
+                                            <div class="col s12">
+                                                <input type="hidden" name="paquete_id" id="paquete_id" value="{{$paquete_->id}}">
+                                                {{csrf_field()}}
+                                                <button class="btn waves-effect waves-light" type="submit" name="action">Agregar itinerario
+                                                    <i class="mdi-content-send right"></i>
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col s12">
+                        @foreach($paquete_->itinerarios->sortBy('dias') as $itinerario)
+                            <!-- Modal Structure servicios lista-->
+                                <div id="modal_add_services_{{$itinerario->id}}" class="modal">
                                     <div class="modal-content">
-                                        <form id="form_editar_itinerario_obs_{{$itinerario->id}}" name=form_editar_itinerario_obs_{{$itinerario->id}}" class="col s12"  method="post" enctype="multipart/form-data">
+                                        <form id="frm_agregar_servicio_{{$itinerario->id}}" name="frm_agregar_servicio_{{$itinerario->id}}" class="col s12" method="post" enctype="multipart/form-data">
                                             <div class="row">
                                                 <div class="col s12">
-                                                    <h5 class="center">Editar Comentario u observacion</h5>
+                                                    <h5 class="center">Agregar servicios</h5>
                                                     <div class="divider margin-bottom-20"></div>
                                                 </div>
                                             </div>
                                             <div class="row">
+                                                <div class="col s12">
+                                                    <div id="lista_servicios_{{$itinerario->id}}" class="row">
+                                                        @foreach($ordenes1  as $orden1)
+                                                            <?php $estaw=0;?>
+                                                            @foreach($itinerario->ordenes as $ordenes)
+                                                                @if($orden1->nombre==$ordenes->nombre)
+                                                                    <?php $estaw=1;?>
+                                                                    <div class="col s4">
+                                                                        <input type="checkbox" name="nservicio_{{$itinerario->id}}[]" class="filled-in nservicios" id="nservicio_{{$itinerario->id}}_{{$ordenes->id}}" value="{{$itinerario->id}}_{{$orden1->id}}_{{$orden1->nombre}}_{{$orden1->precio}}" checked="checked"/>
+                                                                        <label for="nservicio_{{$itinerario->id}}_{{$ordenes->id}}">{{$ordenes->nombre}} ($ {{$ordenes->precio}})</label>
+                                                                    </div>
+                                                                @endif
+                                                            @endforeach
+                                                            @if($estaw==0)
+                                                                <div class="col s4">
 
-                                                <div class="input-field col s12">
-                                                    <textarea id="obs_txt" name="obs_txt" class="materialize-textarea">{{$itinerario->observaciones}}</textarea>
-                                                    <label for="obs_txt" class="">Comentario</label>
+                                                                    <input type="checkbox" name="nservicio_{{$itinerario->id}}[]" class="filled-in nservicios" id="nservicio_{{$itinerario->id}}_{{$orden1->id}}" value="{{$itinerario->id}}_{{$orden1->id}}_{{$orden1->nombre}}_{{$orden1->precio}}"/>
+                                                                    <label for="nservicio_{{$itinerario->id}}_{{$orden1->id}}">{{$orden1->nombre}} ($ {{$orden1->precio}})</label>
+                                                                </div>
+                                                            @endif
+                                                        @endforeach
+
+                                                    </div>
                                                 </div>
                                             </div>
                                             <div class="row spacer-20 right">
                                                 <div class="col s12">
                                                     {{csrf_field()}}
-                                                    <input type="hidden" name="itinerario_id" id="itinerario_id" value="{{$itinerario->id}}">
-                                                    <a class="btn waves-effect waves-light" onclick="enviar_obs({{$itinerario->id}})" name="action" id="action_itinerario_obs_{{$itinerario->id}}">Agregar
+                                                    <input type="text" name="iti_orden" id="iti_orden_{{$itinerario->id}}" value="{{$itinerario->id}}">
+                                                    <a class="btn waves-effect waves-light" onclick="agregar_servicio_pqt({{$itinerario->id}})" id="action_agregar_servicio_{{$itinerario->id}}" name="action_agregar_servicio">Agregar servicios
                                                         <i class="mdi-content-send right"></i>
                                                     </a>
                                                 </div>
                                             </div>
                                         </form>
                                     </div>
-
                                 </div>
-
-                                <!-- Modal Structure itinerario lista-->
-                                <div id="modal_add_itinerary" class="modal">
-                                    <div class="modal-content">
-                                        <form id="action_agregar_itis_{{$itinerario->id}}" action="{{route('guardar_itinerario_path')}}" name="action_agregar_itis_{{$itinerario->id}}" method="post" enctype="multipart/form-data">
-                                            <div class="row">
-                                                <div class="col s12">
-                                                    <h5 class="center">Agregar itinerario</h5>
-                                                    <div class="divider margin-bottom-20"></div>
-                                                </div>
-                                            </div>
-                                            <div class="row">
-                                                @foreach($itinerarios as $itinerario)
-                                                    <?php
-                                                    $st=0;
-                                                    $ordentxt='';
-                                                    ?>
-                                                    @foreach($itinerario->ordenes as $orden)
-                                                        <?php
-                                                        $st+=$orden->orden_modelo->precio;
-                                                        $ordentxt.=$orden->orden_modelo->nombre.'($'.$orden->orden_modelo->precio.'), ';
-                                                        ?>
-                                                    @endforeach
-                                                    <?php
-                                                    $ordentxt=substr($ordentxt,0,strlen($ordentxt)-2);
-                                                    ?>
-                                                    <div class="col s6">
-                                                        <input type="checkbox" name="itinerario[]" id="itinerario_{{$itinerario->id}}" value="{{$itinerario->id}}" class="filled-in"/>
-                                                        <label for="itinerario_{{$itinerario->id}}">{{$itinerario->titulo}} ({{$st}}.00) <a href="" class="tooltipped" data-position="top" data-delay="50" data-tooltip="{{$ordentxt}}"><i class="mdi-action-visibility"></i></a></label>
-                                                    </div>
-                                                @endforeach
-                                            </div>
-                                            <div class="row spacer-20 right">
-                                                <div class="col s12">
-                                                    <input type="hidden" name="cotizacion_id" id="cotizacion_id" value="{{$cotizaciones->id}}">
-                                                    <input type="hidden" name="cliente_id" id="cliente_id" value="{{$cliente->id}}">
-                                                    <input type="hidden" name="paquete_id" id="paquete_id" value="{{$paquete_->id}}">
-                                                    {{csrf_field()}}
-                                                    <button class="btn waves-effect waves-light" type="submit" name="action">Agregar itinerario
-                                                        <i class="mdi-content-send right"></i>
-                                                    </button>
-                                                </div>
-                                            </div>
-                                        </form>
-                                    </div>
-                                </div>
-
-
                             @endforeach
                         </div>
                     </div>
 
-                    <div class="row">
-                        <div class="col s12">
-                        @foreach($paquete_->itinerario_cotizaciones->sortBy('dias') as $itinerario)
-                        <!-- Modal Structure servicios lista-->
-                        <div id="modal_add_services_{{$itinerario->id}}" class="modal">
-                            <div class="modal-content">
-                                <form id="frm_agregar_servicio_{{$itinerario->id}}" name="frm_agregar_servicio_{{$itinerario->id}}" class="col s12" method="post" enctype="multipart/form-data">
-                                    <div class="row">
-                                        <div class="col s12">
-                                            <h5 class="center">Agregar servicios</h5>
-                                            <div class="divider margin-bottom-20"></div>
-                                        </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col s12">
-                                            <div id="lista_servicios_{{$itinerario->id}}" class="row">
-                                                @foreach($ordenes1  as $orden1)
-                                                    <?php $estaw=0;?>
-                                                    @foreach($itinerario->ordenes as $ordenes)
-                                                        @if($orden1->nombre==$ordenes->nombre)
-                                                            <?php $estaw=1;?>
-                                                            <div class="col s4">
-                                                                <input type="checkbox" name="nservicio_{{$itinerario->id}}[]" class="filled-in nservicios" id="nservicio_{{$itinerario->id}}_{{$ordenes->id}}" value="{{$itinerario->id}}_{{$orden1->id}}_{{$orden1->nombre}}_{{$orden1->precio}}" checked="checked"/>
-                                                                <label for="nservicio_{{$itinerario->id}}_{{$ordenes->id}}">{{$ordenes->nombre}} ($ {{$ordenes->precio}})</label>
-                                                            </div>
-                                                        @endif
-                                                    @endforeach
-                                                    @if($estaw==0)
-                                                        <div class="col s4">
-
-                                                            <input type="checkbox" name="nservicio_{{$itinerario->id}}[]" class="filled-in nservicios" id="nservicio_{{$itinerario->id}}_{{$orden1->id}}" value="{{$itinerario->id}}_{{$orden1->id}}_{{$orden1->nombre}}_{{$orden1->precio}}"/>
-                                                            <label for="nservicio_{{$itinerario->id}}_{{$orden1->id}}">{{$orden1->nombre}} ($ {{$orden1->precio}})</label>
-                                                        </div>
-                                                    @endif
-                                                @endforeach
-
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="row spacer-20 right">
-                                        <div class="col s12">
-                                            {{csrf_field()}}
-                                            <input type="text" name="iti_orden" id="iti_orden_{{$itinerario->id}}" value="{{$itinerario->id}}">
-                                            <a class="btn waves-effect waves-light" onclick="agregar_servicio({{$itinerario->id}})" id="action_agregar_servicio_{{$itinerario->id}}" name="action_agregar_servicio">Agregar servicios
-                                                <i class="mdi-content-send right"></i>
-                                            </a>
-                                        </div>
-                                    </div>
-                                </form>
-                            </div>
-                        </div>
-                        @endforeach
-                    </div>
-                    </div>
-
-                    <div class="col s12 margin-top-10">
+                    <div class="col s12">
 
                         <h5 class="grey-text text-darken-1">Categoria y acomodacion</h5>
                         <div class="divider"></div>
                         <p class="text-12">Seleccione el numero de habitaciones segun el numero de pasajeros y categoria de hotel segun se requiera.</p>
 
                     </div>
-
-                    <div class="col s12 margin-top-20 center">
-                        @for($i=0; $i < $cotizaciones->nropersonas; $i++)
-                            <i class="mdi-action-accessibility text-35"></i>
-                        @endfor
-                        <b class="text-35 pink-text">: {{$cotizaciones->nropersonas}}</b>
-                    </div>
-
-                    <div class="col s12">
-                        <div class="divider margin-bottom-20"></div>
-                        <div class="row">
-                            <div class="col s3">
-                                <input type="hidden" name="vstar_2" id="vstar_2" value="0">
-                                <input type="checkbox" name="star[]" class="filled-in" id="star2" value="2" onclick="pasartotal(2)">
-                                <label for="star2" class="orange-text"><b>2 STARS</b></label>
-                            </div>
-                            <div class="col s3">
-                                <input type="hidden" name="vstar_3" id="vstar_3" value="0">
-                                <input type="checkbox" name="star[]" class="filled-in" id="star3" value="3" onclick="pasartotal(3)">
-                                <label for="star3" class="orange-text"><b>3 STARS</b></label>
-                            </div>
-                            <div class="col s3">
-                                <input type="hidden" name="vstar_4" id="vstar_4" value="0">
-                                <input type="checkbox" name="star[]" class="filled-in" id="star4" value="4" onclick="pasartotal(4)">
-                                <label for="star4" class="orange-text"><b>4 STARS</b></label>
-                            </div>
-                            <div class="col s3">
-                                <input type="hidden" name="vstar_5" id="vstar_5" value="0">
-                                <input type="checkbox" name="star[]" class="filled-in" id="star5" value="5" onclick="pasartotal(5)">
-                                <label for="star5" class="orange-text"><b>5 STARS</b></label>
-                            </div>
-                        </div>
-                        {{--<b>Categoria: </b>--}}
-                        <div class="divider margin-top-20 margin-bottom-20"></div>
-                    </div>
-                    <div class="col s12">
-                        <div class="row">
-                            <div class="col s3 valign-wrapper">
-                                <div class="col s4 no-padding">
-                                    <input class="right-align" type="number" name="acom_t" id="acom_t" min="0"  value="0" onchange="pasartotal(0)">
-                                </div>
-                                <div class="col s8">
-                                    <div class="col s4 no-padding">
-                                        <img src="{{asset("img/icons/single.png")}}" alt="" class="responsive-img">
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col s3 valign-wrapper">
-                                <div class="col s4 no-padding">
-                                    <input class="right-align" type="number" name="acom_t" id="acom_t" min="0"  value="0" onchange="pasartotal(0)">
-                                </div>
-                                <div class="col s8">
-                                    <div class="col s4 no-padding">
-                                        <img src="{{asset("img/icons/single.png")}}" alt="" class="responsive-img">
-                                    </div>
-                                    <div class="col s4 no-padding">
-                                        <img src="{{asset("img/icons/single.png")}}" alt="" class="responsive-img">
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col s3 valign-wrapper">
-                                <div class="col s4 no-padding">
-                                    <input class="right-align" type="number" name="acom_t" id="acom_t" min="0"  value="0" onchange="pasartotal(0)">
-                                </div>
-                                <div class="col s8">
-                                    <div class="col s7 no-padding">
-                                        <img src="{{asset("img/icons/matrimonial.png")}}" alt="" class="responsive-img">
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col s3 valign-wrapper">
-                                <div class="col s4 no-padding">
-                                    <input class="right-align" type="number" name="acom_t" id="acom_t" min="0"  value="0" onchange="pasartotal(0)">
-                                </div>
-                                <div class="col s8">
-                                    <div class="col s4 no-padding">
-                                        <img src="{{asset("img/icons/single.png")}}" alt="" class="responsive-img">
-                                    </div>
-                                    <div class="col s4 no-padding">
-                                        <img src="{{asset("img/icons/single.png")}}" alt="" class="responsive-img">
-                                    </div>
-                                    <div class="col s4 no-padding">
-                                        <img src="{{asset("img/icons/single.png")}}" alt="" class="responsive-img">
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                    </div>
-
-                    <div class="col s12 right-align">
-                        <a href="#packages_modal_price" class="modal-trigger"><b>Edit hotel prices <i class="mdi-editor-mode-edit right"></i></b></a>
-                        <div class="divider margin-top-20"></div>
-                    </div>
-
-                    <div class="col s12 margin-top-20">
-                        <h6 class="orange-text"><b>Precio 3 estrellas</b></h6>
-                        <div class="row">
-                            <div class="col s6"><b class="grey-text text-lighten-1">Per Person</b></div>
-                            <div class="col s2 right-align pink-text text-20"><b>Price</b></div>
-                            <div class="col s2 right-align red-text text-20"><b>Cost</b></div>
-                            <div class="col s2 right-align green-text text-20"><b>Profit</b></div>
-                        </div>
-                        <div class="row services-box">
-                            <div class="col s6 no-padding">
-                                <div class="col s5 no-padding">
-                                    <i class="mdi-action-accessibility text-30"></i>
-                                    <i class="mdi-action-accessibility text-30"></i>
-                                    <i class="mdi-action-accessibility text-30"></i>
-                                    <i class="mdi-action-accessibility text-30"></i>
-                                </div>
-                                <div class="col s7">
-                                    <div class="col s4">
-                                        <img src="{{asset("img/icons/single.png")}}" alt="" class="responsive-img">
-                                    </div>
-                                    <div class="col s4">
-                                        <img src="{{asset("img/icons/single.png")}}" alt="" class="responsive-img">
-                                    </div>
-                                    <div class="col s4">
-                                        <img src="{{asset("img/icons/single.png")}}" alt="" class="responsive-img">
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col s2 right-align">
-                                <b class="padding-top-12 valign-wrapper right">$1988.00</b>
-                            </div>
-                            <div class="col s2 right-align">
-                                <b class="padding-top-12 valign-wrapper right">$1988.00</b>
-                            </div>
-                            <div class="col s2 right-align">
-                                <b class="padding-top-12 valign-wrapper right">$1988.00</b>
-                            </div>
-                        </div>
-
-                        <div class="row services-box">
-                            <div class="col s6 no-padding">
-                                <div class="col s5 no-padding">
-                                    <i class="mdi-action-accessibility text-30"></i>
-                                    <i class="mdi-action-accessibility text-30"></i>
-                                    <i class="mdi-action-accessibility text-30"></i>
-                                    <i class="mdi-action-accessibility text-30"></i>
-                                </div>
-                                <div class="col s7">
-                                    <div class="col s5">
-                                        <img src="{{asset("img/icons/matrimonial.png")}}" alt="" class="responsive-img">
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col s2 right-align">
-                                <b class="padding-top-12 valign-wrapper right">$1988.00</b>
-                            </div>
-                            <div class="col s2 right-align">
-                                <b class="padding-top-12 valign-wrapper right">$1988.00</b>
-                            </div>
-                            <div class="col s2 right-align">
-                                <b class="padding-top-12 valign-wrapper right">$1988.00</b>
-                            </div>
-                        </div>
-
-                        <div class="row services-box">
-                            <div class="col s6 no-padding">
-                                <div class="col s5 no-padding">
-                                    <i class="mdi-action-accessibility text-30"></i>
-                                    <i class="mdi-action-accessibility text-30"></i>
-                                    <i class="mdi-action-accessibility text-30"></i>
-                                </div>
-                                <div class="col s7">
-                                    <div class="col s4">
-                                        <img src="{{asset("img/icons/single.png")}}" alt="" class="responsive-img">
-                                    </div>
-                                    <div class="col s4">
-                                        <img src="{{asset("img/icons/single.png")}}" alt="" class="responsive-img">
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col s2 right-align">
-                                <b class="padding-top-12 valign-wrapper right">$1988.00</b>
-                            </div>
-                            <div class="col s2 right-align">
-                                <b class="padding-top-12 valign-wrapper right">$1988.00</b>
-                            </div>
-                            <div class="col s2 right-align">
-                                <b class="padding-top-12 valign-wrapper right">$1988.00</b>
-                            </div>
-                        </div>
-
-                        <div class="divider"></div>
-
-                        <div class="row blue lighten-4">
-                            <div class="col s6 no-padding">
-                                <div class="col s12 no-padding">
-                                    <i class="mdi-action-accessibility text-30"></i>
-                                    <i class="mdi-action-accessibility text-30"></i>
-                                    <i class="mdi-action-accessibility text-30"></i>
-                                </div>
-                            </div>
-                            <div class="col s2 right-align">
-                                <b class="padding-top-12 valign-wrapper right pink-text">$1988.00</b>
-                            </div>
-                            <div class="col s2 right-align">
-                                <b class="padding-top-12 valign-wrapper right red-text">$1988.00</b>
-                            </div>
-                            <div class="col s2 right-align">
-                                <b class="padding-top-12 valign-wrapper right green-text">$1988.00</b>
-                            </div>
-                        </div>
-                        <div class="row valign-wrapper">
-                            <div class="col s6 no-padding">
-
-                            </div>
-                            <div class="col s2 right-align">
-                                <b class="padding-top-12 valign-wrapper right pink-text">100%</b>
-                            </div>
-                            <div class="col s2 right-align">
-                                <b class="padding-top-12 valign-wrapper right red-text">25%</b>
-                            </div>
-                            <div class="col s2 right-align">
-                                <b class="padding-top-12 valign-wrapper green-text"><input type="number" value="75" class="right-align">%</b>
-                            </div>
-                        </div>
-
-                    </div>
-
-
                     <?php
                     $precio_t_2=0;
                     $precio_t_3=0;
@@ -783,7 +556,7 @@
                     $nrop_t=0;
 
                     ?>
-                    @foreach($paquete_->precio_paquetes as $precio)
+                    @foreach($paquete_->precios as $precio)
                         @if($precio->estrellas==2)
                             <?php
                             $estrella_2==1;
@@ -845,133 +618,119 @@
                             ?>
                         @endif
                     @endforeach
-                    <!-- Modal Structure prices-->
-                    <div id="packages_modal_price" class="modal packages_modal">
-                        <div class="modal-content">
-                            <div class="row">
-                                <div class="col s12">
-                                    <h5 class="center">Modificar Precios</h5>
-                                    <div class="divider margin-bottom-20"></div>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col s12 margin-top-20">
-                                    <table class="table striped">
-                                        <thead>
-                                        <tr class="grey darken-3">
-                                            <th class="text-11 white-text">ROOMS</th>
-                                            <th class="text-11 white-text">ACOMODACION</th>
-                                            <th>
-                                                <div class="col s12">
-                                                    <input type="hidden" name="vstar_2" id="vstar_2" value="0">
-                                                    <input type="checkbox" name="star[]" class="filled-in" id="star2" value="2" onclick="pasartotal(2)">
-                                                    <label for="star2" class="text-8 orange-textn">2 STARS</label>
-                                                </div>
-                                            </th>
-                                            <th>
-                                                <div class="col s12">
-                                                    <input type="hidden" name="vstar_3" id="vstar_3" value="0">
-                                                    <input type="checkbox" name="star[]" class="filled-in" id="star3" value="3" onclick="pasartotal(3)">
-                                                    <label for="star3" class="text-8 orange-textn">3 STARS</label>
-                                                </div>
-                                            </th>
-                                            <th>
-                                                <div class="col s12">
-                                                    <input type="hidden" name="vstar_4" id="vstar_4" value="0">
-                                                    <input type="checkbox" name="star[]" class="filled-in" id="star4" value="4" onclick="pasartotal(4)">
-                                                    <label for="star4" class="text-8 orange-textn">4 STARS</label>
-                                                </div>
-                                            </th>
-                                            <th >
-                                                <div class="col s12">
-                                                    <input type="hidden" name="vstar_5" id="vstar_5" value="0">
-                                                    <input type="checkbox" name="star[]" class="filled-in" id="star5" value="5" onclick="pasartotal(5)">
-                                                    <label for="star5" class="text-8 orange-textn">5 STARS</label>
-                                                </div>
-                                            </th>
-                                        </tr>
-                                        </thead>
-                                        <tbody>
-                                        <tr>
-                                            <td>
-                                                <input class="right-align" type="number" name="acom_t" id="acom_t" min="0"  value="0" onchange="pasartotal(0)">
-                                            </td>
-                                            <th><i class="mdi-maps-local-hotel text-25"></i><i class="mdi-maps-local-hotel text-25"></i><i class="mdi-maps-local-hotel text-25"></i></th>
-                                            <td>
-                                                <input class="right-align" type="number" name="t_2" id="t_2" min="0" value="{{$precio_t_2}}"  onchange="pasartotal(0)">
-                                            </td>
-                                            <td>
-                                                <input class="right-align" type="number" name="t_3" id="t_3" min="0" value="{{$precio_t_3}}" onchange="pasartotal(0)">
-                                            </td>
-                                            <td>
-                                                <input class="right-align" type="number" name="t_4" id="t_4" min="0" value="{{$precio_t_4}}" onchange="pasartotal(0)">
-                                            </td>
-                                            <td>
-                                                <input class="right-align" type="number" name="t_5" id="t_5" min="0" value="{{$precio_t_5}}" onchange="pasartotal(0)">
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>
-                                                <input class="right-align" type="number" name="acom_d" id="acom_d" min="0"  value="0" onchange="pasartotal(0)">
-                                            </td>
-                                            <th><i class="mdi-maps-local-hotel text-25"></i><i class="mdi-maps-local-hotel text-25"></i></th>
-                                            <td>
-                                                <input class="right-align" type="number" name="d_2" id="d_2" min="0" value="{{$precio_d_2}}" onchange="pasartotal(0)">
-                                            </td>
-                                            <td>
-                                                <input class="right-align" type="number" name="d_3" id="d_3" min="0" value="{{$precio_d_3}}" onchange="pasartotal(0)">
-                                            </td>
-                                            <td>
-                                                <input class="right-align" type="number" name="d_4" id="d_4" min="0" value="{{$precio_d_4}}" onchange="pasartotal(0)">
-                                            </td>
-                                            <td>
-                                                <input class="right-align" type="number" name="d_5" id="d_5" min="0" value="{{$precio_d_5}}" onchange="pasartotal(0)">
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>
-                                                <input class="right-align" type="number" name="acom_m" id="acom_m" min="0"  value="0" onchange="pasartotal(0)">
-                                            </td>
-                                            <th><i class="mdi-maps-local-hotel text-25"></i><i class="mdi-maps-local-hotel text-25"></i>(m)</th>
-                                            <td>
-                                                <input class="right-align" type="number" name="m_2" id="m_2" min="0" value="{{$precio_m_2}}" onchange="pasartotal(0)">
-                                            </td>
-                                            <td>
-                                                <input class="right-align" type="number" name="m_3" id="m_3" min="0" value="{{$precio_m_3}}" onchange="pasartotal(0)">
-                                            </td>
-                                            <td>
-                                                <input class="right-align" type="number" name="m_4" id="m_4" min="0" value="{{$precio_m_4}}" onchange="pasartotal(0)">
-                                            </td>
-                                            <td>
-                                                <input class="right-align" type="number" name="m_5" id="m_5" min="0" value="{{$precio_m_5}}" onchange="pasartotal(0)">
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>
-                                                <input class="right-align" type="number" name="acom_s" id="acom_s" min="0"  value="0" onchange="pasartotal(0)">
-                                            </td>
-                                            <th><i class="mdi-maps-local-hotel text-25"></i></th>
-                                            <td>
-                                                <input class="right-align" type="number" name="s_2" id="s_2" min="0" value="{{$precio_s_2}}" onchange="pasartotal(0)">
-                                            </td>
-                                            <td>
-                                                <input class="right-align" type="number" name="s_3" id="s_3" min="0" value="{{$precio_s_3}}" onchange="pasartotal(0)">
-                                            </td>
-                                            <td>
-                                                <input class="right-align" type="number" name="s_4" id="s_4" min="0" value="{{$precio_s_4}}" onchange="pasartotal(0)">
-                                            </td>
-                                            <td>
-                                                <input class="right-align" type="number" name="s_5" id="s_5" min="0" value="{{$precio_s_5}}" onchange="pasartotal(0)">
-                                            </td>
-                                        </tr>
-                                        </tbody>
-                                    </table>
-                                </div>
-                            </div>
-                        </div>
+                    <div class="col s12 margin-top-20">
+                        <table class="table striped">
+                            <thead>
+                            <tr class="grey darken-3">
+                                <th class="text-11 white-text">ROOMS</th>
+                                <th class="text-11 white-text">ACOMODACION</th>
+                                <th>
+                                    <div class="col s12">
+                                        <input type="hidden" name="vstar_2" id="vstar_2" value="0">
+                                        <input type="checkbox" name="star[]" class="filled-in" id="star2" value="2" onclick="pasartotal(2)" <?php if($estrella_2==1) echo 'checked="checked"';?>>
+                                        <label for="star2" class="text-8 orange-textn">2 STARS</label>
+                                    </div>
+                                </th>
+                                <th>
+                                    <div class="col s12">
+                                        <input type="hidden" name="vstar_3" id="vstar_3" value="0">
+                                        <input type="checkbox" name="star[]" class="filled-in" id="star3" value="3" onclick="pasartotal(3)" <?php if($estrella_3==1) echo 'checked="checked"';?>>
+                                        <label for="star3" class="text-8 orange-textn">3 STARS</label>
+                                    </div>
+                                </th>
+                                <th>
+                                    <div class="col s12">
+                                        <input type="hidden" name="vstar_4" id="vstar_4" value="0">
+                                        <input type="checkbox" name="star[]" class="filled-in" id="star4" value="4" onclick="pasartotal(4)" <?php if($estrella_4==1) echo 'checked="checked"';?>>
+                                        <label for="star4" class="text-8 orange-textn">4 STARS</label>
+                                    </div>
+                                </th>
+                                <th >
+                                    <div class="col s12">
+                                        <input type="hidden" name="vstar_5" id="vstar_5" value="0">
+                                        <input type="checkbox" name="star[]" class="filled-in" id="star5" value="5" onclick="pasartotal(5)" <?php if($estrella_5==1) echo 'checked="checked"';?>>
+                                        <label for="star5" class="text-8 orange-textn">5 STARS</label>
+                                    </div>
+                                </th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr>
+                                <td>
+                                    <input class="right-align" type="number" name="acom_t" id="acom_t" min="0"  value="{{$nrop_t}}" onchange="pasartotal(0)">
+                                </td>
+                                <th><i class="mdi-maps-local-hotel text-25"></i><i class="mdi-maps-local-hotel text-25"></i><i class="mdi-maps-local-hotel text-25"></i></th>
+                                <td>
+                                    <input class="right-align" type="number" name="t_2" id="t_2" min="0" value="{{$precio_t_2}}"  onchange="pasartotal(0)">
+                                </td>
+                                <td>
+                                    <input class="right-align" type="number" name="t_3" id="t_3" min="0" value="{{$precio_t_3}}" onchange="pasartotal(0)">
+                                </td>
+                                <td>
+                                    <input class="right-align" type="number" name="t_4" id="t_4" min="0" value="{{$precio_t_4}}" onchange="pasartotal(0)">
+                                </td>
+                                <td>
+                                    <input class="right-align" type="number" name="t_5" id="t_5" min="0" value="{{$precio_t_5}}" onchange="pasartotal(0)">
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <input class="right-align" type="number" name="acom_d" id="acom_d" min="0"  value="{{$nrop_d}}" onchange="pasartotal(0)">
+                                </td>
+                                <th><i class="mdi-maps-local-hotel text-25"></i><i class="mdi-maps-local-hotel text-25"></i></th>
+                                <td>
+                                    <input class="right-align" type="number" name="d_2" id="d_2" min="0" value="{{$precio_d_2}}" onchange="pasartotal(0)">
+                                </td>
+                                <td>
+                                    <input class="right-align" type="number" name="d_3" id="d_3" min="0" value="{{$precio_d_3}}" onchange="pasartotal(0)">
+                                </td>
+                                <td>
+                                    <input class="right-align" type="number" name="d_4" id="d_4" min="0" value="{{$precio_d_4}}" onchange="pasartotal(0)">
+                                </td>
+                                <td>
+                                    <input class="right-align" type="number" name="d_5" id="d_5" min="0" value="{{$precio_d_5}}" onchange="pasartotal(0)">
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <input class="right-align" type="number" name="acom_m" id="acom_m" min="0"  value="{{$nrop_m}}" onchange="pasartotal(0)">
+                                </td>
+                                <th><i class="mdi-maps-local-hotel text-25"></i><i class="mdi-maps-local-hotel text-25"></i>(m)</th>
+                                <td>
+                                    <input class="right-align" type="number" name="m_2" id="m_2" min="0" value="{{$precio_m_2}}" onchange="pasartotal(0)">
+                                </td>
+                                <td>
+                                    <input class="right-align" type="number" name="m_3" id="m_3" min="0" value="{{$precio_m_3}}" onchange="pasartotal(0)">
+                                </td>
+                                <td>
+                                    <input class="right-align" type="number" name="m_4" id="m_4" min="0" value="{{$precio_m_4}}" onchange="pasartotal(0)">
+                                </td>
+                                <td>
+                                    <input class="right-align" type="number" name="m_5" id="m_5" min="0" value="{{$precio_m_5}}" onchange="pasartotal(0)">
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <input class="right-align" type="number" name="acom_s" id="acom_s" min="0"  value="{{$nrop_s}}" onchange="pasartotal(0)">
+                                </td>
+                                <th><i class="mdi-maps-local-hotel text-25"></i></th>
+                                <td>
+                                    <input class="right-align" type="number" name="s_2" id="s_2" min="0" value="{{$precio_s_2}}" onchange="pasartotal(0)">
+                                </td>
+                                <td>
+                                    <input class="right-align" type="number" name="s_3" id="s_3" min="0" value="{{$precio_s_3}}" onchange="pasartotal(0)">
+                                </td>
+                                <td>
+                                    <input class="right-align" type="number" name="s_4" id="s_4" min="0" value="{{$precio_s_4}}" onchange="pasartotal(0)">
+                                </td>
+                                <td>
+                                    <input class="right-align" type="number" name="s_5" id="s_5" min="0" value="{{$precio_s_5}}" onchange="pasartotal(0)">
+                                </td>
+                            </tr>
+                            </tbody>
+                        </table>
                     </div>
-
-                    <div class="col s12 right-align margin-top-40">
+                    <div class="col s12 right-align">
                         <input type="hidden" name="total2" id="total2" value="0">
                         <input type="hidden" name="total3" id="total3" value="0">
                         <input type="hidden" name="total4" id="total4" value="0">
@@ -983,30 +742,14 @@
                         <input type="hidden" name="precio_id_5" id="precio_id_5" value="{{$precio_id5}}">
 
                         <input type="text" class="hide" name="totalItinerario" id="totalItinerario" value="{{$totalItinerario}}">
-                        <input type="hidden" name="cliente_id" id="cliente_id" value="{{$cliente->id}}">
+                        <input type="hidden" name="cliente_id" id="cliente_id" value="0">
                         {{csrf_field()}}
                         <button class="btn waves-effect waves-light green" type="submit" name="action">Terminar
                             <i class="mdi-content-save right"></i>
                         </button>
                     </div>
                 </div>
-                <div class="col s3">
-                    <div class="col s12">
-                        <h5 class="grey-text text-darken-1">Destinos
-                            <a href="#destinations_modal" class="modal-trigger tooltipped right text-12" data-position="bottom" data-delay="50" data-tooltip="Editar destinos para este paquete"><i class="mdi-editor-mode-edit valign text-18 left"></i></a>
-                        </h5>
-                        <div class="divider"></div>
-                        <p class="text-12">Destinos actuales del paquete</p>
-                        @foreach($paquete_->paquetes_destinos as $destino)
-                            <div class="col s12">
-                                {{--<input type="checkbox" class="filled-in" id="{{$destino->id}}" checked="checked" />--}}
-                                {{--<label for="{{$destino->id}}" class="padding-left-5">{{$destino->destino}}</label>--}}
-                                <i class="mdi-maps-place"></i> {{$destino->destino}}
-                            </div>
-                        @endforeach
-                    </div>
-                </div>
-                <div class="col s5 hide">
+                <div class="col s5">
                     <div class="col s12" id="pinned">
                         <h5 class="grey-text text-darken-1">Precios
                             <a href="#modal_add_uti" class="modal-trigger tooltipped right text-12 blue-text" data-position="bottom" data-delay="50" data-tooltip="Definir porcentaje de utilidad"><i class="mdi-action-trending-up text-18 left"></i></a>
@@ -1111,7 +854,6 @@
                         </div>
                     </div>
                 </div>
-
             </div>
         </form>
         <!-- Modal Structure packages-->
@@ -1124,7 +866,7 @@
                     </div>
                 </div>
                 <div class="row">
-                    <form id="form_editar_pqt" name="form_editar_pqt" class="col s12" action="{{route('editar_paquete_cotizacion_path')}}" method="post" enctype="multipart/form-data">
+                    <form id="form_editar_pqt_nuevo" name="form_editar_pqt_nuevo" class="col s12" action="{{route('editar_paquete_path')}}" method="post" enctype="multipart/form-data">
                         <div class="row">
                             <div class="input-field col s3">
                                 <input placeholder="Ingrese el codigo del paquete" id="codigo_txt" name="codigo_txt" type="text" class="validate" value="{{$paquete_->codigo}}">
@@ -1135,7 +877,7 @@
                                 <label for="duracion_txt" class="active">Duracion</label>
                             </div>
                             <div class="input-field col s6">
-                                <input placeholder="Ingrese el titulo del paquete" id="titulo_txt" name="titulo_txt" type="text" class="validate" value="{{$paquete_->duracion}}">
+                                <input placeholder="Ingrese el titulo del paquete" id="titulo_txt" name="titulo_txt" type="text" class="validate" value="{{$paquete_->titulo}}">
                                 <label for="titulo_txt" class="active">Titulo</label>
                             </div>
                         </div>
@@ -1190,13 +932,13 @@
                     </div>
                 </div>
                 <div class="row">
-                    <form id="formDestinos" name="formDestinos" class="col s12" action="{{route('editar_destinos_cotizacion_path')}}" method="post" enctype="multipart/form-data">
+                    <form id="formDestinos_pqt" name="formDestinos_pqt" class="col s12" action="{{route('editar_destinos_paquete_path')}}" method="post" enctype="multipart/form-data">
                         <div class="row">
 
                             <?php $i=0;?>
                             @foreach($destinos->sortBy("destino") as $destin)
                                 <?php $i++; $si=0;?>
-                                @foreach($paquete_->paquetes_destinos as $destinoCoti)
+                                @foreach($paquete_->destinos as $destinoCoti)
                                     @if($destin->destino==$destinoCoti->destino)
                                         <div class="col s6">
                                             <input type="checkbox" name="destino[]" class="filled-in" id="destino_{{$i}}" checked="checked" value="{{$destin->destino}}"/>

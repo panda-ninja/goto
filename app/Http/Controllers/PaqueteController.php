@@ -9,6 +9,7 @@ use GotoPeru\DestinoPaqueteCotizacion;
 use GotoPeru\ItinerarioCotizacion;
 use GotoPeru\ItinerarioModelo;
 use GotoPeru\ItinerarioOrden;
+use GotoPeru\OrdenModelo;
 use GotoPeru\PaqueteCotizacion;
 use GotoPeru\PaquetePersonalizado;
 use GotoPeru\PDestino;
@@ -27,6 +28,12 @@ use Illuminate\Support\Facades\Input;
 
 class PaqueteController extends Controller
 {
+    public function nuevo_paquete(){
+        $destinos=DestinoModelo::get();
+        return view('nuevo-paquete',['destinos'=>$destinos]);
+
+    }
+
     public function buscar_plan(Request $request)
     {
         $cotizacion_id = $request->input('cotizacion_id');
@@ -417,4 +424,119 @@ class PaqueteController extends Controller
         }
     }
 
+    public function editar_pqt_nuevo(Request $request)
+    {
+        //
+        $codigo_txt=strtoupper($request->input('codigo_txt'));
+        $duracion_txt=strtoupper($request->input('duracion_txt'));
+        $titulo_txt=strtoupper($request->input('titulo_txt'));
+        $descipcion_txt=strtoupper($request->input('descipcion_txt'));
+        $opcional_txt=strtoupper($request->input('opcional_txt'));
+        $incluye_txt=strtoupper($request->input('incluye_txt'));
+        $noincluye_txt=strtoupper($request->input('noincluye_txt'));
+        $imagen=strtoupper($request->input('imagen'));
+        $path='';
+        $paquete_id=strtoupper($request->input('paquete_id'));
+//        return ($paquete_id);
+        $newPaquete=PPaquete::FindOrFail($paquete_id);
+        $newPaquete->codigo=$codigo_txt;
+        $newPaquete->titulo=$titulo_txt;
+        $newPaquete->duracion=$duracion_txt;
+        $newPaquete->descripcion=$descipcion_txt;
+        $newPaquete->incluye=$incluye_txt;
+        $newPaquete->noincluye=$noincluye_txt;
+        $newPaquete->opcional=$opcional_txt;
+        $newPaquete->imagen=$path;
+//        dd($newPaquete);
+        $newPaquete->save();
+//        if($newPaquete->save())
+//            return '1_Bien hecho! Paquete editado creectamente';
+//        else
+//            return '0_Ups! Error a editar el papuete, vuelva a intentarlo';
+
+
+        $paquete = PPaquete::with('precios', 'destinos', 'itinerarios.ordenes')->get()->where('id', $paquete_id);
+        $destinos = DestinoModelo::get();
+        $ordenes1 = OrdenModelo::get();
+
+        $itinerarios = ItinerarioModelo::with('ordenes')->get();
+        return view('configurar-itinerario-p', ['destinos' => $destinos, 'paquete' => $paquete, 'ordenes1' => $ordenes1, 'itinerarios' => $itinerarios]);
+
+    }
+    public function editar_destinos_paquete(Request $request)
+    {
+        try {
+            $destinos = $request->input('destino');
+//          return dd($destinos);
+            $paquete_id = $request->input('paquete_id');
+//          return dd($paquete_id);
+            $antiguos_destinos = PDestino::where('ppaquete_id', $paquete_id)->delete();
+            $valor='';
+            foreach ($destinos as $destino) {
+//              $valor.=$destino.'_';
+                $modelo = DestinoModelo::where('destino', $destino)->get();
+                foreach ($modelo as $modelo_){
+                    $newModelo = new PDestino();
+                    $newModelo->codigo = $modelo_->codigo;
+                    $newModelo->destino = $modelo_->destino;
+                    $newModelo->region = $modelo_->region;
+                    $newModelo->pais = $modelo_->pais;
+                    $newModelo->descripcion = $modelo_->descripcion;
+                    $newModelo->imagen = $modelo_->imagen;
+                    $newModelo->estado = $modelo_->estado;
+                    $newModelo->ppaquete_id = $paquete_id;
+                    $newModelo->save();
+                }
+//
+            }
+//            return $valor;
+//            return '1_Bien hecho! Destinos editado creectamente';
+            $paquete = PPaquete::with('precios', 'destinos', 'itinerarios.ordenes')->get()->where('id', $paquete_id);
+            $destinos = DestinoModelo::get();
+            $ordenes1 = OrdenModelo::get();
+
+            $itinerarios = ItinerarioModelo::with('ordenes')->get();
+            return view('configurar-itinerario-p', ['destinos' => $destinos, 'paquete' => $paquete, 'ordenes1' => $ordenes1, 'itinerarios' => $itinerarios]);
+
+        }
+        catch (\Exception $e) {
+//            return '0_Ups! Error a editar los destinos, vuelva a intentarlo';
+        }
+    }
+    public function editar_nuevo_itinerario(Request $request)
+    {
+        try {
+            $titulo_txt = $request->input('titulo_txt');
+            $descipcion = $request->input('descipcion_txt');
+            $itinerario_id = $request->input('itinerario_id');
+
+//            return dd($titulo.'_'.$descipcion.'_'.$itinerario_id);
+            $itinerario= PItinerario::FindOrFail($itinerario_id);
+            $itinerario->titulo=$titulo_txt;
+            $itinerario->descripcion=$descipcion;
+            $itinerario->save();
+            return '0_1_Bien hecho! observaciones editado creectamente_'.$titulo_txt.'_'.$descipcion.'_'.$itinerario_id;
+        }
+        catch (\Exception $e) {
+            return  $e;
+//            return '0_0_Ups! Error a editar el observaciones, vuelva a intentarlo_'.$titulo_txt.'_'.$descipcion.'_'.$itinerario_id;
+        }
+    }
+    public function editar_nuevo_paquete_itinerario_obs(Request $request)
+    {
+        try {
+            $obs = $request->input('obs_txt');
+            $itinerario_id = $request->input('itinerario_id');
+
+//            return dd($titulo.'_'.$descipcion.'_'.$itinerario_id);
+            $itinerario=PItinerario::FindOrFail($itinerario_id);
+            $itinerario->observaciones=$obs;
+            $itinerario->save();
+
+            return $itinerario_id.'_1_Bien hecho! Itinerario editado creectamente_'.$obs;
+        }
+        catch (\Exception $e) {
+            return '0_0_Ups! Error a editar el itinerario, vuelva a intentarlo_'.$obs;
+        }
+    }
 }
