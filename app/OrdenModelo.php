@@ -8,9 +8,7 @@ class OrdenModelo extends Model
 {
     //
     protected $table = "orden_modelo";
-    protected $fillable = [
-        'nombre','min','max','precio'
-    ];
+
 
     protected $hidden = [
         '',

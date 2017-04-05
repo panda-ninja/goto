@@ -1,7 +1,6 @@
 @extends('layouts.admin')
 
 @section('content')
-
     <!--breadcrumbs start-->
     <div id="breadcrumbs-wrapper">
         <!-- Search for small screen -->
@@ -61,6 +60,7 @@
                         </tfoot>
 
                         <tbody>
+
                         @foreach($itinerario->sortBy("titulo") as $itinerarios)
                             <tr>
                                 <td>1</td>
@@ -75,6 +75,7 @@
                                         </section>
                                     @endif
                                 </td>
+
                                 <td class="right-align">
                                     {{--<a href="" class="red-text text-20"><i class="mdi-action-delete"></i></a>--}}
                                     <form action="{{route('admin_itinerary_delete_path', $itinerarios->id)}}" method="post">
@@ -82,7 +83,10 @@
                                         <input type="hidden" name="_method" value="delete">
                                         <a href="{{route("admin_itinerary_edit_path", $itinerarios->id)}}" class="orange-text text-20"><i class="mdi-editor-mode-edit"></i></a>
                                         {{--<input type="submit" class="btn btn-danger" value="Eliminar Post" onclick="">--}}
-                                        <a href="javascript:;" onclick="parentNode.submit();return confirm('Estas seguro de eliminar?')" class="red-text text-20"><i class="mdi-action-delete"></i></a>
+                                        {{--<a href="javascript:;" onclick="return confirm('Estas seguro de eliminar?'); parentNode.submit()" class="red-text text-20"><i class="mdi-action-delete"></i></a>--}}
+                                        <button class="btn-submit-form" type="submit" name="action" onclick="return confirm('Estas seguro de eliminar?')">
+                                            <i class="mdi-action-delete red-text text-20"></i>
+                                        </button>
                                     </form>
                                 </td>
                             </tr>

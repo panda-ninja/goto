@@ -201,8 +201,8 @@
                 <li class="li-hover"><p class="ultra-small margin more-text">MORE</p></li>
                 <li><a href="{{route("admin_itinerary_new_path")}}"><i class="mdi-action-view-list"></i> Itinerary</a>
                 </li>
-                {{--<li><a href="css-grid.html"><i class="mdi-image-grid-on"></i> Grid</a>--}}
-                {{--</li>--}}
+                <li><a href="{{route("admin_concepts_index_path")}}"><i class="mdi-image-grid-on"></i> Concepts</a>
+                </li>
                 {{--<li><a href="css-color.html"><i class="mdi-editor-format-color-fill"></i> Color</a>--}}
                 {{--</li>--}}
                 {{--<li><a href="css-helpers.html"><i class="mdi-communication-live-help"></i> Helpers</a>--}}

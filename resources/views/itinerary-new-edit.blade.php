@@ -14,7 +14,7 @@
                     <h5 class="breadcrumbs-title">Itinerary</h5>
                     <ol class="breadcrumbs">
                         <li><a href="#">Dashboard</a></li>
-                        <li class="active">Basic Tables</li>
+                        <li class="active">Itinerary update</li>
                     </ol>
                 </div>
             </div>
@@ -23,7 +23,31 @@
     <div class="container">
         <div class="section">
             <div class="row">
-                <form action="{{route("admin_itinerary_update_path", $itinerario->id)}}"  method="post" enctype="multipart/form-data">
+                <div class="row">
+                    @if(Session::get('success'))
+                        <div id="card-alert" class="card green">
+                            <div class="card-content white-text">
+                                <p><i class="mdi-alert-error"></i> {{Session::get('success')}}</p>
+                            </div>
+                            <button type="button" class="close white-text" data-dismiss="alert" aria-label="Close">
+                                <span aria-hidden="true">×</span>
+                            </button>
+                        </div>
+                    @endif
+
+                        @if(Session::get('error'))
+                            <div id="card-alert" class="card red">
+                                <div class="card-content white-text">
+                                    <p><i class="mdi-alert-error"></i> {{Session::get('error')}}</p>
+                                </div>
+                                <button type="button" class="close white-text" data-dismiss="alert" aria-label="Close">
+                                    <span aria-hidden="true">×</span>
+                                </button>
+                            </div>
+                        @endif
+
+                </div>
+                <form action="{{route("admin_itinerary_patch_path", $itinerario->id)}}"  method="post" enctype="multipart/form-data">
                     <div class="col s9">
                         {{csrf_field()}}
                         <input type="hidden" name="_method" value="patch">
@@ -48,8 +72,9 @@
                                 <p class="grey-text">Agregue una imagen</p>
                                 @if (Storage::disk('itinerary')->has($itinerario->imagen))
                                     <input type="file" id="file" name="file" class="dropify" data-default-file="{{ route('admin_itinerary_image_path', ['filename' => $itinerario->imagen])}}"/>
+                                    @else
+                                    <input type="file" id="file" name="file" class="dropify"/>
                                 @endif
-
                             </div>
                         </div>
                         <div class="row spacer-20">

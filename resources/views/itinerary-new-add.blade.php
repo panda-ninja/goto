@@ -64,9 +64,12 @@
                             <div class="divider margin-bottom-20"></div>
                         </div>
                         @foreach($servicios as $servicio)
-                            <div class="col s12">
+                            <div class="col s9">
                                 <input type="checkbox" id="services-{{$servicio->id}}" name="services[]" class="filled-in" value="{{$servicio->id}}"/>
                                 <label for="services-{{$servicio->id}}">{{ucwords(strtolower($servicio->nombre))}}</label>
+                            </div>
+                            <div class="col s3">
+                                <b class="right">({{$servicio->precio}}$)</b>
                             </div>
                         @endforeach
 

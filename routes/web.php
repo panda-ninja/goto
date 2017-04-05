@@ -365,6 +365,7 @@ Route::group(['middleware'=>'admin'],function(){
         'uses' => 'ItineraryNewController@getItineraryImage',
         'as' => 'admin_itinerary_image_path'
     ]);
+    //itinerario orden
     Route::get('admin/itinerary/create', [
         'uses' => 'ItineraryNewController@create',
         'as' => 'admin_itinerary_create_path',
@@ -383,11 +384,33 @@ Route::group(['middleware'=>'admin'],function(){
         'as' => 'admin_itinerary_update_path',
     ])->where('id', '[0-9]+');
 
+    Route::patch('admin/itinerary/edit/{id}', [
+        'uses' => 'ItineraryNewController@update',
+        'as' => 'admin_itinerary_patch_path',
+    ])->where('id', '[0-9]+');
+
     Route::delete('admin/itinerary/edit/{id}', [
         'uses' => 'ItineraryNewController@destroy',
         'as' => 'admin_itinerary_delete_path',
     ])->where('id', '[0-9]+');
-
+    //Concepts
+    Route::get('admin/concepts', [
+        'uses' => 'ConceptController@index',
+        'as' => 'admin_concepts_index_path',
+    ]);
+    Route::patch('admin/concepts/store', [
+        'uses' => 'ConceptController@store',
+        'as' => 'admin_concept_store_path',
+    ]);
+    Route::patch('admin/concepts/{id}', [
+        'uses' => 'ConceptController@update',
+        'as' => 'admin_concept_update_path',
+    ])->where('id', '[0-9]+');
+    Route::delete('admin/concepts/{id}', [
+        'uses' => 'ConceptController@destroy',
+        'as' => 'admin_concept_delete_path',
+    ])->where('id', '[0-9]+');
+    //-----------
     Route::any('admin/proposals/{id}', [
         'uses' => 'CotizacionController@proposals',
         'as' => 'admin_proposals_path',
