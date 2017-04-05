@@ -50,7 +50,7 @@
         <nav class="navbar-color">
             <div class="nav-wrapper">
                 <ul class="left">
-                    <li><h1 class="logo-wrapper"><a href="index.html" class="brand-logo darken-1"><img src="{{asset("images/materialize-logo.png")}}" alt="materialize logo"></a> <span class="logo-text">Materialize</span></h1></li>
+                    <li><h1 class="logo-wrapper"><a href="{{route("inicio_path")}}" class="brand-logo darken-1"><img src="{{asset("images/materialize-logo.png")}}" alt="materialize logo"></a> <span class="logo-text">Materialize</span></h1></li>
                 </ul>
                 <div class="header-search-wrapper hide-on-med-and-down">
                     <i class="mdi-action-search"></i>
@@ -137,13 +137,13 @@
                             <ul id="profile-dropdown" class="dropdown-content">
                                 <li><a href="#"><i class="mdi-action-face-unlock"></i> Profile</a>
                                 </li>
-                                <li><a href="#"><i class="mdi-action-settings"></i> Settings</a>
-                                </li>
-                                <li><a href="#"><i class="mdi-communication-live-help"></i> Help</a>
-                                </li>
-                                <li class="divider"></li>
-                                <li><a href="#"><i class="mdi-action-lock-outline"></i> Lock</a>
-                                </li>
+                                {{--<li><a href="#"><i class="mdi-action-settings"></i> Settings</a>--}}
+                                {{--</li>--}}
+                                {{--<li><a href="#"><i class="mdi-communication-live-help"></i> Help</a>--}}
+                                {{--</li>--}}
+                                {{--<li class="divider"></li>--}}
+                                {{--<li><a href="#"><i class="mdi-action-lock-outline"></i> Lock</a>--}}
+                                {{--</li>--}}
                                 <li><a href="{{route('admin_auth_destroy_path')}}"><i class="mdi-hardware-keyboard-tab"></i> Logout</a>
                                 </li>
                             </ul>
@@ -153,7 +153,7 @@
                         </div>
                     </div>
                 </li>
-                <li class="bold active"><a href="http://gotoperu.travel/dashboard" class="waves-effect waves-cyan"><i class="mdi-action-dashboard"></i> Dashboard</a>
+                <li class="bold active"><a href="{{route("inicio_path")}}" class="waves-effect waves-cyan"><i class="mdi-action-dashboard"></i> Dashboard</a>
                 </li>
                 {{--<li class="no-padding">--}}
                     {{--<ul class="collapsible collapsible-accordion">--}}
@@ -176,7 +176,7 @@
                                 <ul>
                                     <li><a href="{{route("nuevo_paquete_path")}}">New</a>
                                     </li>
-                                    <li><a href="">Current</a>
+                                    <li><a href="{{route("current_list_path")}}">Current</a>
                                     </li>
                                 </ul>
                             </div>
@@ -197,6 +197,20 @@
                         </li>
                     </ul>
                 </li>
+                <li class="li-hover"><div class="divider"></div></li>
+                <li class="li-hover"><p class="ultra-small margin more-text">MORE</p></li>
+                <li><a href="{{route("admin_itinerary_new_path")}}"><i class="mdi-action-view-list"></i> Itinerary</a>
+                </li>
+                {{--<li><a href="css-grid.html"><i class="mdi-image-grid-on"></i> Grid</a>--}}
+                {{--</li>--}}
+                {{--<li><a href="css-color.html"><i class="mdi-editor-format-color-fill"></i> Color</a>--}}
+                {{--</li>--}}
+                {{--<li><a href="css-helpers.html"><i class="mdi-communication-live-help"></i> Helpers</a>--}}
+                {{--</li>--}}
+                {{--<li><a href="changelogs.html"><i class="mdi-action-swap-vert-circle"></i> Changelogs</a>--}}
+                {{--</li>--}}
+
+
                 {{--<li class="bold"><a href="app-email.html" class="waves-effect waves-cyan"><i class="mdi-communication-email"></i> Mailbox <span class="new badge">4</span></a>--}}
                 {{--</li>--}}
                 {{--<li class="bold"><a href="app-calendar.html" class="waves-effect waves-cyan"><i class="mdi-editor-insert-invitation"></i> Calender</a>--}}
