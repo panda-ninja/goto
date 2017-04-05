@@ -535,7 +535,10 @@ function enviarPlan(id,cliente_id){
         });
 }
 function recalcular_ordenes(){
-
+    // var $total_orden=0;
+    // $(".precio_itinerario_orden").each(function(){
+    //     $total_orden+=parseInt($(this).val());
+    // });
 }
 function eliminar_servicio(id){
     swal({   title: "Mensaje del sistema",
@@ -773,7 +776,7 @@ function agregar_servicio_pqt(pos){
                     // +'/'+$dato[1]+'/'+$dato[2]
                     '<tr id="servicio_'+$dato[0]+'">'+
                     '<td>'+$dato[1]+'</td>'+
-                    '<td id="iti_precio_serv_'+$dato[0]+'">'+$dato[2]+'</td>'+
+                    '<td class="iti_precio_orden_'+pos+'" id="iti_precio_serv_'+$dato[0]+'">'+$dato[2]+'</td>'+
                     '<td class="right-align">'+
                     '<a href="#modal_edit_serv_'+$dato[0]+'" class="modal-trigger blue-text "><i class="mdi-editor-mode-edit"></i></a>'+
                     '<a href="#!" class="red-text" onclick="eliminar_servicio_pqt('+$dato[0]+')"><i class="mdi-action-delete"></i></a>'+
@@ -781,6 +784,14 @@ function agregar_servicio_pqt(pos){
                     '</tr>'
                 );
             });
+            var $total_orden=0;
+            $(".iti_precio_orden_"+pos).each(function(){
+                $total_orden+=parseInt($(this).val());
+            });
+            console.log('orden total:'+$total_orden);
+            $("#precio_itinerario_"+pos).val($total_orden);
+            $("#html_precio_itinerario_"+pos).html($total_orden);
+
             // for (var ele in data) {
             //     console.log('orden: '+data[ele]);
             //     var $dato=ele.split('_');

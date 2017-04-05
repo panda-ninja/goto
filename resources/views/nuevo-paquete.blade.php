@@ -6,13 +6,13 @@
         <div class="col s12">
             <div class="col s4 no-padding">
                 <div class="tab-qoutes center padding-10 active">
-                    <a href="{{route('quotes_confirm_path')}}" class="valign-wrapper text-darken-1">2. Configurar Paquete</a>
+                    <a href="{{route('quotes_confirm_path')}}" class="valign-wrapper text-darken-1">1. Configurar Paquete</a>
                 </div>
 
             </div>
             <div class="col s4 no-padding">
                 <div class="tab-qoutes center padding-10">
-                    <a href="{{route('quotes_pending_path')}}" class="valign-wrapper text-darken-1 not-active">3. Itinerario y servicios</a>
+                    <a href="{{route('quotes_pending_path')}}" class="valign-wrapper text-darken-1 not-active">2. Itinerario y servicios</a>
                 </div>
             </div>
         </div>

@@ -461,6 +461,10 @@ Route::group(['middleware'=>'admin'],function(){
         'uses' => 'ItineraryController@guardar_itinerario_servicio_nuevo',
         'as' => 'guardar_itinerario_servicio_nuevo_path',
     ]);
+    Route::post('paquete-terminado', [
+        'uses' => 'PaqueteController@guardar_precios_paquete',
+        'as' => 'guardar_paquete_path',
+    ]);
 });
 /*
 Route::get('login', [

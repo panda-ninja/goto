@@ -48,7 +48,7 @@
                 </div>
             </div>
         </div>
-        <form action="{{route('paquete_proposals_path')}}" method="post">
+        <form action="{{route('guardar_paquete_path')}}" method="post">
             <div class="row main-wrapper">
 
                 <div class="col s7">
@@ -112,7 +112,7 @@
                                     <div class="portlet-header">Dia <span class="pos_iti" name="posdia[]" id="pos_dia_{{$pos}}">{{$pos}}</span>: <span id="titulo_iti_{{$itinerario->id}}" class="grey-text text-darken-1">{{ucwords(strtolower($itinerario->titulo))}}</span>
                                         <a href="#modal_edit_{{$itinerario->id}}" class="modal-trigger blue-text right"><i class="mdi-editor-mode-edit"></i></a>
                                         <a href="#!" class="red-text right" onclick="borrarItinerario_pqt({{$pos}},{{$itinerario->id}})"><i class="mdi-action-delete"></i></a>
-                                        <input class="precio_itinerario" type="hidden" name="precio_itinerario[]" id="precio_itinerario_{{$pos}}" value="{{$precio_iti2}}"><span class="right grey-text">(${{$precio_iti2}})</span>
+                                        <input class="precio_itinerario" type="hidden" name="precio_itinerario[]" id="precio_itinerario_{{$pos}}" value="{{$precio_iti2}}"><span class="right grey-text" id="html_precio_itinerario_{{$pos}}">(${{$precio_iti2}})</span>
 
                                     </div>
                                     <div class="portlet-content col s12 " style="display: none">
@@ -134,7 +134,7 @@
                                                     @foreach($itinerario->ordenes as $ordenes)
                                                         <tr id="servicio_{{$itinerario->id}}_{{$ordenes->id}}">
                                                             <td>{{$ordenes->nombre}}</td>
-                                                            <td id="iti_precio_serv_{{$ordenes->id}}">{{$ordenes->precio}}</td>
+                                                            <td class="iti_precio_orden_{{$itinerario->id}}" id="iti_precio_serv_{{$ordenes->id}}">{{$ordenes->precio}}</td>
                                                             <td class="right-align">
                                                                 <a href="#modal_edit_serv_{{$ordenes->id}}" class="modal-trigger blue-text "><i class="mdi-editor-mode-edit"></i></a>
                                                                 <a href="#!" class="red-text" onclick="eliminar_servicio({{$ordenes->id}})"><i class="mdi-action-delete"></i></a>
