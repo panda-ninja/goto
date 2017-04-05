@@ -9,7 +9,7 @@ class ItinerarioModelo extends Model
     //
     protected $table = "itinerario_modelo";
     protected $fillable = [
-        'dia','titulo','descripcion','precio','imagen'
+        'dia','titulo','descripcion','precio','imagen','updated_at','created_at'
     ];
 
     protected $hidden = [

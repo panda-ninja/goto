@@ -2,7 +2,6 @@
 
 @section('content')
 
-
     {{--<h4 class="center margin-bottom-40">Quote history</h4>--}}
 
     {{--<ul id="tabs-swipe-demo" class="tabs">--}}

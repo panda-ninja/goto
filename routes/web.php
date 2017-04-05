@@ -357,6 +357,32 @@ Route::group(['middleware'=>'admin'],function(){
         'as' => 'admin_itinerary_path',
     ]);
 
+    Route::get('admin/itinerary/new', [
+        'uses' => 'ItineraryNewController@index',
+        'as' => 'admin_itinerary_new_path',
+    ]);
+    Route::get('/userimage/{filename}', [
+        'uses' => 'ItineraryNewController@getItineraryImage',
+        'as' => 'admin_itinerary_image_path'
+    ]);
+    Route::get('admin/itinerary/create', [
+        'uses' => 'ItineraryNewController@create',
+        'as' => 'admin_itinerary_create_path',
+    ]);
+    Route::patch('admin/itinerary/store', [
+        'uses' => 'ItineraryNewController@store',
+        'as' => 'admin_itinerary_store_path',
+    ]);
+    Route::get('admin/itinerary/edit/{id}', [
+        'uses' => 'ItineraryNewController@edit',
+        'as' => 'admin_itinerary_edit_path',
+    ]);
+
+    Route::post('admin/itinerary/edit/{id}', [
+        'uses' => 'ItineraryNewController@update',
+        'as' => 'admin_itinerary_update_path',
+    ])->where('id', '[0-9]+');
+
     Route::any('admin/proposals/{id}', [
         'uses' => 'CotizacionController@proposals',
         'as' => 'admin_proposals_path',
