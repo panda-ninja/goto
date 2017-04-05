@@ -743,6 +743,8 @@
 
                         <input type="text" class="hide" name="totalItinerario" id="totalItinerario" value="{{$totalItinerario}}">
                         <input type="hidden" name="cliente_id" id="cliente_id" value="0">
+                        <input type="text" name="paquete_id1" id="paquete_id1" value="{{$paquete_->id}}">
+
                         {{csrf_field()}}
                         <button class="btn waves-effect waves-light green" type="submit" name="action">Terminar
                             <i class="mdi-content-save right"></i>
@@ -776,10 +778,10 @@
                                 </tr>
                                 <tr>
                                     <td class="no-padding"><b>Utilidad(%):</b></td>
-                                    <td><input class="right-align" type="number" name="utilidad_2" id="utilidad_2" min="0" max="40" value="{{$ulitidad_2}}" onchange="pasartotal(0)"></td>
-                                    <td><input class="right-align" type="number" name="utilidad_3" id="utilidad_3" min="0" max="40" value="{{$ulitidad_3}}" onchange="pasartotal(0)"></td>
-                                    <td><input class="right-align" type="number" name="utilidad_4" id="utilidad_4" min="0" max="40" value="{{$ulitidad_4}}" onchange="pasartotal(0)"></td>
-                                    <td><input class="right-align" type="number" name="utilidad_5" id="utilidad_5" min="0" max="40" value="{{$ulitidad_5}}" onchange="pasartotal(0)"></td>
+                                    <td><input class="right-align" type="number" name="utilidad_2" id="utilidad_2" min="0" max="40" value="40" onchange="pasartotal(0)"></td>
+                                    <td><input class="right-align" type="number" name="utilidad_3" id="utilidad_3" min="0" max="40" value="40" onchange="pasartotal(0)"></td>
+                                    <td><input class="right-align" type="number" name="utilidad_4" id="utilidad_4" min="0" max="40" value="40" onchange="pasartotal(0)"></td>
+                                    <td><input class="right-align" type="number" name="utilidad_5" id="utilidad_5" min="0" max="40" value="40" onchange="pasartotal(0)"></td>
                                 </tr>
                                 <tr>
                                     <td class="no-padding"><b>Triple:</b></td>
@@ -911,7 +913,6 @@
                             <div class="col s12" id="response"></div>
                             <div class="col s12">
                                 {{csrf_field()}}
-                                <input type="text" name="paquete_id" id="paquete_id" value="{{$paquete_->id}}">
                                 <button class="btn waves-effect waves-light" type="submit" name="action" id="action">Modificar
                                     <i class="mdi-content-send right"></i>
                                 </button>

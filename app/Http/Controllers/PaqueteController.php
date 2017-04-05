@@ -434,7 +434,7 @@ class PaqueteController extends Controller
         try {
 //            $cliente_id=$request->input('cliente_id');
 
-            $paquete_id = $request->input('paquete_id');
+            $paquete_id = $request->input('paquete_id1');
             $acom_t = $request->input('acom_t');
             $acom_d = $request->input('acom_d');
             $acom_m = $request->input('acom_m');
@@ -482,11 +482,12 @@ class PaqueteController extends Controller
 //            $pventa4 = $request->input('pventa_4');
 //            $pventa5 = $request->input('pventa_5');
 
-            $precio_id_2 = $request->input('precio_id_2');
-            $precio_id_3 = $request->input('precio_id_3');
-            $precio_id_4 = $request->input('precio_id_4');
-            $precio_id_5 = $request->input('precio_id_5');
+//            $precio_id_2 = $request->input('precio_id_2');
+//            $precio_id_3 = $request->input('precio_id_3');
+//            $precio_id_4 = $request->input('precio_id_4');
+//            $precio_id_5 = $request->input('precio_id_5');
 
+//             return dd($star_2);
             if ($star_2=='1') {
                 $PrecioPaquete2 = new PPrecio();
                 $PrecioPaquete2->estrellas = 2;
@@ -502,9 +503,10 @@ class PaqueteController extends Controller
                 $PrecioPaquete2->estado=1;
                 $PrecioPaquete2->ppaquete_id=$paquete_id;
                 $PrecioPaquete2->save();
+//                return dd($PrecioPaquete2);
 //                dd('utilidad:'.$utilidad_2.'precio costo:'.$costo_2.'_'.$star_2.'_'.$precio_id_2.'_precios:'.$s_2.'_personass:'.$acom_s.'_preciom:'.$m_2.'_personasm:'.$acom_m.'_preciod:'.$d_2.'_personasd:'.$acom_d.'_preciot:'.$t_2.'_personast:'.$acom_t);
             }
-
+//            return dd($PrecioPaquete2);
             if ($star_3=='1') {
                 $PrecioPaquete3 = new PPrecio();
                 $PrecioPaquete3->estrellas = 3;
@@ -553,11 +555,12 @@ class PaqueteController extends Controller
                 $PrecioPaquete5->ppaquete_id=$paquete_id;
                 $PrecioPaquete5->save();
             }
+//            return dd($PrecioPaquete2);
 
             return redirect(route('current_list_path'));
         }
         catch (\Exception $e) {
-            return redirect('admin_proposals_path','1');
+            return $e;// redirect('admin_proposals_path','1');
         }
     }
     public function editar_pqt_nuevo(Request $request)
@@ -674,5 +677,22 @@ class PaqueteController extends Controller
         catch (\Exception $e) {
             return '0_0_Ups! Error a editar el itinerario, vuelva a intentarlo_'.$obs;
         }
+    }
+    public function borrar_pqt(Request $request)
+    {
+        //
+        $ppaquete_id = $request->input('id');
+        $paquete = PPaquete::FindOrFail($ppaquete_id);
+        if ($paquete->delete())
+            return 1;
+        else
+            return 0;
+    }
+    public function editar_nuevo_paquete(Request $request){
+        $ppaquete_id = $request->input('ppaquete_id');
+        $paquete = PPaquete::with('destinos')->where('id',$ppaquete_id)->get();
+        $destinos=DestinoModelo::get();
+        return view('editar-nuevo-paquete',['destinos'=>$destinos,'paquetes'=>$paquete]);
+
     }
 }

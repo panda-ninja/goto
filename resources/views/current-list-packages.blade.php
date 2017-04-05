@@ -62,9 +62,11 @@
                         </tfoot>
 
                         <tbody>
+                        <?php $i=0;?>
                         @foreach($packages->sortBy("titulo") as $package)
-                            <tr>
-                                <td>1</td>
+                            <?php $i++;?>
+                            <tr id="pqt_{{$package->id}}">
+                                <td>{{$i}}</td>
                                 <td>{{$package->codigo}}</td>
                                 <td>{{ucwords(strtolower($package->titulo))}}</td>
                                 <td>{{$package->duracion}}</td>
@@ -78,12 +80,12 @@
                                     {{--@endif--}}
                                 {{--</td>--}}
                                 <td class="right-align">
-                                    <form action="" method="post">
+                                    <form action="{{route('editar_nuevo_paquete_path')}}" method="post">
                                         {{csrf_field()}}
-                                        <input type="hidden" name="_method" value="delete">
-                                        <a href="" class="orange-text text-20"><i class="mdi-editor-mode-edit"></i></a>
+                                        <input type="hidden" name="ppaquete_id" id="ppaquete_id" value="{{$package->id}}">
+                                        <a href="javascript:;" onclick="parentNode.submit();" class="text-20 orange-text"><i class="mdi-content-create"></i></a>
                                         {{--<input type="submit" class="btn btn-danger" value="Eliminar Post" onclick="">--}}
-                                        <a href="javascript:;" onclick="parentNode.submit();return confirm('Estas seguro de eliminar?')" class="red-text text-20"><i class="mdi-action-delete"></i></a>
+                                        <a href="#!" class="red-text text-20 right" onclick="borrar_ppaquete({{$package->id}})"><i class="mdi-action-delete "></i></a>
                                     </form>
                                 </td>
                             </tr>

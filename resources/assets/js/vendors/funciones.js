@@ -853,3 +853,41 @@ function enviar_serv_pqt(pos){
         console.log('eroorr: '+data);
     });
 }
+
+function borrar_ppaquete(id){
+    swal({   title: "Mensaje del sistema",
+            text: "Desea borrar este paquete",
+            type: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#388E3C",
+            confirmButtonText: "Si, borrar ahora!",
+            cancelButtonText: "No, cancelar por favor!",
+            closeOnConfirm: false,
+            closeOnCancel: false },
+        function(isConfirm){
+            if (isConfirm) {
+                $.ajaxSetup({
+                    headers: {
+                        'X-CSRF-TOKEN': $('[name="_token"]').val()
+                    }
+                });
+                $.post($url+'/borrar_ppaquete', {id: id}, function(data) {
+                    if(data==1){
+                        $('#pqt_'+id).remove();
+                        console.log('correcto: '+data);
+                        // poner_valor();
+                        // pasartotal(0);
+                    }
+                    else{
+
+                    }
+                }).fail(function (data) {
+
+                });
+                swal.close();
+            }
+            else {
+                swal("Cancelado", "no se pudo borrar el servicio :(", "error");   }
+        });
+
+}

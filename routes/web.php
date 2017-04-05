@@ -500,6 +500,14 @@ Route::group(['middleware'=>'admin'],function(){
         'uses' => 'PaqueteController@guardar_precios_paquete',
         'as' => 'guardar_paquete_path',
     ]);
+    Route::post('/borrar_ppaquete', [
+        'uses' => 'PaqueteController@borrar_pqt',
+        'as' => 'borrar_ppaquete_path',
+    ]);
+    Route::post('editar-paquete', [
+        'uses' => 'PaqueteController@editar_nuevo_paquete',
+        'as' => 'editar_nuevo_paquete_path',
+    ]);
 });
 /*
 Route::get('login', [
