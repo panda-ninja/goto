@@ -575,9 +575,8 @@ class PaqueteController extends Controller
         $noincluye_txt=strtoupper($request->input('noincluye_txt'));
         $imagen=strtoupper($request->input('imagen'));
         $path='';
-        $paquete_id=strtoupper($request->input('paquete_id'));
-//        return ($paquete_id);
-        $newPaquete=PPaquete::FindOrFail($paquete_id);
+        $paquete_id=$request->input('ppaquete_id');
+        $newPaquete= PPaquete::FindOrFail($paquete_id);
         $newPaquete->codigo=$codigo_txt;
         $newPaquete->titulo=$titulo_txt;
         $newPaquete->duracion=$duracion_txt;
@@ -586,21 +585,12 @@ class PaqueteController extends Controller
         $newPaquete->noincluye=$noincluye_txt;
         $newPaquete->opcional=$opcional_txt;
         $newPaquete->imagen=$path;
-//        dd($newPaquete);
         $newPaquete->save();
-//        if($newPaquete->save())
-//            return '1_Bien hecho! Paquete editado creectamente';
-//        else
-//            return '0_Ups! Error a editar el papuete, vuelva a intentarlo';
-
-
-        $paquete = PPaquete::with('precios', 'destinos', 'itinerarios.ordenes')->get()->where('id', $paquete_id);
+        $paquete = PPaquete::with('precios', 'destinos', 'itinerarios.ordenes')->get()->where('id', $newPaquete->id);
         $destinos = DestinoModelo::get();
         $ordenes1 = OrdenModelo::get();
-
         $itinerarios = ItinerarioModelo::with('ordenes')->get();
         return view('configurar-itinerario-p', ['destinos' => $destinos, 'paquete' => $paquete, 'ordenes1' => $ordenes1, 'itinerarios' => $itinerarios]);
-
     }
     public function editar_destinos_paquete(Request $request)
     {
@@ -693,6 +683,36 @@ class PaqueteController extends Controller
         $paquete = PPaquete::with('destinos')->where('id',$ppaquete_id)->get();
         $destinos=DestinoModelo::get();
         return view('editar-nuevo-paquete',['destinos'=>$destinos,'paquetes'=>$paquete]);
+
+    }
+    public function editar_pqt2(Request $request)
+    {
+        //
+        $codigo_txt=strtoupper($request->input('codigo_txt'));
+        $duracion_txt=strtoupper($request->input('duracion_txt'));
+        $titulo_txt=strtoupper($request->input('titulo_txt'));
+        $descipcion_txt=strtoupper($request->input('descipcion_txt'));
+        $opcional_txt=strtoupper($request->input('opcional_txt'));
+        $incluye_txt=strtoupper($request->input('incluye_txt'));
+        $noincluye_txt=strtoupper($request->input('noincluye_txt'));
+        $imagen=strtoupper($request->input('imagen'));
+        $path='';
+        $paquete_id=$request->input('ppaquete_id');
+        $newPaquete= PPaquete::FindOrFail($paquete_id);
+        $newPaquete->codigo=$codigo_txt;
+        $newPaquete->titulo=$titulo_txt;
+        $newPaquete->duracion=$duracion_txt;
+        $newPaquete->descripcion=$descipcion_txt;
+        $newPaquete->incluye=$incluye_txt;
+        $newPaquete->noincluye=$noincluye_txt;
+        $newPaquete->opcional=$opcional_txt;
+        $newPaquete->imagen=$path;
+        $newPaquete->save();
+        $paquete = PPaquete::with('precios', 'destinos', 'itinerarios.ordenes')->get()->where('id', $newPaquete->id);
+        $destinos = DestinoModelo::get();
+        $ordenes1 = OrdenModelo::get();
+        $itinerarios = ItinerarioModelo::with('ordenes')->get();
+        return view('configurar-itinerario-p-editar', ['destinos' => $destinos, 'paquete' => $paquete, 'ordenes1' => $ordenes1, 'itinerarios' => $itinerarios]);
 
     }
 }

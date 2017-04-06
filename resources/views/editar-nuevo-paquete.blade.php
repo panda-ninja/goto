@@ -24,7 +24,7 @@
     </div>
 
 
-    <form action="{{route('editar_nuevo_paquete_path')}}" method="post">
+    <form action="{{route('editar_nuevo_paquete_itis_path')}}" method="post">
         @foreach($paquetes as $paquete)
             <div class="row">
                 <div class="col s9">
@@ -81,7 +81,7 @@
                         <div class="row margin-top-20 right">
                             <div class="col s12">
                                 {{csrf_field()}}
-                                <input type="hidden" name="paquete_id" id="paquete_id" value="0">
+                                <input type="hidden" name="paquete_id" id="paquete_id" value="{{$paquete->id}}">
                                 <input type="hidden" name="cotizacion_id" id="cotizacion_id" value="0">
                                 <input type="hidden" name="cliente_id" id="cliente_id" value="0">
                                 <button class="btn waves-effect waves-light" type="submit" name="action">Continuar
@@ -102,14 +102,23 @@
                     </div>
                     <div class="row">
                         <?php $i=0;?>
-                        @foreach($paquete->destinos as $destin)
-
-                                    <?php $i++;?>
-                                    <div class="col s12">
-                                        <input type="checkbox" name="destino[]" class="filled-in" id="destino_{{$i}}" value="{{$destin->destino}}"/>
-                                        <label for="destino_{{$i}}">{{$destin->destino}}</label>
-                                    </div>
-
+                        @foreach($destinos as $destino)
+                                <?php $i++;$si=0;?>
+                                @foreach($paquete->destinos as $destinop)
+                                    @if($destinop->destino==$destino->destino)
+                                        <?php $si=1;?>
+                                        <div class="col s12">
+                                            <input type="checkbox" name="destino[]" class="filled-in" id="destino_{{$i}}" value="{{$destino->destino}}" checked="checked"/>
+                                            <label for="destino_{{$i}}">{{$destino->destino}}</label>
+                                        </div>
+                                    @endif
+                                @endforeach
+                            @if($si==0)
+                                <div class="col s12">
+                                    <input type="checkbox" name="destino[]" class="filled-in" id="destino_{{$i}}" value="{{$destino->destino}}"/>
+                                    <label for="destino_{{$i}}">{{$destino->destino}}</label>
+                                </div>
+                            @endif
                         @endforeach
                         {{--<div class="col s12 margin-top-10">--}}
 

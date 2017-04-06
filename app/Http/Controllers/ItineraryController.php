@@ -232,4 +232,22 @@ class ItineraryController extends Controller
             return $e;
         }
     }
+
+    /**
+     * @return string
+     */
+    public function editar_nuevo_paquete_itinerario(Request $request)
+    {
+
+        $paquete_id = $request->input('paquete_id');
+//        $paquete1=PPaquete::with('destinos')->where('id',$paquete->id)->get();
+        $paquete1 = PPaquete::with('precios', 'destinos', 'itinerarios.ordenes')->get()->where('id', $paquete_id);
+        $destinos = DestinoModelo::get();
+        $ordenes1 = OrdenModelo::get();
+        $itinerarios = ItinerarioModelo::with('ordenes')->get();
+//        return dd($itinerarios);
+//        dd($paquete1);
+        return view('configurar-itinerario-p-editar', ['destinos' => $destinos, 'paquete' => $paquete1, 'ordenes1' => $ordenes1, 'itinerarios' => $itinerarios]);
+
+    }
 }

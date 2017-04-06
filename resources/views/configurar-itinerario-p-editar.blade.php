@@ -376,32 +376,32 @@
 
                                 <!-- Modal Structure comentario-->
                                 {{--<div id="modal_edit_com_{{$itinerario->id}}" class="modal">--}}
-                                    {{--<div class="modal-content">--}}
-                                        {{--<form id="form_editar_itinerario_obs_{{$itinerario->id}}" name=form_editar_itinerario_obs_{{$itinerario->id}}" class="col s12"  method="post" enctype="multipart/form-data">--}}
-                                            {{--<div class="row">--}}
-                                                {{--<div class="col s12">--}}
-                                                    {{--<h5 class="center">Editar Comentario u observacion</h5>--}}
-                                                    {{--<div class="divider margin-bottom-20"></div>--}}
-                                                {{--</div>--}}
-                                            {{--</div>--}}
-                                            {{--<div class="row">--}}
+                                {{--<div class="modal-content">--}}
+                                {{--<form id="form_editar_itinerario_obs_{{$itinerario->id}}" name=form_editar_itinerario_obs_{{$itinerario->id}}" class="col s12"  method="post" enctype="multipart/form-data">--}}
+                                {{--<div class="row">--}}
+                                {{--<div class="col s12">--}}
+                                {{--<h5 class="center">Editar Comentario u observacion</h5>--}}
+                                {{--<div class="divider margin-bottom-20"></div>--}}
+                                {{--</div>--}}
+                                {{--</div>--}}
+                                {{--<div class="row">--}}
 
-                                                {{--<div class="input-field col s12">--}}
-                                                    {{--<textarea id="obs_txt" name="obs_txt" class="materialize-textarea">{{$itinerario->observaciones}}</textarea>--}}
-                                                    {{--<label for="obs_txt" class="">Comentario</label>--}}
-                                                {{--</div>--}}
-                                            {{--</div>--}}
-                                            {{--<div class="row spacer-20 right">--}}
-                                                {{--<div class="col s12">--}}
-                                                    {{--{{csrf_field()}}--}}
-                                                    {{--<input type="hidden" name="itinerario_id" id="itinerario_id" value="{{$itinerario->id}}">--}}
-                                                    {{--<a class="btn waves-effect waves-light" onclick="enviar_obs_nuevo({{$itinerario->id}})" name="action" id="action_itinerario_obs_{{$itinerario->id}}">Agregar--}}
-                                                        {{--<i class="mdi-content-send right"></i>--}}
-                                                    {{--</a>--}}
-                                                {{--</div>--}}
-                                            {{--</div>--}}
-                                        {{--</form>--}}
-                                    {{--</div>--}}
+                                {{--<div class="input-field col s12">--}}
+                                {{--<textarea id="obs_txt" name="obs_txt" class="materialize-textarea">{{$itinerario->observaciones}}</textarea>--}}
+                                {{--<label for="obs_txt" class="">Comentario</label>--}}
+                                {{--</div>--}}
+                                {{--</div>--}}
+                                {{--<div class="row spacer-20 right">--}}
+                                {{--<div class="col s12">--}}
+                                {{--{{csrf_field()}}--}}
+                                {{--<input type="hidden" name="itinerario_id" id="itinerario_id" value="{{$itinerario->id}}">--}}
+                                {{--<a class="btn waves-effect waves-light" onclick="enviar_obs_nuevo({{$itinerario->id}})" name="action" id="action_itinerario_obs_{{$itinerario->id}}">Agregar--}}
+                                {{--<i class="mdi-content-send right"></i>--}}
+                                {{--</a>--}}
+                                {{--</div>--}}
+                                {{--</div>--}}
+                                {{--</form>--}}
+                                {{--</div>--}}
 
                                 {{--</div>--}}
 
@@ -425,23 +425,23 @@
                                         </div>
                                         <div class="row">
                                             @foreach($itinerarios as $itinerario)
-                                            <?php
-                                            $st=0;
-                                            $ordentxt='';
-                                            ?>
-                                            @foreach($itinerario->ordenes as $orden)
-                                            <?php
-                                            $st+=$orden->orden_modelo->precio;
-                                            $ordentxt.=$orden->orden_modelo->nombre.'($'.$orden->orden_modelo->precio.'), ';
-                                            ?>
-                                            @endforeach
-                                            <?php
-                                            $ordentxt=substr($ordentxt,0,strlen($ordentxt)-2);
-                                            ?>
-                                            <div class="col s6">
-                                            <input type="checkbox" name="itinerario[]" id="itinerario_{{$itinerario->id}}" value="{{$itinerario->id}}" class="filled-in"/>
-                                            <label for="itinerario_{{$itinerario->id}}">{{$itinerario->titulo}} ({{$st}}.00) <a href="" class="tooltipped" data-position="top" data-delay="50" data-tooltip="{{$ordentxt}}"><i class="mdi-action-visibility"></i></a></label>
-                                            </div>
+                                                <?php
+                                                $st=0;
+                                                $ordentxt='';
+                                                ?>
+                                                @foreach($itinerario->ordenes as $orden)
+                                                    <?php
+                                                    $st+=$orden->orden_modelo->precio;
+                                                    $ordentxt.=$orden->orden_modelo->nombre.'($'.$orden->orden_modelo->precio.'), ';
+                                                    ?>
+                                                @endforeach
+                                                <?php
+                                                $ordentxt=substr($ordentxt,0,strlen($ordentxt)-2);
+                                                ?>
+                                                <div class="col s6">
+                                                    <input type="checkbox" name="itinerario[]" id="itinerario_{{$itinerario->id}}" value="{{$itinerario->id}}" class="filled-in"/>
+                                                    <label for="itinerario_{{$itinerario->id}}">{{$itinerario->titulo}} ({{$st}}.00) <a href="" class="tooltipped" data-position="top" data-delay="50" data-tooltip="{{$ordentxt}}"><i class="mdi-action-visibility"></i></a></label>
+                                                </div>
                                             @endforeach
                                         </div>
                                         <div class="row spacer-20 right">
@@ -868,7 +868,7 @@
                     </div>
                 </div>
                 <div class="row">
-                    <form  name="form_editar_pqt_nuevo" class="col s12" action="{{route('editar_paquete_path')}}" method="post" enctype="multipart/form-data">
+                    <form  name="form_editar_pqt_nuevo" class="col s12" action="{{route('editar_paquete_itinerario_path')}}" method="post" enctype="multipart/form-data">
                         <div class="row">
                             <div class="input-field col s3">
                                 <input placeholder="Ingrese el codigo del paquete" id="codigo_txt" name="codigo_txt" type="text" class="validate" value="{{$paquete_->codigo}}">

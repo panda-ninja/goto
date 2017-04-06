@@ -30,32 +30,32 @@ $(document).ready(function(){
             }
         });
     });
-    $("#form_editar_pqt_nuevo").submit(function(e){
-        e.preventDefault();
-        $.ajax({
-            url: $(this).attr("action"),//action del formulario, ej:
-            //http://localhost/mi_proyecto/mi_controlador/mi_funcion
-            type: $(this).attr("method"),//el método post o get del formulario
-            data: $(this).serialize(),//obtenemos todos los datos del formulario
-            error: function(){
-                //si hay un error mostramos un mensaje
-            },
-            success:function(data){
-                //hacemos algo cuando finalice
-                var rpt=data.split('_');
-                console.log(data);
-                if(rpt[0]==1) {
-                    // $("#response").html(data[1]);
-                    $("#action").html('Datos enviados<i class="mdi-content-send right"></i>');
-                    $("#action").addClass('green');
-                }
-                else{
-                    // $("#response").html(data);
-                }
-
-            }
-        });
-    });
+    // $("#form_editar_pqt_nuevo").submit(function(e){
+    //     e.preventDefault();
+    //     $.ajax({
+    //         url: $(this).attr("action"),//action del formulario, ej:
+    //         //http://localhost/mi_proyecto/mi_controlador/mi_funcion
+    //         type: $(this).attr("method"),//el método post o get del formulario
+    //         data: $(this).serialize(),//obtenemos todos los datos del formulario
+    //         error: function(){
+    //             //si hay un error mostramos un mensaje
+    //         },
+    //         success:function(data){
+    //             //hacemos algo cuando finalice
+    //             var rpt=data.split('_');
+    //             console.log(data);
+    //             if(rpt[0]==1) {
+    //                 // $("#response").html(data[1]);
+    //                 $("#action").html('Datos enviados<i class="mdi-content-send right"></i>');
+    //                 $("#action").addClass('green');
+    //             }
+    //             else{
+    //                 // $("#response").html(data);
+    //             }
+    //
+    //         }
+    //     });
+    // });
     $("#formDestinos").submit(function(e){
         e.preventDefault();
         $.ajax({
@@ -82,32 +82,32 @@ $(document).ready(function(){
             }
         });
     });
-    $("#formDestinos_pqt").submit(function(e){
-        e.preventDefault();
-        $.ajax({
-            url: $(this).attr("action"),//action del formulario, ej:
-            //http://localhost/mi_proyecto/mi_controlador/mi_funcion
-            type: $(this).attr("method"),//el método post o get del formulario
-            data: $(this).serialize(),//obtenemos todos los datos del formulario
-            error: function(){
-                //si hay un error mostramos un mensaje
-            },
-            success:function(data){
-                //hacemos algo cuando finalice
-                var rpt=data.split('_');
-
-                if(rpt[0]==1) {
-                    // $("#response").html(data[1]);
-                    $("#actionDestino").html('Datos enviados<i class="mdi-content-send right"></i>');
-                    $("#actionDestino").addClass('green');
-                }
-                else{
-                    $("#response").html(data);
-                }
-
-            }
-        });
-    });
+    // $("#formDestinos_pqt").submit(function(e){
+    //     e.preventDefault();
+    //     $.ajax({
+    //         url: $(this).attr("action"),//action del formulario, ej:
+    //         //http://localhost/mi_proyecto/mi_controlador/mi_funcion
+    //         type: $(this).attr("method"),//el método post o get del formulario
+    //         data: $(this).serialize(),//obtenemos todos los datos del formulario
+    //         error: function(){
+    //             //si hay un error mostramos un mensaje
+    //         },
+    //         success:function(data){
+    //             //hacemos algo cuando finalice
+    //             var rpt=data.split('_');
+    //
+    //             if(rpt[0]==1) {
+    //                 // $("#response").html(data[1]);
+    //                 $("#actionDestino").html('Datos enviados<i class="mdi-content-send right"></i>');
+    //                 $("#actionDestino").addClass('green');
+    //             }
+    //             else{
+    //                 $("#response").html(data);
+    //             }
+    //
+    //         }
+    //     });
+    // });
 
     // $("#form_editar_itinerario").submit(function(e){
     //     e.preventDefault();
