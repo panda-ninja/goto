@@ -476,7 +476,7 @@ Route::group(['middleware'=>'admin'],function(){
         'uses' => 'PaqueteController@editar_pqt_nuevo',
         'as' => 'editar_paquete_path',
     ]);
-    Route::post('editar_destinos_paquete', [
+    Route::post('editar-destinos-paquete', [
         'uses' => 'PaqueteController@editar_destinos_paquete',
         'as' => 'editar_destinos_paquete_path',
     ]);
@@ -515,6 +515,10 @@ Route::group(['middleware'=>'admin'],function(){
     Route::post('editar_paquete_itinerario', [
         'uses' => 'PaqueteController@editar_pqt2',
         'as' => 'editar_paquete_itinerario_path',
+    ]);
+    Route::post('editar_destinos_paquete', [
+        'uses' => 'PaqueteController@editar_destinos_paquete2',
+        'as' => 'editar_destinos_paquete2_path',
     ]);
 
 });

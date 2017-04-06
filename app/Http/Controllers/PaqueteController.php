@@ -715,4 +715,44 @@ class PaqueteController extends Controller
         return view('configurar-itinerario-p-editar', ['destinos' => $destinos, 'paquete' => $paquete, 'ordenes1' => $ordenes1, 'itinerarios' => $itinerarios]);
 
     }
+    public function editar_destinos_paquete2(Request $request)
+    {
+        try {
+            $destinos = $request->input('destino');
+//          return dd($destinos);
+            $paquete_id = $request->input('paquete_id');
+//          return dd($paquete_id);
+            $antiguos_destinos = PDestino::where('ppaquete_id', $paquete_id)->delete();
+            $valor='';
+            foreach ($destinos as $destino) {
+//              $valor.=$destino.'_';
+                $modelo = DestinoModelo::where('destino', $destino)->get();
+                foreach ($modelo as $modelo_){
+                    $newModelo = new PDestino();
+                    $newModelo->codigo = $modelo_->codigo;
+                    $newModelo->destino = $modelo_->destino;
+                    $newModelo->region = $modelo_->region;
+                    $newModelo->pais = $modelo_->pais;
+                    $newModelo->descripcion = $modelo_->descripcion;
+                    $newModelo->imagen = $modelo_->imagen;
+                    $newModelo->estado = $modelo_->estado;
+                    $newModelo->ppaquete_id = $paquete_id;
+                    $newModelo->save();
+                }
+//
+            }
+//            return $valor;
+//            return '1_Bien hecho! Destinos editado creectamente';
+            $paquete = PPaquete::with('precios', 'destinos', 'itinerarios.ordenes')->get()->where('id', $paquete_id);
+            $destinos = DestinoModelo::get();
+            $ordenes1 = OrdenModelo::get();
+
+            $itinerarios = ItinerarioModelo::with('ordenes')->get();
+            return view('configurar-itinerario-p-editar', ['destinos' => $destinos, 'paquete' => $paquete, 'ordenes1' => $ordenes1, 'itinerarios' => $itinerarios]);
+
+        }
+        catch (\Exception $e) {
+//            return '0_Ups! Error a editar los destinos, vuelva a intentarlo';
+        }
+    }
 }
