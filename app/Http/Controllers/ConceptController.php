@@ -37,9 +37,9 @@ class ConceptController extends Controller
      */
     public function store(Request $request)
     {
-        $concept = OrdenModelo::get()->where('observacion', $request->get('observacion_txt'));
+        $concept = OrdenModelo::where('nombre', $request->get('titulo_txt'))->where('observacion', $request->get('observacion_txt'))->get();
         if (count($concept) > 0){
-            return redirect()->route('admin_concepts_index_path')->with('error','El concepto '.$request->get('observacion_txt').': '.$request->get('observacion_txt').' ya existe.');
+            return redirect()->route('admin_concepts_index_path')->with('error','El concepto '.$request->get('titulo_txt').': '.$request->get('observacion_txt').' ya existe.');
         }else{
             $concepts = new OrdenModelo();
             $concepts->nombre = $request->get('titulo_txt');
@@ -47,7 +47,23 @@ class ConceptController extends Controller
             $concepts->precio = $request->get('price_txt');
             $concepts->save();
 
-            return redirect()->route('admin_concepts_index_path')->with('success','El concepto '.$request->get('observacion_txt').': '.$request->get('observacion_txt').' se agrego satisfactoriamente.');
+            return redirect()->route('admin_concepts_index_path')->with('success','El concepto '.$request->get('titulo_txt').': '.$request->get('observacion_txt').' se agrego satisfactoriamente.');
+        }
+    }
+
+    public function store2(Request $request)
+    {
+        $concept = OrdenModelo::get()->where('observacion', $request->get('observacion_txt'));
+        if (count($concept) > 0){
+            return 'No se agrego';
+        }else{
+            $concepts = new OrdenModelo();
+            $concepts->nombre = $request->get('titulo_txt');
+            $concepts->observacion = $request->get('observacion_txt');
+            $concepts->precio = $request->get('price_txt');
+            $concepts->save();
+
+            return $concepts->id.'_Se agrego. :)';
         }
     }
 
@@ -85,12 +101,17 @@ class ConceptController extends Controller
         $concepto = OrdenModelo::findOrFail($id);
 
         if (count($concepto) > 0){
-            $concepts = OrdenModelo::findOrFail($id);
-            $concepts->nombre = $request->get('titulo_txt');
-            $concepts->observacion = $request->get('observacion_txt');
-            $concepts->precio = $request->get('price_txt');
-            $concepts->save();
-            return redirect()->route('admin_concepts_index_path')->with('success','El concepto '.$request->get('observacion_txt').': '.$request->get('observacion_txt').' se actualizo satisfactoriamente.');
+            $concept = OrdenModelo::where('nombre', $request->get('titulo_txt'))->where('observacion', $request->get('observacion_txt'))->get();
+            if (count($concept) >0){
+                return redirect()->route('admin_concepts_index_path')->with('error', 'El concepto ' . $request->get('titulo_txt') . ': ' . $request->get('observacion_txt') . ' ya existe.');
+            }else {
+                $concepts = OrdenModelo::findOrFail($id);
+                $concepts->nombre = $request->get('titulo_txt');
+                $concepts->observacion = $request->get('observacion_txt');
+                $concepts->precio = $request->get('price_txt');
+                $concepts->save();
+                return redirect()->route('admin_concepts_index_path')->with('success', 'El concepto ' . $request->get('titulo_txt') . ': ' . $request->get('observacion_txt') . ' se actualizo satisfactoriamente.');
+            }
         }
     }
 

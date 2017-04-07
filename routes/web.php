@@ -402,6 +402,13 @@ Route::group(['middleware'=>'admin'],function(){
         'uses' => 'ConceptController@store',
         'as' => 'admin_concept_store_path',
     ]);
+
+    Route::get('admin/concepts/store2', [
+        'uses' => 'ConceptController@store2',
+        'as' => 'admin_concept_store2_path',
+    ]);
+
+
     Route::patch('admin/concepts/{id}', [
         'uses' => 'ConceptController@update',
         'as' => 'admin_concept_update_path',

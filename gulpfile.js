@@ -102,6 +102,7 @@ elixir(function(mix) {
     mix.scripts([
         'vendors/jquery.min.js',
         'vendors/jquery-ui.js',
+        'vendors/jquery.materialize-autocomplete.js',
         'vendors/materialize2.js',
         <!--scrollbar-->
         'vendors/perfect-scrollbar.min.js',

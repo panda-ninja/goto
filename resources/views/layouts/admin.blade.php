@@ -804,6 +804,112 @@ Scripts
             $(this).parent().css('position', 'relative');
         })
 </script>
+
+
+<script type="text/javascript">
+    function addConcept(){
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('[name="_token"]').val()
+            }
+        });
+
+        $("#c_send").attr("disabled", true);
+
+        var s_titulo = $('#c_titulo_txt').val();
+        var s_price = $('#c_price_txt').val();
+        var s_observacion = $('#c_observacion_txt').val();
+
+        if (s_titulo.length == 0 ){
+            $('#c_titulo_txt').css("border-bottom", "2px solid #FF0000");
+            validation = "false";
+        }else{
+            validation = "true";
+        }
+
+        if (s_price.length == 0 ){
+            $('#c_price_txt').css("border-bottom", "2px solid #FF0000");
+            validation = "false";
+        }else{
+            validation = "true";
+        }
+
+        if(validation == "true"){
+            var datos = {
+
+                "titulo_txt" : s_titulo,
+                "price_txt" : s_price,
+                "observacion_txt" : s_observacion
+            };
+            $.ajax({
+                data:  datos,
+                url:   '{{route('admin_concept_store2_path')}}',
+                type:  'get',
+
+                beforeSend: function () {
+                    $("#c_send").html('<div class="preloader-wrapper small active">'+
+                        '<div class="spinner-layer spinner-green-only">'+
+                        '<div class="circle-clipper left">'+
+                        '<div class="circle"></div>'+
+                        '</div><div class="gap-patch">'+
+                        '<div class="circle"></div>'+
+                        '</div><div class="circle-clipper right">'+
+                        '<div class="circle"></div>'+
+                        '</div>'+
+                        '</div>'+
+                        '</div>');;
+                },
+                success:  function (response) {
+                    var $idservices = response.split('_');
+//                    $("#theForm")[0].reset();
+                    $("#c_send").html("Send");
+//                    $("#c_congratulation p").html(response);
+//                    $("#c_congratulation").fadeIn('slow');
+                    $("#c_send").removeAttr("disabled");
+                    $("#c_services").append('' +
+                        '<div class="col s9">'+
+                        '<input type="checkbox" id="services-'+$idservices[0]+'" name="services[]" class="filled-in" value="'+$idservices[0]+'"/>'+
+                        '<label for="services-'+$idservices[0]+'">'+s_titulo+' <i class="text-10">('+s_observacion+')</i></label>'+
+                        '</div>'+
+                        '<div class="col s3">'+
+                        '<b class="right">('+s_price+'$)</b>'+
+                        '</div>');
+                    $('#staggered-test li').css("opacity", "0");
+                }
+            });
+        } else{
+            $("#c_send").removeAttr("disabled");
+        }
+    }
+
+</script>
+<script>
+    $('.chips').material_chip();
+    $('.chips-initial').material_chip({
+        data: [{
+            tag: 'Apple',
+        }, {
+            tag: 'Microsoft',
+        }, {
+            tag: 'Google',
+        }],
+    });
+    $('.chips-placeholder').material_chip({
+        placeholder: 'Enter a tag',
+        secondaryPlaceholder: '+Tag',
+    });
+    $('.chips-autocomplete').material_chip({
+        autocompleteOptions: {
+            data: {
+                'Apple': null,
+                'Microsoft': null,
+                'Google': null
+            },
+            limit: Infinity,
+            minLength: 1
+        }
+    });
+</script>
 </body>
 
 </html>

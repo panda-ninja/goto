@@ -23,6 +23,48 @@
     <!--breadcrumbs end-->
     <div class="container">
         <div class="section">
+
+            <div class="row">
+                <style>
+                    .autocomplete {
+                        display: -ms-flexbox;
+                        display: flex;
+                    }
+                    .autocomplete .ac-users {
+                        padding-top: 10px;
+                    }
+                    .autocomplete .ac-users .chip {
+                        -ms-flex: auto;
+                        flex: auto;
+                        margin-bottom: 10px;
+                        margin-right: 10px;
+                    }
+                    .autocomplete .ac-users .chip:last-child {
+                        margin-right: 5px;
+                    }
+                    .autocomplete .ac-dropdown .ac-hover {
+                        background: #eee;
+                    }
+                    .autocomplete .ac-input {
+                        -ms-flex: 1;
+                        flex: 1;
+                        min-width: 150px;
+                        padding-top: 0.6rem;
+                    }
+                    .autocomplete .ac-input input {
+                        height: 2.4rem;
+                    }
+                </style>
+                <div class="row">
+                    <h1 class="col s12">Materialize-autocomplete</h1>
+                    <div class="chips"></div>
+                    <div class="chips chips-initial"></div>
+                    <div class="chips chips-placeholder"></div>
+                    <div class="chips chips-autocomplete"></div>
+                </div>
+            </div>
+
+
             <div class="row">
                 <div class="col s12">
                     @if(Session::get('success'))
@@ -91,48 +133,6 @@
                                     </form>
                                 </td>
                             </tr>
-
-                            <!-- Modal Structure concept edit-->
-                            <div id="{{$concepts->id}}-concept" class="modal">
-                                <div class="modal-content">
-                                    <form action="{{route('admin_concept_update_path', $concepts->id)}}"  method="post" enctype="multipart/form-data">
-                                        {{csrf_field()}}
-                                        <input type="hidden" name="_method" value="patch">
-                                        <div class="row">
-                                            <div class="col s12">
-                                                <h5 class="center">Concept</h5>
-                                                <div class="divider margin-bottom-40"></div>
-                                            </div>
-                                        </div>
-                                        <div class="row">
-                                            <div class="input-field col s6">
-                                                <input placeholder="Ingrese el titulo del itinerario" id="titulo_txt" name="titulo_txt" type="text" class="validate" required value="{{$concepts->nombre}}">
-                                                <label for="titulo_txt" class="active">Title</label>
-                                            </div>
-                                            <div class="input-field col s6">
-                                                <input placeholder="Ingrese precio del servicio" id="price_txt" name="price_txt" type="number" min="0" class="validate" required value="{{$concepts->precio}}">
-                                                <label for="price_txt" class="active">Price</label>
-                                            </div>
-                                        </div>
-                                        <div class="row">
-                                            <div class="input-field col s12">
-                                                <textarea id="observacion_txt" name="observacion_txt" class="materialize-textarea" required>{{$concepts->observacion}}</textarea>
-                                                <label for="observacion_txt" class="active">Observation</label>
-                                            </div>
-                                        </div>
-                                        <div class="row spacer-20">
-                                            <div class="col s12">
-                                                <button class="btn waves-effect waves-light right" type="submit" name="action">Update
-                                                    <i class="mdi-content-send right"></i>
-                                                </button>
-                                            </div>
-                                        </div>
-                                    </form>
-
-                                </div>
-
-                            </div>
-
                         @endforeach
                         </tbody>
                     </table>
@@ -147,6 +147,48 @@
         </a>
     </div>
 
+    @foreach($concept->sortBy("nombre") as $concepts)
+        <!-- Modal Structure concept edit-->
+        <div id="{{$concepts->id}}-concept" class="modal">
+            <div class="modal-content">
+                <form action="{{route('admin_concept_update_path', $concepts->id)}}"  method="post" enctype="multipart/form-data">
+                    {{csrf_field()}}
+                    <input type="hidden" name="_method" value="patch">
+                    <div class="row">
+                        <div class="col s12">
+                            <h5 class="center">Concept</h5>
+                            <div class="divider margin-bottom-40"></div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="input-field col s6">
+                            <input placeholder="Ingrese el titulo del itinerario" id="titulo_txt" name="titulo_txt" type="text" class="validate" required value="{{$concepts->nombre}}">
+                            <label for="titulo_txt" class="active">Title</label>
+                        </div>
+                        <div class="input-field col s6">
+                            <input placeholder="Ingrese precio del servicio" id="price_txt" name="price_txt" type="number" min="0" class="validate" required value="{{$concepts->precio}}">
+                            <label for="price_txt" class="active">Price</label>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="input-field col s12">
+                            <textarea id="observacion_txt" name="observacion_txt" class="materialize-textarea" required>{{$concepts->observacion}}</textarea>
+                            <label for="observacion_txt" class="active">Observation</label>
+                        </div>
+                    </div>
+                    <div class="row spacer-20">
+                        <div class="col s12">
+                            <button class="btn waves-effect waves-light right" type="submit" name="action">Update
+                                <i class="mdi-content-send right"></i>
+                            </button>
+                        </div>
+                    </div>
+                </form>
+
+            </div>
+
+        </div>
+    @endforeach
     <!-- Modal Structure concept-->
     <div id="concept_add" class="modal">
         <div class="modal-content">
@@ -171,7 +213,7 @@
                 </div>
                 <div class="row">
                     <div class="input-field col s12">
-                        <textarea id="observacion_txt" name="observacion_txt" class="materialize-textarea" required></textarea>
+                        <textarea id="observacion_txt" name="observacion_txt" class="materialize-textarea"></textarea>
                         <label for="observacion_txt" class="active">Observation</label>
                     </div>
                 </div>
