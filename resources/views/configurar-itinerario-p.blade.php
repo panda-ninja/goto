@@ -142,11 +142,14 @@
                                                             </td>
                                                         </tr>
                                                     @endforeach
-                                                    <tr>
-                                                        <td colspan="2"></td>
-                                                        <td class="no-padding right-align"><a href="#modal_add_services_{{$itinerario->id}}" class="modal-trigger text-12 blue-text"><i>Agregar nuevo servicio +</i></a></td>
-                                                    </tr>
+
                                                     </tbody>
+                                                    <tfoter>
+                                                        <tr>
+                                                            <td colspan="2"></td>
+                                                            <td class="no-padding right-align"><a href="#modal_add_services_{{$itinerario->id}}" class="modal-trigger text-12 blue-text"><i>Agregar nuevo servicio +</i></a></td>
+                                                        </tr>
+                                                    </tfoter>
                                                 </table>
                                                 <!-- Modal Structure comentario-->
                                                 <div id="modal_edit_serv_" class="modal">

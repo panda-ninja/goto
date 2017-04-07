@@ -24375,21 +24375,15 @@ function agregar_servicio_pqt(pos){
             $("#action_agregar_servicio_"+pos).html('Agregar<i class="mdi-content-send right"></i>');
             $("#action_agregar_servicio_"+pos).removeClass('green');
             $("#action_agregar_servicio_"+pos).addClass('pink accent-2');
-
-            // for (var ele in data) {
-            //     //1era iteración: ele === 1
-            //     //2da iteración: ele === 2
-            //     //demas iteraciones: metodos y propiedades del array.
-            // }
-            // var $data=data.split(',');
+            $("#itineraio_orden_"+pos).html('');
+            console.log('nuevos servicios:'+pos);
             $.each(data, function(i, item){
                 console.log(item);
                 var $dato=item.split('_');
                 $("#itineraio_orden_"+pos).prepend(
-                    // +'/'+$dato[1]+'/'+$dato[2]
-                    '<tr id="servicio_'+$dato[0]+'">'+
+                    '<tr id="servicio_'+pos+'_'+$dato[0]+'">'+
                     '<td>'+$dato[1]+'</td>'+
-                    '<td class="iti_precio_orden_'+pos+'" id="iti_precio_serv_'+$dato[0]+'">'+$dato[2]+'</td>'+
+                    '<td class="iti_precio_orden_'+pos+'" id="iti_precio_serv_'+$dato[0]+'" name="precio__iti_orden">'+$dato[2]+'</td>'+
                     '<td class="right-align">'+
                     '<a href="#modal_edit_serv_'+$dato[0]+'" class="modal-trigger blue-text "><i class="mdi-editor-mode-edit"></i></a>'+
                     '<a href="#!" class="red-text" onclick="eliminar_servicio_pqt('+$dato[0]+')"><i class="mdi-action-delete"></i></a>'+
@@ -24399,35 +24393,16 @@ function agregar_servicio_pqt(pos){
             });
             var $total_orden=0;
             $(".iti_precio_orden_"+pos).each(function(){
-                $total_orden+=parseInt($(this).val());
+                $total_orden+=parseInt($(this).html());
             });
             console.log('orden total:'+$total_orden);
             $("#precio_itinerario_"+pos).val($total_orden);
             $("#html_precio_itinerario_"+pos).html($total_orden);
-
-            // for (var ele in data) {
-            //     console.log('orden: '+data[ele]);
-            //     var $dato=ele.split('_');
-            //     $("#itineraio_orden_"+pos).prepend(
-            //         '<tr id="servicio_'+$dato[0]+'">'+
-            //         '<td>'+$dato[1]+'</td>'+
-            //         '<td id="iti_precio_serv_'+$dato[0]+'">'+$dato[2]+'</td>'+
-            //         '<td class="right-align">'+
-            //         '<a href="#modal_edit_serv_'+$dato[0]+'" class="modal-trigger blue-text "><i class="mdi-editor-mode-edit"></i></a>'+
-            //         '<a href="#!" class="red-text" onclick="eliminar_servicio_pqt('+$dato[0]+')"><i class="mdi-action-delete"></i></a>'+
-            //         '</td>'+
-            //         '</tr>'
-            //     );
-            // }
             recalcular_ordenes();
             poner_valor();
             pasartotal(0);
-
         }
         else{
-            // $("#response_tinerario").html(rpt[2]);
-            // console.log('error: '+data);
-            // $("#response_tinerario").html(data);
         }
     }).fail(function (data) {
         console.log('eroorr: '+data);

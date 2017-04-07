@@ -164,27 +164,32 @@ class ItineraryController extends Controller
     }
     public function paquete_agregar_itineraios(Request $request){
         try {
+
             $itinerarios = $request->input('itinerario');
             $paquete_id = $request->input('paquete_id');
 
             foreach ($itinerarios as $itinerario) {
+
                 $iti = ItinerarioModelo::with('ordenes.orden_modelo')->where('id', $itinerario)->get();
 //                return dd($iti);
                 foreach ($iti as $item) {
-                    $new_iti = new PItinerario();
-                    $new_iti->titulo = $item->titulo;
-                    $new_iti->descripcion = $item->descripcion;
-                    $new_iti->dias = $item->dia;
-                    $new_iti->imagen = $item->imagen;
-//                    $new_iti->estado = $item->estado;
-                    $new_iti->ppaquete_id = $paquete_id;
-                    $new_iti->save();
-                    foreach ($item->ordenes as $orden1) {
-                        $new_orden = new PItinerarioOrden();
-                        $new_orden->nombre = $orden1->orden_modelo->nombre;
-                        $new_orden->precio = $orden1->orden_modelo->precio;
-                        $new_orden->pitinerario_id = $new_iti->id;
-                        $new_orden->save();
+                    $itinerario1=PItinerario::where('titulo',$item->titulo);
+                    if(count($itinerario1)==0){
+                        $new_iti = new PItinerario();
+                        $new_iti->titulo = $item->titulo;
+                        $new_iti->descripcion = $item->descripcion;
+                        $new_iti->dias = $item->dia;
+                        $new_iti->imagen = $item->imagen;
+    //                    $new_iti->estado = $item->estado;
+                        $new_iti->ppaquete_id = $paquete_id;
+                        $new_iti->save();
+                        foreach ($item->ordenes as $orden1) {
+                            $new_orden = new PItinerarioOrden();
+                            $new_orden->nombre = $orden1->orden_modelo->nombre;
+                            $new_orden->precio = $orden1->orden_modelo->precio;
+                            $new_orden->pitinerario_id = $new_iti->id;
+                            $new_orden->save();
+                        }
                     }
                 }
             }
@@ -215,7 +220,8 @@ class ItineraryController extends Controller
             $nombre = 'nservicio_' . $iti_orden_id;
             $nservicio = $request->input($nombre);
             $results = [];
-//            return dd($nservicio);
+//          return dd($nservicio);
+            PItinerarioOrden::where('pitinerario_id',$iti_orden_id)->delete();
             foreach ($nservicio as $orden) {
                 $ordenVal = explode('_', $orden);
                 $objeto = new PItinerarioOrden();
