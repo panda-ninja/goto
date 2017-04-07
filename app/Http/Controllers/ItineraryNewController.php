@@ -48,25 +48,28 @@ class ItineraryNewController extends Controller
             return redirect()->route('admin_itinerary_new_path')->with('success','El itinerario ya existe');
         }else{
 
-            $file = $request->file('file');
-            $filename = strtolower(str_replace(' ','-', $request->get('titulo_txt'))).'.jpg';
-
             $itinerario = new ItinerarioModelo();
             $itinerario->dia = "1";
             $itinerario->titulo = $request->get('titulo_txt');
             $itinerario->descripcion = $request->get('descipcion_txt');
-            $itinerario->imagen = $filename;
+//            $itinerario->imagen = $filename;
             $itinerario->save();
 
             $services = $request->get('services');
-            foreach ($services as $service){
-                $services = new ItinerarioOrdenModelo();
-                $services->orden_modelo_id = $service;
-                $services->itinerario_modelo_id = $itinerario->id;
-                $services->save();
+            if ($services > 0){
+                foreach ($services as $service){
+                    $services = new ItinerarioOrdenModelo();
+                    $services->orden_modelo_id = $service;
+                    $services->itinerario_modelo_id = $itinerario->id;
+                    $services->save();
+                }
             }
-
+            $file = $request->file('file');
+            $filename = 'itinerary-'.$itinerario->id.'.jpg';
             if ($file){
+                $itinerario_modelo = ItinerarioModelo::findOrFail($itinerario->id);
+                $itinerario_modelo->imagen = $filename;
+                $itinerario_modelo->save();
                 Storage::disk('itinerary')->put($filename,  File::get($file));
             }
             return redirect()->route('admin_itinerary_new_path')->with('success','Itinerario agregado satisfactoriamente');
@@ -112,6 +115,47 @@ class ItineraryNewController extends Controller
      */
     public function update(Request $request, $id)
     {
+//        $itinerario = ItinerarioModelo::findOrFail($id);
+//
+//        $post->title = $request->get('title');
+//        $post->body = $request->get('body');
+//        $post->Author_id = Auth::id();
+//        $post->save();
+//
+//        return redirect()->route('post_show_path', $post->id);
+
+        $itinerario_e = ItinerarioModelo::findOrFail($id);
+        if ($itinerario_e->count() > 0){
+            $file = $request->file('file');
+            $filename = 'itinerary-'.$id.'.jpg';
+
+            $itinerario = ItinerarioModelo::findOrFail($id);
+            $itinerario->dia = "1";
+            $itinerario->titulo = $request->get('titulo_txt');
+            $itinerario->descripcion = $request->get('descipcion_txt');
+            $itinerario->imagen = $filename;
+            $itinerario->save();
+
+            $services = $request->get('services');
+            if (count($services) > 0){
+                ItinerarioOrdenModelo::where('itinerario_modelo_id', $itinerario->id)->delete();
+                foreach ($services as $service){
+                    $services = new ItinerarioOrdenModelo();
+                    $services->orden_modelo_id = $service;
+                    $services->itinerario_modelo_id = $itinerario->id;
+                    $services->save();
+                }
+            }else{
+                ItinerarioOrdenModelo::where('itinerario_modelo_id', $itinerario->id)->delete();
+            }
+
+            if ($file){
+                Storage::disk('itinerary')->put($filename,  File::get($file));
+            }
+            return redirect()->route('admin_itinerary_edit_path', $itinerario->id)->with('success','Itinerario modificado satisfactoriamente');
+        }else{
+            return redirect()->route('admin_itinerary_new_path')->with('error','El itinerario no existe');
+        }
 
     }
 
@@ -125,6 +169,8 @@ class ItineraryNewController extends Controller
     {
         $itinerario = ItinerarioModelo::findOrFail($id);
         $itinerario->delete();
+
+        Storage::disk('itinerary')->delete('itinerary-'.$id.'.jpg');
 
         Session::flash('message', $itinerario->titulo.': Fue eliminado satisfactoriamente');
 

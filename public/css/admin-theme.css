@@ -14216,6 +14216,11 @@ body{
     top: -65px;
     left: -65px;
 }
+button.btn-submit-form{
+    background: none;
+    border: none;
+    padding: 0;
+}
 /*//text decoration*/
   .line-through{
       text-decoration: line-through;

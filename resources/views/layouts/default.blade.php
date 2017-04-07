@@ -1326,6 +1326,18 @@
         else {window.attachEvent('onload', _onload)}
     }());
 </script>
-
+<script>
+    $('.chips-autocomplete').material_chip({
+        autocompleteOptions: {
+            data: {
+                'Apple': null,
+                'Microsoft': null,
+                'Google': null
+            },
+            limit: Infinity,
+            minLength: 1
+        }
+    });
+</script>
 </body>
 </html>
