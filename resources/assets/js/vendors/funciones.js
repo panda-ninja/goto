@@ -1,4 +1,6 @@
-var $url='http://localhost/goto2/public';
+// var $url='http://localhost/goto2/public';
+var $url='';
+
 //hidalgo
 $(document).ready(function(){
     Materialize.updateTextFields();
