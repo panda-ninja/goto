@@ -167,13 +167,14 @@ class ItineraryController extends Controller
 
             $itinerarios = $request->input('itinerario');
             $paquete_id = $request->input('paquete_id');
-
+//            return dd($itinerarios);
             foreach ($itinerarios as $itinerario) {
 
                 $iti = ItinerarioModelo::with('ordenes.orden_modelo')->where('id', $itinerario)->get();
 //                return dd($iti);
                 foreach ($iti as $item) {
-                    $itinerario1=PItinerario::where('titulo',$item->titulo);
+                    $itinerario1=PItinerario::where('titulo',$item->titulo)
+                        ->where('ppaquete_id',$paquete_id)->get();
                     if(count($itinerario1)==0){
                         $new_iti = new PItinerario();
                         $new_iti->titulo = $item->titulo;
